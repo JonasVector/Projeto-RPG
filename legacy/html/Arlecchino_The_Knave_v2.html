@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arlecchino, The Knave — Ficha D&D 5e</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --crimson:        #8b0000;
+  --crimson-mid:    #b22222;
+  --crimson-bright: #d63031;
+  --scarlet:        #e84040;
+  --ember:          #ff6b35;
+  --ash:            #2a1515;
+  --dark:           #0d0808;
+  --darker:         #070404;
+  --card:           #120a0a;
+  --card-light:     #1c1010;
+  --bone:           #e8ddd0;
+  --bone-dim:       #9a8d80;
+  --smoke:          #4a3535;
+  --border:         rgba(139,0,0,0.35);
+  --border-bright:  rgba(214,48,49,0.5);
+  --text:           #d4c8c0;
+  --text-dim:       #7a6868;
+  --gold:           #c9a227;
+  --gold-light:     #e8c85a;
+  --fire-glow:      rgba(255,107,53,0.12);
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--darker);
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(139,0,0,0.08) 0%, transparent 45%),
+    radial-gradient(ellipse at 80% 90%, rgba(255,107,53,0.06) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, rgba(139,0,0,0.03) 0%, transparent 70%);
+  font-family: 'Crimson Pro', Georgia, serif;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.page { max-width: 920px; margin: 0 auto; padding: 0 0 80px; }
+
+/* ── EMBERS ─────────────────────────────── */
+.ember-bg {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events:none; z-index:0; overflow:hidden;
+}
+.ember {
+  position: absolute;
+  width: 3px; height: 3px;
+  background: var(--ember);
+  border-radius: 50%;
+  opacity: 0;
+  animation: floatEmber linear infinite;
+  filter: blur(0.5px);
+}
+@keyframes floatEmber {
+  0%   { transform: translateY(110vh) translateX(0) scale(0); opacity:0; }
+  10%  { opacity: 0.7; }
+  50%  { opacity: 0.4; }
+  90%  { opacity: 0.2; }
+  100% { transform: translateY(-10vh) translateX(60px) scale(0.5); opacity:0; }
+}
+
+/* ── HEADER ─────────────────────────────── */
+.header {
+  background: linear-gradient(170deg, #0a0404 0%, #180909 50%, #0a0404 100%);
+  border-bottom: 2px solid var(--crimson);
+  padding: 0; position: relative; overflow: hidden; z-index: 1;
+}
+.header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    -45deg, transparent, transparent 50px,
+    rgba(139,0,0,0.025) 50px, rgba(139,0,0,0.025) 51px
+  );
+}
+.header::after {
+  content: '';
+  position: absolute; bottom:0; left:0; right:0; height:1px;
+  background: linear-gradient(90deg, transparent, var(--scarlet), var(--ember), var(--scarlet), transparent);
+  opacity: 0.6;
+}
+.header-inner { display: flex; align-items: stretch; position: relative; z-index: 1; }
+.header-portrait {
+  width: 210px; flex-shrink: 0;
+  background: #0a0404; border-right: 2px solid var(--crimson);
+  overflow: hidden; position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.portrait-placeholder {
+  width: 100%; height: 260px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px;
+}
+.portrait-symbol { font-size: 72px; opacity: 0.15; filter: drop-shadow(0 0 20px var(--crimson-bright)); }
+.portrait-cross { position: absolute; width: 60px; height: 60px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.portrait-cross::before, .portrait-cross::after { content: ''; position: absolute; background: var(--crimson-bright); opacity: 0.5; }
+.portrait-cross::before { width: 2px; height: 100%; left: 50%; transform: translateX(-50%); }
+.portrait-cross::after  { height: 2px; width: 100%; top: 50%; transform: translateY(-50%); }
+.header-text { flex: 1; padding: 36px 44px; }
+.header-eyebrow {
+  font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 4px;
+  color: var(--crimson-bright); opacity: 0.8; text-transform: uppercase; margin-bottom: 10px;
+}
+.header-name {
+  font-family: 'Cinzel', serif; font-size: 42px; font-weight: 900;
+  color: var(--bone); text-shadow: 0 0 50px rgba(139,0,0,0.5), 0 0 20px rgba(214,48,49,0.3);
+  letter-spacing: 3px; line-height: 1; margin-bottom: 4px;
+}
+.header-subtitle {
+  font-family: 'Crimson Pro', serif; font-style: italic; font-size: 17px;
+  color: var(--crimson-bright); margin-bottom: 20px; letter-spacing: 2px;
+}
+.header-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.tag {
+  font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 2px;
+  padding: 4px 12px; border: 1px solid var(--border);
+  color: var(--bone-dim); text-transform: uppercase; background: rgba(139,0,0,0.08);
+}
+.tag.highlight { background: rgba(139,0,0,0.22); border-color: var(--crimson-mid); color: var(--scarlet); }
+
+/* ── SECTION ─────────────────────────────── */
+.section { padding: 0 40px; margin-top: 32px; position: relative; z-index: 1; }
+.section-title {
+  font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 5px; text-transform: uppercase; color: var(--crimson-bright);
+  border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 18px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title::before { content: '✕'; font-size: 12px; color: var(--scarlet); opacity: 0.7; }
+
+/* ── STAT GRID ─────────────────────────────── */
+.stat-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 18px; }
+.stat-box {
+  background: var(--card); border: 1px solid var(--border);
+  text-align: center; padding: 12px 4px 10px;
+  position: relative; transition: border-color 0.2s;
+}
+.stat-box:hover { border-color: var(--crimson-mid); }
+.stat-box::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--crimson); opacity: 0.5;
+}
+.stat-label { font-family: 'Share Tech Mono', monospace; font-size: 8px; letter-spacing: 2px; color: var(--bone-dim); display: block; text-transform: uppercase; margin-bottom: 2px; }
+.stat-val { font-family: 'Cinzel', serif; font-size: 26px; font-weight: 900; color: var(--bone); display: block; line-height: 1.1; }
+.stat-mod { font-family: 'Share Tech Mono', monospace; font-size: 13px; color: var(--scarlet); display: block; font-weight: 700; }
+.stat-box.car-box { background: linear-gradient(135deg, var(--card) 0%, rgba(139,0,0,0.18) 100%); border-color: var(--crimson-mid); }
+.stat-box.car-box .stat-val { text-shadow: 0 0 12px rgba(214,48,49,0.4); }
+
+/* ── COMBAT ROW ─────────────────────────────── */
+.combat-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 18px; }
+.combat-box { background: var(--card); border: 1px solid var(--border); text-align: center; padding: 12px 6px; }
+.combat-label { font-family: 'Share Tech Mono', monospace; font-size: 8px; letter-spacing: 1.5px; color: var(--text-dim); text-transform: uppercase; display: block; margin-bottom: 4px; }
+.combat-val { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; color: var(--bone); }
+.combat-box.pv-box { background: linear-gradient(135deg, var(--card) 0%, rgba(139,0,0,0.15) 100%); border-color: var(--crimson-mid); }
+.combat-box.pv-box .combat-val { color: var(--scarlet); }
+
+/* ── TWO-COL ─────────────────────────────── */
+.two-col { display: grid; grid-template-columns: 200px 1fr; gap: 16px; }
+
+/* ── SAVES & SKILLS ─────────────────────────── */
+.save-list, .skill-list { list-style: none; }
+.save-item, .skill-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 3px 0; font-size: 13px;
+  border-bottom: 1px solid rgba(139,0,0,0.1);
+}
+.save-item:last-child, .skill-item:last-child { border-bottom: none; }
+.prof-dot { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--bone-dim); flex-shrink: 0; }
+.prof-dot.filled { background: var(--crimson-bright); border-color: var(--crimson-bright); box-shadow: 0 0 6px rgba(214,48,49,0.5); }
+.skill-score { font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--scarlet); width: 30px; text-align: right; flex-shrink: 0; }
+.skill-name { color: var(--text); flex: 1; }
+.skill-attr { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: var(--text-dim); }
+
+/* ── ATTACK TABLE ─────────────────────────── */
+.attack-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.attack-table th {
+  font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--bone-dim); padding: 6px 10px;
+  text-align: left; border-bottom: 1px solid var(--border); background: rgba(139,0,0,0.1);
+}
+.attack-table td { padding: 8px 10px; border-bottom: 1px solid rgba(139,0,0,0.1); font-family: 'Crimson Pro', serif; color: var(--text); }
+.attack-table tr:hover td { background: rgba(139,0,0,0.06); }
+.attack-name { font-family: 'Cinzel', serif; font-size: 12px; color: var(--bone); }
+.attack-bonus { font-family: 'Share Tech Mono', monospace; font-size: 13px; color: var(--scarlet); font-weight: 700; }
+.attack-damage { font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--ember); }
+
+/* ── FEATURE BLOCKS ─────────────────────────── */
+.feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.feature-card { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--crimson); padding: 12px 14px; }
+.feature-card.milestone { border-left-color: var(--ember); }
+.feature-name { font-family: 'Cinzel', serif; font-size: 11px; color: var(--scarlet); letter-spacing: 1px; margin-bottom: 4px; text-transform: uppercase; }
+.feature-desc { font-size: 12px; color: var(--text); line-height: 1.5; }
+
+/* ── INVOCATIONS ─────────────────────────── */
+.invoc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.invoc-card { background: rgba(139,0,0,0.08); border: 1px solid var(--border); padding: 8px 12px; font-size: 12px; }
+.invoc-name { font-family: 'Cinzel', serif; font-size: 10px; color: var(--crimson-bright); letter-spacing: 1px; display: block; margin-bottom: 2px; }
+.invoc-desc { font-size: 11px; color: var(--text-dim); font-style: italic; }
+
+/* ── SPELL ENTRIES (novo) ─────────────────────── */
+.spell-group { margin-bottom: 28px; }
+.spell-group-header {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 14px;
+}
+.spell-badge {
+  width: 36px; height: 36px;
+  border: 2px solid var(--crimson);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700;
+  color: var(--scarlet); background: rgba(139,0,0,0.15); flex-shrink: 0;
+}
+.spell-badge.cantrip-badge { border-color: var(--ember); color: var(--ember); background: rgba(255,107,53,0.1); }
+.spell-badge.arcanum-badge { border-color: var(--gold); color: var(--gold-light); background: rgba(201,162,39,0.1); }
+.spell-badge.fey-badge { border-color: var(--crimson-bright); color: var(--bone-dim); }
+.spell-group-title {
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--crimson-bright);
+}
+.spell-group-title.cantrip-title { color: var(--ember); }
+.spell-group-title.arcanum-title { color: var(--gold-light); }
+.spell-slots { margin-left: auto; display: flex; gap: 5px; align-items: center; }
+.slot-pip { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--crimson-mid); background: rgba(139,0,0,0.25); }
+
+.spell-entry {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--crimson);
+  padding: 10px 14px; margin-bottom: 6px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.spell-entry:hover { background: var(--card-light); border-color: var(--crimson-mid); border-left-color: var(--scarlet); }
+.spell-entry.core-spell { border-left-color: var(--ember); }
+.spell-entry.arcanum-entry { border-left-color: var(--gold); }
+.spell-entry.arcanum-entry:hover { border-left-color: var(--gold-light); }
+.spell-entry.fey-entry { border-left-color: var(--crimson-mid); opacity: 0.9; }
+
+.spell-entry-top { display: flex; align-items: baseline; gap: 10px; margin-bottom: 5px; flex-wrap: wrap; }
+.spell-name { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600; color: var(--bone); }
+.spell-name.cantrip-name { color: var(--ember); }
+.spell-name.arcanum-name { color: var(--gold-light); }
+.spell-tags-inline { display: flex; gap: 5px; flex-wrap: wrap; }
+.stag {
+  font-family: 'Share Tech Mono', monospace; font-size: 8px; letter-spacing: 1px;
+  padding: 2px 7px; border: 1px solid var(--border);
+  color: var(--text-dim); text-transform: uppercase; background: rgba(139,0,0,0.06);
+}
+.stag.conc { border-color: rgba(214,48,49,0.4); color: var(--crimson-bright); }
+.stag.react { border-color: rgba(255,107,53,0.35); color: var(--ember); }
+.stag.core-tag { border-color: rgba(255,107,53,0.5); color: var(--ember); background: rgba(255,107,53,0.06); }
+
+.spell-desc { font-size: 13.5px; color: var(--text-dim); line-height: 1.6; }
+.spell-mechanic {
+  font-family: 'Share Tech Mono', monospace; font-size: 10px;
+  color: var(--crimson-bright); margin-top: 4px; display: block;
+}
+.spell-mechanic.ember-mech { color: var(--ember); }
+.spell-mechanic.gold-mech { color: var(--gold-light); }
+
+/* ── PERSONALITY ─────────────────────────── */
+.personality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.personality-card { background: var(--card); border: 1px solid var(--border); padding: 14px 16px; }
+.personality-label { font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--crimson-bright); display: block; margin-bottom: 6px; }
+.personality-text { font-size: 13px; color: var(--text); font-style: italic; line-height: 1.5; }
+
+/* ── LORE / ALERT ─────────────────────────── */
+.lore-box { background: rgba(139,0,0,0.06); border: 1px solid var(--border); border-left: 3px solid var(--crimson-bright); padding: 14px 18px; font-size: 13px; font-style: italic; color: var(--bone-dim); margin: 12px 0; line-height: 1.7; }
+.alert-box { background: rgba(255,107,53,0.06); border: 1px solid rgba(255,107,53,0.2); border-left: 3px solid var(--ember); padding: 12px 16px; margin: 10px 0; font-size: 13px; color: var(--ember); }
+.info-box { background: rgba(139,0,0,0.08); border: 1px solid var(--border); border-left: 3px solid var(--crimson); padding: 12px 16px; margin: 10px 0; font-size: 12px; }
+
+/* ── EQUIPMENT ─────────────────────────────── */
+.equip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.equip-card { background: var(--card); border: 1px solid var(--border); padding: 12px 14px; }
+.equip-category { font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--crimson-bright); display: block; margin-bottom: 6px; }
+.equip-list { list-style: none; font-size: 13px; color: var(--text); }
+.equip-list li { padding: 2px 0; border-bottom: 1px solid rgba(139,0,0,0.08); display: flex; align-items: center; gap: 6px; }
+.equip-list li::before { content: '›'; color: var(--crimson-bright); }
+
+/* ── LEVEL PROGRESS ─────────────────────────── */
+.level-timeline { display: flex; flex-direction: column; gap: 2px; }
+.level-row { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--crimson); display: flex; align-items: flex-start; gap: 0; overflow: hidden; }
+.level-row.milestone { border-left-color: var(--ember); }
+.level-row.capstone  { border-left-color: var(--gold); }
+.level-num { font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; color: var(--crimson-bright); padding: 8px 12px; min-width: 60px; background: rgba(139,0,0,0.1); align-self: stretch; display: flex; align-items: center; }
+.level-content { padding: 8px 14px; flex: 1; }
+.level-feature-name { font-family: 'Cinzel', serif; font-size: 11px; color: var(--bone); letter-spacing: 0.5px; margin-bottom: 2px; }
+.level-note { font-size: 12px; color: var(--text-dim); font-style: italic; }
+.level-new-spell { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: var(--ember); letter-spacing: 1px; }
+
+/* ── DIVIDER ─────────────────────────────── */
+.divider { text-align: center; margin: 28px 40px; position: relative; z-index: 1; }
+.divider::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--crimson), transparent); }
+.divider-text { position: relative; font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 8px; color: var(--crimson-bright); background: var(--darker); padding: 0 16px; opacity: 0.5; }
+
+/* ── BACKSTORY ─────────────────────────────── */
+.backstory-section { padding: 0 40px; margin-top: 32px; position: relative; z-index: 1; }
+.backstory-body { background: var(--card); border: 1px solid var(--border); padding: 28px 32px; }
+.backstory-body p { font-size: 13.5px; color: var(--text); margin-bottom: 12px; line-height: 1.8; }
+.backstory-body .bold-italic { font-weight: 600; font-style: italic; color: var(--bone); display: block; margin: 14px 0 6px; }
+.dialog { background: rgba(139,0,0,0.08); border-left: 2px solid var(--crimson-mid); padding: 8px 16px; margin: 8px 0; font-style: italic; font-size: 13px; color: var(--bone-dim); }
+
+/* ── PASSIVE ─────────────────────────────── */
+.passive-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.passive-box { background: var(--card); border: 1px solid var(--border); text-align: center; padding: 10px 8px; }
+.passive-label { font-family: 'Share Tech Mono', monospace; font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); display: block; margin-bottom: 4px; }
+.passive-val { font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; color: var(--bone); }
+
+/* ── FOOTER ─────────────────────────────── */
+.footer { text-align: center; padding: 28px 40px 0; font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--text-dim); opacity: 0.5; position: relative; z-index: 1; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--darker); }
+::-webkit-scrollbar-thumb { background: var(--crimson); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="ember-bg" id="embers"></div>
+
+<div class="page">
+
+<!-- ═══ HEADER ══════════════════════════════════════════════ -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-portrait">
+      <div class="portrait-placeholder">
+        <div class="portrait-symbol">⚔</div>
+        <div class="portrait-cross"></div>
+      </div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">// Ficha de Personagem · D&amp;D 5e · Bruxo Hexblade · Nível 20</div>
+      <div class="header-name">Arlecchino</div>
+      <div class="header-subtitle">The Knave — Harbinger dos Fatui</div>
+      <div class="header-tags">
+        <span class="tag highlight">Shadar-kai</span>
+        <span class="tag highlight">Bruxo Hexblade</span>
+        <span class="tag highlight">Level 20</span>
+        <span class="tag">Frontliner</span>
+        <span class="tag">CAR Build</span>
+        <span class="tag">Sem Multiclasse</span>
+        <span class="tag">Polearm Master</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ IDENTIDADE ══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Identidade do Personagem</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px;">
+    <div class="combat-box"><span class="combat-label">Nome</span><span style="font-family:'Cinzel',serif;font-size:14px;color:var(--bone);">Arlecchino</span></div>
+    <div class="combat-box"><span class="combat-label">Classe &amp; Nível</span><span style="font-family:'Cinzel',serif;font-size:12px;color:var(--bone);">Bruxo 20</span></div>
+    <div class="combat-box"><span class="combat-label">Raça</span><span style="font-family:'Cinzel',serif;font-size:13px;color:var(--bone);">Shadar-kai</span></div>
+    <div class="combat-box"><span class="combat-label">Antecedente</span><span style="font-family:'Cinzel',serif;font-size:13px;color:var(--bone);">Nobre</span></div>
+    <div class="combat-box"><span class="combat-label">Subclasse</span><span style="font-family:'Cinzel',serif;font-size:11px;color:var(--bone);">Lâmina Maldita</span></div>
+    <div class="combat-box"><span class="combat-label">Tendência</span><span style="font-family:'Cinzel',serif;font-size:12px;color:var(--scarlet);">Leal e Mau</span></div>
+    <div class="combat-box"><span class="combat-label">Idiomas</span><span style="font-family:'Cinzel',serif;font-size:11px;color:var(--bone);">Comum, Élfico</span></div>
+    <div class="combat-box"><span class="combat-label">XP</span><span style="font-family:'Cinzel',serif;font-size:14px;color:var(--bone);">355.000</span></div>
+  </div>
+</div>
+
+<!-- ═══ ATRIBUTOS ═══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Atributos</div>
+  <div class="stat-grid">
+    <div class="stat-box"><span class="stat-label">Força</span><span class="stat-val">8</span><span class="stat-mod">−1</span></div>
+    <div class="stat-box"><span class="stat-label">Destreza</span><span class="stat-val">16</span><span class="stat-mod">+3</span></div>
+    <div class="stat-box"><span class="stat-label">Constituição</span><span class="stat-val">16</span><span class="stat-mod">+3</span></div>
+    <div class="stat-box"><span class="stat-label">Inteligência</span><span class="stat-val">8</span><span class="stat-mod">−1</span></div>
+    <div class="stat-box"><span class="stat-label">Sabedoria</span><span class="stat-val">10</span><span class="stat-mod">+0</span></div>
+    <div class="stat-box car-box"><span class="stat-label">Carisma</span><span class="stat-val">20</span><span class="stat-mod">+5</span></div>
+  </div>
+</div>
+
+<!-- ═══ COMBATE ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Estatísticas de Combate</div>
+  <div class="combat-row">
+    <div class="combat-box pv-box"><span class="combat-label">Classe Armadura</span><span class="combat-val">17</span></div>
+    <div class="combat-box pv-box"><span class="combat-label">PV Totais</span><span class="combat-val">154</span></div>
+    <div class="combat-box"><span class="combat-label">Iniciativa</span><span class="combat-val">+3</span></div>
+    <div class="combat-box"><span class="combat-label">Deslocamento</span><span class="combat-val">9m</span></div>
+    <div class="combat-box"><span class="combat-label">Bônus Prof.</span><span class="combat-val">+6</span></div>
+    <div class="combat-box"><span class="combat-label">CD Magia</span><span class="combat-val">19</span></div>
+    <div class="combat-box"><span class="combat-label">Atq. Mágico</span><span class="combat-val">+11</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;">
+    <div class="info-box"><strong style="color:var(--scarlet);font-family:'Cinzel',serif;font-size:11px;">Dados de Vida:</strong> <span style="font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--bone);"> 20d8</span> <span style="color:var(--text-dim);font-size:12px;">(média 154 PV)</span></div>
+    <div class="info-box"><strong style="color:var(--scarlet);font-family:'Cinzel',serif;font-size:11px;">Armadura:</strong> <span style="font-size:12px;color:var(--text);"> Half Plate (CA 15) + Des limitada (+2) = <strong style="color:var(--bone);">CA 17</strong></span></div>
+  </div>
+</div>
+
+<!-- ═══ SAVES & SKILLS ═══════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Testes de Resistência &amp; Perícias</div>
+  <div class="two-col">
+    <div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:8px;">Testes de Resistência</div>
+      <ul class="save-list">
+        <li class="save-item"><span class="prof-dot"></span><span class="skill-score">−1</span><span class="skill-name">Força</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="skill-score">+3</span><span class="skill-name">Destreza</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="skill-score">+3</span><span class="skill-name">Constituição</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="skill-score">−1</span><span class="skill-name">Inteligência</span></li>
+        <li class="save-item"><span class="prof-dot filled"></span><span class="skill-score">+6</span><span class="skill-name">Sabedoria</span></li>
+        <li class="save-item"><span class="prof-dot filled"></span><span class="skill-score" style="color:var(--ember);">+11</span><span class="skill-name">Carisma</span></li>
+      </ul>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin:14px 0 8px;">Passiva &amp; Bônus</div>
+      <div class="passive-row" style="grid-template-columns:1fr 1fr;">
+        <div class="passive-box"><span class="passive-label">Sab. Passiva</span><span class="passive-val">10</span></div>
+        <div class="passive-box"><span class="passive-label">Inspiração</span><span class="passive-val" style="font-size:14px;color:var(--text-dim);">○</span></div>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:8px;">Perícias</div>
+      <ul class="skill-list">
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">+3</span><span class="skill-name">Acrobacia</span><span class="skill-attr">Des</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">−1</span><span class="skill-name">Arcanismo</span><span class="skill-attr">Int</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">−1</span><span class="skill-name">Atletismo</span><span class="skill-attr">For</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">+5</span><span class="skill-name">Atuação</span><span class="skill-attr">Car</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-score" style="color:var(--ember);">+11</span><span class="skill-name">Blefar (Enganação)</span><span class="skill-attr">Car</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">+3</span><span class="skill-name">Furtividade</span><span class="skill-attr">Des</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-score">+5</span><span class="skill-name">História</span><span class="skill-attr">Int</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-score" style="color:var(--ember);">+11</span><span class="skill-name">Intimidação</span><span class="skill-attr">Car</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">+0</span><span class="skill-name">Intuição</span><span class="skill-attr">Sab</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">−1</span><span class="skill-name">Investigação</span><span class="skill-attr">Int</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">+0</span><span class="skill-name">Lidar c/ Animais</span><span class="skill-attr">Sab</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">+0</span><span class="skill-name">Medicina</span><span class="skill-attr">Sab</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">−1</span><span class="skill-name">Natureza</span><span class="skill-attr">Int</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">+0</span><span class="skill-name">Percepção</span><span class="skill-attr">Sab</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-score" style="color:var(--ember);">+11</span><span class="skill-name">Persuasão</span><span class="skill-attr">Car</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">+3</span><span class="skill-name">Prestidigitação</span><span class="skill-attr">Des</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">−1</span><span class="skill-name">Religião</span><span class="skill-attr">Int</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">+0</span><span class="skill-name">Sobrevivência</span><span class="skill-attr">Sab</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ATAQUES ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Ataques &amp; Ação de Combate</div>
+  <table class="attack-table">
+    <thead>
+      <tr>
+        <th>Nome do Ataque</th><th>Bônus</th><th>Dano / Tipo</th><th>Alcance</th><th>Notas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="attack-name">Foice — Ataque 1</span></td>
+        <td><span class="attack-bonus">+11</span></td>
+        <td><span class="attack-damage">1d10+10 Cortante</span></td>
+        <td>Corpo a corpo</td>
+        <td style="font-size:11px;color:var(--text-dim);">CAR via Hex Warrior + Lifedrinker (+5 CAR)</td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Foice — Ataque 2 (Thirsting Blade)</span></td>
+        <td><span class="attack-bonus">+11</span></td>
+        <td><span class="attack-damage">1d10+10 Cortante</span></td>
+        <td>Corpo a corpo</td>
+        <td style="font-size:11px;color:var(--text-dim);">Ataque extra via Thirsting Blade</td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Atq. Bônus — Polearm Master</span></td>
+        <td><span class="attack-bonus">+11</span></td>
+        <td><span class="attack-damage">1d4+10 Contund.</span></td>
+        <td>Corpo a corpo</td>
+        <td style="font-size:11px;color:var(--text-dim);">Cabo da foice (ação bônus)</td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Eldritch Blast</span></td>
+        <td><span class="attack-bonus">+11</span></td>
+        <td><span class="attack-damage">4×1d10+5 Força</span></td>
+        <td>36 metros</td>
+        <td style="font-size:11px;color:var(--text-dim);">4 raios (nível 17+). Agonizing Blast +5/raio</td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Eldritch Smite (slot gasto)</span></td>
+        <td><span class="attack-bonus">+11</span></td>
+        <td><span class="attack-damage">+6d8 Força extra</span></td>
+        <td>Corpo a corpo</td>
+        <td style="font-size:11px;color:var(--text-dim);">No acerto da foice; crítico automático em 19-20</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══ HABILIDADES ══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Habilidades de Classe &amp; Raça</div>
+
+  <div style="margin-bottom:12px;">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--crimson-bright);text-transform:uppercase;margin-bottom:8px;">— Hexblade (Subclasse)</div>
+    <div class="feature-grid">
+      <div class="feature-card milestone">
+        <div class="feature-name">Hexblade's Curse</div>
+        <div class="feature-desc">Ação bônus — amaldiçoa alvo visível em 9m. Bônus de dano = proficiência (+6). Crítico em 19–20. Recupera PV = nível + mod. CAR ao matar o alvo.</div>
+      </div>
+      <div class="feature-card milestone">
+        <div class="feature-name">Hex Warrior</div>
+        <div class="feature-desc">Usa <strong style="color:var(--scarlet);">Carisma</strong> nos ataques e dano com a arma de pacto. Proficiência com armaduras médias, escudos e armas marciais.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Accursed Specter</div>
+        <div class="feature-desc">Ao matar um humanoide, pode conjurá-lo como espectro sob seu controle (PV max = ½ nível). Uma vez por descanso longo.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Armor of Hexes</div>
+        <div class="feature-desc">Quando o alvo amaldiçoado ataca você: <strong style="color:var(--scarlet);">50% de chance</strong> do ataque falhar automaticamente.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Master of Hexes</div>
+        <div class="feature-desc">Ao matar alvo amaldiçoado, transfere a maldição para outro alvo em 9m — sem nova ação bônus.</div>
+      </div>
+      <div class="feature-card milestone">
+        <div class="feature-name">Eldritch Master — Capstone</div>
+        <div class="feature-desc">Recupera <em>todos</em> os slots Pact Magic em 1 min de foco. 1× por descanso longo. A Harbinger nunca fica "seca".</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:12px;">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--crimson-bright);text-transform:uppercase;margin-bottom:8px;">— Pacto &amp; Raça</div>
+    <div class="feature-grid">
+      <div class="feature-card milestone">
+        <div class="feature-name">Dádiva do Pacto — Lâmina</div>
+        <div class="feature-desc">A Foice existe como extensão do pacto. Convocada como ação bônus. Conta como arma mágica +1 (via Improved Pact Weapon) para fins de resistência e ataque.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Blessing of the Raven Queen</div>
+        <div class="feature-desc"><em>(Shadar-kai)</em> — Ação bônus: teletransporte até 9m para espaço visível. Após o teleporte, <strong style="color:var(--scarlet);">resistência a todos os danos</strong> por 1 turno.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:12px;">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--crimson-bright);text-transform:uppercase;margin-bottom:8px;">— Talentos</div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-name">Polearm Master</div>
+        <div class="feature-desc">Ganha ataque bônus com o cabo (1d4+10). Inimigos que entram no alcance da arma provocam ataque de oportunidade imediato — Arlecchino pune cada passo.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Great Weapon Master</div>
+        <div class="feature-desc">No crítico ou ao derrubar um inimigo, ataca como ação bônus. Pode optar por <strong style="color:var(--scarlet);">−5 acerto / +10 dano</strong> em qualquer ataque — modo execução.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Fey Touched (+1 CAR)</div>
+        <div class="feature-desc">Misty Step + Command (1×/descanso curto cada). Carisma sobe para 20. Mobilidade e autoridade feérica encapsuladas em um único talento.</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--crimson-bright);text-transform:uppercase;margin-bottom:8px;">— Invocações Místicas</div>
+    <div class="invoc-grid">
+      <div class="invoc-card"><span class="invoc-name">Agonizing Blast</span><span class="invoc-desc">+CAR (+5) no dano do Eldritch Blast por raio</span></div>
+      <div class="invoc-card"><span class="invoc-name">Devil's Sight</span><span class="invoc-desc">Visão normal em escuridão mágica ou mundana (18m)</span></div>
+      <div class="invoc-card"><span class="invoc-name">Thirsting Blade</span><span class="invoc-desc">Ataque extra com a arma de pacto (nível 5+)</span></div>
+      <div class="invoc-card"><span class="invoc-name">Eldritch Smite</span><span class="invoc-desc">Gasta slot: +1d8 Força/slot no acerto; crítico em 19-20</span></div>
+      <div class="invoc-card"><span class="invoc-name">Improved Pact Weapon</span><span class="invoc-desc">A foice ganha +1 acerto/dano e age como foco arcano</span></div>
+      <div class="invoc-card"><span class="invoc-name">Eldritch Mind</span><span class="invoc-desc">Vantagem em Con para manter concentração</span></div>
+      <div class="invoc-card"><span class="invoc-name">Lifedrinker</span><span class="invoc-desc">+CAR (+5) no dano de CADA acerto com a arma de pacto</span></div>
+      <div class="invoc-card"><span class="invoc-name">Shroud of Shadow</span><span class="invoc-desc">Lança Invisibilidade à vontade (sem custo de slot)</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-text">✕ ✕ ✕</span></div>
+
+<!-- ═══ MAGIAS ═══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Grimório de Magias · Habilidade: Carisma · CD: 19 · Ataque: +11</div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;">
+    <div class="passive-box"><span class="passive-label">Classe de Conjurador</span><span style="font-family:'Cinzel',serif;font-size:13px;color:var(--bone);">Bruxo</span></div>
+    <div class="passive-box"><span class="passive-label">Habilidade-Chave</span><span style="font-family:'Cinzel',serif;font-size:13px;color:var(--scarlet);">Carisma</span></div>
+    <div class="passive-box"><span class="passive-label">Pact Magic — Slots</span><span style="font-family:'Cinzel',serif;font-size:13px;color:var(--bone);">4 × 5° Círculo</span></div>
+  </div>
+
+  <div class="lore-box">
+    <strong style="color:var(--scarlet);">Pact Magic:</strong> Bruxos recuperam todos os slots em descanso <em>curto</em>. Todos os slots são sempre de 5° círculo. As magias conhecidas de qualquer nível são lançadas usando esses slots de 5° — o custo é o mesmo, o poder, máximo. <strong style="color:var(--bone-dim);">Eldritch Master</strong> permite recuperar todos em 1 minuto (1×/descanso longo).
+  </div>
+
+  <!-- TRUQUES -->
+  <div class="spell-group">
+    <div class="spell-group-header">
+      <div class="spell-badge cantrip-badge">0</div>
+      <span class="spell-group-title cantrip-title">Truques — À Vontade</span>
+      <span style="margin-left:auto;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text-dim);letter-spacing:1px;">ILIMITADO</span>
+    </div>
+
+    <div class="spell-entry core-spell">
+      <div class="spell-entry-top">
+        <span class="spell-name cantrip-name">Eldritch Blast</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação</span>
+          <span class="stag">36m</span>
+          <span class="stag core-tag">★ central</span>
+          <span class="stag">ataque mágico</span>
+        </div>
+      </div>
+      <p class="spell-desc">Lança <strong>4 raios de força</strong> (nível 17+), cada um exigindo uma rolagem de ataque separada (+11). Com <strong>Agonizing Blast</strong>, cada raio que acerta adiciona <strong>+5 de dano de Força</strong>, totalizando até <strong>4×(1d10+5)</strong> em um único turno. Pode dividir os raios entre diferentes alvos. O ataque à distância mais confiável da build — quando a foice não alcança, a Força arcana alcança.</p>
+      <span class="spell-mechanic ember-mech">⚔ 4 rolagens +11 · Cada raio: 1d10+5 Força · Dividível entre alvos</span>
+    </div>
+
+    <div class="spell-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name cantrip-name">Green-Flame Blade</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação</span>
+          <span class="stag">corpo a corpo</span>
+          <span class="stag">ataque mágico</span>
+        </div>
+      </div>
+      <p class="spell-desc">Realiza um ataque corpo a corpo com a foice, imbuída de fogo esverdeado. Em caso de acerto, além do dano normal da arma, uma chama verde salta para um segundo alvo em 1,5m causando <strong>4d8 de dano de fogo</strong> (nível 17+). Representa visualmente a chama Pyro da Arlecchino — o fogo que ela carrega desde sua origem. Alternativa ao Eldritch Blast quando há alvos agrupados.</p>
+      <span class="spell-mechanic ember-mech">🔥 Ataque normal + 4d8 fogo em alvo adjacente · Escala por nível</span>
+    </div>
+  </div>
+
+  <!-- MAGIAS CONHECIDAS -->
+  <div class="spell-group">
+    <div class="spell-group-header">
+      <div class="spell-badge">✦</div>
+      <span class="spell-group-title">Magias Conhecidas — Todos os slots são 5° Círculo</span>
+      <div class="spell-slots" style="margin-left:auto;">
+        <div class="slot-pip"></div><div class="slot-pip"></div>
+        <div class="slot-pip"></div><div class="slot-pip"></div>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--text-dim);margin-left:4px;">4 SLOTS</span>
+      </div>
+    </div>
+
+    <!-- HEX -->
+    <div class="spell-entry core-spell">
+      <div class="spell-entry-top">
+        <span class="spell-name">Hex</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação bônus</span>
+          <span class="stag conc">concentração · 8h</span>
+          <span class="stag">27m</span>
+          <span class="stag core-tag">★ central</span>
+        </div>
+      </div>
+      <p class="spell-desc">Amaldiçoa um alvo visível em 27m. Enquanto ativa: você causa <strong>+1d6 de dano necrótico</strong> extra em cada acerto contra o alvo e o alvo tem <strong>desvantagem em testes de habilidade de um atributo</strong> de sua escolha. Se o alvo morrer, pode transferir a maldição para outro alvo sem custo adicional de slot. Dura 8h com um slot de 5°. A maldição constante que acompanha cada golpe da foice — o foco predatório da Father.</p>
+      <span class="spell-mechanic">💀 +1d6 necrótico/acerto · Desvantagem em atrib. · Transferível ao matar</span>
+    </div>
+
+    <!-- ARMOR OF AGATHYS -->
+    <div class="spell-entry core-spell">
+      <div class="spell-entry-top">
+        <span class="spell-name">Armor of Agathys</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação</span>
+          <span class="stag">própria · 1h</span>
+          <span class="stag core-tag">★ central</span>
+        </div>
+      </div>
+      <p class="spell-desc">Cria uma armadura de gelo mágico ao redor de seu corpo. Você ganha <strong>25 PV temporários</strong> (lançada como 5° círculo). Enquanto os PV temporários durem, cada criatura que acertar você com ataque corpo a corpo sofre <strong>25 de dano de frio</strong> automaticamente. A camada defensiva primária da build — a Arlecchino literalmente pune quem osa atacá-la. Combine com Shadow of Moil para uma fortaleza de fogo e sombra.</p>
+      <span class="spell-mechanic">🛡 25 PV temp · Atacantes corpo a corpo: 25 dano frio automático</span>
+    </div>
+
+    <!-- HELLISH REBUKE -->
+    <div class="spell-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name">Hellish Rebuke</span>
+        <div class="spell-tags-inline">
+          <span class="stag react">reação</span>
+          <span class="stag">instante</span>
+          <span class="stag">quando atingida</span>
+        </div>
+      </div>
+      <p class="spell-desc">Como <strong>reação ao ser atingida por uma criatura em 18m</strong>, você a envolve em chamas infernais. O alvo sofre <strong>5d10 de dano de fogo</strong> (Destreza CD 19 para metade) — lançada como 5° círculo. Representa a contrapunição implacável da Arlecchino: ninguém a fere sem pagar um preço imediato. A natureza de reação garante que não consome ação.</p>
+      <span class="spell-mechanic">🔥 Reação · 5d10 fogo (Des CD 19 para metade) · Quem bate, paga</span>
+    </div>
+
+    <!-- SHIELD -->
+    <div class="spell-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name">Shield</span>
+        <div class="spell-tags-inline">
+          <span class="stag react">reação</span>
+          <span class="stag">própria · 1 turno</span>
+          <span class="stag">quando atingida</span>
+        </div>
+      </div>
+      <p class="spell-desc">Como reação ao ser alvo de um ataque, cria uma barreira mágica invisível: <strong>+5 de CA</strong> até o início do próximo turno (incluindo contra o ataque que ativou). Se o ataque anteriormente acertaria sem o bônus, ele agora erra. Imunidade a Magic Missile durante o turno. A defesa elegante e abrupta da Father — uma resposta calculada, nunca um pânico.</p>
+      <span class="spell-mechanic">🛡 Reação · +5 CA até próximo turno · Inclui vs. o ataque gatilho</span>
+    </div>
+
+    <!-- DARKNESS -->
+    <div class="spell-entry core-spell">
+      <div class="spell-entry-top">
+        <span class="spell-name">Darkness</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação</span>
+          <span class="stag conc">concentração · 10 min</span>
+          <span class="stag">18m · raio 4,5m</span>
+          <span class="stag core-tag">★ central</span>
+        </div>
+      </div>
+      <p class="spell-desc">Cria uma esfera de escuridão mágica impenetrável em raio de 4,5m. Nenhuma luz normal ou Visão no Escuro padrão funciona dentro dela. Com <strong>Devil's Sight</strong>, Arlecchino enxerga perfeitamente enquanto todos os outros estão efetivamente cegos — vantagem em seus ataques, desvantagem nos ataques contra ela. O campo de batalha passa a existir em seus termos.</p>
+      <span class="spell-mechanic">🌑 Raio 4,5m · Apenas Devil's Sight enxerga · Vantagem/desvantagem total</span>
+    </div>
+
+    <!-- BLUR -->
+    <div class="spell-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name">Blur</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação</span>
+          <span class="stag conc">concentração · 1 min</span>
+          <span class="stag">própria</span>
+        </div>
+      </div>
+      <p class="spell-desc">Seu corpo se distorce e oscila — qualquer ataque contra você tem <strong>desvantagem</strong> durante toda a duração (a menos que o atacante não precise ver o alvo ou tenha sentidos especiais). Não requer TR. Representa o estado evasivo e instável da Arlecchino em combate — ela parece existir em dois lugares ao mesmo tempo, um espectro que recusa ser fixado.</p>
+      <span class="spell-mechanic">🌑 Desvantagem em todos os ataques contra você · Sem TR · 1 min</span>
+    </div>
+
+    <!-- COUNTERSPELL -->
+    <div class="spell-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name">Counterspell</span>
+        <div class="spell-tags-inline">
+          <span class="stag react">reação</span>
+          <span class="stag">18m</span>
+          <span class="stag">interrupção</span>
+        </div>
+      </div>
+      <p class="spell-desc">Como reação quando uma criatura em 18m inicia uma conjuração: interrompe automaticamente magias de <strong>3° círculo ou inferior</strong>. Para magias de nível superior, realize um teste de habilidade de conjuração (Carisma +11 vs. CD 10 + nível da magia). Com Pact Magic de 5° — lançando como 5°, cancela automaticamente até 5° círculo. Ninguém interrompe a execução da Father.</p>
+      <span class="spell-mechanic">✕ Reação · Auto-cancel ≤5° com slot de 5° · TR Car +11 vs. círculo superior</span>
+    </div>
+
+    <!-- BLINK -->
+    <div class="spell-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name">Blink</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação</span>
+          <span class="stag conc">SEM concentração · 1 min</span>
+          <span class="stag">própria</span>
+        </div>
+      </div>
+      <p class="spell-desc">Ao fim de cada um de seus turnos, role 1d20. Em <strong>11 ou mais</strong>, você desaparece para o Plano Etéreo até o início do próximo turno — os ataques simplesmente passam por você. Lá, você percebe o mundo material mas não pode ser afetado. No início do turno, reaparece em espaço visível em 3m. A mobilidade sobrenatural da Arlecchino — ela literalmente some do combate entre os golpes.</p>
+      <span class="spell-mechanic">🌑 Sem concentração · d20 ≥ 11: plano etéreo por 1 turno · 50% evasão</span>
+    </div>
+
+    <!-- ELEMENTAL WEAPON -->
+    <div class="spell-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name">Elemental Weapon</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação</span>
+          <span class="stag conc">concentração · 1h</span>
+          <span class="stag">toque</span>
+        </div>
+      </div>
+      <p class="spell-desc">A foice ganha <strong>+2 de acerto</strong> e cada acerto causa <strong>+2d4 de dano elemental</strong> (fogo, cortante, relâmpago — escolha ao lançar). Lançada como 5°, o bônus sobe para <strong>+3 acerto e +3d4 dano</strong>. A arma imbuída de poder elemental — a foice da Father começa a parecer uma arma de boss. Combine com Lifedrinker e GWM para spikes de dano monumentais.</p>
+      <span class="spell-mechanic">⚡ +3 acerto · +3d4 elemental/acerto (5°) · Combine com Lifedrinker</span>
+    </div>
+
+    <!-- SHADOW OF MOIL -->
+    <div class="spell-entry core-spell">
+      <div class="spell-entry-top">
+        <span class="spell-name">Shadow of Moil</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação</span>
+          <span class="stag conc">concentração · 1 min</span>
+          <span class="stag core-tag">★ central</span>
+        </div>
+      </div>
+      <p class="spell-desc">Você fica rodeado de <strong>sombras flamejantes</strong> que obscurecem sua forma. Enquanto ativa: ataques contra você têm <strong>desvantagem</strong> (escuridão profunda ao redor), você tem <strong>resistência a dano radiante</strong> e qualquer criatura que acertar você com ataque corpo a corpo sofre <strong>2d8 de dano necrótico</strong>. Uma das magias mais importantes da build — combina defesa, punição e estética em uma única conjuração. O estado de "chefe de fase final".</p>
+      <span class="spell-mechanic">🌑 Desvantagem em ataques vs. você · Resist. radiante · 2d8 necrótico/acerto</span>
+    </div>
+
+    <!-- BANISHING SMITE -->
+    <div class="spell-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name">Banishing Smite</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação bônus</span>
+          <span class="stag conc">concentração · 1 min</span>
+          <span class="stag">próximo acerto</span>
+        </div>
+      </div>
+      <p class="spell-desc">No próximo acerto com a foice: causa <strong>+5d10 de dano de Força</strong> adicional. Se o alvo cair abaixo de <strong>50 PV</strong> com esse golpe, é banido para seu plano de origem (ou um plano demi-planar inofensivo) por 1 minuto — pode ser permanente se não tiver plano de origem. O golpe de execução pesada da Arlecchino. Quando ela decide que alguém vai sair do combate, eles saem.</p>
+      <span class="spell-mechanic">⚔ +5d10 Força · Se alvo ≤50 PV após: banido por 1 min · Concentração</span>
+    </div>
+
+    <!-- HOLD MONSTER -->
+    <div class="spell-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name">Hold Monster</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação</span>
+          <span class="stag conc">concentração · 1 min</span>
+          <span class="stag">18m</span>
+        </div>
+      </div>
+      <p class="spell-desc">Paralisa uma criatura de <strong>qualquer tipo</strong> (diferente de Hold Person) que falhe em TR de Sabedoria (CD 19). Enquanto paralisada: fica incapacitada e não pode se mover nem falar, falha em TR de For e Des automaticamente, e ataques corpo a corpo contra ela têm <strong>vantagem e são críticos automáticos</strong>. Repete o TR a cada turno. Com Eldritch Smite num crítico automático garantido — os números ficam monstruosos.</p>
+      <span class="spell-mechanic">⚔ TR Sab CD 19 · Paralisado · Críticos automáticos em corpo a corpo</span>
+    </div>
+
+    <!-- FAR STEP -->
+    <div class="spell-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name">Far Step</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação bônus</span>
+          <span class="stag conc">concentração · 1 min</span>
+          <span class="stag">18m/turno</span>
+        </div>
+      </div>
+      <p class="spell-desc">Teletransporte imediato até <strong>18m</strong> para espaço visível como ação bônus. Enquanto durar a concentração (1 min), pode se teletransportar novamente <strong>a cada turno</strong> como ação bônus. Reposicionamento contínuo que dá à Arlecchino liberdade total de movimento no campo de batalha — ela aparece onde quer, ataca e desaparece antes que possam reagir.</p>
+      <span class="spell-mechanic">⚡ Ação bônus · 18m/turno por 1 min · Reposicionamento contínuo</span>
+    </div>
+
+    <!-- ENERVATION -->
+    <div class="spell-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name">Enervation</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação</span>
+          <span class="stag conc">concentração · 1 min</span>
+          <span class="stag">18m</span>
+        </div>
+      </div>
+      <p class="spell-desc">Um tentáculo de energia negra agarra o alvo, causando <strong>4d8 de dano necrótico</strong> no turno do lançamento, com TR de Des (CD 19) para metade. O alvo torna-se lento (velocidade ÷ 2) enquanto ligado. A cada turno, como ação, pode manter o efeito — o alvo sofre novamente o dano e você <strong>recupera PV iguais à metade do dano causado</strong>. Drenagem de vida e reforço de estamina — o tema de colheita de energia da Father.</p>
+      <span class="spell-mechanic">🩸 4d8 necrótico/turno · Recupera ½ dano em PV · Velocidade ÷ 2 · Concentração</span>
+    </div>
+
+    <!-- SPIRIT SHROUD -->
+    <div class="spell-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name">Spirit Shroud</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação bônus</span>
+          <span class="stag conc">concentração · 1 min</span>
+          <span class="stag">própria · aura 3m</span>
+        </div>
+      </div>
+      <p class="spell-desc">Invoca espíritos ao redor de você em aura de 3m. Cada acerto com arma ou magia causa <strong>+1d8 de dano extra</strong> (tipo à escolha: necrótico, radiante ou frio). Inimigos na aura <strong>não podem recuperar PV</strong> e têm a velocidade reduzida em 3m enquanto no alcance. Aura de combate que adiciona pressão constante — a presença sobrenatural da Harbinger que enfraquece tudo ao redor.</p>
+      <span class="spell-mechanic">💀 +1d8/acerto · Inimigos na aura: sem cura · Velocidade −3m</span>
+    </div>
+
+    <!-- SYNAPTIC STATIC -->
+    <div class="spell-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name">Synaptic Static</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação</span>
+          <span class="stag">27m · esfera 6m</span>
+          <span class="stag">instante + duração</span>
+        </div>
+      </div>
+      <p class="spell-desc">Cria uma explosão psíquica em esfera de 6m. Criaturas que falhem em TR de Int (CD 19) sofrem <strong>8d6 de dano psíquico</strong> (metade em sucesso) e ficam com a mente estática: devem rolar <strong>1d6 e subtrair o resultado</strong> de qualquer ataque, habilidade ou TR de concentração que fizerem por 1 minuto (pode repetir o TR). O golpe de ruptura mental — uma execução cruel que não mata o corpo, mas desfaz a mente.</p>
+      <span class="spell-mechanic">🌑 TR Int CD 19 · 8d6 psíquico · Falha: −1d6 em ataques e TR por 1 min</span>
+    </div>
+  </div>
+
+  <!-- MYSTIC ARCANUM -->
+  <div class="spell-group">
+    <div class="spell-group-header">
+      <div class="spell-badge arcanum-badge">✦</div>
+      <span class="spell-group-title arcanum-title">Mystic Arcanum — 1× por Descanso Longo Cada</span>
+    </div>
+
+    <div class="spell-entry arcanum-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name arcanum-name">6°: Investiture of Flame</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação</span>
+          <span class="stag conc">concentração · 10 min</span>
+          <span class="stag">própria · aura</span>
+        </div>
+      </div>
+      <p class="spell-desc">Você entra em estado de <strong>fogo sobrenatural</strong>: emite luz brilhante em 9m, tem imunidade a fogo e frio, e qualquer criatura que comece o turno em 1,5m sofre <strong>1d10 de dano de fogo</strong>. Além disso, como ação você pode projetar um jato de fogo de 15m de comprimento e 1,5m de largura causando <strong>4d8 de dano de fogo</strong> (Des para metade). Uma das magias que mais vendem a imagem da Arlecchino em combate — ela literalmente entra em chamas.</p>
+      <span class="spell-mechanic gold-mech">🔥 Imune a fogo · 1d10 aura/turno · Jato 4d8 fogo · 10 min concentração</span>
+    </div>
+
+    <div class="spell-entry arcanum-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name arcanum-name">7°: Finger of Death</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação</span>
+          <span class="stag">18m</span>
+          <span class="stag">instante</span>
+        </div>
+      </div>
+      <p class="spell-desc">Envia energia negativa devastadora: o alvo sofre <strong>7d8+30 de dano necrótico</strong> (Con CD 19 para metade). Se um <strong>humanoide</strong> morrer com esse golpe, levanta instantaneamente na próxima rodada como um <strong>zumbi permanente</strong> sob seu controle — para sempre, sem concentração. Pura execução sem hesitação. A Father finaliza sem hesitar, e o que finalizou, ainda serve.</p>
+      <span class="spell-mechanic gold-mech">💀 7d8+30 necrótico (Con CD 19) · Humanoide morto → zumbi permanente sob controle</span>
+    </div>
+
+    <div class="spell-entry arcanum-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name arcanum-name">8°: Maddening Darkness</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação</span>
+          <span class="stag conc">concentração · 10 min</span>
+          <span class="stag">36m · raio 18m</span>
+        </div>
+      </div>
+      <p class="spell-desc">Escuridão mágica impenetrável em raio de 18m — uma área opressiva e esmagadora. Criaturas que iniciam o turno na escuridão sofrem <strong>8d8 de dano psíquico</strong> (Sab CD 19 para metade). Com Devil's Sight, você enxerga perfeitamente enquanto tudo ao redor lentamente enlouquece. A magia que mais vende a Arlecchino dominando o espaço — o campo de batalha inteiro pertence a ela, e estar dentro é pura tortura.</p>
+      <span class="spell-mechanic gold-mech">🌑 Raio 18m · 8d8 psíquico/turno (Sab CD 19) · Apenas Devil's Sight enxerga</span>
+    </div>
+
+    <div class="spell-entry arcanum-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name arcanum-name">9°: Blade of Disaster</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação bônus</span>
+          <span class="stag conc">concentração · 1 min</span>
+          <span class="stag">18m</span>
+        </div>
+      </div>
+      <p class="spell-desc">Cria uma lâmina de força pura e instabilidade planar. Como ação, comanda a lâmina — ela realiza <strong>2 ataques</strong> (+11) e causa <strong>2d12 de dano de Força</strong> em cada acerto. Crítico em <strong>18–20</strong>. A lâmina ignora resistências e imunidades a dano não mágico. Auge do terror visual e do impacto mecânico — Blade of Disaster é a magia que representa Arlecchino decidindo que o encontro acabou agora.</p>
+      <span class="spell-mechanic gold-mech">⚔ 2 ataques +11 · 2d12 Força cada · Crítico 18-20 · Ignora resistências</span>
+    </div>
+  </div>
+
+  <!-- FEY TOUCHED -->
+  <div class="spell-group">
+    <div class="spell-group-header">
+      <div class="spell-badge fey-badge">✦</div>
+      <span class="spell-group-title" style="color:var(--bone-dim);">Via Talento — Fey Touched · 1× por Descanso Curto</span>
+    </div>
+
+    <div class="spell-entry fey-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name">Misty Step</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação bônus</span>
+          <span class="stag">18m</span>
+          <span class="stag">instante</span>
+        </div>
+      </div>
+      <p class="spell-desc">Envolto em névoa prateada, teletransporte para qualquer espaço visível em <strong>18m</strong> como ação bônus. Sem TR, sem concentração. Disponível a cada descanso curto via Fey Touched. Combinado com Far Step, Arlecchino tem reposicionamento sobreabundante — ela aparece onde quer e desaparece antes que possam reagir. A fluidez de uma predadora que nunca fica presa.</p>
+      <span class="spell-mechanic">⚡ Ação bônus · 18m teletransporte · Sem TR · Recarrega em descanso curto</span>
+    </div>
+
+    <div class="spell-entry fey-entry">
+      <div class="spell-entry-top">
+        <span class="spell-name">Command</span>
+        <div class="spell-tags-inline">
+          <span class="stag">ação</span>
+          <span class="stag">18m</span>
+          <span class="stag">1 turno</span>
+        </div>
+      </div>
+      <p class="spell-desc">Uma palavra de autoridade absoluta: o alvo deve superar TR de Sabedoria (CD 19) ou obedecer um único comando de uma palavra no próximo turno. Opções: <em>Aproximar, Fugir, Cair, Largar, Parar</em>. Sem concentração. A voz gelada da Arlecchino carrega peso de autoridade real — quando ela fala, o mundo obedece. Útil para interromper ações críticas de inimigos ou criar oportunidades de ataque.</p>
+      <span class="spell-mechanic">✦ TR Sab CD 19 · 1 palavra de comando · Sem concentração · Recarrega em descanso curto</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ EQUIPAMENTO ═══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Equipamento &amp; Proficiências</div>
+  <div class="equip-grid">
+    <div class="equip-card">
+      <span class="equip-category">Arma Principal</span>
+      <ul class="equip-list">
+        <li>Glaive/Halberda (reskin: Foice)</li>
+        <li>Dano: 1d10 Cortante | Alcance 1,5m</li>
+        <li>Propriedades: Pesada, Dois Lados, Arma de Pacto</li>
+        <li>Contagem como arma mágica +1 (Improved Pact Weapon)</li>
+      </ul>
+    </div>
+    <div class="equip-card">
+      <span class="equip-category">Armadura &amp; Proteção</span>
+      <ul class="equip-list">
+        <li>Half Plate — CA 15 + Des 2 = CA 17</li>
+        <li>Foco Arcano (integrado à Foice)</li>
+        <li>Armor of Agathys — escudo de gelo ativo</li>
+      </ul>
+    </div>
+    <div class="equip-card">
+      <span class="equip-category">Outros Itens</span>
+      <ul class="equip-list">
+        <li>2 Adagas (emergência)</li>
+        <li>Pack do Explorador</li>
+        <li>Roupas Finas (autoridade)</li>
+        <li>Sinete de Harbinger dos Fatui</li>
+      </ul>
+    </div>
+    <div class="equip-card">
+      <span class="equip-category">Proficiências</span>
+      <ul class="equip-list">
+        <li>Armaduras: Leves, Médias, Escudos</li>
+        <li>Armas: Simples &amp; Marciais</li>
+        <li>Ferramentas: 1 jogo (Nobre)</li>
+        <li>Idiomas: Comum, Élfico</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PERSONALIDADE ════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Personalidade</div>
+  <div class="personality-grid">
+    <div class="personality-card">
+      <span class="personality-label">Traços de Personalidade</span>
+      <p class="personality-text">Fria e absolutamente calculista. Cada palavra é uma faca, cada silêncio — uma sentença. Não desperdiça emoções com quem não merece. Ao olhar nos olhos alheios, parece enxergar algo que eles mesmos desconhecem.</p>
+    </div>
+    <div class="personality-card">
+      <span class="personality-label">Ideais</span>
+      <p class="personality-text">Poder e controle são as únicas verdades imutáveis. Os fracos existem para servir ou morrer; os fortes, para governar. O Tsaritsa é a ordem — e ela é o seu instrumento.</p>
+    </div>
+    <div class="personality-card">
+      <span class="personality-label">Ligações</span>
+      <p class="personality-text">As crianças do Casa dei Fiori — a única coisa que ainda a prende ao mundo dos vivos. Seu legado, sua família, sua única fraqueza oculta sob camadas de gelo e fogo.</p>
+    </div>
+    <div class="personality-card">
+      <span class="personality-label">Defeitos</span>
+      <p class="personality-text">A humanidade enterrada sob as cinzas de seu passado. Ela não sente — ou convenceu a si mesma disso. Um dia, o fogo pode aflorar de dentro para fora, e ser sua ruína.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ APARÊNCIA ════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Aparência do Personagem</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;">
+    <div class="combat-box"><span class="combat-label">Idade</span><span style="font-family:'Cinzel',serif;font-size:14px;color:var(--bone);">Desconhecida</span></div>
+    <div class="combat-box"><span class="combat-label">Altura</span><span style="font-family:'Cinzel',serif;font-size:14px;color:var(--bone);">1,72 m</span></div>
+    <div class="combat-box"><span class="combat-label">Peso</span><span style="font-family:'Cinzel',serif;font-size:14px;color:var(--bone);">~58 kg</span></div>
+    <div class="combat-box"><span class="combat-label">Olhos</span><span style="font-family:'Cinzel',serif;font-size:13px;color:var(--bone);">Rosa claro</span></div>
+    <div class="combat-box"><span class="combat-label">Cabelos</span><span style="font-family:'Cinzel',serif;font-size:13px;color:var(--bone);">Preto e branco</span></div>
+    <div class="combat-box"><span class="combat-label">Pele</span><span style="font-family:'Cinzel',serif;font-size:14px;color:var(--bone);">Muito clara</span></div>
+    <div class="combat-box"><span class="combat-label">Marca</span><span style="font-family:'Cinzel',serif;font-size:12px;color:var(--scarlet);">Cruz em X no olho</span></div>
+    <div class="combat-box"><span class="combat-label">Tipo</span><span style="font-family:'Cinzel',serif;font-size:12px;color:var(--bone);">Shadar-kai</span></div>
+  </div>
+  <div class="lore-box">
+    Alta e imponente. A foice materializa do nada quando convocada. A marca em X no olho é o único elemento de cor viva num rosto que parece esculpido em mármore frio. Quando caminha, o ambiente parece esfriar ligeiramente.
+  </div>
+</div>
+
+<!-- ═══ COMO JOGAR ════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Como a Arlecchino Joga na Mesa</div>
+  <div class="feature-grid">
+    <div class="feature-card milestone">
+      <div class="feature-name">1. Pressão de Melee</div>
+      <div class="feature-desc">Foice + Polearm Master + Thirsting Blade = 3 ataques base. GWM modo execução ativo. Lifedrinker soma +5 em CADA ataque. Turno completo: ~6d10+60 de dano antes de crits.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">2. Defesa &amp; Sobrevivência</div>
+      <div class="feature-desc">Armor of Agathys + Shadow of Moil + Armor of Hexes (50% miss) + Shadar-kai teleporte com resistência. Praticamente impossível de derrubar em combate prolongado.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-name">3. Controle de Espaço</div>
+      <div class="feature-desc">Darkness + Devil's Sight = só ela vê. Polearm Master = penaliza aproximação. Maddening Darkness = área devastadora. Misty Step/Far Step para reposicionamento contínuo.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-name">4. Execução Final</div>
+      <div class="feature-desc">Hexblade's Curse + GWM + Eldritch Smite = spike de dano absurdo. Hold Monster garante críticos automáticos. Blade of Disaster + Finger of Death = o encontro acabou.</div>
+    </div>
+  </div>
+  <div class="alert-box" style="margin-top:12px;">
+    🔥 <strong>Turno ideal:</strong> Hexblade's Curse (bônus) → Investiture of Flame ativa → Darkness + Devil's Sight → 3 ataques GWM modo execução → Eldritch Smite no acerto crítico. O campo de batalha pertence a ela.
+  </div>
+</div>
+
+<!-- ═══ TESOURO ═══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Tesouro</div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;">
+    <div class="combat-box"><span class="combat-label">PC (cobre)</span><span class="combat-val" style="font-size:16px;">—</span></div>
+    <div class="combat-box"><span class="combat-label">PP (prata)</span><span class="combat-val" style="font-size:16px;">—</span></div>
+    <div class="combat-box"><span class="combat-label">PE (electro)</span><span class="combat-val" style="font-size:16px;">—</span></div>
+    <div class="combat-box pv-box"><span class="combat-label">PO (ouro)</span><span class="combat-val" style="font-size:16px;">∞</span></div>
+    <div class="combat-box"><span class="combat-label">PP (platina)</span><span class="combat-val" style="font-size:16px;">—</span></div>
+  </div>
+  <div class="lore-box" style="margin-top:10px;">
+    Como Harbinger dos Fatui, Arlecchino tem acesso ilimitado ao tesouro do Tsaritsa. Ouro não é uma preocupação — jamais foi.
+  </div>
+</div>
+
+<div class="divider"><span class="divider-text">✕ ✕ ✕</span></div>
+
+<!-- ═══ HISTÓRIA ══════════════════════════════════════════════ -->
+<div class="backstory-section">
+  <div style="font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--crimson-bright);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+    <span style="color:var(--scarlet);opacity:0.7;">✕</span> História do Personagem
+  </div>
+  <div class="backstory-body">
+    <div class="bold-italic">Arlecchino. The Knave. Father.</div>
+    <p>Não existe arquivo oficial sobre sua origem. Os registros mais antigos a mencionam simplesmente como "the child who would not break" — a criança que se recusou a se partir. Criada dentro de uma estrutura de poder que devora os fracos, ela não apenas sobreviveu: tornou-se o sistema.</p>
+    <span class="bold-italic">Os primeiros anos — O que não pode ser partido</span>
+    <p>Ninguém sabe exatamente quantos anos ela tem. Ela mesma parece não se importar com isso. O que se sabe é que foi recrutada — ou capturada, dependendo de quem conta — ainda jovem pelos Fatui, e que o processo de treinamento que destruiu outros a afiou como uma lâmina.</p>
+    <p>Enquanto os outros choravam, ela observava. Enquanto os outros quebravam, ela aprendia. Havia algo em seus olhos que seus instrutores descreviam como "errado" — não crueldade, mas algo mais próximo de uma distância absoluta, como se estivesse sempre assistindo o mundo de um lugar ligeiramente acima dele.</p>
+    <span class="bold-italic">O Pacto — A Raven Queen e a Foice</span>
+    <p>Em algum ponto de sua trajetória, ela firmou um pacto. Com o quê exatamente — se com a própria Raven Queen, com uma entidade intermediária ou com algo que ela mesma nomeou — permanece obscuro. O que emergiu desse momento foi a foice: não como arma encontrada, mas como extensão de algo interno, uma lâmina que parece existir apenas para ela.</p>
+    <div class="dialog">"Não é uma arma. É uma sentença."</div>
+    <p>Com o pacto veio o poder. Com o poder, vieram responsabilidades que ela abraçou sem hesitar: liderar, executar, decidir. Os Fatui encontraram no Knave não apenas uma combatente, mas uma administradora do inevitável.</p>
+    <span class="bold-italic">O Casa dei Fiori — A única contradição</span>
+    <p>O ponto que não se encaixa na narrativa de frieza absoluta é o orfanato. O Casa dei Fiori. Ela poderia ter ignorado as crianças descartadas — seria o movimento mais eficiente. Em vez disso, as coletou. As treinou. As moldou.</p>
+    <p>O cinismo diria que foram treinadas como operativos. A verdade é mais complicada: ela os protege com uma intensidade que contradiz tudo que ela afirma ser. Quando um dos filhos é ameaçado, a frieza cede milímetros — e o que emerge por baixo é algo que ela não tem nome para descrever.</p>
+    <div class="dialog">"Eles não são instrumentos. São meus."</div>
+    <span class="bold-italic">A Harbinger — O que é ser The Knave</span>
+    <p>Dentro dos Fatui, ela ocupa um nível acima de quase todos. Seus pares a respeitam com uma mistura de admiração e medo saudável — porque ela não joga jogos de status, não tece intrigas desnecessárias, não desperdiça energia. Quando ela quer algo, simplesmente o obtém. Quando alguém interfere, simplesmente... para de existir como obstáculo.</p>
+    <p>O que a motiva não é ambição pessoal no sentido convencional. É algo próximo de uma visão de ordem: um mundo onde o poder é exercido com competência e sem hipocrisia. O Tsaritsa oferece exatamente isso. E Arlecchino é o instrumento perfeito de uma ordem perfeita.</p>
+    <p>Ou é o que ela repete para si mesma.</p>
+    <p style="color:var(--text-dim);font-size:12px;margin-top:20px;font-style:italic;">No fundo das cinzas, algo ainda arde. Ela apenas decidiu parar de procurar o que é.</p>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<div class="footer">
+  <p>Ficha criada com base no PDF oficial D&D 5e &nbsp;·&nbsp; Personagem: Genshin Impact / HoYoverse &nbsp;·&nbsp; Mecânicas: Wizards of the Coast</p>
+  <p style="margin-top:4px;">Build Bruxo Hexblade · Shadar-kai · Level 20 · Sem Multiclasse · v2 com descrições de magias</p>
+</div>
+
+<script>
+const container = document.getElementById('embers');
+for (let i = 0; i < 25; i++) {
+  const e = document.createElement('div');
+  e.className = 'ember';
+  e.style.left = Math.random() * 100 + '%';
+  e.style.width  = (1 + Math.random() * 3) + 'px';
+  e.style.height = e.style.width;
+  e.style.animationDuration = (8 + Math.random() * 14) + 's';
+  e.style.animationDelay   = (Math.random() * 12) + 's';
+  e.style.background = Math.random() > 0.5 ? '#ff6b35' : '#d63031';
+  container.appendChild(e);
+}
+</script>
+</body>
+</html>

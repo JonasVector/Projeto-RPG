@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corven Cogspire — Ficha Correta &amp; Guia 4→20</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bz:#b87333;--cp:#da8a67;--gd:#c9a227;--gl:#e8c85a;--te:#5aacbf;--ac:#4a8fa8;--dk:#080604;--dr:#050402;--cd:#100d09;--cl:#1a150f;--tx:#d4c9b0;--td:#8a7a60;--br:rgba(184,115,51,0.28);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--dr);background-image:radial-gradient(ellipse at 25% 20%,rgba(184,115,51,0.06) 0%,transparent 50%),radial-gradient(ellipse at 70% 75%,rgba(74,143,168,0.05) 0%,transparent 50%);font-family:'Crimson Pro',Georgia,serif;color:var(--tx);line-height:1.75;}
+.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
+.gbg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.fg{position:absolute;opacity:0;animation:fg linear infinite;color:var(--bz);filter:blur(0.4px);}
+@keyframes fg{0%{transform:translateY(110vh) rotate(0deg) scale(0.4);opacity:0;}8%{opacity:0.2;}50%{transform:translateY(50vh) rotate(200deg) scale(0.7);opacity:0.13;}92%{opacity:0.05;}100%{transform:translateY(-10vh) rotate(400deg) scale(0.3);opacity:0;}}
+.sk{position:absolute;width:2px;height:2px;background:var(--gl);border-radius:50%;opacity:0;animation:sk linear infinite;}
+@keyframes sk{0%{transform:translateY(0) translateX(0) scale(1);opacity:0.8;}100%{transform:translateY(-80px) translateX(var(--tx2,20px)) scale(0);opacity:0;}}
+.hdr{background:linear-gradient(160deg,#0a0705 0%,#160f09 60%,#0a0705 100%);border-bottom:2px solid var(--bz);position:relative;overflow:hidden;z-index:1;}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gd),var(--cp),var(--gd),transparent);opacity:0.5;}
+.hi{display:flex;align-items:stretch;position:relative;z-index:1;}
+.hp{width:210px;flex-shrink:0;background:#08060a;border-right:2px solid var(--bz);display:flex;align-items:center;justify-content:center;}
+.pi{width:100%;height:270px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;}
+.ps{font-size:76px;opacity:0.11;filter:drop-shadow(0 0 20px var(--gd));}
+.pr{position:absolute;width:110px;height:110px;border:1px solid rgba(184,115,51,0.3);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);}
+.pr::before{content:'';position:absolute;inset:10px;border:1px solid rgba(184,115,51,0.14);border-radius:50%;}
+.pl{position:absolute;bottom:14px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--bz);opacity:0.45;text-transform:uppercase;}
+.ht{flex:1;padding:34px 44px;}
+.ey{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--bz);opacity:0.8;text-transform:uppercase;margin-bottom:10px;}
+.hn{font-family:'Cinzel',serif;font-size:40px;font-weight:900;color:var(--gl);text-shadow:0 0 50px rgba(201,162,39,0.35);letter-spacing:2px;line-height:1;margin-bottom:4px;}
+.hs{font-family:'Crimson Pro',serif;font-style:italic;font-size:16px;color:var(--cp);margin-bottom:20px;letter-spacing:1.5px;}
+.htg{display:flex;gap:7px;flex-wrap:wrap;}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--br);color:var(--td);text-transform:uppercase;background:rgba(184,115,51,0.07);}
+.tag.hi2{background:rgba(184,115,51,0.18);border-color:var(--bz);color:var(--gl);}
+.mb{background:var(--cd);border-bottom:1px solid var(--br);padding:13px 40px;display:flex;position:relative;z-index:1;}
+.mi{flex:1;border-right:1px solid var(--br);padding:0 18px;text-align:center;}
+.mi:first-child{padding-left:0;}.mi:last-child{border-right:none;padding-right:0;}
+.ml{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--td);text-transform:uppercase;display:block;margin-bottom:2px;}
+.mv{font-family:'Cinzel',serif;font-size:13px;color:var(--cp);font-weight:600;}
+.sec{padding:0 40px;margin-top:32px;position:relative;z-index:1;}
+.st{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--bz);border-bottom:1px solid var(--br);padding-bottom:8px;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.st::before{content:'⚙';font-size:13px;color:var(--gd);}
+.sg{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px;}
+.sb{background:var(--cd);border:1px solid var(--br);text-align:center;padding:12px 4px 10px;position:relative;}
+.sb::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--bz);opacity:0.4;}
+.sn{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--td);display:block;margin-bottom:4px;}
+.sv{font-family:'Cinzel',serif;font-size:27px;font-weight:900;color:var(--tx);display:block;line-height:1;}
+.sv.pk{color:var(--gl);text-shadow:0 0 14px rgba(201,162,39,0.4);}
+.sm{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--bz);display:block;margin-top:3px;}
+.cr{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:16px;}
+.cb{background:var(--cl);border:1px solid var(--br);text-align:center;padding:11px 5px 9px;}
+.cb.ac{background:rgba(184,115,51,0.1);border-color:var(--bz);}
+.cbl{font-family:'Share Tech Mono',monospace;font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--td);display:block;margin-bottom:3px;}
+.cbv{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--tx);}
+.cb.ac .cbv{color:var(--gl);}
+.cbs{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--td);display:block;margin-top:2px;}
+.tc{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.xc{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
+.sl{list-style:none;}.kl{list-style:none;}
+.si,.ki{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:13px;border-bottom:1px solid rgba(184,115,51,0.09);}
+.si:last-child,.ki:last-child{border-bottom:none;}
+.pd{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--br);flex-shrink:0;}
+.pd.f{background:var(--bz);border-color:var(--gd);box-shadow:0 0 5px rgba(184,115,51,0.5);}
+.sc{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--bz);min-width:26px;text-align:right;}
+.sc.pk{color:var(--gl);}
+.nm2{color:var(--td);flex:1;}
+.at2{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--td);opacity:0.6;}
+.at{width:100%;border-collapse:collapse;font-size:13px;}
+.at th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--td);padding:6px 10px;text-align:left;border-bottom:1px solid var(--br);background:rgba(184,115,51,0.08);}
+.at td{padding:8px 10px;border-bottom:1px solid rgba(184,115,51,0.09);color:var(--tx);}
+.at tr:hover td{background:rgba(184,115,51,0.05);}
+.an{font-family:'Cinzel',serif;font-size:12px;color:var(--gl);}
+.ab{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--bz);font-weight:700;}
+.ad{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--cp);}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:10px;}
+.fc{background:var(--cd);border:1px solid var(--br);border-left:3px solid var(--bz);padding:11px 13px;}
+.fc.go{border-left-color:var(--gd);}
+.fc.te{border-left-color:var(--te);}
+.fn{font-family:'Cinzel',serif;font-size:11px;color:var(--bz);letter-spacing:0.5px;margin-bottom:4px;text-transform:uppercase;}
+.fc.go .fn{color:var(--gd);}
+.fc.te .fn{color:var(--te);}
+.fs{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--td);text-transform:uppercase;margin-bottom:3px;}
+.fd{font-size:12px;color:var(--td);line-height:1.5;}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.ic{background:rgba(90,127,184,0.06);border:1px solid rgba(74,143,168,0.25);border-left:3px solid var(--ac);padding:11px 13px;}
+.inm{font-family:'Cinzel',serif;font-size:11px;color:var(--te);margin-bottom:3px;}
+.ist{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;margin-bottom:4px;}
+.id{font-size:12px;color:var(--td);line-height:1.5;}
+.spg{margin-bottom:26px;}
+.sph{display:flex;align-items:center;gap:12px;margin-bottom:13px;}
+.spb{width:34px;height:34px;border:2px solid var(--bz);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:var(--bz);background:rgba(184,115,51,0.12);flex-shrink:0;}
+.spb.ct{border-color:var(--gl);color:var(--gl);background:rgba(201,162,39,0.1);}
+.spt{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--bz);}
+.spr{margin-left:auto;display:flex;gap:4px;}
+.spd{width:13px;height:13px;border-radius:50%;border:1.5px solid var(--bz);background:rgba(184,115,51,0.2);}
+.spc{background:var(--cd);border:1px solid var(--br);border-left:3px solid var(--bz);padding:9px 13px;margin-bottom:6px;}
+.spc:hover{background:var(--cl);border-color:var(--cp);border-left-color:var(--gd);}
+.spc.ar{border-left-color:var(--te);}
+.spt2{display:flex;align-items:baseline;gap:9px;margin-bottom:4px;flex-wrap:wrap;}
+.spn{font-family:'Cinzel',serif;font-size:12.5px;font-weight:600;color:var(--gl);}
+.spc.ar .spn{color:var(--te);}
+.stg{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;padding:2px 7px;border:1px solid var(--br);color:var(--td);text-transform:uppercase;background:rgba(184,115,51,0.04);}
+.stg.co{border-color:rgba(184,115,51,0.4);color:var(--bz);}
+.stg.ar2{border-color:rgba(74,143,168,0.4);color:var(--te);background:rgba(74,143,168,0.05);}
+.stg.re{border-color:rgba(184,115,51,0.4);color:var(--cp);}
+.spds{font-size:13.5px;color:var(--td);line-height:1.6;}
+.spm{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--bz);margin-top:3px;display:block;}
+.spm.te{color:var(--te);}
+.gph{margin-bottom:28px;}
+.gpt{font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gd);border-bottom:1px solid rgba(201,162,39,0.3);padding-bottom:7px;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.gpt::before{content:'⚙';color:var(--bz);}
+.gl2{background:var(--cd);border:1px solid var(--br);border-left:3px solid var(--bz);margin-bottom:6px;overflow:hidden;display:flex;}
+.gl2.ms{border-left-color:var(--gd);}
+.gl2.bg{border-left-color:var(--te);}
+.gl2.cp2{border-left-color:var(--gl);}
+.gln{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--bz);padding:9px 13px;min-width:58px;background:rgba(184,115,51,0.09);display:flex;align-items:center;}
+.gl2.ms .gln{color:var(--gd);}.gl2.bg .gln{color:var(--te);}.gl2.cp2 .gln{color:var(--gl);}
+.gc{padding:9px 14px;flex:1;}
+.gf{font-family:'Cinzel',serif;font-size:11px;color:var(--tx);margin-bottom:3px;}
+.gn{font-size:12px;color:var(--td);font-style:italic;line-height:1.5;}
+.gs{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--cp);letter-spacing:1px;margin-top:3px;}
+.gs.te{color:var(--te);}
+.lo{background:rgba(184,115,51,0.05);border:1px solid var(--br);border-left:3px solid var(--cp);padding:13px 16px;font-size:13px;font-style:italic;color:var(--td);margin:10px 0;line-height:1.7;}
+.al{background:rgba(74,143,168,0.06);border:1px solid rgba(74,143,168,0.25);border-left:3px solid var(--te);padding:12px 16px;margin:10px 0;font-size:13px;color:var(--te);}
+.tb{background:var(--cd);border:1px solid var(--br);padding:15px 17px;}
+.tl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--bz);display:block;margin-bottom:7px;}
+.tt{font-size:13.5px;color:var(--td);font-style:italic;line-height:1.55;}
+.dv{text-align:center;margin:30px 40px;display:flex;align-items:center;gap:14px;position:relative;z-index:1;}
+.dv::before,.dv::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--bz),transparent);opacity:0.35;}
+.ds{font-size:15px;color:var(--gd);opacity:0.45;}
+.pb{background:rgba(184,115,51,0.09);border:1px solid var(--bz);padding:11px 15px;text-align:center;}
+.pn{font-family:'Cinzel',serif;font-size:30px;font-weight:900;color:var(--gl);display:block;text-shadow:0 0 14px rgba(201,162,39,0.3);}
+.pl2{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--td);}
+.bw{background:var(--cd);border:1px solid var(--br);border-top:3px solid var(--bz);padding:26px 30px;}
+.bw p{font-size:14px;color:var(--td);margin-bottom:12px;line-height:1.85;}
+.bw p:last-child{margin-bottom:0;}
+.bb{font-weight:600;font-style:italic;color:var(--tx);display:block;margin:14px 0 5px;}
+.bd{background:rgba(184,115,51,0.07);border-left:2px solid var(--bz);padding:7px 15px;margin:7px 0;font-style:italic;font-size:13px;color:var(--cp);}
+.se{text-align:center;padding:18px 0;color:var(--bz);opacity:0.3;font-size:18px;position:relative;z-index:1;}
+.dr2{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.dl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--td);min-width:60px;}
+.dd{display:flex;gap:6px;}
+.ddot{width:13px;height:13px;border-radius:50%;border:1.5px solid var(--br);}
+.cd2{background:var(--cd);border:1px solid var(--br);padding:16px 18px;margin-bottom:10px;}
+.ct{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--bz);margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--br);}
+.cd2 p{font-size:13px;color:var(--td);}
+</style>
+</head>
+<body>
+<div class="gbg" id="gbg"></div>
+<div class="page">
+
+<header class="hdr"><div class="hi">
+<div class="hp"><div class="pi"><div class="pr"></div><div class="ps">⚙</div><span class="pl">Cogspire</span></div></div>
+<div class="ht">
+<div class="ey">Ficha de Personagem · D&amp;D 5e · Artificer Armeiro · Nível 4 · CORRIGIDA</div>
+<h1 class="hn">Corven Cogspire</h1>
+<div class="hs">O Jacurutu das Asas Cegas · Guardião de Eliora</div>
+<div class="htg">
+<span class="tag hi2">Artificer 4</span><span class="tag hi2">Armeiro</span><span class="tag">Jacurutu (Owlin)</span>
+<span class="tag">Infiltrador</span><span class="tag">Atirador Furtivo</span><span class="tag">Sem Multiclasse</span><span class="tag">Guia 4→20</span>
+</div>
+</div>
+</div></header>
+
+<div class="mb">
+<div class="mi"><span class="ml">Raça</span><span class="mv">Jacurutu</span></div>
+<div class="mi"><span class="ml">Classe</span><span class="mv">Artificer</span></div>
+<div class="mi"><span class="ml">Subclasse</span><span class="mv">Armeiro</span></div>
+<div class="mi"><span class="ml">Modelo</span><span class="mv">Infiltrador</span></div>
+<div class="mi"><span class="ml">Nível</span><span class="mv">4</span></div>
+<div class="mi"><span class="ml">Infusões</span><span class="mv">2 / 2</span></div>
+</div>
+
+<div class="sec"><h2 class="st">Atributos</h2>
+<div class="sg">
+<div class="sb"><span class="sn">Força</span><span class="sv">12</span><span class="sm">+1</span></div>
+<div class="sb"><span class="sn">Destreza</span><span class="sv">16</span><span class="sm">+3</span></div>
+<div class="sb"><span class="sn">Constituição</span><span class="sv">13</span><span class="sm">+1</span></div>
+<div class="sb"><span class="sn">Inteligência</span><span class="sv pk">18</span><span class="sm">+4</span></div>
+<div class="sb"><span class="sn">Sabedoria</span><span class="sv">10</span><span class="sm">+0</span></div>
+<div class="sb"><span class="sn">Carisma</span><span class="sv">8</span><span class="sm">−1</span></div>
+</div></div>
+
+<div class="sec"><h2 class="st">Estatísticas de Combate</h2>
+<div class="cr">
+<div class="cb ac"><span class="cbl">Classe Armadura</span><span class="cbv">13</span><span class="cbs">Atual</span></div>
+<div class="cb ac"><span class="cbl">Pontos de Vida</span><span class="cbv">27</span><span class="cbs">Nível 4</span></div>
+<div class="cb"><span class="cbl">Iniciativa</span><span class="cbv">+3</span><span class="cbs">Des mod</span></div>
+<div class="cb"><span class="cbl">Deslocamento</span><span class="cbv">9m</span><span class="cbs">+ Voo 9m</span></div>
+<div class="cb"><span class="cbl">Bônus Prof.</span><span class="cbv">+2</span><span class="cbs">Nv 1–4</span></div>
+<div class="cb ac"><span class="cbl">CD Magias</span><span class="cbv">14</span><span class="cbs">8+prof+Int</span></div>
+<div class="cb ac"><span class="cbl">Atq. Mágico</span><span class="cbv">+6</span><span class="cbs">prof+Int</span></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="lo" style="margin:0"><strong style="color:var(--bz)">Dados de Vida:</strong> 4d8 · Média 27 PV</div>
+<div class="lo" style="margin:0"><strong style="color:var(--bz)">Infiltrador:</strong> Lançador de Raios, Passos Potencializados, Campo de Amortecimento</div>
+</div></div>
+
+<div class="sec">
+<div class="tc" style="gap:28px">
+<div>
+<h2 class="st">Salvaguardas</h2>
+<ul class="sl">
+<li class="si"><div class="pd"></div><span class="sc">+1</span><span class="nm2">Força</span></li>
+<li class="si"><div class="pd"></div><span class="sc">+3</span><span class="nm2">Destreza</span></li>
+<li class="si"><div class="pd f"></div><span class="sc">+3</span><span class="nm2">Constituição</span></li>
+<li class="si"><div class="pd f"></div><span class="sc pk">+6</span><span class="nm2">Inteligência</span></li>
+<li class="si"><div class="pd"></div><span class="sc">+0</span><span class="nm2">Sabedoria</span></li>
+<li class="si"><div class="pd"></div><span class="sc">−1</span><span class="nm2">Carisma</span></li>
+</ul>
+<div style="margin-top:18px">
+<h2 class="st">Percepção &amp; Morte</h2>
+<div class="pb" style="margin-bottom:10px"><span class="pn">12</span><span class="pl2">Sabedoria Passiva</span></div>
+<div class="dr2"><span class="dl">Sucessos</span><div class="dd"><div class="ddot"></div><div class="ddot"></div><div class="ddot"></div></div></div>
+<div class="dr2"><span class="dl">Fracassos</span><div class="dd"><div class="ddot"></div><div class="ddot"></div><div class="ddot"></div></div></div>
+<div style="margin-top:10px"><span class="pl2" style="display:block;margin-bottom:4px">Dados de Vida</span><span style="font-family:'Cinzel',serif;font-size:16px;color:var(--gl)">4d8</span></div>
+</div>
+</div>
+<div>
+<h2 class="st">Perícias</h2>
+<ul class="kl">
+<li class="ki"><div class="pd f"></div><span class="sc">+5</span><span class="nm2">Acrobacia</span><span class="at2">DES</span></li>
+<li class="ki"><div class="pd"></div><span class="sc">+0</span><span class="nm2">Adestrar Animais</span><span class="at2">SAB</span></li>
+<li class="ki"><div class="pd"></div><span class="sc">+4</span><span class="nm2">Arcanismo</span><span class="at2">INT</span></li>
+<li class="ki"><div class="pd"></div><span class="sc">+1</span><span class="nm2">Atletismo</span><span class="at2">FOR</span></li>
+<li class="ki"><div class="pd"></div><span class="sc">−1</span><span class="nm2">Enganação</span><span class="at2">CAR</span></li>
+<li class="ki"><div class="pd f"></div><span class="sc pk">+6</span><span class="nm2">História</span><span class="at2">INT</span></li>
+<li class="ki"><div class="pd f"></div><span class="sc">+2</span><span class="nm2">Intuição</span><span class="at2">SAB</span></li>
+<li class="ki"><div class="pd"></div><span class="sc">−1</span><span class="nm2">Intimidação</span><span class="at2">CAR</span></li>
+<li class="ki"><div class="pd f"></div><span class="sc pk">+6</span><span class="nm2">Investigação</span><span class="at2">INT</span></li>
+<li class="ki"><div class="pd"></div><span class="sc">+0</span><span class="nm2">Medicina</span><span class="at2">SAB</span></li>
+<li class="ki"><div class="pd"></div><span class="sc">+4</span><span class="nm2">Natureza</span><span class="at2">INT</span></li>
+<li class="ki"><div class="pd f"></div><span class="sc">+2</span><span class="nm2">Percepção</span><span class="at2">SAB</span></li>
+<li class="ki"><div class="pd"></div><span class="sc">−1</span><span class="nm2">Atuação</span><span class="at2">CAR</span></li>
+<li class="ki"><div class="pd"></div><span class="sc">−1</span><span class="nm2">Persuasão</span><span class="at2">CAR</span></li>
+<li class="ki"><div class="pd"></div><span class="sc">+4</span><span class="nm2">Religião</span><span class="at2">INT</span></li>
+<li class="ki"><div class="pd"></div><span class="sc">+3</span><span class="nm2">Prestidigitação</span><span class="at2">DES</span></li>
+<li class="ki"><div class="pd f"></div><span class="sc">+5</span><span class="nm2">Furtividade</span><span class="at2">DES</span></li>
+<li class="ki"><div class="pd"></div><span class="sc">+0</span><span class="nm2">Sobrevivência</span><span class="at2">SAB</span></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="dv"><span class="ds">⚙ ✦ ⚙</span></div>
+
+<div class="sec"><h2 class="st">Ataques</h2>
+<table class="at">
+<thead><tr><th>Arma / Ataque</th><th>Bônus</th><th>Dano / Tipo</th><th>Alcance</th><th>Notas</th></tr></thead>
+<tbody>
+<tr><td><span class="an">Lançador de Raios (Infiltrador)</span></td><td><span class="ab">+6</span></td><td><span class="ad">1d6 Elétrico (+1d6 extra/turno)</span></td><td>27m/90m</td><td style="font-size:11px;color:var(--td)">INT mod · Arma especial da armadura arcana · 1d6 extra 1×/turno</td></tr>
+<tr><td><span class="an">Besta Leve</span></td><td><span class="ab">+5</span></td><td><span class="ad">1d8 Perfurante</span></td><td>24/96m</td><td style="font-size:11px;color:var(--td)">DES mod · Recarregar (ação) · Municão: 20 flechas</td></tr>
+<tr><td><span class="an">Adaga</span></td><td><span class="ab">+5</span></td><td><span class="ad">1d4+3 Perfurante</span></td><td>Melee / 6m</td><td style="font-size:11px;color:var(--td)">DES mod · Arremessável · Emergência</td></tr>
+<tr><td><span class="an">Raio de Fogo (Truque)</span></td><td><span class="ab">+6</span></td><td><span class="ad">1d10 Fogo</span></td><td>36m</td><td style="font-size:11px;color:var(--td)">INT mod · Escala com nível · Via Oficina de Bolso: CD 15, atq +7</td></tr>
+</tbody>
+</table>
+<div class="lo" style="margin-top:10px">⚙ <strong style="color:var(--bz)">Oficina de Bolso:</strong> Enquanto segura a ferramenta, +1 em ataque mágico e CD (+7 atq / CD 15). Como ação pode conjurar qualquer truque de qualquer classe por 8h.</div>
+</div>
+
+<div class="sec"><h2 class="st">Habilidades Raciais — Jacurutu (Owlin)</h2>
+<div class="fg2">
+<div class="fc go"><div class="fn">Visão no Escuro</div><div class="fs">Raça · Jacurutu</div><div class="fd">Enxerga em escuridão como luz fraca até <strong style="color:var(--gd)">18 metros</strong>. Discerne cores como tons de cinza. Predador noturno nato — Corven pode operar em escuridão total sem penalidade.</div></div>
+<div class="fc go"><div class="fn">Penas Silenciosas</div><div class="fs">Raça · Jacurutu</div><div class="fd">Proficiência em Furtividade. O Infiltrador já concede vantagem em testes de Furtividade — combinado com Penas Silenciosas, Corven é praticamente indetectável ao se mover.</div></div>
+</div>
+
+<h2 class="st" style="margin-top:24px">Habilidades de Classe — Artificer 4 &amp; Armeiro Infiltrador</h2>
+<div class="fg2">
+<div class="fc go"><div class="fn">Ajustes Mágicos</div><div class="fs">Artificer · Nível 1</div><div class="fd">Toca objetos pequenos e concede propriedades mágicas: luz, mensagem gravada, odor, som ou efeito visual. Até INT mod (4) simultâneos. A assinatura criativa do artífice em tudo que toca.</div></div>
+<div class="fc go"><div class="fn">Infundir Item</div><div class="fs">Artificer · Nível 2</div><div class="fd">4 infusões conhecidas, <strong style="color:var(--gd)">2 ativas</strong> simultaneamente. Imbuídas em objetos após descanso longo. Fabricação de itens mágicos próprios — a habilidade mais única do Artificer.</div></div>
+<div class="fc go"><div class="fn">Ferramentas da Troca</div><div class="fs">Armeiro · Nível 3</div><div class="fd">Proficiência automática em <strong style="color:var(--gd)">armaduras pesadas</strong> e Ferramentas de Ferreiro. Corven pode vestir qualquer armadura sem penalidade — expansão de opções defensivas ao longo do avanço.</div></div>
+<div class="fc te"><div class="fn">Armadura Arcana</div><div class="fs">Armeiro · Nível 3</div><div class="fd">Transforma uma armadura em foco arcano. A armadura fixa-se a Corven, substitui membros ausentes, e pode ser vestida/retirada como ação. Permanece arcana até vestir outra armadura ou morrer.</div></div>
+<div class="fc te"><div class="fn">Modelo Infiltrador — Lançador de Raios</div><div class="fs">Armeiro · Nível 3 · Ativo</div><div class="fd">Nódulo gema projeta raio de 1d6 elétrico (27m/90m) usando <strong style="color:var(--te)">INT mod</strong>. Uma vez por turno ao acertar pode causar <strong style="color:var(--te)">+1d6 elétrico extra</strong>. Principal arma à distância de Corven.</div></div>
+<div class="fc te"><div class="fn">Modelo Infiltrador — Passos e Campo</div><div class="fs">Armeiro · Nível 3 · Ativo</div><div class="fd"><strong style="color:var(--te)">Passos Potencializados:</strong> deslocamento +1,5m. <strong style="color:var(--te)">Campo de Amortecimento:</strong> vantagem em testes de Furtividade (Des). Se armadura impõe desvantagem, ela e a vantagem se cancelam normalmente.</div></div>
+<div class="fc"><div class="fn">ASI / Feat — Nível 4 Obtido</div><div class="fs">Artificer · Nível 4</div><div class="fd">Feat do personagem já conquistado neste nível. Com INT 18 altíssima, há espaço para feats de utilidade (War Caster, Alert, Lucky) sem sacrificar poder de conjuração.</div></div>
+<div class="fc"><div class="fn">Oficina de Bolso</div><div class="fs">Item Mágico · Equipado</div><div class="fd">Transforma-se em qualquer ferramenta de artesão. Enquanto segura: <strong style="color:var(--bz)">+1 ataque mágico e +1 CD</strong> (ataque +7 / CD 15). Como ação: conjura qualquer truque de qualquer classe por 8h.</div></div>
+</div>
+</div>
+
+<div class="sec"><h2 class="st">Infusões Ativas (2 / 2)</h2>
+<div class="ig">
+<div class="ic"><div class="inm">Servo Homúnculo</div><div class="ist">✦ Ativa · Construto · Permanente</div><div class="id">Construto mecânico com <strong style="color:var(--te)">1+INT mod (5) PV</strong>, CA 13, voo 18m. Pode usar <strong style="color:var(--te)">Ação de Ajuda → vantagem</strong> no seu ataque. Age imediatamente após Corven. Recupera 2d6 PV com Remendo. O parceiro mecânico de combate.</div></div>
+<div class="ic"><div class="inm">Bag of Holding</div><div class="ist">✦ Ativa · Item · Utilitário</div><div class="id">60cm de abertura, 120cm de profundidade. Até 225kg / 1,8m³ internos, sempre 7kg externos. Contém todo o equipamento de Corven: ferramentas, munição, o relicário de Eliora, barras de metal e o laboratório portátil.</div></div>
+</div>
+<div class="lo" style="margin-top:10px">Infusões conhecidas não ativas: <strong style="color:var(--bz)">Defesa Aprimorada</strong> (+1 CA enquanto usa a armadura infundida) e <strong style="color:var(--bz)">Arma Aprimorada</strong> (+1 ataque e dano com arma infundida). Nível 6 desbloqueia 3ª infusão ativa.</div>
+</div>
+
+<div class="dv"><span class="ds">⚙ ✦ ⚙</span></div>
+
+<div class="sec"><h2 class="st">Grimório · Habilidade: Inteligência · CD: 14 (15 c/ Oficina) · Ataque: +6 (+7 c/ Oficina)</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px">
+<div class="pb"><span class="pn" style="font-size:18px">Int</span><span class="pl2">Atributo</span></div>
+<div class="pb"><span class="pn">14</span><span class="pl2">CD Magias (15 c/ Oficina)</span></div>
+<div class="pb"><span class="pn">+6</span><span class="pl2">Ataque Mágico (+7 c/ Oficina)</span></div>
+</div>
+<div class="cd2" style="margin-bottom:14px"><div class="ct">Espaços de Magia — Nível 4</div><p style="font-family:'Share Tech Mono',monospace;font-size:13px">1° Círculo: ◆◆◆</p></div>
+
+<div class="spg">
+<div class="sph"><div class="spb ct">0</div><span class="spt" style="color:var(--gl)">Truques — Ilimitados</span></div>
+
+<div class="spc">
+<div class="spt2"><span class="spn">Raio de Fogo</span><div style="display:flex;gap:5px"><span class="stg">ação</span><span class="stg">36m</span><span class="stg">ataque mágico</span></div></div>
+<p class="spds">Projeta mota de fogo causando <strong>1d10 de dano de fogo</strong> no acerto. Escala: 2d10 (nível 5), 3d10 (nível 11), 4d10 (nível 17). Objetos inflamáveis pegam fogo. O truque ofensivo principal de Corven à distância. Funciona em sinergia com a armadura Infiltradora — enquanto o Lançador de Raios ocupa o turno extra, Raio de Fogo cobre alvos além do alcance ou quando o extra elétrico já foi usado.</p>
+<span class="spm">⚡ +6 ataque (+7 c/ Oficina) · 1d10 fogo · Nível 5: 2d10 · Nível 11: 3d10</span>
+</div>
+
+<div class="spc">
+<div class="spt2"><span class="spn">Remendo</span><div style="display:flex;gap:5px"><span class="stg">1 minuto</span><span class="stg">toque</span><span class="stg">utilitário</span></div></div>
+<p class="spds">Repara uma quebra ou rasgo de até 30cm em objeto tocado, restaurando-o completamente. Não funciona em criaturas. Para Corven: repara a armadura arcana danificada, armas quebradas, o relicário de Eliora, mecanismos e ferramentas. Também restaura <strong>2d6 PV no Homúnculo</strong> quando conjurado sobre ele — o único modo de curar o parceiro mecânico sem descanso.</p>
+<span class="spm">🔧 Repara objetos (≤30cm) · 1 min casting · Restaura 2d6 PV do Homúnculo</span>
+</div>
+</div>
+
+<div class="spg">
+<div class="sph"><div class="spb">1</div><span class="spt">1° Círculo — 3 Espaços</span><div class="spr"><div class="spd"></div><div class="spd"></div><div class="spd"></div></div></div>
+
+<div class="spc ar">
+<div class="spt2"><span class="spn">Absorver Elementos</span><div style="display:flex;gap:5px"><span class="stg re">reação</span><span class="stg ar2">ao sofrer dano elemental</span><span class="stg">próprio</span></div></div>
+<p class="spds">Reação quando você sofre dano de ácido, frio, fogo, elétrico ou trovão: <strong>resistência ao tipo até início do próximo turno</strong> (reduz o dano à metade) E armazena a energia — na primeira vez que acertar ataque corpo a corpo no turno seguinte causa <strong>+1d6 de dano do mesmo tipo</strong> (escala +1d6/nível do slot). Essencial para Corven que, com INT alta e sem grande vida, precisa mitigar dano elemental rapidamente.</p>
+<span class="spm te">🛡 Reação · Resistência ao tipo (½ dano) · +1d6 corpo a corpo no próximo turno</span>
+</div>
+
+<div class="spc">
+<div class="spt2"><span class="spn">Armadilha (Snare)</span><div style="display:flex;gap:5px"><span class="stg">1 minuto</span><span class="stg">toque</span><span class="stg">até ativar</span></div></div>
+<p class="spds">Cria uma armadilha mágica quase invisível em raio de 1,5m (Investigação CD 14 para notar). Quando ativada: TR de Destreza ou a criatura fica <strong>suspensa de cabeça para baixo a 90cm</strong>, restrita. A criatura pode tentar escapar ao fim de cada turno (TR Des com desvantagem). Preparação de área e controle de acesso — perfeito para Corven criar zonas seguras ao acampar ou preparar emboscadas.</p>
+<span class="spm">🕸 TR Des CD 14 · Falha: suspensa e restrita · TR Des desvantagem para escapar</span>
+</div>
+
+<div class="spc">
+<div class="spt2"><span class="spn">Queda Leve</span><div style="display:flex;gap:5px"><span class="stg re">reação</span><span class="stg">18m</span><span class="stg">até 5 criaturas</span></div></div>
+<p class="spds">Reação: velocidade de queda de até 5 criaturas cai para <strong>18m por rodada</strong>. Criaturas que pousarem antes do fim não sofrem dano de queda e ficam de pé. Para Corven que voa e frequentemente atua em altitude: protege aliados que caem, ou protege a si mesmo se a armadura for desativada. Sem custo de ação no turno.</p>
+<span class="spm">🪶 Reação · Até 5 criaturas · Sem dano de queda · Fica de pé ao pousar</span>
+</div>
+
+<div class="spc ar">
+<div class="spt2"><span class="spn">Fogo das Fadas</span><div style="display:flex;gap:5px"><span class="stg">ação</span><span class="stg co">conc · 1 min</span><span class="stg">18m · cubo 6m</span></div></div>
+<p class="spds">Objetos e criaturas que falhem em TR de Des ficam <strong>contornados por luz</strong>: não podem se beneficiar de invisibilidade ou camuflagem, e <strong>todos os ataques contra elas têm vantagem</strong>. Sinergia crucial: Homúnculo usa Ajuda → vantagem no Lançador de Raios. Fogo das Fadas dá vantagem em <em>todos</em> os ataques de <em>todos</em> os aliados contra os alvos afetados. Muda completamente o ritmo de combate.</p>
+<span class="spm te">✨ TR Des CD 14 · Falha: vantagem em TODOS os ataques vs. alvo · Anula invisibilidade</span>
+</div>
+
+<div class="spc">
+<div class="spt2"><span class="spn">Mísseis Mágicos</span><div style="display:flex;gap:5px"><span class="stg">ação</span><span class="stg">36m</span><span class="stg">sem falha</span></div></div>
+<p class="spds">Cria <strong>3 dardos de energia</strong> que acertam automaticamente (sem rolagem de ataque), cada um causando <strong>1d4+1 de dano de força</strong>. Com slot de 2°: 4 dardos. Com slot de 3°: 5 dardos. Pode distribuir entre múltiplos alvos. A magia mais confiável do arsenal — quando o Lançador de Raios precisa de rolagem favorável e Raio de Fogo pode errar, Mísseis Mágicos nunca falha. Garante dano mínimo por turno.</p>
+<span class="spm">✦ Sem rolagem · 3 dardos de 1d4+1 cada · Acerto automático · +1 dardo/nível</span>
+</div>
+
+<div class="spc ar">
+<div class="spt2"><span class="spn">Onda Trovejante</span><div style="display:flex;gap:5px"><span class="stg">ação</span><span class="stg ar2">cubo 4,5m · próprio</span><span class="stg">instantâneo</span></div></div>
+<p class="spds">Onda trovejante irradia de Corven. TR de Constituição (CD 14) ou <strong>2d8 de dano trovejante e empurra 3m</strong>. Sucesso: metade, sem empurrão. Auditível a 90m. Ferramenta de último recurso quando inimigos entram em corpo a corpo — a onda empurra de volta e abre espaço para Corven decolar novamente. Escala: +1d8 por nível do slot acima de 1°.</p>
+<span class="spm te">⚡ TR Con CD 14 · 2d8 trovejante + empurra 3m (falha) · Auditível 90m</span>
+</div>
+</div>
+</div>
+
+<div class="sec"><h2 class="st">Equipamento</h2>
+<div class="tc">
+<div>
+<div class="cd2"><div class="ct">Armas</div><p>Besta Leve (1d8, 24/96m, 20 flechas) · Adaga ×2 (1d4+3, arremessável 6m) · Lançador de Raios via Armadura Arcana</p></div>
+<div class="cd2"><div class="ct">Armadura &amp; Proteção</div><p>Scale Mail (CA base 14, na Bag) · Armadura Arcana em modo Infiltrador (CA 13 atual) · Defesa Aprimorada (+1 CA) disponível como infusão</p></div>
+</div>
+<div>
+<div class="cd2"><div class="ct">Infusões &amp; Itens Especiais</div><p><strong style="color:var(--te)">Bag of Holding:</strong> contém tudo. <strong style="color:var(--te)">Oficina de Bolso (+1 CD/ataque).</strong> Relicário da Família Cogspire · Broche da Rainha · Ferramentas de Inventor · Joia 100po · Joia 50po · Barras de aço/ferro/prata · Pólvora</p></div>
+<div class="cd2"><div class="ct">Ferramentas (Proficiente)</div><p>Carpinteiro · Ferreiro · Alquimista · Inventor · Ladrão · Vidreiro · Ferramenta Dourada (Oficina de Bolso)</p></div>
+</div>
+</div>
+</div>
+
+<div class="sec"><h2 class="st">Personalidade</h2>
+<div class="xc">
+<div class="tb"><span class="tl">Traços</span><p class="tt">Metódico e quieto. Fala pouco, observa tudo. As mãos nunca estão paradas. Expressa afeto através do que constrói, nunca através de palavras.</p></div>
+<div class="tb"><span class="tl">Ideal &amp; Vínculo</span><p class="tt"><strong style="color:var(--bz)">Ideal:</strong> A tecnologia não corrompeu o mundo. <strong style="color:var(--bz)">Vínculo:</strong> Eliora. A chave da vida dela está no peito de Corven.</p></div>
+<div class="tb"><span class="tl">Defeito</span><p class="tt">Não sabe pedir ajuda. Delegar é perder controle — e perder controle é perder Eliora mais uma vez.</p></div>
+</div>
+</div>
+
+<div class="dv"><span class="ds">⚙ ✦ ⚙</span></div>
+
+<div class="sec">
+<h2 class="st" style="font-size:13px;letter-spacing:6px">Guia de Progressão · Armeiro Infiltrador · Nível 4 → 20</h2>
+<div class="al">⚙ <strong>Filosofia do Armeiro Infiltrador:</strong> Corven é um operativo — voa no ar, ataca à distância com o Lançador de Raios da armadura arcana, usa o Homúnculo para apoio e age como a armadura que ele veste. Diferente do Artilheiro, aqui a força cresce junto com a armadura, não com um canhão separado. O pico é o nível 15: a armadura perfeita faz os inimigos brilharem com cada acerto.</div>
+
+<div class="gph">
+<div class="gpt">Fase 1 — Consolidação (Níveis 4–6)</div>
+<div class="gl2"><span class="gln">Nv 4</span><div class="gc"><div class="gf">Estado atual · Feat já obtido</div><div class="gn">Lançador de Raios (+6, 1d6 + extra 1d6/turno), Homúnculo para Ajuda (vantagem), Besta como backup. Com a Oficina de Bolso: CD 15 e ataque +7 ao segurar. Rotação padrão: Homúnculo Ajuda → Lançador de Raios (1d6+1d6). Voe alto, atire de longe.</div><div class="gs">Rotação: Homúnculo Ajuda → Lançador +6 (1d6+extra 1d6/turno) · Besta como backup</div></div></div>
+<div class="gl2 bg"><span class="gln">Nv 5</span><div class="gc"><div class="gf">⚙ MAIOR SALTO — Extra Attack + 2° Círculo de Magias</div><div class="gn"><strong>Extra Attack:</strong> 2 ataques por ação com as armas da armadura (Lançador de Raios conta). Dois disparos elétricos por ação + 1d6 extra no primeiro acerto por turno. Além disso, acesso ao <strong>2° círculo de magias do Artificer</strong>. Web (teia de controle), Invisibility (furtividade mágica) passam a ser opção. Proficiência sobe para +3: CD 16, ataque +7.</div><div class="gs te">+ Extra Attack (2 disparos/ação) · + 2° círculo · Prof +3 → CD 16 · Ataque mágico +7</div></div></div>
+<div class="gl2 ms"><span class="gln">Nv 6</span><div class="gc"><div class="gf">3ª Infusão Ativa — Escolha que muda a build</div><div class="gn">Prioridades: <strong>(1) Defesa Aprimorada</strong> na armadura arcana — +1 CA permanente (CA 13→14, ou mais se armadura melhor). <strong>(2) Arma Aprimorada</strong> na Besta ou em uma adaga — +1 hit e dano. <strong>(3) Enhanced Arcane Focus</strong> — +1 adicional ao ataque mágico e CD. Todas as três são fortes; Defesa Aprimorada é a mais segura para sobrevivência.</div><div class="gs te">+ 3ª infusão ativa · Prioridade: Defesa Aprimorada na armadura (+1 CA permanente)</div></div></div>
+</div>
+
+<div class="gph">
+<div class="gpt">Fase 2 — Poder Crescente (Níveis 7–10)</div>
+<div class="gl2"><span class="gln">Nv 7</span><div class="gc"><div class="gf">3° Círculo de Magias · Prof +3 consolidado</div><div class="gn">Acesso ao 3° círculo do Artificer. Opções notáveis: <strong>Haste</strong> (velocidade dobrada, ação extra, +2 CA — poderosa mas perde turno se concentração cair), <strong>Fly</strong> (60m de voo mágico para aliado que não voa), <strong>Dispel Magic</strong> (reação para desfazer magia). Corven já voa — Fly é melhor dado a aliados terrestres.</div><div class="gs te">+ 3° círculo · Sugestões: Haste (buff agressivo) · Fly (para aliados) · Dispel Magic</div></div></div>
+<div class="gl2 ms"><span class="gln">Nv 8</span><div class="gc"><div class="gf">ASI — +2 Inteligência (18 → 20) · MÁXIMO</div><div class="gn">INT 20. CD de magias sobe para <strong>16</strong>. Ataque mágico: <strong>+8</strong>. Todas as magias ficam mais difíceis de resistir. Toda habilidade baseada em INT (Investigação, Arcanismo, Flash of Genius futuro) sobe. Este é o investimento mais importante — INT afeta tudo no Artificer.</div><div class="gs">INT 18→20 · CD 15→16 (17 c/ Oficina) · Ataque +7→+8 (+9 c/ Oficina) · Mínimo de erro</div></div></div>
+<div class="gl2"><span class="gln">Nv 9</span><div class="gc"><div class="gf">⚙ MODIFICAÇÕES DE ARMADURA — A habilidade mais única do Armeiro</div><div class="gn">A armadura arcana ganha <strong>4 slots de infusão que NÃO contam para o seu limite normal</strong>. Você pode imbuir infusões especificamente na armadura além das suas infusões regulares. Isso significa mais +CA, resistências ou propriedades mágicas extra. Com 4° círculo acessível: <strong>Fabricate</strong> (cria objetos instantaneamente de matérias primas), <strong>Wall of Fire</strong> (parede de fogo), <strong>Blight</strong> (4d8 necrótico, TR Con).</div><div class="gs te">4 slots de infusão NA armadura (fora do limite normal) · + 4° círculo · Armadura cresce</div></div></div>
+<div class="gl2 ms"><span class="gln">Nv 10</span><div class="gc"><div class="gf">Flash of Genius + 4ª Infusão Regular + 3° Truque</div><div class="gn"><strong>Flash of Genius (reação):</strong> adiciona INT mod (+5) a qualquer TR ou teste de habilidade de criatura próxima — inclusive você. Com INT 20: +5 pode virar um TR com sucesso numa situação crítica. 4ª infusão regular ativa — configure com Repor Item Mágico para um item do universo D&D. Ganhe um 3° truque de Artificer (sugestão: Guidance ou Thunderclap).</div><div class="gs te">Flash of Genius reação (+5 em TRs) · 4ª infusão regular · 3° truque · Prof +4</div></div></div>
+</div>
+
+<div class="gph">
+<div class="gpt">Fase 3 — Dominância (Níveis 11–15)</div>
+<div class="gl2"><span class="gln">Nv 11</span><div class="gc"><div class="gf">5° Círculo — Arsenal completo do Artificer</div><div class="gn">Máximo de círculo. <strong>Bigby's Hand</strong> (mão arcana gigante, múltiplos usos), <strong>Creation</strong> (cria objetos ilusórios), <strong>Animate Objects</strong> (anima até 10 objetos pequenos como servos). Com Prof +4: CD 18 (19 c/ Oficina!), ataque mágico +9 (+10 c/ Oficina). A maioria dos inimigos falha na maioria dos TRs agora.</div><div class="gs te">+ 5° círculo · CD 18 (19 c/ Oficina) · Ataque +9 (+10 c/ Oficina) · Arsenal completo</div></div></div>
+<div class="gl2 ms"><span class="gln">Nv 12</span><div class="gc"><div class="gf">ASI / Feat — Com INT 20, hora de expandir</div><div class="gn">Com INT no máximo, esse ASI vai para feat. Melhores opções: <strong>War Caster</strong> (vantagem em Con para concentração + pode conjurar como ataque de oportunidade), <strong>Alert</strong> (+5 iniciativa, nunca surpreendido — crucial para Corven que quer agir primeiro), <strong>Resilient (Con)</strong> (salva concentrações). War Caster é o mais impactante para proteger Haste e outras concentrações.</div><div class="gs">Recomendação: War Caster · INT 20 já maximizada · Foco em proteção de concentração</div></div></div>
+<div class="gl2 ms"><span class="gln">Nv 14</span><div class="gc"><div class="gf">Magic Item Savant + 5ª Infusão</div><div class="gn"><strong>Magic Item Savant:</strong> atune-se a qualquer item mágico ignorando restrições de classe/raça/nível em 1 minuto. Isso abre itens exclusivos que normalmente seriam bloqueados. 5ª infusão regular: adicione <strong>Boots of the Winding Path</strong> (teletransporte de 1,5m) ou <strong>Mind Sharpener</strong> (protege concentração com cargas) ao arsenal.</div><div class="gs te">Magic Item Savant · 5ª infusão · Sugestão: Mind Sharpener (protege Haste e Fly)</div></div></div>
+<div class="gl2 bg"><span class="gln">Nv 15</span><div class="gc"><div class="gf">⚙ ARMADURA PERFEITA — O Ápice do Armeiro Infiltrador</div><div class="gn">O capstone tático do Armeiro. Modo <strong>Infiltrador aprimorado:</strong> quando você acerta com o Lançador de Raios, pode fazer o alvo <strong>brilhar até o início do seu próximo turno</strong> — ataques contra ele têm vantagem e ele não pode se beneficiar de invisibilidade. Toda vez que Corven acerta, o alvo fica marcado para o grupo inteiro. O campo de batalha tem um spotlight mágico que ilumina os inimigos no pior momento para eles.</div><div class="gs te">Infiltrador perfeito: acerto → alvo brilha → vantagem em TODOS ataques contra ele · Sem invisibilidade</div></div></div>
+</div>
+
+<div class="gph">
+<div class="gpt">Fase 4 — Maestria Final (Níveis 16–20)</div>
+<div class="gl2 ms"><span class="gln">Nv 16</span><div class="gc"><div class="gf">ASI / Feat — Personalização final</div><div class="gn">Com INT 20 e War Caster (ou Alert) já obtidos: <strong>Lucky</strong> (3× relança d20), <strong>Sentinel</strong> (para alvos que movem + ataque de oportunidade sempre), ou <strong>Crossbow Expert</strong> (ignora desvantagem em melee com besta, ataque bônus). Sentinel funciona especialmente bem com a armadura Infiltradora — Corven marca um alvo, o grupo tem vantagem, e ninguém escapa.</div><div class="gs">Opções: Lucky · Sentinel (controle total) · Crossbow Expert (dano extra besta)</div></div></div>
+<div class="gl2 ms"><span class="gln">Nv 18</span><div class="gc"><div class="gf">Magic Item Master + 6ª Infusão</div><div class="gn">6 infusões ativas simultâneas. Configuração final sugerida: Bag of Holding · Homúnculo · Defesa Aprimorada (armadura) · Enhanced Arcane Focus · Mind Sharpener · + 1 nas 4 slots da armadura separadamente. Com tudo ativo, Corven tem a melhor configuração de defesa e ataque possível sem depender de itens externos.</div><div class="gs te">6 infusões + 4 slots da armadura · Config. final: Bag · Homúnculo · Defesa · Focus · Mind Sharpener</div></div></div>
+<div class="gl2 cp2"><span class="gln">Nv 20</span><div class="gc"><div class="gf" style="color:var(--gl)">⚙ SOUL OF ARTIFICE — A Alma do Artífice</div><div class="gn" style="color:var(--tx)"><strong style="color:var(--gl)">+1 em TODOS os TRs por item mágico atuado.</strong> Com 6 infusões + 4 slots da armadura + outros itens: potencialmente <strong>+10 em todos os TRs simultaneamente</strong>. E o poder mais dramático: quando reduzido a 0 PV, reação para <strong>encerrar 1 infusão e cair para 1 PV</strong> em vez de 0. Corven sacrifica uma de suas criações para continuar de pé — porque há uma promessa que ainda não foi cumprida.</div><div class="gs te">+10 em TODOS os TRs (todos os itens atuados) · Reação: sacrifica infusão → 1 PV em vez de 0</div></div></div>
+</div>
+</div>
+
+<div class="sec"><h2 class="st">Rotação de Combate Ideal</h2>
+<div class="fg2">
+<div class="fc te"><div class="fn">Turno Padrão (Nível 4)</div><div class="fd"><strong style="color:var(--te)">Pré-combate:</strong> Homúnculo pronto. <strong>Início:</strong> Homúnculo usa Ajuda (vantagem no Lançador). <strong>Ação:</strong> Lançador de Raios (+6 com vantagem, 1d6+1d6 extra). <strong>Posição:</strong> Altitude máxima — Corven com armadura e voo pode agir fora do alcance melee da maioria dos inimigos.</div></div>
+<div class="fc te"><div class="fn">Turno Ideal (Nível 5+)</div><div class="fd"><strong style="color:var(--te)">Ação:</strong> 2× Lançador de Raios (Extra Attack) — 2d6+extra 1d6 no primeiro acerto/turno. <strong>Bônus (opcional):</strong> Fogo das Fadas → vantagem no grupo inteiro. <strong>Homúnculo:</strong> Ajuda no disparo mais importante. Eficiência: 3 ataques (2 Lançador + 1 Besta se precisar) sem gastar magia.</div></div>
+<div class="fc go"><div class="fn">Nível 15+ — Marca de Combate</div><div class="fd"><strong style="color:var(--gd)">Ação:</strong> 2× Lançador de Raios — primeiro acerto ilumina o alvo (vantagem para todos). <strong>Resultado:</strong> O grupo inteiro tem vantagem contra o alvo iluminado. Homúnculo Ajuda em Corven. Ciclo de marcação contínua enquanto houver inimigos.</div></div>
+<div class="fc go"><div class="fn">Situação: Inimigos Agrupados</div><div class="fd"><strong style="color:var(--gd)">Ação:</strong> Fogo das Fadas (cubo 6m) → todos com vantagem sofrendo. <strong>Turno seguinte:</strong> 2× Lançador de Raios com vantagem + Homúnculo Ajuda. <strong>Nível 9+:</strong> Wall of Fire ou Animate Objects para pressão sustentada enquanto atira de cima.</div></div>
+</div>
+<div class="al" style="margin-top:12px">⚙ <strong>Regra de ouro de Corven:</strong> Altitude é sobrevivência. A armadura Infiltradora não é só defesa — é a arma principal. O Lançador de Raios nunca fica sem munição, o Homúnculo nunca dorme, e a promessa nunca expira.</div>
+</div>
+
+<div class="dv"><span class="ds">⚙ ✦ ⚙</span></div>
+
+<div class="sec"><h2 class="st">História do Personagem</h2>
+<div class="bw">
+<div class="bb">Corven Cogspire. O Jacurutu do beco esquecido.</div>
+<p>Em Clibano — cidade dividida entre a devoção da Cidade Alta e os destroços tecnológicos que a sustentam por baixo — um Jacurutu de olhos cansados montou sua oficina num beco espremido. Na frente, brinquedos de corda e caixinhas de música. No fundo, próteses de bronze encantado que devolviam dignidade aos que a cidade havia descartado.</p>
+<div class="bd">"Você faz melhor que isso?" — perguntou Mariette, segurando um menino com perna de madeira.</div>
+<p>Três dias depois, o menino corria. Mariette voltou com chá. Depois com livros. Depois ficou. E numa madrugada de inverno, veio Eliora — pequena demais, quieta demais. Corven passou a noite construindo um berço que respirava junto com ela.</p>
+<div class="bb">O acidente. O casulo. A promessa.</div>
+<p>A refinaria de mana explodiu. Eliora, com 13 anos, saiu para ajudar as crianças. Corven a encontrou horas depois desmaiando nos seus braços, pulmões queimando. A medicina falhou. A magia falhou. Corven Cogspire não falha.</p>
+<div class="bd">"Não deixa meu coração ficar frio." — sussurrou ela.<br>"Eu juro." — disse ele.</div>
+<p>Hoje, a chave da vida de Eliora gira no peito de Corven. A União da Palavra Divina o chama de herege. E ele vaga com a armadura que forjou, o Homúnculo que construiu e a bolsa que carrega tudo — porque em algum lugar existe a cura, e ele vai encontrá-la.</p>
+<p style="font-size:12px;color:var(--td);margin-top:16px;font-style:italic;">"Se eu tivesse deixado ela morrer, teria sido mais gentil? — Não. Ela ainda canta. E eu vou ouvir até o fim dos meus dias... ou até ela acordar."</p>
+</div>
+</div>
+
+<div class="se">⚙ &nbsp; ✦ &nbsp; ⚙ &nbsp; ✦ &nbsp; ⚙</div>
+</div>
+
+<script>
+const bg=document.getElementById('gbg');
+const sy=['⚙','⚙','⚙','✦','·','⋆'];
+for(let i=0;i<22;i++){const g=document.createElement('span');g.className='fg';g.textContent=sy[Math.floor(Math.random()*sy.length)];g.style.left=Math.random()*100+'%';g.style.animationDuration=(18+Math.random()*26)+'s';g.style.animationDelay=(Math.random()*22)+'s';g.style.fontSize=(10+Math.random()*14)+'px';bg.appendChild(g);}
+for(let i=0;i<18;i++){const s=document.createElement('div');s.className='sk';s.style.left=(10+Math.random()*80)+'%';s.style.bottom=(Math.random()*40)+'%';s.style.animationDuration=(1.5+Math.random()*2.5)+'s';s.style.animationDelay=(Math.random()*10)+'s';s.style.setProperty('--tx2',(Math.random()*40-20)+'px');bg.appendChild(s);}
+</script>
+</body>
+</html>
