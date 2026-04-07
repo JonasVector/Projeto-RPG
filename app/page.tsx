@@ -1,38 +1,66 @@
-import { getAllCharacters } from "@/lib/characters";
+import { getAllCharacters, getSystemList } from "@/lib/characters";
 import CharacterCard from "@/components/characters/CharacterCard";
 import Link from "next/link";
+import { getThemeConfig } from "@/components/theme/ThemeProvider";
+import { SYSTEM_LABELS } from "@/lib/system-labels";
 
 export default function Home() {
   const characters = getAllCharacters();
+  const systems = getSystemList();
 
   return (
-    <div className="min-h-screen bg-rpg-bg">
+    <div className="min-h-screen relative" style={{ background: "var(--background)" }}>
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-rpg-border">
-        <div className="absolute inset-0 bg-gradient-to-br from-rpg-bg via-rpg-surface-raised to-rpg-bg" />
+      <section className="relative overflow-hidden border-b" style={{ borderColor: "var(--color-rpg-border)" }}>
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 30% 20%, rgba(139,0,0,0.06) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(184,115,51,0.06) 0%, transparent 50%)",
+          }}
+        />
         <div className="relative max-w-5xl mx-auto px-6 py-20 md:py-28 text-center">
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-rpg-bronze/60 block mb-6">
+          <span
+            className="font-mono text-[10px] uppercase tracking-[0.3em] block mb-6"
+            style={{ color: "var(--color-rpg-bronze)", opacity: 0.6 }}
+          >
             Central de Fichas &middot; Local &middot; Multi-Sistema
           </span>
-          <h1 className="font-display font-extrabold text-4xl md:text-6xl text-rpg-gold-light tracking-wide leading-tight"
-              style={{ textShadow: "0 0 60px rgba(201,162,39,0.3)" }}>
+          <h1
+            className="font-display font-extrabold text-4xl md:text-6xl tracking-wide leading-tight"
+            style={{
+              color: "var(--color-rpg-gold-light)",
+              textShadow: "0 0 60px rgba(201,162,39,0.3)",
+            }}
+          >
             FORGE RPG
           </h1>
-          <p className="font-body text-rpg-text-muted text-lg mt-4 max-w-xl mx-auto leading-relaxed italic">
+          <p className="font-body italic text-lg mt-4 max-w-xl mx-auto leading-relaxed" style={{ color: "var(--color-rpg-text-muted)" }}>
             Gerencie fichas de personagens de múltiplos sistemas de RPG em um único lugar.
             Visualize, edite e organize suas aventuras localmente.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/sistemas-de-rpg"
-              className="font-mono text-sm uppercase tracking-widest px-8 py-3 bg-rpg-bronze/20 border border-rpg-bronze text-rpg-bronze hover:bg-rpg-bronze/30 transition-colors rounded"
+              className="font-mono text-xs uppercase tracking-[0.2em] px-8 py-3 border transition-colors"
+              style={{
+                background: "rgba(184,115,51,0.2)",
+                borderColor: "var(--color-rpg-bronze)",
+                color: "var(--color-rpg-bronze)",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(184,115,51,0.3)")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(184,115,51,0.2)")}
             >
               Ver Sistemas
             </Link>
             {characters.length > 0 && (
               <a
                 href="#personagens"
-                className="font-mono text-sm uppercase tracking-widest px-8 py-3 border border-rpg-border text-rpg-text-muted hover:border-rpg-bronze/50 hover:text-rpg-bronze transition-colors rounded"
+                className="font-mono text-xs uppercase tracking-[0.2em] px-8 py-3 border transition-colors"
+                style={{
+                  borderColor: "var(--color-rpg-border)",
+                  color: "var(--color-rpg-text-muted)",
+                }}
               >
                 Ver Personagens ({characters.length})
               </a>
@@ -45,49 +73,67 @@ export default function Home() {
       <section className="max-w-5xl mx-auto px-6 py-12">
         <h2 className="section-title">Sistemas Disponíveis</h2>
         <div className="grid sm:grid-cols-3 gap-4">
-          <SystemCard system="dnd" label="D&D 5e" desc="Dungeons & Dragons 5e" count={characters.filter(c => c.system === "dnd").length} />
-          <SystemCard system="vampiro" label="Vampiro" desc="Vampiro: A Máscara" count={characters.filter(c => c.system === "vampiro").length} />
-          <SystemCard system="daggerheart" label="Daggerheart" desc="Daggerheart RPG" count={characters.filter(c => c.system === "daggerheart").length} />
+          {systems.map((sys) => {
+            const cfg = getThemeConfig(sys);
+            const count = characters.filter((c) => c.system === sys).length;
+            return <SystemCard key={sys} system={sys} label={SYSTEM_LABELS[sys] || sys} icon={cfg.icon} count={count} />;
+          })}
         </div>
       </section>
 
       {/* Characters */}
-      <section id="personagens" className="max-w-5xl mx-auto px-6 pb-20">
-        <h2 className="section-title">
-          Personagens
-          <span className="ml-2 font-mono text-xs text-rpg-text-muted normal-case tracking-wider">
-            {characters.length} encontrado{characters.length !== 1 ? "s" : ""}
-          </span>
-        </h2>
-        {characters.length === 0 ? (
-          <div className="text-center py-16 bg-rpg-surface-raised border border-rpg-border rounded-lg">
-            <span className="text-4xl block mb-4 opacity-30">📜</span>
-            <p className="text-rpg-text-muted text-lg">Nenhum personagem criado ainda.</p>
-            <p className="text-rpg-text-muted/50 text-sm mt-1">Adicione arquivos JSON em <code className="text-rpg-bronze">content/sistemas-de-rpg/</code></p>
-          </div>
-        ) : (
+      {characters.length > 0 && (
+        <section id="personagens" className="max-w-5xl mx-auto px-6 pb-20">
+          <h2 className="section-title">
+            Personagens
+            <span className="ml-2 font-mono text-xs normal-case tracking-wider" style={{ color: "var(--color-rpg-text-muted)" }}>
+              {characters.length} encontrado{characters.length !== 1 ? "s" : ""}
+            </span>
+          </h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {characters.map((ch) => (
               <CharacterCard key={ch.system + "-" + ch.id} character={ch} />
             ))}
           </div>
-        )}
-      </section>
+        </section>
+      )}
+
+      {/* Empty state */}
+      {characters.length === 0 && (
+        <section className="max-w-5xl mx-auto px-6 pb-20">
+          <div className="text-center py-16 border" style={{ borderColor: "var(--color-rpg-border)", background: "var(--color-rpg-surface-raised)" }}>
+            <span className="text-4xl block mb-4 opacity-30">📜</span>
+            <p className="text-lg" style={{ color: "var(--color-rpg-text-muted)" }}>Nenhum personagem criado ainda.</p>
+            <p className="text-sm mt-1" style={{ color: "var(--color-rpg-text-muted)", opacity: 0.5 }}>
+              Adicione arquivos JSON em <code style={{ color: "var(--color-rpg-bronze)" }}>content/sistemas-de-rpg/</code>
+            </p>
+          </div>
+        </section>
+      )}
     </div>
   );
 }
 
-function SystemCard({ system, label, desc, count }: { system: string; label: string; desc: string; count: number }) {
+function SystemCard({ system, label, icon, count }: { system: string; label: string; icon: string; count: number }) {
   return (
     <Link
       href={`/sistemas-de-rpg/${system}`}
-      className="block bg-rpg-surface-raised border border-rpg-border rounded-lg p-5 hover:border-rpg-bronze/50 transition-all duration-200 group"
+      className="group block border p-5 transition-all duration-200"
+      style={{
+        background: "var(--color-rpg-surface-raised)",
+        borderColor: "var(--color-rpg-border)",
+      }}
     >
-      <h3 className="font-display font-semibold text-lg text-rpg-gold-light group-hover:text-rpg-gold transition-colors">
+      <span className="text-2xl block mb-2 opacity-60 group-hover:opacity-100 transition-opacity">{icon}</span>
+      <h3
+        className="font-display font-semibold text-lg transition-colors"
+        style={{ color: "var(--color-rpg-gold-light)" }}
+        onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-rpg-gold)")}
+        onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-rpg-gold-light)")}
+      >
         {label}
       </h3>
-      <p className="font-body text-sm text-rpg-text-muted mt-1">{desc}</p>
-      <span className="font-mono text-xs text-rpg-bronze mt-3 block">
+      <span className="font-mono text-xs block mt-3" style={{ color: "var(--color-rpg-bronze)" }}>
         {count > 0 ? `${count} personagem${count !== 1 ? "s" : ""}` : "Nenhum personagem"}
       </span>
     </Link>
