@@ -184,3 +184,212 @@ body {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--background); }
 ::-webkit-scrollbar-thumb { background: var(--color-theme-brand); border-radius: 3px; }
+
+/* ══════════════════════════════════════════════ */
+/* KEYFRAMES                                       */
+/* ══════════════════════════════════════════════ */
+@keyframes fadeRise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 80px rgba(201,162,39,0.5), 0 0 30px rgba(201,162,39,0.2); }
+  50%       { text-shadow: 0 0 130px rgba(201,162,39,0.85), 0 0 60px rgba(201,162,39,0.4); }
+}
+@keyframes shimmerSweep {
+  from { transform: translateX(-100%) skewX(-15deg); }
+  to   { transform: translateX(300%) skewX(-15deg); }
+}
+@keyframes bgGradientPulse {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+@keyframes vampireGlowPulse {
+  0%, 100% { text-shadow: 0 0 60px rgba(139,0,0,0.6); }
+  50%       { text-shadow: 0 0 110px rgba(139,0,0,0.95), 0 0 40px rgba(139,0,0,0.4); }
+}
+
+/* ══════════════════════════════════════════════ */
+/* HERO BACKGROUND                                 */
+/* ══════════════════════════════════════════════ */
+.hero-bg {
+  background-color: #050305;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 30% 20%, rgba(80,0,120,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(120,0,40,0.12) 0%, transparent 50%);
+  background-size: 300px 300px, 100% 100%, 100% 100%;
+}
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(80,0,120,0.1) 0%, transparent 65%);
+  animation: bgGradientPulse 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════ */
+/* ANIMATION UTILITIES                             */
+/* ══════════════════════════════════════════════ */
+.animate-fade-rise {
+  animation: fadeRise 0.8s ease-out both;
+}
+.animate-fade-rise-d1 {
+  animation: fadeRise 0.8s ease-out 0.2s both;
+}
+.animate-fade-rise-d2 {
+  animation: fadeRise 0.8s ease-out 0.4s both;
+}
+.animate-fade-rise-d3 {
+  animation: fadeRise 0.8s ease-out 0.6s both;
+}
+.glow-pulse-gold {
+  animation: glowPulse 4s ease-in-out infinite;
+}
+.glow-pulse-vampire {
+  animation: vampireGlowPulse 4s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════════════ */
+/* SHIMMER BUTTON                                  */
+/* ══════════════════════════════════════════════ */
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-btn::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: translateX(-100%) skewX(-15deg);
+}
+.shimmer-btn:hover::after {
+  animation: shimmerSweep 0.6s ease forwards;
+}
+
+/* ══════════════════════════════════════════════ */
+/* SECTION TITLE — ORNATE VARIANT                  */
+/* ══════════════════════════════════════════════ */
+.section-title-ornate {
+  @apply font-display text-xs font-bold uppercase tracking-widest flex items-center gap-3 mb-6;
+  color: var(--color-theme-brand-bright);
+}
+.section-title-ornate::before,
+.section-title-ornate::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-theme-border));
+}
+.section-title-ornate::before {
+  background: linear-gradient(to left, transparent, var(--color-theme-border));
+}
+
+/* ══════════════════════════════════════════════ */
+/* CARD ENTER ANIMATION                            */
+/* ══════════════════════════════════════════════ */
+.card-enter {
+  animation: fadeRise 0.6s ease-out both;
+  animation-delay: calc(var(--card-i, 0) * 80ms);
+}
+
+/* ══════════════════════════════════════════════ */
+/* SYSTEM HERO — BASE + PER SYSTEM                 */
+/* ══════════════════════════════════════════════ */
+.system-hero-bg {
+  background-color: var(--color-theme-surface);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 50% 0%, var(--color-theme-glow) 0%, transparent 70%);
+  background-size: 300px 300px, 100% 100%;
+  position: relative;
+}
+
+/* D&D — double border frame */
+[data-system-theme="dnd"] .system-hero-bg {
+  background-color: #0d0505;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 50% 0%, rgba(139,0,0,0.25) 0%, transparent 65%),
+    radial-gradient(ellipse at 20% 100%, rgba(139,0,0,0.1) 0%, transparent 50%);
+  background-size: 300px 300px, 100% 100%, 100% 100%;
+}
+[data-system-theme="dnd"] .system-hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(139,0,0,0.2);
+  pointer-events: none;
+}
+[data-system-theme="dnd"] .system-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(139,0,0,0.12);
+  pointer-events: none;
+}
+
+/* Daggerheart */
+[data-system-theme="daggerheart"] .system-hero-bg {
+  background-color: #1a1208;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 20% 0%, rgba(194,77,44,0.2) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 100%, rgba(50,120,80,0.1) 0%, transparent 50%);
+  background-size: 300px 300px, 100% 100%, 100% 100%;
+}
+
+/* Vampiro */
+[data-system-theme="vampiro"] .system-hero-bg {
+  background-color: #080305;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 50% -10%, rgba(120,0,20,0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(80,0,10,0.15) 0%, transparent 50%);
+  background-size: 300px 300px, 100% 100%, 100% 100%;
+}
+
+/* ══════════════════════════════════════════════ */
+/* SYSTEM WATERMARKS (pseudo-elements)             */
+/* ══════════════════════════════════════════════ */
+.system-watermark {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.06;
+}
+
+/* ══════════════════════════════════════════════ */
+/* SYSTEM SEPARATORS                               */
+/* ══════════════════════════════════════════════ */
+.separator-rune {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 2rem 0;
+  color: var(--color-theme-border-bright);
+}
+.separator-rune::before,
+.separator-rune::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-theme-border);
+}
+
+/* ══════════════════════════════════════════════ */
+/* SYSTEM CARD GRID — THEMED                       */
+/* ══════════════════════════════════════════════ */
+.system-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.system-card:hover {
+  transform: translateY(-4px) scale(1.01);
+}
