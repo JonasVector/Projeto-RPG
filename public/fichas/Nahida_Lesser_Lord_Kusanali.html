@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nahida, Lesser Lord Kusanali — Ficha D&D 5e</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;0,700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dendro:        #4e9e60;
+  --dendro-mid:    #5db870;
+  --dendro-bright: #7ed87c;
+  --sage:          #a8cc9a;
+  --pale:          #d4ead6;
+  --dark:          #050d07;
+  --darker:        #030905;
+  --card:          #0a170c;
+  --card-light:    #101f12;
+  --gold:          #b8a84a;
+  --gold-light:    #d4c870;
+  --text:          #cce0cc;
+  --text-dim:      #6a8a6a;
+  --mist:          #3a5a3e;
+  --border:        rgba(78,158,96,0.28);
+  --border-bright: rgba(126,216,124,0.45);
+  --glow:          rgba(78,158,96,0.15);
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--darker);
+  background-image:
+    radial-gradient(ellipse at 20% 15%, rgba(78,158,96,0.09) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 85%, rgba(78,158,96,0.06) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 45%, rgba(58,90,62,0.04) 0%, transparent 70%);
+  font-family: 'EB Garamond', Georgia, serif;
+  color: var(--text);
+  line-height: 1.75;
+}
+
+.page { max-width: 960px; margin: 0 auto; padding: 0 0 80px; }
+
+/* ── FLOATING LEAVES ───────────────────────────── */
+.leaf-bg {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events:none; z-index:0; overflow:hidden;
+}
+.leaf {
+  position: absolute;
+  font-size: 14px;
+  opacity: 0;
+  animation: floatLeaf ease-in-out infinite;
+  filter: blur(0.3px);
+  color: var(--dendro-bright);
+}
+@keyframes floatLeaf {
+  0%   { transform: translateY(110vh) translateX(0) rotate(0deg) scale(0.4); opacity:0; }
+  10%  { opacity: 0.35; }
+  50%  { transform: translateY(50vh) translateX(40px) rotate(180deg) scale(0.7); opacity:0.2; }
+  90%  { opacity: 0.1; }
+  100% { transform: translateY(-10vh) translateX(-20px) rotate(360deg) scale(0.3); opacity:0; }
+}
+
+/* ── HEADER ─────────────────────────────────────── */
+.header {
+  background: linear-gradient(165deg, #040c06 0%, #0e1f10 50%, #040c06 100%);
+  border-bottom: 2px solid var(--dendro);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(
+      60deg, transparent, transparent 60px,
+      rgba(78,158,96,0.025) 60px, rgba(78,158,96,0.025) 61px
+    );
+}
+.header::after {
+  content: '';
+  position: absolute; bottom:0; left:0; right:0; height:1px;
+  background: linear-gradient(90deg, transparent, var(--dendro-mid), var(--dendro-bright), var(--dendro-mid), transparent);
+  opacity: 0.5;
+}
+.header-inner {
+  display: flex; align-items: stretch;
+  position: relative; z-index: 1;
+}
+
+/* portrait area */
+.header-portrait {
+  width: 220px; flex-shrink: 0;
+  background: #060f08;
+  border-right: 2px solid var(--dendro);
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.portrait-inner {
+  width: 100%; height: 280px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px;
+  position: relative;
+}
+.portrait-symbol {
+  font-size: 88px;
+  opacity: 0.12;
+  filter: drop-shadow(0 0 24px var(--dendro-bright));
+  line-height: 1;
+}
+.portrait-ring {
+  position: absolute;
+  width: 100px; height: 100px;
+  border: 1px solid rgba(78,158,96,0.3);
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.portrait-ring::before {
+  content: '';
+  position: absolute; inset: 8px;
+  border: 1px solid rgba(78,158,96,0.15);
+  border-radius: 50%;
+}
+.portrait-label {
+  position: absolute; bottom: 14px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px; letter-spacing: 3px;
+  color: var(--dendro); opacity: 0.5;
+  text-transform: uppercase;
+}
+
+/* header text */
+.header-text { flex:1; padding: 36px 44px; }
+.header-eyebrow {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px; letter-spacing: 4px;
+  color: var(--dendro-mid); opacity: 0.8;
+  text-transform: uppercase; margin-bottom: 10px;
+}
+.header-name {
+  font-family: 'Cinzel', serif;
+  font-size: 40px; font-weight: 900;
+  color: var(--pale);
+  text-shadow: 0 0 60px rgba(78,158,96,0.4), 0 0 20px rgba(126,216,124,0.2);
+  letter-spacing: 2px; line-height: 1;
+  margin-bottom: 4px;
+}
+.header-subtitle {
+  font-family: 'EB Garamond', serif;
+  font-style: italic; font-size: 17px;
+  color: var(--dendro-mid); margin-bottom: 22px;
+  letter-spacing: 1.5px;
+}
+.header-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px; letter-spacing: 2px;
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  color: var(--text-dim); text-transform: uppercase;
+  background: rgba(78,158,96,0.07);
+}
+.tag.hi {
+  background: rgba(78,158,96,0.18);
+  border-color: var(--dendro-mid); color: var(--dendro-bright);
+}
+
+/* ── META BAR ─────────────────────────────────────── */
+.meta-bar {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 40px;
+  display: flex; gap: 0;
+  position: relative; z-index: 1;
+}
+.meta-item {
+  flex: 1;
+  border-right: 1px solid var(--border);
+  padding: 0 20px;
+  text-align: center;
+}
+.meta-item:first-child { padding-left: 0; }
+.meta-item:last-child  { border-right: none; padding-right: 0; }
+.meta-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px; letter-spacing: 3px;
+  color: var(--text-dim); text-transform: uppercase;
+  display: block; margin-bottom: 2px;
+}
+.meta-value {
+  font-family: 'Cinzel', serif; font-size: 13px;
+  color: var(--sage); font-weight: 600;
+}
+
+/* ── SECTION ──────────────────────────────────────── */
+.section { padding: 0 40px; margin-top: 36px; position: relative; z-index: 1; }
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 5px; text-transform: uppercase;
+  color: var(--dendro-mid);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title::before { content: '✦'; font-size: 12px; color: var(--dendro-bright); opacity: 0.8; }
+
+/* ── STAT GRID ───────────────────────────────────── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px; margin-bottom: 20px;
+}
+.stat-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  text-align: center; padding: 14px 4px 10px;
+  position: relative; transition: border-color 0.2s;
+}
+.stat-box:hover { border-color: var(--dendro-mid); }
+.stat-box::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--dendro), transparent);
+  opacity: 0; transition: opacity 0.2s;
+}
+.stat-box:hover::after { opacity: 1; }
+.stat-name {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--text-dim);
+  display: block; margin-bottom: 6px;
+}
+.stat-val {
+  font-family: 'Cinzel', serif;
+  font-size: 28px; font-weight: 900;
+  color: var(--pale); line-height: 1;
+}
+.stat-val.peak { color: var(--dendro-bright); text-shadow: 0 0 16px rgba(126,216,124,0.4); }
+.stat-mod {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px; color: var(--dendro-mid);
+  margin-top: 4px; display: block;
+}
+
+/* ── COMBAT STATS ─────────────────────────────────── */
+.combat-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px; margin-bottom: 20px;
+}
+.combat-box {
+  background: var(--card-light);
+  border: 1px solid var(--border);
+  text-align: center; padding: 12px 6px 10px;
+  position: relative;
+}
+.combat-box.accent {
+  background: rgba(78,158,96,0.1);
+  border-color: var(--dendro-mid);
+}
+.combat-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 7.5px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-dim);
+  display: block; margin-bottom: 4px;
+}
+.combat-val {
+  font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700;
+  color: var(--sage); line-height: 1;
+}
+.combat-box.accent .combat-val { color: var(--dendro-bright); }
+.combat-sub {
+  font-size: 10px; color: var(--text-dim);
+  font-family: 'Share Tech Mono', monospace;
+  display: block; margin-top: 2px;
+}
+
+/* ── TWO COLUMN ───────────────────────────────────── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+
+/* ── SAVE THROWS ──────────────────────────────────── */
+.save-list { list-style: none; }
+.save-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 4px 0; border-bottom: 1px solid rgba(78,158,96,0.1);
+  font-size: 14px;
+}
+.save-item:last-child { border-bottom: none; }
+.save-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 1.5px solid var(--border); flex-shrink: 0;
+}
+.save-dot.filled {
+  background: var(--dendro); border-color: var(--dendro-bright);
+  box-shadow: 0 0 6px rgba(78,158,96,0.5);
+}
+.save-score {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px; color: var(--dendro-mid);
+  min-width: 28px; text-align: right;
+}
+.save-name { color: var(--text-dim); font-size: 14px; flex: 1; }
+
+/* ── SKILLS ───────────────────────────────────────── */
+.skill-list { list-style: none; }
+.skill-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 3px 0; border-bottom: 1px solid rgba(78,158,96,0.08);
+  font-size: 13px;
+}
+.skill-item:last-child { border-bottom: none; }
+.skill-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  border: 1.5px solid var(--border); flex-shrink: 0;
+}
+.skill-dot.filled {
+  background: var(--dendro); border-color: var(--dendro-bright);
+  box-shadow: 0 0 5px rgba(78,158,96,0.4);
+}
+.skill-bonus {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px; color: var(--dendro-mid);
+  min-width: 26px; text-align: right;
+}
+.skill-name { color: var(--text-dim); flex: 1; }
+.skill-attr {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px; color: var(--mist); letter-spacing: 1px;
+}
+
+/* ── CARD BLOCK ───────────────────────────────────── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 18px 20px; margin-bottom: 12px;
+}
+.card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 3px;
+  color: var(--dendro-mid); text-transform: uppercase;
+  margin-bottom: 8px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.card p { font-size: 14px; color: var(--text-dim); }
+
+/* ── INFO LIST ────────────────────────────────────── */
+.info-list { list-style: none; }
+.info-item {
+  padding: 6px 0; border-bottom: 1px solid rgba(78,158,96,0.1);
+  display: flex; gap: 10px; font-size: 14px;
+}
+.info-item:last-child { border-bottom: none; }
+.info-key {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--dendro);
+  min-width: 90px; padding-top: 3px;
+}
+.info-val { color: var(--text-dim); flex: 1; }
+
+/* ── FEATURE BLOCK ────────────────────────────────── */
+.feature {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(78,158,96,0.1);
+}
+.feature:last-child { border-bottom: none; }
+.feature-name {
+  font-family: 'Cinzel', serif;
+  font-size: 12px; color: var(--sage);
+  margin-bottom: 4px;
+}
+.feature-source {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px; letter-spacing: 2px;
+  color: var(--dendro); opacity: 0.7;
+  text-transform: uppercase; margin-bottom: 4px;
+}
+.feature p { font-size: 14px; color: var(--text-dim); }
+
+/* ── SPELL SECTION ────────────────────────────────── */
+.spell-circle {
+  margin-bottom: 28px;
+}
+.spell-circle-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 14px;
+}
+.spell-circle-badge {
+  width: 36px; height: 36px;
+  border: 2px solid var(--dendro);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: 14px; font-weight: 700;
+  color: var(--dendro-bright);
+  background: rgba(78,158,96,0.1);
+  flex-shrink: 0;
+}
+.spell-circle-title {
+  font-family: 'Cinzel', serif;
+  font-size: 11px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--dendro-mid);
+}
+.spell-circle-slots {
+  margin-left: auto;
+  display: flex; gap: 5px;
+}
+.slot {
+  width: 14px; height: 14px;
+  border: 1.5px solid var(--dendro);
+  border-radius: 50%;
+  background: rgba(78,158,96,0.2);
+}
+
+.spell-entry {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--dendro);
+  padding: 10px 14px;
+  margin-bottom: 6px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.spell-entry:hover {
+  background: var(--card-light);
+  border-color: var(--dendro-mid);
+  border-left-color: var(--dendro-bright);
+}
+.spell-entry-top {
+  display: flex; align-items: baseline; gap: 10px;
+  margin-bottom: 4px;
+}
+.spell-name {
+  font-family: 'Cinzel', serif;
+  font-size: 13px; font-weight: 600;
+  color: var(--sage);
+}
+.spell-tags-inline { display: flex; gap: 5px; }
+.spell-tag-small {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px; letter-spacing: 1px;
+  padding: 2px 7px;
+  border: 1px solid var(--border);
+  color: var(--text-dim); text-transform: uppercase;
+  background: rgba(78,158,96,0.05);
+}
+.spell-tag-small.conc { border-color: rgba(78,158,96,0.4); color: var(--dendro-mid); }
+.spell-desc {
+  font-size: 13.5px; color: var(--text-dim);
+  line-height: 1.6;
+}
+.spell-mechanic {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px; color: var(--dendro);
+  margin-top: 3px; display: block;
+}
+
+/* cantrip specific */
+.spell-entry.cantrip { border-left-color: var(--gold); }
+.spell-entry.cantrip .spell-name { color: var(--gold-light); }
+.spell-entry.cantrip .spell-mechanic { color: var(--gold); }
+
+/* ── DIVIDER ──────────────────────────────────────── */
+.divider {
+  text-align: center; margin: 36px 40px;
+  display: flex; align-items: center; gap: 16px;
+  position: relative; z-index: 1;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--dendro), transparent);
+  opacity: 0.4;
+}
+.divider-sym {
+  font-size: 16px; color: var(--dendro-bright); opacity: 0.5;
+}
+
+/* ── TRAIT BOXES ──────────────────────────────────── */
+.trait-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 16px 18px; height: 100%;
+}
+.trait-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--dendro);
+  display: block; margin-bottom: 8px;
+}
+.trait-text { font-size: 14px; color: var(--text-dim); font-style: italic; }
+
+/* ── EQUIPMENT ────────────────────────────────────── */
+.equip-item {
+  padding: 8px 0; border-bottom: 1px solid rgba(78,158,96,0.1);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.equip-item:last-child { border-bottom: none; }
+.equip-icon { color: var(--dendro-bright); font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+.equip-name {
+  font-family: 'Cinzel', serif; font-size: 12px;
+  color: var(--sage); display: block; margin-bottom: 2px;
+}
+.equip-note { font-size: 13px; color: var(--text-dim); }
+
+/* ── BACKSTORY ────────────────────────────────────── */
+.backstory {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--dendro);
+  padding: 28px 32px;
+}
+.backstory p { font-size: 15px; color: var(--text-dim); margin-bottom: 14px; line-height: 1.85; }
+.backstory p:last-child { margin-bottom: 0; }
+.bs-quote {
+  font-style: italic;
+  border-left: 3px solid var(--dendro);
+  padding: 8px 0 8px 16px;
+  color: var(--sage); margin: 16px 0;
+  font-size: 15px;
+}
+
+/* ── PASSIVE / LEGEND ─────────────────────────────── */
+.passive-block {
+  background: rgba(78,158,96,0.08);
+  border: 1px solid var(--dendro);
+  padding: 12px 16px; text-align: center;
+}
+.passive-num {
+  font-family: 'Cinzel', serif; font-size: 32px; font-weight: 900;
+  color: var(--dendro-bright);
+  text-shadow: 0 0 16px rgba(126,216,124,0.3);
+  display: block;
+}
+.passive-lbl {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* ── DEATH SAVES ──────────────────────────────────── */
+.death-saves { display: flex; flex-direction: column; gap: 6px; }
+.ds-row { display: flex; align-items: center; gap: 8px; }
+.ds-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--text-dim);
+  min-width: 60px;
+}
+.ds-dots { display: flex; gap: 6px; }
+.ds-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%; border: 1.5px solid var(--border);
+}
+
+/* ── SCROLL ACCENT ────────────────────────────────── */
+.scroll-ornament {
+  text-align: center; padding: 20px 0;
+  color: var(--dendro); opacity: 0.25; font-size: 22px;
+  position: relative; z-index: 1;
+}
+
+/* ── LEVEL BADGE ──────────────────────────────────── */
+.level-badge {
+  display: inline-flex;
+  background: rgba(78,158,96,0.15);
+  border: 1px solid var(--dendro);
+  border-radius: 2px;
+  padding: 2px 10px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px; letter-spacing: 2px;
+  color: var(--dendro-mid); text-transform: uppercase;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────── */
+@media (max-width: 700px) {
+  .stat-grid { grid-template-columns: repeat(3, 1fr); }
+  .combat-row { grid-template-columns: repeat(4, 1fr); }
+  .two-col, .three-col { grid-template-columns: 1fr; }
+  .header-inner { flex-direction: column; }
+  .header-portrait { width: 100%; height: 180px; }
+}
+</style>
+</head>
+<body>
+
+<!-- floating leaves -->
+<div class="leaf-bg" id="leafBg"></div>
+
+<div class="page">
+
+  <!-- ══ HEADER ══════════════════════════════════════════ -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-portrait">
+        <div class="portrait-inner">
+          <div class="portrait-ring"></div>
+          <div class="portrait-symbol">🌿</div>
+          <span class="portrait-label">Kusanali</span>
+        </div>
+      </div>
+      <div class="header-text">
+        <div class="header-eyebrow">Ficha de Personagem · D&amp;D 5e · Nível 20</div>
+        <h1 class="header-name">Nahida</h1>
+        <div class="header-subtitle">Lesser Lord Kusanali · Archon de Sumeru</div>
+        <div class="header-tags">
+          <span class="tag hi">Druida 20</span>
+          <span class="tag hi">Círculo dos Sonhos</span>
+          <span class="tag">Fairy</span>
+          <span class="tag">Sábia</span>
+          <span class="tag">Neutro Bom</span>
+          <span class="tag">Monoclass</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ META BAR ════════════════════════════════════════ -->
+  <div class="meta-bar">
+    <div class="meta-item">
+      <span class="meta-label">Raça</span>
+      <span class="meta-value">Fairy</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Classe</span>
+      <span class="meta-value">Druida</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Subclasse</span>
+      <span class="meta-value">Círculo dos Sonhos</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Antecedente</span>
+      <span class="meta-value">Sábia</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Tendência</span>
+      <span class="meta-value">Neutro Bom</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Nível</span>
+      <span class="meta-value">20</span>
+    </div>
+  </div>
+
+  <!-- ══ ATRIBUTOS ═══════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Atributos</h2>
+    <div class="stat-grid">
+      <div class="stat-box">
+        <span class="stat-name">Força</span>
+        <span class="stat-val">8</span>
+        <span class="stat-mod">−1</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-name">Destreza</span>
+        <span class="stat-val">14</span>
+        <span class="stat-mod">+2</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-name">Constituição</span>
+        <span class="stat-val">16</span>
+        <span class="stat-mod">+3</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-name">Inteligência</span>
+        <span class="stat-val">10</span>
+        <span class="stat-mod">+0</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-name">Sabedoria</span>
+        <span class="stat-val peak">20</span>
+        <span class="stat-mod">+5</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-name">Carisma</span>
+        <span class="stat-val">8</span>
+        <span class="stat-mod">−1</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ESTATÍSTICAS DE COMBATE ══════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Estatísticas de Combate</h2>
+    <div class="combat-row">
+      <div class="combat-box accent">
+        <span class="combat-label">Classe Armadura</span>
+        <span class="combat-val">19</span>
+        <span class="combat-sub">Armadura + Escudo</span>
+      </div>
+      <div class="combat-box accent">
+        <span class="combat-label">Pontos de Vida</span>
+        <span class="combat-val">152</span>
+        <span class="combat-sub">Nível 20 médio</span>
+      </div>
+      <div class="combat-box">
+        <span class="combat-label">Iniciativa</span>
+        <span class="combat-val">+2</span>
+        <span class="combat-sub">Des mod</span>
+      </div>
+      <div class="combat-box">
+        <span class="combat-label">Deslocamento</span>
+        <span class="combat-val">9m</span>
+        <span class="combat-sub">+ Voo 9m</span>
+      </div>
+      <div class="combat-box">
+        <span class="combat-label">Bônus Prof.</span>
+        <span class="combat-val">+6</span>
+        <span class="combat-sub">Nível 20</span>
+      </div>
+      <div class="combat-box accent">
+        <span class="combat-label">CD Magias</span>
+        <span class="combat-val">19</span>
+        <span class="combat-sub">8 + prof + Sab</span>
+      </div>
+      <div class="combat-box accent">
+        <span class="combat-label">Ataque Mágico</span>
+        <span class="combat-val">+11</span>
+        <span class="combat-sub">prof + Sab mod</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TESTES / PERÍCIAS / PASSIVA ══════════════════════ -->
+  <div class="section">
+    <div class="two-col" style="gap:32px">
+
+      <!-- Saving Throws -->
+      <div>
+        <h2 class="section-title">Testes de Resistência</h2>
+        <ul class="save-list">
+          <li class="save-item">
+            <div class="save-dot"></div>
+            <span class="save-name">Força</span>
+            <span class="save-score">−1</span>
+          </li>
+          <li class="save-item">
+            <div class="save-dot"></div>
+            <span class="save-name">Destreza</span>
+            <span class="save-score">+2</span>
+          </li>
+          <li class="save-item">
+            <div class="save-dot"></div>
+            <span class="save-name">Constituição</span>
+            <span class="save-score">+3</span>
+          </li>
+          <li class="save-item">
+            <div class="save-dot filled"></div>
+            <span class="save-name">Inteligência</span>
+            <span class="save-score">+6</span>
+          </li>
+          <li class="save-item">
+            <div class="save-dot filled"></div>
+            <span class="save-name">Sabedoria</span>
+            <span class="save-score">+11</span>
+          </li>
+          <li class="save-item">
+            <div class="save-dot"></div>
+            <span class="save-name">Carisma</span>
+            <span class="save-score">−1</span>
+          </li>
+        </ul>
+
+        <div style="margin-top:20px">
+          <h2 class="section-title">Dados de Vida & Morte</h2>
+          <div style="margin-bottom:10px">
+            <span class="meta-label" style="display:block;margin-bottom:4px">Dados de Vida</span>
+            <span style="font-family:'Cinzel',serif;font-size:18px;color:var(--sage)">20d8</span>
+          </div>
+          <div class="death-saves">
+            <div class="ds-row">
+              <span class="ds-label">Sucessos</span>
+              <div class="ds-dots">
+                <div class="ds-dot"></div>
+                <div class="ds-dot"></div>
+                <div class="ds-dot"></div>
+              </div>
+            </div>
+            <div class="ds-row">
+              <span class="ds-label">Fracassos</span>
+              <div class="ds-dots">
+                <div class="ds-dot"></div>
+                <div class="ds-dot"></div>
+                <div class="ds-dot"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:20px">
+          <h2 class="section-title">Percepção Passiva</h2>
+          <div class="passive-block">
+            <span class="passive-num">21</span>
+            <span class="passive-lbl">Sabedoria Passiva (Percepção)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div>
+        <h2 class="section-title">Perícias</h2>
+        <ul class="skill-list">
+          <li class="skill-item">
+            <div class="skill-dot"></div>
+            <span class="skill-bonus">+2</span>
+            <span class="skill-name">Acrobacia</span>
+            <span class="skill-attr">DES</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot filled"></div>
+            <span class="skill-bonus">+6</span>
+            <span class="skill-name">Arcanismo</span>
+            <span class="skill-attr">INT</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot"></div>
+            <span class="skill-bonus">−1</span>
+            <span class="skill-name">Atletismo</span>
+            <span class="skill-attr">FOR</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot"></div>
+            <span class="skill-bonus">−1</span>
+            <span class="skill-name">Atuação</span>
+            <span class="skill-attr">CAR</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot"></div>
+            <span class="skill-bonus">−1</span>
+            <span class="skill-name">Blefar</span>
+            <span class="skill-attr">CAR</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot"></div>
+            <span class="skill-bonus">+2</span>
+            <span class="skill-name">Furtividade</span>
+            <span class="skill-attr">DES</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot filled"></div>
+            <span class="skill-bonus">+6</span>
+            <span class="skill-name">História</span>
+            <span class="skill-attr">INT</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot"></div>
+            <span class="skill-bonus">−1</span>
+            <span class="skill-name">Intimidação</span>
+            <span class="skill-attr">CAR</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot filled"></div>
+            <span class="skill-bonus">+11</span>
+            <span class="skill-name">Intuição</span>
+            <span class="skill-attr">SAB</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot"></div>
+            <span class="skill-bonus">+0</span>
+            <span class="skill-name">Investigação</span>
+            <span class="skill-attr">INT</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot"></div>
+            <span class="skill-bonus">+5</span>
+            <span class="skill-name">Lidar com Animais</span>
+            <span class="skill-attr">SAB</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot"></div>
+            <span class="skill-bonus">+5</span>
+            <span class="skill-name">Medicina</span>
+            <span class="skill-attr">SAB</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot filled"></div>
+            <span class="skill-bonus">+6</span>
+            <span class="skill-name">Natureza</span>
+            <span class="skill-attr">INT</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot"></div>
+            <span class="skill-bonus">+5</span>
+            <span class="skill-name">Percepção</span>
+            <span class="skill-attr">SAB</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot"></div>
+            <span class="skill-bonus">−1</span>
+            <span class="skill-name">Persuasão</span>
+            <span class="skill-attr">CAR</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot"></div>
+            <span class="skill-bonus">+2</span>
+            <span class="skill-name">Prestidigitação</span>
+            <span class="skill-attr">DES</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot"></div>
+            <span class="skill-bonus">+0</span>
+            <span class="skill-name">Religião</span>
+            <span class="skill-attr">INT</span>
+          </li>
+          <li class="skill-item">
+            <div class="skill-dot"></div>
+            <span class="skill-bonus">+5</span>
+            <span class="skill-name">Sobrevivência</span>
+            <span class="skill-attr">SAB</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-sym">✦ 🌿 ✦</span></div>
+
+  <!-- ══ PROFICIÊNCIAS & IDIOMAS ══════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Proficiências &amp; Idiomas</h2>
+    <div class="two-col">
+      <div>
+        <div class="card">
+          <div class="card-title">Armaduras &amp; Armas</div>
+          <p>Armaduras leves e médias · Escudos (não metálicos) · Clavas, adagas, dardos, fundas, cajados, azagaias, arcos curtos e cimitarras</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Ferramentas</div>
+          <p>Kit de herbalismo</p>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-title">Idiomas</div>
+          <p>Comum · Silvestre · Élfico · Dois idiomas adicionais (Antecedente: Sábia)</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Tipo de Criatura</div>
+          <p>Feérico (Fey) · Pequeno · Voo igual ao deslocamento de caminhada, sem restrição de armadura pesada</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ EQUIPAMENTO ══════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Equipamento</h2>
+    <div class="two-col">
+      <div>
+        <div class="equip-item">
+          <span class="equip-icon">🌿</span>
+          <div>
+            <span class="equip-name">Cajado Sagrado do Irminsul</span>
+            <span class="equip-note">Quarterstaff reskinado como galho vivo ou foco vegetal. Usado como foco druídico. Dano: 1d6 contundente (versátil 1d8).</span>
+          </div>
+        </div>
+        <div class="equip-item">
+          <span class="equip-icon">🛡</span>
+          <div>
+            <span class="equip-name">Armadura de Casca &amp; Raízes</span>
+            <span class="equip-note">Half Plate não metálica (CA base 15 + Des mod +2 = 17). Equivalente temático: armadura viva da floresta.</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="equip-item">
+          <span class="equip-icon">🌑</span>
+          <div>
+            <span class="equip-name">Escudo de Madeira Viva</span>
+            <span class="equip-note">Escudo de cipó ou cristal Dendro (+2 CA). Total final: CA 19.</span>
+          </div>
+        </div>
+        <div class="equip-item">
+          <span class="equip-icon">🌱</span>
+          <div>
+            <span class="equip-name">Kit de Herbalismo &amp; Foco Druídico</span>
+            <span class="equip-note">Componente de conjuração. Kit permite criar antídotos e poções básicas entre descansos.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-sym">✦ 🌿 ✦</span></div>
+
+  <!-- ══ TRAÇOS RACIAIS & HABILIDADES DE CLASSE ═══════════ -->
+  <div class="section">
+    <h2 class="section-title">Habilidades Raciais — Fairy</h2>
+    <div class="feature">
+      <div class="feature-name">Tamanho Pequeno &amp; Voo Feérico</div>
+      <div class="feature-source">Raça · Fairy</div>
+      <p>Nahida é do tamanho Pequeno. Possui velocidade de voo igual ao seu deslocamento de caminhada (9m) sem restrição de armadura pesada. Movimento etéreo e silencioso.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Visão no Escuro &amp; Tipo Feérico</div>
+      <div class="feature-source">Raça · Fairy</div>
+      <p>Enxerga em luz fraca como plena luz e em escuridão como luz fraca até 18m. É criatura do tipo Feérico, imune a efeitos específicos que afetam humanoides.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Magia Feérica Inata</div>
+      <div class="feature-source">Raça · Fairy</div>
+      <p><strong style="color:var(--sage)">Druidcraft</strong> — disponível livremente. <strong style="color:var(--sage)">Faerie Fire</strong> — 1×/descanso longo. <strong style="color:var(--sage)">Enlarge/Reduce</strong> — 1×/descanso longo, inata (sem espaço de magia).</p>
+    </div>
+  </div>
+
+  <div class="section" style="margin-top:24px">
+    <h2 class="section-title">Habilidades de Classe — Druida 20 &amp; Círculo dos Sonhos</h2>
+    <div class="feature">
+      <div class="feature-name">Círculo dos Sonhos · Balm of the Summer Court</div>
+      <div class="feature-source">Subclasse · Nível 2</div>
+      <p>Você possui um reservatório de cura igual a <strong style="color:var(--sage)">5× nível de Druida (100 PV totais)</strong>. Como ação bônus, distribua dados de cura (d6) para criaturas aliadas conscientes em 36m sem gastar espaços de magia. Pode curar e conceder PV temporários simultaneamente.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Círculo dos Sonhos · Hearth of Moonlight and Shadow</div>
+      <div class="feature-source">Subclasse · Nível 6</div>
+      <p>Ao iniciar um descanso curto ou longo, conjure um espaço mágico invisível de 9m de raio. Criaturas dentro ganham <strong style="color:var(--sage)">+5 em Percepção</strong>, <strong style="color:var(--sage)">+5 em Furtividade</strong> e luz ou escuridão visível apenas por vocês. Fontes de luz e fogo normais ficam ocultas.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Círculo dos Sonhos · Hidden Paths</div>
+      <div class="feature-source">Subclasse · Nível 10</div>
+      <p>Você pode se teletransportar <strong style="color:var(--sage)">até 18m</strong> para um espaço que você possa ver, ou teleportar uma criatura voluntária que você toque para até 30m. Usos iguais ao mod. de Sabedoria (+5) por descanso longo.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Círculo dos Sonhos · Walker in Dreams</div>
+      <div class="feature-source">Subclasse · Nível 14</div>
+      <p>Ao terminar um descanso curto, conjure um dos seguintes efeitos uma vez sem espaço: <strong style="color:var(--sage)">Dream</strong> (comunicação onírica), <strong style="color:var(--sage)">Scrying</strong> (visão a distância) ou <strong style="color:var(--sage)">Teleportation Circle</strong> (círculo para local familiar). Recarrega a cada descanso longo.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Wild Shape</div>
+      <div class="feature-source">Druida · Nível 2</div>
+      <p>Transforma-se em besta de CR ½ (sem nadar) → CR 1 (nível 4) → CR progressivo. Para Nahida, Wild Shape é usado estrategicamente: formas pequenas para infiltração, observação e mobilidade, nunca como combatente frontal.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Timeless Body &amp; Beast Spells</div>
+      <div class="feature-source">Druida · Nível 18</div>
+      <p><strong style="color:var(--sage)">Timeless Body:</strong> Não envelhece mais e não precisa de comida ou água. <strong style="color:var(--sage)">Beast Spells:</strong> Pode conjurar magias druídicas mesmo sob Wild Shape, integrando sua essência natural ao seu poder mágico.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Archdruid (Capstone)</div>
+      <div class="feature-source">Druida · Nível 20</div>
+      <p>Pode usar Wild Shape um número ilimitado de vezes. Pode ignorar os componentes verbais e somáticos das magias druídicas ao conjurá-las. Nahida ascende ao estado de entidade transcendental — uma presença que existe além da forma física.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Talentos Conquistados</div>
+      <div class="feature-source">Progressão · Níveis 4, 8, 12, 16, 19</div>
+      <p><strong style="color:var(--sage)">Nível 4:</strong> +2 Sabedoria (17→19) · <strong style="color:var(--sage)">Nível 8:</strong> Telepathic +1 Sab (19→20) — comunicação mental, leitura de superfície · <strong style="color:var(--sage)">Nível 12:</strong> War Caster — vantagem em Con para manter concentração · <strong style="color:var(--sage)">Nível 16:</strong> Resilient (Con) +1 Con (15→16) · <strong style="color:var(--sage)">Nível 19:</strong> +2 Constituição (16→18).</p>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-sym">✦ 🌿 ✦</span></div>
+
+  <!-- ══ ATAQUES ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Ataques</h2>
+    <table style="width:100%;border-collapse:collapse;font-size:14px">
+      <thead>
+        <tr style="border-bottom:1px solid var(--border)">
+          <th style="text-align:left;padding:6px 10px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim)">Arma / Magia</th>
+          <th style="padding:6px 10px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim)">Bônus</th>
+          <th style="padding:6px 10px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim)">Dano / Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid rgba(78,158,96,0.1)">
+          <td style="padding:8px 10px;color:var(--sage);font-family:'Cinzel',serif;font-size:12px">Cajado Sagrado</td>
+          <td style="text-align:center;padding:8px 10px;font-family:'Share Tech Mono',monospace;color:var(--dendro-mid)">+2</td>
+          <td style="text-align:center;padding:8px 10px;color:var(--text-dim)">1d6 / Contundente (Versátil 1d8)</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(78,158,96,0.1)">
+          <td style="padding:8px 10px;color:var(--sage);font-family:'Cinzel',serif;font-size:12px">Thorn Whip (truque)</td>
+          <td style="text-align:center;padding:8px 10px;font-family:'Share Tech Mono',monospace;color:var(--dendro-mid)">+11</td>
+          <td style="text-align:center;padding:8px 10px;color:var(--text-dim)">4d6 / Perfurante + puxar 3m</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(78,158,96,0.1)">
+          <td style="padding:8px 10px;color:var(--sage);font-family:'Cinzel',serif;font-size:12px">Produce Flame (truque)</td>
+          <td style="text-align:center;padding:8px 10px;font-family:'Share Tech Mono',monospace;color:var(--dendro-mid)">+11</td>
+          <td style="text-align:center;padding:8px 10px;color:var(--text-dim)">4d8 / Fogo (18m de alcance)</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px;color:var(--sage);font-family:'Cinzel',serif;font-size:12px">Sunbeam (6º círculo)</td>
+          <td style="text-align:center;padding:8px 10px;font-family:'Share Tech Mono',monospace;color:var(--dendro-mid)">CD 19</td>
+          <td style="text-align:center;padding:8px 10px;color:var(--text-dim)">6d8 / Radiante + Cego (Con negado)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"><span class="divider-sym">✦ 🌿 ✦</span></div>
+
+  <!-- ══ MAGIAS ════════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Grimório de Magias · Habilidade: Sabedoria · CD: 19 · Ataque: +11</h2>
+
+    <!-- TRUQUES -->
+    <div class="spell-circle">
+      <div class="spell-circle-header">
+        <div class="spell-circle-badge" style="border-color:var(--gold);color:var(--gold-light);background:rgba(184,168,74,0.1)">0</div>
+        <span class="spell-circle-title" style="color:var(--gold-light)">Truques — Cantrips</span>
+        <div class="spell-circle-slots" style="margin-left:auto">
+          <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text-dim);letter-spacing:1px">Ilimitado</span>
+        </div>
+      </div>
+
+      <div class="spell-entry cantrip">
+        <div class="spell-entry-top">
+          <span class="spell-name">Guidance</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small conc">concentração · 1 min</span>
+            <span class="spell-tag-small">toque</span>
+          </div>
+        </div>
+        <p class="spell-desc">Você toca um aliado voluntário e concede sabedoria viva. Antes do truque terminar, o alvo pode rolar <strong>1d4</strong> e adicionar o resultado a <strong>uma rolagem de habilidade</strong> de sua escolha. Representa a orientação suave e constante da Archon — um sussurro de saber que guia sem impor.</p>
+        <span class="spell-mechanic">🌿 Bônus: +1d4 em qualquer rolagem de habilidade antes do término.</span>
+      </div>
+
+      <div class="spell-entry cantrip">
+        <div class="spell-entry-top">
+          <span class="spell-name">Thorn Whip</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">9m de alcance</span>
+            <span class="spell-tag-small">ataque mágico</span>
+          </div>
+        </div>
+        <p class="spell-desc">Cria um chicote de videiras espinhosas que açoita um alvo em 9m. Em caso de acerto, causa <strong>4d6 de dano perfurante</strong> (escala com nível) e <strong>puxa o alvo 3m em direção a você</strong> se ele for Grande ou menor. Tradução mecânica perfeita do ataque Dendro de laços e reposicionamento de Nahida.</p>
+        <span class="spell-mechanic">⚔ Rolagem: ataque mágico +11 · Dano: 4d6 perfurante · Efeito: puxar 3m</span>
+      </div>
+
+      <div class="spell-entry cantrip">
+        <div class="spell-entry-top">
+          <span class="spell-name">Produce Flame</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">18m (projétil)</span>
+            <span class="spell-tag-small">ataque mágico</span>
+          </div>
+        </div>
+        <p class="spell-desc">Conjura uma chama na palma da mão que ilumina 3m e fornece luz fraca por mais 3m, sem causar dano. Como ação, pode ser lançada como projétil até 18m, causando <strong>4d8 de dano de fogo</strong> no acerto. Reskinado como esfera de energia Dendro-luminosa pulsando no centro da mão.</p>
+        <span class="spell-mechanic">⚔ Projétil: ataque mágico +11 · Dano: 4d8 fogo</span>
+      </div>
+
+      <div class="spell-entry cantrip">
+        <div class="spell-entry-top">
+          <span class="spell-name">Druidcraft</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">9m</span>
+            <span class="spell-tag-small">utilitário</span>
+          </div>
+        </div>
+        <p class="spell-desc">Pequenos milagres da natureza sem custo: <strong>prever o tempo</strong> nas próximas 24h, fazer uma flor brotar ou uma semente germinar instantaneamente, criar um sussurro de vento ou aroma natural suave, ou apagar uma chama não mágica. Puramente temático e narrativo — é a presença viva da Archon no mundo natural.</p>
+        <span class="spell-mechanic">🌸 Efeito: utilitário narrativo · Sem ataque ou dano</span>
+      </div>
+    </div>
+
+    <!-- 1º CÍRCULO -->
+    <div class="spell-circle">
+      <div class="spell-circle-header">
+        <div class="spell-circle-badge">1</div>
+        <span class="spell-circle-title">1º Círculo — Espaços: 4</span>
+        <div class="spell-circle-slots">
+          <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
+        </div>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Goodberry</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">toque</span>
+            <span class="spell-tag-small">instante</span>
+          </div>
+        </div>
+        <p class="spell-desc">Cria até <strong>10 bagas mágicas</strong> que duram 24h. Cada baga consumida cura <strong>1 PV</strong> e fornece nutrição suficiente para um dia inteiro. As bagas são pequenas esferas de luz verde suave — literalmente um presente nutritivo da deusa das plantas para os viajantes.</p>
+        <span class="spell-mechanic">🍃 10 bagas · 1 PV cada · Cura fora de combate essencial</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Entangle</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">27m · área 6×6m</span>
+            <span class="spell-tag-small conc">concentração · 1 min</span>
+          </div>
+        </div>
+        <p class="spell-desc">Vinhas e raízes irrompem do solo em uma área de 6×6m. Criaturas na área quando conjurada devem superar um TR de Força (CD 19) ou ficam <strong>presas</strong> até o fim do efeito. Criaturas que entram na área durante o efeito têm a <strong>velocidade reduzida à metade</strong>. Uma das magias mais poderosas de controle de campo de Nahida.</p>
+        <span class="spell-mechanic">🌿 TR Força CD 19 · Presa até TR bem-sucedido · Área 6×6m</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Healing Word</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação bônus</span>
+            <span class="spell-tag-small">18m</span>
+            <span class="spell-tag-small">instante</span>
+          </div>
+        </div>
+        <p class="spell-desc">Uma palavra de poder restaura <strong>1d4 + 5 PV</strong> em um aliado visível em 18m (escala: +1d4 por nível acima do 1º). A principal vantagem é ser uma <strong>ação bônus</strong>, liberando a ação padrão para outras magias. Representa uma bênção suave e vocal, como uma saudação gentil de Nahida que carrega cura.</p>
+        <span class="spell-mechanic">💚 Cura: 1d4+5 · Ação bônus · Escala com espaço usado</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Absorb Elements</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">reação</span>
+            <span class="spell-tag-small">própria</span>
+            <span class="spell-tag-small">instante</span>
+          </div>
+        </div>
+        <p class="spell-desc">Reação quando você sofre dano de ácido, frio, fogo, relâmpago ou trovão. <strong>Reduz o dano pela metade</strong> e armazena a energia: o seu próximo ataque corpo a corpo até o final do próximo turno causa <strong>+1d6 do tipo de dano absorvido</strong> (escala com nível do espaço). Nahida literalmente absorve elementos hostis como a natureza absorve energia.</p>
+        <span class="spell-mechanic">🛡 Reação · Reduz dano elemental · +1d6 bônus ao próximo ataque</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Faerie Fire</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">18m · cilindro 6m</span>
+            <span class="spell-tag-small conc">concentração · 1 min</span>
+          </div>
+        </div>
+        <p class="spell-desc">Envolve criaturas que falhem em TR de Des em um brilho de luz azul, verde ou violeta. Enquanto ativas: <strong>não podem se beneficiar de camuflagem ou invisibilidade</strong>, e todos os ataques contra elas têm <strong>vantagem</strong>. Perfeito para revelar criaturas ocultas. A luz feérica de Nahida marca aqueles que precisam ser vistos pela deusa.</p>
+        <span class="spell-mechanic">✨ TR Des CD 19 · Falha: vantagem em ataques contra ela · Sem invisibilidade</span>
+      </div>
+    </div>
+
+    <!-- 2º CÍRCULO -->
+    <div class="spell-circle">
+      <div class="spell-circle-header">
+        <div class="spell-circle-badge">2</div>
+        <span class="spell-circle-title">2º Círculo — Espaços: 3</span>
+        <div class="spell-circle-slots">
+          <div class="slot"></div><div class="slot"></div><div class="slot"></div>
+        </div>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Pass without Trace</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">própria · aura 9m</span>
+            <span class="spell-tag-small conc">concentração · 1h</span>
+          </div>
+        </div>
+        <p class="spell-desc">Envolve você e seus aliados em um manto de sombra e silêncio. Cada criatura afetada ganha <strong>+10 nos testes de Furtividade</strong> e não deixa rastros rastreáveis por meios não mágicos. Nahida e seu grupo podem mover-se como sombras entre as folhas — invisíveis à percepção comum, como uma presença de sonho.</p>
+        <span class="spell-mechanic">🌑 +10 em Furtividade · Sem rastros · Afeta o grupo inteiro</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Spike Growth</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">36m · raio 6m</span>
+            <span class="spell-tag-small conc">concentração · 10 min</span>
+          </div>
+        </div>
+        <p class="spell-desc">O solo em raio de 6m fica coberto de espinhos e estacas afiadas, camuflados à percepção visual (Percepção CD 19 para notar). Criaturas que movem pelo terreno sofrem <strong>2d4 de dano perfurante por 1,5m</strong> de movimento e têm a <strong>velocidade reduzida a 1,5m</strong> por turno. Controle de zona devastador que pune avanço inimigo.</p>
+        <span class="spell-mechanic">🌿 2d4 perfurante/1,5m · Velocidade reduzida a 1,5m · Raio 6m</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Lesser Restoration</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">toque</span>
+            <span class="spell-tag-small">instante</span>
+          </div>
+        </div>
+        <p class="spell-desc">Encerra uma doença ou condição que aflige uma criatura tocada. Remove: <strong>cegueira, surdez, paralisia ou envenenamento</strong>. Pura purificação — como a Archon do conhecimento removendo o que obscurece a mente e o corpo. Essencial no arsenal de suporte de Nahida.</p>
+        <span class="spell-mechanic">💚 Remove: cego · surdo · paralisado · envenenado</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Moonbeam</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">36m · cilindro 1,5×12m</span>
+            <span class="spell-tag-small conc">concentração · 1 min</span>
+          </div>
+        </div>
+        <p class="spell-desc">Um cilindro de luz prateada de 1,5m de raio e 12m de altura desce do céu. Criaturas que <strong>entram ou iniciam o turno</strong> nela devem superar TR de Constituição (CD 19) ou sofrem <strong>2d10 de dano radiante</strong> (metade em sucesso). Formas mutáveis voltam à forma verdadeira. Mova o raio até 9m por ação. Reskinado como feixe de sabedoria do Irminsul.</p>
+        <span class="spell-mechanic">☀ TR Con CD 19 · 2d10 radiante (metade em sucesso) · Movível 9m/ação</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Enhance Ability</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">toque</span>
+            <span class="spell-tag-small conc">concentração · 1h</span>
+          </div>
+        </div>
+        <p class="spell-desc">Concede vantagem em testes de habilidade de um atributo e um efeito adicional: <strong>Força</strong> (double carry), <strong>Destreza</strong> (não cai em 0 PV por queda), <strong>Con</strong> (+2d6 PV temp), <strong>Int</strong> (qualquer informação relembrada), <strong>Sab</strong> (não pode ficar amedrontado), <strong>Car</strong> (vantagem em Persuasão). Pode afetar múltiplos alvos gastando espaços maiores.</p>
+        <span class="spell-mechanic">✦ Vantagem em atributo escolhido + bônus específico do atributo</span>
+      </div>
+    </div>
+
+    <!-- 3º CÍRCULO -->
+    <div class="spell-circle">
+      <div class="spell-circle-header">
+        <div class="spell-circle-badge">3</div>
+        <span class="spell-circle-title">3º Círculo — Espaços: 3</span>
+        <div class="spell-circle-slots">
+          <div class="slot"></div><div class="slot"></div><div class="slot"></div>
+        </div>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Plant Growth</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação / 8h</span>
+            <span class="spell-tag-small">36m · raio 15m</span>
+            <span class="spell-tag-small">instante</span>
+          </div>
+        </div>
+        <p class="spell-desc">Modo combate (<strong>ação</strong>): plantas em raio de 15m crescem de forma densa e intricada. Qualquer criatura que se mova pela área <strong>gasta 1m de movimento para cada 30cm percorridos</strong> — redução devastadora de velocidade sem TR. Modo narrativo (<strong>8 horas</strong>): enriquece área de 400m de raio, tornando o solo fértil para colheitas abundantes por 1 ano. Pura Dendro.</p>
+        <span class="spell-mechanic">🌿 Combate: velocidade ÷ 4 sem TR · Área raio 15m</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Speak with Plants</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">própria · aura 9m</span>
+            <span class="spell-tag-small">10 min</span>
+          </div>
+        </div>
+        <p class="spell-desc">Por 10 minutos, você pode se comunicar com plantas na área, fazer perguntas sobre eventos recentes, criaturas que passaram e outras informações. Pode <strong>comandar plantas animadas</strong> e negociar com flora senciente. Pode fazer plantas <strong>soltar criaturas presas</strong> nelas. Traduz perfeitamente a ligação de Nahida com o Irminsul — a rede viva da natureza que tudo sabe.</p>
+        <span class="spell-mechanic">🌱 Comunicação com flora · Informações da área · Comandar plantas animadas</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Revivify</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">toque</span>
+            <span class="spell-tag-small">instante</span>
+          </div>
+        </div>
+        <p class="spell-desc">Ressuscita uma criatura que morreu <strong>há menos de 1 minuto</strong>, devolvendo-a à vida com <strong>1 PV</strong>. Não funciona em criaturas que morreram de velhice. Requer materiais no valor de 300 po consumidos no lançamento. O toque gentil da deusa que nega a morte — não por poder bruto, mas por amor e vontade divina.</p>
+        <span class="spell-mechanic">💚 Ressuscita em ≤1 min · Retorna com 1 PV · 300po em materiais</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Conjure Animals</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">18m</span>
+            <span class="spell-tag-small conc">concentração · 1h</span>
+          </div>
+        </div>
+        <p class="spell-desc">Evoca bestas feéricas ou espirituais. Pode invocar: <strong>1 besta de CR 2, 2 de CR 1, 4 de CR ½ ou 8 de CR ¼</strong>. As criaturas obedecem seus comandos e agem em sua iniciativa. Reskinado como manifestações da floresta do Irminsul: borboletas sagradas de cristal, pássaros de folhas vivas ou criaturas espirituais do sonho de Nahida.</p>
+        <span class="spell-mechanic">🦋 Evoca bestas feéricas · Escalável com espaços maiores · Concentração 1h</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Dispel Magic</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">36m</span>
+            <span class="spell-tag-small">instante</span>
+          </div>
+        </div>
+        <p class="spell-desc">Escolha uma criatura, objeto ou efeito mágico. Todos os efeitos mágicos de <strong>3º círculo ou inferior terminam automaticamente</strong>. Efeitos de círculo superior requerem teste de habilidade de conjuração (<strong>Sab CD = 10 + nível da magia</strong>). A sabedoria de Nahida reconhece e desfaz o que foi feito com poder arcano.</p>
+        <span class="spell-mechanic">✦ Remove magias ≤3° automático · Superiores: TR Sab vs CD 10+nível</span>
+      </div>
+    </div>
+
+    <!-- 4º CÍRCULO -->
+    <div class="spell-circle">
+      <div class="spell-circle-header">
+        <div class="spell-circle-badge">4</div>
+        <span class="spell-circle-title">4º Círculo — Espaços: 3</span>
+        <div class="spell-circle-slots">
+          <div class="slot"></div><div class="slot"></div><div class="slot"></div>
+        </div>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Grasping Vine</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação bônus</span>
+            <span class="spell-tag-small">27m · alcance 9m</span>
+            <span class="spell-tag-small conc">concentração · 1 min</span>
+          </div>
+        </div>
+        <p class="spell-desc">Evoca uma videira em um ponto visível. Por ação bônus, ordena que ela <strong>agarre uma criatura em 9m</strong>: TR de Destreza (CD 19) ou é <strong>puxada até 6m em direção à videira</strong>. Pode ser ordenada a cada turno. Perfeito para puxar inimigos para armadilhas, afastá-los de aliados ou mantê-los em zona de controle.</p>
+        <span class="spell-mechanic">🌿 Ação bônus · TR Des CD 19 · Puxa 6m por turno · Concentração</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Guardian of Nature</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação bônus</span>
+            <span class="spell-tag-small">própria</span>
+            <span class="spell-tag-small conc">concentração · 1 min</span>
+          </div>
+        </div>
+        <p class="spell-desc">Transforma-se em uma forma primordial. <strong>Grande Árvore:</strong> vantagem em Con e Sab, testes de Con para concentração automaticamente bem-sucedidos, raízes tornam solo difícil em 4,5m. <strong>Behemoth Primordial:</strong> vantagem em For, ataques de For têm vantagem, soma For na iniciativa. Para Nahida, a forma de Grande Árvore é a identidade canônica — uma divindade enraizada.</p>
+        <span class="spell-mechanic">🌳 Grande Árvore: vantagem Con+Sab · Concentração segura · Raízes</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Polymorph</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">18m</span>
+            <span class="spell-tag-small conc">concentração · 1h</span>
+          </div>
+        </div>
+        <p class="spell-desc">Transforma uma criatura em uma besta. Alvo voluntário ou aliado: pode se transformar em qualquer besta. Inimigo: <strong>TR de Sab (CD 19)</strong> ou é transformado em besta com CR ≤ nível do conjurador ou ≤ CR do alvo. Criaturas transformadas perdem suas estatísticas e usam as da besta. Controle, utilidade e versatilidade em um único espaço.</p>
+        <span class="spell-mechanic">✦ Aliado: qualquer besta · Inimigo: TR Sab CD 19 ou besta por 1h</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Freedom of Movement</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">toque</span>
+            <span class="spell-tag-small">1h</span>
+          </div>
+        </div>
+        <p class="spell-desc">Por 1 hora, o alvo tocado <strong>ignora terreno difícil</strong>, não pode ser agarrado, preso ou reduzido de velocidade por magia, e pode se mover e atacar normalmente mesmo debaixo d'água. Pode gastar 1,5m de movimento para escapar automaticamente de agarrões. A bênção da liberdade — Nahida quebra as amarras do mundo.</p>
+        <span class="spell-mechanic">💚 Ignora terreno difícil · Imune a grapple · Movimento aquático livre</span>
+      </div>
+    </div>
+
+    <!-- 5º CÍRCULO -->
+    <div class="spell-circle">
+      <div class="spell-circle-header">
+        <div class="spell-circle-badge">5</div>
+        <span class="spell-circle-title">5º Círculo — Espaços: 3</span>
+        <div class="spell-circle-slots">
+          <div class="slot"></div><div class="slot"></div><div class="slot"></div>
+        </div>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Commune with Nature</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">1 min (ritual)</span>
+            <span class="spell-tag-small">raio 5km / 9km</span>
+            <span class="spell-tag-small">instante</span>
+          </div>
+        </div>
+        <p class="spell-desc">Por meditação de 1 minuto, você se funde brevemente com a natureza local. Aprende <strong>até 3 fatos</strong> sobre o terreno, plantas, criaturas, construções ou povos em raio de 5km (underground) ou 9km (ao ar livre). A magia mais perfeita para Nahida — a Archon literalmente consulta o Irminsul, a rede de memórias da natureza viva.</p>
+        <span class="spell-mechanic">🌿 3 fatos sobre a área · Raio 5-9km · Pode ser ritual (sem espaço)</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Wall of Stone</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">36m</span>
+            <span class="spell-tag-small conc">concentração · 10 min</span>
+          </div>
+        </div>
+        <p class="spell-desc">Cria uma muralha sólida não mágica de pedra composta por até <strong>10 painéis de 3×3m</strong> (15cm de espessura), que pode assumir qualquer formato contíguo. Pode ser usada como cobertura, barreira ou armadilha. Se mantida por 10 minutos, torna-se permanente. Reskinada como barreiras de raízes ancestrais, pilares de cristal Dendro ou arquitetura natural do Irminsul.</p>
+        <span class="spell-mechanic">🌑 10 painéis 3×3m · Permanente se mantida 10min · CA 15, 30 PV/painel</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Mass Cure Wounds</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">18m · raio 9m</span>
+            <span class="spell-tag-small">instante</span>
+          </div>
+        </div>
+        <p class="spell-desc">Uma onda de energia restauradora irradia de um ponto. Até <strong>6 criaturas</strong> de sua escolha na área curam <strong>3d8 + 5 PV</strong> cada (escala com nível: +1d8 por nível acima do 5º). Cura de área massiva para sustentar o grupo inteiro com um único espaço. A Archon estende os braços e a floresta respira.</p>
+        <span class="spell-mechanic">💚 6 alvos · 3d8+5 PV cada · Escala com nível do espaço</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Greater Restoration</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">toque</span>
+            <span class="spell-tag-small">instante</span>
+          </div>
+        </div>
+        <p class="spell-desc">Remove um dos seguintes efeitos de uma criatura tocada: <strong>encantamento ou maldição</strong> (incluindo atunamento a item amaldiçoado), qualquer <strong>redução de atributo</strong>, um nível de <strong>exaustão</strong>, <strong>petrificação</strong> ou possuição. A cura mais profunda do arsenal — como se o próprio Irminsul reescrevesse o estado da criatura para seu verdadeiro ser.</p>
+        <span class="spell-mechanic">💚 Remove: encantamento · redução de atrib. · exaustão · petrificação</span>
+      </div>
+    </div>
+
+    <!-- 6º CÍRCULO -->
+    <div class="spell-circle">
+      <div class="spell-circle-header">
+        <div class="spell-circle-badge">6</div>
+        <span class="spell-circle-title">6º Círculo — Espaços: 2</span>
+        <div class="spell-circle-slots">
+          <div class="slot"></div><div class="slot"></div>
+        </div>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Heal</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">18m</span>
+            <span class="spell-tag-small">instante</span>
+          </div>
+        </div>
+        <p class="spell-desc">Restaura <strong>70 PV</strong> em uma criatura visível em 18m e <strong>remove cegueira, surdez e todas as doenças</strong> simultaneamente. Sem TR, sem concentração. Escala com espaços superiores (+10 PV por nível acima do 6º). A cura mais eficiente e poderosa do arsenal — um toque de divindade que faz o corpo e a mente voltarem à inteireza.</p>
+        <span class="spell-mechanic">💚 70 PV + cura cegueira+surdez+doenças · 18m · Sem concentração</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Transport via Plants</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">mesmo plano</span>
+            <span class="spell-tag-small">instante</span>
+          </div>
+        </div>
+        <p class="spell-desc">Cria um portal mágico entre duas plantas que você conhece no mesmo plano de existência. Você e até <strong>8 criaturas voluntárias</strong> viajam instantaneamente através das plantas. A planta de destino deve ser suficientemente grande para acomodar a passagem. Literalmente atravessar a rede viva do Irminsul — Nahida navegando pelas raízes conectadas de todo o mundo.</p>
+        <span class="spell-mechanic">🌿 Teletransporte · Até 9 criaturas · Entre plantas conhecidas · Mesmo plano</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Bones of the Earth</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">36m</span>
+            <span class="spell-tag-small">instante</span>
+          </div>
+        </div>
+        <p class="spell-desc">Faz surgir até <strong>6 pilares de rocha</strong> (50cm de diâmetro, até 9m de altura) em pontos do solo que você escolher. Criaturas no topo são lançadas para o ar. Criaturas presa entre o pilar e o teto sofrem <strong>6d6 de dano esmagador</strong> (Con para metade). Reskinado como raízes massivas do Irminsul rompendo o solo ou colunas vegetais de cristal Dendro.</p>
+        <span class="spell-mechanic">⚡ 6 pilares · Criatura encurralada: 6d6 esmagador (Con negado)</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Sunbeam</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">linha 18m</span>
+            <span class="spell-tag-small conc">concentração · 1 min</span>
+          </div>
+        </div>
+        <p class="spell-desc">Projeta um feixe de luz brilhante em linha de 5cm de largura e 18m. Criaturas na linha sofrem <strong>6d8 de dano radiante</strong> (Con para metade) e ficam <strong>cegas até o início do próximo turno</strong>. Pode reativar o feixe a cada turno como ação. Undead e oozes têm desvantagem no TR. Reskinado como feixe puro de energia Dendro-luz do Irminsul.</p>
+        <span class="spell-mechanic">☀ 6d8 radiante · Cego até próximo turno · Reutilizável por 1min · CD 19</span>
+      </div>
+    </div>
+
+    <!-- 7º CÍRCULO -->
+    <div class="spell-circle">
+      <div class="spell-circle-header">
+        <div class="spell-circle-badge">7</div>
+        <span class="spell-circle-title">7º Círculo — Espaços: 2</span>
+        <div class="spell-circle-slots">
+          <div class="slot"></div><div class="slot"></div>
+        </div>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Plane Shift</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">toque</span>
+            <span class="spell-tag-small">instante</span>
+          </div>
+        </div>
+        <p class="spell-desc">Transporte de plano em duas modalidades. Modo <strong>viagem</strong>: você e até 8 aliados voluntários viajam para outro plano de existência. Modo <strong>banimento</strong>: força um inimigo (TR de Car, CD 19) para outro plano escolhido. Requer um sintonizador material para o plano de destino. Nahida como entidade espiritual entre mundos — viajando entre o Sonho, o Plano Divino e a realidade.</p>
+        <span class="spell-mechanic">✦ Viagem: 9 criaturas · Banir: TR Car CD 19 · Requer material sintonizador</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Reverse Gravity</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">30m · cilindro 15×30m</span>
+            <span class="spell-tag-small conc">concentração · 1 min</span>
+          </div>
+        </div>
+        <p class="spell-desc">Inverte a gravidade em um cilindro de 15m de raio e 30m de altura. Criaturas e objetos que não estejam ancorados <strong>caem "para cima"</strong>, podendo sofrer até <strong>8d6 de dano de queda</strong> ao atingir o topo do cilindro. Quando o efeito terminar, tudo cai de volta. Controle de campo devastador que redefine o combate inteiro.</p>
+        <span class="spell-mechanic">⚡ Queda para cima · 8d6 dano de queda · Cilindro 15×30m · Con negado</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Fire Storm</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">36m · 10 cubos 3m</span>
+            <span class="spell-tag-small">instante</span>
+          </div>
+        </div>
+        <p class="spell-desc">Uma tempestade de fogo estoura em até <strong>10 cubos de 3m adjacentes</strong> de sua escolha. Criaturas sofrem <strong>7d10 de dano de fogo</strong> (Des para metade). Você pode escolher que a magia não queime plantas que deseja preservar. Reskinado como uma catástrofe de energia vegetal incendiária — o Irminsul em fúria, a floresta que decide queimar.</p>
+        <span class="spell-mechanic">🔥 7d10 fogo · TR Des CD 19 (metade) · 10 cubos 3m · Preserva plantas escolhidas</span>
+      </div>
+    </div>
+
+    <!-- 8º CÍRCULO -->
+    <div class="spell-circle">
+      <div class="spell-circle-header">
+        <div class="spell-circle-badge">8</div>
+        <span class="spell-circle-title">8º Círculo — Espaços: 1</span>
+        <div class="spell-circle-slots">
+          <div class="slot"></div>
+        </div>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Earthquake</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">90m · raio 30m</span>
+            <span class="spell-tag-small conc">concentração · 1 min</span>
+          </div>
+        </div>
+        <p class="spell-desc">Um tremor violento sacode o solo em raio de 30m: o terreno torna-se difícil, estruturas sofrem 50 de dano por turno. Criaturas devem superar TR de Des (CD 19) ou caem <strong>pronadas</strong>. A concentração é interrompida com desvantagem no TR. Magias de concentração exigem TR de Con (CD 15). O mundo reage ao poder da Archon.</p>
+        <span class="spell-mechanic">⚡ Terreno difícil · Pronado (TR Des CD 19) · Estruturas 50 dano/turno</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Feeblemind</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">45m</span>
+            <span class="spell-tag-small">instante + duração</span>
+          </div>
+        </div>
+        <p class="spell-desc">Assalto psíquico devastador: o alvo sofre <strong>4d6 de dano psíquico</strong> e deve superar TR de Int (CD 19) ou ter <strong>Inteligência e Carisma reduzidos a 1</strong> por 30 dias. Durante esse tempo, não pode conjurar magias, comunicar-se claramente nem tomar decisões complexas. Perfeito para Nahida — a guardiã da mente pode também destruí-la.</p>
+        <span class="spell-mechanic">🌑 4d6 psíquico · TR Int CD 19 · Falha: Int+Car→1 por 30 dias</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Animal Shapes</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">27m · aura 9m</span>
+            <span class="spell-tag-small conc">concentração · 24h</span>
+          </div>
+        </div>
+        <p class="spell-desc">Transforma até <strong>8 aliados voluntários</strong> que você possa ver em bestas de <strong>CR 4 ou inferior</strong>. Wild Shape em escala de grupo. As criaturas mantêm seus valores mentais mas usam as estatísticas físicas da besta. Podem retornar à forma normal como ação. Nahida transformando o grupo inteiro em manifestações da floresta — um exército de natureza viva.</p>
+        <span class="spell-mechanic">🦁 8 aliados · Bestas CR ≤4 · 24h · Mantêm Int+Sab+Car</span>
+      </div>
+    </div>
+
+    <!-- 9º CÍRCULO -->
+    <div class="spell-circle">
+      <div class="spell-circle-header">
+        <div class="spell-circle-badge">9</div>
+        <span class="spell-circle-title">9º Círculo — Espaços: 1</span>
+        <div class="spell-circle-slots">
+          <div class="slot"></div>
+        </div>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Foresight</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">1 min</span>
+            <span class="spell-tag-small">toque</span>
+            <span class="spell-tag-small">8h · SEM concentração</span>
+          </div>
+        </div>
+        <p class="spell-desc">Por <strong>8 horas sem concentração</strong>, o alvo tocado não pode ser surpreendido, tem <strong>vantagem em todas as rolagens de ataque, testes e TR</strong>, e inimigos têm <strong>desvantagem em ataques</strong> contra o alvo. A magia mais poderosa do círculo mais alto — praticamente invulnerabilidade estratégica. Para Nahida: onisciência limitada, como ver todos os galhos do Irminsul ao mesmo tempo.</p>
+        <span class="spell-mechanic">✦ 8h SEM concentração · Vantagem em TUDO · Inimigos desvantagem · Sem surpresa</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Shapechange</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">própria</span>
+            <span class="spell-tag-small conc">concentração · 1h</span>
+          </div>
+        </div>
+        <p class="spell-desc">Assume a forma de qualquer criatura com <strong>CR ≤ 20</strong> que você tenha visto ao menos uma vez, usando suas estatísticas completas incluindo ações lendárias e resistências. Você mantém seus valores de Int, Sab e Car. Pode mudar de forma como ação durante a duração. Diferente de Wild Shape, permite formas de criaturas não-bestas. A adaptação divina de Nahida em sua forma máxima.</p>
+        <span class="spell-mechanic">✦ Qualquer criatura CR ≤20 · Estatísticas completas · Troca de forma como ação</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top">
+          <span class="spell-name">Storm of Vengeance</span>
+          <div class="spell-tags-inline">
+            <span class="spell-tag-small">ação</span>
+            <span class="spell-tag-small">raio 91m</span>
+            <span class="spell-tag-small conc">concentração · 10 turnos</span>
+          </div>
+        </div>
+        <p class="spell-desc">Uma tempestade apocalíptica emerge de um ponto visível. Ao longo de <strong>10 rodadas</strong>, efeitos progressivos devastam o campo: <strong>Turno 1-2</strong> — trovão ensurdecedor (TR Con ou surdo); <strong>Turno 3-4</strong> — raios (10d6 relâmpago); <strong>Turno 5-6</strong> — granizo (1d6/turno); <strong>Turno 7-8</strong> — chuva ácida (1d6 ácido/turno); <strong>Turno 9-10</strong> — ventos violentos (velocidade ÷ 2). A ira do Irminsul desencadeada.</p>
+        <span class="spell-mechanic">⛈ 10 turnos progressivos · Raio 91m · Efeitos cumulativos de catástrofe</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-sym">✦ 🌿 ✦</span></div>
+
+  <!-- ══ PERSONALIDADE ════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Personalidade, Ideais &amp; Ligações</h2>
+    <div class="three-col">
+      <div class="trait-box">
+        <span class="trait-label">Traços de Personalidade</span>
+        <p class="trait-text">Serena e curiosa, Nahida observa o mundo com olhos que enxergam as memórias das coisas. Fala com gentileza mesmo com inimigos. Faz perguntas que parecem simples mas carregam profundeza insondável.</p>
+      </div>
+      <div class="trait-box">
+        <span class="trait-label">Ideais</span>
+        <p class="trait-text"><strong style="color:var(--sage)">Conhecimento:</strong> O saber não pertence a ninguém — pertence a todos. Guardar conhecimento é uma forma de morte. Compartilhá-lo é a forma mais pura de vida.</p>
+      </div>
+      <div class="trait-box">
+        <span class="trait-label">Ligações &amp; Defeitos</span>
+        <p class="trait-text"><strong style="color:var(--sage)">Ligação:</strong> O Irminsul e todas as criaturas vivas ligadas a ele são sua família. <strong style="color:var(--sage)">Defeito:</strong> Sua ingenuidade sobre o mundo fora do Irminsul pode ser explorada por quem tem más intenções.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ IDIOMAS / INFORMAÇÕES EXTRAS ════════════════════ -->
+  <div class="section" style="margin-top:28px">
+    <div class="two-col">
+      <div>
+        <h2 class="section-title">Informações do Personagem</h2>
+        <ul class="info-list">
+          <li class="info-item">
+            <span class="info-key">Nome</span>
+            <span class="info-val">Nahida · Lesser Lord Kusanali · Archon de Sumeru</span>
+          </li>
+          <li class="info-item">
+            <span class="info-key">Tamanho</span>
+            <span class="info-val">Pequeno — levita suavemente, raramente toca o chão</span>
+          </li>
+          <li class="info-item">
+            <span class="info-key">Aparência</span>
+            <span class="info-val">Cabelos verdes e brancos, olhos verdes luminosos, orelhas de ponta, pele clara, vestes brancas e verdes de aparência viva</span>
+          </li>
+          <li class="info-item">
+            <span class="info-key">Idiomas</span>
+            <span class="info-val">Comum · Silvestre · Élfico + 2 adicionais</span>
+          </li>
+          <li class="info-item">
+            <span class="info-key">Inspiração</span>
+            <span class="info-val">☐</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="section-title">Habilidade Chave de Conjuração</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px">
+          <div class="passive-block">
+            <span class="passive-num" style="font-size:22px">Sab</span>
+            <span class="passive-lbl">Atributo</span>
+          </div>
+          <div class="passive-block">
+            <span class="passive-num">19</span>
+            <span class="passive-lbl">CD Magias</span>
+          </div>
+          <div class="passive-block">
+            <span class="passive-num">+11</span>
+            <span class="passive-lbl">Ataque Mágico</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Espaços de Magia (Nível 20)</div>
+          <p style="font-family:'Share Tech Mono',monospace;font-size:12px;line-height:2">
+            1° ◆◆◆◆ &nbsp; 2° ◆◆◆ &nbsp; 3° ◆◆◆<br>
+            4° ◆◆◆ &nbsp; 5° ◆◆◆ &nbsp; 6° ◆◆<br>
+            7° ◆◆ &nbsp; 8° ◆ &nbsp; 9° ◆
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-sym">✦ 🌿 ✦</span></div>
+
+  <!-- ══ PROGRESSÃO RESUMIDA ══════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Resumo da Progressão por Nível</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+      <div class="card" style="padding:12px 14px">
+        <div class="card-title" style="font-size:9px">Nível 1-2</div>
+        <p style="font-size:12px">Spellcasting · Wild Shape · Druidic · Balm of the Summer Court · Identidade de suporte e controle básico.</p>
+      </div>
+      <div class="card" style="padding:12px 14px">
+        <div class="card-title" style="font-size:9px">Nível 3-5</div>
+        <p style="font-size:12px">2° e 3° círculo · Controle de mapa com Spike Growth e Plant Growth · Revivify · Speak with Plants.</p>
+      </div>
+      <div class="card" style="padding:12px 14px">
+        <div class="card-title" style="font-size:9px">Nível 6-10</div>
+        <p style="font-size:12px">Hearth of M&amp;S · Hidden Paths · 4° ao 5° círculo · Telepathic (nível 8) · War Caster (nível 12).</p>
+      </div>
+      <div class="card" style="padding:12px 14px">
+        <div class="card-title" style="font-size:9px">Nível 14-20</div>
+        <p style="font-size:12px">Walker in Dreams · 7°-9° círculo · Timeless Body · Beast Spells · Archdruid — forma divina completa.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ BACKSTORY ════════════════════════════════════════ -->
+  <div class="section" style="margin-top:32px">
+    <h2 class="section-title">História do Personagem</h2>
+    <div class="backstory">
+      <p>Ela não nasceu. Ela despertou.</p>
+      <p>Nahida é a quinta Archon Dendro de Sumeru — a Deus das Plantas, a Guardadora do Irminsul, a Menor Senhor Kusanali. Durante quinhentos anos, esteve confinada em um Palácio dos Sonhos enquanto o mundo do lado de fora continuava sem ela. Não por fraqueza, mas por medo alheio: os Sábios de Sumeru temiam seu poder e a mantinham isolada, governando em seu nome sem sua voz.</p>
+      <div class="bs-quote">"Eu nunca toquei a chuva de verdade. Mas eu me lembro de tudo que ela já tocou."</div>
+      <p>O Irminsul é mais do que uma árvore. É uma biblioteca viva — cada folha carrega a memória de uma criatura que um dia existiu, cada raiz conecta o passado ao presente. Nahida não governa pelo medo, pelo poder bruto ou pelo decreto. Ela governa pela compreensão. Pelo conhecimento. Pela empatia que atravessa o tempo e o espaço sem precisar de palavras.</p>
+      <p>Nesta adaptação para a mesa, Nahida existe como uma entidade que viajou além das fronteiras de Sumeru, levando consigo a sabedoria do Irminsul. Ela é pequena, leve e parece frágil — mas é uma presença que faz o próprio chão lembrar que já foi semente. Ela não impõe; ela orienta. Ela não destrói; ela transforma.</p>
+      <p>E quando o mundo precisa ser salvo, ela não levanta a espada. Ela planta uma raiz, sussurra aos ventos e deixa a floresta fazer o que sempre soube fazer.</p>
+    </div>
+  </div>
+
+  <div class="scroll-ornament">✦ &nbsp; 🌿 &nbsp; ✦ &nbsp; 🌿 &nbsp; ✦</div>
+
+</div><!-- /page -->
+
+<script>
+// Floating leaf particles
+const container = document.getElementById('leafBg');
+const symbols = ['🍃','🌿','✦','·','❋','⋆'];
+for (let i = 0; i < 28; i++) {
+  const leaf = document.createElement('span');
+  leaf.className = 'leaf';
+  leaf.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+  leaf.style.left = Math.random() * 100 + '%';
+  leaf.style.animationDuration = (12 + Math.random() * 20) + 's';
+  leaf.style.animationDelay = (Math.random() * 20) + 's';
+  leaf.style.fontSize = (10 + Math.random() * 12) + 'px';
+  container.appendChild(leaf);
+}
+</script>
+
+</body>
+</html>
