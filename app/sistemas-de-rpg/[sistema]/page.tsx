@@ -30,10 +30,10 @@ export default async function SystemPage({
     <SystemThemeProvider system={sistema}>
       <div className="min-h-screen">
         {/* Hero */}
-        <header className="system-hero-bg relative overflow-hidden" style={{ minHeight: "36vh" }}>
+        <header className="system-hero-bg relative overflow-hidden flex flex-col" style={{ minHeight: "36vh" }}>
           <SystemWatermark theme={theme} />
 
-          <div className="relative z-10 flex flex-col justify-end h-full px-6 pb-8 pt-12 max-w-4xl mx-auto">
+          <div className="relative z-10 flex flex-col justify-end flex-1 px-6 pb-8 pt-12 max-w-4xl mx-auto">
             <Link
               href="/sistemas-de-rpg"
               className="font-mono text-[10px] tracking-widest uppercase transition-colors mb-6 inline-block hover:text-[var(--color-theme-brand-bright)]"

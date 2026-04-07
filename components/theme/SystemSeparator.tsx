@@ -51,5 +51,5 @@ export default function SystemSeparator({ theme }: SystemSeparatorProps) {
     );
   }
 
-  return <div className="separator-rune my-8" aria-hidden="true" />;
+  return null;
 }
