@@ -1,0 +1,377 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "Arlecchino",
+      "titulo": "The Knave — Harbinger dos Fatui",
+      "raca": "Shadar-kai",
+      "classe": "Bruxo",
+      "nivel": 20,
+      "subclasse": "Lâmina Maldita (Hexblade)",
+      "antecedente": "Nobre",
+      "tendencia": "Leal e Mau",
+      "xp": "355.000"
+    },
+    "atributos": {
+      "forca": { "valor": 8, "mod": -1 },
+      "destreza": { "valor": 16, "mod": 3 },
+      "constituicao": { "valor": 16, "mod": 3 },
+      "inteligencia": { "valor": 8, "mod": -1 },
+      "sabedoria": { "valor": 10, "mod": 0 },
+      "carisma": { "valor": 20, "mod": 5 }
+    },
+    "combate": {
+      "classe_armadura": 17,
+      "pv_totais": 154,
+      "iniciativa": 3,
+      "deslocamento": "9m",
+      "bonus_proficiencia": 6,
+      "cd_magia": 19,
+      "ataque_magico": 11,
+      "dados_vida": "20d8 (média 154 PV)",
+      "armadura": "Half Plate (CA 15) + Des limitada (+2) = CA 17"
+    },
+    "testes_resistencia": {
+      "forca": { "valor": -1, "proficiente": false },
+      "destreza": { "valor": 3, "proficiente": false },
+      "constituicao": { "valor": 3, "proficiente": false },
+      "inteligencia": { "valor": -1, "proficiente": false },
+      "sabedoria": { "valor": 6, "proficiente": true },
+      "carisma": { "valor": 11, "proficiente": true }
+    },
+    "pericias": {
+      "acrobacia": { "valor": 3, "atributo": "Des", "proficiente": false },
+      "arcanismo": { "valor": -1, "atributo": "Int", "proficiente": false },
+      "atletismo": { "valor": -1, "atributo": "For", "proficiente": false },
+      "atuacao": { "valor": 5, "atributo": "Car", "proficiente": false },
+      "blefar_enganação": { "valor": 11, "atributo": "Car", "proficiente": true },
+      "furtividade": { "valor": 3, "atributo": "Des", "proficiente": false },
+      "historia": { "valor": 5, "atributo": "Int", "proficiente": true },
+      "intimidação": { "valor": 11, "atributo": "Car", "proficiente": true },
+      "intuicao": { "valor": 0, "atributo": "Sab", "proficiente": false },
+      "investigacao": { "valor": -1, "atributo": "Int", "proficiente": false },
+      "lidar_com_animais": { "valor": 0, "atributo": "Sab", "proficiente": false },
+      "medicina": { "valor": 0, "atributo": "Sab", "proficiente": false },
+      "natureza": { "valor": -1, "atributo": "Int", "proficiente": false },
+      "percepcao": { "valor": 0, "atributo": "Sab", "proficiente": false },
+      "persuasao": { "valor": 11, "atributo": "Car", "proficiente": true },
+      "prestidigitacao": { "valor": 3, "atributo": "Des", "proficiente": false },
+      "religiao": { "valor": -1, "atributo": "Int", "proficiente": false },
+      "sobrevivencia": { "valor": 0, "atributo": "Sab", "proficiente": false }
+    },
+    "passiva": {
+      "sabedoria_passiva": 10
+    },
+    "ataques": [
+      {
+        "nome": "Foice — Ataque 1",
+        "bonus": 11,
+        "dano": "1d10+10 Cortante",
+        "alcance": "Corpo a corpo",
+        "notas": "CAR via Hex Warrior + Lifedrinker (+5 CAR)"
+      },
+      {
+        "nome": "Foice — Ataque 2 (Thirsting Blade)",
+        "bonus": 11,
+        "dano": "1d10+10 Cortante",
+        "alcance": "Corpo a corpo",
+        "notas": "Ataque extra via Thirsting Blade"
+      },
+      {
+        "nome": "Atq. Bônus — Polearm Master",
+        "bonus": 11,
+        "dano": "1d4+10 Contund.",
+        "alcance": "Corpo a corpo",
+        "notas": "Cabo da foice (ação bônus)"
+      },
+      {
+        "nome": "Eldritch Blast",
+        "bonus": 11,
+        "dano": "4×1d10+5 Força",
+        "alcance": "36 metros",
+        "notas": "4 raios (nível 17+). Agonizing Blast +5/raio"
+      },
+      {
+        "nome": "Eldritch Smite (slot gasto)",
+        "bonus": 11,
+        "dano": "+6d8 Força extra",
+        "alcance": "Corpo a corpo",
+        "notas": "No acerto da foice; crítico automático em 19-20"
+      }
+    ],
+    "habilidades_classe": {
+      "hexblade": [
+        {
+          "nome": "Hexblade's Curse",
+          "descricao": "Ação bônus — amaldiçoa alvo visível em 9m. Bônus de dano = proficiência (+6). Crítico em 19–20. Recupera PV = nível + mod. CAR ao matar o alvo."
+        },
+        {
+          "nome": "Hex Warrior",
+          "descricao": "Usa Carisma nos ataques e dano com a arma de pacto. Proficiência com armaduras médias, escudos e armas marciais."
+        },
+        {
+          "nome": "Accursed Specter",
+          "descricao": "Ao matar um humanoide, pode conjurá-lo como espectro sob seu controle (PV max = ½ nível). Uma vez por descanso longo."
+        },
+        {
+          "nome": "Armor of Hexes",
+          "descricao": "Quando o alvo amaldiçoado ataca você: 50% de chance do ataque falhar automaticamente."
+        },
+        {
+          "nome": "Master of Hexes",
+          "descricao": "Ao matar alvo amaldiçoado, transfere a maldição para outro alvo em 9m — sem nova ação bônus."
+        },
+        {
+          "nome": "Eldritch Master — Capstone",
+          "descricao": "Recupera todos os slots Pact Magic em 1 min de foco. 1× por descanso longo. A Harbinger nunca fica \"seca\"."
+        }
+      ],
+      "pacto_raca": [
+        {
+          "nome": "Dádiva do Pacto — Lâmina",
+          "descricao": "A Foice existe como extensão do pacto. Convocada como ação bônus. Conta como arma mágica +1 (via Improved Pact Weapon) para fins de resistência e ataque."
+        },
+        {
+          "nome": "Blessing of the Raven Queen",
+          "descricao": "(Shadar-kai) — Ação bônus: teletransporte até 9m para espaço visível. Após o teleporte, resistência a todos os danos por 1 turno."
+        }
+      ],
+      "talentos": [
+        {
+          "nome": "Polearm Master",
+          "descricao": "Ganha ataque bônus com o cabo (1d4+10). Inimigos que entram no alcance da arma provocam ataque de oportunidade imediato — Arlecchino pune cada passo."
+        },
+        {
+          "nome": "Great Weapon Master",
+          "descricao": "No crítico ou ao derrubar um inimigo, ataca como ação bônus. Pode optar por −5 acerto / +10 dano em qualquer ataque — modo execução."
+        },
+        {
+          "nome": "Fey Touched (+1 CAR)",
+          "descricao": "Misty Step + Command (1×/descanso curto cada). Carisma sobe para 20. Mobilidade e autoridade feérica encapsuladas em um único talento."
+        }
+      ]
+    },
+    "invocacoes": [
+      { "nome": "Agonizing Blast", "descricao": "+CAR (+5) no dano do Eldritch Blast por raio" },
+      { "nome": "Devil's Sight", "descricao": "Visão normal em escuridão mágica ou mundana (18m)" },
+      { "nome": "Thirsting Blade", "descricao": "Ataque extra com a arma de pacto (nível 5+)" },
+      { "nome": "Eldritch Smite", "descricao": "Gasta slot: +1d8 Força/slot no acerto; crítico em 19-20" },
+      { "nome": "Improved Pact Weapon", "descricao": "A foice ganha +1 acerto/dano e age como foco arcano" },
+      { "nome": "Eldritch Mind", "descricao": "Vantagem em Con para manter concentração" },
+      { "nome": "Lifedrinker", "descricao": "+CAR (+5) no dano de CADA acerto com a arma de pacto" },
+      { "nome": "Shroud of Shadow", "descricao": "Lança Invisibilidade à vontade (sem custo de slot)" }
+    ],
+    "magias": {
+      "atributo_conjurador": "Carisma",
+      "cd_magia": 19,
+      "ataque_magico": 11,
+      "classe": "Bruxo",
+      "slots_pact_magic": "4 × 5° Círculo",
+      "truques": [
+        {
+          "nome": "Eldritch Blast",
+          "tags": ["ação", "36m", "central", "ataque mágico"],
+          "descricao": "Lança 4 raios de força (nível 17+), cada um exigindo uma rolagem de ataque separada (+11). Com Agonizing Blast, cada raio que acerta adiciona +5 de dano de Força, totalizando até 4×(1d10+5) em um único turno. Pode dividir os raios entre diferentes alvos.",
+          "mecanica": "4 rolagens +11 · Cada raio: 1d10+5 Força · Dividível entre alvos"
+        },
+        {
+          "nome": "Green-Flame Blade",
+          "tags": ["ação", "corpo a corpo", "ataque mágico"],
+          "descricao": "Realiza um ataque corpo a corpo com a foice, imbuída de fogo esverdeado. Em caso de acerto, além do dano normal da arma, uma chama verde salta para um segundo alvo em 1,5m causando 4d8 de dano de fogo (nível 17+). Alternativa ao Eldritch Blast quando há alvos agrupados.",
+          "mecanica": "Ataque normal + 4d8 fogo em alvo adjacente · Escala por nível"
+        }
+      ],
+      "conhecidas": [
+        {
+          "nome": "Hex",
+          "tags": ["ação bônus", "concentração · 8h", "27m", "central"],
+          "descricao": "Amaldiçoa um alvo visível em 27m. Enquanto ativa: você causa +1d6 de dano necrótico extra em cada acerto contra o alvo e o alvo tem desvantagem em testes de habilidade de um atributo de sua escolha. Se o alvo morrer, pode transferir a maldição para outro alvo sem custo adicional de slot. Dura 8h com um slot de 5°.",
+          "mecanica": "+1d6 necrótico/acerto · Desvantagem em atrib. · Transferível ao matar"
+        },
+        {
+          "nome": "Armor of Agathys",
+          "tags": ["ação", "própria · 1h", "central"],
+          "descricao": "Cria uma armadura de gelo mágico ao redor de seu corpo. Você ganha 25 PV temporários (lançada como 5° círculo). Enquanto os PV temporários durem, cada criatura que acertar você com ataque corpo a corpo sofre 25 de dano de frio automaticamente.",
+          "mecanica": "25 PV temp · Atacantes corpo a corpo: 25 dano frio automático"
+        },
+        {
+          "nome": "Hellish Rebuke",
+          "tags": ["reação", "instante", "quando atingida"],
+          "descricao": "Como reação ao ser atingida por uma criatura em 18m, você a envolve em chamas infernais. O alvo sofre 5d10 de dano de fogo (Destreza CD 19 para metade) — lançada como 5° círculo.",
+          "mecanica": "Reação · 5d10 fogo (Des CD 19 para metade)"
+        },
+        {
+          "nome": "Shield",
+          "tags": ["reação", "própria · 1 turno", "quando atingida"],
+          "descricao": "Como reação ao ser alvo de um ataque, cria uma barreira mágica invisível: +5 de CA até o início do próximo turno (incluindo contra o ataque que ativou). Se o ataque anteriormente acertaria sem o bônus, ele agora erra. Imunidade a Magic Missile durante o turno.",
+          "mecanica": "Reação · +5 CA até próximo turno · Inclui vs. o ataque gatilho"
+        },
+        {
+          "nome": "Darkness",
+          "tags": ["ação", "concentração · 10 min", "18m · raio 4,5m", "central"],
+          "descricao": "Cria uma esfera de escuridão mágica impenetrável em raio de 4,5m. Nenhuma luz normal ou Visão no Escuro padrão funciona dentro dela. Com Devil's Sight, Arlecchino enxerga perfeitamente enquanto todos os outros estão efetivamente cegos.",
+          "mecanica": "Raio 4,5m · Apenas Devil's Sight enxerga · Vantagem/desvantagem total"
+        },
+        {
+          "nome": "Blur",
+          "tags": ["ação", "concentração · 1 min", "própria"],
+          "descricao": "Seu corpo se distorce e oscila — qualquer ataque contra você tem desvantagem durante toda a duração (a menos que o atacante não precise ver o alvo ou tenha sentidos especiais).",
+          "mecanica": "Desvantagem em todos os ataques contra você · Sem TR · 1 min"
+        },
+        {
+          "nome": "Counterspell",
+          "tags": ["reação", "18m", "interrupção"],
+          "descricao": "Como reação quando uma criatura em 18m inicia uma conjuração: interrompe automaticamente magias de 3° círculo ou inferior. Para magias de nível superior, realize um teste de habilidade de conjuração (Carisma +11 vs. CD 10 + nível da magia).",
+          "mecanica": "Reação · Auto-cancel ≤5° com slot de 5° · TR Car +11 vs. círculo superior"
+        },
+        {
+          "nome": "Blink",
+          "tags": ["ação", "SEM concentração · 1 min", "própria"],
+          "descricao": "Ao fim de cada um de seus turnos, role 1d20. Em 11 ou mais, você desaparece para o Plano Etéreo até o início do próximo turno — os ataques simplesmente passam por você.",
+          "mecanica": "Sem concentração · d20 ≥ 11: plano etéreo por 1 turno · 50% evasão"
+        },
+        {
+          "nome": "Elemental Weapon",
+          "tags": ["ação", "concentração · 1h", "toque"],
+          "descricao": "A foice ganha +2 de acerto e cada acerto causa +2d4 de dano elemental (fogo, cortante, relâmpago — escolha ao lançar). Lançada como 5°, o bônus sobe para +3 acerto e +3d4 dano.",
+          "mecanica": "+3 acerto · +3d4 elemental/acerto (5°) · Combine com Lifedrinker"
+        },
+        {
+          "nome": "Shadow of Moil",
+          "tags": ["ação", "concentração · 1 min", "central"],
+          "descricao": "Você fica rodeado de sombras flamejantes que obscurecem sua forma. Enquanto ativa: ataques contra você têm desvantagem, você tem resistência a dano radiante e qualquer criatura que acertar você com ataque corpo a corpo sofre 2d8 de dano necrótico.",
+          "mecanica": "Desvantagem em ataques vs. você · Resist. radiante · 2d8 necrótico/acerto"
+        },
+        {
+          "nome": "Banishing Smite",
+          "tags": ["ação bônus", "concentração · 1 min", "próximo acerto"],
+          "descricao": "No próximo acerto com a foice: causa +5d10 de dano de Força adicional. Se o alvo cair abaixo de 50 PV com esse golpe, é banido para seu plano de origem por 1 minuto.",
+          "mecanica": "+5d10 Força · Se alvo ≤50 PV após: banido por 1 min · Concentração"
+        },
+        {
+          "nome": "Hold Monster",
+          "tags": ["ação", "concentração · 1 min", "18m"],
+          "descricao": "Paralisa uma criatura de qualquer tipo (diferente de Hold Person) que falhe em TR de Sabedoria (CD 19). Enquanto paralisada: fica incapacitada, falha em TR de For e Des automaticamente, e ataques corpo a corpo contra ela têm vantagem e são críticos automáticos.",
+          "mecanica": "TR Sab CD 19 · Paralisado · Críticos automáticos em corpo a corpo"
+        },
+        {
+          "nome": "Far Step",
+          "tags": ["ação bônus", "concentração · 1 min", "18m/turno"],
+          "descricao": "Teletransporte imediato até 18m para espaço visível como ação bônus. Enquanto durar a concentração (1 min), pode se teletransportar novamente a cada turno como ação bônus.",
+          "mecanica": "Ação bônus · 18m/turno por 1 min · Reposicionamento contínuo"
+        },
+        {
+          "nome": "Enervation",
+          "tags": ["ação", "concentração · 1 min", "18m"],
+          "descricao": "Um tentáculo de energia negra agarra o alvo, causando 4d8 de dano necrótico no turno do lançamento, com TR de Des (CD 19) para metade. A cada turno, como ação, pode manter o efeito e recupera PV iguais à metade do dano causado.",
+          "mecanica": "4d8 necrótico/turno · Recupera ½ dano em PV · Velocidade ÷ 2 · Concentração"
+        },
+        {
+          "nome": "Spirit Shroud",
+          "tags": ["ação bônus", "concentração · 1 min", "própria · aura 3m"],
+          "descricao": "Invoca espíritos ao redor de você em aura de 3m. Cada acerto com arma ou magia causa +1d8 de dano extra. Inimigos na aura não podem recuperar PV e têm a velocidade reduzida em 3m.",
+          "mecanica": "+1d8/acerto · Inimigos na aura: sem cura · Velocidade −3m"
+        },
+        {
+          "nome": "Synaptic Static",
+          "tags": ["ação", "27m · esfera 6m", "instante + duração"],
+          "descricao": "Cria uma explosão psíquica em esfera de 6m. Criaturas que falhem em TR de Int (CD 19) sofrem 8d6 de dano psíquico e devem rolar 1d6 e subtrair de qualquer ataque, habilidade ou TR de concentração por 1 minuto.",
+          "mecanica": "TR Int CD 19 · 8d6 psíquico · Falha: −1d6 em ataques e TR por 1 min"
+        }
+      ],
+      "mystic_arcanum": [
+        {
+          "nivel": 6,
+          "nome": "Investiture of Flame",
+          "tags": ["ação", "concentração · 10 min", "própria · aura"],
+          "descricao": "Você entra em estado de fogo sobrenatural: emite luz brilhante em 9m, tem imunidade a fogo e frio, e qualquer criatura que comece o turno em 1,5m sofre 1d10 de dano de fogo. Como ação, projeta um jato de fogo de 15m causando 4d8 de dano de fogo.",
+          "mecanica": "Imune a fogo · 1d10 aura/turno · Jato 4d8 fogo · 10 min concentração"
+        },
+        {
+          "nivel": 7,
+          "nome": "Finger of Death",
+          "tags": ["ação", "18m", "instante"],
+          "descricao": "Envia energia negativa devastadora: o alvo sofre 7d8+30 de dano necrótico (Con CD 19 para metade). Se um humanoide morrer com esse golpe, levanta instantaneamente na próxima rodada como um zumbi permanente sob seu controle.",
+          "mecanica": "7d8+30 necrótico (Con CD 19) · Humanoide morto → zumbi permanente sob controle"
+        },
+        {
+          "nivel": 8,
+          "nome": "Maddening Darkness",
+          "tags": ["ação", "concentração · 10 min", "36m · raio 18m"],
+          "descricao": "Escuridão mágica impenetrável em raio de 18m. Criaturas que iniciam o turno na escuridão sofrem 8d8 de dano psíquico (Sab CD 19 para metade). Com Devil's Sight, você enxerga perfeitamente.",
+          "mecanica": "Raio 18m · 8d8 psíquico/turno (Sab CD 19) · Apenas Devil's Sight enxerga"
+        },
+        {
+          "nivel": 9,
+          "nome": "Blade of Disaster",
+          "tags": ["ação bônus", "concentração · 1 min", "18m"],
+          "descricao": "Cria uma lâmina de força pura. Como ação, comanda a lâmina — ela realiza 2 ataques (+11) e causa 2d12 de dano de Força em cada acerto. Crítico em 18–20. A lâmina ignora resistências e imunidades a dano não mágico.",
+          "mecanica": "2 ataques +11 · 2d12 Força cada · Crítico 18-20 · Ignora resistências"
+        }
+      ],
+      "via_talento": [
+        {
+          "nome": "Misty Step",
+          "tags": ["ação bônus", "18m", "instante"],
+          "descricao": "Teletransporte para qualquer espaço visível em 18m como ação bônus. Disponível a cada descanso curto via Fey Touched.",
+          "mecanica": "Ação bônus · 18m teletransporte · Sem TR · Recarrega em descanso curto"
+        },
+        {
+          "nome": "Command",
+          "tags": ["ação", "18m", "1 turno"],
+          "descricao": "Uma palavra de autoridade absoluta: o alvo deve superar TR de Sabedoria (CD 19) ou obedecer um comando de uma palavra. Sem concentração.",
+          "mecanica": "TR Sab CD 19 · 1 palavra de comando · Sem concentração · Recarrega em descanso curto"
+        }
+      ]
+    },
+    "equipamento": {
+      "arma_principal": {
+        "nome": "Glaive/Halberda (reskin: Foice)",
+        "dano": "1d10 Cortante",
+        "alcance": "1,5m",
+        "propriedades": ["Pesada", "Dois Lados", "Arma de Pacto"],
+        "nota": "Conta como arma mágica +1 (Improved Pact Weapon)"
+      },
+      "armadura": [
+        "Half Plate — CA 15 + Des 2 = CA 17",
+        "Foco Arcano (integrado à Foice)",
+        "Armor of Agathys — escudo de gelo ativo"
+      ],
+      "outros": [
+        "2 Adagas (emergência)",
+        "Pack do Explorador",
+        "Roupas Finas (autoridade)",
+        "Sinete de Harbinger dos Fatui"
+      ],
+      "proficiencias": {
+        "armaduras": ["Leves", "Médias", "Escudos"],
+        "armas": ["Simples", "Marciais"],
+        "ferramentas": ["1 jogo (Nobre)"],
+        "idiomas": ["Comum", "Élfico"]
+      }
+    },
+    "personalidade": {
+      "traços": "Fria e absolutamente calculista. Cada palavra é uma faca, cada silêncio — uma sentença. Não desperdiça emoções com quem não merece.",
+      "ideais": "Poder e controle são as únicas verdades imutáveis. Os fracos existem para servir ou morrer; os fortes, para governar. O Tsaritsa é a ordem — e ela é o seu instrumento.",
+      "ligacoes": "As crianças do Casa dei Fiori — a única coisa que ainda a prende ao mundo dos vivos. Seu legado, sua família, sua única fraqueza oculta.",
+      "defeitos": "A humanidade enterrada sob as cinzas de seu passado. Ela não sente — ou convenceu a si mesma disso. Um dia, o fogo pode aflorar de dentro para fora."
+    },
+    "aparencia": {
+      "idade": "Desconhecida",
+      "altura": "1,72 m",
+      "peso": "~58 kg",
+      "olhos": "Rosa claro",
+      "cabelos": "Preto e branco",
+      "pele": "Muito clara",
+      "marca": "Cruz em X no olho",
+      "tipo": "Shadar-kai"
+    },
+    "tesouro": {
+      "pc": 0,
+      "pp": 0,
+      "pe": 0,
+      "po": "∞",
+      "pp_platina": 0
+    },
+    "historia": "Arlecchino. The Knave. Father. Não existe arquivo oficial sobre sua origem. Os registros mais antigos a mencionam como 'the child who would not break'. Criada dentro de uma estrutura de poder que devora os fracos, ela não apenas sobreviveu: tornou-se o sistema.\n\nOs primeiros anos — O que não pode ser partido:\nNinguém sabe quantos anos ela tem. Recrutada ou capturada pelos Fatui, o processo de treinamento destruiu outros mas a afiou como uma lâmina. Enquanto os outros choravam, ela observava. Enquanto os outros quebravam, ela aprendia.\n\nO Pacto — A Raven Queen e a Foice:\nEm algum ponto firmou um pacto. Com o quê exatamente permanece obscuro. O que emergiu foi a foice: não como arma encontrada, mas como extensão de algo interno.\n'Não é uma arma. É uma sentença.'\n\nO Casa dei Fiori — A única contradição:\nO orfanato. Ela coletou, treinou e moldou as crianças descartadas.\n'Eles não são instrumentos. São meus.'\n\nA Harbinger — O que é ser The Knave:\nDentro dos Fatui, ocupa um nível acima de quase todos. O que a motiva não é ambição pessoal, é algo próximo de uma visão de ordem: um mundo onde o poder é exercido com competência e sem hipocrisia.\n\nNo fundo das cinzas, algo ainda arde. Ela apenas decidiu parar de procurar o que é."
+  }
+}

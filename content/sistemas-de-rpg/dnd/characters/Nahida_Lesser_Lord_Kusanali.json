@@ -1,0 +1,460 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "Nahida",
+      "titulo": "Lesser Lord Kusanali · Archon de Sumeru",
+      "raca": "Fairy",
+      "classe": "Druida",
+      "nivel": 20,
+      "subclasse": "Círculo dos Sonhos",
+      "antecedente": "Sábia",
+      "tendencia": "Neutro Bom"
+    },
+    "atributos": {
+      "forca": { "valor": 8, "mod": -1 },
+      "destreza": { "valor": 14, "mod": 2 },
+      "constituicao": { "valor": 16, "mod": 3 },
+      "inteligencia": { "valor": 10, "mod": 0 },
+      "sabedoria": { "valor": 20, "mod": 5 },
+      "carisma": { "valor": 8, "mod": -1 }
+    },
+    "combate": {
+      "classe_armadura": 19,
+      "pv_totais": 152,
+      "iniciativa": 2,
+      "deslocamento": "9m + Voo 9m",
+      "bonus_proficiencia": 6,
+      "cd_magia": 19,
+      "ataque_magico": 11,
+      "armadura_det": "Armadura + Escudo"
+    },
+    "testes_resistencia": {
+      "forca": { "valor": -1, "proficiente": false },
+      "destreza": { "valor": 2, "proficiente": false },
+      "constituicao": { "valor": 3, "proficiente": false },
+      "inteligencia": { "valor": 6, "proficiente": true },
+      "sabedoria": { "valor": 11, "proficiente": true },
+      "carisma": { "valor": -1, "proficiente": false }
+    },
+    "pericias": {
+      "acrobacia": { "valor": 2, "atributo": "DES", "proficiente": false },
+      "arcanismo": { "valor": 6, "atributo": "INT", "proficiente": true },
+      "atletismo": { "valor": -1, "atributo": "FOR", "proficiente": false },
+      "atuacao": { "valor": -1, "atributo": "CAR", "proficiente": false },
+      "blefar": { "valor": -1, "atributo": "CAR", "proficiente": false },
+      "furtividade": { "valor": 2, "atributo": "DES", "proficiente": false },
+      "historia": { "valor": 6, "atributo": "INT", "proficiente": true },
+      "intimidacao": { "valor": -1, "atributo": "CAR", "proficiente": false },
+      "intuicao": { "valor": 11, "atributo": "SAB", "proficiente": true },
+      "investigacao": { "valor": 0, "atributo": "INT", "proficiente": false },
+      "lidar_com_animais": { "valor": 5, "atributo": "SAB", "proficiente": false },
+      "medicina": { "valor": 5, "atributo": "SAB", "proficiente": false },
+      "natureza": { "valor": 6, "atributo": "INT", "proficiente": true },
+      "percepcao": { "valor": 5, "atributo": "SAB", "proficiente": false },
+      "persuasao": { "valor": -1, "atributo": "CAR", "proficiente": false },
+      "prestidigitacao": { "valor": 2, "atributo": "DES", "proficiente": false },
+      "religiao": { "valor": 0, "atributo": "INT", "proficiente": false },
+      "sobrevivencia": { "valor": 5, "atributo": "SAB", "proficiente": false }
+    },
+    "passiva": {
+      "sabedoria_passiva": 21
+    },
+    "dados_vida": "20d8",
+    "proficiencias": {
+      "armaduras": ["Leves", "Médias", "Escudos (não metálicos)"],
+      "armas": ["Clavas", "adagas", "dardos", "fundas", "cajados", "azagaias", "arcos curtos", "cimitarras"],
+      "ferramentas": ["Kit de herbalismo"],
+      "idiomas": ["Comum", "Silvestre", "Élfico", "2 adicionais (Antecedente: Sábia)"],
+      "tipo_criatura": "Feérico (Fey) · Pequeno · Voo igual ao deslocamento"
+    },
+    "ataques": [
+      {
+        "nome": "Cajado Sagrado",
+        "bonus": 2,
+        "dano": "1d6 / Contundente (Versátil 1d8)"
+      },
+      {
+        "nome": "Thorn Whip (truque)",
+        "bonus": 11,
+        "dano": "4d6 / Perfurante + puxar 3m"
+      },
+      {
+        "nome": "Produce Flame (truque)",
+        "bonus": 11,
+        "dano": "4d8 / Fogo (18m de alcance)"
+      },
+      {
+        "nome": "Sunbeam (6º círculo)",
+        "bonus": "CD 19",
+        "dano": "6d8 / Radiante + Cego (Con negado)"
+      }
+    ],
+    "habilidades_raciais": [
+      {
+        "nome": "Tamanho Pequeno & Voo Feérico",
+        "fonte": "Raça · Fairy",
+        "descricao": "Nahida é do tamanho Pequeno. Possui velocidade de voo igual ao seu deslocamento de caminhada (9m) sem restrição de armadura pesada."
+      },
+      {
+        "nome": "Visão no Escuro & Tipo Feérico",
+        "fonte": "Raça · Fairy",
+        "descricao": "Enxerga em luz fraca como plena luz e em escuridão como luz fraca até 18m. É criatura do tipo Feérico, imune a efeitos específicos que afetam humanoides."
+      },
+      {
+        "nome": "Magia Feérica Inata",
+        "fonte": "Raça · Fairy",
+        "descricao": "Druidcraft — disponível livremente. Faerie Fire — 1×/descanso longo. Enlarge/Reduce — 1×/descanso longo, inata (sem espaço de magia)."
+      }
+    ],
+    "habilidades_classe": [
+      {
+        "nome": "Círculo dos Sonhos · Balm of the Summer Court",
+        "fonte": "Subclasse · Nível 2",
+        "descricao": "Você possui um reservatório de cura igual a 5× nível de Druida (100 PV totais). Como ação bônus, distribua dados de cura (d6) para criaturas aliadas conscientes em 36m sem gastar espaços de magia. Pode curar e conceder PV temporários simultaneamente."
+      },
+      {
+        "nome": "Círculo dos Sonhos · Hearth of Moonlight and Shadow",
+        "fonte": "Subclasse · Nível 6",
+        "descricao": "Ao iniciar um descanso curto ou longo, conjure um espaço mágico invisível de 9m de raio. Criaturas dentro ganham +5 em Percepção, +5 em Furtividade e luz ou escuridão visível apenas por vocês."
+      },
+      {
+        "nome": "Círculo dos Sonhos · Hidden Paths",
+        "fonte": "Subclasse · Nível 10",
+        "descricao": "Você pode se teletransportar até 18m para um espaço que você possa ver, ou teleportar uma criatura voluntária que você toque para até 30m. Usos iguais ao mod. de Sabedoria (+5) por descanso longo."
+      },
+      {
+        "nome": "Círculo dos Sonhos · Walker in Dreams",
+        "fonte": "Subclasse · Nível 14",
+        "descricao": "Ao terminar um descanso curto, conjure um dos seguintes efeitos uma vez sem espaço: Dream (comunicação onírica), Scrying (visão a distância) ou Teleportation Circle (círculo para local familiar). Recarrega a cada descanso longo."
+      },
+      {
+        "nome": "Wild Shape",
+        "fonte": "Druida · Nível 2",
+        "descricao": "Transforma-se em besta de CR ½ (sem nadar) → CR 1 (nível 4) → CR progressivo. Para Nahida, Wild Shape é usado estrategicamente: formas pequenas para infiltração, observação e mobilidade."
+      },
+      {
+        "nome": "Timeless Body & Beast Spells",
+        "fonte": "Druida · Nível 18",
+        "descricao": "Timeless Body: Não envelhece mais e não precisa de comida ou água. Beast Spells: Pode conjurar magias druídicas mesmo sob Wild Shape."
+      },
+      {
+        "nome": "Archdruid (Capstone)",
+        "fonte": "Druida · Nível 20",
+        "descricao": "Pode usar Wild Shape um número ilimitado de vezes. Pode ignorar os componentes verbais e somáticos das magias druídicas."
+      }
+    ],
+    "talentos": {
+      "nivel_4": "+2 Sabedoria (17→19)",
+      "nivel_8": "Telepathic +1 Sab (19→20) — comunicação mental, leitura de superfície",
+      "nivel_12": "War Caster — vantagem em Con para manter concentração",
+      "nivel_16": "Resilient (Con) +1 Con (15→16)",
+      "nivel_19": "+2 Constituição (16→18)"
+    },
+    "equipamento": [
+      {
+        "nome": "Cajado Sagrado do Irminsul",
+        "descricao": "Quarterstaff reskinado como galho vivo ou foco vegetal. Usado como foco druídico. Dano: 1d6 contundente (versátil 1d8)."
+      },
+      {
+        "nome": "Armadura de Casca & Raízes",
+        "descricao": "Half Plate não metálica (CA base 15 + Des mod +2 = 17). Equivalente temático: armadura viva da floresta."
+      },
+      {
+        "nome": "Escudo de Madeira Viva",
+        "descricao": "Escudo de cipó ou cristal Dendro (+2 CA). Total final: CA 19."
+      },
+      {
+        "nome": "Kit de Herbalismo & Foco Druídico",
+        "descricao": "Componente de conjuração. Kit permite criar antídotos e poções básicas entre descansos."
+      }
+    ],
+    "magias": {
+      "atributo_conjurador": "Sabedoria",
+      "cd_magia": 19,
+      "ataque_magico": 11,
+      "espacos": {
+        "1": 4,
+        "2": 3,
+        "3": 3,
+        "4": 3,
+        "5": 3,
+        "6": 2,
+        "7": 2,
+        "8": 1,
+        "9": 1
+      },
+      "truques": [
+        {
+          "nome": "Guidance",
+          "tags": ["ação", "concentração · 1 min", "toque"],
+          "descricao": "Ações bônus: toca um aliado voluntário, concede 1d4 em uma rolagem de habilidade de sua escolha.",
+          "mecanica": "Bônus: +1d4 em qualquer rolagem de habilidade antes do término."
+        },
+        {
+          "nome": "Thorn Whip",
+          "tags": ["ação", "9m de alcance", "ataque mágico"],
+          "descricao": "Cria um chicote de videiras espinhosas que açoita um alvo em 9m. Causa 4d6 de dano perfurante e puxa o alvo 3m em direção a você se for Grande ou menor.",
+          "mecanica": "R. ataque: +11 · Dano: 4d6 perfurante · Efeito: puxar 3m"
+        },
+        {
+          "nome": "Produce Flame",
+          "tags": ["ação", "18m (projétil)", "ataque mágico"],
+          "descricao": "Projeta chama como projétil até 18m, causando 4d8 de dano de fogo no acerto.",
+          "mecanica": "Projétil: ataque +11 · Dano: 4d8 fogo"
+        },
+        {
+          "nome": "Druidcraft",
+          "tags": ["ação", "9m", "utilitário"],
+          "descricao": "Pequenos milagres da natureza: prever o tempo, fazer florescer, sussurro de vento, apagar chamas não mágicas.",
+          "mecanica": "Efeito: utilitário narrativo · Sem ataque ou dano"
+        }
+      ],
+      "circulo_1": [
+        {
+          "nome": "Goodberry",
+          "tags": ["ação", "toque", "instante"],
+          "descricao": "Cria até 10 bagas que duram 24h. Cada baga cura 1 PV e fornece nutrição para um dia inteiro.",
+          "mecanica": "10 bagas · 1 PV cada · Cura fora de combate essencial"
+        },
+        {
+          "nome": "Entangle",
+          "tags": ["ação", "27m · área 6×6m", "concentração · 1 min"],
+          "descricao": "Vinhas e raízes irrompem do solo. Criaturas na área devem superar TR de Força (CD 19) ou ficam presas. Criaturas que entram na área têm velocidade reduzida à metade.",
+          "mecanica": "TR Força CD 19 · Presa até TR bem-sucedido · Área 6×6m"
+        },
+        {
+          "nome": "Healing Word",
+          "tags": ["ação bônus", "18m", "instante"],
+          "descricao": "Uma palavra restaura 1d4 + 5 PV em um aliado visível em 18m. Ação bônus, liberando a ação padrão para outras magias.",
+          "mecanica": "Cura: 1d4+5 · Ação bônus · Escala com espaço usado"
+        },
+        {
+          "nome": "Absorb Elements",
+          "tags": ["reação", "própria", "instante"],
+          "descricao": "Reação quando sofre dano de ácido, frio, fogo, relâmpago ou trovão. Reduz dano pela metade e armazena energia. Próximo ataque corpo a corpo causa +1d6 do tipo absorvido.",
+          "mecanica": "Reação · Reduz dano elemental · +1d6 bônus ao próximo ataque"
+        },
+        {
+          "nome": "Faerie Fire",
+          "tags": ["ação", "18m · cilindro 6m", "concentração · 1 min"],
+          "descricao": "Envolve criaturas que falhem em TR de Des em um brilho luminoso. Não podem se beneficiar de camuflagem ou invisibilidade, e todos os ataques contra elas têm vantagem.",
+          "mecanica": "TR Des CD 19 · Falha: vantagem em ataques contra ela · Sem invisibilidade"
+        }
+      ],
+      "circulo_2": [
+        {
+          "nome": "Pass without Trace",
+          "tags": ["ação", "própria · aura 9m", "concentração · 1h"],
+          "descricao": "Cada criatura afetada ganha +10 nos testes de Furtividade e não deixa rastros rastreáveis por meios não mágicos.",
+          "mecanica": "+10 em Furtividade · Sem rastros · Afeta o grupo inteiro"
+        },
+        {
+          "nome": "Spike Growth",
+          "tags": ["ação", "36m · raio 6m", "concentração · 10 min"],
+          "descricao": "O solo fica coberto de espinhos. Criaturas sofrem 2d4 de dano perfurante por 1,5m de movimento e velocidade reduzida a 1,5m por turno.",
+          "mecanica": "2d4 perfurante/1,5m · Velocidade reduzida a 1,5m · Raio 6m"
+        },
+        {
+          "nome": "Lesser Restoration",
+          "tags": ["ação", "toque", "instante"],
+          "descricao": "Encerra uma doença ou condição que aflige uma criatura tocada. Remove: cegueira, surdez, paralisia ou envenenamento.",
+          "mecanica": "Remove: cego · surdo · paralisado · envenenado"
+        },
+        {
+          "nome": "Moonbeam",
+          "tags": ["ação", "36m · cilindro 1,5×12m", "concentração · 1 min"],
+          "descricao": "Um cilindro de luz prateada. Criaturas que entram ou iniciam o turno nela sofrem 2d10 de dano radiante (TR Con para metade). Mova o raio até 9m por ação.",
+          "mecanica": "TR Con CD 19 · 2d10 radiante · Movível 9m/ação"
+        },
+        {
+          "nome": "Enhance Ability",
+          "tags": ["ação", "toque", "concentração · 1h"],
+          "descricao": "Concede vantagem em testes de habilidade de um atributo e bônus adicional específico do atributo escolhido.",
+          "mecanica": "Vantagem em atributo escolhido + bônus específico do atributo"
+        }
+      ],
+      "circulo_3": [
+        {
+          "nome": "Plant Growth",
+          "tags": ["ação / 8h", "36m · raio 15m", "instante"],
+          "descricao": "Combate (ação): plantas tornam a área difícil — 1m de movimento para cada 30cm percorridos.",
+          "mecanica": "Combate: velocidade ÷ 4 sem TR · Área raio 15m"
+        },
+        {
+          "nome": "Speak with Plants",
+          "tags": ["ação", "própria · aura 9m", "10 min"],
+          "descricao": "Comunicar-se com plantas na área, fazer perguntas sobre eventos recentes e comandar plantas animadas.",
+          "mecanica": "Comunicação com flora · Informações da área · Comandar plantas animadas"
+        },
+        {
+          "nome": "Revivify",
+          "tags": ["ação", "toque", "instante"],
+          "descricao": "Ressuscita uma criatura que morreu há menos de 1 minuto, devolvendo a vida com 1 PV. Requer materiais: 300 po consumidos.",
+          "mecanica": "Ressuscita em ≤1 min · Retorna com 1 PV · 300po em materiais"
+        },
+        {
+          "nome": "Conjure Animals",
+          "tags": ["ação", "18m", "concentração · 1h"],
+          "descricao": "Evoca bestas feéricas: 1 de CR 2, 2 de CR 1, 4 de CR ½ ou 8 de CR ¼.",
+          "mecanica": "Evoca bestas feéricas · Escalável com espaços maiores · Concentração 1h"
+        },
+        {
+          "nome": "Dispel Magic",
+          "tags": ["ação", "36m", "instante"],
+          "descricao": "Remove magias de 3° círculo ou inferior automaticamente. Efeitos superiores requerem TR de habilidade de conjuração (Sab CD = 10 + nível).",
+          "mecanica": "Remove magias ≤3° automático · Superiores: TR Sab vs CD 10+nível"
+        }
+      ],
+      "circulo_4": [
+        {
+          "nome": "Grasping Vine",
+          "tags": ["ação bônus", "27m · alcance 9m", "concentração · 1 min"],
+          "descricao": "Evoca uma videira. Por ação bônus, ordena que agarre uma criatura: TR de Des ou é puxada até 6m.",
+          "mecanica": "Ação bônus · TR Des CD 19 · Puxa 6m por turno · Concentração"
+        },
+        {
+          "nome": "Guardian of Nature",
+          "tags": ["ação bônus", "própria", "concentração · 1 min"],
+          "descricao": "Forma de Grande Árvore: vantagem em Con e Sab, testes de Con para concentração automaticamente bem-sucedidos, raízes tornam solo difícil em 4,5m.",
+          "mecanica": "Grande Árvore: vantagem Con+Sab · Concentração segura · Raízes"
+        },
+        {
+          "nome": "Polymorph",
+          "tags": ["ação", "18m", "concentração · 1h"],
+          "descricao": "Transforma uma criatura em uma besta. Inimigo: TR de Sab (CD 19) ou transformado em besta com CR ≤ nível do conjurador.",
+          "mecanica": "Aliado: qualquer besta · Inimigo: TR Sab CD 19 ou besta por 1h"
+        },
+        {
+          "nome": "Freedom of Movement",
+          "tags": ["ação", "toque", "1h"],
+          "descricao": "Por 1 hora, ignora terreno difícil, não pode ser agarrado, preso ou reduzido de velocidade por magia, e pode se mover e atacar debaixo d'água.",
+          "mecanica": "Ignora terreno difícil · Imune a grapple · Movimento aquático livre"
+        }
+      ],
+      "circulo_5": [
+        {
+          "nome": "Commune with Nature",
+          "tags": ["1 min (ritual)", "raio 5km / 9km", "instante"],
+          "descricao": "Aprende até 3 fatos sobre o terreno em raio de 5km (underground) ou 9km (ao ar livre). Pode ser ritual.",
+          "mecanica": "3 fatos sobre a área · Raio 5-9km · Pode ser ritual (sem espaço)"
+        },
+        {
+          "nome": "Wall of Stone",
+          "tags": ["ação", "36m", "concentração · 10 min"],
+          "descricao": "Cria uma muralha de até 10 painéis de 3×3m (15cm), que pode assumir qualquer formato. Se mantida por 10 minutos, torna-se permanente.",
+          "mecanica": "10 painéis 3×3m · Permanente se mantida 10min · CA 15, 30 PV/painel"
+        },
+        {
+          "nome": "Mass Cure Wounds",
+          "tags": ["ação", "18m · raio 9m", "instante"],
+          "descricao": "Até 6 criaturas curam 3d8 + 5 PV cada. Escala com nível: +1d8 por nível acima do 5°.",
+          "mecanica": "6 alvos · 3d8+5 PV cada · Escala com nível do espaço"
+        },
+        {
+          "nome": "Greater Restoration",
+          "tags": ["ação", "toque", "instante"],
+          "descricao": "Remove: encantamento ou maldição, redução de atributo, um nível de exaustão, petrificação ou possuição.",
+          "mecanica": "Remove: encantamento · redução de atrib. · exaustão · petrificação"
+        }
+      ],
+      "circulo_6": [
+        {
+          "nome": "Heal",
+          "tags": ["ação", "18m", "instante"],
+          "descricao": "Restaura 70 PV em uma criatura visível em 18m e remove cegueira, surdez e todas as doenças. Sem TR, sem concentração.",
+          "mecanica": "70 PV + cura cegueira+surdez+doenças · 18m · Sem concentração"
+        },
+        {
+          "nome": "Transport via Plants",
+          "tags": ["ação", "mesmo plano", "instante"],
+          "descricao": "Cria um portal entre duas plantas conhecidas no mesmo plano. Você e até 8 criaturas voluntárias viajam instantaneamente.",
+          "mecanica": "Teletransporte · Até 9 criaturas · Entre plantas conhecidas · Mesmo plano"
+        },
+        {
+          "nome": "Bones of the Earth",
+          "tags": ["ação", "36m", "instante"],
+          "descricao": "Faz surgir até 6 pilares de rocha (até 9m altura). Criaturas presas entre o pilar e o teto sofrem 6d6 de dano esmagador (Con para metade).",
+          "mecanica": "6 pilares · Criatura encurralada: 6d6 esmagador (Con negado)"
+        },
+        {
+          "nome": "Sunbeam",
+          "tags": ["ação", "linha 18m", "concentração · 1 min"],
+          "descricao": "Projeta feixe de luz em linha de 18m. Criaturas sofrem 6d8 de dano radiante (Con para metade) e ficam cegas. Reativar como ação.",
+          "mecanica": "6d8 radiante · Cego até próximo turno · Reutilizável por 1min · CD 19"
+        }
+      ],
+      "circulo_7": [
+        {
+          "nome": "Plane Shift",
+          "tags": ["ação", "toque", "instante"],
+          "descricao": "Viagem: até 9 criaturas voluntárias viajam para outro plano. Banimento: força um inimigo (TR Car, CD 19) para outro plano.",
+          "mecanica": "Viagem: 9 criaturas · Banir: TR Car CD 19 · Requer material sintonizador"
+        },
+        {
+          "nome": "Reverse Gravity",
+          "tags": ["ação", "30m · cilindro 15×30m", "concentração · 1 min"],
+          "descricao": "Inverte a gravidade. Criaturas caem 'para cima', podendo sofrer até 8d6 de dano de queda ao atingir o topo.",
+          "mecanica": "Queda para cima · 8d6 dano de queda · Cilindro 15×30m"
+        },
+        {
+          "nome": "Fire Storm",
+          "tags": ["ação", "36m · 10 cubos 3m", "instante"],
+          "descricao": "Até 10 cubos de 3m de sua escolha. Criaturas sofrem 7d10 de dano de fogo (Des para metade). Pode escolher que a magia não queime plantas.",
+          "mecanica": "7d10 fogo · TR Des CD 19 · 10 cubos 3m · Preserva plantas escolhidas"
+        }
+      ],
+      "circulo_8": [
+        {
+          "nome": "Earthquake",
+          "tags": ["ação", "90m · raio 30m", "concentração · 1 min"],
+          "descricao": "Terreno torna-se difícil, estruturas sofrem 50 dano/turno. Criaturas devem superar TR Des (CD 19) ou caem pronadas.",
+          "mecanica": "Terreno difícil · Pronado (TR Des CD 19) · Estruturas 50 dano/turno"
+        },
+        {
+          "nome": "Feeblemind",
+          "tags": ["ação", "45m", "instante + duração"],
+          "descricao": "O alvo sofre 4d6 de dano psíquico e deve superar TR de Int (CD 19) ou ter Int e Car reduzidos a 1 por 30 dias.",
+          "mecanica": "4d6 psíquico · TR Int CD 19 · Falha: Int+Car→1 por 30 dias"
+        },
+        {
+          "nome": "Animal Shapes",
+          "tags": ["ação", "27m · aura 9m", "concentração · 24h"],
+          "descricao": "Transforma até 8 aliados voluntários em bestas de CR 4 ou inferior. Mantêm Int+Sab+Car mas usam estatísticas físicas da besta.",
+          "mecanica": "8 aliados · Bestas CR ≤4 · 24h · Mantêm Int+Sab+Car"
+        }
+      ],
+      "circulo_9": [
+        {
+          "nome": "Foresight",
+          "tags": ["1 min", "toque", "8h · SEM concentração"],
+          "descricao": "Por 8 horas sem concentração: vantagem em todas rolagens de ataque, testes e TR, inimigos têm desvantagem em ataques, não pode ser surpreendido.",
+          "mecanica": "8h SEM concentração · Vantagem em TUDO · Inimigos desvantagem · Sem surpresa"
+        },
+        {
+          "nome": "Shapechange",
+          "tags": ["ação", "própria", "concentração · 1h"],
+          "descricao": "Assume forma de qualquer criatura com CR ≤ 20 que tenha visto, usando estatísticas completas incluindo ações lendárias.",
+          "mecanica": "Qualquer criatura CR ≤20 · Estatísticas completas · Troca de forma como ação"
+        },
+        {
+          "nome": "Storm of Vengeance",
+          "tags": ["ação", "raio 91m", "concentração · 10 turnos"],
+          "descricao": "Tempestade apocalíptica de 10 rodadas: trovão ensurdecedor → raios (10d6) → granizo (1d6/turno) → chuva ácida (1d6/turno) → ventos violentos (velocidade ÷ 2).",
+          "mecanica": "10 turnos progressivos · Raio 91m · Efeitos cumulativos de catástrofe"
+        }
+      ]
+    },
+    "personalidade": {
+      "tracos": "Serena e curiosa, Nahida observa o mundo com olhos que enxergam as memórias das coisas. Fala com gentileza mesmo com inimigos. Faz perguntas que parecem simples mas carregam profundeza insondável.",
+      "ideais": "O saber não pertence a ninguém — pertence a todos. Guardar conhecimento é uma forma de morte. Compartilhá-lo é a forma mais pura de vida.",
+      "ligacoes": "O Irminsul e todas as criaturas vivas ligadas a ele são sua família.",
+      "defeitos": "Sua ingenuidade sobre o mundo fora do Irminsul pode ser explorada por quem tem más intenções."
+    },
+    "informacao_personagem": {
+      "tamanho": "Pequeno — levita suavemente, raramente toca o chão",
+      "aparencia": "Cabelos verdes e brancos, olhos verdes luminosos, orelhas de ponta, pele clara, vestes brancas e verdes de aparência viva",
+      "idiomas": "Comum · Silvestre · Élfico + 2 adicionais"
+    },
+    "historia": "Ela não nasceu. Ela despertou.\n\nNahida é a quinta Archon Dendro de Sumeru — a Deus das Plantas, a Guardadora do Irminsul, a Menor Senhor Kusanali. Durante quinhentos anos, esteve confinada em um Palácio dos Sonhos enquanto o mundo do lado de fora continuava sem ela. Não por fraqueza, mas por medo alheio: os Sábios de Sumeru temiam seu poder e a mantinham isolada.\n\nO Irminsul é uma biblioteca viva — cada folha carrega memórias de criaturas, cada raiz conecta o passado ao presente. Nahida não governa pelo medo, pelo poder bruto ou pelo decreto. Ela governa pela compreensão, pelo conhecimento, pela empatia.\n\nNesta adaptação para a mesa, Nahida existe como uma entidade que viajou além das fronteiras de Sumeru, levando consigo a sabedoria do Irminsul. Ela é pequena, leve e parece frágil — mas é uma presença que faz o próprio chão lembrar que já foi semente.\n\n'Eu nunca toquei a chuva de verdade. Mas eu me lembro de tudo que ela já tocou.'"
+  }
+}

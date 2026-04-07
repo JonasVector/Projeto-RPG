@@ -1,0 +1,274 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "Corven Cogspire",
+      "titulo": "O Jacurutu das Asas Cegas · Guardião de Eliora",
+      "raca": "Jacurutu (Owlin)",
+      "classe": "Artificer",
+      "nivel": 4,
+      "subclasse": "Armeiro (Armorer)",
+      "modelo_armadura": "Infiltrador",
+      "antecedente": "N/A",
+      "tendencia": "N/A",
+      "status": "Corrigida"
+    },
+    "atributos": {
+      "forca": { "valor": 12, "mod": 1 },
+      "destreza": { "valor": 16, "mod": 3 },
+      "constituicao": { "valor": 13, "mod": 1 },
+      "inteligencia": { "valor": 18, "mod": 4 },
+      "sabedoria": { "valor": 10, "mod": 0 },
+      "carisma": { "valor": 8, "mod": -1 }
+    },
+    "combate": {
+      "classe_armadura": 13,
+      "pv_totais": 27,
+      "iniciativa": 3,
+      "deslocamento": "9m + Voo 9m",
+      "bonus_proficiencia": 2,
+      "cd_magia": 14,
+      "cd_magia_oficina": 15,
+      "ataque_magico": 6,
+      "ataque_magico_oficina": 7,
+      "dados_vida": "4d8 · Média 27 PV",
+      "modelos_infiltrador": "Lançador de Raios, Passos Potencializados, Campo de Amortecimento"
+    },
+    "salvaguardas": {
+      "forca": { "valor": 1, "proficiente": false },
+      "destreza": { "valor": 3, "proficiente": false },
+      "constituicao": { "valor": 3, "proficiente": true },
+      "inteligencia": { "valor": 6, "proficiente": true },
+      "sabedoria": { "valor": 0, "proficiente": false },
+      "carisma": { "valor": -1, "proficiente": false }
+    },
+    "pericias": {
+      "acrobacia": { "valor": 5, "atributo": "DES", "proficiente": true },
+      "adestrar_animais": { "valor": 0, "atributo": "SAB", "proficiente": false },
+      "arcanismo": { "valor": 4, "atributo": "INT", "proficiente": false },
+      "atletismo": { "valor": 1, "atributo": "FOR", "proficiente": false },
+      "enganacao": { "valor": -1, "atributo": "CAR", "proficiente": false },
+      "historia": { "valor": 6, "atributo": "INT", "proficiente": true },
+      "intuicao": { "valor": 2, "atributo": "SAB", "proficiente": true },
+      "intimidacao": { "valor": -1, "atributo": "CAR", "proficiente": false },
+      "investigacao": { "valor": 6, "atributo": "INT", "proficiente": true },
+      "medicina": { "valor": 0, "atributo": "SAB", "proficiente": false },
+      "natureza": { "valor": 4, "atributo": "INT", "proficiente": false },
+      "percepcao": { "valor": 2, "atributo": "SAB", "proficiente": true },
+      "atuacao": { "valor": -1, "atributo": "CAR", "proficiente": false },
+      "persuasao": { "valor": -1, "atributo": "CAR", "proficiente": false },
+      "religiao": { "valor": 4, "atributo": "INT", "proficiente": false },
+      "prestidigitacao": { "valor": 3, "atributo": "DES", "proficiente": false },
+      "furtividade": { "valor": 5, "atributo": "DES", "proficiente": true },
+      "sobrevivencia": { "valor": 0, "atributo": "SAB", "proficiente": false }
+    },
+    "passiva": {
+      "sabedoria_passiva": 12
+    },
+    "dados_vida": "4d8",
+    "ataques": [
+      {
+        "nome": "Lançador de Raios (Infiltrador)",
+        "bonus": 6,
+        "dano": "1d6 Elétrico (+1d6 extra/turno)",
+        "alcance": "27m/90m",
+        "notas": "INT mod · Arma especial da armadura arcana · 1d6 extra 1×/turno"
+      },
+      {
+        "nome": "Besta Leve",
+        "bonus": 5,
+        "dano": "1d8 Perfurante",
+        "alcance": "24/96m",
+        "notas": "DES mod · Recarregar (ação) · Municão: 20 flechas"
+      },
+      {
+        "nome": "Adaga",
+        "bonus": 5,
+        "dano": "1d4+3 Perfurante",
+        "alcance": "Melee / 6m",
+        "notas": "DES mod · Arremessável · Emergência"
+      },
+      {
+        "nome": "Revólver (Balas de Prata)",
+        "bonus": 5,
+        "dano": "2d8 Perfurante (prata)",
+        "alcance": "18m/54m",
+        "notas": "DES mod · Recarga (6 tiros) · Balas de prata · Rola 1 no dado = trava até usar ação"
+      },
+      {
+        "nome": "Raio de Fogo (Truque)",
+        "bonus": 6,
+        "dano": "1d10 Fogo",
+        "alcance": "36m",
+        "notas": "INT mod · Escala com nível · Via Oficina de Bolso: CD 15, atq +7"
+      }
+    ],
+    "habilidades_raciais": [
+      {
+        "nome": "Visão no Escuro",
+        "descricao": "Enxerga em escuridão como luz fraca até 18 metros. Discerne cores como tons de cinza."
+      },
+      {
+        "nome": "Penas Silenciosas",
+        "descricao": "Proficiência em Furtividade. O Infiltrador já concede vantagem em testes de Furtividade — combinado com Penas Silenciosas, Corven é praticamente indetectável ao se mover."
+      }
+    ],
+    "habilidades_classe": [
+      {
+        "nome": "Ajustes Mágicos",
+        "fonte": "Artificer · Nível 1",
+        "descricao": "Toca objetos pequenos e concede propriedades mágicas: luz, mensagem gravada, odor, som ou efeito visual. Até INT mod (4) simultâneos."
+      },
+      {
+        "nome": "Infundir Item",
+        "fonte": "Artificer · Nível 2",
+        "descricao": "4 infusões conhecidas, 2 ativas simultaneamente. Imbuídas em objetos após descanso longo."
+      },
+      {
+        "nome": "Ferramentas da Troca",
+        "fonte": "Armeiro · Nível 3",
+        "descricao": "Proficiência automática em armaduras pesadas e Ferramentas de Ferreiro."
+      },
+      {
+        "nome": "Armadura Arcana",
+        "fonte": "Armeiro · Nível 3",
+        "descricao": "Transforma uma armadura em foco arcano. A armadura fixa-se a Corven, substitui membros ausentes, e pode ser vestida/retirada como ação."
+      },
+      {
+        "nome": "Modelo Infiltrador — Lançador de Raios",
+        "fonte": "Armeiro · Nível 3 · Ativo",
+        "descricao": "Nódulo gema projeta raio de 1d6 elétrico (27m/90m) usando INT mod. Uma vez por turno ao acertar pode causar +1d6 elétrico extra."
+      },
+      {
+        "nome": "Modelo Infiltrador — Passos e Campo",
+        "fonte": "Armeiro · Nível 3 · Ativo",
+        "descricao": "Passos Potencializados: deslocamento +1,5m. Campo de Amortecimento: vantagem em testes de Furtividade (Des)."
+      },
+      {
+        "nome": "ASI / Feat — Nível 4 Obtido",
+        "fonte": "Artificer · Nível 4",
+        "descricao": "Feat do personagem já conquistado neste nível. Com INT 18 altíssima, há espaço para feats de utilidade (War Caster, Alert, Lucky)."
+      },
+      {
+        "nome": "Oficina de Bolso",
+        "fonte": "Item Mágico · Equipado",
+        "descricao": "Transforma-se em qualquer ferramenta de artesão. Enquanto segura: +1 ataque mágico e +1 CD (ataque +7 / CD 15). Como ação: conjura qualquer truque de qualquer classe por 8h."
+      }
+    ],
+    "infusoes_ativas": {
+      "total_conhecidas": 4,
+      "total_ativas": 2,
+      "infusoes": [
+        {
+          "nome": "Servo Homúnculo",
+          "status": "Ativa · Construto · Permanente",
+          "descricao": "Construto mecânico com 1+INT mod (5) PV, CA 13, voo 18m. Pode usar Ação de Ajuda → vantagem no seu ataque. Age imediatamente após Corven. Recupera 2d6 PV com Remendo."
+        },
+        {
+          "nome": "Bag of Holding",
+          "status": "Ativa · Item · Utilitário",
+          "descricao": "60cm de abertura, 120cm de profundidade. Até 225kg / 1,8m³ internos, sempre 7kg externos. Contém todo o equipamento de Corven."
+        }
+      ],
+      "infusoes_nao_ativas": [
+        "Defesa Aprimorada (+1 CA enquanto usa a armadura infundida)",
+        "Arma Aprimorada (+1 ataque e dano com arma infundida)"
+      ]
+    },
+    "magias": {
+      "atributo_conjurador": "Inteligência",
+      "cd_magia": "14 (15 c/ Oficina)",
+      "ataque_magico": "+6 (+7 c/ Oficina)",
+      "espacos_magia": "1° Círculo: 3 espaços",
+      "truques": [
+        {
+          "nome": "Raio de Fogo",
+          "tags": ["ação", "36m", "ataque mágico"],
+          "descricao": "Projeta mota de fogo causando 1d10 de dano de fogo no acerto. Escala: 2d10 (nível 5), 3d10 (nível 11), 4d10 (nível 17). Objetos inflamáveis pegam fogo.",
+          "mecanica": "+6 ataque (+7 c/ Oficina) · 1d10 fogo · Nível 5: 2d10 · Nível 11: 3d10"
+        },
+        {
+          "nome": "Remendo",
+          "tags": ["1 minuto", "toque", "utilitário"],
+          "descricao": "Repara uma quebra ou rasgo de até 30cm em objeto tocado, restaurando-o completamente. Não funciona em criaturas. Para Corven: repara a armadura arcana danificada, armas quebradas, o relicário de Eliora, mecanismos e ferramentas. Também restaura 2d6 PV no Homúnculo.",
+          "mecanica": "Repara objetos (≤30cm) · 1 min casting · Restaura 2d6 PV do Homúnculo"
+        }
+      ],
+      "circulo_1": [
+        {
+          "nome": "Absorver Elementos",
+          "tags": ["reação", "ao sofrer dano elemental", "próprio"],
+          "descricao": "Reação quando você sofre dano de ácido, frio, fogo, elétrico ou trovão: resistência ao tipo até início do próximo turno (reduz o dano à metade) E armazena a energia — na primeira vez que acertar ataque corpo a corpo no turno seguinte causa +1d6 do mesmo tipo.",
+          "mecanica": "Reação · Resistência ao tipo (½ dano) · +1d6 corpo a corpo no próximo turno"
+        },
+        {
+          "nome": "Armadilha (Snare)",
+          "tags": ["1 minuto", "toque", "até ativar"],
+          "descricao": "Cria uma armadilha mágica quase invisível em raio de 1,5m (Investigação CD 14 para notar). Quando ativada: TR de Destreza ou a criatura fica suspensa de cabeça para baixo a 90cm, restrita.",
+          "mecanica": "TR Des CD 14 · Falha: suspensa e restrita · TR Des desvantagem para escapar"
+        },
+        {
+          "nome": "Queda Leve",
+          "tags": ["reação", "18m", "até 5 criaturas"],
+          "descricao": "Reação: velocidade de queda de até 5 criaturas cai para 18m por rodada. Criaturas que pousarem antes do fim não sofrem dano de queda e ficam de pé.",
+          "mecanica": "Reação · Até 5 criaturas · Sem dano de queda · Fica de pé ao pousar"
+        },
+        {
+          "nome": "Fogo das Fadas",
+          "tags": ["ação", "conc · 1 min", "18m · cubo 6m"],
+          "descricao": "Objetos e criaturas que falhem em TR de Des ficam contornados por luz: não podem se beneficiar de invisibilidade ou camuflagem, e todos os ataques contra elas têm vantagem.",
+          "mecanica": "TR Des CD 14 · Falha: vantagem em TODOS os ataques vs. alvo · Anula invisibilidade"
+        },
+        {
+          "nome": "Mísseis Mágicos",
+          "tags": ["ação", "36m", "sem falha"],
+          "descricao": "Cria 3 dardos de energia que acertam automaticamente (sem rolagem de ataque), cada um causando 1d4+1 de dano de força. Com slot de 2°: 4 dardos. Com slot de 3°: 5 dardos.",
+          "mecanica": "Sem rolagem · 3 dardos de 1d4+1 cada · Acerto automático · +1 dardo/nível"
+        },
+        {
+          "nome": "Onda Trovejante",
+          "tags": ["ação", "cubo 4,5m · próprio", "instantâneo"],
+          "descricao": "Onda trovejante irradia de Corven. TR de Constituição (CD 14) ou 2d8 de dano trovejante e empurra 3m. Sucesso: metade, sem empurrão. Auditível a 90m.",
+          "mecanica": "TR Con CD 14 · 2d8 trovejante + empurra 3m (falha) · Auditível 90m"
+        }
+      ]
+    },
+    "equipamento": {
+      "armas": [
+        "Besta Leve (1d8, 24/96m, 20 flechas)",
+        "Adaga ×2 (1d4+3, arremessável 6m)",
+        "Lançador de Raios via Armadura Arcana"
+      ],
+      "armadura": [
+        "Scale Mail (CA base 14, na Bag)",
+        "Armadura Arcana em modo Infiltrador (CA 13 atual)",
+        "Defesa Aprimorada (+1 CA) disponível como infusão"
+      ],
+      "infusoes_itens": [
+        "Bag of Holding: contém tudo",
+        "Oficina de Bolso (+1 CD/ataque)",
+        "Relicário da Família Cogspire",
+        "Broche da Rainha",
+        "Ferramentas de Inventor",
+        "Joia 100po",
+        "Joia 50po",
+        "Barras de aço/ferro/prata",
+        "Pólvora"
+      ],
+      "ferramentas": [
+        "Carpinteiro",
+        "Ferreiro",
+        "Alquimista",
+        "Inventor",
+        "Ladrão",
+        "Vidreiro",
+        "Ferramenta Dourada (Oficina de Bolso)"
+      ]
+    },
+    "personalidade": {
+      "tracos": "Metódico e quieto. Fala pouco, observa tudo. As mãos nunca estão paradas. Expressa afeto através do que constrói, nunca através de palavras.",
+      "ideal_vinculo": "Ideal: A tecnologia não corrompeu o mundo. Vínculo: Eliora. A chave da vida dela está no peito de Corven.",
+      "defeito": "Não sabe pedir ajuda. Delegar é perder controle — e perder controle é perder Eliora mais uma vez."
+    },
+    "historia": "Corven Cogspire — Coração de Technexis\n\nNa Cidade Alta de Clibano, onde o vento uiva entre cúpulas douradas e torres de pedra fria, um jovem Owlin chegou com olhos cansados e mãos manchadas de ferrugem.\n\nChamava-se Corven Cogspire, vindo de Ptero, ao norte do continente, onde o frio cortava como lâmina. Montou sua oficina simples num beco, consertava brinquedos, e nos fundos criava próteses.\n\nFoi ali que conheceu Mariette — uma humana de fala afiada, cabelos castanho-claros e um menino no colo com perna improvisada. Três dias depois, o menino corria. Ela voltou no dia seguinte. Com chá. Depois com livros. Depois com histórias. E assim, ficou.\n\nCerta noite, ela disse: 'Você sabe que eu voltei por você, né?' Na manhã seguinte, ela acordou com uma bailarina mecânica feita de prata e vidro, dançando no compasso dos batimentos do coração dela.\n\nVieram os anos. Vieram os votos. Veio Eliora — metade humana, metade Owlin. Frágil. Corven construiu um berço que respirava junto com ela.\n\n'As mãos dela vão consertar o mundo' — as últimas palavras de Mariette, antes de morrer no parto.\n\nCorven fez a única coisa que sabia: uma daguerreotipia mágica da família, gravada em placa de cobre arcano, que montou dentro do relicário de vidro que carrega no peito.\n\nEliora cresceu. Queria ver o mundo. Corven a levava ao teatro.\n\nEntão veio o acidente. Uma refinaria de mana residual explodiu. Eliora foi ajudar distribuir máscaras. Desmaiou. Tosse vermelha. Pulmões queimando.\n\nCorven construiu pulmões artificiais, trocou pulmões, braços, ossos, pele, nervos, olhos. Eliora dormiu. E não acordou mais.\n\nEle a colocou num casulo de vidro, em suspensão mágica. A União da Palavra Divina descobriu. Chamaram-no de monstro. Corven mentiu: disse que forçou Eliora, levou toda a culpa, e assim ninguém tocaria nela.\n\nHoje, Corven Cogspire vaga por Clibano e além. Um fugitivo, um herege. Sua oficina virou ruína, mas a chave da vida da filha continua com ele.\n\n'Se eu tivesse deixado ela morrer, será que teria sido mais gentil? Eu a prendi num limbo. Mas eu sei que ela ainda está lá. Eu ouço. Nos fios, no metal. Na música da última caixinha. Ela ainda canta. E eu vou ouvir até o fim dos meus dias... ou até ela acordar.'"
+  }
+}

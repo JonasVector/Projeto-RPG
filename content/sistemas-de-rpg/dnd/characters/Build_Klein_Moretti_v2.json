@@ -1,0 +1,342 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "Klein Moretti",
+      "titulo": "O Louco — Mr. Fool — O Senhor Acima das Nuvens",
+      "raca": "Changeling",
+      "classe": "Feiticeiro",
+      "subclasse": "Alma Aberrante (Aberrant Mind)",
+      "antecedente": "Sábio (Pesquisador)",
+      "multiclasse": "Sem Multiclasse",
+      "escopo": "Nível 1 → 20"
+    },
+    "stats_iniciais": {
+      "ca_inicial": "11 + Des",
+      "pv_nivel_1": "8 + Con",
+      "deslocamento": "9 m",
+      "cd_magia": "8 + prof + Car",
+      "resistencias": ["Constituição", "Carisma"],
+      "iniciativa": "+1"
+    },
+    "raca": {
+      "nome": "Changeling",
+      "bonus_atributos": ["Carisma +2", "Constituição +1"],
+      "habilidades": [
+        {
+          "nome": "Instinto Changeling",
+          "descricao": "Proficiência em duas perícias à sua escolha. Escolhidas: Enganação e Intuição."
+        },
+        {
+          "nome": "Ser Mutável (Shapechanger)",
+          "descricao": "Como uma ação, você pode transformar sua aparência assumindo a forma de qualquer humanoide de tamanho Médio que já tenha visto — replicando com exatidão roupas, traços faciais, voz, cor de pele, cabelos, altura e peso. Suas estatísticas de jogo não mudam. Você reverte para sua forma verdadeira ao morrer."
+        },
+        {
+          "nome": "Mente Inescrutável",
+          "descricao": "Vantagem em testes de resistência contra ser encantado. Efeitos mágicos não conseguem revelar sua forma verdadeira nem ler seus pensamentos sem sua permissão."
+        }
+      ],
+      "idiomas": ["Comum", "Élfico", "Abissal"],
+      "identidades_tarot": {
+        "nota": "Klein Moretti é um Changeling cuja forma verdadeira é a do jovem historiador moreno de Beklent. Através do Ser Mutável, ele assume visualmente as identidades dos membros do Clube de Tarot.",
+        "membros": [
+          { "carta": "O Louco (The Fool)", "simbolo": "⚪", "identidade": "Klein Moretti — sua forma verdadeira. O líder acima da névoa cinza." },
+          { "carta": "O Mundo (The World)", "simbolo": "🌑", "identidade": "Gehrman Sparrow — identidade de combate. O caçador implacável." },
+          { "carta": "A Justiça (The Justice)", "simbolo": "⚖️", "identidade": "Audrey Hall — a nobre loira. Útil em ambientes da alta sociedade." },
+          { "carta": "O Enforcado (The Hanged Man)", "simbolo": "⚓", "identidade": "Alger Wilson — o capitão austero. Valioso em portos e entre piratas." },
+          { "carta": "O Sol (The Sun)", "simbolo": "☀️", "identidade": "Derrick Berg — jovem da Cidade de Prata. Identidade de guerreiro simples." },
+          { "carta": "A Mágica (The Magician)", "simbolo": "🎩", "identidade": "Fors Wall — escritora discreta. Perfeita para ambientes literários." },
+          { "carta": "A Lua (The Moon)", "simbolo": "🌙", "identidade": "Emlyn White — o vampiro cativante. Para ambientes noturnos e nobres." },
+          { "carta": "A Eremita (The Hermit)", "simbolo": "⭐", "identidade": "Cattleya — a Almirante das Estrelas. Causa terror e respeito imediatos." },
+          { "carta": "A Estrela (The Star)", "simbolo": "🌟", "identidade": "Leonard Mitchell — Falcões Noturnos. Identidade de investigador." },
+          { "carta": "O Julgamento (The Judgment)", "simbolo": "⚔️", "identidade": "Xio Derecha — caçadora de recompensas. Útil em combate furtivo." },
+          { "carta": "O Carro (The Chariot)", "simbolo": "🔱", "identidade": "Lumian Lee — o protagonista musculoso. Identidade de força física." },
+          { "carta": "A Imperatriz (The Empress)", "simbolo": "👑", "identidade": "Franca Roland — identidade feminina elegante e imponente." }
+        ],
+        "nota_mecanica": "Mecanicamente: cada identidade funciona como um disfarce perfeito. Combine com Magia Silenciosa e Intuição com vantagem (via Mente Inescrutável) para reforçar o roleplay de cada personalidade."
+      }
+    },
+    "antecedente": {
+      "nome": "Sábio",
+      "especialidade": "Pesquisador",
+      "pericias": ["Investigação", "História"],
+      "idiomas_adicionais": ["Primordial", "Infernal"],
+      "recurso_pesquisador": "Quando tentar obter um fragmento de conhecimento que você não saiba, você descobre aonde e com quem pode obtê-lo — em bibliotecas, arquivos, universidades ou outros sábios.",
+      "lore": "Klein Moretti era um historiador antes de se tornar um Beyonder. Seu conhecimento enciclopédico e amor por pesquisa são traços centrais que persistem mesmo após sua ascensão."
+    },
+    "pericias_equipmento": {
+      "pericias_de_classe": ["Arcanismo", "Persuasão"],
+      "testes_resistencia": ["Constituição", "Carisma"],
+      "equipamento_inicial": ["Cajado", "Foco Arcano", "2 Adagas", "Pacote do Estudioso"]
+    },
+    "atributos_iniciais": {
+      "forca": { "valor": 8, "mod": -1 },
+      "destreza": { "valor": 13, "mod": 1 },
+      "constituicao": { "valor": 14, "mod": 2 },
+      "inteligencia": { "valor": 12, "mod": 1 },
+      "sabedoria": { "valor": 10, "mod": 0 },
+      "carisma": { "valor": 17, "mod": 3, "destaque": true }
+    },
+    "nota_atributos": "Con já inclui o bônus racial +1 do Changeling (13→14). Car já inclui o bônus racial +2 (15→17).",
+    "progressao": {
+      "nivel_1": {
+        "destaque": true,
+        "titulo": "Alma Aberrante — Magias Psíquicas & Presença Telepática",
+        "habilidades": [
+          {
+            "nome": "Magias Psíquicas (Psionic Spells)",
+            "descricao": "Magias expandidas que não contam para o limite de magias conhecidas.",
+            "tabela": [
+              { "nivel": "1º", "magias": "Braços de Hadar / Sussurros Dissonantes", "mecanica": "2d6 necrótico em 3 m + reduz velocidade · 3d6 psíquico forçando movimento de reação" },
+              { "nivel": "2º", "magias": "Acalmar Emoções / Detectar Pensamentos", "mecanica": "Suprime encantamentos e raiva em 6 m · lê pensamentos superficiais e aprofundados (concentração)" },
+              { "nivel": "3º", "magias": "Fome de Hadar / Enviar Mensagem", "mecanica": "Zona aberrante de trevas e dano às cegas por turno · envia 25 palavras a qualquer criatura em qualquer plano" },
+              { "nivel": "4º", "magias": "Tent. Negros de Evard / Invocar Aberração", "mecanica": "Agarrão + 3d6 necrótico/turno em área de 6 m · convoca aberração aliada por 1h" },
+              { "nivel": "5º", "magias": "Lig. Telepática de Rary / Telecinese", "mecanica": "Rede telepática entre até 8 criaturas por 1h · move objetos e criaturas com a mente (concentração)" }
+            ],
+            "lore": "Detectar Pensamentos representa Klein lendo a alma das pessoas acima da névoa. Enviar Mensagem é o análogo às convocações do Clube de Tarot. Telecinese é o poder bruto do Louco manifestado."
+          },
+          {
+            "nome": "Presença Telepática (Telepathic Speech)",
+            "descricao": "Como uma ação bônus, escolha uma criatura visível a até 9 m. Enquanto acordados e com linha de visão, vocês podem se comunicar telepaticamente. A criatura pode encerrar quando quiser.",
+            "lore": "A reunião do Clube de Tarot acima da névoa cinza — recriada em jogo."
+          }
+        ],
+        "truques": [
+          { "nome": "Prestidigitação", "tipo": "Truque · Transmutação", "desc": "Efeitos mágicos menores à vontade: acender chamas, limpar objetos, criar sons, odores ou ilusões sensoriais menores por 1 hora. Utilitário puro de roleplay." },
+          { "nome": "Lasca Mental", "tipo": "Truque · Encantamento · Salvag. Des", "desc": "1d6 psíquico a distância. O alvo sofre −1d4 no próximo teste de resistência que fizer neste turno — ideal para preparar saves críticos das magias seguintes." },
+          { "nome": "Ilusão Menor", "tipo": "Truque · Ilusão", "desc": "Cria um som ou imagem ilusória inofensiva por 1 minuto. Pode enganar guardas, distrair inimigos ou montar cenários de engano social elaborados sem custo." },
+          { "nome": "Mensagem", "tipo": "Truque · Transmutação", "desc": "Sussurra uma mensagem mágica a uma criatura em alcance; ela pode responder em sussurro. Comunicação totalmente discreta e magicamente indetectável." }
+        ],
+        "magias_nivel_1": [
+          { "nome": "Armadura Arcana", "tipo": "1º Nível · Abjuração · 8 horas", "desc": "CA = 13 + mod. Destreza enquanto durar. Não requer ação — ativa ao ser conjurada se você não usar armadura. Essencial para o feiticeiro sem armadura." },
+          { "nome": "Escudo Arcano", "tipo": "1º Nível · Abjuração · Reação", "desc": "Reação ao ser atacado: +5 CA até o início do seu próximo turno, mais imunidade a Míssil Mágico. A defesa reativa mais eficiente do jogo." }
+        ],
+        "magias_psiquicas_1": [
+          { "nome": "Braços de Hadar", "tipo": "1º Nível · Conjuração · Ação · 3 m · Conc. 1 min · Salvag. For", "desc": "Tentáculos negros brotam do chão em raio de 3 m ao redor de você. Cada criatura na área sofre 2d6 de dano necrótico (ou metade com salvaguarda de Força bem-sucedida) e tem sua velocidade reduzida a 0 até o fim do turno. Seres que falham não podem usar reações." },
+          { "nome": "Sussurros Dissonantes", "tipo": "1º Nível · Encantamento · Ação · 18 m · Instantâneo · Salvag. Sab", "desc": "Você murmura uma melodia perturbadora audível apenas para um alvo. Ele sofre 3d6 de dano psíquico (metade com salvaguarda de Sabiedade bem-sucedida) e, se falhar, deve imediatamente usar sua reação para se afastar o máximo possível de você — provocando ataques de oportunidade." }
+        ]
+      },
+      "nivel_2": {
+        "titulo": "Fonte de Magia & Conjuração Flexível",
+        "descricao": "Você alcança uma profunda fonte de magia representada pelos pontos de feitiçaria, recuperados após descanso longo.",
+        "habilidades": [
+          {
+            "nome": "Conjuração Flexível",
+            "desc": "Criando Espaços: Ação bônus — converta pontos de feitiçaria em espaço de magia (máximo 5º nível). Convertendo: Ação bônus — gaste um espaço para ganhar pontos iguais ao nível do espaço."
+          }
+        ],
+        "magias_novas": [
+          { "nome": "Absorver Elementos", "tipo": "1º Nível · Abjuração · Reação", "desc": "Reação ao sofrer dano elemental: você resiste ao dano e armazena a energia. Seu próximo ataque corpo a corpo causa +1d6 extra deste elemento por nível do espaço gasto." }
+        ],
+        "pontos_feiticaria": 2
+      },
+      "nivel_3": {
+        "titulo": "Metamágica",
+        "habilidades": [
+          {
+            "nome": "Magia Acelerada",
+            "desc": "Gaste 2 pontos de feitiçaria para conjurar uma magia de 1 ação como ação bônus neste turno. Permite atacar e conjurar no mesmo round."
+          },
+          {
+            "nome": "Magia Silenciosa",
+            "desc": "Gaste 1 ponto de feitiçaria para conjurar uma magia sem componentes verbais.",
+            "lore": "Ao usar qualquer identidade do Clube de Tarot com Magia Silenciosa, torna-se impossível identificar de onde vem a magia. Sem sons. Sem rastros. Indetectável a ouvidos e olhos atentos."
+          }
+        ],
+        "magias_novas": [
+          { "nome": "Encantar Pessoa", "tipo": "1º Nível · Encantamento · Conc. 1h · Salvag. Sab", "desc": "Encanta um humanoide que te trata como amigo enquanto durar. Pode afetar até 6 alvos escalando o nível do espaço." }
+        ],
+        "magias_psiquicas_2": [
+          { "nome": "Acalmar Emoções", "tipo": "2º Nível · Encantamento · Ação · 6 m · Conc. 1 min · Salvag. Car", "desc": "Suprime encantamentos ativos e estados de raiva/medo em todas as criaturas dentro de 6 m (salvaguarda de Carisma para resistir). Enquanto concentrado, o alvo fica indiferente a criaturas que antes o ameaçavam." },
+          { "nome": "Detectar Pensamentos", "tipo": "2º Nível · Adivinhação · Ação · 9 m · Conc. 1 min · Salvag. Sab", "desc": "Dois estágios: pensamentos superficiais com interrogatório verbal, e aprofundamento forçado (salvaguarda de Sabiedade — se falhar, você lê memórias e motivações ocultas; se passar, a magia encerra e ela sabe que tentou). Também detecta criaturas inteligentes a até 18 m." }
+        ],
+        "pontos_feiticaria": 3
+      },
+      "nivel_4": {
+        "titulo": "Aumento de Atributo: Carisma +2",
+        "atributos": "Carisma: 17 → 19",
+        "truque_novo": { "nome": "Toque Arrepiante", "tipo": "Truque · Necromancia · Atq. à Distância", "desc": "Projétil necrótico a distância: 1d8 necrótico. Até o início do seu próximo turno, o alvo não pode recuperar pontos de vida de nenhuma forma. Cancela cura e regeneração." },
+        "magias_novas": [
+          { "nome": "Nublar", "tipo": "2º Nível · Ilusão · Conc. 1 min", "desc": "Sua imagem distorce e trêmula constantemente. Todos os atacantes têm desvantagem em ataques contra você — exceto os que não dependem de visão. Defesa passiva extraordinária." }
+        ],
+        "pontos_feiticaria": 4
+      },
+      "nivel_5": {
+        "titulo": "Magias do 3º Nível Disponíveis",
+        "nota": "As magias psíquicas de 3º nível tornam-se disponíveis automaticamente — Fome de Hadar e Enviar Mensagem.",
+        "magias_psiquicas_3": [
+          { "nome": "Fome de Hadar", "tipo": "3º Nível · Conjuração · Ação · 27 m · Conc. 1 min · Cego/Surdo", "desc": "Abre um portal para o vazio aberrante de Hadar: esfera de 9 m de escuridão impenetrável e silêncio absoluto. Criaturas dentro ficam cegas. No início do turno delas: 2d6 de dano frio. No fim do turno: 2d6 de dano ácido se falharem na salvaguarda de Destreza." },
+          { "nome": "Enviar Mensagem", "tipo": "3º Nível · Encantamento · Ação · Qualquer Plano · Instantâneo", "desc": "Envia até 25 palavras a qualquer criatura que você já viu, em qualquer lugar do multiverso — incluindo outros planos de existência. Pode ser lançada como ritual para não gastar espaço." }
+        ],
+        "magias_novas": [
+          { "nome": "Imobilizar Pessoa", "tipo": "2º Nível · Encantamento · Conc. 1 min · Salvag. Sab", "desc": "Paralisa um humanoide (teste de Sab a cada turno para sair). Ataques corpo a corpo contra o alvo têm vantagem automática, e todos se tornam acertos críticos." }
+        ],
+        "pontos_feiticaria": 5
+      },
+      "nivel_6": {
+        "destaque": true,
+        "titulo": "Feitiçaria Psíquica & Ser Distorcido",
+        "habilidades": [
+          {
+            "nome": "Feitiçaria Psíquica (Psionic Sorcery)",
+            "desc": "Ao conjurar qualquer Magia Psíquica com um espaço de magia, você pode fazê-lo sem componentes somáticos ou materiais (desde que não exijam materiais de custo ou consumo).",
+            "lore": "Klein age com discrição absoluta — gestos físicos seriam uma traição. Magia fluindo diretamente da mente, sem sinais externos visíveis."
+          },
+          {
+            "nome": "Ser Distorcido (Warped Being)",
+            "desc": "Sua CA mínima é 13 + mod. Destreza quando não estiver usando armadura, substituindo qualquer CA inferior que você teria."
+          }
+        ],
+        "magias_novas": [
+          { "nome": "Invisibilidade Aprimorada", "tipo": "4º Nível · Ilusão · Conc. 1 min", "desc": "Fica invisível durante toda a concentração — inclusive ao atacar ou conjurar magias. Atacantes têm desvantagem; você tem vantagem em todos os ataques. O disfarce definitivo em combate." }
+        ],
+        "pontos_feiticaria": 6
+      },
+      "nivel_7": {
+        "titulo": "Magias do 4º Nível Disponíveis",
+        "nota": "As magias psíquicas de 4º nível tornam-se disponíveis automaticamente — Tentáculos Negros de Evard e Invocar Aberração.",
+        "magias_psiquicas_4": [
+          { "nome": "Tentáculos Negros de Evard", "tipo": "4º Nível · Conjuração · Ação · 27 m · Conc. 1 min · Salvag. Des/For", "desc": "Enche uma área de 6 m de tentáculos negros retorcidos. Criaturas na área devem superar uma salvaguarda de Destreza ou ficam agarradas e restritas. Agarradas: 3d6 de dano contundente por turno. Mesmo sem agarrar, o terreno é difícil. Tentáculos também agarram criaturas que entrem na área." },
+          { "nome": "Invocar Aberração", "tipo": "4º Nível · Conjuração · Ação · 27 m · Conc. 1h", "desc": "Invoca uma criatura aberrante aliada de CR ≤ nível do espaço − 3 (usando espaço de 9º nível: CR 6). Três formas: Aboleth (controle mental a distância), Chuul (agarrão + veneno paralisante) ou Otyugh (mordida + doença)." }
+        ],
+        "magias_novas": [
+          { "nome": "Banimento", "tipo": "4º Nível · Abjuração · Conc. 1 min · Salvag. Car", "desc": "Envia uma criatura para um demiplane inofensivo (teste de Car). Se mantida lá por 1 minuto inteiro, o banimento torna-se permanente." }
+        ],
+        "lore": "Klein bane entidades perigosas de volta para seus planos de origem — ou diretamente para a névoa cinza acima das nuvens.",
+        "pontos_feiticaria": 7
+      },
+      "nivel_8": {
+        "titulo": "Aumento de Atributo: Carisma +2",
+        "atributos": "Carisma: 19 → 21 — teto natural atingido. Se a campanha não fornecer itens mágicos, considere aplicar o +2 em Destreza ou Constituição.",
+        "magias_novas": [
+          { "nome": "Mente em Branco", "tipo": "8º Nível · Abjuração · 24 horas · Toque", "desc": "Uma criatura tocada fica imune por 24h a: dano psíquico, leitura de pensamentos, adivinhação e todos os encantamentos. A armadura mental mais completa e duradoura do jogo." }
+        ],
+        "pontos_feiticaria": 8
+      },
+      "nivel_9": {
+        "titulo": "Magias do 5º Nível Disponíveis",
+        "nota": "As magias psíquicas de 5º nível tornam-se disponíveis automaticamente — Ligação Telepática de Rary e Telecinese.",
+        "magias_psiquicas_5": [
+          { "nome": "Ligação Telepática de Rary", "tipo": "5º Nível · Adivinhação · Ação (ou Ritual) · 9 m · 1 hora", "desc": "Estabelece uma rede telepática entre até 8 criaturas consentindo. Qualquer membro pode se comunicar mentalmente com qualquer outro na rede, em qualquer distância — mesmo entre planos. Pode ser lançada como ritual sem gastar espaço." },
+          { "nome": "Telecinese", "tipo": "5º Nível · Transmutação · Ação · 18 m · Conc. 10 min · Salvag. For", "desc": "Mova objetos ou criaturas com a mente. Objetos não agarrados: até 450 kg. Criaturas: salvaguarda de Força ou são movidas até 9 m e restritas. Telecinese de escala de batalha — reposicionamento forçado de qualquer inimigo." }
+        ],
+        "magias_novas": [
+          { "nome": "Vislumbre", "tipo": "4º Nível · Adivinhação · Pode ser Ritual", "desc": "Faz uma pergunta a uma entidade divina sobre um evento dentro de 7 dias e recebe uma resposta verdadeira — 'sim', 'não' ou frase ambígua mas honesta. Pode ser lançada como ritual sem gastar espaço." }
+        ],
+        "lore": "Klein consulta o destino e os possíveis futuros acima da névoa cinza — a visão do Louco que antecipa o amanhã.",
+        "pontos_feiticaria": 9
+      },
+      "nivel_10": {
+        "destaque": true,
+        "titulo": "Metamágica Adicional & Truque Adicional",
+        "habilidades": [
+          {
+            "nome": "Magia Sutil (Subtle Spell)",
+            "desc": "Gaste 1 ponto de feitiçaria para conjurar uma magia sem componentes verbais e somáticos simultaneamente. Combinada com Magia Silenciosa, Klein se torna absolutamente indetectável ao conjurar — sem sons, sem gestos, sem qualquer sinal externo."
+          }
+        ],
+        "truque_novo": { "nome": "Sopro de Vento", "tipo": "Truque · Transmutação · Salvag. For", "desc": "Empurra uma criatura ou objeto pequeno até 1,5 m de distância, ou abre portas e janelas não trancadas." },
+        "magias_novas": [
+          { "nome": "Palavra de Poder: Atordoar", "tipo": "8º Nível · Encantamento", "desc": "Atordoa instantaneamente uma criatura visível com ≤150 PV — sem teste de resistência prévio. A cada turno ela tenta Constituição para sair. Enquanto atordoada: ataques têm vantagem e são críticos automáticos." }
+        ],
+        "pontos_feiticaria": 10
+      },
+      "nivel_11": {
+        "titulo": "Magias do 6º Nível",
+        "magias_novas": [
+          { "nome": "Visão Verdadeira", "tipo": "6º Nível · Adivinhação · Conc. 1 hora · Toque", "desc": "Você enxerga em visão mística até 36 m: formas verdadeiras de criaturas polimorfadas, invisíveis ou ilusórias; objetos ocultos magicamente; e o Plano Etéreo adjacente por completo." }
+        ],
+        "lore": "Klein, acima das nuvens, enxerga a verdade por trás de todas as ilusões e disfarces. Nada escapa à percepção do Louco.",
+        "pontos_feiticaria": 11
+      },
+      "nivel_12": {
+        "titulo": "Aumento de Atributo: Constituição +2",
+        "atributos": "Constituição: 14 → 16 (+3 mod). Aumenta PV retroativamente em +24 e eleva o bônus de concentração.",
+        "pontos_feiticaria": 12
+      },
+      "nivel_13": {
+        "titulo": "Magias do 7º Nível",
+        "magias_novas": [
+          { "nome": "Teletransporte", "tipo": "7º Nível · Conjuração", "desc": "Você e até 8 criaturas consentindo se teletransportam instantaneamente para qualquer lugar no mesmo plano. Locais familiares têm chance mínima de desvio." }
+        ],
+        "lore": "Klein desaparece acima das nuvens e reaparece em qualquer lugar do plano material — uma fuga elegante ou uma chegada dramática, sempre no momento certo.",
+        "pontos_feiticaria": 13
+      },
+      "nivel_14": {
+        "destaque": true,
+        "titulo": "Revelação na Carne (Revelation in Flesh)",
+        "descricao": "Como uma ação bônus, gaste 1 ou mais pontos de feitiçaria para se transformar por 1 minuto. Para cada ponto gasto, você ganha um benefício:",
+        "beneficios": [
+          "Olhos Além: Vê criaturas invisíveis a até 18 m. Seus olhos tornam-se abismos negros sem fundo.",
+          "Forma Aérea: Velocidade de voo igual à caminhada; pode pairar no ar livremente.",
+          "Corpo Distorcido: Move-se por espaços de 2,5 cm; gasta 1,5 m para escapar de restrições não-mágicas ou de um agarrão.",
+          "Visão Aquática: Velocidade de natação dobrada e respiração subaquática plena."
+        ],
+        "lore": "O Louco revelando sua verdadeira natureza aberrante — o ser acima da névoa cinza que desafia as leis da realidade.",
+        "magias_novas": [
+          { "nome": "Simulacro", "tipo": "7º Nível · Ilusão · Permanente (até destruído)", "desc": "Cria uma cópia funcional de uma criatura com metade dos PV e sem recuperação de espaços de magia. Obedece seus comandos. Permanente até ser destruída." }
+        ],
+        "lore_simulacro": "Simulacro representa Klein criando Gehrman Sparrow — sua identidade de campo, enviada para missões perigosas enquanto o original permanece seguro acima das nuvens.",
+        "pontos_feiticaria": 14
+      },
+      "nivel_15": {
+        "titulo": "Controle Absoluto",
+        "magias_novas": [
+          { "nome": "Prisão de Força", "tipo": "6º Nível · Evocação · 1 hora · Sem Concentração", "desc": "Cria um cubo ou gaiola de força mágica intransponível ao redor de criaturas numa área de até 6 m. Sem concentração, sem escapatória mágica comum. Dura 1 hora inteira." }
+        ],
+        "lore": "Klein encerra seus inimigos em cubos de força mágica intransponíveis — sem escapatória, sem negociação.",
+        "pontos_feiticaria": 15
+      },
+      "nivel_16": {
+        "titulo": "Talento: Sortudo (Lucky)",
+        "descricao": "Você possui 3 pontos de sorte que se recuperam após descanso longo. A qualquer momento que realizar uma jogada de ataque, teste de habilidade ou teste de resistência, pode gastar um ponto para rolar um d20 adicional e escolher qual usar. Também pode gastar um ponto quando um ataque for feito contra você.",
+        "lore": "Klein Moretti é notoriamente afortunado na light novel — a representação perfeita da sorte sobrenatural do Louco, que sempre escapa da morte por um triz.",
+        "pontos_feiticaria": 16
+      },
+      "nivel_17": {
+        "titulo": "Metamágica Adicional: Magia Duplicada",
+        "habilidades": [
+          {
+            "nome": "Magia Duplicada (Twinned Spell)",
+            "desc": "Gaste pontos de feitiçaria iguais ao nível da magia (mínimo 1) para atingir uma segunda criatura em alcance com a mesma magia de alvo único. Dois alvos pelo custo de um único espaço de magia."
+          }
+        ],
+        "magias_novas": [
+          { "nome": "Previsão (Foresight)", "tipo": "9º Nível · Adivinhação · 8 horas · Sem Concentração", "desc": "Uma criatura tocada fica por 8 horas com: vantagem em todos os ataques, testes e resistências; inimigos com desvantagem em ataques contra ela; imunidade à condição surpreso. O buff de nível 9 mais poderoso do jogo." }
+        ],
+        "lore": "A magia mais emblemática de Klein — o Louco acima das nuvens que antecipa todos os possíveis futuros e nunca é verdadeiramente pego de surpresa.",
+        "pontos_feiticaria": 17
+      },
+      "nivel_18": {
+        "ultimate": true,
+        "titulo": "Implosão Distorcida (Warping Implosion)",
+        "descricao": "Como uma ação, você se teletransporta para um espaço desocupado visível a até 36 m. Imediatamente após, cada criatura a até 9 m do espaço que você deixou deve ser bem-sucedida em Força (contra sua CD) ou sofrerá 3d10 de dano de força e será puxada para o espaço vazio. Gratuito uma vez por descanso longo; ilimitado a 5 pontos de feitiçaria.",
+        "lore": "Klein desaparecendo acima da névoa cinza — e os inimigos sendo arrastados para o vazio deixado por ele, sugados para a escuridão entre os planos.",
+        "magias_novas": [
+          { "nome": "Palavra de Poder: Matar", "tipo": "9º Nível · Encantamento", "desc": "Mata instantaneamente qualquer criatura visível com ≤100 PV. Sem ataque, sem teste de resistência, sem salvação. A voz do Louco como sentença de morte irrevogável." }
+        ],
+        "pontos_feiticaria": 18
+      },
+      "nivel_19": {
+        "titulo": "Aumento de Atributo: Constituição +2",
+        "atributos": "Constituição: 16 → 18 (+4 mod). Fortalece concentração e sobrevivência nos embates de alto nível.",
+        "pontos_feiticaria": 19
+      },
+      "nivel_20": {
+        "ultimate": true,
+        "titulo": "Restauração Mística & O Desejo do Louco",
+        "habilidades": [
+          {
+            "nome": "Restauração Mística (Sorcerous Restoration)",
+            "desc": "Você recupera 4 pontos de feitiçaria gastos sempre que terminar um descanso curto."
+          }
+        ],
+        "magias_novas": [
+          { "nome": "Desejo (Wish)", "tipo": "9º Nível · Conjuração", "desc": "A magia mais poderosa de todas. Você duplica qualquer magia de 8º nível ou abaixo sem componentes, ou enuncia um desejo livre que remodela a realidade. Uso repetido do desejo livre carrega risco permanente de nunca mais poder conjurá-la." }
+        ],
+        "lore": "O Louco transcende todas as limitações. Klein Moretti, ao alcançar o topo da sequência do Louco, torna-se um ser capaz de alterar o destino do mundo com uma única frase sussurrada acima das nuvens cinzentas.",
+        "pontos_feiticaria": 20,
+        "restauracao_mistica": "Ativa"
+      }
+    }
+  }
+}
