@@ -1,8 +1,7 @@
 import { getAllCharacters, getSystemList } from "@/lib/characters";
 import CharacterCard from "@/components/characters/CharacterCard";
 import Link from "next/link";
-import { getThemeConfig } from "@/components/theme/ThemeProvider";
-import { SYSTEM_LABELS } from "@/lib/system-labels";
+import { SYSTEM_LABELS, SYSTEM_ICONS } from "@/lib/system-labels";
 
 export default function Home() {
   const characters = getAllCharacters();
@@ -42,14 +41,12 @@ export default function Home() {
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/sistemas-de-rpg"
-              className="font-mono text-xs uppercase tracking-[0.2em] px-8 py-3 border transition-colors"
+              className="font-mono text-xs uppercase tracking-[0.2em] px-8 py-3 border transition-colors hover:bg-[rgba(184,115,51,0.3)]"
               style={{
                 background: "rgba(184,115,51,0.2)",
                 borderColor: "var(--color-rpg-bronze)",
                 color: "var(--color-rpg-bronze)",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(184,115,51,0.3)")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(184,115,51,0.2)")}
             >
               Ver Sistemas
             </Link>
@@ -74,9 +71,8 @@ export default function Home() {
         <h2 className="section-title">Sistemas Disponíveis</h2>
         <div className="grid sm:grid-cols-3 gap-4">
           {systems.map((sys) => {
-            const cfg = getThemeConfig(sys);
             const count = characters.filter((c) => c.system === sys).length;
-            return <SystemCard key={sys} system={sys} label={SYSTEM_LABELS[sys] || sys} icon={cfg.icon} count={count} />;
+            return <SystemCard key={sys} system={sys} label={SYSTEM_LABELS[sys] || sys} icon={SYSTEM_ICONS[sys] || "⚙"} count={count} />;
           })}
         </div>
       </section>
@@ -128,8 +124,6 @@ function SystemCard({ system, label, icon, count }: { system: string; label: str
       <h3
         className="font-display font-semibold text-lg transition-colors"
         style={{ color: "var(--color-rpg-gold-light)" }}
-        onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-rpg-gold)")}
-        onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-rpg-gold-light)")}
       >
         {label}
       </h3>
