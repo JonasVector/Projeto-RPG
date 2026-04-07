@@ -13,7 +13,10 @@
       "Bash(npx tsc:*)",
       "Bash(git add:*)",
       "Bash(git commit -m ':*)",
-      "Bash(npx eslint:*)"
+      "Bash(npx eslint:*)",
+      "Bash(git:*)",
+      "Bash(npx obsidian:*)",
+      "Bash(obsidian vault=Projeto-RPG-Cerebro-Organizado:*)"
     ]
   }
 }
