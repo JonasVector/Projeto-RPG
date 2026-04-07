@@ -1,7 +1,6 @@
 import { getSystemList, getAllCharacters } from "@/lib/characters";
 import Link from "next/link";
-import { getThemeConfig } from "@/components/theme/ThemeProvider";
-import { SYSTEM_LABELS } from "@/lib/system-labels";
+import { SYSTEM_LABELS, SYSTEM_ICONS } from "@/lib/system-labels";
 
 export default function SistemasDeRPG() {
   const systems = getSystemList();
@@ -34,7 +33,6 @@ export default function SistemasDeRPG() {
       <div className="max-w-4xl mx-auto px-6 py-12">
         <div className="grid gap-4">
           {systems.map((sys) => {
-            const cfg = getThemeConfig(sys);
             const count = characters.filter((c) => c.system === sys).length;
             return (
               <Link
@@ -48,13 +46,11 @@ export default function SistemasDeRPG() {
                 }}
               >
                 <div className="flex items-center gap-4">
-                  <span className="text-3xl opacity-60 group-hover:opacity-100 transition-opacity">{cfg.icon}</span>
+                  <span className="text-3xl opacity-60 group-hover:opacity-100 transition-opacity">{SYSTEM_ICONS[sys] || "⚙"}</span>
                   <div>
                     <h2
-                      className="font-display font-semibold text-xl transition-colors"
+                      className="font-display font-semibold text-xl transition-colors group-hover:text-[var(--color-rpg-gold)]"
                       style={{ color: "var(--color-rpg-gold-light)" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-rpg-gold)")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-rpg-gold-light)")}
                     >
                       {SYSTEM_LABELS[sys] || sys}
                     </h2>

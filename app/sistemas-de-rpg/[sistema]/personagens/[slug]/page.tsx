@@ -39,10 +39,8 @@ export default async function CharacterPage({ params }: { params: Promise<{ sist
         <nav className="px-4 sm:px-10 py-3 border-b" style={{ borderColor: "var(--color-theme-border)", background: "var(--color-theme-surface)" }}>
           <Link
             href={`/sistemas-de-rpg/${sistema}`}
-            className="font-mono text-[10px] tracking-widest uppercase transition-colors"
+            className="font-mono text-[10px] tracking-widest uppercase transition-colors hover:text-[var(--color-theme-brand-bright)]"
             style={{ color: "var(--color-theme-text-dim)" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-theme-brand-bright)")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-theme-text-dim)")}
           >
             ← Voltar para {systemLabel}
           </Link>
@@ -62,13 +60,11 @@ export default async function CharacterPage({ params }: { params: Promise<{ sist
         <div className="flex justify-end px-4 sm:px-10 my-3">
           <Link
             href={`/sistemas-de-rpg/${sistema}/personagens/${slug}/edit`}
-            className="font-mono text-xs uppercase tracking-widest px-4 py-2 border transition-colors"
+            className="font-mono text-xs uppercase tracking-widest px-4 py-2 border transition-colors hover:bg-[var(--color-theme-glow)]"
             style={{
               borderColor: "var(--color-theme-brand)",
               color: "var(--color-theme-brand-bright)",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = "var(--color-theme-glow)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
           >
             Editar Ficha
           </Link>

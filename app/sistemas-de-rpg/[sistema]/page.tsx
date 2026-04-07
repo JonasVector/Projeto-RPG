@@ -26,10 +26,8 @@ export default async function SystemPage({ params }: { params: Promise<{ sistema
         <nav className="px-4 sm:px-6 py-3 border-b" style={{ borderColor: "var(--color-theme-border)", background: "var(--color-theme-surface)" }}>
           <Link
             href="/sistemas-de-rpg"
-            className="font-mono text-[10px] tracking-widest uppercase transition-colors"
+            className="font-mono text-[10px] tracking-widest uppercase transition-colors hover:text-[var(--color-theme-brand-bright)]"
             style={{ color: "var(--color-theme-text-dim)" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-theme-brand-bright)")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-theme-text-dim)")}
           >
             ← Ver todos os sistemas
           </Link>

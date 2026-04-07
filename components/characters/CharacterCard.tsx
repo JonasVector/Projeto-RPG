@@ -1,13 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import type { CharacterMetadata } from "@/types/character";
-import { getSystemTheme } from "@/components/theme/ThemeProvider";
 
 interface CharacterCardProps {
   character: CharacterMetadata;
 }
 
 export default function CharacterCard({ character }: CharacterCardProps) {
-  getSystemTheme(character.system); // register theme usage
 
   return (
     <Link

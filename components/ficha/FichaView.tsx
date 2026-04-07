@@ -171,7 +171,7 @@ export default function FichaView({ ficha, system }: FichaViewProps) {
             <ThemeSection title="Perícias" accent={themeVars.accent} border={themeVars.border}>
               <ul className="space-y-1">
                 {Object.entries(pericias)
-                  .sort((a, b) => (b as any)[1]?.valor ?? 0 - (a as any)[1]?.valor ?? 0)
+                  .sort((a, b) => ((b as any)[1]?.valor ?? 0) - ((a as any)[1]?.valor ?? 0))
                   .map(([key, sk]: [string, any]) => (
                     <li key={key} className="flex items-center gap-2 py-1 text-sm" style={{ borderBottom: `${themeVars.border}60` }}>
                       {sk.proficiente
