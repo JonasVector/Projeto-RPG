@@ -1,26 +1,56 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-rpg-bg: #0a0806;
+  --color-rpg-surface: #141010;
+  --color-rpg-surface-raised: #15120d;
+  --color-rpg-border: rgba(184, 115, 51, 0.25);
+  --color-rpg-bronze: #b87333;
+  --color-rpg-gold: #c9a227;
+  --color-rpg-gold-light: #e8c85a;
+  --color-rpg-copper: #da8a67;
+  --color-rpg-teal: #5aacbf;
+  --color-rpg-text: #d4c9b0;
+  --color-rpg-text-muted: #8a7a60;
+  --color-rpg-accent: #4a8fa8;
+  --font-display: var(--font-cinzel);
+  --font-body: var(--font-crimson);
+  --font-mono: var(--font-share-tech);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #0a0806;
+  --foreground: #d4c9b0;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), Georgia, serif;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-rpg-border) transparent;
+}
+
+.section-title {
+  @apply font-display text-xs font-bold uppercase tracking-widest text-rpg-bronze border-b border-rpg-border pb-2 mb-4 flex items-center gap-2;
+}
+
+@layer utilities {
+  .border-l-3 {
+    border-left-width: 3px;
+  }
+  .border-t-3 {
+    border-top-width: 3px;
+  }
+}
+
+@keyframes float {
+  from { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+  8% { opacity: 0.2; }
+  50% { transform: translateY(50vh) rotate(200deg); opacity: 0.13; }
+  92% { opacity: 0.05; }
+  to { transform: translateY(-10vh) rotate(400deg); opacity: 0; }
 }
