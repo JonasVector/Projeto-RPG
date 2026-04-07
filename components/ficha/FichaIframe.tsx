@@ -12,8 +12,12 @@ export default function FichaIframe({ src }: FichaIframeProps) {
 
   function handleLoad() {
     const iframe = iframeRef.current;
-    if (!iframe?.contentDocument) return;
-    setHeight(iframe.contentDocument.body.scrollHeight);
+    try {
+      if (!iframe?.contentDocument?.body) return;
+      setHeight(iframe.contentDocument.body.scrollHeight);
+    } catch {
+      // cross-origin: mantém altura default
+    }
   }
 
   return (
@@ -21,6 +25,7 @@ export default function FichaIframe({ src }: FichaIframeProps) {
       ref={iframeRef}
       src={src}
       onLoad={handleLoad}
+      sandbox="allow-scripts allow-same-origin"
       style={{
         width: "100%",
         height: `${height}px`,
