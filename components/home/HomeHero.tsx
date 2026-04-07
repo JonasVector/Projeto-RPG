@@ -45,7 +45,7 @@ export default function HomeHero({ characterCount }: HomeHeroProps) {
         </span>
 
         <h1
-          className="font-display font-black leading-none tracking-wider glow-pulse-gold animate-fade-rise-d1"
+          className="font-display font-black leading-none tracking-wider glow-pulse-gold animate-fade-rise-d2"
           style={{
             fontSize: "clamp(3.5rem, 8vw, 9rem)",
             color: "#e8c85a",
@@ -55,14 +55,14 @@ export default function HomeHero({ characterCount }: HomeHeroProps) {
         </h1>
 
         <p
-          className="font-body italic text-xl mt-6 max-w-lg mx-auto leading-relaxed animate-fade-rise-d2"
+          className="font-body italic text-xl mt-6 max-w-lg mx-auto leading-relaxed animate-fade-rise-d3"
           style={{ color: "var(--color-rpg-text-muted)" }}
         >
           Gerencie fichas de personagens de múltiplos sistemas de RPG em um único lugar.
           Visualize, edite e organize suas aventuras.
         </p>
 
-        <div className="animate-fade-rise-d2">
+        <div className="animate-fade-rise-d3">
           <OrnamentLine color="#c9a227" opacity={0.25} />
         </div>
 
