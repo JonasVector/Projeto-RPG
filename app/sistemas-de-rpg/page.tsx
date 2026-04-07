@@ -1,71 +1,61 @@
 import { getSystemList, getAllCharacters } from "@/lib/characters";
-import Link from "next/link";
 import { SYSTEM_LABELS, SYSTEM_ICONS } from "@/lib/system-labels";
+import SistemasHero from "@/components/sistemas/SistemasHero";
+import SistemaCard from "@/components/sistemas/SistemaCard";
+
+const SYSTEM_ACCENT: Record<string, string> = {
+  dnd: "#8b0000",
+  daggerheart: "#c24d2c",
+  vampiro: "#6e0010",
+};
+
+const SYSTEM_GLOW: Record<string, string> = {
+  dnd: "rgba(139,0,0,0.4)",
+  daggerheart: "rgba(194,77,44,0.4)",
+  vampiro: "rgba(110,0,16,0.5)",
+};
+
+const SYSTEM_DESC: Record<string, string> = {
+  dnd: "Masmorra & Dragões • Alta Fantasia Medieval",
+  daggerheart: "Fantasia Narrativa • Hope & Fear",
+  vampiro: "Horror Gótico • Mundo das Trevas",
+};
 
 export default function SistemasDeRPG() {
   const systems = getSystemList();
   const characters = getAllCharacters();
 
   return (
-    <div className="min-h-screen relative" style={{ background: "var(--background)" }}>
-      {/* Hero */}
-      <section className="border-b" style={{ borderColor: "var(--color-rpg-border)" }}>
-        <div className="max-w-4xl mx-auto px-6 py-16 text-center">
-          <span className="font-mono text-[10px] tracking-[0.3em] uppercase block mb-6" style={{ color: "var(--color-rpg-bronze)", opacity: 0.6 }}>
-            Multiverso de RPG
-          </span>
-          <h1
-            className="font-display font-extrabold text-4xl md:text-5xl tracking-wider"
-            style={{
-              color: "var(--color-rpg-gold-light)",
-              textShadow: "0 0 50px rgba(201,162,39,0.3)",
-            }}
-          >
-            Sistemas de RPG
-          </h1>
-          <p className="text-lg mt-3" style={{ color: "var(--color-rpg-text-muted)" }}>
-            Selecione um sistema para ver seus personagens
-          </p>
-        </div>
-      </section>
+    <div className="min-h-screen" style={{ background: "var(--background)" }}>
+      <SistemasHero />
 
-      {/* Systems list */}
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        <div className="grid gap-4">
-          {systems.map((sys) => {
+      <div className="max-w-4xl mx-auto px-6 py-14">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {systems.map((sys, i) => {
             const count = characters.filter((c) => c.system === sys).length;
+            const accent = SYSTEM_ACCENT[sys] || "#b87333";
+            const glow = SYSTEM_GLOW[sys] || "rgba(184,115,51,0.3)";
+            const desc = SYSTEM_DESC[sys] || "";
+
             return (
-              <Link
+              <SistemaCard
                 key={sys}
-                href={`/sistemas-de-rpg/${sys}`}
-                className="group block border p-6 transition-all duration-300"
-                style={{
-                  background: "var(--color-rpg-surface-raised)",
-                  borderColor: "var(--color-rpg-border)",
-                  borderLeft: "3px solid var(--color-rpg-bronze)",
-                }}
-              >
-                <div className="flex items-center gap-4">
-                  <span className="text-3xl opacity-60 group-hover:opacity-100 transition-opacity">{SYSTEM_ICONS[sys] || "⚙"}</span>
-                  <div>
-                    <h2
-                      className="font-display font-semibold text-xl transition-colors group-hover:text-[var(--color-rpg-gold)]"
-                      style={{ color: "var(--color-rpg-gold-light)" }}
-                    >
-                      {SYSTEM_LABELS[sys] || sys}
-                    </h2>
-                    <p className="font-mono text-xs mt-1 tracking-wider uppercase" style={{ color: "var(--color-rpg-text-muted)" }}>
-                      {count} personagem{count !== 1 ? "s" : ""}
-                    </p>
-                  </div>
-                </div>
-              </Link>
+                sys={sys}
+                count={count}
+                accent={accent}
+                glow={glow}
+                desc={desc}
+                index={i}
+              />
             );
           })}
         </div>
 
         {systems.length === 0 && (
-          <div className="text-center py-16" style={{ color: "var(--color-rpg-text-muted)" }}>
+          <div
+            className="text-center py-16"
+            style={{ color: "var(--color-rpg-text-muted)" }}
+          >
             <span className="text-4xl block mb-4 opacity-30">📜</span>
             <p className="text-lg">Nenhum sistema configurado ainda.</p>
           </div>
