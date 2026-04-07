@@ -22,8 +22,8 @@ const shareTech = Share_Tech_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Forge RPG — Fichas de Personagem",
-  description: "Gerencie fichas de RPG de múltiplos sistemas localmente",
+  title: "Akasharium — Fichas de Personagem",
+  description: "Central de fichas de RPG multi-sistema: D&D, Daggerheart, Vampiro e mais.",
 };
 
 export default function RootLayout({
@@ -36,7 +36,10 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${cinzel.variable} ${crimson.variable} ${shareTech.variable} antialiased`}
     >
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
