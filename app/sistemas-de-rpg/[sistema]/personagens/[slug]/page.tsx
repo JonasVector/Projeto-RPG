@@ -72,7 +72,7 @@ export default async function CharacterPage({ params }: { params: Promise<{ sist
 
         {/* Character Sheet */}
         {sistema === "dnd" ? (
-          <DnDFichaSheet ficha={character.ficha} />
+          <DnDFichaSheet ficha={character.ficha} slug={slug} />
         ) : (
           <div className="px-4 sm:px-6">
             <FichaView ficha={character.ficha} system={sistema} />
