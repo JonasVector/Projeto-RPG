@@ -1,5 +1,4 @@
 import { getSystemList, getAllCharacters } from "@/lib/characters";
-import { SYSTEM_LABELS, SYSTEM_ICONS } from "@/lib/system-labels";
 import SistemasHero from "@/components/sistemas/SistemasHero";
 import SistemaCard from "@/components/sistemas/SistemaCard";
 

@@ -35,7 +35,7 @@ export default function SistemaCard({ sys, count, accent, glow, desc, index }: S
       }}
     >
       <span
-        className="text-4xl block mb-4 transition-all duration-300 group-hover:scale-110 text-center"
+        className="text-[4rem] block mb-4 transition-all duration-300 group-hover:scale-110 text-center"
         style={{ filter: `drop-shadow(0 0 10px ${accent}aa)` }}
       >
         {SYSTEM_ICONS[sys] || "⚙"}
