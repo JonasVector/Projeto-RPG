@@ -1,0 +1,11 @@
+{
+  "metadata": { "name": "Neuvillette", "title": "Soberano Dragão das Águas", "origin": "Genshin Impact", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
+  "identity": { "race": "Linhagem Personalizada (Dragão Soberano)", "class": "Feiticeiro", "subclass": "Linhagem Dracônica (Frio)", "background": "Magistrado", "alignment": "Leal Neutro", "languages": ["Comum", "Dracônico", "Primordial"] },
+  "attributes": { "str": { "score": 8, "mod": -1 }, "dex": { "score": 10, "mod": 0 }, "con": { "score": 16, "mod": 3 }, "int": { "score": 14, "mod": 2 }, "wis": { "score": 12, "mod": 1 }, "cha": { "score": 20, "mod": 5 } },
+  "combat": { "ac": 18, "acDescription": "Dracônico (13+Car 5)", "hp": 163, "hitDice": "20d6", "initiative": "+0", "speed": "9m (Voo 9m Nv14)", "proficiencyBonus": "+6", "spellDC": 19, "spellAttack": "+11", "sorceryPoints": 20 },
+  "savingThrows": [ { "name": "Constituição", "value": 9, "proficient": true }, { "name": "Carisma", "value": 11, "proficient": true } ],
+  "features": { "subclass": [ { "name": "Resiliência Dracônica", "level": 1 }, { "name": "Afinidade Elemental (Frio)", "level": 6 }, { "name": "Asas de Dragão", "level": 14 }, { "name": "Presença Dracônica", "level": 18 } ], "metamagic": [ "Magia Gêmea", "Magia Acelerada", "Magia Sutil", "Magia Potente" ] },
+  "spells": { "cantrips": [ { "name": "Ray of Frost", "damage": "4d8+5 frio" } ], "known": [ { "name": "Shield", "level": 1 }, { "name": "Cone of Cold", "level": 5 }, { "name": "Counterspell", "level": 3 }, { "name": "Meteor Swarm", "level": 9 }, { "name": "Wish", "level": 9 } ] },
+  "personality": { "traits": "Formal, preciso, emocionalmente contido.", "ideals": "Justiça acima da lei.", "bonds": "Fontaine e os Dragões Soberanos.", "flaws": "Dificuldade extrema com emoções humanas." },
+  "tags": ["feiticeiro", "dracônico", "frio", "controle", "dano", "nível-20", "genshin-impact"]
+}
