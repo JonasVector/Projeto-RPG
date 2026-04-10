@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camellya — Ficha D&D 5e</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--blood:#8b0000;--blood-mid:#c0392b;--blood-bright:#e74c3c;--thorn:#2d1a1a;--crimson:#dc143c;--pale:#f0c8c8;--dark:#0a0404;--darker:#060202;--card:#140808;--card-light:#1e0c0c;--gold:#c9a227;--gold-light:#e8c85a;--text:#d8c0c0;--text-dim:#8a5858;--mist:#3a2222;--border:rgba(139,0,0,0.30);--border-bright:rgba(220,20,60,0.45);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--darker);background-image:radial-gradient(ellipse at 25% 20%,rgba(139,0,0,0.10) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(220,20,60,0.06) 0%,transparent 45%);font-family:'Crimson Pro',Georgia,serif;color:var(--text);line-height:1.75;}
+.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
+.blood-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.blooddrop{position:absolute;width:2px;background:var(--crimson);border-radius:50% 50% 50% 50%;opacity:0;animation:drip linear infinite;}
+@keyframes drip{0%{transform:translateY(-5vh) scale(1);opacity:0;}5%{opacity:0.6;}80%{opacity:0.2;}100%{transform:translateY(110vh) scale(0.6);opacity:0;}}
+.header{background:linear-gradient(168deg,#060202 0%,#1a0808 55%,#060202 100%);border-bottom:2px solid var(--blood);position:relative;overflow:hidden;z-index:1;}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blood-mid),var(--crimson),var(--blood-mid),transparent);opacity:0.6;}
+.header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
+.header-portrait{width:220px;flex-shrink:0;background:#080303;border-right:2px solid var(--blood);display:flex;align-items:center;justify-content:center;}
+.portrait-inner{width:100%;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;}
+.portrait-symbol{font-size:80px;opacity:0.12;filter:drop-shadow(0 0 24px var(--crimson));}
+.portrait-ring{position:absolute;width:100px;height:100px;border:1px solid rgba(220,20,60,0.3);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:rp 3s ease-in-out infinite;}
+@keyframes rp{0%,100%{box-shadow:0 0 8px rgba(220,20,60,0.1);}50%{box-shadow:0 0 22px rgba(220,20,60,0.35);}}
+.portrait-ring::before{content:'';position:absolute;inset:8px;border:1px solid rgba(220,20,60,0.15);border-radius:50%;}
+.portrait-label{position:absolute;bottom:14px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--blood-mid);opacity:0.5;text-transform:uppercase;}
+.header-text{flex:1;padding:36px 44px;}
+.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--blood-mid);opacity:0.8;text-transform:uppercase;margin-bottom:10px;}
+.header-name{font-family:'Cinzel',serif;font-size:44px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(220,20,60,0.5);letter-spacing:3px;line-height:1;margin-bottom:4px;}
+.header-subtitle{font-family:'Crimson Pro',serif;font-style:italic;font-size:17px;color:var(--crimson);margin-bottom:22px;letter-spacing:1.5px;}
+.header-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:4px 12px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(139,0,0,0.07);}
+.tag.hi{background:rgba(139,0,0,0.22);border-color:var(--blood-mid);color:var(--blood-bright);}
+.meta-bar{background:var(--card);border-bottom:1px solid var(--border);padding:14px 40px;display:flex;position:relative;z-index:1;}
+.meta-item{flex:1;border-right:1px solid var(--border);padding:0 20px;text-align:center;}
+.meta-item:first-child{padding-left:0;}.meta-item:last-child{border-right:none;padding-right:0;}
+.meta-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
+.meta-value{font-family:'Cinzel',serif;font-size:13px;color:var(--blood-bright);font-weight:600;}
+.section{padding:0 40px;margin-top:36px;position:relative;z-index:1;}
+.section-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--blood-mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.section-title::before{content:'🥀';font-size:12px;opacity:0.8;}
+.stat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:20px;}
+.stat-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:14px 4px 10px;position:relative;transition:border-color 0.2s,box-shadow 0.3s;}
+.stat-box:hover{border-color:var(--blood-mid);box-shadow:0 0 12px rgba(220,20,60,0.2);}
+.stat-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--blood),transparent);opacity:0;transition:opacity 0.2s;}
+.stat-box:hover::after{opacity:1;}
+.stat-name{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:6px;}
+.stat-val{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--pale);line-height:1;}
+.stat-val.peak{color:var(--crimson);text-shadow:0 0 16px rgba(220,20,60,0.4);}
+.stat-mod{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--blood-mid);margin-top:4px;display:block;}
+.combat-row{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:20px;}
+.combat-box{background:var(--card-light);border:1px solid var(--border);text-align:center;padding:12px 6px 10px;transition:border-color 0.2s;}
+.combat-box.accent{background:rgba(139,0,0,0.12);border-color:var(--blood-mid);}
+.combat-label{font-family:'Share Tech Mono',monospace;font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
+.combat-val{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--pale);line-height:1;}
+.combat-box.accent .combat-val{color:var(--crimson);}
+.combat-sub{font-size:10px;color:var(--text-dim);font-family:'Share Tech Mono',monospace;display:block;margin-top:2px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.save-list{list-style:none;}
+.save-item{display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid rgba(139,0,0,0.08);font-size:13px;}
+.save-item:last-child{border-bottom:none;}
+.save-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;}
+.save-dot.filled{background:var(--blood);border-color:var(--blood-bright);box-shadow:0 0 5px rgba(220,20,60,0.5);}
+.save-score{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--blood-mid);min-width:26px;text-align:right;}
+.save-name{color:var(--text-dim);flex:1;}
+.skill-list{list-style:none;}
+.skill-item{display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid rgba(139,0,0,0.08);font-size:13px;}
+.skill-item:last-child{border-bottom:none;}
+.skill-dot{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;}
+.skill-dot.filled{background:var(--blood);border-color:var(--blood-bright);box-shadow:0 0 5px rgba(220,20,60,0.4);}
+.skill-bonus{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--blood-mid);min-width:26px;text-align:right;}
+.skill-name{color:var(--text-dim);flex:1;}
+.skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--mist);letter-spacing:1px;}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.feature-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--blood);padding:12px 14px;transition:border-color 0.2s,transform 0.2s;}
+.feature-card:hover{border-color:var(--blood-mid);transform:translateY(-1px);}
+.feature-card.milestone{border-left-color:var(--crimson);}
+.feature-card.rage{border-left-color:var(--blood-bright);}
+.feature-name{font-family:'Cinzel',serif;font-size:11px;color:var(--blood-mid);letter-spacing:1px;margin-bottom:4px;text-transform:uppercase;}
+.feature-card.milestone .feature-name{color:var(--crimson);}
+.feature-card.rage .feature-name{color:var(--blood-bright);}
+.feature-source{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--blood);opacity:0.7;text-transform:uppercase;margin-bottom:4px;}
+.feature-desc{font-size:12px;color:var(--text-dim);line-height:1.5;}
+.lore-box{background:rgba(139,0,0,0.06);border:1px solid var(--border);border-left:3px solid var(--crimson);padding:14px 18px;font-size:13px;font-style:italic;color:var(--text-dim);margin:12px 0;line-height:1.7;}
+.trait-box{background:var(--card);border:1px solid var(--border);padding:16px 18px;height:100%;}
+.trait-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--blood);display:block;margin-bottom:8px;}
+.trait-text{font-size:14px;color:var(--text-dim);font-style:italic;}
+.backstory{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--blood);padding:28px 32px;}
+.backstory p{font-size:15px;color:var(--text-dim);margin-bottom:14px;line-height:1.85;}
+.bs-quote{font-style:italic;border-left:3px solid var(--crimson);padding:8px 0 8px 16px;color:var(--blood-bright);margin:16px 0;font-size:15px;}
+.attack-table{width:100%;border-collapse:collapse;font-size:13px;}
+.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(139,0,0,0.08);}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(139,0,0,0.08);color:var(--text-dim);}
+.attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
+.attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--crimson);font-weight:700;}
+.attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--blood-bright);}
+.passive-block{background:rgba(139,0,0,0.08);border:1px solid var(--blood);padding:12px 16px;text-align:center;}
+.passive-num{font-family:'Cinzel',serif;font-size:32px;font-weight:900;color:var(--crimson);display:block;}
+.passive-lbl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);}
+.equip-card{background:var(--card);border:1px solid var(--border);padding:12px 14px;}
+.equip-category{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blood);display:block;margin-bottom:6px;}
+.equip-list{list-style:none;font-size:13px;color:var(--text-dim);}
+.equip-list li{padding:2px 0;border-bottom:1px solid rgba(139,0,0,0.08);display:flex;align-items:center;gap:6px;}
+.equip-list li::before{content:'🥀';font-size:8px;}
+.divider{text-align:center;margin:36px 40px;display:flex;align-items:center;gap:16px;position:relative;z-index:1;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--blood),transparent);opacity:0.4;}
+.divider-sym{font-size:16px;color:var(--crimson);opacity:0.5;}
+.footer{text-align:center;padding:28px 40px 0;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text-dim);opacity:0.5;position:relative;z-index:1;}
+@media(max-width:700px){.stat-grid{grid-template-columns:repeat(3,1fr);}.combat-row{grid-template-columns:repeat(4,1fr);}.two-col,.feature-grid{grid-template-columns:1fr;}.header-inner{flex-direction:column;}.header-portrait{width:100%;height:180px;}}
+</style>
+</head>
+<body>
+<div class="blood-bg" id="bloodBg"></div>
+<div class="page">
+
+<header class="header"><div class="header-inner">
+  <div class="header-portrait"><div class="portrait-inner"><div class="portrait-ring"></div><div class="portrait-symbol">🥀</div><span class="portrait-label">Camélia de Sangue</span></div></div>
+  <div class="header-text">
+    <div class="header-eyebrow">Ficha de Personagem · D&D 5e · Bárbaro · Caminho da Besta · Nível 20</div>
+    <h1 class="header-name">Camellya</h1>
+    <div class="header-subtitle">A Rosa de Espinhos — Beleza que Devora</div>
+    <div class="header-tags">
+      <span class="tag hi">Bárbaro 20</span><span class="tag hi">Caminho da Besta</span>
+      <span class="tag">Shifter (Longtooth)</span><span class="tag">Forasteira</span>
+      <span class="tag">Caótico Neutro</span><span class="tag">Sem Multiclasse</span>
+    </div>
+  </div>
+</div></header>
+
+<div class="meta-bar">
+  <div class="meta-item"><span class="meta-label">Raça</span><span class="meta-value">Shifter</span></div>
+  <div class="meta-item"><span class="meta-label">Classe</span><span class="meta-value">Bárbaro</span></div>
+  <div class="meta-item"><span class="meta-label">Subclasse</span><span class="meta-value">Besta</span></div>
+  <div class="meta-item"><span class="meta-label">Antecedente</span><span class="meta-value">Forasteira</span></div>
+  <div class="meta-item"><span class="meta-label">Tendência</span><span class="meta-value">Caótico Neutro</span></div>
+  <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-value">20</span></div>
+</div>
+
+<div class="section"><h2 class="section-title">Atributos</h2>
+  <div class="stat-grid">
+    <div class="stat-box"><span class="stat-name">Força</span><span class="stat-val peak">24</span><span class="stat-mod">+7</span></div>
+    <div class="stat-box"><span class="stat-name">Destreza</span><span class="stat-val">14</span><span class="stat-mod">+2</span></div>
+    <div class="stat-box"><span class="stat-name">Constituição</span><span class="stat-val peak">24</span><span class="stat-mod">+7</span></div>
+    <div class="stat-box"><span class="stat-name">Inteligência</span><span class="stat-val">8</span><span class="stat-mod">−1</span></div>
+    <div class="stat-box"><span class="stat-name">Sabedoria</span><span class="stat-val">14</span><span class="stat-mod">+2</span></div>
+    <div class="stat-box"><span class="stat-name">Carisma</span><span class="stat-val">10</span><span class="stat-mod">+0</span></div>
+  </div>
+  <div class="lore-box"><strong style="color:var(--crimson)">Poder Primordial (Nível 20):</strong> FOR e CON aumentam em +4 cada, máximo 24. Camellya é força bruta encarnada — 24/24 nos dois atributos de combate.</div>
+</div>
+
+<div class="section"><h2 class="section-title">Estatísticas de Combate</h2>
+  <div class="combat-row">
+    <div class="combat-box accent"><span class="combat-label">Classe Armadura</span><span class="combat-val">19</span><span class="combat-sub">Defesa sem Armadura</span></div>
+    <div class="combat-box accent"><span class="combat-label">Pontos de Vida</span><span class="combat-val">285</span><span class="combat-sub">12*20 + 140</span></div>
+    <div class="combat-box"><span class="combat-label">Iniciativa</span><span class="combat-val">+2</span><span class="combat-sub">Des mod</span></div>
+    <div class="combat-box"><span class="combat-label">Deslocamento</span><span class="combat-val">12m</span><span class="combat-sub">9m + 3m rápida</span></div>
+    <div class="combat-box"><span class="combat-label">Bônus Prof.</span><span class="combat-val">+6</span><span class="combat-sub">Nível 20</span></div>
+    <div class="combat-box accent"><span class="combat-label">Fúrias/Dia</span><span class="combat-val">∞</span><span class="combat-sub">Ilimitadas</span></div>
+    <div class="combat-box accent"><span class="combat-label">Dano Fúria</span><span class="combat-val">+4</span><span class="combat-sub">Bônus raiva</span></div>
+  </div>
+  <div class="lore-box"><strong style="color:var(--crimson)">Defesa sem Armadura:</strong> CA = 10 + Des (2) + Con (7) = <strong>19</strong>. Sem armadura, apenas instinto bestial. Em fúria: resistência a concussão, perfuração e cortante. 285 PV que efetivamente se tornam <strong>570</strong>.</div>
+</div>
+
+<div class="section"><h2 class="section-title">Ataques (em Fúria)</h2>
+  <table class="attack-table">
+    <thead><tr><th>Ataque</th><th>Bônus</th><th>Dano / Tipo</th><th>Alcance</th><th>Notas</th></tr></thead>
+    <tbody>
+      <tr><td><span class="attack-name">Garras (Forma de Besta)</span></td><td><span class="attack-bonus">+13</span></td><td><span class="attack-damage">1d6+11 Cortante</span></td><td>Corpo a corpo</td><td style="font-size:11px">Ataque extra incluído · Ataque bônus com garra adicional</td></tr>
+      <tr><td><span class="attack-name">Cauda (Forma de Besta)</span></td><td><span class="attack-bonus">+13</span></td><td><span class="attack-damage">1d8+11 Perfurante</span></td><td>3m</td><td style="font-size:11px">Alcance · Reação: +1d8 CA contra 1 ataque</td></tr>
+      <tr><td><span class="attack-name">Mordida (Forma de Besta)</span></td><td><span class="attack-bonus">+13</span></td><td><span class="attack-damage">1d8+11 Perfurante</span></td><td>Corpo a corpo</td><td style="font-size:11px">Recupera FOR mod (7) PV/acerto se ≤½ PV</td></tr>
+      <tr><td><span class="attack-name">Greataxe</span></td><td><span class="attack-bonus">+13</span></td><td><span class="attack-damage">1d12+11 Cortante</span></td><td>Corpo a corpo</td><td style="font-size:11px">Pesada · Grande Mestre: −5/+10</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="divider"><span class="divider-sym">🥀 ✦ 🥀</span></div>
+
+<div class="section">
+  <h2 class="section-title">Habilidades — Caminho da Besta (TCoE)</h2>
+  <div class="feature-grid">
+    <div class="feature-card rage">
+      <div class="feature-name">Forma da Besta</div><div class="feature-source">Besta · Nível 3</div>
+      <div class="feature-desc">Ao entrar em fúria: manifesta arma natural. <strong style="color:var(--blood-bright)">Garras</strong> (1d6, ataque bônus extra), <strong>Cauda</strong> (1d8, alcance, +1d8 CA reação), ou <strong>Mordida</strong> (1d8, cura se ≤½ PV). A besta dentro de Camellya emerge.</div>
+    </div>
+    <div class="feature-card rage">
+      <div class="feature-name">Alma Bestial</div><div class="feature-source">Besta · Nível 6</div>
+      <div class="feature-desc">Armas naturais contam como <strong style="color:var(--blood-bright)">mágicas</strong>. Ganhos adicionais a cada descanso curto: natação ou escalada = deslocamento. A besta se adapta ao ambiente.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">Aura Infecciosa</div><div class="feature-source">Besta · Nível 10</div>
+      <div class="feature-desc">Em fúria: aliados em <strong style="color:var(--crimson)">3m têm vantagem</strong> em ataques contra inimigos em 1,5m de Camellya (≠ GWM). A fúria é contagiosa — a besta inspira violência.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">Chamado da Caçada</div><div class="feature-source">Besta · Nível 14</div>
+      <div class="feature-desc">Ao acertar um ataque: até <strong style="color:var(--crimson)">6 aliados em 9m</strong> podem usar reação para atacar o mesmo alvo (se estiverem em alcance). A matilha converge sobre a presa.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:16px">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--blood);text-transform:uppercase;margin-bottom:8px">— Bárbaro Geral & Raça</div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-name">Fúria Implacável (∞)</div><div class="feature-source">Bárbaro · Nível 20</div>
+        <div class="feature-desc">Fúrias <strong style="color:var(--crimson)">ilimitadas</strong>. Resistência a dano físico permanente em combate. +4 dano por ataque. Camellya é a tempestade que nunca cessa.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Ataque Brutal (3 dados)</div><div class="feature-source">Bárbaro · Nível 17</div>
+        <div class="feature-desc">Críticos adicionam <strong style="color:var(--crimson)">3 dados extras</strong> de dano. Crítico com Greataxe: 4d12+11 = potencial de 59 dano em um ataque.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Fúria Persistente</div><div class="feature-source">Bárbaro · Nível 15</div>
+        <div class="feature-desc">Fúria só termina se ficar inconsciente ou escolher. Não importa se não ataca ou sofre dano — a besta não dorme.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Shifting (Longtooth)</div><div class="feature-source">Raça · Shifter</div>
+        <div class="feature-desc">Ação bônus: ganha <strong>PV temporários (nível + Con)</strong> e um ataque de mordida bônus (1d6+For). A transformação se acumula com Forma da Besta.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">Personalidade</h2>
+  <div class="two-col">
+    <div class="trait-box"><span class="trait-label">Traços</span><p class="trait-text">Bela de um modo que incomoda — como flores venenosas. A gentileza é uma máscara sobre instintos que ela não se preocupa em esconder. Fala pouco; quando fala, é tarde demais.</p></div>
+    <div class="trait-box"><span class="trait-label">Ideais</span><p class="trait-text">A natureza não pede permissão para ser cruel. Por que ela deveria? Os fortes devoram, os fracos nutrem. A rosa mais bela é a que cresce em sangue.</p></div>
+    <div class="trait-box"><span class="trait-label">Ligações</span><p class="trait-text">A floresta interior — o espaço selvagem dentro dela que é mais real que qualquer civilização. E o Rover, o único que olhou para a besta e não fugiu.</p></div>
+    <div class="trait-box"><span class="trait-label">Defeitos</span><p class="trait-text">Não distingue desejo de necessidade. A fome é constante — de combate, de afeto, de destruição. Quando a besta toma conta, não há amigos.</p></div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-sym">🥀 ✦ 🥀</span></div>
+
+<div class="section">
+  <h2 class="section-title">História do Personagem</h2>
+  <div class="backstory">
+    <p><em>Ela nasceu entre espinhos. E os espinhos aprenderam a ter medo dela.</em></p>
+    <p>Camellya não é uma pessoa com uma besta interior. Camellya <em>é</em> a besta — e a parte humana é o disfarce. Desde criança, a fronteira entre garota e predadora era tênue; quando os outros Shifters mudavam brevemente, ela lutava para <em>voltar</em>.</p>
+    <div class="bs-quote">"Eu não me transformo. Eu paro de fingir."</div>
+    <p>A primeira vez que matou — genuinamente, sem hesitação — sentiu algo que outros descreveriam como horror. Ela descreveria como <em>alívio</em>. A floresta entendeu. As árvores não julgam leões. Por que julgariam Camellya?</p>
+    <p>Encontrou propósito não em causas nobres, mas na sensação pura do combate. Cada luta é uma dança; cada inimigo, um parceiro temporário. Os companheiros aprenderam que Camellya é a arma mais confiável do grupo — desde que não tentem adestrá-la.</p>
+    <div class="bs-quote">"A beleza é o que sobra depois que a violência passa. E eu sou o que sobra depois de tudo."</div>
+    <p style="font-size:12px;color:var(--text-dim);margin-top:20px;font-style:italic">Onde Camellya caminha, flores de sangue nascem. Literalmente — os espinhos no chão parecem responder à sua presença. Ninguém sabe se é magia ou instinto. Talvez não exista diferença.</p>
+  </div>
+</div>
+
+</div>
+<div class="footer"><p>D&D 5e · Wuthering Waves / Kuro Games · Bárbaro · Caminho da Besta · Nível 20</p></div>
+
+<script>
+const bloodBg=document.getElementById('bloodBg');
+for(let i=0;i<20;i++){const d=document.createElement('div');d.className='blooddrop';d.style.left=Math.random()*100+'%';d.style.height=(8+Math.random()*20)+'px';d.style.width=(1+Math.random()*2)+'px';d.style.animationDuration=(4+Math.random()*8)+'s';d.style.animationDelay=(Math.random()*10)+'s';d.style.background=Math.random()>0.5?'#dc143c':'#8b0000';bloodBg.appendChild(d);}
+</script>
+</body>
+</html>

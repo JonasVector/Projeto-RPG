@@ -1,0 +1,7 @@
+{
+  "metadata": { "name": "Camellya", "title": "A Rosa de Espinhos", "origin": "Wuthering Waves", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
+  "identity": { "race": "Shifter (Longtooth)", "class": "Bárbaro", "subclass": "Caminho da Besta", "background": "Forasteira", "alignment": "Caótico Neutro", "languages": ["Comum", "Silvestre"] },
+  "attributes": { "str": { "score": 24, "mod": 7 }, "dex": { "score": 14, "mod": 2 }, "con": { "score": 24, "mod": 7 }, "int": { "score": 8, "mod": -1 }, "wis": { "score": 14, "mod": 2 }, "cha": { "score": 10, "mod": 0 } },
+  "combat": { "ac": 19, "hp": 285, "speed": "12m", "proficiencyBonus": "+6", "rages": "Ilimitadas", "rageDamage": "+4" },
+  "tags": ["bárbaro", "besta", "shifter", "melee", "dano", "tank", "nível-20", "wuthering-waves"]
+}
