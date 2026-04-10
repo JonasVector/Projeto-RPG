@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Furina — Archon Hydro · Ficha D&D 5e</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--aqua:#3da9e0;--aqua-mid:#64b5f6;--aqua-bright:#90caf9;--white-blue:#e1f5fe;--foam:#b3e5fc;--dark:#030810;--darker:#020508;--card:#081020;--card-light:#0c1830;--gold:#c9a227;--gold-light:#e8c85a;--text:#d8e4f0;--text-dim:#6890a8;--mist:#2a4a68;--border:rgba(61,169,224,0.28);--border-bright:rgba(100,181,246,0.45);--glow:rgba(61,169,224,0.12);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--darker);background-image:radial-gradient(ellipse at 25% 20%,rgba(61,169,224,0.08) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(100,181,246,0.05) 0%,transparent 50%),radial-gradient(ellipse at 50% 50%,rgba(42,74,104,0.04) 0%,transparent 70%);font-family:'Cormorant Garamond',Georgia,serif;color:var(--text);line-height:1.75;}
+.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
+
+/* PARTÍCULAS */
+.water-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.droplet{position:absolute;font-size:14px;opacity:0;animation:floatDrop ease-in-out infinite;filter:blur(0.3px);color:var(--aqua-bright);}
+@keyframes floatDrop{0%{transform:translateY(110vh) translateX(0) scale(0.3);opacity:0;}8%{opacity:0.3;}40%{transform:translateY(60vh) translateX(-25px) scale(0.6);opacity:0.18;}80%{opacity:0.08;}100%{transform:translateY(-10vh) translateX(15px) scale(0.25);opacity:0;}}
+
+.header{background:linear-gradient(168deg,#020610 0%,#0a1828 55%,#020610 100%);border-bottom:2px solid var(--aqua);position:relative;overflow:hidden;z-index:1;}
+.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(70deg,transparent,transparent 55px,rgba(61,169,224,0.015) 55px,rgba(61,169,224,0.015) 56px);}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--aqua-mid),var(--aqua-bright),var(--aqua-mid),transparent);opacity:0.6;}
+.header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
+.header-portrait{width:220px;flex-shrink:0;background:#030812;border-right:2px solid var(--aqua);display:flex;align-items:center;justify-content:center;position:relative;}
+.portrait-inner{width:100%;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;}
+.portrait-symbol{font-size:80px;opacity:0.12;filter:drop-shadow(0 0 20px var(--aqua-bright));line-height:1;}
+.portrait-ring{position:absolute;width:100px;height:100px;border:1px solid rgba(61,169,224,0.3);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:ringPulse 4s ease-in-out infinite;}
+@keyframes ringPulse{0%,100%{box-shadow:0 0 8px rgba(61,169,224,0.1);}50%{box-shadow:0 0 20px rgba(61,169,224,0.25);}}
+.portrait-ring::before{content:'';position:absolute;inset:8px;border:1px solid rgba(61,169,224,0.15);border-radius:50%;}
+.portrait-label{position:absolute;bottom:14px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--aqua);opacity:0.5;text-transform:uppercase;}
+.header-text{flex:1;padding:36px 44px;}
+.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--aqua-mid);opacity:0.8;text-transform:uppercase;margin-bottom:10px;}
+.header-name{font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:var(--white-blue);text-shadow:0 0 50px rgba(61,169,224,0.4),0 0 20px rgba(100,181,246,0.2);letter-spacing:3px;line-height:1;margin-bottom:4px;}
+.header-subtitle{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--aqua-mid);margin-bottom:22px;letter-spacing:1.5px;}
+.header-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:4px 12px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(61,169,224,0.06);}
+.tag.hi{background:rgba(61,169,224,0.18);border-color:var(--aqua-mid);color:var(--aqua-bright);}
+
+.meta-bar{background:var(--card);border-bottom:1px solid var(--border);padding:14px 40px;display:flex;position:relative;z-index:1;}
+.meta-item{flex:1;border-right:1px solid var(--border);padding:0 20px;text-align:center;}
+.meta-item:first-child{padding-left:0;}.meta-item:last-child{border-right:none;padding-right:0;}
+.meta-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
+.meta-value{font-family:'Cinzel',serif;font-size:13px;color:var(--foam);font-weight:600;}
+
+.section{padding:0 40px;margin-top:36px;position:relative;z-index:1;}
+.section-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--aqua-mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.section-title::before{content:'💧';font-size:12px;opacity:0.7;}
+
+.stat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:20px;}
+.stat-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:14px 4px 10px;position:relative;transition:border-color 0.2s,box-shadow 0.3s;}
+.stat-box:hover{border-color:var(--aqua-mid);box-shadow:0 0 12px rgba(61,169,224,0.15);}
+.stat-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--aqua),transparent);opacity:0;transition:opacity 0.2s;}
+.stat-box:hover::after{opacity:1;}
+.stat-name{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:6px;}
+.stat-val{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--white-blue);line-height:1;}
+.stat-val.peak{color:var(--aqua-bright);text-shadow:0 0 16px rgba(100,181,246,0.4);}
+.stat-mod{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--aqua-mid);margin-top:4px;display:block;}
+
+.combat-row{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:20px;}
+.combat-box{background:var(--card-light);border:1px solid var(--border);text-align:center;padding:12px 6px 10px;transition:border-color 0.2s;}
+.combat-box:hover{border-color:var(--aqua-mid);}
+.combat-box.accent{background:rgba(61,169,224,0.1);border-color:var(--aqua-mid);}
+.combat-label{font-family:'Share Tech Mono',monospace;font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
+.combat-val{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--foam);line-height:1;}
+.combat-box.accent .combat-val{color:var(--aqua-bright);}
+.combat-sub{font-size:10px;color:var(--text-dim);font-family:'Share Tech Mono',monospace;display:block;margin-top:2px;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.save-list,.skill-list{list-style:none;}
+.save-item,.skill-item{display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid rgba(61,169,224,0.08);font-size:13px;}
+.save-item:last-child,.skill-item:last-child{border-bottom:none;}
+.save-dot,.skill-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;}
+.save-dot.filled,.skill-dot.filled{background:var(--aqua);border-color:var(--aqua-bright);box-shadow:0 0 5px rgba(61,169,224,0.5);}
+.skill-dot.expert{background:var(--gold);border-color:var(--gold-light);box-shadow:0 0 5px rgba(201,162,39,0.5);}
+.save-score,.skill-bonus{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--aqua-mid);min-width:26px;text-align:right;}
+.skill-bonus.peak{color:var(--gold-light);}
+.save-name,.skill-name{color:var(--text-dim);flex:1;}
+.skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--mist);letter-spacing:1px;}
+
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.feature-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--aqua);padding:12px 14px;transition:border-color 0.2s,transform 0.2s;}
+.feature-card:hover{border-color:var(--aqua-mid);transform:translateY(-1px);}
+.feature-card.milestone{border-left-color:var(--gold);}
+.feature-card.divine{border-left-color:var(--aqua-bright);}
+.feature-name{font-family:'Cinzel',serif;font-size:11px;color:var(--aqua-mid);letter-spacing:1px;margin-bottom:4px;text-transform:uppercase;}
+.feature-card.milestone .feature-name{color:var(--gold-light);}
+.feature-card.divine .feature-name{color:var(--aqua-bright);}
+.feature-source{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--aqua);opacity:0.7;text-transform:uppercase;margin-bottom:4px;}
+.feature-desc{font-size:12px;color:var(--text-dim);line-height:1.5;}
+
+.spell-circle{margin-bottom:28px;}
+.spell-circle-header{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.spell-badge{width:36px;height:36px;border:2px solid var(--aqua);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:var(--aqua-bright);background:rgba(61,169,224,0.1);flex-shrink:0;}
+.spell-badge.cantrip{border-color:var(--gold);color:var(--gold-light);background:rgba(201,162,39,0.1);}
+.spell-circle-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--aqua-mid);}
+.spell-slots{margin-left:auto;display:flex;gap:5px;}
+.slot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--aqua-mid);background:rgba(61,169,224,0.2);}
+
+.spell-entry{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--aqua);padding:10px 14px;margin-bottom:6px;transition:border-color 0.2s,background 0.2s;}
+.spell-entry:hover{background:var(--card-light);border-color:var(--aqua-mid);border-left-color:var(--aqua-bright);}
+.spell-entry.core{border-left-color:var(--aqua-bright);}
+.spell-entry.cantrip{border-left-color:var(--gold);}
+.spell-entry-top{display:flex;align-items:baseline;gap:10px;margin-bottom:4px;flex-wrap:wrap;}
+.spell-name{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--foam);}
+.spell-entry.cantrip .spell-name{color:var(--gold-light);}
+.spell-tags-inline{display:flex;gap:5px;flex-wrap:wrap;}
+.stag{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;padding:2px 7px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(61,169,224,0.04);}
+.stag.conc{border-color:rgba(61,169,224,0.4);color:var(--aqua-mid);}
+.stag.core-tag{border-color:rgba(100,181,246,0.5);color:var(--aqua-bright);background:rgba(61,169,224,0.06);}
+.spell-desc{font-size:13.5px;color:var(--text-dim);line-height:1.6;}
+.spell-mechanic{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--aqua);margin-top:3px;display:block;}
+
+.trait-box{background:var(--card);border:1px solid var(--border);padding:16px 18px;height:100%;}
+.trait-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--aqua);display:block;margin-bottom:8px;}
+.trait-text{font-size:14px;color:var(--text-dim);font-style:italic;}
+
+.lore-box{background:rgba(61,169,224,0.06);border:1px solid var(--border);border-left:3px solid var(--aqua-bright);padding:14px 18px;font-size:13px;font-style:italic;color:var(--text-dim);margin:12px 0;line-height:1.7;}
+
+.backstory{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--aqua);padding:28px 32px;}
+.backstory p{font-size:15px;color:var(--text-dim);margin-bottom:14px;line-height:1.85;}
+.backstory p:last-child{margin-bottom:0;}
+.bs-quote{font-style:italic;border-left:3px solid var(--aqua-bright);padding:8px 0 8px 16px;color:var(--foam);margin:16px 0;font-size:15px;}
+
+.equip-card{background:var(--card);border:1px solid var(--border);padding:12px 14px;}
+.equip-category{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--aqua);display:block;margin-bottom:6px;}
+.equip-list{list-style:none;font-size:13px;color:var(--text-dim);}
+.equip-list li{padding:2px 0;border-bottom:1px solid rgba(61,169,224,0.08);display:flex;align-items:center;gap:6px;}
+.equip-list li::before{content:'💧';font-size:8px;}
+
+.divider{text-align:center;margin:36px 40px;display:flex;align-items:center;gap:16px;position:relative;z-index:1;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--aqua),transparent);opacity:0.4;}
+.divider-sym{font-size:16px;color:var(--aqua-bright);opacity:0.5;}
+
+.passive-block{background:rgba(61,169,224,0.08);border:1px solid var(--aqua);padding:12px 16px;text-align:center;}
+.passive-num{font-family:'Cinzel',serif;font-size:32px;font-weight:900;color:var(--aqua-bright);text-shadow:0 0 16px rgba(100,181,246,0.3);display:block;}
+.passive-lbl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);}
+.death-saves{display:flex;flex-direction:column;gap:6px;}
+.ds-row{display:flex;align-items:center;gap:8px;}
+.ds-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);min-width:60px;}
+.ds-dots{display:flex;gap:6px;}
+.ds-dot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--border);}
+
+.attack-table{width:100%;border-collapse:collapse;font-size:13px;}
+.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(61,169,224,0.08);}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(61,169,224,0.08);color:var(--text-dim);}
+.attack-table tr:hover td{background:rgba(61,169,224,0.05);}
+.attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--foam);}
+.attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--aqua-mid);font-weight:700;}
+.attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--aqua-bright);}
+
+.footer{text-align:center;padding:28px 40px 0;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text-dim);opacity:0.5;position:relative;z-index:1;}
+
+@media(max-width:700px){.stat-grid{grid-template-columns:repeat(3,1fr);}.combat-row{grid-template-columns:repeat(4,1fr);}.two-col,.feature-grid{grid-template-columns:1fr;}.header-inner{flex-direction:column;}.header-portrait{width:100%;height:180px;}}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--darker);}::-webkit-scrollbar-thumb{background:var(--aqua);border-radius:3px;}
+</style>
+</head>
+<body>
+<div class="water-bg" id="waterBg"></div>
+<div class="page">
+
+<header class="header"><div class="header-inner">
+  <div class="header-portrait"><div class="portrait-inner"><div class="portrait-ring"></div><div class="portrait-symbol">⚖</div><span class="portrait-label">Archon Hydro</span></div></div>
+  <div class="header-text">
+    <div class="header-eyebrow">Ficha de Personagem · D&D 5e · Bardo · Colégio da Eloquência · Nível 20</div>
+    <h1 class="header-name">Furina</h1>
+    <div class="header-subtitle">A Divindade das Águas — Primeira Estrela do Tribunal de Fontaine</div>
+    <div class="header-tags">
+      <span class="tag hi">Bardo 20</span><span class="tag hi">Colégio da Eloquência</span>
+      <span class="tag">Genasi da Água</span><span class="tag">Nobre</span>
+      <span class="tag">Caótico Neutro</span><span class="tag">Sem Multiclasse</span>
+    </div>
+  </div>
+</div></header>
+
+<div class="meta-bar">
+  <div class="meta-item"><span class="meta-label">Raça</span><span class="meta-value">Genasi da Água</span></div>
+  <div class="meta-item"><span class="meta-label">Classe</span><span class="meta-value">Bardo</span></div>
+  <div class="meta-item"><span class="meta-label">Subclasse</span><span class="meta-value">Eloquência</span></div>
+  <div class="meta-item"><span class="meta-label">Antecedente</span><span class="meta-value">Nobre</span></div>
+  <div class="meta-item"><span class="meta-label">Tendência</span><span class="meta-value">Caótico Neutro</span></div>
+  <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-value">20</span></div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">Atributos</h2>
+  <div class="stat-grid">
+    <div class="stat-box"><span class="stat-name">Força</span><span class="stat-val">8</span><span class="stat-mod">−1</span></div>
+    <div class="stat-box"><span class="stat-name">Destreza</span><span class="stat-val">14</span><span class="stat-mod">+2</span></div>
+    <div class="stat-box"><span class="stat-name">Constituição</span><span class="stat-val">16</span><span class="stat-mod">+3</span></div>
+    <div class="stat-box"><span class="stat-name">Inteligência</span><span class="stat-val">12</span><span class="stat-mod">+1</span></div>
+    <div class="stat-box"><span class="stat-name">Sabedoria</span><span class="stat-val">10</span><span class="stat-mod">+0</span></div>
+    <div class="stat-box"><span class="stat-name">Carisma</span><span class="stat-val peak">20</span><span class="stat-mod">+5</span></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">Estatísticas de Combate</h2>
+  <div class="combat-row">
+    <div class="combat-box accent"><span class="combat-label">Classe Armadura</span><span class="combat-val">15</span><span class="combat-sub">Couro Batido + Des</span></div>
+    <div class="combat-box accent"><span class="combat-label">Pontos de Vida</span><span class="combat-val">163</span><span class="combat-sub">Nível 20</span></div>
+    <div class="combat-box"><span class="combat-label">Iniciativa</span><span class="combat-val">+2</span><span class="combat-sub">Des mod</span></div>
+    <div class="combat-box"><span class="combat-label">Deslocamento</span><span class="combat-val">9m</span><span class="combat-sub">+ Natação 9m</span></div>
+    <div class="combat-box"><span class="combat-label">Bônus Prof.</span><span class="combat-val">+6</span><span class="combat-sub">Nível 20</span></div>
+    <div class="combat-box accent"><span class="combat-label">CD Magias</span><span class="combat-val">19</span><span class="combat-sub">8 + prof + Car</span></div>
+    <div class="combat-box accent"><span class="combat-label">Ataque Mágico</span><span class="combat-val">+11</span><span class="combat-sub">prof + Car</span></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="two-col" style="gap:32px">
+    <div>
+      <h2 class="section-title">Testes de Resistência</h2>
+      <ul class="save-list">
+        <li class="save-item"><div class="save-dot"></div><span class="save-score">−1</span><span class="save-name">Força</span></li>
+        <li class="save-item"><div class="save-dot filled"></div><span class="save-score">+8</span><span class="save-name">Destreza</span></li>
+        <li class="save-item"><div class="save-dot"></div><span class="save-score">+3</span><span class="save-name">Constituição</span></li>
+        <li class="save-item"><div class="save-dot"></div><span class="save-score">+1</span><span class="save-name">Inteligência</span></li>
+        <li class="save-item"><div class="save-dot"></div><span class="save-score">+0</span><span class="save-name">Sabedoria</span></li>
+        <li class="save-item"><div class="save-dot filled"></div><span class="save-score" style="color:var(--aqua-bright)">+11</span><span class="save-name">Carisma</span></li>
+      </ul>
+      <div style="margin-top:20px">
+        <h2 class="section-title">Percepção Passiva</h2>
+        <div class="passive-block"><span class="passive-num">16</span><span class="passive-lbl">Sabedoria Passiva</span></div>
+      </div>
+    </div>
+    <div>
+      <h2 class="section-title">Perícias</h2>
+      <ul class="skill-list">
+        <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+5</span><span class="skill-name">Acrobacia</span><span class="skill-attr">DES</span></li>
+        <li class="skill-item"><div class="skill-dot expert"></div><span class="skill-bonus peak">+17</span><span class="skill-name">Atuação</span><span class="skill-attr">CAR</span></li>
+        <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus">+11</span><span class="skill-name">Enganação</span><span class="skill-attr">CAR</span></li>
+        <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+4</span><span class="skill-name">História</span><span class="skill-attr">INT</span></li>
+        <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus">+6</span><span class="skill-name">Intuição</span><span class="skill-attr">SAB</span></li>
+        <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+8</span><span class="skill-name">Intimidação</span><span class="skill-attr">CAR</span></li>
+        <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus">+6</span><span class="skill-name">Percepção</span><span class="skill-attr">SAB</span></li>
+        <li class="skill-item"><div class="skill-dot expert"></div><span class="skill-bonus peak">+17</span><span class="skill-name">Persuasão</span><span class="skill-attr">CAR</span></li>
+      </ul>
+      <div class="lore-box" style="margin-top:10px">
+        <strong style="color:var(--aqua-mid)">Eloquência Universal:</strong> Mínimo de 10 em Persuasão e Enganação (10 + mod). Furina nunca falha em convencer — essa é a prerrogativa de uma deusa.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-sym">💧 ⚖ 💧</span></div>
+
+<div class="section">
+  <h2 class="section-title">Habilidades — Colégio da Eloquência</h2>
+  <div class="feature-grid">
+    <div class="feature-card divine">
+      <div class="feature-name">Eloquência Universal</div><div class="feature-source">Eloquência · Nível 3</div>
+      <div class="feature-desc">Mínimo de <strong style="color:var(--aqua-bright)">10</strong> em qualquer teste de Persuasão ou Enganação (trata 1-9 como 10). A voz de Furina nunca falha — cada frase é uma sentença perfeita.</div>
+    </div>
+    <div class="feature-card divine">
+      <div class="feature-name">Palavras Desencorajadoras</div><div class="feature-source">Eloquência · Nível 3</div>
+      <div class="feature-desc">Ação bônus: criatura em 18m subtrai o dado de Inspiração Bárdica (d12) do <strong style="color:var(--aqua-bright)">próximo TR ou ataque</strong>. Sem gasto de Inspiração se a criatura falhar. O julgamento de Furina enfraquece antes de destruir.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">Discurso Irrenunciável</div><div class="feature-source">Eloquência · Nível 6</div>
+      <div class="feature-desc">Ao conjurar magia de encantamento/ilusão de 1° ou superior: uma criatura perde a reação e tem <strong style="color:var(--gold-light)">−10 de velocidade</strong> até o início do seu próximo turno. O tribunal silencia os réus.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">Inspiração Infecciosa</div><div class="feature-source">Eloquência · Nível 14</div>
+      <div class="feature-desc">Quando um aliado usa Inspiração Bárdica e <strong>passa</strong> no teste, outro aliado em 18m recebe <strong style="color:var(--gold-light)">um dado de Inspiração gratuito</strong>. A inspiração se espalha — como ondas na água.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:16px">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--aqua);text-transform:uppercase;margin-bottom:8px">— Bardo Geral & Raça</div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-name">Inspiração Bárdica (d12)</div><div class="feature-source">Bardo · Nível 1</div>
+        <div class="feature-desc">5 usos por descanso curto. Aliado adiciona 1d12 a ataque, habilidade ou TR. Como Eloquência: dados não usados retornam.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Canção de Descanso (d12)</div><div class="feature-source">Bardo · Nível 2</div>
+        <div class="feature-desc">+1d12 PV extras para aliados em descanso curto. A canção suave de Furina que acalma como a maré.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Segredos Mágicos</div><div class="feature-source">Bardo · Nível 10, 14, 18</div>
+        <div class="feature-desc">6 magias de qualquer classe. Water Breathing, Tidal Wave, Control Water — Furina une poder divino e arcano.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Respiração Anfíbia</div><div class="feature-source">Genasi da Água · Raça</div>
+        <div class="feature-desc">Respira ar e água. Natação 9m. Resistência a dano de ácido. <strong style="color:var(--aqua-bright)">Shape Water</strong> como truque racial.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-sym">💧 ⚖ 💧</span></div>
+
+<div class="section">
+  <h2 class="section-title">Grimório · Carisma · CD: 19 · Ataque: +11</h2>
+
+  <div class="spell-circle">
+    <div class="spell-circle-header"><div class="spell-badge cantrip">0</div><span class="spell-circle-title" style="color:var(--gold-light)">Truques</span></div>
+    <div class="spell-entry cantrip">
+      <div class="spell-entry-top"><span class="spell-name">Zombaria Cruel</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag">18m</span><span class="stag core-tag">★ central</span></div></div>
+      <p class="spell-desc">Insulto dramático: <strong>4d4 psíquico</strong> (TR Sab CD 19) + desvantagem no próximo ataque. Os julgamentos de Furina cortam mais fundo que qualquer lâmina.</p>
+      <span class="spell-mechanic">⚖ TR Sab CD 19 · 4d4 psíquico · Desvantagem no próximo ataque</span>
+    </div>
+    <div class="spell-entry cantrip">
+      <div class="spell-entry-top"><span class="spell-name">Shape Water (Moldar Água)</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag">9m · cubo 1,5m</span><span class="stag">racial</span></div></div>
+      <p class="spell-desc">Controla e molda um cubo de 1,5m de água. Pode animar, congelar, mudar cor/opacidade. A assinatura visual de Furina — a água obedece ao gesto.</p>
+      <span class="spell-mechanic">💧 Molda, anima ou congela água · Múltiplos efeitos simultâneos</span>
+    </div>
+  </div>
+
+  <div class="spell-circle">
+    <div class="spell-circle-header"><div class="spell-badge">✦</div><span class="spell-circle-title">Magias Conhecidas</span></div>
+
+    <div class="spell-entry core">
+      <div class="spell-entry-top"><span class="spell-name">Suggestion (Sugestão)</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag conc">concentração · 8h</span><span class="stag core-tag">★ central</span></div></div>
+      <p class="spell-desc">Sugere uma ação ao alvo (TR Sab CD 19). Com Eloquência: perda de reação e velocidade do alvo. O veredicto de Furina é <em>obrigação</em>.</p>
+      <span class="spell-mechanic">⚖ TR Sab CD 19 · Obediência por até 8h · Sem perceber como magia</span>
+    </div>
+    <div class="spell-entry core">
+      <div class="spell-entry-top"><span class="spell-name">Hypnotic Pattern</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag conc">conc · 1 min</span><span class="stag">cubo 9m</span></div></div>
+      <p class="spell-desc">Padrão luminoso hipnotizante: falha = <strong>incapacitado e encantado</strong>. O espetáculo de Furina aprisiona mentes.</p>
+      <span class="spell-mechanic">🌀 TR Sab CD 19 · Incapacitado + Encantado · AoE cubo 9m</span>
+    </div>
+    <div class="spell-entry">
+      <div class="spell-entry-top"><span class="spell-name">Tidal Wave (Onda Gigante)</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag">36m · linha 9m</span><span class="stag core-tag">segredo</span></div></div>
+      <p class="spell-desc">Onda de 3m de altura: <strong>4d8 concussão</strong> + derrubado. A fúria do mar quando Furina decide que a corte encerrou. <em>(Segredo Mágico)</em></p>
+      <span class="spell-mechanic">🌊 TR Des CD 19 · 4d8 concussão · Derrubado · Linha 9m</span>
+    </div>
+    <div class="spell-entry core">
+      <div class="spell-entry-top"><span class="spell-name">Otto's Irresistible Dance</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag conc">conc · 1 min</span><span class="stag core-tag">★ 6°</span></div></div>
+      <p class="spell-desc">Sem TR inicial — o alvo <em>dança</em>. Velocidade 0, desvantagem em tudo, vantagem contra. "Os réus devem se curvar perante a magistrada de Fontaine."</p>
+      <span class="spell-mechanic">💃 SEM TR inicial · Velocidade 0 · Desvantagem em ataques + TRs · Vantagem contra</span>
+    </div>
+    <div class="spell-entry">
+      <div class="spell-entry-top"><span class="spell-name">Mass Suggestion</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag">18m</span><span class="stag">24h sem conc</span></div></div>
+      <p class="spell-desc">Sugere ação a <strong>12 criaturas</strong>. 24 horas sem concentração. O veredito de Furina alcança multidões.</p>
+      <span class="spell-mechanic">⚖ 12 alvos · TR Sab CD 19 · 24 horas · Sem concentração</span>
+    </div>
+    <div class="spell-entry core">
+      <div class="spell-entry-top"><span class="spell-name">Foresight (Previsão)</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag">toque</span><span class="stag core-tag">★ 9°</span></div></div>
+      <p class="spell-desc"><strong>8 horas</strong>: vantagem em tudo, desvantagem contra. Sem concentração. Furina vê cada onda antes que se forme — e posiciona suas peças perfeitamente.</p>
+      <span class="spell-mechanic">👁 8h · Vantagem em TUDO · Desvantagem contra · Sem concentração</span>
+    </div>
+    <div class="spell-entry">
+      <div class="spell-entry-top"><span class="spell-name">Power Word Kill</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag">18m</span><span class="stag core-tag">★ 9° · segredo</span></div></div>
+      <p class="spell-desc">Se o alvo tem <strong>100 PV ou menos: morte instantânea</strong>. Sem TR. Uma palavra. Uma sentença. O tribunal de Fontaine não conhece apelação. <em>(Segredo Mágico)</em></p>
+      <span class="spell-mechanic">💀 ≤100 PV → morte · Sem TR · Uma palavra · Segredo Mágico</span>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">Equipamento</h2>
+  <div class="two-col">
+    <div class="equip-card"><span class="equip-category">Armas & Armadura</span><ul class="equip-list">
+      <li>Florete (reskin Rapier) — 1d8+2 Perfurante</li>
+      <li>Couro Batido +1 — CA 15</li>
+      <li>Foco: Acessório de Tribunal (Broche Hydro)</li>
+    </ul></div>
+    <div class="equip-card"><span class="equip-category">Itens</span><ul class="equip-list">
+      <li>Traje teatral de Archon Hydro</li>
+      <li>Roteiros de performances passadas</li>
+      <li>Cálice cerimonial de cristal</li>
+      <li>Sinete do Tribunal de Fontaine</li>
+    </ul></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">Personalidade</h2>
+  <div class="two-col">
+    <div class="trait-box"><span class="trait-label">Traços</span><p class="trait-text">Dramática ao extremo — cada momento é um ato de sua própria ópera. Exige atenção, aplauso e, acima de tudo, que ninguém perceba o medo por trás da máscara.</p></div>
+    <div class="trait-box"><span class="trait-label">Ideais</span><p class="trait-text">A justiça é uma performance. Se a plateia acredita, a verdade não importa. O que importa é que a ordem seja mantida — e que Furina esteja no palco.</p></div>
+    <div class="trait-box"><span class="trait-label">Ligações</span><p class="trait-text">Fontaine e seu povo. A promessa de proteger uma nação inteira com uma mentira que durou séculos — mesmo custando sua própria divindade.</p></div>
+    <div class="trait-box"><span class="trait-label">Defeitos</span><p class="trait-text">Terror absoluto de ser descoberta como fraude. A solidão da deusa que não é deusa — fingir eternamente é o preço da proteção que ela oferece.</p></div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-sym">💧 ⚖ 💧</span></div>
+
+<div class="section">
+  <h2 class="section-title">História do Personagem</h2>
+  <div class="backstory">
+    <p><em>Ela nunca foi uma deusa. Mas a performance foi tão perfeita que até os deuses acreditaram.</em></p>
+    <p>Furina nasceu como a face mortal da Archon Hydro — uma persona criada para proteger Fontaine de uma profecia antiga que condenava todos os seus habitantes à dissolução. A verdadeira Archon se sacrificou, deixando Furina como guardiã solitária de um segredo que pesava mais que oceanos.</p>
+    <div class="bs-quote">"Claro que sou a Archon! Quem mais poderia ser tão... tão magnifique?!"</div>
+    <p>Durante séculos, Furina atuou o papel de deusa com uma dedicação que seria cômica se não fosse trágica. Cada risada exagerada, cada gesto teatral, cada pronunciamento grandilocuente era uma camada a mais entre ela e a verdade: de que era uma garota comum carregando o peso de uma nação inteira nos ombros.</p>
+    <p>O Tribunal de Fontaine foi seu palco — e a justiça, seu roteiro favorito. Não porque acreditasse em leis perfeitas, mas porque a performance de julgar era a única coisa que a fazia sentir-se real. Ali, ao menos, alguém a ouvia.</p>
+    <div class="bs-quote">"Todo mundo quer um espetáculo. Ninguém quer saber o que acontece quando as cortinas fecham."</div>
+    <p>Quando a verdade finalmente veio à tona — quando o mundo soube que a Archon Hydro era apenas uma garota com um dom para drama — Furina perdeu tudo: o trono, a divindade, a audiência. Mas ganhou algo que nunca tivera: <em>a liberdade de ser imperfeita.</em></p>
+    <p style="font-size:12px;color:var(--text-dim);margin-top:20px;font-style:italic">Hoje ela caminha entre mortais como uma deles — dramática, barulhenta, insegura. Mas livre. E, pela primeira vez em quinhentos anos, genuinamente sorrindo.</p>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <p>D&D 5e — Wizards of the Coast · Personagem: Genshin Impact / HoYoverse · Mecânicas: Wizards of the Coast</p>
+  <p style="margin-top:4px;">Bardo · Colégio da Eloquência · Genasi da Água · Nível 20 · Sem Multiclasse</p>
+</div>
+
+<script>
+const waterBg=document.getElementById('waterBg');
+const drops=['💧','·','∘','○','◦','✦'];
+for(let i=0;i<22;i++){const d=document.createElement('div');d.className='droplet';d.textContent=drops[Math.floor(Math.random()*drops.length)];d.style.left=Math.random()*100+'%';d.style.animationDuration=(20+Math.random()*30)+'s';d.style.animationDelay=(-Math.random()*30)+'s';d.style.fontSize=(8+Math.random()*16)+'px';waterBg.appendChild(d);}
+</script>
+</body>
+</html>

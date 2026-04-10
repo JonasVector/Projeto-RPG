@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "name": "Furina",
+    "title": "Archon Hydro — Divindade das Águas",
+    "origin": "Genshin Impact",
+    "version": "1.0",
+    "system": "D&D 5e",
+    "level": 20,
+    "created": "2026-04-10",
+    "language": "pt-BR"
+  },
+  "identity": {
+    "race": "Genasi da Água",
+    "class": "Bardo",
+    "subclass": "Colégio da Eloquência",
+    "background": "Nobre",
+    "alignment": "Caótico Neutro",
+    "languages": ["Comum", "Primordial (Aquan)", "Élfico"]
+  },
+  "attributes": {
+    "str": { "score": 8, "mod": -1 },
+    "dex": { "score": 14, "mod": 2 },
+    "con": { "score": 16, "mod": 3 },
+    "int": { "score": 12, "mod": 1 },
+    "wis": { "score": 10, "mod": 0 },
+    "cha": { "score": 20, "mod": 5 }
+  },
+  "combat": {
+    "ac": 15,
+    "hp": 163,
+    "hitDice": "20d8",
+    "initiative": "+2",
+    "speed": "9m (+ Natação 9m)",
+    "proficiencyBonus": "+6",
+    "spellDC": 19,
+    "spellAttack": "+11",
+    "spellAbility": "Carisma"
+  },
+  "savingThrows": [
+    { "name": "Força", "value": -1, "proficient": false },
+    { "name": "Destreza", "value": 8, "proficient": true },
+    { "name": "Constituição", "value": 3, "proficient": false },
+    { "name": "Inteligência", "value": 1, "proficient": false },
+    { "name": "Sabedoria", "value": 0, "proficient": false },
+    { "name": "Carisma", "value": 11, "proficient": true }
+  ],
+  "features": {
+    "subclass": [
+      { "name": "Eloquência Universal", "level": 3, "description": "Mínimo 10 em Persuasão e Enganação." },
+      { "name": "Palavras Desencorajadoras", "level": 3, "description": "Subtrai dado de Inspiração do TR/ataque inimigo." },
+      { "name": "Discurso Irrenunciável", "level": 6, "description": "Encantamento/Ilusão tira reação e -10 velocidade." },
+      { "name": "Inspiração Infecciosa", "level": 14, "description": "Inspiração usada com sucesso gera dado gratuito para outro aliado." }
+    ]
+  },
+  "spells": {
+    "cantrips": [
+      { "name": "Zombaria Cruel", "damage": "4d4 psíquico" },
+      { "name": "Shape Water", "notes": "Truque racial" }
+    ],
+    "known": [
+      { "name": "Suggestion", "level": 2 },
+      { "name": "Hypnotic Pattern", "level": 3 },
+      { "name": "Tidal Wave", "level": 3, "source": "Segredo Mágico" },
+      { "name": "Otto's Irresistible Dance", "level": 6 },
+      { "name": "Mass Suggestion", "level": 6 },
+      { "name": "Foresight", "level": 9 },
+      { "name": "Power Word Kill", "level": 9, "source": "Segredo Mágico" }
+    ]
+  },
+  "personality": {
+    "traits": "Dramática ao extremo. Cada momento é um ato de sua ópera.",
+    "ideals": "A justiça é performance. A ordem é mantida pela atuação.",
+    "bonds": "Fontaine e seu povo. A promessa que custou séculos.",
+    "flaws": "Terror de ser descoberta como fraude."
+  },
+  "tags": ["bardo", "eloquência", "genasi-água", "controle", "social", "nível-20", "genshin-impact"]
+}
