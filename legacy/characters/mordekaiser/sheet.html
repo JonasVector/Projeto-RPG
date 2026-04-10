@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mordekaiser — O Senhor de Ferro · Ficha D&D 5e</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Oswald:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--iron:#4a6a50;--iron-mid:#5a8a60;--iron-bright:#7ab880;--death-green:#40c040;--pale:#c8e0c8;--dark:#040804;--darker:#020602;--card:#0a1a0a;--card-light:#102010;--gold:#c9a227;--gold-light:#e8c85a;--text:#b0c8b0;--text-dim:#507050;--mist:#283828;--border:rgba(74,106,80,0.30);--border-bright:rgba(122,184,128,0.45);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--darker);background-image:radial-gradient(ellipse at 25% 15%,rgba(74,106,80,0.10) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(64,192,64,0.05) 0%,transparent 45%);font-family:'Oswald',sans-serif;color:var(--text);line-height:1.75;}
+.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
+.soul-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.soul{position:absolute;width:4px;height:4px;background:var(--death-green);border-radius:50%;opacity:0;animation:soulRise ease-in-out infinite;filter:blur(1px);}
+@keyframes soulRise{0%{transform:translateY(110vh) scale(0.5);opacity:0;}10%{opacity:0.6;}50%{transform:translateY(50vh) scale(1.2);opacity:0.2;}100%{transform:translateY(-10vh) scale(0.4);opacity:0;}}
+.header{background:linear-gradient(168deg,#020602 0%,#0c200c 55%,#020602 100%);border-bottom:2px solid var(--iron);position:relative;overflow:hidden;z-index:1;}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--iron),var(--death-green),var(--iron),transparent);opacity:0.6;}
+.header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
+.header-portrait{width:220px;flex-shrink:0;background:#030603;border-right:2px solid var(--iron);display:flex;align-items:center;justify-content:center;}
+.portrait-inner{width:100%;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;}
+.portrait-symbol{font-size:80px;opacity:0.12;filter:drop-shadow(0 0 24px var(--death-green));}
+.portrait-ring{position:absolute;width:100px;height:100px;border:1px solid rgba(64,192,64,0.3);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:rp 3s ease-in-out infinite;}
+@keyframes rp{0%,100%{box-shadow:0 0 8px rgba(64,192,64,0.1);}50%{box-shadow:0 0 22px rgba(64,192,64,0.35);}}
+.portrait-ring::before{content:'';position:absolute;inset:8px;border:1px solid rgba(64,192,64,0.15);border-radius:50%;}
+.portrait-label{position:absolute;bottom:14px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--iron);opacity:0.5;text-transform:uppercase;}
+.header-text{flex:1;padding:36px 44px;}
+.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--iron-mid);opacity:0.8;text-transform:uppercase;margin-bottom:10px;}
+.header-name{font-family:'Cinzel',serif;font-size:38px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(64,192,64,0.4);letter-spacing:4px;line-height:1;margin-bottom:4px;}
+.header-subtitle{font-family:'Oswald',sans-serif;font-weight:300;font-size:18px;color:var(--death-green);margin-bottom:22px;letter-spacing:3px;text-transform:uppercase;}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:4px 12px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(74,106,80,0.06);}
+.tag.hi{background:rgba(64,192,64,0.15);border-color:var(--iron-mid);color:var(--iron-bright);}
+.header-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.meta-bar{background:var(--card);border-bottom:1px solid var(--border);padding:14px 40px;display:flex;position:relative;z-index:1;}
+.meta-item{flex:1;border-right:1px solid var(--border);padding:0 20px;text-align:center;}
+.meta-item:first-child{padding-left:0;}.meta-item:last-child{border-right:none;padding-right:0;}
+.meta-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
+.meta-value{font-family:'Cinzel',serif;font-size:13px;color:var(--death-green);font-weight:600;}
+.section{padding:0 40px;margin-top:36px;position:relative;z-index:1;}
+.section-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--iron-mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.section-title::before{content:'⚔';font-size:12px;color:var(--death-green);opacity:0.8;}
+.stat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:20px;}
+.stat-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:14px 4px 10px;transition:border-color 0.2s,box-shadow 0.3s;}
+.stat-box:hover{border-color:var(--iron-mid);box-shadow:0 0 12px rgba(64,192,64,0.15);}
+.stat-name{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:6px;}
+.stat-val{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--pale);line-height:1;}
+.stat-val.peak{color:var(--death-green);text-shadow:0 0 16px rgba(64,192,64,0.4);}
+.stat-mod{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--iron-mid);margin-top:4px;display:block;}
+.combat-row{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:20px;}
+.combat-box{background:var(--card-light);border:1px solid var(--border);text-align:center;padding:12px 6px 10px;}
+.combat-box.accent{background:rgba(64,192,64,0.08);border-color:var(--iron-mid);}
+.combat-label{font-family:'Share Tech Mono',monospace;font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
+.combat-val{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--pale);line-height:1;}
+.combat-box.accent .combat-val{color:var(--death-green);}
+.combat-sub{font-size:10px;color:var(--text-dim);font-family:'Share Tech Mono',monospace;display:block;margin-top:2px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.feature-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--iron);padding:12px 14px;transition:border-color 0.2s,transform 0.2s;}
+.feature-card:hover{border-color:var(--iron-mid);transform:translateY(-1px);}
+.feature-card.milestone{border-left-color:var(--death-green);}
+.feature-name{font-family:'Cinzel',serif;font-size:11px;color:var(--iron-mid);letter-spacing:1px;margin-bottom:4px;text-transform:uppercase;}
+.feature-card.milestone .feature-name{color:var(--death-green);}
+.feature-source{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--iron);opacity:0.7;text-transform:uppercase;margin-bottom:4px;}
+.feature-desc{font-size:12px;color:var(--text-dim);line-height:1.5;}
+.lore-box{background:rgba(64,192,64,0.05);border:1px solid var(--border);border-left:3px solid var(--death-green);padding:14px 18px;font-size:13px;font-style:italic;color:var(--text-dim);margin:12px 0;line-height:1.7;}
+.trait-box{background:var(--card);border:1px solid var(--border);padding:16px 18px;height:100%;}
+.trait-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:8px;}
+.trait-text{font-size:14px;color:var(--text-dim);font-style:italic;}
+.backstory{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--iron);padding:28px 32px;}
+.backstory p{font-size:15px;color:var(--text-dim);margin-bottom:14px;line-height:1.85;}
+.bs-quote{font-style:italic;border-left:3px solid var(--death-green);padding:8px 0 8px 16px;color:var(--death-green);margin:16px 0;font-size:15px;}
+.attack-table{width:100%;border-collapse:collapse;font-size:13px;}
+.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(64,192,64,0.06);}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(74,106,80,0.08);color:var(--text-dim);}
+.attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
+.attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--death-green);font-weight:700;}
+.attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--iron-bright);}
+.divider{text-align:center;margin:36px 40px;display:flex;align-items:center;gap:16px;position:relative;z-index:1;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--iron),transparent);opacity:0.4;}
+.divider-sym{font-size:16px;color:var(--death-green);opacity:0.5;}
+.footer{text-align:center;padding:28px 40px 0;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text-dim);opacity:0.5;position:relative;z-index:1;}
+@media(max-width:700px){.stat-grid{grid-template-columns:repeat(3,1fr);}.combat-row{grid-template-columns:repeat(4,1fr);}.two-col,.feature-grid{grid-template-columns:1fr;}.header-inner{flex-direction:column;}.header-portrait{width:100%;height:180px;}}
+</style>
+</head>
+<body>
+<div class="soul-bg" id="soulBg"></div>
+<div class="page">
+
+<header class="header"><div class="header-inner">
+  <div class="header-portrait"><div class="portrait-inner"><div class="portrait-ring"></div><div class="portrait-symbol">⚔</div><span class="portrait-label">Senhor de Ferro</span></div></div>
+  <div class="header-text">
+    <div class="header-eyebrow">Ficha de Personagem · D&D 5e · Guerreiro · Cavaleiro Eco · Nível 20</div>
+    <h1 class="header-name">Mordekaiser</h1>
+    <div class="header-subtitle">O Senhor de Ferro — A Morte é Apenas o Começo</div>
+    <div class="header-tags">
+      <span class="tag hi">Guerreiro 20</span><span class="tag hi">Cavaleiro Eco</span>
+      <span class="tag">Reborn (Renascido)</span><span class="tag">Soldado</span>
+      <span class="tag">Leal Mau</span><span class="tag">Sem Multiclasse</span>
+    </div>
+  </div>
+</div></header>
+
+<div class="meta-bar">
+  <div class="meta-item"><span class="meta-label">Raça</span><span class="meta-value">Reborn</span></div>
+  <div class="meta-item"><span class="meta-label">Classe</span><span class="meta-value">Guerreiro</span></div>
+  <div class="meta-item"><span class="meta-label">Subclasse</span><span class="meta-value">Cavaleiro Eco</span></div>
+  <div class="meta-item"><span class="meta-label">Antecedente</span><span class="meta-value">Soldado</span></div>
+  <div class="meta-item"><span class="meta-label">Tendência</span><span class="meta-value">Leal Mau</span></div>
+  <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-value">20</span></div>
+</div>
+
+<div class="section"><h2 class="section-title">Atributos</h2>
+  <div class="stat-grid">
+    <div class="stat-box"><span class="stat-name">Força</span><span class="stat-val peak">20</span><span class="stat-mod">+5</span></div>
+    <div class="stat-box"><span class="stat-name">Destreza</span><span class="stat-val">10</span><span class="stat-mod">+0</span></div>
+    <div class="stat-box"><span class="stat-name">Constituição</span><span class="stat-val peak">20</span><span class="stat-mod">+5</span></div>
+    <div class="stat-box"><span class="stat-name">Inteligência</span><span class="stat-val">14</span><span class="stat-mod">+2</span></div>
+    <div class="stat-box"><span class="stat-name">Sabedoria</span><span class="stat-val">10</span><span class="stat-mod">+0</span></div>
+    <div class="stat-box"><span class="stat-name">Carisma</span><span class="stat-val">12</span><span class="stat-mod">+1</span></div>
+  </div>
+</div>
+
+<div class="section"><h2 class="section-title">Estatísticas de Combate</h2>
+  <div class="combat-row">
+    <div class="combat-box accent"><span class="combat-label">Classe Armadura</span><span class="combat-val">20</span><span class="combat-sub">Plate + Escudo</span></div>
+    <div class="combat-box accent"><span class="combat-label">Pontos de Vida</span><span class="combat-val">224</span><span class="combat-sub">d10×20 + Con×20</span></div>
+    <div class="combat-box"><span class="combat-label">Iniciativa</span><span class="combat-val">+0</span><span class="combat-sub">Des mod</span></div>
+    <div class="combat-box"><span class="combat-label">Deslocamento</span><span class="combat-val">9m</span><span class="combat-sub">Padrão</span></div>
+    <div class="combat-box"><span class="combat-label">Bônus Prof.</span><span class="combat-val">+6</span><span class="combat-sub">Nível 20</span></div>
+    <div class="combat-box accent"><span class="combat-label">Ataques/Turno</span><span class="combat-val">4+Eco</span><span class="combat-sub">Eco ataca</span></div>
+    <div class="combat-box accent"><span class="combat-label">Action Surge</span><span class="combat-val">×2</span><span class="combat-sub">/descanso curto</span></div>
+  </div>
+</div>
+
+<div class="section"><h2 class="section-title">Ataques</h2>
+  <table class="attack-table">
+    <thead><tr><th>Ataque</th><th>Bônus</th><th>Dano</th><th>Alcance</th><th>Notas</th></tr></thead>
+    <tbody>
+      <tr><td><span class="attack-name">Nightfall (Maça Estrela-d'Alva)</span></td><td><span class="attack-bonus">+11</span></td><td><span class="attack-damage">1d8+5 Concussão</span></td><td>Corpo a corpo</td><td style="font-size:11px">4 ataques · Eco pode atacar</td></tr>
+      <tr><td><span class="attack-name">Eco — Nightfall Fantasma</span></td><td><span class="attack-bonus">+11</span></td><td><span class="attack-damage">1d8+5+2 Concussão</span></td><td>4,5m do eco</td><td style="font-size:11px">Ação bônus · +INT mod no dano</td></tr>
+      <tr><td><span class="attack-name">Desencadear Encarnação</span></td><td><span class="attack-bonus">+11</span></td><td><span class="attack-damage">×2 ataques do eco</span></td><td>4,5m do eco</td><td style="font-size:11px">3-5 pontos Con · Eco usa Extra Attack</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="divider"><span class="divider-sym">⚔ ✦ ⚔</span></div>
+
+<div class="section">
+  <h2 class="section-title">Habilidades — Cavaleiro Eco (EGtW)</h2>
+  <div class="feature-grid">
+    <div class="feature-card milestone">
+      <div class="feature-name">Manifestar Eco</div><div class="feature-source">Eco · Nível 3</div>
+      <div class="feature-desc">Ação bônus: invoca eco espectral em <strong style="color:var(--death-green)">4,5m</strong>. O eco pode atacar em seu lugar, trocar posição, e servir de ponto de origem para ataques de oportunidade. A sombra de ferro de Mordekaiser — uma versão fantasma de si mesmo.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">Desencadear Encarnação</div><div class="feature-source">Eco · Nível 3</div>
+      <div class="feature-desc">Gasta pontos de Con: o eco usa <strong style="color:var(--death-green)">sua ação de Extra Attack</strong>, fazendo ataques completos (4 ataques!). Total potencial: <strong>8 ataques em um turno</strong> (4 próprios + 4 do eco).</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-name">Avatar Eco — Sentinel</div><div class="feature-source">Eco · Nível 7</div>
+      <div class="feature-desc">Eco pode fazer ataques de oportunidade. Quando inimigo se move: <strong>para o movimento</strong>. O eco não é uma ilusão — é uma sentinela.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">Redirecionamento</div><div class="feature-source">Eco · Nível 7</div>
+      <div class="feature-desc">Usa reação para <strong style="color:var(--death-green)">transferir dano do eco para si</strong> ou vice-versa. Pode trocar de lugar com o eco (15 pés) como reação.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-name">Recuperação Sombria</div><div class="feature-source">Eco · Nível 10</div>
+      <div class="feature-desc">Ao ficar com 0 PV (sem morrer): pode <strong>destruir o eco para ir a 1 PV</strong>. O ferro não quebra — apenas se reforma.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">Legião de Um</div><div class="feature-source">Eco · Nível 18</div>
+      <div class="feature-desc">Ação bônus: cria <strong style="color:var(--death-green)">2 ecos</strong> simultaneamente. Ambos podem atacar. O Senhor de Ferro é um exército de um homem — literalmente.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">Personalidade</h2>
+  <div class="two-col">
+    <div class="trait-box"><span class="trait-label">Traços</span><p class="trait-text">Implacável, metódico, absolutamente convicto. Fala como quem já decretou o fim — e está apenas esperando que se cumpra. A morte não é ameaça; é promessa.</p></div>
+    <div class="trait-box"><span class="trait-label">Ideais</span><p class="trait-text">O poder é a única verdade. Reinos caem, deuses morrem, mas o ferro permanece. Mordekaiser não busca governar os vivos — busca governar TUDO.</p></div>
+    <div class="trait-box"><span class="trait-label">Ligações</span><p class="trait-text">Seu reino de ferro — Mitna Rachnun — construído no plano dos mortos com as almas dos derrotados. Cada vitória é um tijolo a mais na fortaleza eterna.</p></div>
+    <div class="trait-box"><span class="trait-label">Defeitos</span><p class="trait-text">Arrogância absoluta. Mordekaiser não subestima — ele simplesmente não registra inferioridade. O ferro não reconhece a madeira como ameaça.</p></div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-sym">⚔ ✦ ⚔</span></div>
+
+<div class="section">
+  <h2 class="section-title">História do Personagem</h2>
+  <div class="backstory">
+    <p><em>Ele morreu. E voltou. Morreu de novo. Voltou de novo. Na terceira vez, a morte pediu desculpas.</em></p>
+    <p>Mordekaiser foi um senhor da guerra cujo único medo era o esquecimento. Em vida, conquistou reinos inteiros pela força bruta do ferro. Em morte, recusou-se a descansar — e forjou, no próprio plano dos mortos, uma fortaleza de ferro e almas onde reinaria eternamente.</p>
+    <div class="bs-quote">"Eu não temo a morte. A morte teme a mim. Eu a atravessei como uma porta — e do outro lado, construí um trono."</div>
+    <p>Quando foi ressuscitado por necromantes que buscavam controlá-lo, Mordekaiser os matou primeiro, absorveu suas almas, e voltou ao trabalho de conquista com a paciência meticulosa de quem sabe que tem a <em>eternidade</em>. Cada vida tirada alimenta o reino. Cada batalha vencida é pedra angular.</p>
+    <p>O Cavaleiro Eco é a manifestação perfeita de sua natureza: Mordekaiser não luta sozinho porque existe em dois planos simultaneamente. O eco é a versão dele que nunca parou de lutar no reino dos mortos — convocada para o plano material.</p>
+    <div class="bs-quote">"Reinos de carne apodrecem. Reinos de pedra desmoronam. O meu é de ferro e almas — e ambos são eternos."</div>
+    <p style="font-size:12px;color:var(--text-dim);margin-top:20px;font-style:italic">O chão treme quando Mordekaiser marcha. Não por peso — mas porque até a terra reconhece quando algo que deveria estar morto decide caminhar.</p>
+  </div>
+</div>
+
+</div>
+<div class="footer"><p>D&D 5e · League of Legends / Riot Games · Guerreiro · Cavaleiro Eco · Nível 20</p></div>
+
+<script>
+const soulBg=document.getElementById('soulBg');
+for(let i=0;i<25;i++){const s=document.createElement('div');s.className='soul';s.style.left=Math.random()*100+'%';s.style.width=(2+Math.random()*4)+'px';s.style.height=s.style.width;s.style.animationDuration=(6+Math.random()*12)+'s';s.style.animationDelay=(Math.random()*10)+'s';s.style.background=Math.random()>0.5?'#40c040':'#7ab880';soulBg.appendChild(s);}
+</script>
+</body>
+</html>

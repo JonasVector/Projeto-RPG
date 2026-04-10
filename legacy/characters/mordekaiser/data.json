@@ -1,0 +1,7 @@
+{
+  "metadata": { "name": "Mordekaiser", "title": "O Senhor de Ferro", "origin": "League of Legends", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
+  "identity": { "race": "Reborn (Renascido)", "class": "Guerreiro", "subclass": "Cavaleiro Eco", "background": "Soldado", "alignment": "Leal Mau" },
+  "attributes": { "str": { "score": 20, "mod": 5 }, "dex": { "score": 10, "mod": 0 }, "con": { "score": 20, "mod": 5 }, "int": { "score": 14, "mod": 2 }, "wis": { "score": 10, "mod": 0 }, "cha": { "score": 12, "mod": 1 } },
+  "combat": { "ac": 20, "hp": 224, "speed": "9m", "proficiencyBonus": "+6", "extraAttacks": "4+Echo" },
+  "tags": ["guerreiro", "eco", "reborn", "melee", "tank", "nível-20", "league-of-legends"]
+}
