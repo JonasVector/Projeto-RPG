@@ -1,0 +1,7 @@
+{
+  "metadata": { "name": "Morgana", "title": "O Anjo Caído", "origin": "League of Legends", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
+  "identity": { "race": "Aasimar (Caído)", "class": "Feiticeiro", "subclass": "Sombra Divina", "background": "Eremita", "alignment": "Caótico Neutro" },
+  "attributes": { "str": { "score": 8, "mod": -1 }, "dex": { "score": 14, "mod": 2 }, "con": { "score": 16, "mod": 3 }, "int": { "score": 10, "mod": 0 }, "wis": { "score": 12, "mod": 1 }, "cha": { "score": 20, "mod": 5 } },
+  "combat": { "ac": 15, "hp": 163, "speed": "9m (Voo 9m)", "proficiencyBonus": "+6", "spellDC": 19, "spellAttack": "+11", "sorceryPoints": 20 },
+  "tags": ["feiticeiro", "sombra-divina", "aasimar", "controle", "sombra", "nível-20", "league-of-legends"]
+}
