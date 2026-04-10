@@ -1,0 +1,7 @@
+{
+  "metadata": { "name": "Nasus", "title": "O Curador do Deserto", "origin": "League of Legends", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
+  "identity": { "race": "Loxodon", "class": "Mago", "subclass": "Escola de Necromancia", "background": "Sábio", "alignment": "Leal Neutro" },
+  "attributes": { "str": { "score": 10, "mod": 0 }, "dex": { "score": 10, "mod": 0 }, "con": { "score": 16, "mod": 3 }, "int": { "score": 20, "mod": 5 }, "wis": { "score": 16, "mod": 3 }, "cha": { "score": 8, "mod": -1 } },
+  "combat": { "ac": 15, "hp": 142, "speed": "9m", "proficiencyBonus": "+6", "spellDC": 19, "spellAttack": "+11" },
+  "tags": ["mago", "necromancia", "loxodon", "suporte", "controle", "nível-20", "league-of-legends"]
+}
