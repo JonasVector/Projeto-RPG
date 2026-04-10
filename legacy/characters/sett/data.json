@@ -1,0 +1,7 @@
+{
+  "metadata": { "name": "Sett", "title": "O Chefe", "origin": "League of Legends", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
+  "identity": { "race": "Meio-Orc", "class": "Guerreiro", "subclass": "Campeão", "background": "Gladiador", "alignment": "Leal Neutro" },
+  "attributes": { "str": { "score": 20, "mod": 5 }, "dex": { "score": 14, "mod": 2 }, "con": { "score": 20, "mod": 5 }, "int": { "score": 8, "mod": -1 }, "wis": { "score": 12, "mod": 1 }, "cha": { "score": 14, "mod": 2 } },
+  "combat": { "ac": 20, "hp": 224, "speed": "9m", "proficiencyBonus": "+6", "critRange": "18-20", "extraAttacks": 4 },
+  "tags": ["guerreiro", "campeão", "meio-orc", "melee", "tank", "dano", "nível-20", "league-of-legends"]
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sett — O Chefe · Ficha D&D 5e</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Oswald:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--amber:#d4a017;--amber-mid:#e8b830;--amber-bright:#f0d060;--bronze:#a87828;--pale:#f8e8c0;--dark:#0a0804;--darker:#080602;--card:#1a1008;--card-light:#241810;--red:#c44040;--red-bright:#e05050;--text:#e0d0b8;--text-dim:#907858;--mist:#4a3820;--border:rgba(212,160,23,0.30);--border-bright:rgba(240,208,96,0.45);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--darker);background-image:radial-gradient(ellipse at 25% 20%,rgba(212,160,23,0.08) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(168,120,40,0.06) 0%,transparent 45%);font-family:'Oswald',sans-serif;color:var(--text);line-height:1.75;}
+.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
+.spark-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.spark{position:absolute;width:3px;height:3px;background:var(--amber-bright);border-radius:50%;opacity:0;animation:riseSpark linear infinite;}
+@keyframes riseSpark{0%{transform:translateY(110vh) scale(0.5);opacity:0;}10%{opacity:0.7;}50%{transform:translateY(50vh) scale(1);opacity:0.3;}100%{transform:translateY(-10vh) scale(0.4);opacity:0;}}
+.header{background:linear-gradient(168deg,#080602 0%,#1a1008 55%,#080602 100%);border-bottom:2px solid var(--amber);position:relative;overflow:hidden;z-index:1;}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--amber),var(--amber-bright),var(--amber),transparent);opacity:0.6;}
+.header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
+.header-portrait{width:220px;flex-shrink:0;background:#0a0704;border-right:2px solid var(--amber);display:flex;align-items:center;justify-content:center;}
+.portrait-inner{width:100%;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;}
+.portrait-symbol{font-size:80px;opacity:0.12;filter:drop-shadow(0 0 24px var(--amber-bright));}
+.portrait-ring{position:absolute;width:100px;height:100px;border:1px solid rgba(212,160,23,0.3);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:rp 3s ease-in-out infinite;}
+@keyframes rp{0%,100%{box-shadow:0 0 8px rgba(212,160,23,0.1);}50%{box-shadow:0 0 22px rgba(212,160,23,0.35);}}
+.portrait-ring::before{content:'';position:absolute;inset:8px;border:1px solid rgba(212,160,23,0.15);border-radius:50%;}
+.portrait-label{position:absolute;bottom:14px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--amber);opacity:0.5;text-transform:uppercase;}
+.header-text{flex:1;padding:36px 44px;}
+.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--amber);opacity:0.8;text-transform:uppercase;margin-bottom:10px;}
+.header-name{font-family:'Cinzel',serif;font-size:52px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(212,160,23,0.5);letter-spacing:5px;line-height:1;margin-bottom:4px;}
+.header-subtitle{font-family:'Oswald',sans-serif;font-weight:300;font-size:18px;color:var(--amber-mid);margin-bottom:22px;letter-spacing:3px;text-transform:uppercase;}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:4px 12px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(212,160,23,0.06);}
+.tag.hi{background:rgba(212,160,23,0.22);border-color:var(--amber);color:var(--amber-bright);}
+.header-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.meta-bar{background:var(--card);border-bottom:1px solid var(--border);padding:14px 40px;display:flex;position:relative;z-index:1;}
+.meta-item{flex:1;border-right:1px solid var(--border);padding:0 20px;text-align:center;}
+.meta-item:first-child{padding-left:0;}.meta-item:last-child{border-right:none;padding-right:0;}
+.meta-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
+.meta-value{font-family:'Cinzel',serif;font-size:13px;color:var(--amber-bright);font-weight:600;}
+.section{padding:0 40px;margin-top:36px;position:relative;z-index:1;}
+.section-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--amber);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.section-title::before{content:'👊';font-size:12px;opacity:0.8;}
+.stat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:20px;}
+.stat-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:14px 4px 10px;transition:border-color 0.2s,box-shadow 0.3s;}
+.stat-box:hover{border-color:var(--amber);box-shadow:0 0 12px rgba(212,160,23,0.2);}
+.stat-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--amber),transparent);opacity:0;transition:opacity 0.2s;}
+.stat-name{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:6px;}
+.stat-val{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--pale);line-height:1;}
+.stat-val.peak{color:var(--amber-bright);text-shadow:0 0 16px rgba(240,208,96,0.4);}
+.stat-mod{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--amber);margin-top:4px;display:block;}
+.combat-row{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:20px;}
+.combat-box{background:var(--card-light);border:1px solid var(--border);text-align:center;padding:12px 6px 10px;}
+.combat-box.accent{background:rgba(212,160,23,0.12);border-color:var(--amber);}
+.combat-label{font-family:'Share Tech Mono',monospace;font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
+.combat-val{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--pale);line-height:1;}
+.combat-box.accent .combat-val{color:var(--amber-bright);}
+.combat-sub{font-size:10px;color:var(--text-dim);font-family:'Share Tech Mono',monospace;display:block;margin-top:2px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.feature-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--amber);padding:12px 14px;transition:border-color 0.2s,transform 0.2s;}
+.feature-card:hover{border-color:var(--amber);transform:translateY(-1px);}
+.feature-card.milestone{border-left-color:var(--amber-bright);}
+.feature-card.champ{border-left-color:var(--red);}
+.feature-name{font-family:'Cinzel',serif;font-size:11px;color:var(--amber);letter-spacing:1px;margin-bottom:4px;text-transform:uppercase;}
+.feature-card.milestone .feature-name{color:var(--amber-bright);}
+.feature-card.champ .feature-name{color:var(--red-bright);}
+.feature-source{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--amber);opacity:0.7;text-transform:uppercase;margin-bottom:4px;}
+.feature-desc{font-size:12px;color:var(--text-dim);line-height:1.5;}
+.lore-box{background:rgba(212,160,23,0.06);border:1px solid var(--border);border-left:3px solid var(--amber-bright);padding:14px 18px;font-size:13px;font-style:italic;color:var(--text-dim);margin:12px 0;line-height:1.7;}
+.attack-table{width:100%;border-collapse:collapse;font-size:13px;}
+.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(212,160,23,0.08);}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(212,160,23,0.08);color:var(--text-dim);}
+.attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
+.attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--amber-bright);font-weight:700;}
+.attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--amber);}
+.trait-box{background:var(--card);border:1px solid var(--border);padding:16px 18px;height:100%;}
+.trait-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:8px;}
+.trait-text{font-size:14px;color:var(--text-dim);font-style:italic;}
+.backstory{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--amber);padding:28px 32px;}
+.backstory p{font-size:15px;color:var(--text-dim);margin-bottom:14px;line-height:1.85;}
+.bs-quote{font-style:italic;border-left:3px solid var(--amber-bright);padding:8px 0 8px 16px;color:var(--amber-bright);margin:16px 0;font-size:15px;}
+.divider{text-align:center;margin:36px 40px;display:flex;align-items:center;gap:16px;position:relative;z-index:1;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--amber),transparent);opacity:0.4;}
+.divider-sym{font-size:16px;color:var(--amber-bright);opacity:0.5;}
+.footer{text-align:center;padding:28px 40px 0;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text-dim);opacity:0.5;position:relative;z-index:1;}
+@media(max-width:700px){.stat-grid{grid-template-columns:repeat(3,1fr);}.combat-row{grid-template-columns:repeat(4,1fr);}.two-col,.feature-grid{grid-template-columns:1fr;}.header-inner{flex-direction:column;}.header-portrait{width:100%;height:180px;}}
+</style>
+</head>
+<body>
+<div class="spark-bg" id="sparkBg"></div>
+<div class="page">
+
+<header class="header"><div class="header-inner">
+  <div class="header-portrait"><div class="portrait-inner"><div class="portrait-ring"></div><div class="portrait-symbol">👊</div><span class="portrait-label">The Boss</span></div></div>
+  <div class="header-text">
+    <div class="header-eyebrow">Ficha de Personagem · D&D 5e · Guerreiro · Campeão · Nível 20</div>
+    <h1 class="header-name">Sett</h1>
+    <div class="header-subtitle">O Chefe — Punhos que Constroem e Destroem Impérios</div>
+    <div class="header-tags">
+      <span class="tag hi">Guerreiro 20</span><span class="tag hi">Campeão</span>
+      <span class="tag">Meio-Orc</span><span class="tag">Gladiador</span>
+      <span class="tag">Leal Neutro</span><span class="tag">Sem Multiclasse</span>
+    </div>
+  </div>
+</div></header>
+
+<div class="meta-bar">
+  <div class="meta-item"><span class="meta-label">Raça</span><span class="meta-value">Meio-Orc</span></div>
+  <div class="meta-item"><span class="meta-label">Classe</span><span class="meta-value">Guerreiro</span></div>
+  <div class="meta-item"><span class="meta-label">Subclasse</span><span class="meta-value">Campeão</span></div>
+  <div class="meta-item"><span class="meta-label">Antecedente</span><span class="meta-value">Gladiador</span></div>
+  <div class="meta-item"><span class="meta-label">Tendência</span><span class="meta-value">Leal Neutro</span></div>
+  <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-value">20</span></div>
+</div>
+
+<div class="section"><h2 class="section-title">Atributos</h2>
+  <div class="stat-grid">
+    <div class="stat-box"><span class="stat-name">Força</span><span class="stat-val peak">20</span><span class="stat-mod">+5</span></div>
+    <div class="stat-box"><span class="stat-name">Destreza</span><span class="stat-val">14</span><span class="stat-mod">+2</span></div>
+    <div class="stat-box"><span class="stat-name">Constituição</span><span class="stat-val peak">20</span><span class="stat-mod">+5</span></div>
+    <div class="stat-box"><span class="stat-name">Inteligência</span><span class="stat-val">8</span><span class="stat-mod">−1</span></div>
+    <div class="stat-box"><span class="stat-name">Sabedoria</span><span class="stat-val">12</span><span class="stat-mod">+1</span></div>
+    <div class="stat-box"><span class="stat-name">Carisma</span><span class="stat-val">14</span><span class="stat-mod">+2</span></div>
+  </div>
+</div>
+
+<div class="section"><h2 class="section-title">Estatísticas de Combate</h2>
+  <div class="combat-row">
+    <div class="combat-box accent"><span class="combat-label">Classe Armadura</span><span class="combat-val">20</span><span class="combat-sub">Plate + Escudo</span></div>
+    <div class="combat-box accent"><span class="combat-label">Pontos de Vida</span><span class="combat-val">224</span><span class="combat-sub">d10×20 + Con</span></div>
+    <div class="combat-box"><span class="combat-label">Iniciativa</span><span class="combat-val">+2</span><span class="combat-sub">Des mod</span></div>
+    <div class="combat-box"><span class="combat-label">Deslocamento</span><span class="combat-val">9m</span><span class="combat-sub">Padrão</span></div>
+    <div class="combat-box"><span class="combat-label">Bônus Prof.</span><span class="combat-val">+6</span><span class="combat-sub">Nível 20</span></div>
+    <div class="combat-box accent"><span class="combat-label">Crítico em</span><span class="combat-val">18-20</span><span class="combat-sub">Campeão Ampliado</span></div>
+    <div class="combat-box accent"><span class="combat-label">Ataques Extra</span><span class="combat-val">4</span><span class="combat-sub">Nível 20</span></div>
+  </div>
+  <div class="lore-box"><strong style="color:var(--amber-bright)">4 Ataques por Ação:</strong> Guerreiro 20 tem 4 ataques. Com Action Surge (2×): <strong>8 ataques em um turno</strong>. Crítico em 18-20. Sett não para de socar. Cada soco é um terremoto.</div>
+</div>
+
+<div class="section"><h2 class="section-title">Ataques</h2>
+  <table class="attack-table">
+    <thead><tr><th>Ataque</th><th>Bônus</th><th>Dano</th><th>Alcance</th><th>Notas</th></tr></thead>
+    <tbody>
+      <tr><td><span class="attack-name">Soco (Unarmed / Gauntlet)</span></td><td><span class="attack-bonus">+11</span></td><td><span class="attack-damage">1d8+5 Concussão</span></td><td>Corpo a corpo</td><td style="font-size:11px">Unarmed Fighting Style · 4 ataques</td></tr>
+      <tr><td><span class="attack-name">Greatsword</span></td><td><span class="attack-bonus">+11</span></td><td><span class="attack-damage">2d6+5 Cortante</span></td><td>Corpo a corpo</td><td style="font-size:11px">GWM: −5/+10 · 4 ataques</td></tr>
+      <tr><td><span class="attack-name">Grapple (Agarrar)</span></td><td><span class="attack-bonus">+11</span></td><td><span class="attack-damage">1d4+5/turno</span></td><td>Corpo a corpo</td><td style="font-size:11px">Unarmed Fighting: 1d4 auto ao segurar</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="divider"><span class="divider-sym">👊 ✦ 👊</span></div>
+
+<div class="section">
+  <h2 class="section-title">Habilidades — Campeão</h2>
+  <div class="feature-grid">
+    <div class="feature-card champ">
+      <div class="feature-name">Crítico Ampliado (18-20)</div><div class="feature-source">Campeão · Nível 3 + 15</div>
+      <div class="feature-desc">Crítico em <strong style="color:var(--red-bright)">18, 19 ou 20</strong>. Com 4 ataques/turno: probabilidade de ~40% de ao menos 1 crítico por turno. Os punhos de Sett encontram pontos fracos que não existiam.</div>
+    </div>
+    <div class="feature-card champ">
+      <div class="feature-name">Atleta Notável</div><div class="feature-source">Campeão · Nível 7</div>
+      <div class="feature-desc">+5 (½ prof) em todos os testes de FOR, DES e CON que não tenham proficiência. Saltos mais longos. Sett é o atleta supremo — excepcional em tudo físico.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">Estilo de Luta Adicional</div><div class="feature-source">Campeão · Nível 10</div>
+      <div class="feature-desc">Segundo estilo: <strong style="color:var(--amber-bright)">Defense (+1 CA)</strong> além de Unarmed Fighting. Sett soca e se defende ao mesmo tempo.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">Sobrevivente</div><div class="feature-source">Campeão · Nível 18</div>
+      <div class="feature-desc">Se estiver com ≤½ PV no início do turno: recupera <strong style="color:var(--amber-bright)">5+Con (10) PV</strong> automaticamente. Regeneração passiva. Sett simplesmente se recusa a cair.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:16px">
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-name">Action Surge (×2)</div><div class="feature-source">Guerreiro · Nível 2+</div>
+        <div class="feature-desc"><strong>2 usos</strong> por descanso curto. Ganha uma ação adicional. Total: <strong style="color:var(--amber-bright)">8 ataques em 1 turno</strong>. A explosão de violência que encerra combates.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Indomável (×3)</div><div class="feature-source">Guerreiro · Nível 9+</div>
+        <div class="feature-desc"><strong>3 usos</strong> por descanso longo. Relança um TR falhado. Sett não aceita derrota — nem magicamente.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Relentless Endurance</div><div class="feature-source">Meio-Orc · Raça</div>
+        <div class="feature-desc">Ao cair a 0 PV: <strong>volta com 1 PV</strong>. 1×/descanso longo. Sett levanta do chão — porque é isso que um chefe faz.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Savage Attacks</div><div class="feature-source">Meio-Orc · Raça</div>
+        <div class="feature-desc">Em crítico: +1 dado extra de dano. Com Crítico Ampliado: devastação frequente. Os socos de Sett quebram ossos — e recordes.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">Personalidade</h2>
+  <div class="two-col">
+    <div class="trait-box"><span class="trait-label">Traços</span><p class="trait-text">Direto, leal, intimidador por natureza. Fala com os punhos tão bem quanto com palavras. Protege os seus com ferocidade animal — especialmente a mãe.</p></div>
+    <div class="trait-box"><span class="trait-label">Ideais</span><p class="trait-text">Respeito se ganha na arena. Poder não é crueldade — é a habilidade de proteger quem importa. O chefe lidera por força E por exemplo.</p></div>
+    <div class="trait-box"><span class="trait-label">Ligações</span><p class="trait-text">Sua mãe vastaya — a única pessoa pela qual Sett genuinamente se suaviza. E a arena, seu lar, onde provou que sangue misturado não é sangue fraco.</p></div>
+    <div class="trait-box"><span class="trait-label">Defeitos</span><p class="trait-text">Ressentimento profundo contra o pai ausente. Resolve conflitos com violência primeiro, diálogo nunca. A fúria é seu escudo — mas também sua corrente.</p></div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-sym">👊 ✦ 👊</span></div>
+
+<div class="section">
+  <h2 class="section-title">História do Personagem</h2>
+  <div class="backstory">
+    <p><em>Nascido entre dois mundos. Aceito em nenhum. Então construiu o próprio — com os punhos.</em></p>
+    <p>Sett é filho de uma vastaya e um humano que desapareceu antes de ele aprender a andar. Cresceu nas ruas, ouvindo insultos sobre seu sangue misturado, aprendendo que o mundo divide pessoas em duas categorias: as que batem e as que apanham.</p>
+    <div class="bs-quote">"Meu pai me ensinou uma coisa quando me abandonou: que se você quer algo nesse mundo, ninguém vai te dar. Você tem que tomar."</div>
+    <p>Encontrou a arena — e nela, encontrou a si mesmo. Os punhos de Sett falavam mais alto que qualquer preconceito. Cada oponente derrubado era um argumento contra quem duvidava dele. Em poucos anos, não era mais o bastardo mestiço. Era <em>O Chefe</em>.</p>
+    <p>Montou um império de luta clandestina onde a única lei era simples: o mais forte decide. Mas "forte" para Sett não é apenas músculos — é proteger os que não podem se proteger. Os lutadores em sua arena têm comida, teto e propósito. É mais do que a sociedade "civilizada" lhes oferecia.</p>
+    <div class="bs-quote">"Eu não luto por glória. Eu luto porque é a única linguagem que todos entendem. E eu sou fluente."</div>
+    <p style="font-size:12px;color:var(--text-dim);margin-top:20px;font-style:italic">Quando Sett entra no ringue, o chão treme. Não é metáfora — é Constituição 20 e 224 pontos de vida impactando o solo a cada passo.</p>
+  </div>
+</div>
+
+</div>
+<div class="footer"><p>D&D 5e · League of Legends / Riot Games · Guerreiro · Campeão · Nível 20</p></div>
+
+<script>
+const sparkBg=document.getElementById('sparkBg');
+for(let i=0;i<20;i++){const s=document.createElement('div');s.className='spark';s.style.left=Math.random()*100+'%';s.style.animationDuration=(4+Math.random()*8)+'s';s.style.animationDelay=(Math.random()*8)+'s';s.style.background=Math.random()>0.5?'#f0d060':'#d4a017';sparkBg.appendChild(s);}
+</script>
+</body>
+</html>
