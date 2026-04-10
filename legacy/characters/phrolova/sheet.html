@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phrolova — Ficha D&D 5e</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--frost:#7ecbf0;--frost-mid:#a8ddf5;--frost-bright:#d0eeff;--ice:#e8f6ff;--lilac:#b0a0d8;--dark:#030610;--darker:#020408;--card:#060e1e;--card-light:#0a1630;--gold:#c9a227;--gold-light:#e8c85a;--text:#c8d4e4;--text-dim:#6080a0;--mist:#283a58;--border:rgba(126,203,240,0.25);--border-bright:rgba(168,221,245,0.45);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--darker);background-image:radial-gradient(ellipse at 20% 15%,rgba(126,203,240,0.08) 0%,transparent 50%),radial-gradient(ellipse at 75% 80%,rgba(176,160,216,0.06) 0%,transparent 45%);font-family:'Crimson Pro',Georgia,serif;color:var(--text);line-height:1.75;}
+.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
+.snow-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.snowflake{position:absolute;color:var(--frost-bright);opacity:0;animation:snowFall linear infinite;}
+@keyframes snowFall{0%{transform:translateY(-5vh) translateX(0) rotate(0deg);opacity:0;}5%{opacity:0.5;}50%{transform:translateY(50vh) translateX(30px) rotate(180deg);opacity:0.25;}95%{opacity:0.05;}100%{transform:translateY(110vh) translateX(-15px) rotate(360deg);opacity:0;}}
+.header{background:linear-gradient(168deg,#020408 0%,#081830 55%,#020408 100%);border-bottom:2px solid var(--frost);position:relative;overflow:hidden;z-index:1;}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--frost),var(--frost-bright),var(--frost),transparent);opacity:0.5;}
+.header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
+.header-portrait{width:220px;flex-shrink:0;background:#020610;border-right:2px solid var(--frost);display:flex;align-items:center;justify-content:center;}
+.portrait-inner{width:100%;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;}
+.portrait-symbol{font-size:80px;opacity:0.12;filter:drop-shadow(0 0 20px var(--frost-bright));}
+.portrait-ring{position:absolute;width:100px;height:100px;border:1px solid rgba(126,203,240,0.3);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:rp 4s ease-in-out infinite;}
+@keyframes rp{0%,100%{box-shadow:0 0 8px rgba(126,203,240,0.1);}50%{box-shadow:0 0 20px rgba(126,203,240,0.3);}}
+.portrait-ring::before{content:'';position:absolute;inset:8px;border:1px solid rgba(126,203,240,0.15);border-radius:50%;}
+.portrait-label{position:absolute;bottom:14px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--frost);opacity:0.5;text-transform:uppercase;}
+.header-text{flex:1;padding:36px 44px;}
+.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--frost);opacity:0.8;text-transform:uppercase;margin-bottom:10px;}
+.header-name{font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:var(--ice);text-shadow:0 0 50px rgba(126,203,240,0.4);letter-spacing:3px;line-height:1;margin-bottom:4px;}
+.header-subtitle{font-family:'Crimson Pro',serif;font-style:italic;font-size:17px;color:var(--frost-mid);margin-bottom:22px;letter-spacing:1.5px;}
+.header-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:4px 12px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(126,203,240,0.06);}
+.tag.hi{background:rgba(126,203,240,0.18);border-color:var(--frost);color:var(--frost-bright);}
+.meta-bar{background:var(--card);border-bottom:1px solid var(--border);padding:14px 40px;display:flex;position:relative;z-index:1;}
+.meta-item{flex:1;border-right:1px solid var(--border);padding:0 20px;text-align:center;}
+.meta-item:first-child{padding-left:0;}.meta-item:last-child{border-right:none;padding-right:0;}
+.meta-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
+.meta-value{font-family:'Cinzel',serif;font-size:13px;color:var(--frost-bright);font-weight:600;}
+.section{padding:0 40px;margin-top:36px;position:relative;z-index:1;}
+.section-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--frost);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.section-title::before{content:'❄';font-size:12px;color:var(--frost-bright);opacity:0.8;}
+.stat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:20px;}
+.stat-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:14px 4px 10px;position:relative;transition:border-color 0.2s,box-shadow 0.3s;}
+.stat-box:hover{border-color:var(--frost);box-shadow:0 0 12px rgba(126,203,240,0.15);}
+.stat-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--frost),transparent);opacity:0;transition:opacity 0.2s;}
+.stat-box:hover::after{opacity:1;}
+.stat-name{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:6px;}
+.stat-val{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--ice);line-height:1;}
+.stat-val.peak{color:var(--frost-bright);text-shadow:0 0 16px rgba(168,221,245,0.4);}
+.stat-mod{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--frost);margin-top:4px;display:block;}
+.combat-row{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:20px;}
+.combat-box{background:var(--card-light);border:1px solid var(--border);text-align:center;padding:12px 6px 10px;transition:border-color 0.2s;}
+.combat-box.accent{background:rgba(126,203,240,0.1);border-color:var(--frost);}
+.combat-label{font-family:'Share Tech Mono',monospace;font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
+.combat-val{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--frost-bright);line-height:1;}
+.combat-sub{font-size:10px;color:var(--text-dim);font-family:'Share Tech Mono',monospace;display:block;margin-top:2px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.save-list,.skill-list{list-style:none;}
+.save-item,.skill-item{display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid rgba(126,203,240,0.08);font-size:13px;}
+.save-item:last-child,.skill-item:last-child{border-bottom:none;}
+.save-dot,.skill-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;}
+.save-dot.filled,.skill-dot.filled{background:var(--frost);border-color:var(--frost-bright);box-shadow:0 0 5px rgba(126,203,240,0.5);}
+.save-score,.skill-bonus{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--frost);min-width:26px;text-align:right;}
+.save-name,.skill-name{color:var(--text-dim);flex:1;}
+.skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--mist);letter-spacing:1px;}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.feature-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--frost);padding:12px 14px;transition:border-color 0.2s,transform 0.2s;}
+.feature-card:hover{border-color:var(--frost);transform:translateY(-1px);}
+.feature-card.milestone{border-left-color:var(--lilac);}
+.feature-card.divine{border-left-color:var(--frost-bright);}
+.feature-name{font-family:'Cinzel',serif;font-size:11px;color:var(--frost);letter-spacing:1px;margin-bottom:4px;text-transform:uppercase;}
+.feature-card.milestone .feature-name{color:var(--lilac);}
+.feature-card.divine .feature-name{color:var(--frost-bright);}
+.feature-source{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--frost);opacity:0.7;text-transform:uppercase;margin-bottom:4px;}
+.feature-desc{font-size:12px;color:var(--text-dim);line-height:1.5;}
+.spell-entry{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--frost);padding:10px 14px;margin-bottom:6px;transition:border-color 0.2s,background 0.2s;}
+.spell-entry:hover{background:var(--card-light);border-color:var(--frost);}
+.spell-entry.core{border-left-color:var(--frost-bright);}
+.spell-entry-top{display:flex;align-items:baseline;gap:10px;margin-bottom:4px;flex-wrap:wrap;}
+.spell-name{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--ice);}
+.stag{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;padding:2px 7px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;}
+.stag.conc{border-color:rgba(126,203,240,0.4);color:var(--frost);}
+.stag.core-tag{border-color:rgba(168,221,245,0.5);color:var(--frost-bright);}
+.spell-desc{font-size:13.5px;color:var(--text-dim);line-height:1.6;}
+.spell-mechanic{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--frost);margin-top:3px;display:block;}
+.lore-box{background:rgba(126,203,240,0.06);border:1px solid var(--border);border-left:3px solid var(--frost-bright);padding:14px 18px;font-size:13px;font-style:italic;color:var(--text-dim);margin:12px 0;line-height:1.7;}
+.trait-box{background:var(--card);border:1px solid var(--border);padding:16px 18px;height:100%;}
+.trait-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--frost);display:block;margin-bottom:8px;}
+.trait-text{font-size:14px;color:var(--text-dim);font-style:italic;}
+.backstory{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--frost);padding:28px 32px;}
+.backstory p{font-size:15px;color:var(--text-dim);margin-bottom:14px;line-height:1.85;}
+.bs-quote{font-style:italic;border-left:3px solid var(--frost-bright);padding:8px 0 8px 16px;color:var(--frost-bright);margin:16px 0;font-size:15px;}
+.passive-block{background:rgba(126,203,240,0.08);border:1px solid var(--frost);padding:12px 16px;text-align:center;}
+.passive-num{font-family:'Cinzel',serif;font-size:32px;font-weight:900;color:var(--frost-bright);display:block;}
+.passive-lbl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);}
+.divider{text-align:center;margin:36px 40px;display:flex;align-items:center;gap:16px;position:relative;z-index:1;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--frost),transparent);opacity:0.4;}
+.divider-sym{font-size:16px;color:var(--frost-bright);opacity:0.5;}
+.equip-card{background:var(--card);border:1px solid var(--border);padding:12px 14px;}
+.equip-category{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--frost);display:block;margin-bottom:6px;}
+.equip-list{list-style:none;font-size:13px;color:var(--text-dim);}
+.equip-list li{padding:2px 0;border-bottom:1px solid rgba(126,203,240,0.08);display:flex;align-items:center;gap:6px;}
+.equip-list li::before{content:'❄';font-size:8px;color:var(--frost-bright);}
+.footer{text-align:center;padding:28px 40px 0;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text-dim);opacity:0.5;position:relative;z-index:1;}
+@media(max-width:700px){.stat-grid{grid-template-columns:repeat(3,1fr);}.combat-row{grid-template-columns:repeat(4,1fr);}.two-col,.feature-grid{grid-template-columns:1fr;}.header-inner{flex-direction:column;}.header-portrait{width:100%;height:180px;}}
+</style>
+</head>
+<body>
+<div class="snow-bg" id="snowBg"></div>
+<div class="page">
+
+<header class="header"><div class="header-inner">
+  <div class="header-portrait"><div class="portrait-inner"><div class="portrait-ring"></div><div class="portrait-symbol">❄</div><span class="portrait-label">Twilight Warden</span></div></div>
+  <div class="header-text">
+    <div class="header-eyebrow">Ficha de Personagem · D&D 5e · Clérigo · Domínio do Crepúsculo · Nível 20</div>
+    <h1 class="header-name">Phrolova</h1>
+    <div class="header-subtitle">Guardiã do Crepúsculo Gélido — A Luz na Escuridão do Inverno</div>
+    <div class="header-tags">
+      <span class="tag hi">Clérigo 20</span><span class="tag hi">Domínio do Crepúsculo</span>
+      <span class="tag">Eladrin (Inverno)</span><span class="tag">Eremita</span>
+      <span class="tag">Neutro Bom</span><span class="tag">Sem Multiclasse</span>
+    </div>
+  </div>
+</div></header>
+
+<div class="meta-bar">
+  <div class="meta-item"><span class="meta-label">Raça</span><span class="meta-value">Eladrin (Inverno)</span></div>
+  <div class="meta-item"><span class="meta-label">Classe</span><span class="meta-value">Clérigo</span></div>
+  <div class="meta-item"><span class="meta-label">Subclasse</span><span class="meta-value">Crepúsculo</span></div>
+  <div class="meta-item"><span class="meta-label">Antecedente</span><span class="meta-value">Eremita</span></div>
+  <div class="meta-item"><span class="meta-label">Tendência</span><span class="meta-value">Neutro Bom</span></div>
+  <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-value">20</span></div>
+</div>
+
+<div class="section"><h2 class="section-title">Atributos</h2>
+  <div class="stat-grid">
+    <div class="stat-box"><span class="stat-name">Força</span><span class="stat-val">10</span><span class="stat-mod">+0</span></div>
+    <div class="stat-box"><span class="stat-name">Destreza</span><span class="stat-val">14</span><span class="stat-mod">+2</span></div>
+    <div class="stat-box"><span class="stat-name">Constituição</span><span class="stat-val">16</span><span class="stat-mod">+3</span></div>
+    <div class="stat-box"><span class="stat-name">Inteligência</span><span class="stat-val">10</span><span class="stat-mod">+0</span></div>
+    <div class="stat-box"><span class="stat-name">Sabedoria</span><span class="stat-val peak">20</span><span class="stat-mod">+5</span></div>
+    <div class="stat-box"><span class="stat-name">Carisma</span><span class="stat-val">14</span><span class="stat-mod">+2</span></div>
+  </div>
+</div>
+
+<div class="section"><h2 class="section-title">Estatísticas de Combate</h2>
+  <div class="combat-row">
+    <div class="combat-box accent"><span class="combat-label">Classe Armadura</span><span class="combat-val">20</span><span class="combat-sub">Plate + Escudo</span></div>
+    <div class="combat-box accent"><span class="combat-label">Pontos de Vida</span><span class="combat-val">163</span><span class="combat-sub">Nível 20</span></div>
+    <div class="combat-box"><span class="combat-label">Iniciativa</span><span class="combat-val">+7</span><span class="combat-sub">Des + Prof (Vigília)</span></div>
+    <div class="combat-box"><span class="combat-label">Deslocamento</span><span class="combat-val">9m</span><span class="combat-sub">+ Voo 9m (Vigília)</span></div>
+    <div class="combat-box"><span class="combat-label">Bônus Prof.</span><span class="combat-val">+6</span><span class="combat-sub">Nível 20</span></div>
+    <div class="combat-box accent"><span class="combat-label">CD Magias</span><span class="combat-val">19</span><span class="combat-sub">8 + prof + Sab</span></div>
+    <div class="combat-box accent"><span class="combat-label">Ataque Mágico</span><span class="combat-val">+11</span><span class="combat-sub">prof + Sab</span></div>
+  </div>
+  <div class="lore-box"><strong style="color:var(--frost-bright)">Clérigo — Conjuração Preparada:</strong> Acesso a TODA a lista de magias de clérigo. Prepara <strong>Sab + Nível (25)</strong> magias por descanso longo. Magias de domínio estão sempre preparadas.</div>
+</div>
+
+<div class="section">
+  <div class="two-col" style="gap:32px">
+    <div>
+      <h2 class="section-title">Testes de Resistência</h2>
+      <ul class="save-list">
+        <li class="save-item"><div class="save-dot"></div><span class="save-score">+0</span><span class="save-name">Força</span></li>
+        <li class="save-item"><div class="save-dot"></div><span class="save-score">+2</span><span class="save-name">Destreza</span></li>
+        <li class="save-item"><div class="save-dot"></div><span class="save-score">+3</span><span class="save-name">Constituição</span></li>
+        <li class="save-item"><div class="save-dot"></div><span class="save-score">+0</span><span class="save-name">Inteligência</span></li>
+        <li class="save-item"><div class="save-dot filled"></div><span class="save-score" style="color:var(--frost-bright)">+11</span><span class="save-name">Sabedoria</span></li>
+        <li class="save-item"><div class="save-dot filled"></div><span class="save-score">+8</span><span class="save-name">Carisma</span></li>
+      </ul>
+      <div style="margin-top:20px"><div class="passive-block"><span class="passive-num">18</span><span class="passive-lbl">Percepção Passiva</span></div></div>
+    </div>
+    <div>
+      <h2 class="section-title">Perícias</h2>
+      <ul class="skill-list">
+        <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus" style="color:var(--frost-bright)">+11</span><span class="skill-name">Intuição</span><span class="skill-attr">SAB</span></li>
+        <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus">+6</span><span class="skill-name">Medicina</span><span class="skill-attr">SAB</span></li>
+        <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus" style="color:var(--frost-bright)">+11</span><span class="skill-name">Percepção</span><span class="skill-attr">SAB</span></li>
+        <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus">+6</span><span class="skill-name">Religião</span><span class="skill-attr">INT</span></li>
+        <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus">+8</span><span class="skill-name">Sobrevivência</span><span class="skill-attr">SAB</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-sym">❄ ✦ ❄</span></div>
+
+<div class="section">
+  <h2 class="section-title">Habilidades — Domínio do Crepúsculo (TCoE)</h2>
+  <div class="feature-grid">
+    <div class="feature-card divine">
+      <div class="feature-name">Olhos da Noite</div><div class="feature-source">Crepúsculo · Nível 1</div>
+      <div class="feature-desc"><strong style="color:var(--frost-bright)">Visão no escuro 90m</strong> — ultrapassa até escuridão mágica. Pode compartilhar com até SAB mod (5) aliados por 1 hora. 1×/descanso longo.</div>
+    </div>
+    <div class="feature-card divine">
+      <div class="feature-name">Bênção do Vigília</div><div class="feature-source">Crepúsculo · Nível 1</div>
+      <div class="feature-desc">Concede a um aliado <strong style="color:var(--frost-bright)">bônus de proficiência na iniciativa OU visão no escuro 90m</strong>. A vigília que protege mesmo antes do combate.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">Santuário Crepuscular</div><div class="feature-source">Crepúsculo · Nível 2 · Channel Divinity</div>
+      <div class="feature-desc">Ação: esfera de luz crepuscular de <strong style="color:var(--lilac)">9m de raio</strong> por 1 min. Aliados dentro ganham <strong>1d6 + nível (20) PV temporários</strong> ao fim de cada turno. A habilidade de suporte mais poderosa do jogo.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">Passos do Destemido</div><div class="feature-source">Crepúsculo · Nível 6</div>
+      <div class="feature-desc">Aliados dentro do Santuário Crepuscular <strong style="color:var(--lilac)">não podem ser encantados ou amedrontados</strong> enquanto estiverem na esfera. Proteção absoluta contra controle mental.</div>
+    </div>
+    <div class="feature-card divine">
+      <div class="feature-name">Voo Divino</div><div class="feature-source">Crepúsculo · Nível 6</div>
+      <div class="feature-desc">Phrolova e qualquer aliado na esfera ganham <strong style="color:var(--frost-bright)">voo temporário</strong> de 9m enquanto o Santuário estiver ativo.</div>
+    </div>
+    <div class="feature-card divine">
+      <div class="feature-name">Manto Crepuscular</div><div class="feature-source">Crepúsculo · Nível 17</div>
+      <div class="feature-desc">Aliados que terminam o turno no Santuário: <strong style="color:var(--frost-bright)">meia-cobertura (+2 CA, +2 Des TR)</strong> ou cobertura total contra escolha. Proteção impenetrável de luz gélida.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:16px">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--frost);text-transform:uppercase;margin-bottom:8px">— Clérigo Geral & Raça</div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-name">Intervenção Divina (Garantida)</div><div class="feature-source">Clérigo · Nível 20 · Capstone</div>
+        <div class="feature-desc">1×/semana: clama por intervenção divina. No nível 20: <strong style="color:var(--frost-bright)">sucesso GARANTIDO</strong>. Efeito de qualquer magia de clérigo. O divino atende — sempre.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Fey Step (Eladrin)</div><div class="feature-source">Raça · Eladrin Inverno</div>
+        <div class="feature-desc">1×/descanso curto: teleporte de 9m como ação bônus. Modo Inverno: criaturas em 1,5m do destino devem <strong>TR Sab CD 19</strong> ou ficam <strong>amedrontadas</strong> até fim do próximo turno.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-sym">❄ ✦ ❄</span></div>
+
+<div class="section">
+  <h2 class="section-title">Grimório · Sabedoria · CD: 19 · Ataque: +11</h2>
+
+  <div class="spell-entry core">
+    <div class="spell-entry-top"><span class="spell-name">Spirit Guardians (Guardiões Espirituais)</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag conc">conc · 10 min</span><span class="stag core-tag">★ central</span></div></div>
+    <p class="spell-desc">Espíritos gélidos em aura de 4,5m. Inimigos: velocidade ÷2 e <strong>3d8 de frio/turno</strong> (TR Sab CD 19). Combo com Santuário Crepuscular: aliados ganham PV temp, inimigos tomam dano. O inferno gelado de Phrolova.</p>
+    <span class="spell-mechanic">❄ 3d8 frio/turno · Velocidade ÷2 · TR Sab CD 19 · Aura 4,5m</span>
+  </div>
+  <div class="spell-entry">
+    <div class="spell-entry-top"><span class="spell-name">Healing Word</span><div class="spell-tags-inline"><span class="stag">ação bônus</span><span class="stag">18m</span></div></div>
+    <p class="spell-desc">Cura <strong>1d4+5</strong> PV à distância como ação bônus. Escalável. Eficiência de ação perfeita — cura e ainda usa ação para atacar.</p>
+    <span class="spell-mechanic">❄ Ação bônus · 1d4+5 PV · Escala por nível do slot</span>
+  </div>
+  <div class="spell-entry core">
+    <div class="spell-entry-top"><span class="spell-name">Holy Weapon (Arma Sagrada)</span><div class="spell-tags-inline"><span class="stag">ação bônus</span><span class="stag conc">conc · 1h</span><span class="stag core-tag">★ domínio</span></div></div>
+    <p class="spell-desc">Arma do aliado ganha <strong>+2d8 radiante</strong> em cada acerto. Ao encerrar: explosão de 9m com <strong>4d8 radiante</strong>. Magia de domínio (sempre preparada).</p>
+    <span class="spell-mechanic">✦ +2d8 radiante/acerto · Explosão 4d8 ao encerrar · Domínio</span>
+  </div>
+  <div class="spell-entry">
+    <div class="spell-entry-top"><span class="spell-name">Mass Heal (Cura em Massa)</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag">18m</span><span class="stag core-tag">★ 9°</span></div></div>
+    <p class="spell-desc">Distribui até <strong>700 PV</strong> entre criaturas em alcance. Remove cegueira, surdez e doenças. O ato final de proteção — Phrolova não deixa ninguém cair.</p>
+    <span class="spell-mechanic">🌟 700 PV distribuíveis · 18m · Remove condições · 9° Círculo</span>
+  </div>
+  <div class="spell-entry core">
+    <div class="spell-entry-top"><span class="spell-name">True Resurrection (Ressurreição Verdadeira)</span><div class="spell-tags-inline"><span class="stag">ação · 1h</span><span class="stag core-tag">★ 9°</span></div></div>
+    <p class="spell-desc">Ressuscita criatura morta há até <strong>200 anos</strong>. Cria novo corpo se necessário. Restaura completamente. Nem a morte é permanente quando Phrolova vela.</p>
+    <span class="spell-mechanic">✦ Ressuscita morto ≤200 anos · Corpo novo se preciso · 9° Círculo</span>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">Equipamento</h2>
+  <div class="two-col">
+    <div class="equip-card"><span class="equip-category">Armas & Armadura</span><ul class="equip-list">
+      <li>Maça — 1d6+0 Concussão</li><li>Escudo — +2 CA</li>
+      <li>Armadura Completa (Plate) — CA 18</li><li>Símbolo Sagrado (embutido no escudo)</li>
+    </ul></div>
+    <div class="equip-card"><span class="equip-category">Itens</span><ul class="equip-list">
+      <li>Manto de pele branca com bordas de gelo</li><li>Ervas medicinais do norte</li>
+      <li>Diário de orações e receitas</li><li>Cristal de inverno eterno</li>
+    </ul></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">Personalidade</h2>
+  <div class="two-col">
+    <div class="trait-box"><span class="trait-label">Traços</span><p class="trait-text">Serena como neve caindo. A voz é suave, quase um sussurro, mas cada palavra carrega o peso da certeza absoluta. Cuida de outros antes de si mesma — sempre.</p></div>
+    <div class="trait-box"><span class="trait-label">Ideais</span><p class="trait-text">A escuridão não é inimiga — é o berço onde a luz descansa. Proteger os que temem o escuro é o dever mais sagrado que existe.</p></div>
+    <div class="trait-box"><span class="trait-label">Ligações</span><p class="trait-text">As almas perdidas no frio — cada vida salva é uma chama resgatada da extinção. O inverno não precisa ser cruel. Só precisa de alguém que cuide.</p></div>
+    <div class="trait-box"><span class="trait-label">Defeitos</span><p class="trait-text">Incapaz de abandonar qualquer causa, mesmo as perdidas. O sacrifício pessoal é tão natural que ela esquece que também merece ser protegida.</p></div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-sym">❄ ✦ ❄</span></div>
+
+<div class="section">
+  <h2 class="section-title">História do Personagem</h2>
+  <div class="backstory">
+    <p><em>No ponto mais frio do inverno, quando até a esperança congela, existe uma luz. Não forte — apenas persistente.</em></p>
+    <p>Phrolova nasceu entre os Eladrin no único inverno que parecia não ter fim. Enquanto seus pares mudavam de estação — primavera, verão, outono — ela permaneceu no inverno. Não por escolha, mas porque algo dentro dela reconheceu a beleza no silêncio gelado que outros temiam.</p>
+    <div class="bs-quote">"O frio não mata. A solidão sim. Por isso eu fico — porque alguém precisa estar aqui quando a noite é mais longa."</div>
+    <p>Sua vocação como clérigo não veio por revelação dramática, mas por inevitabilidade: ela curava o que encontrava. Animais feridos, viajantes perdidos, crianças com febre. O divino a encontrou fazendo exatamente o que faria sem poder algum — cuidando.</p>
+    <p>O Domínio do Crepúsculo a escolheu porque Phrolova entende o que poucos clérigos compreendem: a transição entre luz e escuridão não é um momento de fraqueza — é onde a proteção é mais necessária. Quando o sol se põe e o medo cresce, Phrolova está lá. Quando a noite é mais escura, seu santuário brilha mais forte.</p>
+    <div class="bs-quote">"Eu não luto contra a escuridão. Eu dou às pessoas uma razão para não temê-la."</div>
+    <p style="font-size:12px;color:var(--text-dim);margin-top:20px;font-style:italic">Ela caminha descalça na neve, e onde pisa, o gelo parece mais gentil. Não por magia — mas por presença.</p>
+  </div>
+</div>
+
+</div>
+<div class="footer"><p>D&D 5e · Wuthering Waves / Kuro Games · Clérigo · Domínio do Crepúsculo · Nível 20</p></div>
+
+<script>
+const snowBg=document.getElementById('snowBg');
+const flakes=['❄','❅','❆','✦','·','∘'];
+for(let i=0;i<28;i++){const s=document.createElement('div');s.className='snowflake';s.textContent=flakes[Math.floor(Math.random()*flakes.length)];s.style.left=Math.random()*100+'%';s.style.animationDuration=(12+Math.random()*20)+'s';s.style.animationDelay=(-Math.random()*25)+'s';s.style.fontSize=(8+Math.random()*14)+'px';snowBg.appendChild(s);}
+</script>
+</body>
+</html>

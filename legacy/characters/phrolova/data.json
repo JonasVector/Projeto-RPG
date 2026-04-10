@@ -1,0 +1,7 @@
+{
+  "metadata": { "name": "Phrolova", "title": "Guardiã do Crepúsculo Gélido", "origin": "Wuthering Waves", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
+  "identity": { "race": "Eladrin (Inverno)", "class": "Clérigo", "subclass": "Domínio do Crepúsculo", "background": "Eremita", "alignment": "Neutro Bom", "languages": ["Comum", "Élfico", "Celestial"] },
+  "attributes": { "str": { "score": 10, "mod": 0 }, "dex": { "score": 14, "mod": 2 }, "con": { "score": 16, "mod": 3 }, "int": { "score": 10, "mod": 0 }, "wis": { "score": 20, "mod": 5 }, "cha": { "score": 14, "mod": 2 } },
+  "combat": { "ac": 20, "hp": 163, "initiative": "+7", "speed": "9m (Voo 9m)", "proficiencyBonus": "+6", "spellDC": 19, "spellAttack": "+11" },
+  "tags": ["clérigo", "crepúsculo", "eladrin", "suporte", "tank", "cura", "nível-20", "wuthering-waves"]
+}
