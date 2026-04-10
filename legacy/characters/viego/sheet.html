@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viego — O Rei Arruinado · Ficha D&D 5e</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--void:#2a8a6a;--void-mid:#3aaf85;--void-bright:#5ce0b0;--mist-green:#1a3a2e;--black-mist:#0a2a1a;--pale:#c8f0e0;--dark:#020a06;--darker:#010804;--card:#061a10;--card-light:#0a2418;--gold:#c9a227;--gold-light:#e8c85a;--text:#a8d4c0;--text-dim:#4a8068;--border:rgba(42,138,106,0.30);--border-bright:rgba(92,224,176,0.45);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--darker);background-image:radial-gradient(ellipse at 30% 15%,rgba(42,138,106,0.10) 0%,transparent 50%),radial-gradient(ellipse at 65% 80%,rgba(92,224,176,0.05) 0%,transparent 45%);font-family:'EB Garamond',Georgia,serif;color:var(--text);line-height:1.75;}
+.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
+.wraith-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.wraith{position:absolute;font-size:14px;opacity:0;animation:haunt ease-in-out infinite;color:var(--void-bright);}
+@keyframes haunt{0%{transform:translateY(110vh) translateX(0) scale(0.4);opacity:0;}10%{opacity:0.3;}50%{transform:translateY(50vh) translateX(30px) scale(0.7);opacity:0.12;}100%{transform:translateY(-10vh) translateX(-20px) scale(0.3);opacity:0;}}
+.header{background:linear-gradient(168deg,#010804 0%,#0a2818 55%,#010804 100%);border-bottom:2px solid var(--void);position:relative;overflow:hidden;z-index:1;}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--void-mid),var(--void-bright),var(--void-mid),transparent);opacity:0.5;}
+.header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
+.header-portrait{width:220px;flex-shrink:0;background:#020a06;border-right:2px solid var(--void);display:flex;align-items:center;justify-content:center;}
+.portrait-inner{width:100%;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;}
+.portrait-symbol{font-size:80px;opacity:0.12;filter:drop-shadow(0 0 24px var(--void-bright));}
+.portrait-ring{position:absolute;width:100px;height:100px;border:1px solid rgba(42,138,106,0.3);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:rp 3.5s ease-in-out infinite;}
+@keyframes rp{0%,100%{box-shadow:0 0 8px rgba(42,138,106,0.1);}50%{box-shadow:0 0 22px rgba(42,138,106,0.3);}}
+.portrait-ring::before{content:'';position:absolute;inset:8px;border:1px solid rgba(42,138,106,0.15);border-radius:50%;}
+.portrait-label{position:absolute;bottom:14px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--void);opacity:0.5;text-transform:uppercase;}
+.header-text{flex:1;padding:36px 44px;}
+.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--void-mid);opacity:0.8;text-transform:uppercase;margin-bottom:10px;}
+.header-name{font-family:'Cinzel',serif;font-size:46px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(42,138,106,0.5);letter-spacing:4px;line-height:1;margin-bottom:4px;}
+.header-subtitle{font-family:'EB Garamond',serif;font-style:italic;font-size:18px;color:var(--void-mid);margin-bottom:22px;letter-spacing:1.5px;}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:4px 12px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(42,138,106,0.06);}
+.tag.hi{background:rgba(42,138,106,0.22);border-color:var(--void-mid);color:var(--void-bright);}
+.header-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.meta-bar{background:var(--card);border-bottom:1px solid var(--border);padding:14px 40px;display:flex;position:relative;z-index:1;}
+.meta-item{flex:1;border-right:1px solid var(--border);padding:0 20px;text-align:center;}
+.meta-item:first-child{padding-left:0;}.meta-item:last-child{border-right:none;padding-right:0;}
+.meta-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
+.meta-value{font-family:'Cinzel',serif;font-size:13px;color:var(--void-bright);font-weight:600;}
+.section{padding:0 40px;margin-top:36px;position:relative;z-index:1;}
+.section-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--void-mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.section-title::before{content:'👑';font-size:12px;opacity:0.7;}
+.stat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:20px;}
+.stat-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:14px 4px 10px;transition:border-color 0.2s,box-shadow 0.3s;}
+.stat-box:hover{border-color:var(--void-mid);box-shadow:0 0 12px rgba(42,138,106,0.2);}
+.stat-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--void),transparent);opacity:0;transition:opacity 0.2s;}
+.stat-name{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:6px;}
+.stat-val{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--pale);line-height:1;}
+.stat-val.peak{color:var(--void-bright);text-shadow:0 0 16px rgba(92,224,176,0.4);}
+.stat-mod{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--void-mid);margin-top:4px;display:block;}
+.combat-row{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:20px;}
+.combat-box{background:var(--card-light);border:1px solid var(--border);text-align:center;padding:12px 6px 10px;}
+.combat-box.accent{background:rgba(42,138,106,0.12);border-color:var(--void-mid);}
+.combat-label{font-family:'Share Tech Mono',monospace;font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
+.combat-val{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--pale);line-height:1;}
+.combat-box.accent .combat-val{color:var(--void-bright);}
+.combat-sub{font-size:10px;color:var(--text-dim);font-family:'Share Tech Mono',monospace;display:block;margin-top:2px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.feature-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--void);padding:12px 14px;transition:border-color 0.2s,transform 0.2s;}
+.feature-card:hover{border-color:var(--void-mid);transform:translateY(-1px);}
+.feature-card.milestone{border-left-color:var(--void-bright);}
+.feature-card.oath{border-left-color:var(--gold);}
+.feature-name{font-family:'Cinzel',serif;font-size:11px;color:var(--void-mid);letter-spacing:1px;margin-bottom:4px;text-transform:uppercase;}
+.feature-card.milestone .feature-name{color:var(--void-bright);}
+.feature-card.oath .feature-name{color:var(--gold-light);}
+.feature-source{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--void);opacity:0.7;text-transform:uppercase;margin-bottom:4px;}
+.feature-desc{font-size:12px;color:var(--text-dim);line-height:1.5;}
+.lore-box{background:rgba(42,138,106,0.06);border:1px solid var(--border);border-left:3px solid var(--void-bright);padding:14px 18px;font-size:13px;font-style:italic;color:var(--text-dim);margin:12px 0;line-height:1.7;}
+.trait-box{background:var(--card);border:1px solid var(--border);padding:16px 18px;height:100%;}
+.trait-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--void);display:block;margin-bottom:8px;}
+.trait-text{font-size:14px;color:var(--text-dim);font-style:italic;}
+.backstory{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--void);padding:28px 32px;}
+.backstory p{font-size:15px;color:var(--text-dim);margin-bottom:14px;line-height:1.85;}
+.bs-quote{font-style:italic;border-left:3px solid var(--void-bright);padding:8px 0 8px 16px;color:var(--void-bright);margin:16px 0;font-size:15px;}
+.attack-table{width:100%;border-collapse:collapse;font-size:13px;}
+.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(42,138,106,0.08);}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(42,138,106,0.08);color:var(--text-dim);}
+.attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
+.attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--void-bright);font-weight:700;}
+.attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--void-mid);}
+.divider{text-align:center;margin:36px 40px;display:flex;align-items:center;gap:16px;position:relative;z-index:1;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--void),transparent);opacity:0.4;}
+.divider-sym{font-size:16px;color:var(--void-bright);opacity:0.5;}
+.footer{text-align:center;padding:28px 40px 0;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text-dim);opacity:0.5;position:relative;z-index:1;}
+@media(max-width:700px){.stat-grid{grid-template-columns:repeat(3,1fr);}.combat-row{grid-template-columns:repeat(4,1fr);}.two-col,.feature-grid{grid-template-columns:1fr;}.header-inner{flex-direction:column;}.header-portrait{width:100%;height:180px;}}
+</style>
+</head>
+<body>
+<div class="wraith-bg" id="wraithBg"></div>
+<div class="page">
+
+<header class="header"><div class="header-inner">
+  <div class="header-portrait"><div class="portrait-inner"><div class="portrait-ring"></div><div class="portrait-symbol">👑</div><span class="portrait-label">Rei Arruinado</span></div></div>
+  <div class="header-text">
+    <div class="header-eyebrow">Ficha de Personagem · D&D 5e · Paladino · Oathbreaker · Nível 20</div>
+    <h1 class="header-name">Viego</h1>
+    <div class="header-subtitle">O Rei Arruinado — O Amor que Destruiu um Reino</div>
+    <div class="header-tags">
+      <span class="tag hi">Paladino 20</span><span class="tag hi">Oathbreaker</span>
+      <span class="tag">Dhampir</span><span class="tag">Nobre</span>
+      <span class="tag">Neutro Mau</span><span class="tag">Sem Multiclasse</span>
+    </div>
+  </div>
+</div></header>
+
+<div class="meta-bar">
+  <div class="meta-item"><span class="meta-label">Raça</span><span class="meta-value">Dhampir</span></div>
+  <div class="meta-item"><span class="meta-label">Classe</span><span class="meta-value">Paladino</span></div>
+  <div class="meta-item"><span class="meta-label">Subclasse</span><span class="meta-value">Oathbreaker</span></div>
+  <div class="meta-item"><span class="meta-label">Antecedente</span><span class="meta-value">Nobre</span></div>
+  <div class="meta-item"><span class="meta-label">Tendência</span><span class="meta-value">Neutro Mau</span></div>
+  <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-value">20</span></div>
+</div>
+
+<div class="section"><h2 class="section-title">Atributos</h2>
+  <div class="stat-grid">
+    <div class="stat-box"><span class="stat-name">Força</span><span class="stat-val peak">20</span><span class="stat-mod">+5</span></div>
+    <div class="stat-box"><span class="stat-name">Destreza</span><span class="stat-val">10</span><span class="stat-mod">+0</span></div>
+    <div class="stat-box"><span class="stat-name">Constituição</span><span class="stat-val">16</span><span class="stat-mod">+3</span></div>
+    <div class="stat-box"><span class="stat-name">Inteligência</span><span class="stat-val">8</span><span class="stat-mod">−1</span></div>
+    <div class="stat-box"><span class="stat-name">Sabedoria</span><span class="stat-val">10</span><span class="stat-mod">+0</span></div>
+    <div class="stat-box"><span class="stat-name">Carisma</span><span class="stat-val peak">20</span><span class="stat-mod">+5</span></div>
+  </div>
+</div>
+
+<div class="section"><h2 class="section-title">Estatísticas de Combate</h2>
+  <div class="combat-row">
+    <div class="combat-box accent"><span class="combat-label">Classe Armadura</span><span class="combat-val">20</span><span class="combat-sub">Plate + Escudo</span></div>
+    <div class="combat-box accent"><span class="combat-label">Pontos de Vida</span><span class="combat-val">204</span><span class="combat-sub">Nível 20</span></div>
+    <div class="combat-box"><span class="combat-label">Iniciativa</span><span class="combat-val">+0</span><span class="combat-sub">Des mod</span></div>
+    <div class="combat-box"><span class="combat-label">Deslocamento</span><span class="combat-val">10,5m</span><span class="combat-sub">Escalada 10,5m</span></div>
+    <div class="combat-box"><span class="combat-label">Bônus Prof.</span><span class="combat-val">+6</span><span class="combat-sub">Nível 20</span></div>
+    <div class="combat-box accent"><span class="combat-label">CD Magias</span><span class="combat-val">19</span><span class="combat-sub">8 + prof + Car</span></div>
+    <div class="combat-box accent"><span class="combat-label">Smite Max</span><span class="combat-val">5d8</span><span class="combat-sub">Slot 4° + undead</span></div>
+  </div>
+  <div class="lore-box"><strong style="color:var(--void-bright)">Divine Smite:</strong> Ao acertar: gasta slot para +2d8~5d8 de dano radiante (necrótico como Oathbreaker). 5d8 com slot de 4° contra mortos-vivos. Combinado com Aura = devastação pura.</div>
+</div>
+
+<div class="section"><h2 class="section-title">Ataques</h2>
+  <table class="attack-table">
+    <thead><tr><th>Ataque</th><th>Bônus</th><th>Dano</th><th>Alcance</th><th>Notas</th></tr></thead>
+    <tbody>
+      <tr><td><span class="attack-name">Espada Longa</span></td><td><span class="attack-bonus">+11</span></td><td><span class="attack-damage">1d8+5 Cortante</span></td><td>Corpo a corpo</td><td style="font-size:11px">Versátil (1d10) · Smite</td></tr>
+      <tr><td><span class="attack-name">Smite Divino (necrótico)</span></td><td><span class="attack-bonus">+11</span></td><td><span class="attack-damage">1d8+5+5d8 Necrótico</span></td><td>Corpo a corpo</td><td style="font-size:11px">Slot 4° · +1d8 vs mortos-vivos</td></tr>
+      <tr><td><span class="attack-name">Vampiric Bite (Dhampir)</span></td><td><span class="attack-bonus">+11</span></td><td><span class="attack-damage">1d4+5 Perfurante</span></td><td>Corpo a corpo</td><td style="font-size:11px">PV iguais ao dano · Prof usos/longo</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="divider"><span class="divider-sym">👑 ✦ 👑</span></div>
+
+<div class="section">
+  <h2 class="section-title">Habilidades — Oathbreaker (DMG)</h2>
+  <div class="feature-grid">
+    <div class="feature-card milestone">
+      <div class="feature-name">Controlar Mortos-Vivos</div><div class="feature-source">Oathbreaker · Channel Divinity</div>
+      <div class="feature-desc">Ação: morto-vivo em 9m deve <strong style="color:var(--void-bright)">TR Sab CD 19</strong> ou é controlado por 24h. No nível 20: funciona contra mortos-vivos de até CR alto. O rei comanda os mortos.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">Provocação Sombria</div><div class="feature-source">Oathbreaker · Channel Divinity</div>
+      <div class="feature-desc">Ação bônus: +5 (Car) no próximo ataque + <strong>+5 dano</strong> ao acertar. Uma vez por Channel Divinity. O golpe da ruína.</div>
+    </div>
+    <div class="feature-card oath">
+      <div class="feature-name">Aura de Ódio</div><div class="feature-source">Oathbreaker · Nível 7</div>
+      <div class="feature-desc">Viego e mortos-vivos/demônios em <strong style="color:var(--gold-light)">9m recebem +Car (5)</strong> no dano corpo a corpo. A névoa negra que potencializa cada golpe.</div>
+    </div>
+    <div class="feature-card oath">
+      <div class="feature-name">Defesa Sobrenatural</div><div class="feature-source">Oathbreaker · Nível 15</div>
+      <div class="feature-desc"><strong style="color:var(--gold-light)">Resistência a dano</strong> de armas não-mágicas. Viego deixou de ser humano — dano mundano não o alcança mais.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">Senhor do Pavor</div><div class="feature-source">Oathbreaker · Nível 20</div>
+      <div class="feature-desc">Ação: aura de 9m de trevas por 1 min. Inimigos: <strong style="color:var(--void-bright)">48 dano necrótico/turno</strong> (TR Sab CD 19 pela metade). Aliados causam +nível/2 (10) dano necrótico extra. O Black Mist em D&D.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:16px">
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-name">Aura de Proteção</div><div class="feature-source">Paladino · Nível 6</div>
+        <div class="feature-desc">Viego e aliados em 9m: <strong style="color:var(--void-bright)">+5 (Car) em todos os TRs</strong>. A aura mais poderosa do jogo — transformada em força sombria.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Improved Divine Smite</div><div class="feature-source">Paladino · Nível 11</div>
+        <div class="feature-desc"><strong>+1d8 necrótico</strong> em <em>todo</em> ataque melee, automaticamente. Sem custo. Cada golpe da espada do rei carrega a ruína.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">Personalidade</h2>
+  <div class="two-col">
+    <div class="trait-box"><span class="trait-label">Traços</span><p class="trait-text">Obsessivo, absolutista, belo de forma perturbadora. Fala de Isolde como se ela ainda estivesse viva — porque para ele, ela está. O rei que destruiu o mundo por amor.</p></div>
+    <div class="trait-box"><span class="trait-label">Ideais</span><p class="trait-text">Isolde. Nada mais importa. O mundo, os aliados, o próprio corpo — tudo é sacrificável se significar tê-la de volta. O amor não conhece limites porque ele se recusa a aceitar que deveria.</p></div>
+    <div class="trait-box"><span class="trait-label">Ligações</span><p class="trait-text">A Rainha Isolde — morta há eras, mas cuja memória é tão real que a Névoa Negra se alimenta da dor de Viego para existir.</p></div>
+    <div class="trait-box"><span class="trait-label">Defeitos</span><p class="trait-text">Incapaz de aceitar perda. A negação é tão profunda que reescreveu a realidade ao seu redor. O rei arruinado não percebe que é o monstro da própria história.</p></div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-sym">👑 ✦ 👑</span></div>
+
+<div class="section">
+  <h2 class="section-title">História do Personagem</h2>
+  <div class="backstory">
+    <p><em>Ele foi rei. Ele foi amante. Ele foi herói. E então fez a única coisa que ninguém deveria: recusou-se a aceitar que o amor morre.</em></p>
+    <p>Viego era um rei jovem e inseguro que encontrou em Isolde tudo que faltava em si mesmo. Ela era sua âncora, sua razão, seu mundo inteiro condensado em uma pessoa. Quando um assassino envenenado a tirou dele, Viego não fez o que um rei deveria — não chorou, não seguiu em frente, não governou.</p>
+    <div class="bs-quote">"Eu cruzaria mil infernos. Quebraria cada juramento. Destruiria cada reino. Tudo — <em>tudo</em> — por mais um instante com ela."</div>
+    <p>Ele quebrou. E ao quebrar, quebrou o mundo junto. A busca insana pela ressurreição de Isolde o levou às Ilhas Abençoadas, onde encontrou a Água da Vida — e o Rei Arruinado nasceu. A névoa negra se espalhou, reinos inteiros caíram, nações foram consumidas. Tudo porque um homem não soube lidar com o luto.</p>
+    <p>O irônico é que Isolde, se pudesse falar, teria implorado para ele parar. O amor que Viego jura proteger é exatamente o que ele profana a cada alma que consome, a cada vida que arranca, a cada juramento que quebra.</p>
+    <div class="bs-quote">"Eu sou o Rei Arruinado. Não porque fui arruinado — mas porque arruíno tudo que toco. E não consigo parar."</div>
+    <p style="font-size:12px;color:var(--text-dim);margin-top:20px;font-style:italic">Ele caminha em névoa verde-negra, a espada de um rei que esqueceu como ser humano. O juramento quebrado ecoa como um coração que se recusa a parar de bater.</p>
+  </div>
+</div>
+
+</div>
+<div class="footer"><p>D&D 5e · League of Legends / Riot Games · Paladino · Oathbreaker · Nível 20</p></div>
+
+<script>
+const wraithBg=document.getElementById('wraithBg');
+const wisps=['✦','·','∘','◦'];
+for(let i=0;i<22;i++){const w=document.createElement('div');w.className='wraith';w.textContent=wisps[Math.floor(Math.random()*wisps.length)];w.style.left=Math.random()*100+'%';w.style.animationDuration=(16+Math.random()*24)+'s';w.style.animationDelay=(-Math.random()*25)+'s';w.style.fontSize=(8+Math.random()*14)+'px';wraithBg.appendChild(w);}
+</script>
+</body>
+</html>

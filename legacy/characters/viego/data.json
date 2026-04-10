@@ -1,0 +1,7 @@
+{
+  "metadata": { "name": "Viego", "title": "O Rei Arruinado", "origin": "League of Legends", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
+  "identity": { "race": "Dhampir", "class": "Paladino", "subclass": "Oathbreaker", "background": "Nobre", "alignment": "Neutro Mau" },
+  "attributes": { "str": { "score": 20, "mod": 5 }, "dex": { "score": 10, "mod": 0 }, "con": { "score": 16, "mod": 3 }, "int": { "score": 8, "mod": -1 }, "wis": { "score": 10, "mod": 0 }, "cha": { "score": 20, "mod": 5 } },
+  "combat": { "ac": 20, "hp": 204, "speed": "10,5m", "proficiencyBonus": "+6", "spellDC": 19 },
+  "tags": ["paladino", "oathbreaker", "dhampir", "melee", "necromancia", "nível-20", "league-of-legends"]
+}
