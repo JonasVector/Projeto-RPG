@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cantarella — Ficha D&D 5e</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--poison:#4a8c5c;--poison-mid:#5daa70;--poison-bright:#7ecb94;--emerald:#2ecc71;--shadow:#1a2a22;--pale:#d0f0dc;--dark:#030806;--darker:#020604;--card:#081410;--card-light:#0c1e18;--gold:#c9a227;--gold-light:#e8c85a;--text:#b8d4c4;--text-dim:#5a8068;--mist:#2a4838;--border:rgba(74,140,92,0.28);--border-bright:rgba(126,203,148,0.45);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--darker);background-image:radial-gradient(ellipse at 20% 20%,rgba(74,140,92,0.08) 0%,transparent 50%),radial-gradient(ellipse at 75% 75%,rgba(46,204,113,0.05) 0%,transparent 45%);font-family:'Crimson Pro',Georgia,serif;color:var(--text);line-height:1.75;}
+.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
+.mist-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.mist-dot{position:absolute;width:3px;height:3px;background:var(--emerald);border-radius:50%;opacity:0;animation:driftMist ease-in-out infinite;}
+@keyframes driftMist{0%{transform:translate(0,110vh) scale(0.5);opacity:0;}10%{opacity:0.4;}50%{transform:translate(40px,50vh) scale(0.8);opacity:0.15;}100%{transform:translate(-30px,-10vh) scale(0.3);opacity:0;}}
+.header{background:linear-gradient(168deg,#020604 0%,#0a1a10 55%,#020604 100%);border-bottom:2px solid var(--poison);position:relative;overflow:hidden;z-index:1;}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--poison-mid),var(--emerald),var(--poison-mid),transparent);opacity:0.5;}
+.header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
+.header-portrait{width:220px;flex-shrink:0;background:#030806;border-right:2px solid var(--poison);display:flex;align-items:center;justify-content:center;}
+.portrait-inner{width:100%;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;}
+.portrait-symbol{font-size:80px;opacity:0.12;filter:drop-shadow(0 0 20px var(--emerald));}
+.portrait-ring{position:absolute;width:100px;height:100px;border:1px solid rgba(74,140,92,0.3);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:rp 4s ease-in-out infinite;}
+@keyframes rp{0%,100%{box-shadow:0 0 8px rgba(74,140,92,0.1);}50%{box-shadow:0 0 20px rgba(74,140,92,0.25);}}
+.portrait-ring::before{content:'';position:absolute;inset:8px;border:1px solid rgba(74,140,92,0.15);border-radius:50%;}
+.portrait-label{position:absolute;bottom:14px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--poison);opacity:0.5;text-transform:uppercase;}
+.header-text{flex:1;padding:36px 44px;}
+.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--poison-mid);opacity:0.8;text-transform:uppercase;margin-bottom:10px;}
+.header-name{font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(74,140,92,0.4);letter-spacing:3px;line-height:1;margin-bottom:4px;}
+.header-subtitle{font-family:'Crimson Pro',serif;font-style:italic;font-size:17px;color:var(--poison-bright);margin-bottom:22px;letter-spacing:1.5px;}
+.header-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:4px 12px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(74,140,92,0.06);}
+.tag.hi{background:rgba(74,140,92,0.20);border-color:var(--poison-mid);color:var(--poison-bright);}
+.meta-bar{background:var(--card);border-bottom:1px solid var(--border);padding:14px 40px;display:flex;position:relative;z-index:1;}
+.meta-item{flex:1;border-right:1px solid var(--border);padding:0 20px;text-align:center;}
+.meta-item:first-child{padding-left:0;}.meta-item:last-child{border-right:none;padding-right:0;}
+.meta-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
+.meta-value{font-family:'Cinzel',serif;font-size:13px;color:var(--poison-bright);font-weight:600;}
+.section{padding:0 40px;margin-top:36px;position:relative;z-index:1;}
+.section-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--poison-mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.section-title::before{content:'🗡';font-size:12px;opacity:0.7;}
+.stat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:20px;}
+.stat-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:14px 4px 10px;transition:border-color 0.2s,box-shadow 0.3s;}
+.stat-box:hover{border-color:var(--poison-mid);box-shadow:0 0 12px rgba(74,140,92,0.15);}
+.stat-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--poison),transparent);opacity:0;transition:opacity 0.2s;}
+.stat-name{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:6px;}
+.stat-val{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--pale);line-height:1;}
+.stat-val.peak{color:var(--emerald);text-shadow:0 0 16px rgba(46,204,113,0.4);}
+.stat-mod{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--poison-mid);margin-top:4px;display:block;}
+.combat-row{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:20px;}
+.combat-box{background:var(--card-light);border:1px solid var(--border);text-align:center;padding:12px 6px 10px;transition:border-color 0.2s;}
+.combat-box.accent{background:rgba(74,140,92,0.1);border-color:var(--poison-mid);}
+.combat-label{font-family:'Share Tech Mono',monospace;font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
+.combat-val{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--pale);line-height:1;}
+.combat-box.accent .combat-val{color:var(--emerald);}
+.combat-sub{font-size:10px;color:var(--text-dim);font-family:'Share Tech Mono',monospace;display:block;margin-top:2px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.save-list,.skill-list{list-style:none;}
+.save-item,.skill-item{display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid rgba(74,140,92,0.08);font-size:13px;}
+.save-item:last-child,.skill-item:last-child{border-bottom:none;}
+.save-dot,.skill-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;}
+.save-dot.filled,.skill-dot.filled{background:var(--poison);border-color:var(--poison-bright);box-shadow:0 0 5px rgba(74,140,92,0.5);}
+.skill-dot.expert{background:var(--gold);border-color:var(--gold-light);box-shadow:0 0 5px rgba(201,162,39,0.5);}
+.save-score,.skill-bonus{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--poison-mid);min-width:26px;text-align:right;}
+.skill-bonus.peak{color:var(--gold-light);}
+.save-name,.skill-name{color:var(--text-dim);flex:1;}
+.skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--mist);letter-spacing:1px;}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.feature-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--poison);padding:12px 14px;transition:border-color 0.2s,transform 0.2s;}
+.feature-card:hover{border-color:var(--poison-mid);transform:translateY(-1px);}
+.feature-card.milestone{border-left-color:var(--emerald);}
+.feature-name{font-family:'Cinzel',serif;font-size:11px;color:var(--poison-mid);letter-spacing:1px;margin-bottom:4px;text-transform:uppercase;}
+.feature-card.milestone .feature-name{color:var(--emerald);}
+.feature-source{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--poison);opacity:0.7;text-transform:uppercase;margin-bottom:4px;}
+.feature-desc{font-size:12px;color:var(--text-dim);line-height:1.5;}
+.spell-entry{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--poison);padding:10px 14px;margin-bottom:6px;transition:border-color 0.2s,background 0.2s;}
+.spell-entry:hover{background:var(--card-light);}
+.spell-entry.core{border-left-color:var(--emerald);}
+.spell-entry-top{display:flex;align-items:baseline;gap:10px;margin-bottom:4px;flex-wrap:wrap;}
+.spell-name{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--pale);}
+.stag{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;padding:2px 7px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;}
+.stag.conc{color:var(--poison-mid);}
+.stag.core-tag{color:var(--emerald);}
+.spell-desc{font-size:13.5px;color:var(--text-dim);line-height:1.6;}
+.spell-mechanic{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--poison-mid);margin-top:3px;display:block;}
+.lore-box{background:rgba(74,140,92,0.06);border:1px solid var(--border);border-left:3px solid var(--emerald);padding:14px 18px;font-size:13px;font-style:italic;color:var(--text-dim);margin:12px 0;line-height:1.7;}
+.trait-box{background:var(--card);border:1px solid var(--border);padding:16px 18px;height:100%;}
+.trait-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--poison);display:block;margin-bottom:8px;}
+.trait-text{font-size:14px;color:var(--text-dim);font-style:italic;}
+.backstory{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--poison);padding:28px 32px;}
+.backstory p{font-size:15px;color:var(--text-dim);margin-bottom:14px;line-height:1.85;}
+.bs-quote{font-style:italic;border-left:3px solid var(--emerald);padding:8px 0 8px 16px;color:var(--poison-bright);margin:16px 0;font-size:15px;}
+.attack-table{width:100%;border-collapse:collapse;font-size:13px;}
+.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(74,140,92,0.08);}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(74,140,92,0.08);color:var(--text-dim);}
+.attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
+.attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--emerald);font-weight:700;}
+.attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--poison-bright);}
+.passive-block{background:rgba(74,140,92,0.08);border:1px solid var(--poison);padding:12px 16px;text-align:center;}
+.passive-num{font-family:'Cinzel',serif;font-size:32px;font-weight:900;color:var(--emerald);display:block;}
+.passive-lbl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);}
+.equip-card{background:var(--card);border:1px solid var(--border);padding:12px 14px;}
+.equip-category{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--poison);display:block;margin-bottom:6px;}
+.equip-list{list-style:none;font-size:13px;color:var(--text-dim);}
+.equip-list li{padding:2px 0;border-bottom:1px solid rgba(74,140,92,0.08);display:flex;align-items:center;gap:6px;}
+.equip-list li::before{content:'🗡';font-size:8px;}
+.divider{text-align:center;margin:36px 40px;display:flex;align-items:center;gap:16px;position:relative;z-index:1;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--poison),transparent);opacity:0.4;}
+.divider-sym{font-size:16px;color:var(--emerald);opacity:0.5;}
+.footer{text-align:center;padding:28px 40px 0;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text-dim);opacity:0.5;position:relative;z-index:1;}
+@media(max-width:700px){.stat-grid{grid-template-columns:repeat(3,1fr);}.combat-row{grid-template-columns:repeat(4,1fr);}.two-col,.feature-grid{grid-template-columns:1fr;}.header-inner{flex-direction:column;}.header-portrait{width:100%;height:180px;}}
+</style>
+</head>
+<body>
+<div class="mist-bg" id="mistBg"></div>
+<div class="page">
+
+<header class="header"><div class="header-inner">
+  <div class="header-portrait"><div class="portrait-inner"><div class="portrait-ring"></div><div class="portrait-symbol">🗡</div><span class="portrait-label">Sombra Venenosa</span></div></div>
+  <div class="header-text">
+    <div class="header-eyebrow">Ficha de Personagem · D&D 5e · Patrulheiro · Perseguidor Sombrio · Nível 20</div>
+    <h1 class="header-name">Cantarella</h1>
+    <div class="header-subtitle">A Lâmina Silenciosa — Veneno que Nenhuma Cura Alcança</div>
+    <div class="header-tags">
+      <span class="tag hi">Patrulheiro 20</span><span class="tag hi">Perseguidor Sombrio</span>
+      <span class="tag">Elfo da Sombra (Shadar-kai)</span><span class="tag">Espiã</span>
+      <span class="tag">Leal Mau</span><span class="tag">Sem Multiclasse</span>
+    </div>
+  </div>
+</div></header>
+
+<div class="meta-bar">
+  <div class="meta-item"><span class="meta-label">Raça</span><span class="meta-value">Shadar-kai</span></div>
+  <div class="meta-item"><span class="meta-label">Classe</span><span class="meta-value">Patrulheiro</span></div>
+  <div class="meta-item"><span class="meta-label">Subclasse</span><span class="meta-value">Perseguidor Sombrio</span></div>
+  <div class="meta-item"><span class="meta-label">Antecedente</span><span class="meta-value">Espiã</span></div>
+  <div class="meta-item"><span class="meta-label">Tendência</span><span class="meta-value">Leal Mau</span></div>
+  <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-value">20</span></div>
+</div>
+
+<div class="section"><h2 class="section-title">Atributos</h2>
+  <div class="stat-grid">
+    <div class="stat-box"><span class="stat-name">Força</span><span class="stat-val">10</span><span class="stat-mod">+0</span></div>
+    <div class="stat-box"><span class="stat-name">Destreza</span><span class="stat-val peak">20</span><span class="stat-mod">+5</span></div>
+    <div class="stat-box"><span class="stat-name">Constituição</span><span class="stat-val">14</span><span class="stat-mod">+2</span></div>
+    <div class="stat-box"><span class="stat-name">Inteligência</span><span class="stat-val">12</span><span class="stat-mod">+1</span></div>
+    <div class="stat-box"><span class="stat-name">Sabedoria</span><span class="stat-val peak">20</span><span class="stat-mod">+5</span></div>
+    <div class="stat-box"><span class="stat-name">Carisma</span><span class="stat-val">8</span><span class="stat-mod">−1</span></div>
+  </div>
+</div>
+
+<div class="section"><h2 class="section-title">Estatísticas de Combate</h2>
+  <div class="combat-row">
+    <div class="combat-box accent"><span class="combat-label">Classe Armadura</span><span class="combat-val">17</span><span class="combat-sub">Couro Batido + 1 + Des</span></div>
+    <div class="combat-box accent"><span class="combat-label">Pontos de Vida</span><span class="combat-val">182</span><span class="combat-sub">Nível 20 médio</span></div>
+    <div class="combat-box"><span class="combat-label">Iniciativa</span><span class="combat-val">+5</span><span class="combat-sub">Des mod</span></div>
+    <div class="combat-box"><span class="combat-label">Deslocamento</span><span class="combat-val">9m</span><span class="combat-sub">Padrão</span></div>
+    <div class="combat-box"><span class="combat-label">Bônus Prof.</span><span class="combat-val">+6</span><span class="combat-sub">Nível 20</span></div>
+    <div class="combat-box accent"><span class="combat-label">CD Magias</span><span class="combat-val">19</span><span class="combat-sub">8 + prof + Sab</span></div>
+    <div class="combat-box accent"><span class="combat-label">Ataque Mágico</span><span class="combat-val">+11</span><span class="combat-sub">prof + Sab</span></div>
+  </div>
+</div>
+
+<div class="section"><h2 class="section-title">Ataques</h2>
+  <table class="attack-table">
+    <thead><tr><th>Ataque</th><th>Bônus</th><th>Dano / Tipo</th><th>Alcance</th><th>Notas</th></tr></thead>
+    <tbody>
+      <tr><td><span class="attack-name">Arco Longo</span></td><td><span class="attack-bonus">+11</span></td><td><span class="attack-damage">1d8+5 Perfurante</span></td><td>45/180m</td><td style="font-size:11px">Archery +2 incluído</td></tr>
+      <tr><td><span class="attack-name">Espadas Curtas (Dual)</span></td><td><span class="attack-bonus">+11</span></td><td><span class="attack-damage">1d6+5 Perfurante × 2</span></td><td>Corpo a corpo</td><td style="font-size:11px">Combate com duas armas</td></tr>
+      <tr><td><span class="attack-name">Ataque Sombrio (+3d8)</span></td><td><span class="attack-bonus">+11</span></td><td><span class="attack-damage">1d8+5+3d8 Psíquico</span></td><td>45m</td><td style="font-size:11px">1°/turno · Perseguidor · +3d8 dano extra</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="divider"><span class="divider-sym">🗡 ✦ 🗡</span></div>
+
+<div class="section">
+  <h2 class="section-title">Habilidades — Perseguidor Sombrio (XGtE)</h2>
+  <div class="feature-grid">
+    <div class="feature-card milestone">
+      <div class="feature-name">Emboscador do Pavor</div><div class="feature-source">Perseguidor · Nível 3</div>
+      <div class="feature-desc">No início do combate: ganha <strong style="color:var(--emerald)">+5 (Sab mod)</strong> à iniciativa. 1° turno: Sabedoria em vez de Carisma para Intimidação. A sombra que aparece antes que percebam.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">Dread Ambusher</div><div class="feature-source">Perseguidor · Nível 3</div>
+      <div class="feature-desc">No 1° turno: <strong style="color:var(--emerald)">+3m de velocidade</strong> e <strong>1 ataque extra</strong> que causa <strong>+1d8 dano</strong>. A primeira rodada de Cantarella é a mais mortal do grupo.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-name">Magia Umbral do Perseguidor</div><div class="feature-source">Perseguidor · Nível 3</div>
+      <div class="feature-desc">Magias de domínio sempre preparadas: Disguise Self, Rope Trick, Fear, Greater Invisibility, Seeming. O kit de espionagem definitivo.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">Passo das Sombras</div><div class="feature-source">Perseguidor · Nível 7</div>
+      <div class="feature-desc">Em escuridão ou luz fraca: Cantarella é <strong style="color:var(--emerald)">invisível</strong> para criaturas que dependam de visão no escuro. A sombra é sua camuflagem.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-name">Investida de Ferro</div><div class="feature-source">Perseguidor · Nível 11</div>
+      <div class="feature-desc">Se errar um ataque: pode <strong>usar esse ataque novamente</strong> neste turno. A lâmina silenciosa corrige seu próprio curso.</div>
+    </div>
+    <div class="feature-card milestone">
+      <div class="feature-name">Perseguidor das Sombras</div><div class="feature-source">Perseguidor · Nível 15</div>
+      <div class="feature-desc">Quando é alvejada — pode usar <strong style="color:var(--emerald)">reação para teleportar 9m + atacar</strong>. A sombra contra-ataca antes de ser atingida.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:16px">
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-name">Inimigo Favorecido Aprimorado</div><div class="feature-source">Patrulheiro · TCoE · Nível 1</div>
+        <div class="feature-desc">1° acerto/turno: <strong>+1d6 dano</strong> (escala para +1d8). Sem custo, sem concentração. O marcador silencioso da caçadora.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Vanish (Desaparecer)</div><div class="feature-source">Patrulheiro · Nível 14</div>
+        <div class="feature-desc">Ação bônus para <strong>Hide</strong>. Não pode ser rastreada por meios não-mágicos. Cantarella desaparece — literalmente.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-sym">🗡 ✦ 🗡</span></div>
+
+<div class="section">
+  <h2 class="section-title">Grimório · Sabedoria · CD: 19 · Ataque: +11</h2>
+  <div class="spell-entry core">
+    <div class="spell-entry-top"><span class="spell-name">Pass Without Trace</span><div class="spell-tags-inline"><span class="stag conc">conc · 1h</span><span class="stag core-tag">★ central</span></div></div>
+    <p class="spell-desc">Aliados em 9m ganham <strong>+10 em Furtividade</strong>. Não-rastreáveis. O grupo inteiro se torna fantasma — Cantarella compartilha a arte da invisibilidade.</p>
+    <span class="spell-mechanic">🌑 +10 Furtividade · Sem rastros · Aliados em 9m · Concentração</span>
+  </div>
+  <div class="spell-entry core">
+    <div class="spell-entry-top"><span class="spell-name">Greater Invisibility</span><div class="spell-tags-inline"><span class="stag conc">conc · 1 min</span><span class="stag core-tag">★ domínio</span></div></div>
+    <p class="spell-desc">Invisibilidade total mesmo ao atacar. Sempre preparada como magia de domínio. Vantagem em todos os ataques, desvantagem em todos contra ela. A assassina perfeita.</p>
+    <span class="spell-mechanic">👻 Invisível · Persiste ao atacar · Vantagem em ataques · Domínio</span>
+  </div>
+  <div class="spell-entry">
+    <div class="spell-entry-top"><span class="spell-name">Conjure Volley</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag">raio 12m · 45m</span></div></div>
+    <p class="spell-desc">Chuva de flechas: <strong>8d8 dano</strong> numa área massiva. TR Des CD 19. Quando Cantarella decide que sigilo acabou, <em>todo mundo</em> sabe.</p>
+    <span class="spell-mechanic">🏹 8d8 dano · Cilindro raio 12m · TR Des CD 19</span>
+  </div>
+  <div class="spell-entry">
+    <div class="spell-entry-top"><span class="spell-name">Swift Quiver</span><div class="spell-tags-inline"><span class="stag conc">conc · 1 min</span><span class="stag core-tag">★ 5°</span></div></div>
+    <p class="spell-desc">Ação bônus: <strong>2 ataques extras</strong> com arco. Total de 4+ ataques por turno. A DPS sustentada mais alta de qualquer patrulheiro.</p>
+    <span class="spell-mechanic">🏹 2 ataques bônus com arco · 4+ ataques/turno · Concentração 1 min</span>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">Personalidade</h2>
+  <div class="two-col">
+    <div class="trait-box"><span class="trait-label">Traços</span><p class="trait-text">Silenciosa a ponto de ser esquecida — exatamente como ela quer. Quando fala, é breve, precisa e impossível de ignorar. Olhos que avaliam vulnerabilidades antes de rostos.</p></div>
+    <div class="trait-box"><span class="trait-label">Ideais</span><p class="trait-text">A missão é sagrada. Não a moral, não a ética — a missão. A lâmina não se pergunta se o alvo merece morrer. Ela apenas corta.</p></div>
+    <div class="trait-box"><span class="trait-label">Ligações</span><p class="trait-text">O Rover — o único que nunca a tratou como arma. E a memória do que aconteceu antes — do motivo pelo qual uma assassina decidiu proteger em vez de destruir.</p></div>
+    <div class="trait-box"><span class="trait-label">Defeitos</span><p class="trait-text">Incapaz de confiar completamente. Todo afeto é uma vulnerabilidade, todo aliado é um potencial traidor. A paranóia é sua armadura mais forte.</p></div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-sym">🗡 ✦ 🗡</span></div>
+
+<div class="section">
+  <h2 class="section-title">História do Personagem</h2>
+  <div class="backstory">
+    <p><em>Cantarella. O veneno sem cor, sem cheiro, sem gosto. Ela escolheu o nome com cuidado — porque o veneno perfeito é aquele que você nunca percebe.</em></p>
+    <p>Shadar-kai nascida no Shadowfell, Cantarella aprendeu desde cedo que existir é um ato de resistência. No plano das sombras, tudo se esvai — cores, memórias, emoções. Ela sobreviveu fazendo o oposto: tornou-se tão afiada que as sombras a temiam de volta.</p>
+    <div class="bs-quote">"Eu não mato por prazer. Eu mato por eficiência. O prazer é só um bônus infeliz."</div>
+    <p>Treinada como assassina desde que era criança, Cantarella não questiona ordens — questiona <em>métodos</em>. Há sempre um jeito mais limpo, mais silencioso, mais irrecuperável de neutralizar um alvo. A morte é uma ferramenta; ela é a artesã.</p>
+    <p>Quando cruzou para o plano material e conheceu os companheiros, algo mudou. Não dramaticamente — Cantarella não faz drama. Mas passou a direcionar suas lâminas para onde elas eram necessárias em vez de onde eram pagas. A diferença é sutil, mas é tudo.</p>
+    <div class="bs-quote">"Proteger alguém é mais difícil que matar alguém. É por isso que eu faço os dois."</div>
+    <p style="font-size:12px;color:var(--text-dim);margin-top:20px;font-style:italic">A última coisa que seus alvos veem é nada. Absolutamente nada. Cantarella é o silêncio entre as batidas do coração.</p>
+  </div>
+</div>
+
+</div>
+<div class="footer"><p>D&D 5e · Wuthering Waves / Kuro Games · Patrulheiro · Perseguidor Sombrio · Nível 20</p></div>
+
+<script>
+const mistBg=document.getElementById('mistBg');
+for(let i=0;i<25;i++){const d=document.createElement('div');d.className='mist-dot';d.style.left=Math.random()*100+'%';d.style.width=(1+Math.random()*4)+'px';d.style.height=d.style.width;d.style.animationDuration=(10+Math.random()*20)+'s';d.style.animationDelay=(Math.random()*15)+'s';d.style.background=Math.random()>0.5?'#2ecc71':'#4a8c5c';mistBg.appendChild(d);}
+</script>
+</body>
+</html>

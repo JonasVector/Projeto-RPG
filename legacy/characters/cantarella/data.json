@@ -1,0 +1,7 @@
+{
+  "metadata": { "name": "Cantarella", "title": "A Lâmina Silenciosa", "origin": "Wuthering Waves", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
+  "identity": { "race": "Shadar-kai (Elfo da Sombra)", "class": "Patrulheiro", "subclass": "Perseguidor Sombrio", "background": "Espiã", "alignment": "Leal Mau", "languages": ["Comum", "Élfico", "Sombrio"] },
+  "attributes": { "str": { "score": 10, "mod": 0 }, "dex": { "score": 20, "mod": 5 }, "con": { "score": 14, "mod": 2 }, "int": { "score": 12, "mod": 1 }, "wis": { "score": 20, "mod": 5 }, "cha": { "score": 8, "mod": -1 } },
+  "combat": { "ac": 17, "hp": 182, "initiative": "+5", "speed": "9m", "proficiencyBonus": "+6", "spellDC": 19, "spellAttack": "+11" },
+  "tags": ["patrulheiro", "perseguidor-sombrio", "shadar-kai", "furtividade", "dps", "nível-20", "wuthering-waves"]
+}
