@@ -1,0 +1,98 @@
+{
+  "metadata": {
+    "name": "Kafka",
+    "title": "A Caçadora de Stellaron",
+    "origin": "Honkai Star Rail",
+    "version": "1.0",
+    "system": "D&D 5e",
+    "level": 20,
+    "created": "2026-04-10",
+    "language": "pt-BR"
+  },
+  "identity": {
+    "race": "Tiefling (Glasya)",
+    "class": "Bruxo",
+    "subclass": "Grande Antigo",
+    "background": "Criminosa",
+    "alignment": "Neutro Mau",
+    "languages": ["Comum", "Infernal", "Profundo"]
+  },
+  "attributes": {
+    "str": { "score": 8, "mod": -1 },
+    "dex": { "score": 16, "mod": 3 },
+    "con": { "score": 14, "mod": 2 },
+    "int": { "score": 12, "mod": 1 },
+    "wis": { "score": 10, "mod": 0 },
+    "cha": { "score": 20, "mod": 5 }
+  },
+  "combat": {
+    "ac": 17,
+    "acDescription": "Mage Armor (13) + Des (3) + Shield",
+    "hp": 142,
+    "hitDice": "20d8",
+    "initiative": "+3",
+    "speed": "9m",
+    "proficiencyBonus": "+6",
+    "spellDC": 19,
+    "spellAttack": "+11",
+    "spellAbility": "Carisma",
+    "pactSlots": 4,
+    "pactSlotLevel": 5
+  },
+  "savingThrows": [
+    { "name": "Força", "value": -1, "proficient": false },
+    { "name": "Destreza", "value": 3, "proficient": false },
+    { "name": "Constituição", "value": 2, "proficient": false },
+    { "name": "Inteligência", "value": 1, "proficient": false },
+    { "name": "Sabedoria", "value": 6, "proficient": true },
+    { "name": "Carisma", "value": 11, "proficient": true }
+  ],
+  "skills": [
+    { "name": "Arcanismo", "value": 7, "proficient": true, "attr": "INT" },
+    { "name": "Enganação", "value": 11, "proficient": true, "attr": "CAR" },
+    { "name": "Intimidação", "value": 11, "proficient": true, "attr": "CAR" },
+    { "name": "Intuição", "value": 6, "proficient": true, "attr": "SAB" },
+    { "name": "Percepção", "value": 6, "proficient": true, "attr": "SAB" },
+    { "name": "Persuasão", "value": 11, "proficient": true, "attr": "CAR" }
+  ],
+  "features": {
+    "subclass": [
+      { "name": "Mente Desperta", "level": 1, "description": "Telepatia 9m com qualquer criatura que entenda idioma." },
+      { "name": "Proteção Entrópica", "level": 6, "description": "Reação: atacante que erra tem desvantagem no próximo TR." },
+      { "name": "Escudo de Pensamentos", "level": 10, "description": "Resistência a psíquico. Reflect mental damage." },
+      { "name": "Criar Lacaio do Caos", "level": 14, "description": "Encanta permanentemente criatura incapacitada como lacaio telepático." }
+    ],
+    "invocations": [
+      "Agonizing Blast", "Devil's Sight", "Thirsting Blade",
+      "Eldritch Smite", "Improved Pact Weapon", "Whispers of the Grave",
+      "Shroud of Shadow", "Lifedrinker"
+    ]
+  },
+  "spells": {
+    "cantrips": [
+      { "name": "Eldritch Blast", "damage": "4×(1d10+5) força", "notes": "4 raios, +11 cada" },
+      { "name": "Minor Illusion", "notes": "Som ou imagem ilusória" }
+    ],
+    "known": [
+      { "name": "Hex", "level": 1 },
+      { "name": "Darkness", "level": 2 },
+      { "name": "Counterspell", "level": 3 },
+      { "name": "Shadow of Moil", "level": 4 },
+      { "name": "Synaptic Static", "level": 5 },
+      { "name": "Dominate Person", "level": 5 }
+    ],
+    "arcanum": [
+      { "name": "Mass Suggestion", "level": 6 },
+      { "name": "Finger of Death", "level": 7 },
+      { "name": "Feeblemind", "level": 8 },
+      { "name": "Psychic Scream", "level": 9 }
+    ]
+  },
+  "personality": {
+    "traits": "Calma predatória. Cada palavra calibrada para efeito máximo.",
+    "ideals": "O destino pode ser manipulado. O caos é ordem mal compreendida.",
+    "bonds": "Os Caçadores de Stellaron — especialmente o Trailblazer.",
+    "flaws": "Incapaz de relações genuínas. Intimidade é vulnerabilidade."
+  },
+  "tags": ["bruxo", "grande-antigo", "tiefling", "psíquico", "controle-mental", "nível-20", "honkai-star-rail"]
+}

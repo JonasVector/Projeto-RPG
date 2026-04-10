@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kafka — Ficha D&D 5e</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --violet:       #7b2d8e;
+  --violet-mid:   #9b4dca;
+  --violet-bright:#c77dff;
+  --magenta:      #e040fb;
+  --pale:         #e8d5f5;
+  --dark:         #08030d;
+  --darker:       #050208;
+  --card:         #0f0618;
+  --card-light:   #180a24;
+  --gold:         #c9a227;
+  --gold-light:   #e8c85a;
+  --text:         #d8cce8;
+  --text-dim:     #7a6898;
+  --mist:         #3d2a5a;
+  --border:       rgba(123,45,142,0.30);
+  --border-bright:rgba(199,125,255,0.45);
+  --glow:         rgba(123,45,142,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 20%,rgba(123,45,142,0.10) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(224,64,251,0.06) 0%,transparent 45%),radial-gradient(ellipse at 50% 45%,rgba(61,42,90,0.05) 0%,transparent 70%);font-family:'Crimson Pro',Georgia,serif;color:var(--text);line-height:1.75;}
+.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
+
+/* ── PARTÍCULAS ELÉTRICAS ── */
+.spark-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.spark{position:absolute;width:2px;height:2px;background:var(--magenta);border-radius:50%;opacity:0;animation:floatSpark linear infinite;filter:blur(0.5px);}
+@keyframes floatSpark{0%{transform:translateY(110vh) translateX(0) scale(0);opacity:0;}10%{opacity:0.8;}30%{opacity:0.5;}50%{transform:translateY(50vh) translateX(30px) scale(1.2);opacity:0.3;}90%{opacity:0.1;}100%{transform:translateY(-10vh) translateX(-20px) scale(0.4);opacity:0;}}
+.glitch-line{position:absolute;width:100%;height:1px;background:var(--magenta);opacity:0;animation:glitchLine 8s linear infinite;}
+@keyframes glitchLine{0%,95%{opacity:0;transform:translateY(0);}96%{opacity:0.3;transform:translateY(0);}97%{opacity:0;transform:translateY(2px);}98%{opacity:0.2;transform:translateY(-1px);}100%{opacity:0;}}
+
+/* ── HEADER ── */
+.header{background:linear-gradient(165deg,#06020a 0%,#140820 50%,#06020a 100%);border-bottom:2px solid var(--violet);position:relative;overflow:hidden;z-index:1;}
+.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 65px,rgba(123,45,142,0.02) 65px,rgba(123,45,142,0.02) 66px);}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--violet-mid),var(--magenta),var(--violet-mid),transparent);opacity:0.6;}
+.header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
+.header-portrait{width:220px;flex-shrink:0;background:#06020c;border-right:2px solid var(--violet);overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative;}
+.portrait-inner{width:100%;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;}
+.portrait-symbol{font-size:80px;opacity:0.12;filter:drop-shadow(0 0 24px var(--magenta));line-height:1;}
+.portrait-ring{position:absolute;width:100px;height:100px;border:1px solid rgba(224,64,251,0.3);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:ringPulse 3s ease-in-out infinite;}
+@keyframes ringPulse{0%,100%{box-shadow:0 0 8px rgba(224,64,251,0.1);}50%{box-shadow:0 0 22px rgba(224,64,251,0.3);}}
+.portrait-ring::before{content:'';position:absolute;inset:8px;border:1px solid rgba(224,64,251,0.15);border-radius:50%;}
+.portrait-label{position:absolute;bottom:14px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--violet);opacity:0.5;text-transform:uppercase;}
+.header-text{flex:1;padding:36px 44px;}
+.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--violet-mid);opacity:0.8;text-transform:uppercase;margin-bottom:10px;}
+.header-name{font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(123,45,142,0.5),0 0 20px rgba(224,64,251,0.3);letter-spacing:3px;line-height:1;margin-bottom:4px;}
+.header-subtitle{font-family:'Crimson Pro',serif;font-style:italic;font-size:17px;color:var(--magenta);margin-bottom:22px;letter-spacing:1.5px;opacity:0.9;}
+.header-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:4px 12px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(123,45,142,0.07);}
+.tag.hi{background:rgba(123,45,142,0.20);border-color:var(--violet-mid);color:var(--violet-bright);}
+
+/* ── META BAR ── */
+.meta-bar{background:var(--card);border-bottom:1px solid var(--border);padding:14px 40px;display:flex;position:relative;z-index:1;}
+.meta-item{flex:1;border-right:1px solid var(--border);padding:0 20px;text-align:center;}
+.meta-item:first-child{padding-left:0;}.meta-item:last-child{border-right:none;padding-right:0;}
+.meta-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
+.meta-value{font-family:'Cinzel',serif;font-size:13px;color:var(--violet-bright);font-weight:600;}
+
+/* ── SECTION ── */
+.section{padding:0 40px;margin-top:36px;position:relative;z-index:1;}
+.section-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--violet-mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.section-title::before{content:'⚡';font-size:12px;color:var(--magenta);opacity:0.8;}
+
+/* ── STAT GRID ── */
+.stat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:20px;}
+.stat-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:14px 4px 10px;position:relative;transition:border-color 0.2s,box-shadow 0.3s;}
+.stat-box:hover{border-color:var(--violet-mid);box-shadow:0 0 12px rgba(123,45,142,0.2);}
+.stat-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--violet),transparent);opacity:0;transition:opacity 0.2s;}
+.stat-box:hover::after{opacity:1;}
+.stat-name{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:6px;}
+.stat-val{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--pale);line-height:1;}
+.stat-val.peak{color:var(--magenta);text-shadow:0 0 16px rgba(224,64,251,0.4);}
+.stat-mod{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--violet-mid);margin-top:4px;display:block;}
+
+/* ── COMBAT ── */
+.combat-row{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:20px;}
+.combat-box{background:var(--card-light);border:1px solid var(--border);text-align:center;padding:12px 6px 10px;transition:border-color 0.2s;}
+.combat-box:hover{border-color:var(--violet-mid);}
+.combat-box.accent{background:rgba(123,45,142,0.12);border-color:var(--violet-mid);}
+.combat-label{font-family:'Share Tech Mono',monospace;font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
+.combat-val{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--pale);line-height:1;}
+.combat-box.accent .combat-val{color:var(--magenta);}
+.combat-sub{font-size:10px;color:var(--text-dim);font-family:'Share Tech Mono',monospace;display:block;margin-top:2px;}
+
+/* ── TWO COL ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+
+/* ── SAVES ── */
+.save-list{list-style:none;}
+.save-item{display:flex;align-items:center;gap:10px;padding:4px 0;border-bottom:1px solid rgba(123,45,142,0.1);font-size:14px;}
+.save-item:last-child{border-bottom:none;}
+.save-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;}
+.save-dot.filled{background:var(--violet);border-color:var(--violet-bright);box-shadow:0 0 6px rgba(123,45,142,0.5);}
+.save-score{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--violet-mid);min-width:28px;text-align:right;}
+.save-name{color:var(--text-dim);font-size:14px;flex:1;}
+
+/* ── SKILLS ── */
+.skill-list{list-style:none;}
+.skill-item{display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid rgba(123,45,142,0.08);font-size:13px;}
+.skill-item:last-child{border-bottom:none;}
+.skill-dot{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;}
+.skill-dot.filled{background:var(--violet);border-color:var(--violet-bright);box-shadow:0 0 5px rgba(123,45,142,0.4);}
+.skill-bonus{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--violet-mid);min-width:26px;text-align:right;}
+.skill-name{color:var(--text-dim);flex:1;}
+.skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--mist);letter-spacing:1px;}
+
+/* ── FEATURES ── */
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.feature-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--violet);padding:12px 14px;transition:border-color 0.2s,transform 0.2s;}
+.feature-card:hover{border-color:var(--violet-mid);transform:translateY(-1px);}
+.feature-card.milestone{border-left-color:var(--magenta);}
+.feature-card.eldritch{border-left-color:var(--gold);}
+.feature-name{font-family:'Cinzel',serif;font-size:11px;color:var(--violet-mid);letter-spacing:1px;margin-bottom:4px;text-transform:uppercase;}
+.feature-card.milestone .feature-name{color:var(--magenta);}
+.feature-card.eldritch .feature-name{color:var(--gold-light);}
+.feature-source{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--violet);opacity:0.7;text-transform:uppercase;margin-bottom:4px;}
+.feature-desc{font-size:12px;color:var(--text-dim);line-height:1.5;}
+
+/* ── SPELLS ── */
+.spell-circle{margin-bottom:28px;}
+.spell-circle-header{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.spell-circle-badge{width:36px;height:36px;border:2px solid var(--violet);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:var(--violet-bright);background:rgba(123,45,142,0.1);flex-shrink:0;}
+.spell-circle-badge.cantrip{border-color:var(--magenta);color:var(--magenta);background:rgba(224,64,251,0.1);}
+.spell-circle-badge.arcanum{border-color:var(--gold);color:var(--gold-light);background:rgba(201,162,39,0.1);}
+.spell-circle-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--violet-mid);}
+.spell-slots{margin-left:auto;display:flex;gap:5px;}
+.slot-pip{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--violet-mid);background:rgba(123,45,142,0.25);}
+.spell-entry{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--violet);padding:10px 14px;margin-bottom:6px;transition:border-color 0.2s,background 0.2s;}
+.spell-entry:hover{background:var(--card-light);border-color:var(--violet-mid);border-left-color:var(--magenta);}
+.spell-entry.core{border-left-color:var(--magenta);}
+.spell-entry.arcanum{border-left-color:var(--gold);}
+.spell-entry-top{display:flex;align-items:baseline;gap:10px;margin-bottom:4px;flex-wrap:wrap;}
+.spell-name{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--pale);}
+.spell-entry.arcanum .spell-name{color:var(--gold-light);}
+.spell-tags-inline{display:flex;gap:5px;flex-wrap:wrap;}
+.stag{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;padding:2px 7px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(123,45,142,0.05);}
+.stag.conc{border-color:rgba(224,64,251,0.4);color:var(--magenta);}
+.stag.core-tag{border-color:rgba(224,64,251,0.5);color:var(--magenta);background:rgba(224,64,251,0.06);}
+.spell-desc{font-size:13.5px;color:var(--text-dim);line-height:1.6;}
+.spell-mechanic{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--violet-mid);margin-top:3px;display:block;}
+.spell-mechanic.gold{color:var(--gold-light);}
+
+/* ── INVOCATIONS ── */
+.invoc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.invoc-card{background:rgba(123,45,142,0.08);border:1px solid var(--border);padding:8px 12px;font-size:12px;transition:border-color 0.2s;}
+.invoc-card:hover{border-color:var(--violet-mid);}
+.invoc-name{font-family:'Cinzel',serif;font-size:10px;color:var(--violet-bright);letter-spacing:1px;display:block;margin-bottom:2px;}
+.invoc-desc{font-size:11px;color:var(--text-dim);font-style:italic;}
+
+/* ── PERSONALITY ── */
+.trait-box{background:var(--card);border:1px solid var(--border);padding:16px 18px;height:100%;}
+.trait-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--violet);display:block;margin-bottom:8px;}
+.trait-text{font-size:14px;color:var(--text-dim);font-style:italic;}
+
+/* ── LORE ── */
+.lore-box{background:rgba(123,45,142,0.06);border:1px solid var(--border);border-left:3px solid var(--violet-bright);padding:14px 18px;font-size:13px;font-style:italic;color:var(--text-dim);margin:12px 0;line-height:1.7;}
+
+/* ── BACKSTORY ── */
+.backstory{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--violet);padding:28px 32px;}
+.backstory p{font-size:15px;color:var(--text-dim);margin-bottom:14px;line-height:1.85;}
+.backstory p:last-child{margin-bottom:0;}
+.bs-quote{font-style:italic;border-left:3px solid var(--magenta);padding:8px 0 8px 16px;color:var(--violet-bright);margin:16px 0;font-size:15px;}
+
+/* ── LEVEL TIMELINE ── */
+.level-row{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--violet);display:flex;align-items:flex-start;overflow:hidden;margin-bottom:4px;}
+.level-row.milestone{border-left-color:var(--magenta);}
+.level-row.capstone{border-left-color:var(--gold);}
+.level-num{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--violet-mid);padding:8px 12px;min-width:60px;background:rgba(123,45,142,0.1);align-self:stretch;display:flex;align-items:center;}
+.level-content{padding:8px 14px;flex:1;}
+.level-feature-name{font-family:'Cinzel',serif;font-size:11px;color:var(--pale);letter-spacing:0.5px;margin-bottom:2px;}
+.level-note{font-size:12px;color:var(--text-dim);font-style:italic;}
+
+/* ── PASSIVE ── */
+.passive-block{background:rgba(123,45,142,0.08);border:1px solid var(--violet);padding:12px 16px;text-align:center;}
+.passive-num{font-family:'Cinzel',serif;font-size:32px;font-weight:900;color:var(--magenta);text-shadow:0 0 16px rgba(224,64,251,0.3);display:block;}
+.passive-lbl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);}
+
+/* ── DIVIDER ── */
+.divider{text-align:center;margin:36px 40px;display:flex;align-items:center;gap:16px;position:relative;z-index:1;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--violet),transparent);opacity:0.4;}
+.divider-sym{font-size:16px;color:var(--magenta);opacity:0.5;}
+
+/* ── ATTACK TABLE ── */
+.attack-table{width:100%;border-collapse:collapse;font-size:13px;}
+.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(123,45,142,0.08);}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(123,45,142,0.08);color:var(--text-dim);}
+.attack-table tr:hover td{background:rgba(123,45,142,0.05);}
+.attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
+.attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--magenta);font-weight:700;}
+.attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--violet-bright);}
+
+/* ── EQUIP ── */
+.equip-card{background:var(--card);border:1px solid var(--border);padding:12px 14px;}
+.equip-category{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--violet);display:block;margin-bottom:6px;}
+.equip-list{list-style:none;font-size:13px;color:var(--text-dim);}
+.equip-list li{padding:2px 0;border-bottom:1px solid rgba(123,45,142,0.08);display:flex;align-items:center;gap:6px;}
+.equip-list li::before{content:'⚡';color:var(--magenta);font-size:8px;}
+
+/* ── DEATH SAVES ── */
+.death-saves{display:flex;flex-direction:column;gap:6px;}
+.ds-row{display:flex;align-items:center;gap:8px;}
+.ds-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);min-width:60px;}
+.ds-dots{display:flex;gap:6px;}
+.ds-dot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--border);}
+
+/* ── FOOTER ── */
+.footer{text-align:center;padding:28px 40px 0;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text-dim);opacity:0.5;position:relative;z-index:1;}
+
+@media(max-width:700px){.stat-grid{grid-template-columns:repeat(3,1fr);}.combat-row{grid-template-columns:repeat(4,1fr);}.two-col,.feature-grid{grid-template-columns:1fr;}.header-inner{flex-direction:column;}.header-portrait{width:100%;height:180px;}.invoc-grid{grid-template-columns:1fr 1fr;}}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--darker);}::-webkit-scrollbar-thumb{background:var(--violet);border-radius:3px;}
+</style>
+</head>
+<body>
+<div class="spark-bg" id="sparkBg"></div>
+<div class="page">
+
+<!-- ══ HEADER ══════════════════════════════════════════ -->
+<header class="header"><div class="header-inner">
+  <div class="header-portrait"><div class="portrait-inner"><div class="portrait-ring"></div><div class="portrait-symbol">🦋</div><span class="portrait-label">Stellaron Hunter</span></div></div>
+  <div class="header-text">
+    <div class="header-eyebrow">Ficha de Personagem · D&D 5e · Bruxo · Grande Antigo · Nível 20</div>
+    <h1 class="header-name">Kafka</h1>
+    <div class="header-subtitle">A Caçadora de Stellaron — O Fio que Puxa o Destino</div>
+    <div class="header-tags">
+      <span class="tag hi">Bruxo 20</span><span class="tag hi">Grande Antigo</span>
+      <span class="tag">Tiefling (Glasya)</span><span class="tag">Criminosa</span>
+      <span class="tag">Neutro Mau</span><span class="tag">Sem Multiclasse</span>
+    </div>
+  </div>
+</div></header>
+
+<!-- ══ META BAR ══ -->
+<div class="meta-bar">
+  <div class="meta-item"><span class="meta-label">Raça</span><span class="meta-value">Tiefling (Glasya)</span></div>
+  <div class="meta-item"><span class="meta-label">Classe</span><span class="meta-value">Bruxo</span></div>
+  <div class="meta-item"><span class="meta-label">Subclasse</span><span class="meta-value">Grande Antigo</span></div>
+  <div class="meta-item"><span class="meta-label">Antecedente</span><span class="meta-value">Criminosa</span></div>
+  <div class="meta-item"><span class="meta-label">Tendência</span><span class="meta-value">Neutro Mau</span></div>
+  <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-value">20</span></div>
+</div>
+
+<!-- ══ ATRIBUTOS ══ -->
+<div class="section">
+  <h2 class="section-title">Atributos</h2>
+  <div class="stat-grid">
+    <div class="stat-box"><span class="stat-name">Força</span><span class="stat-val">8</span><span class="stat-mod">−1</span></div>
+    <div class="stat-box"><span class="stat-name">Destreza</span><span class="stat-val">16</span><span class="stat-mod">+3</span></div>
+    <div class="stat-box"><span class="stat-name">Constituição</span><span class="stat-val">14</span><span class="stat-mod">+2</span></div>
+    <div class="stat-box"><span class="stat-name">Inteligência</span><span class="stat-val">12</span><span class="stat-mod">+1</span></div>
+    <div class="stat-box"><span class="stat-name">Sabedoria</span><span class="stat-val">10</span><span class="stat-mod">+0</span></div>
+    <div class="stat-box"><span class="stat-name">Carisma</span><span class="stat-val peak">20</span><span class="stat-mod">+5</span></div>
+  </div>
+</div>
+
+<!-- ══ COMBATE ══ -->
+<div class="section">
+  <h2 class="section-title">Estatísticas de Combate</h2>
+  <div class="combat-row">
+    <div class="combat-box accent"><span class="combat-label">Classe Armadura</span><span class="combat-val">17</span><span class="combat-sub">Mage Armor + Des</span></div>
+    <div class="combat-box accent"><span class="combat-label">Pontos de Vida</span><span class="combat-val">142</span><span class="combat-sub">Nível 20 médio</span></div>
+    <div class="combat-box"><span class="combat-label">Iniciativa</span><span class="combat-val">+3</span><span class="combat-sub">Des mod</span></div>
+    <div class="combat-box"><span class="combat-label">Deslocamento</span><span class="combat-val">9m</span><span class="combat-sub">Padrão</span></div>
+    <div class="combat-box"><span class="combat-label">Bônus Prof.</span><span class="combat-val">+6</span><span class="combat-sub">Nível 20</span></div>
+    <div class="combat-box accent"><span class="combat-label">CD Magias</span><span class="combat-val">19</span><span class="combat-sub">8 + prof + Car</span></div>
+    <div class="combat-box accent"><span class="combat-label">Ataque Mágico</span><span class="combat-val">+11</span><span class="combat-sub">prof + Car</span></div>
+  </div>
+  <div class="lore-box"><strong style="color:var(--magenta)">Pact Magic:</strong> 4 slots de magia de 5° círculo. Recuperam em descanso <em>curto</em>. Todas as magias são lançadas no nível máximo. <strong>Eldritch Master</strong> recupera todos os slots em 1 minuto (1×/descanso longo).</div>
+</div>
+
+<!-- ══ SAVES & PERÍCIAS ══ -->
+<div class="section">
+  <div class="two-col" style="gap:32px">
+    <div>
+      <h2 class="section-title">Testes de Resistência</h2>
+      <ul class="save-list">
+        <li class="save-item"><div class="save-dot"></div><span class="save-score">−1</span><span class="save-name">Força</span></li>
+        <li class="save-item"><div class="save-dot"></div><span class="save-score">+3</span><span class="save-name">Destreza</span></li>
+        <li class="save-item"><div class="save-dot"></div><span class="save-score">+2</span><span class="save-name">Constituição</span></li>
+        <li class="save-item"><div class="save-dot"></div><span class="save-score">+1</span><span class="save-name">Inteligência</span></li>
+        <li class="save-item"><div class="save-dot filled"></div><span class="save-score">+6</span><span class="save-name">Sabedoria</span></li>
+        <li class="save-item"><div class="save-dot filled"></div><span class="save-score" style="color:var(--magenta)">+11</span><span class="save-name">Carisma</span></li>
+      </ul>
+      <div style="margin-top:20px">
+        <h2 class="section-title">Percepção Passiva</h2>
+        <div class="passive-block"><span class="passive-num">13</span><span class="passive-lbl">Sabedoria Passiva</span></div>
+      </div>
+    </div>
+    <div>
+      <h2 class="section-title">Perícias</h2>
+      <ul class="skill-list">
+        <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+3</span><span class="skill-name">Acrobacia</span><span class="skill-attr">DES</span></li>
+        <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus">+7</span><span class="skill-name">Arcanismo</span><span class="skill-attr">INT</span></li>
+        <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">−1</span><span class="skill-name">Atletismo</span><span class="skill-attr">FOR</span></li>
+        <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus" style="color:var(--magenta)">+11</span><span class="skill-name">Enganação</span><span class="skill-attr">CAR</span></li>
+        <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+3</span><span class="skill-name">Furtividade</span><span class="skill-attr">DES</span></li>
+        <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus" style="color:var(--magenta)">+11</span><span class="skill-name">Intimidação</span><span class="skill-attr">CAR</span></li>
+        <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus">+6</span><span class="skill-name">Intuição</span><span class="skill-attr">SAB</span></li>
+        <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+1</span><span class="skill-name">Investigação</span><span class="skill-attr">INT</span></li>
+        <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus">+6</span><span class="skill-name">Percepção</span><span class="skill-attr">SAB</span></li>
+        <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus" style="color:var(--magenta)">+11</span><span class="skill-name">Persuasão</span><span class="skill-attr">CAR</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-sym">⚡ ✦ ⚡</span></div>
+
+<!-- ══ HABILIDADES ══ -->
+<div class="section">
+  <h2 class="section-title">Habilidades de Classe & Raça</h2>
+
+  <div style="margin-bottom:12px">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--magenta);text-transform:uppercase;margin-bottom:8px">— Grande Antigo (Subclasse)</div>
+    <div class="feature-grid">
+      <div class="feature-card milestone">
+        <div class="feature-name">Mente Desperta</div><div class="feature-source">Grande Antigo · Nível 1</div>
+        <div class="feature-desc">Telepatia até <strong style="color:var(--magenta)">9m</strong> com qualquer criatura que compreenda pelo menos um idioma. Comunicação silenciosa e indetectável — Kafka sussurra diretamente na mente.</div>
+      </div>
+      <div class="feature-card milestone">
+        <div class="feature-name">Proteção Entrópica</div><div class="feature-source">Grande Antigo · Nível 6</div>
+        <div class="feature-desc">Quando uma criatura faz um ataque contra Kafka e erra, ela pode usar reação para impor <strong style="color:var(--magenta)">desvantagem no próximo TR</strong> dessa criatura. O destino pune quem falha em acertá-la.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Escudo de Pensamentos</div><div class="feature-source">Grande Antigo · Nível 10</div>
+        <div class="feature-desc">Pensamentos não podem ser lidos por telepatia, a menos que Kafka permita. <strong style="color:var(--magenta)">Resistência a dano psíquico</strong>. Ao sofrer psíquico, pode usar reação para causar o mesmo dano ao atacante.</div>
+      </div>
+      <div class="feature-card milestone">
+        <div class="feature-name">Criar Lacaio do Caos</div><div class="feature-source">Grande Antigo · Nível 14</div>
+        <div class="feature-desc">Encanta uma criatura incapacitada permanentemente — ela serve Kafka como <strong style="color:var(--magenta)">lacaio telepático</strong>. Obedece comandos, age em combate, e pode manter até 1 simultâneo. O fio do destino que Kafka puxa.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:12px">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--violet);text-transform:uppercase;margin-bottom:8px">— Pacto & Bruxo Geral</div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-name">Pacto da Lâmina</div><div class="feature-source">Bruxo · Nível 3</div>
+        <div class="feature-desc">Convoca uma arma de pacto (reskin: chicote de energia psíquica). Conta como arma mágica. Com <strong>Improved Pact Weapon</strong>: +1 ataque/dano, funciona como foco arcano.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Eldritch Master</div><div class="feature-source">Bruxo · Nível 20 · Capstone</div>
+        <div class="feature-desc">Recupera <strong style="color:var(--magenta)">todos os slots Pact Magic</strong> em 1 min de foco. 1×/descanso longo. Kafka nunca fica sem poder — sempre há um fio a mais para puxar.</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--violet);text-transform:uppercase;margin-bottom:8px">— Invocações Místicas</div>
+    <div class="invoc-grid">
+      <div class="invoc-card"><span class="invoc-name">Agonizing Blast</span><span class="invoc-desc">+CAR (+5) no dano do Eldritch Blast por raio</span></div>
+      <div class="invoc-card"><span class="invoc-name">Devil's Sight</span><span class="invoc-desc">Visão normal em escuridão mágica (18m)</span></div>
+      <div class="invoc-card"><span class="invoc-name">Thirsting Blade</span><span class="invoc-desc">Ataque extra com arma de pacto</span></div>
+      <div class="invoc-card"><span class="invoc-name">Eldritch Smite</span><span class="invoc-desc">Gasta slot: +6d8 Força no acerto</span></div>
+      <div class="invoc-card"><span class="invoc-name">Improved Pact Weapon</span><span class="invoc-desc">+1 acerto/dano, arma como foco</span></div>
+      <div class="invoc-card"><span class="invoc-name">Whispers of the Grave</span><span class="invoc-desc">Speak with Dead à vontade</span></div>
+      <div class="invoc-card"><span class="invoc-name">Shroud of Shadow</span><span class="invoc-desc">Invisibilidade à vontade</span></div>
+      <div class="invoc-card"><span class="invoc-name">Lifedrinker</span><span class="invoc-desc">+CAR (+5) no dano da arma de pacto</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-sym">⚡ ✦ ⚡</span></div>
+
+<!-- ══ MAGIAS ══ -->
+<div class="section">
+  <h2 class="section-title">Grimório · Carisma · CD: 19 · Ataque: +11</h2>
+
+  <div class="spell-circle">
+    <div class="spell-circle-header"><div class="spell-circle-badge cantrip">0</div><span class="spell-circle-title" style="color:var(--magenta)">Truques — À Vontade</span></div>
+    <div class="spell-entry core">
+      <div class="spell-entry-top"><span class="spell-name">Eldritch Blast</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag">36m</span><span class="stag core-tag">★ central</span></div></div>
+      <p class="spell-desc">Dispara <strong>4 raios de força</strong> (+11 cada). Com Agonizing Blast: <strong>+5 por raio</strong>. Total potencial: <strong>4×(1d10+5)</strong>. Os fios do destino que Kafka dispara para prender suas vítimas.</p>
+      <span class="spell-mechanic">⚡ 4 raios · +11 cada · 1d10+5 Força/raio · Dividível</span>
+    </div>
+    <div class="spell-entry">
+      <div class="spell-entry-top"><span class="spell-name">Minor Illusion (Ilusão Menor)</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag">9m</span></div></div>
+      <p class="spell-desc">Cria som ou imagem ilusória. A distração perfeita — Kafka cria cenários falsos para desorientar antes de atacar.</p>
+      <span class="spell-mechanic">🌀 Som ou imagem · 1 min · Sem concentração</span>
+    </div>
+  </div>
+
+  <div class="spell-circle">
+    <div class="spell-circle-header"><div class="spell-circle-badge">✦</div><span class="spell-circle-title">Magias Conhecidas — Slots de 5° Círculo</span>
+      <div class="spell-slots" style="margin-left:auto"><div class="slot-pip"></div><div class="slot-pip"></div><div class="slot-pip"></div><div class="slot-pip"></div><span style="font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--text-dim);margin-left:4px">4 SLOTS</span></div>
+    </div>
+
+    <div class="spell-entry core">
+      <div class="spell-entry-top"><span class="spell-name">Hex</span><div class="spell-tags-inline"><span class="stag">ação bônus</span><span class="stag conc">concentração · 8h</span><span class="stag core-tag">★ central</span></div></div>
+      <p class="spell-desc">Amaldiçoa um alvo: <strong>+1d6 necrótico</strong> em cada acerto. O alvo tem desvantagem em testes de um atributo. Transferível ao matar. O fio que marca a presa de Kafka.</p>
+      <span class="spell-mechanic">💀 +1d6 necrótico/acerto · Desvantagem em atrib. · Transferível · 8h</span>
+    </div>
+
+    <div class="spell-entry core">
+      <div class="spell-entry-top"><span class="spell-name">Synaptic Static</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag">27m · esfera 6m</span><span class="stag core-tag">★ central</span></div></div>
+      <p class="spell-desc">Explosão psíquica: <strong>8d6 psíquico</strong> (TR Int CD 19). Falha: −1d6 em ataques e TRs por 1 min. Kafka fragmenta a mente — o dano é apenas o começo.</p>
+      <span class="spell-mechanic">🧠 8d6 psíquico · TR Int CD 19 · Falha: −1d6 em tudo por 1 min</span>
+    </div>
+
+    <div class="spell-entry">
+      <div class="spell-entry-top"><span class="spell-name">Dominate Person</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag conc">concentração · 1 min</span><span class="stag">18m</span></div></div>
+      <p class="spell-desc">Controle mental completo. O alvo obedece comandos telepáticos. <strong>Slot de 5°: duração até 8 horas</strong>. Kafka puxa os fios — e o boneco dança.</p>
+      <span class="spell-mechanic">💜 TR Sab CD 19 · Controle total · 5° slot: 8 horas</span>
+    </div>
+
+    <div class="spell-entry">
+      <div class="spell-entry-top"><span class="spell-name">Counterspell</span><div class="spell-tags-inline"><span class="stag" style="color:var(--magenta)">reação</span><span class="stag">18m</span></div></div>
+      <p class="spell-desc">Interrompe magias de ≤5° automaticamente com slot de 5°. Ninguém interrompe os planos de Kafka.</p>
+      <span class="spell-mechanic">✕ Reação · Auto-cancel ≤5° · TR Car +11 vs. superior</span>
+    </div>
+
+    <div class="spell-entry">
+      <div class="spell-entry-top"><span class="spell-name">Shadow of Moil</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag conc">concentração · 1 min</span></div></div>
+      <p class="spell-desc">Sombras flamejantes. Ataques contra Kafka: <strong>desvantagem</strong>. Atacantes corpo a corpo: <strong>2d8 necrótico</strong>. Resistência a radiante. A presença opressiva da caçadora.</p>
+      <span class="spell-mechanic">🌑 Desvantagem vs. Kafka · 2d8 necrótico retaliação · Resist. radiante</span>
+    </div>
+
+    <div class="spell-entry">
+      <div class="spell-entry-top"><span class="spell-name">Darkness</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag conc">concentração · 10 min</span><span class="stag">raio 4,5m</span></div></div>
+      <p class="spell-desc">Escuridão mágica impenetrável. Com Devil's Sight: Kafka vê tudo, ninguém vê Kafka. Vantagem em ataques, desvantagem nos ataques contra ela.</p>
+      <span class="spell-mechanic">🌑 Raio 4,5m · Apenas Devil's Sight enxerga · Controle absoluto</span>
+    </div>
+  </div>
+
+  <!-- MYSTIC ARCANUM -->
+  <div class="spell-circle">
+    <div class="spell-circle-header"><div class="spell-circle-badge arcanum">✦</div><span class="spell-circle-title" style="color:var(--gold-light)">Mystic Arcanum — 1× por Descanso Longo</span></div>
+    <div class="spell-entry arcanum">
+      <div class="spell-entry-top"><span class="spell-name">6°: Mass Suggestion (Sugestão em Massa)</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag">18m</span><span class="stag">24 horas</span></div></div>
+      <p class="spell-desc">Sugere uma ação a até <strong>12 criaturas</strong>. Sem concentração, dura 24 horas. A manipulação em escala de Kafka — cidades inteiras podem ser direcionadas com uma frase.</p>
+      <span class="spell-mechanic gold">💜 12 alvos · TR Sab CD 19 · Sem concentração · 24 horas</span>
+    </div>
+    <div class="spell-entry arcanum">
+      <div class="spell-entry-top"><span class="spell-name">7°: Finger of Death (Dedo da Morte)</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag">18m</span><span class="stag">instantâneo</span></div></div>
+      <p class="spell-desc"><strong>7d8+30 necrótico</strong> (Con CD 19). Humanóide morto por esta magia levanta como <strong>zumbi permanente</strong> sob controle de Kafka. Uma execução que ainda gera utilidade.</p>
+      <span class="spell-mechanic gold">💀 7d8+30 necrótico · Con CD 19 · Morto = zumbi permanente</span>
+    </div>
+    <div class="spell-entry arcanum">
+      <div class="spell-entry-top"><span class="spell-name">8°: Feeblemind (Enfraquecimento Mental)</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag">48m</span><span class="stag">instantâneo</span></div></div>
+      <p class="spell-desc">Destrói a mente do alvo: INT e CAR caem para <strong>1</strong>. Sem conjurar magias, sem comunicação, sem ações complexas. TR Int CD 19 — e a maioria dos inimigos tem Int baixa. Duração: <strong>até ser curado</strong>.</p>
+      <span class="spell-mechanic gold">🧠 INT/CAR → 1 · TR Int CD 19 · Permanente até cura · Devastador</span>
+    </div>
+    <div class="spell-entry arcanum">
+      <div class="spell-entry-top"><span class="spell-name">9°: Psychic Scream (Grito Psíquico)</span><div class="spell-tags-inline"><span class="stag">ação</span><span class="stag">27m</span><span class="stag core-tag">★ 9° círculo</span></div></div>
+      <p class="spell-desc">Até <strong>10 criaturas</strong> sofrem <strong>14d6 de dano psíquico</strong> (TR Int CD 19). Falha: <strong>atordoado</strong>. Se morrer com esse dano: <strong>cabeça explode</strong>. O ápice do poder de Kafka — silêncio total, seguido de destruição mental.</p>
+      <span class="spell-mechanic gold">🧠 10 alvos · 14d6 psíquico · TR Int CD 19 · Falha: atordoado · Morte: cabeça explode</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ EQUIPAMENTO ══ -->
+<div class="section">
+  <h2 class="section-title">Equipamento</h2>
+  <div class="two-col">
+    <div class="equip-card">
+      <span class="equip-category">Armas</span>
+      <ul class="equip-list">
+        <li>Arma de Pacto — Chicote Psíquico (1d4+10, alcance)</li>
+        <li>Adaga ×2 (emergência)</li>
+        <li>Eldritch Blast (4 raios, 36m)</li>
+      </ul>
+    </div>
+    <div class="equip-card">
+      <span class="equip-category">Proteção & Itens</span>
+      <ul class="equip-list">
+        <li>Mage Armor (CA 13 + Des 3 = CA 16)</li>
+        <li>Foco Arcano (integrado à arma de pacto)</li>
+        <li>Kit de disfarces</li>
+        <li>Ferramentas de ladrão</li>
+        <li>Roupas escuras elegantes</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PERSONALIDADE ══ -->
+<div class="section">
+  <h2 class="section-title">Personalidade</h2>
+  <div class="two-col">
+    <div class="trait-box"><span class="trait-label">Traços</span><p class="trait-text">Calma predatória. Kafka nunca levanta a voz — ela não precisa. Cada palavra é calibrada para causar exatamente o efeito desejado. Sorri quando não deveria.</p></div>
+    <div class="trait-box"><span class="trait-label">Ideais</span><p class="trait-text">O destino pode ser manipulado, mas nunca evitado. Kafka não luta contra o inevitável — ela o direciona. O caos é apenas ordem que ainda não foi compreendida.</p></div>
+    <div class="trait-box"><span class="trait-label">Ligações</span><p class="trait-text">Os Caçadores de Stellaron — especialmente o Trailblazer. Algo nele a fascina de maneiras que ela não consegue — ou não quer — explicar.</p></div>
+    <div class="trait-box"><span class="trait-label">Defeitos</span><p class="trait-text">Incapaz de relações genuínas. Todo laço humano é um fio a ser puxado ou cortado. A intimidade é uma vulnerabilidade que ela transforma em arma — sempre.</p></div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-sym">⚡ ✦ ⚡</span></div>
+
+<!-- ══ HISTÓRIA ══ -->
+<div class="section">
+  <h2 class="section-title">História do Personagem</h2>
+  <div class="backstory">
+    <p><em>Ninguém escolhe ser instrumento do destino. Mas Kafka escolheu abraçar o papel — e transformá-lo em arte.</em></p>
+    <p>Tiefling nascida nas sombras de uma cidade que a rejeitava pela herança infernal, Kafka aprendeu cedo que a verdade é uma ferramenta, não um compromisso. Sua capacidade de ler pessoas — de entender seus medos, desejos e pontos de quebra — não era magia. Era <em>instinto</em>.</p>
+    <div class="bs-quote">"Eu não manipulo as pessoas. Eu mostro a elas o que já queriam fazer. A diferença é sutil — mas é tudo."</div>
+    <p>O pacto com a entidade do Grande Antigo não foi uma barganha desesperada. Foi uma <em>negociação</em>. Kafka ofereceu sua humanidade em troca de poder psíquico. O que ela não contou ao patrono é que já havia abandonado a humanidade há muito tempo.</p>
+    <p>Como Caçadora de Stellaron, ela opera nas margens entre o bem e o mal, puxando fios que movem reinos inteiros. Cada missão é um jogo de xadrez onde apenas ela conhece todas as peças. E quando alguém finalmente entende o que aconteceu — já é tarde demais.</p>
+    <div class="bs-quote">"Ah, você finalmente percebeu? Que pena... eu já terminei."</div>
+    <p style="font-size:12px;color:var(--text-dim);margin-top:20px;font-style:italic">Kafka caminha entre mundos com a certeza tranquila de quem já viu o fim — e decidiu que gosta mais do caminho.</p>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<div class="footer">
+  <p>D&D 5e — Wizards of the Coast &nbsp;·&nbsp; Personagem: Honkai Star Rail / HoYoverse &nbsp;·&nbsp; Mecânicas: Wizards of the Coast</p>
+  <p style="margin-top:4px;">Bruxo · Grande Antigo · Tiefling (Glasya) · Nível 20 · Sem Multiclasse</p>
+</div>
+
+<script>
+const sparkBg=document.getElementById('sparkBg');
+for(let i=0;i<30;i++){const s=document.createElement('div');s.className='spark';s.style.left=Math.random()*100+'%';s.style.width=(1+Math.random()*3)+'px';s.style.height=s.style.width;s.style.animationDuration=(6+Math.random()*14)+'s';s.style.animationDelay=(Math.random()*12)+'s';s.style.background=Math.random()>0.5?'#e040fb':'#c77dff';sparkBg.appendChild(s);}
+for(let i=0;i<5;i++){const g=document.createElement('div');g.className='glitch-line';g.style.top=Math.random()*100+'%';g.style.animationDelay=(Math.random()*8)+'s';g.style.animationDuration=(5+Math.random()*8)+'s';sparkBg.appendChild(g);}
+</script>
+</body>
+</html>
