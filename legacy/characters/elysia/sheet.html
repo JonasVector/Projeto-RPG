@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elysia, Herrscher of Human Ego — Ficha D&D 5e</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rose:        #e84393;
+  --rose-mid:    #fd79a8;
+  --rose-bright: #fab1d0;
+  --blush:       #f8c6d8;
+  --pale:        #fce4ec;
+  --dark:        #0d0508;
+  --darker:      #080304;
+  --card:        #140810;
+  --card-light:  #1e0c16;
+  --gold:        #c9a227;
+  --gold-light:  #e8c85a;
+  --text:        #e8d8e0;
+  --text-dim:    #8a6878;
+  --mist:        #5a3548;
+  --border:      rgba(232,67,147,0.28);
+  --border-bright: rgba(253,121,168,0.45);
+  --glow:        rgba(232,67,147,0.15);
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--darker);
+  background-image:
+    radial-gradient(ellipse at 20% 15%, rgba(232,67,147,0.09) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 85%, rgba(253,121,168,0.06) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 45%, rgba(90,53,72,0.04) 0%, transparent 70%);
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--text);
+  line-height: 1.75;
+}
+
+.page { max-width: 960px; margin: 0 auto; padding: 0 0 80px; }
+
+/* ── PÉTALAS FLUTUANTES ───────────────────────── */
+.petal-bg {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events:none; z-index:0; overflow:hidden;
+}
+.petal {
+  position: absolute;
+  font-size: 14px;
+  opacity: 0;
+  animation: floatPetal ease-in-out infinite;
+  filter: blur(0.3px);
+  color: var(--rose-bright);
+}
+@keyframes floatPetal {
+  0%   { transform: translateY(110vh) translateX(0) rotate(0deg) scale(0.4); opacity:0; }
+  10%  { opacity: 0.35; }
+  50%  { transform: translateY(50vh) translateX(40px) rotate(180deg) scale(0.7); opacity:0.2; }
+  90%  { opacity: 0.1; }
+  100% { transform: translateY(-10vh) translateX(-20px) rotate(360deg) scale(0.3); opacity:0; }
+}
+
+/* ── HEADER ─────────────────────────────────────── */
+.header {
+  background: linear-gradient(165deg, #0a0406 0%, #180c12 50%, #0a0406 100%);
+  border-bottom: 2px solid var(--rose);
+  position: relative; overflow: hidden; z-index: 1;
+}
+.header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    60deg, transparent, transparent 60px,
+    rgba(232,67,147,0.02) 60px, rgba(232,67,147,0.02) 61px
+  );
+}
+.header::after {
+  content: '';
+  position: absolute; bottom:0; left:0; right:0; height:1px;
+  background: linear-gradient(90deg, transparent, var(--rose-mid), var(--rose-bright), var(--rose-mid), transparent);
+  opacity: 0.5;
+}
+.header-inner { display: flex; align-items: stretch; position: relative; z-index: 1; }
+
+.header-portrait {
+  width: 220px; flex-shrink: 0;
+  background: #0a0508; border-right: 2px solid var(--rose);
+  overflow: hidden; display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.portrait-inner {
+  width: 100%; height: 280px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px;
+  position: relative;
+}
+.portrait-symbol {
+  font-size: 88px; opacity: 0.12;
+  filter: drop-shadow(0 0 24px var(--rose-bright));
+  line-height: 1;
+}
+.portrait-ring {
+  position: absolute; width: 100px; height: 100px;
+  border: 1px solid rgba(232,67,147,0.3);
+  border-radius: 50%; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ringPulse 4s ease-in-out infinite;
+}
+@keyframes ringPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(232,67,147,0.1); }
+  50% { box-shadow: 0 0 20px rgba(232,67,147,0.25); }
+}
+.portrait-ring::before {
+  content: ''; position: absolute; inset: 8px;
+  border: 1px solid rgba(232,67,147,0.15); border-radius: 50%;
+}
+.portrait-label {
+  position: absolute; bottom: 14px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px; letter-spacing: 3px;
+  color: var(--rose); opacity: 0.5; text-transform: uppercase;
+}
+
+.header-text { flex:1; padding: 36px 44px; }
+.header-eyebrow {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px; letter-spacing: 4px;
+  color: var(--rose-mid); opacity: 0.8;
+  text-transform: uppercase; margin-bottom: 10px;
+}
+.header-name {
+  font-family: 'Cinzel', serif;
+  font-size: 40px; font-weight: 900;
+  color: var(--pale);
+  text-shadow: 0 0 60px rgba(232,67,147,0.4), 0 0 20px rgba(253,121,168,0.2);
+  letter-spacing: 2px; line-height: 1; margin-bottom: 4px;
+}
+.header-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 17px;
+  color: var(--rose-mid); margin-bottom: 22px; letter-spacing: 1.5px;
+}
+.header-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px; letter-spacing: 2px;
+  padding: 4px 12px; border: 1px solid var(--border);
+  color: var(--text-dim); text-transform: uppercase;
+  background: rgba(232,67,147,0.07);
+}
+.tag.hi {
+  background: rgba(232,67,147,0.18);
+  border-color: var(--rose-mid); color: var(--rose-bright);
+}
+
+/* ── META BAR ─────────────────────────────────────── */
+.meta-bar {
+  background: var(--card); border-bottom: 1px solid var(--border);
+  padding: 14px 40px; display: flex; gap: 0;
+  position: relative; z-index: 1;
+}
+.meta-item {
+  flex: 1; border-right: 1px solid var(--border);
+  padding: 0 20px; text-align: center;
+}
+.meta-item:first-child { padding-left: 0; }
+.meta-item:last-child  { border-right: none; padding-right: 0; }
+.meta-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px; letter-spacing: 3px;
+  color: var(--text-dim); text-transform: uppercase;
+  display: block; margin-bottom: 2px;
+}
+.meta-value {
+  font-family: 'Cinzel', serif; font-size: 13px;
+  color: var(--blush); font-weight: 600;
+}
+
+/* ── SECTION ──────────────────────────────────────── */
+.section { padding: 0 40px; margin-top: 36px; position: relative; z-index: 1; }
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 5px; text-transform: uppercase;
+  color: var(--rose-mid);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title::before { content: '✿'; font-size: 12px; color: var(--rose-bright); opacity: 0.8; }
+
+/* ── STAT GRID ───────────────────────────────────── */
+.stat-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 20px; }
+.stat-box {
+  background: var(--card); border: 1px solid var(--border);
+  text-align: center; padding: 14px 4px 10px;
+  position: relative; transition: border-color 0.2s, box-shadow 0.3s;
+}
+.stat-box:hover { border-color: var(--rose-mid); box-shadow: 0 0 12px rgba(232,67,147,0.15); }
+.stat-box::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--rose), transparent);
+  opacity: 0; transition: opacity 0.2s;
+}
+.stat-box:hover::after { opacity: 1; }
+.stat-name {
+  font-family: 'Share Tech Mono', monospace; font-size: 8px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--text-dim); display: block; margin-bottom: 6px;
+}
+.stat-val {
+  font-family: 'Cinzel', serif; font-size: 28px; font-weight: 900;
+  color: var(--pale); line-height: 1;
+}
+.stat-val.peak { color: var(--rose-bright); text-shadow: 0 0 16px rgba(253,121,168,0.4); }
+.stat-mod {
+  font-family: 'Share Tech Mono', monospace; font-size: 11px;
+  color: var(--rose-mid); margin-top: 4px; display: block;
+}
+
+/* ── COMBAT STATS ─────────────────────────────────── */
+.combat-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 20px; }
+.combat-box {
+  background: var(--card-light); border: 1px solid var(--border);
+  text-align: center; padding: 12px 6px 10px; position: relative;
+  transition: border-color 0.2s;
+}
+.combat-box:hover { border-color: var(--rose-mid); }
+.combat-box.accent { background: rgba(232,67,147,0.1); border-color: var(--rose-mid); }
+.combat-label {
+  font-family: 'Share Tech Mono', monospace; font-size: 7.5px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-dim); display: block; margin-bottom: 4px;
+}
+.combat-val {
+  font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700;
+  color: var(--blush); line-height: 1;
+}
+.combat-box.accent .combat-val { color: var(--rose-bright); }
+.combat-sub {
+  font-size: 10px; color: var(--text-dim);
+  font-family: 'Share Tech Mono', monospace; display: block; margin-top: 2px;
+}
+
+/* ── TWO COLUMN ───────────────────────────────────── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+/* ── SAVE THROWS ──────────────────────────────────── */
+.save-list { list-style: none; }
+.save-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 4px 0; border-bottom: 1px solid rgba(232,67,147,0.1); font-size: 14px;
+}
+.save-item:last-child { border-bottom: none; }
+.save-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 1.5px solid var(--border); flex-shrink: 0;
+}
+.save-dot.filled {
+  background: var(--rose); border-color: var(--rose-bright);
+  box-shadow: 0 0 6px rgba(232,67,147,0.5);
+}
+.save-score {
+  font-family: 'Share Tech Mono', monospace; font-size: 12px;
+  color: var(--rose-mid); min-width: 28px; text-align: right;
+}
+.save-name { color: var(--text-dim); font-size: 14px; flex: 1; }
+
+/* ── SKILLS ───────────────────────────────────────── */
+.skill-list { list-style: none; }
+.skill-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 3px 0; border-bottom: 1px solid rgba(232,67,147,0.08); font-size: 13px;
+}
+.skill-item:last-child { border-bottom: none; }
+.skill-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  border: 1.5px solid var(--border); flex-shrink: 0;
+}
+.skill-dot.filled {
+  background: var(--rose); border-color: var(--rose-bright);
+  box-shadow: 0 0 5px rgba(232,67,147,0.4);
+}
+.skill-dot.expert {
+  background: var(--gold); border-color: var(--gold-light);
+  box-shadow: 0 0 5px rgba(201,162,39,0.5);
+}
+.skill-bonus {
+  font-family: 'Share Tech Mono', monospace; font-size: 11px;
+  color: var(--rose-mid); min-width: 26px; text-align: right;
+}
+.skill-bonus.peak { color: var(--gold-light); }
+.skill-name { color: var(--text-dim); flex: 1; }
+.skill-attr {
+  font-family: 'Share Tech Mono', monospace; font-size: 9px;
+  color: var(--mist); letter-spacing: 1px;
+}
+
+/* ── FEATURE CARDS ────────────────────────────────── */
+.feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.feature-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-left: 3px solid var(--rose); padding: 12px 14px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.feature-card:hover { border-color: var(--rose-mid); transform: translateY(-1px); }
+.feature-card.milestone { border-left-color: var(--gold); }
+.feature-card.divine { border-left-color: var(--rose-bright); }
+.feature-name {
+  font-family: 'Cinzel', serif; font-size: 11px;
+  color: var(--rose-mid); letter-spacing: 1px; margin-bottom: 4px; text-transform: uppercase;
+}
+.feature-card.milestone .feature-name { color: var(--gold-light); }
+.feature-source {
+  font-family: 'Share Tech Mono', monospace; font-size: 8px; letter-spacing: 2px;
+  color: var(--rose); opacity: 0.7; text-transform: uppercase; margin-bottom: 4px;
+}
+.feature-desc { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+
+/* ── SPELL SECTION ────────────────────────────────── */
+.spell-circle { margin-bottom: 28px; }
+.spell-circle-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.spell-circle-badge {
+  width: 36px; height: 36px; border: 2px solid var(--rose);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700;
+  color: var(--rose-bright); background: rgba(232,67,147,0.1); flex-shrink: 0;
+}
+.spell-circle-badge.cantrip { border-color: var(--gold); color: var(--gold-light); background: rgba(201,162,39,0.1); }
+.spell-circle-title {
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--rose-mid);
+}
+.spell-circle-slots { margin-left: auto; display: flex; gap: 5px; }
+.slot {
+  width: 14px; height: 14px; border: 1.5px solid var(--rose);
+  border-radius: 50%; background: rgba(232,67,147,0.2);
+}
+
+.spell-entry {
+  background: var(--card); border: 1px solid var(--border);
+  border-left: 3px solid var(--rose); padding: 10px 14px;
+  margin-bottom: 6px; transition: border-color 0.2s, background 0.2s;
+}
+.spell-entry:hover { background: var(--card-light); border-color: var(--rose-mid); border-left-color: var(--rose-bright); }
+.spell-entry.cantrip { border-left-color: var(--gold); }
+.spell-entry.cantrip .spell-name { color: var(--gold-light); }
+.spell-entry.cantrip .spell-mechanic { color: var(--gold); }
+.spell-entry.core { border-left-color: var(--rose-bright); }
+.spell-entry-top { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; flex-wrap: wrap; }
+.spell-name { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600; color: var(--blush); }
+.spell-tags-inline { display: flex; gap: 5px; flex-wrap: wrap; }
+.spell-tag {
+  font-family: 'Share Tech Mono', monospace; font-size: 8px; letter-spacing: 1px;
+  padding: 2px 7px; border: 1px solid var(--border);
+  color: var(--text-dim); text-transform: uppercase; background: rgba(232,67,147,0.05);
+}
+.spell-tag.conc { border-color: rgba(232,67,147,0.4); color: var(--rose-mid); }
+.spell-tag.core-tag { border-color: rgba(253,121,168,0.5); color: var(--rose-bright); background: rgba(232,67,147,0.06); }
+.spell-desc { font-size: 13.5px; color: var(--text-dim); line-height: 1.6; }
+.spell-mechanic {
+  font-family: 'Share Tech Mono', monospace; font-size: 10px;
+  color: var(--rose); margin-top: 3px; display: block;
+}
+
+/* ── PERSONALITY ──────────────────────────────────── */
+.trait-box { background: var(--card); border: 1px solid var(--border); padding: 16px 18px; height: 100%; }
+.trait-label {
+  font-family: 'Share Tech Mono', monospace; font-size: 8px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--rose); display: block; margin-bottom: 8px;
+}
+.trait-text { font-size: 14px; color: var(--text-dim); font-style: italic; }
+
+/* ── LORE ─────────────────────────────────────────── */
+.lore-box {
+  background: rgba(232,67,147,0.06); border: 1px solid var(--border);
+  border-left: 3px solid var(--rose-bright); padding: 14px 18px;
+  font-size: 13px; font-style: italic; color: var(--text-dim); margin: 12px 0; line-height: 1.7;
+}
+
+/* ── BACKSTORY ────────────────────────────────────── */
+.backstory {
+  background: var(--card); border: 1px solid var(--border);
+  border-top: 3px solid var(--rose); padding: 28px 32px;
+}
+.backstory p { font-size: 15px; color: var(--text-dim); margin-bottom: 14px; line-height: 1.85; }
+.backstory p:last-child { margin-bottom: 0; }
+.bs-quote {
+  font-style: italic; border-left: 3px solid var(--rose);
+  padding: 8px 0 8px 16px; color: var(--blush); margin: 16px 0; font-size: 15px;
+}
+
+/* ── LEVEL TIMELINE ──────────────────────────────── */
+.level-row {
+  background: var(--card); border: 1px solid var(--border);
+  border-left: 3px solid var(--rose); display: flex;
+  align-items: flex-start; gap: 0; overflow: hidden; margin-bottom: 4px;
+}
+.level-row.milestone { border-left-color: var(--gold); }
+.level-row.capstone  { border-left-color: var(--rose-bright); }
+.level-num {
+  font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700;
+  color: var(--rose-mid); padding: 8px 12px; min-width: 60px;
+  background: rgba(232,67,147,0.1); align-self: stretch; display: flex; align-items: center;
+}
+.level-content { padding: 8px 14px; flex: 1; }
+.level-feature-name { font-family: 'Cinzel', serif; font-size: 11px; color: var(--blush); letter-spacing: 0.5px; margin-bottom: 2px; }
+.level-note { font-size: 12px; color: var(--text-dim); font-style: italic; }
+
+/* ── EQUIPMENT ────────────────────────────────────── */
+.equip-card { background: var(--card); border: 1px solid var(--border); padding: 12px 14px; }
+.equip-category {
+  font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--rose); display: block; margin-bottom: 6px;
+}
+.equip-list { list-style: none; font-size: 13px; color: var(--text-dim); }
+.equip-list li {
+  padding: 2px 0; border-bottom: 1px solid rgba(232,67,147,0.08);
+  display: flex; align-items: center; gap: 6px;
+}
+.equip-list li::before { content: '❀'; color: var(--rose-bright); font-size: 8px; }
+
+/* ── PASSIVE BLOCK ────────────────────────────────── */
+.passive-block {
+  background: rgba(232,67,147,0.08); border: 1px solid var(--rose);
+  padding: 12px 16px; text-align: center;
+}
+.passive-num {
+  font-family: 'Cinzel', serif; font-size: 32px; font-weight: 900;
+  color: var(--rose-bright); text-shadow: 0 0 16px rgba(253,121,168,0.3); display: block;
+}
+.passive-lbl {
+  font-family: 'Share Tech Mono', monospace; font-size: 8px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--text-dim);
+}
+
+/* ── DEATH SAVES ──────────────────────────────────── */
+.death-saves { display: flex; flex-direction: column; gap: 6px; }
+.ds-row { display: flex; align-items: center; gap: 8px; }
+.ds-label {
+  font-family: 'Share Tech Mono', monospace; font-size: 8px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--text-dim); min-width: 60px;
+}
+.ds-dots { display: flex; gap: 6px; }
+.ds-dot { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--border); }
+
+/* ── DIVIDER ──────────────────────────────────────── */
+.divider {
+  text-align: center; margin: 36px 40px;
+  display: flex; align-items: center; gap: 16px;
+  position: relative; z-index: 1;
+}
+.divider::before, .divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rose), transparent); opacity: 0.4;
+}
+.divider-sym { font-size: 16px; color: var(--rose-bright); opacity: 0.5; }
+
+/* ── ATTACK TABLE ─────────────────────────────────── */
+.attack-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.attack-table th {
+  font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--text-dim); padding: 6px 10px;
+  text-align: left; border-bottom: 1px solid var(--border); background: rgba(232,67,147,0.08);
+}
+.attack-table td { padding: 8px 10px; border-bottom: 1px solid rgba(232,67,147,0.08); color: var(--text-dim); }
+.attack-table tr:hover td { background: rgba(232,67,147,0.05); }
+.attack-name { font-family: 'Cinzel', serif; font-size: 12px; color: var(--blush); }
+.attack-bonus { font-family: 'Share Tech Mono', monospace; font-size: 13px; color: var(--rose-mid); font-weight: 700; }
+.attack-damage { font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--rose-bright); }
+
+/* ── FOOTER ───────────────────────────────────────── */
+.footer {
+  text-align: center; padding: 28px 40px 0;
+  font-family: 'Share Tech Mono', monospace; font-size: 10px;
+  letter-spacing: 1px; color: var(--text-dim); opacity: 0.5;
+  position: relative; z-index: 1;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────── */
+@media (max-width: 700px) {
+  .stat-grid { grid-template-columns: repeat(3, 1fr); }
+  .combat-row { grid-template-columns: repeat(4, 1fr); }
+  .two-col { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .header-inner { flex-direction: column; }
+  .header-portrait { width: 100%; height: 180px; }
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--darker); }
+::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- pétalas flutuantes -->
+<div class="petal-bg" id="petalBg"></div>
+
+<div class="page">
+
+  <!-- ══ HEADER ══════════════════════════════════════════ -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-portrait">
+        <div class="portrait-inner">
+          <div class="portrait-ring"></div>
+          <div class="portrait-symbol">🌸</div>
+          <span class="portrait-label">Human Ego</span>
+        </div>
+      </div>
+      <div class="header-text">
+        <div class="header-eyebrow">Ficha de Personagem · D&D 5e · Bardo · Colégio do Glamour · Nível 20</div>
+        <h1 class="header-name">Elysia</h1>
+        <div class="header-subtitle">Herrscher of Human Ego — A Beleza que Transcende a Mortalidade</div>
+        <div class="header-tags">
+          <span class="tag hi">Bardo 20</span>
+          <span class="tag hi">Colégio do Glamour</span>
+          <span class="tag">Aasimar (Protetor)</span>
+          <span class="tag">Nobre</span>
+          <span class="tag">Caótico Bom</span>
+          <span class="tag">Sem Multiclasse</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ META BAR ════════════════════════════════════════ -->
+  <div class="meta-bar">
+    <div class="meta-item"><span class="meta-label">Raça</span><span class="meta-value">Aasimar</span></div>
+    <div class="meta-item"><span class="meta-label">Classe</span><span class="meta-value">Bardo</span></div>
+    <div class="meta-item"><span class="meta-label">Subclasse</span><span class="meta-value">Glamour</span></div>
+    <div class="meta-item"><span class="meta-label">Antecedente</span><span class="meta-value">Nobre</span></div>
+    <div class="meta-item"><span class="meta-label">Tendência</span><span class="meta-value">Caótico Bom</span></div>
+    <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-value">20</span></div>
+  </div>
+
+  <!-- ══ ATRIBUTOS ═══════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Atributos</h2>
+    <div class="stat-grid">
+      <div class="stat-box">
+        <span class="stat-name">Força</span>
+        <span class="stat-val">8</span>
+        <span class="stat-mod">−1</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-name">Destreza</span>
+        <span class="stat-val">14</span>
+        <span class="stat-mod">+2</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-name">Constituição</span>
+        <span class="stat-val">16</span>
+        <span class="stat-mod">+3</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-name">Inteligência</span>
+        <span class="stat-val">10</span>
+        <span class="stat-mod">+0</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-name">Sabedoria</span>
+        <span class="stat-val">12</span>
+        <span class="stat-mod">+1</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-name">Carisma</span>
+        <span class="stat-val peak">20</span>
+        <span class="stat-mod">+5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ESTATÍSTICAS DE COMBATE ══════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Estatísticas de Combate</h2>
+    <div class="combat-row">
+      <div class="combat-box accent">
+        <span class="combat-label">Classe Armadura</span>
+        <span class="combat-val">15</span>
+        <span class="combat-sub">Couro Batido + Des</span>
+      </div>
+      <div class="combat-box accent">
+        <span class="combat-label">Pontos de Vida</span>
+        <span class="combat-val">163</span>
+        <span class="combat-sub">Nível 20 médio</span>
+      </div>
+      <div class="combat-box">
+        <span class="combat-label">Iniciativa</span>
+        <span class="combat-val">+2</span>
+        <span class="combat-sub">Des mod</span>
+      </div>
+      <div class="combat-box">
+        <span class="combat-label">Deslocamento</span>
+        <span class="combat-val">9m</span>
+        <span class="combat-sub">Padrão</span>
+      </div>
+      <div class="combat-box">
+        <span class="combat-label">Bônus Prof.</span>
+        <span class="combat-val">+6</span>
+        <span class="combat-sub">Nível 20</span>
+      </div>
+      <div class="combat-box accent">
+        <span class="combat-label">CD Magias</span>
+        <span class="combat-val">19</span>
+        <span class="combat-sub">8 + prof + Car</span>
+      </div>
+      <div class="combat-box accent">
+        <span class="combat-label">Ataque Mágico</span>
+        <span class="combat-val">+11</span>
+        <span class="combat-sub">prof + Car mod</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TESTES / PERÍCIAS ══════════════════════════ -->
+  <div class="section">
+    <div class="two-col" style="gap:32px">
+      <div>
+        <h2 class="section-title">Testes de Resistência</h2>
+        <ul class="save-list">
+          <li class="save-item"><div class="save-dot"></div><span class="save-score">−1</span><span class="save-name">Força</span></li>
+          <li class="save-item"><div class="save-dot filled"></div><span class="save-score">+8</span><span class="save-name">Destreza</span></li>
+          <li class="save-item"><div class="save-dot"></div><span class="save-score">+3</span><span class="save-name">Constituição</span></li>
+          <li class="save-item"><div class="save-dot"></div><span class="save-score">+0</span><span class="save-name">Inteligência</span></li>
+          <li class="save-item"><div class="save-dot"></div><span class="save-score">+1</span><span class="save-name">Sabedoria</span></li>
+          <li class="save-item"><div class="save-dot filled"></div><span class="save-score" style="color:var(--rose-bright)">+11</span><span class="save-name">Carisma</span></li>
+        </ul>
+
+        <div style="margin-top:20px">
+          <h2 class="section-title">Dados de Vida & Morte</h2>
+          <div style="margin-bottom:10px">
+            <span class="meta-label" style="display:block;margin-bottom:4px">Dados de Vida</span>
+            <span style="font-family:'Cinzel',serif;font-size:18px;color:var(--blush)">20d8</span>
+          </div>
+          <div class="death-saves">
+            <div class="ds-row"><span class="ds-label">Sucessos</span><div class="ds-dots"><div class="ds-dot"></div><div class="ds-dot"></div><div class="ds-dot"></div></div></div>
+            <div class="ds-row"><span class="ds-label">Fracassos</span><div class="ds-dots"><div class="ds-dot"></div><div class="ds-dot"></div><div class="ds-dot"></div></div></div>
+          </div>
+        </div>
+
+        <div style="margin-top:20px">
+          <h2 class="section-title">Percepção Passiva</h2>
+          <div class="passive-block">
+            <span class="passive-num">14</span>
+            <span class="passive-lbl">Sabedoria Passiva (Percepção)</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="section-title">Perícias</h2>
+        <ul class="skill-list">
+          <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus">+8</span><span class="skill-name">Acrobacia</span><span class="skill-attr">DES</span></li>
+          <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+3</span><span class="skill-name">Arcanismo</span><span class="skill-attr">INT</span></li>
+          <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+2</span><span class="skill-name">Atletismo</span><span class="skill-attr">FOR</span></li>
+          <li class="skill-item"><div class="skill-dot expert"></div><span class="skill-bonus peak">+17</span><span class="skill-name">Atuação</span><span class="skill-attr">CAR</span></li>
+          <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus">+11</span><span class="skill-name">Enganação</span><span class="skill-attr">CAR</span></li>
+          <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+5</span><span class="skill-name">Furtividade</span><span class="skill-attr">DES</span></li>
+          <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+3</span><span class="skill-name">História</span><span class="skill-attr">INT</span></li>
+          <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus">+7</span><span class="skill-name">Intuição</span><span class="skill-attr">SAB</span></li>
+          <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+11</span><span class="skill-name">Intimidação</span><span class="skill-attr">CAR</span></li>
+          <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+3</span><span class="skill-name">Investigação</span><span class="skill-attr">INT</span></li>
+          <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+4</span><span class="skill-name">Lidar c/ Animais</span><span class="skill-attr">SAB</span></li>
+          <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+4</span><span class="skill-name">Medicina</span><span class="skill-attr">SAB</span></li>
+          <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+3</span><span class="skill-name">Natureza</span><span class="skill-attr">INT</span></li>
+          <li class="skill-item"><div class="skill-dot filled"></div><span class="skill-bonus">+7</span><span class="skill-name">Percepção</span><span class="skill-attr">SAB</span></li>
+          <li class="skill-item"><div class="skill-dot expert"></div><span class="skill-bonus peak">+17</span><span class="skill-name">Persuasão</span><span class="skill-attr">CAR</span></li>
+          <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+5</span><span class="skill-name">Prestidigitação</span><span class="skill-attr">DES</span></li>
+          <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+3</span><span class="skill-name">Religião</span><span class="skill-attr">INT</span></li>
+          <li class="skill-item"><div class="skill-dot"></div><span class="skill-bonus">+4</span><span class="skill-name">Sobrevivência</span><span class="skill-attr">SAB</span></li>
+        </ul>
+        <div class="lore-box" style="margin-top:10px">
+          <strong style="color:var(--rose-mid)">Jack of All Trades:</strong> +3 em todos os testes de habilidade que não possuam proficiência. Elysia é boa em tudo — naturalmente.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-sym">✿ ❀ ✿</span></div>
+
+  <!-- ══ ATAQUES ══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Ataques & Ação de Combate</h2>
+    <table class="attack-table">
+      <thead><tr><th>Ataque</th><th>Bônus</th><th>Dano / Tipo</th><th>Alcance</th><th>Notas</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="attack-name">Espada Curta</span></td>
+          <td><span class="attack-bonus">+8</span></td>
+          <td><span class="attack-damage">1d6+2 Perfurante</span></td>
+          <td>Corpo a corpo</td>
+          <td style="font-size:11px;color:var(--text-dim)">Acuidade · DES mod</td>
+        </tr>
+        <tr>
+          <td><span class="attack-name">Zombaria Cruel</span></td>
+          <td><span class="attack-bonus">—</span></td>
+          <td><span class="attack-damage">4d4 Psíquico</span></td>
+          <td>18m</td>
+          <td style="font-size:11px;color:var(--text-dim)">TR Sab CD 19 · Desvantagem no próximo ataque se falhar</td>
+        </tr>
+        <tr>
+          <td><span class="attack-name">Radiance of the Dawn (Aasimar)</span></td>
+          <td><span class="attack-bonus">—</span></td>
+          <td><span class="attack-damage">20 Radiante</span></td>
+          <td>Aura 9m</td>
+          <td style="font-size:11px;color:var(--text-dim)">1×/descanso longo · Transformação celestial</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══ HABILIDADES ══════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Habilidades de Classe & Raça</h2>
+
+    <div style="margin-bottom:12px">
+      <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--rose);text-transform:uppercase;margin-bottom:8px">— Colégio do Glamour (XGtE)</div>
+      <div class="feature-grid">
+        <div class="feature-card milestone">
+          <div class="feature-name">Manto de Inspiração</div>
+          <div class="feature-source">Glamour · Nível 3</div>
+          <div class="feature-desc">Ação bônus — gasta 1 Inspiração Bárdica. Até <strong style="color:var(--rose-bright)">5 criaturas</strong> em 18m ganham <strong>14 PV temporários</strong> (5 + nível Bardo) e podem usar reação para se mover sem provocar ataques de oportunidade. A aura divina que protege e reposiciona aliados.</div>
+        </div>
+        <div class="feature-card milestone">
+          <div class="feature-name">Aparência Encantadora</div>
+          <div class="feature-source">Glamour · Nível 3</div>
+          <div class="feature-desc">Após 1 minuto de performance: até <strong style="color:var(--rose-bright)">5 criaturas</strong> (mod CAR) ficam encantadas. Enquanto encantadas, consideram Elysia como amiga e confidente. Não percebem a magia ao fim do efeito.</div>
+        </div>
+        <div class="feature-card divine">
+          <div class="feature-name">Manto de Majestade</div>
+          <div class="feature-source">Glamour · Nível 6</div>
+          <div class="feature-desc">Ação bônus — assume forma de majestade sobrenatural por 1 minuto. A cada turno pode lançar <strong style="color:var(--rose-bright)">Command</strong> como ação bônus sem gastar slot. Criaturas encantadas falham automaticamente no TR. 1×/descanso longo.</div>
+        </div>
+        <div class="feature-card divine">
+          <div class="feature-name">Presença Imperturbável</div>
+          <div class="feature-source">Glamour · Nível 14</div>
+          <div class="feature-desc">Ação bônus — assume <strong style="color:var(--rose-bright)">aparência divina ameaçadora</strong>. Até o fim do turno, qualquer criatura que tentar atacá-la deve fazer TR de Carisma CD 19 ou escolher outro alvo. Se passar, tem desvantagem no ataque.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:12px">
+      <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--rose);text-transform:uppercase;margin-bottom:8px">— Bardo — Habilidades Gerais</div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-name">Inspiração Bárdica (d12)</div>
+          <div class="feature-source">Bardo · Nível 1+</div>
+          <div class="feature-desc">Ação bônus — concede 1d12 a um aliado em 18m. O aliado pode adicionar o resultado a qualquer rolagem de ataque, habilidade ou TR nos próximos 10 minutos. <strong style="color:var(--rose-bright)">5 usos</strong> por descanso curto.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-name">Canção de Descanso (d12)</div>
+          <div class="feature-source">Bardo · Nível 2+</div>
+          <div class="feature-desc">Durante descanso curto: aliados que gastarem Dados de Vida recuperam <strong>+1d12 PV extras</strong>. A melodia de Elysia regenera corpo e espírito.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-name">Expertise</div>
+          <div class="feature-source">Bardo · Nível 3 & 10</div>
+          <div class="feature-desc">Dobra o bônus de proficiência em 4 perícias: <strong style="color:var(--gold-light)">Atuação (+17)</strong>, <strong style="color:var(--gold-light)">Persuasão (+17)</strong>, Enganação, Percepção. Maestria social absoluta.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-name">Contramágica</div>
+          <div class="feature-source">Bardo · Nível 6</div>
+          <div class="feature-desc">Usar Inspiração Bárdica para dissipar efeitos de encantamento ou medo em aliados. O aliado usa reação e adiciona o dado de inspiração ao TR.</div>
+        </div>
+        <div class="feature-card milestone">
+          <div class="feature-name">Segredos Mágicos</div>
+          <div class="feature-source">Bardo · Nível 10, 14, 18</div>
+          <div class="feature-desc">Aprende <strong style="color:var(--gold-light)">6 magias de qualquer classe</strong>. Elysia toma emprestado poder de clérigos, magos e druidas — nada está além de seu alcance.</div>
+        </div>
+        <div class="feature-card capstone" style="border-left-color:var(--rose-bright)">
+          <div class="feature-name">Inspiração Superior</div>
+          <div class="feature-source">Bardo · Nível 20 · Capstone</div>
+          <div class="feature-desc">Ao rolar iniciativa sem nenhum dado de Inspiração Bárdica restante: <strong style="color:var(--rose-bright)">recupera 1 dado automaticamente</strong>. Elysia nunca fica completamente sem inspiração — sempre há uma última performance.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--rose);text-transform:uppercase;margin-bottom:8px">— Raça: Aasimar (Protetor) & Talentos</div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-name">Mãos Curadoras</div>
+          <div class="feature-source">Aasimar · Raça</div>
+          <div class="feature-desc">Toque que cura <strong style="color:var(--rose-bright)">20 PV</strong> (= nível). 1×/descanso longo. Sem componentes — apenas o contato divino.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-name">Alma Radiante</div>
+          <div class="feature-source">Aasimar Protetor · Nível 3+</div>
+          <div class="feature-desc">1×/descanso longo — asas de luz emergem. Voo 9m por 1 minuto. Ao ativar e a cada turno: causa <strong style="color:var(--rose-bright)">+20 dano radiante extra</strong> em um ataque ou magia. Resistência a necrótico e radiante (permanente).</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-name">Lucky (Sortudo)</div>
+          <div class="feature-source">Talento · Nível 12</div>
+          <div class="feature-desc"><strong>3 pontos de sorte</strong> por descanso longo. Role d20 adicional em qualquer ataque, habilidade ou TR e escolha qual usar. Também funciona contra ataques feitos contra você.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-name">War Caster</div>
+          <div class="feature-source">Talento · Nível 16</div>
+          <div class="feature-desc">Vantagem em testes de Constituição para manter concentração. Pode conjurar magias como ataque de oportunidade. Conjura com as mãos ocupadas.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-sym">✿ ❀ ✿</span></div>
+
+  <!-- ══ MAGIAS ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Grimório de Magias · Habilidade: Carisma · CD: 19 · Ataque: +11</h2>
+
+    <!-- TRUQUES -->
+    <div class="spell-circle">
+      <div class="spell-circle-header">
+        <div class="spell-circle-badge cantrip">0</div>
+        <span class="spell-circle-title" style="color:var(--gold-light)">Truques — À Vontade</span>
+      </div>
+      <div class="spell-entry cantrip">
+        <div class="spell-entry-top"><span class="spell-name">Zombaria Cruel</span>
+          <div class="spell-tags-inline"><span class="spell-tag">ação</span><span class="spell-tag">18m</span><span class="spell-tag core-tag">★ central</span></div></div>
+        <p class="spell-desc">Insulto mágico devastador: <strong>4d4 psíquico</strong> (TR Sab CD 19) e o alvo tem <strong>desvantagem no próximo ataque</strong> se falhar. O desdém de Elysia é uma arma — cada palavra é uma lâmina coberta de pétalas.</p>
+        <span class="spell-mechanic">🌸 TR Sab CD 19 · 4d4 psíquico · Desvantagem no próximo ataque</span>
+      </div>
+      <div class="spell-entry cantrip">
+        <div class="spell-entry-top"><span class="spell-name">Prestidigitação</span>
+          <div class="spell-tags-inline"><span class="spell-tag">ação</span><span class="spell-tag">3m</span><span class="spell-tag">utilitário</span></div></div>
+        <p class="spell-desc">Efeitos mágicos menores à vontade: criar aromas de flores, acender luzes rosadas, limpar superfícies. A marca cosmética de uma semideusa.</p>
+        <span class="spell-mechanic">✿ Efeitos sensoriais menores · Ilimitado · 1 hora</span>
+      </div>
+      <div class="spell-entry cantrip">
+        <div class="spell-entry-top"><span class="spell-name">Luzes Dançantes</span>
+          <div class="spell-tags-inline"><span class="spell-tag">ação</span><span class="spell-tag conc">concentração · 1 min</span><span class="spell-tag">36m</span></div></div>
+        <p class="spell-desc">Cria até 4 luzes etéreas que flutuam livremente, iluminando como tochas. Elysia as molda como pétalas brilhantes que dançam ao redor de todos.</p>
+        <span class="spell-mechanic">✨ 4 luzes · Luz fraca 3m cada · Moldável como formas</span>
+      </div>
+      <div class="spell-entry cantrip">
+        <div class="spell-entry-top"><span class="spell-name">Mensagem</span>
+          <div class="spell-tags-inline"><span class="spell-tag">ação</span><span class="spell-tag">36m</span></div></div>
+        <p class="spell-desc">Sussurro mágico discreto a uma criatura em alcance. Comunicação indetectável — a voz de Elysia é suave como uma brisa de primavera.</p>
+        <span class="spell-mechanic">💬 Sussurro mágico · Resposta possível · Indetectável</span>
+      </div>
+    </div>
+
+    <!-- MAGIAS CONHECIDAS -->
+    <div class="spell-circle">
+      <div class="spell-circle-header">
+        <div class="spell-circle-badge">✦</div>
+        <span class="spell-circle-title">Magias Conhecidas — 22 Magias + Segredos Mágicos</span>
+      </div>
+
+      <div class="spell-entry core">
+        <div class="spell-entry-top"><span class="spell-name">Charm Person (Encantar Pessoa)</span>
+          <div class="spell-tags-inline"><span class="spell-tag">ação</span><span class="spell-tag">9m</span><span class="spell-tag core-tag">★ central</span></div></div>
+        <p class="spell-desc">Encanta uma criatura humanóide — ela trata Elysia como <strong>amiga íntima</strong> enquanto durar (TR Sab com vantagem se em combate). Com slot de 5°+: afeta múltiplos alvos simultaneamente.</p>
+        <span class="spell-mechanic">💕 TR Sab CD 19 · 1 hora · Amizade mágica forçada</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top"><span class="spell-name">Healing Word (Palavra Curativa)</span>
+          <div class="spell-tags-inline"><span class="spell-tag">ação bônus</span><span class="spell-tag">18m</span></div></div>
+        <p class="spell-desc">Cura <strong>1d4+5</strong> PV em aliado como ação bônus à distância. Escala com nível do slot. A voz de Elysia literalmente cura — cada nota restaura vida.</p>
+        <span class="spell-mechanic">🌸 Ação bônus · 1d4+5 PV (slot 1°) · Escala por nível</span>
+      </div>
+
+      <div class="spell-entry core">
+        <div class="spell-entry-top"><span class="spell-name">Hypnotic Pattern (Padrão Hipnótico)</span>
+          <div class="spell-tags-inline"><span class="spell-tag">ação</span><span class="spell-tag conc">concentração · 1 min</span><span class="spell-tag">36m · cubo 9m</span></div></div>
+        <p class="spell-desc">Cria um padrão luminoso hipnotizante. Criaturas na área devem passar em <strong>TR Sab CD 19</strong> ou ficam <strong>encantadas e incapacitadas</strong>. Elysia transforma o campo de batalha em um palco — e seus inimigos em plateia imóvel.</p>
+        <span class="spell-mechanic">🌀 TR Sab CD 19 · Incapacitado + Encantado · Cubo 9m · Concentração</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top"><span class="spell-name">Greater Invisibility (Invisibilidade Aprimorada)</span>
+          <div class="spell-tags-inline"><span class="spell-tag">ação</span><span class="spell-tag conc">concentração · 1 min</span></div></div>
+        <p class="spell-desc">O alvo fica invisível mesmo ao atacar ou conjurar. Elysia desaparece como pétalas no vento — presente em espírito, ausente aos olhos.</p>
+        <span class="spell-mechanic">🌸 Invisibilidade total · Persiste ao atacar · 1 minuto</span>
+      </div>
+
+      <div class="spell-entry core">
+        <div class="spell-entry-top"><span class="spell-name">Dominate Person (Dominar Pessoa)</span>
+          <div class="spell-tags-inline"><span class="spell-tag">ação</span><span class="spell-tag conc">concentração · 1 min</span><span class="spell-tag">18m</span></div></div>
+        <p class="spell-desc">Controle mental absoluto sobre um humanóide. O alvo obedece seus comandos telepáticos. Com slot de 9°: <strong>duração de 8 horas</strong>. O ego da Herrscher se impõe — não há vontade que resista.</p>
+        <span class="spell-mechanic">💜 TR Sab CD 19 · Controle total · Slot 9°: 8 horas</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top"><span class="spell-name">Hold Monster (Imobilizar Monstro)</span>
+          <div class="spell-tags-inline"><span class="spell-tag">ação</span><span class="spell-tag conc">concentração · 1 min</span><span class="spell-tag">27m</span></div></div>
+        <p class="spell-desc">Paralisa qualquer criatura que falhe em TR Sab. Enquanto paralisada: incapacitada, ataques corpo a corpo são <strong>críticos automáticos</strong>. Um olhar de Elysia congela até monstros em êxtase.</p>
+        <span class="spell-mechanic">❄️ TR Sab CD 19 · Paralisado · Críticos automáticos em melee</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top"><span class="spell-name">Mass Cure Wounds (Curar Ferimentos em Massa)</span>
+          <div class="spell-tags-inline"><span class="spell-tag">ação</span><span class="spell-tag">18m · raio 9m</span></div></div>
+        <p class="spell-desc">Cura até <strong>6 criaturas: 5d8+5 PV</strong> cada. A benção radiante de Elysia que restaura aliados em área. Combina com Manto de Inspiração para um turno de suporte devastador.</p>
+        <span class="spell-mechanic">🌸 5d8+5 PV · Até 6 aliados · Raio 9m</span>
+      </div>
+
+      <div class="spell-entry core">
+        <div class="spell-entry-top"><span class="spell-name">Otto's Irresistible Dance (Dança Irresistível)</span>
+          <div class="spell-tags-inline"><span class="spell-tag">ação</span><span class="spell-tag conc">concentração · 1 min</span><span class="spell-tag">9m</span></div></div>
+        <p class="spell-desc">Força uma criatura a dançar. <strong>Sem TR inicial</strong> — simplesmente começa a dançar. Velocidade zero, desvantagem em ataques e TRs de Des, e atacantes têm vantagem. TR Sab ao fim de cada turno para encerrar. A performance definitiva de Elysia.</p>
+        <span class="spell-mechanic">💃 SEM TR inicial · Movimento 0 · Desvantagem em tudo · Vantagem contra</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top"><span class="spell-name">Forcecage (Prisão de Força)</span>
+          <div class="spell-tags-inline"><span class="spell-tag">ação</span><span class="spell-tag">27m</span><span class="spell-tag">sem conc · 1h</span></div></div>
+        <p class="spell-desc">Cria uma prisão de força imperceptível. Sem concentração, sem TR, sem escapatória comum. A gaiola dourada de Elysia — bela por fora, inescapável por dentro. <em>(Segredo Mágico)</em></p>
+        <span class="spell-mechanic">✦ Segredo Mágico · Caixa ou gaiola de força · Sem concentração · 1 hora</span>
+      </div>
+
+      <div class="spell-entry core">
+        <div class="spell-entry-top"><span class="spell-name">Foresight (Previsão)</span>
+          <div class="spell-tags-inline"><span class="spell-tag">ação</span><span class="spell-tag">toque</span><span class="spell-tag core-tag">★ 9° círculo</span></div></div>
+        <p class="spell-desc">Toca uma criatura: por <strong>8 horas</strong>, ela tem vantagem em <strong>todos os ataques, testes e TRs</strong>, e inimigos têm desvantagem contra ela. Sem concentração. O buff mais poderoso do jogo — Elysia vê o futuro e compartilha essa visão.</p>
+        <span class="spell-mechanic">👁 8 horas · Vantagem em TUDO · Desvantagem contra · Sem concentração</span>
+      </div>
+
+      <div class="spell-entry">
+        <div class="spell-entry-top"><span class="spell-name">Power Word Heal (Palavra de Poder: Curar)</span>
+          <div class="spell-tags-inline"><span class="spell-tag">ação</span><span class="spell-tag">toque</span><span class="spell-tag core-tag">★ 9° círculo</span></div></div>
+        <p class="spell-desc">Cura instantânea: o alvo recupera <strong>todos os PV</strong> e encerra condições de encantado, paralisado, atordoado e derrubado. <em>(Segredo Mágico)</em> A palavra definitiva de Elysia que não aceita a morte dos que ama.</p>
+        <span class="spell-mechanic">🌸 Segredo Mágico · Cura TOTAL de PV + Remove condições · Instantâneo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ EQUIPAMENTO ══════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Equipamento & Proficiências</h2>
+    <div class="two-col">
+      <div class="equip-card">
+        <span class="equip-category">Armas & Armadura</span>
+        <ul class="equip-list">
+          <li>Espada Curta — 1d6 Perfurante, Acuidade</li>
+          <li>Couro Batido +1 — CA 13 + Des (+2) = CA 15</li>
+          <li>Foco Arcano (Lira Encantada)</li>
+        </ul>
+      </div>
+      <div class="equip-card">
+        <span class="equip-category">Itens Diversos</span>
+        <ul class="equip-list">
+          <li>Lira de ouro rosé (instrumento de foco)</li>
+          <li>Roupas finas de seda celestial</li>
+          <li>Sinete de nobreza divina</li>
+          <li>Perfume de flores eternas</li>
+          <li>Diário de memórias</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PERSONALIDADE ════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Personalidade</h2>
+    <div class="two-col">
+      <div class="trait-box">
+        <span class="trait-label">Traços de Personalidade</span>
+        <p class="trait-text">Sempre sorrindo, sempre gentil — mas por trás da beleza infinita existe um vazio que ela nunca admite. Elysia ama todos igualmente, com uma intensidade que beira o sobrenatural.</p>
+      </div>
+      <div class="trait-box">
+        <span class="trait-label">Ideais</span>
+        <p class="trait-text">A beleza é a verdade mais pura. Se o mundo é cruel, é porque falta alguém para lhe mostrar que merece ser amado. Ela será essa pessoa — mesmo que custe tudo.</p>
+      </div>
+      <div class="trait-box">
+        <span class="trait-label">Ligações</span>
+        <p class="trait-text">Os Flamechasers — companheiros de uma era anterior, ecos de uma humanidade que ela jurou proteger até o último suspiro. Cada um é um espinho de saudade em seu coração eterno.</p>
+      </div>
+      <div class="trait-box">
+        <span class="trait-label">Defeitos</span>
+        <p class="trait-text">Incapaz de aceitar que não pode salvar todos. O ego divino é ao mesmo tempo sua maior força e a cadeia que a prende: ela precisa ser amada para existir.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-sym">✿ ❀ ✿</span></div>
+
+  <!-- ══ PROGRESSÃO ══════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Progressão por Nível</h2>
+    <div class="level-row milestone"><div class="level-num">Nv 1</div><div class="level-content"><div class="level-feature-name">Inspiração Bárdica (d6) · Conjuração</div><div class="level-note">Truques + Magias de 1° círculo · Charm Person, Healing Word</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 2</div><div class="level-content"><div class="level-feature-name">Jack of All Trades · Canção de Descanso (d6)</div><div class="level-note">+1 em todos os testes sem proficiência</div></div></div>
+    <div class="level-row milestone"><div class="level-num">Nv 3</div><div class="level-content"><div class="level-feature-name">Colégio do Glamour — Manto de Inspiração · Aparência Encantadora</div><div class="level-note">Expertise x2 (Atuação, Persuasão) · Magias de 2° círculo</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 4</div><div class="level-content"><div class="level-feature-name">ASI: Carisma +2 (17→19)</div><div class="level-note">Truque extra</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 5</div><div class="level-content"><div class="level-feature-name">Inspiração Bárdica (d8) · Fonte de Inspiração</div><div class="level-note">Recupera inspiração em descanso curto · Magias de 3° círculo</div></div></div>
+    <div class="level-row milestone"><div class="level-num">Nv 6</div><div class="level-content"><div class="level-feature-name">Manto de Majestade · Contramágica</div><div class="level-note">Command como ação bônus · Dissipa medo e encantamento</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 7</div><div class="level-content"><div class="level-feature-name">Magias de 4° Círculo</div><div class="level-note">Greater Invisibility, Polymorph</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 8</div><div class="level-content"><div class="level-feature-name">ASI: +1 CAR, +1 CON (CAR 20, CON 16)</div><div class="level-note">Carisma no máximo!</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 9</div><div class="level-content"><div class="level-feature-name">Canção de Descanso (d8) · Magias de 5°</div><div class="level-note">Dominate Person, Hold Monster, Mass Cure Wounds</div></div></div>
+    <div class="level-row milestone"><div class="level-num">Nv 10</div><div class="level-content"><div class="level-feature-name">Inspiração Bárdica (d10) · Expertise x2 · Segredos Mágicos</div><div class="level-note">2 magias de qualquer classe · Mais Expertise (Enganação, Percepção)</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 11</div><div class="level-content"><div class="level-feature-name">Magias de 6° Círculo</div><div class="level-note">Otto's Irresistible Dance</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 12</div><div class="level-content"><div class="level-feature-name">Talento: Lucky</div><div class="level-note">3 pontos de sorte por descanso longo</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 13</div><div class="level-content"><div class="level-feature-name">Canção de Descanso (d10) · Magias de 7°</div><div class="level-note">Forcecage via Segredos Mágicos</div></div></div>
+    <div class="level-row milestone"><div class="level-num">Nv 14</div><div class="level-content"><div class="level-feature-name">Presença Imperturbável · Segredos Mágicos</div><div class="level-note">Aura divina que repele atacantes · +2 magias de qualquer classe</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 15</div><div class="level-content"><div class="level-feature-name">Inspiração Bárdica (d12)</div><div class="level-note">Dado de inspiração no máximo</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 16</div><div class="level-content"><div class="level-feature-name">Talento: War Caster</div><div class="level-note">Vantagem em concentração · Magia como AO</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 17</div><div class="level-content"><div class="level-feature-name">Canção de Descanso (d12) · Magias de 9°</div><div class="level-note">Foresight, Power Word Heal</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 18</div><div class="level-content"><div class="level-feature-name">Segredos Mágicos</div><div class="level-note">+2 magias finais de qualquer classe</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 19</div><div class="level-content"><div class="level-feature-name">ASI: +2 CON (16→18)</div><div class="level-note">PV retroativo +40 · Resistência de concentração</div></div></div>
+    <div class="level-row capstone"><div class="level-num">Nv 20</div><div class="level-content"><div class="level-feature-name">Inspiração Superior</div><div class="level-note">Nunca fica sem inspiração — sempre resta uma última performance</div></div></div>
+  </div>
+
+  <div class="divider"><span class="divider-sym">✿ ❀ ✿</span></div>
+
+  <!-- ══ HISTÓRIA ═══════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">História do Personagem</h2>
+    <div class="backstory">
+      <p><em>Ela sempre foi a mais bonita. Não por vaidade, não por esforço — simplesmente porque a beleza existia nela como o sol existe para o céu. Naturalmente. Inevitavelmente.</em></p>
+
+      <p>Elysia nasceu entre os Aasimar, filha de uma linhagem celestial tão pura que sua pele parecia irradiar luz própria. Nos primeiros anos, ela encantava vilas inteiras apenas caminhando por elas. Crianças a seguiam rindo. Adultos paravam para olhar. Os mais velhos diziam que vê-la era como olhar para um pôr-do-sol que nunca terminava.</p>
+
+      <div class="bs-quote">"Eu não quero ser adorada. Eu quero ser amada. São coisas diferentes — e a maioria nunca entende a diferença."</div>
+
+      <p>Quando jovem, Elysia descobriu que seu dom não era apenas aparência. Sua voz podia <em>curar</em>. Sua presença podia <em>acalmar</em>. Sua música podia fazer os mais endurecidos guerreiros chorarem sem vergonha. Ela era um instrumento divino — não de guerra, mas de beleza.</p>
+
+      <p>Juntou-se a um grupo de heróis chamados Flamechasers — guerreiros de outro tempo, cada um carregando cicatrizes que pareciam impossíveis de curar. Elysia não lutava como eles. Ela fazia algo pior: <em>fazia com que valessem a pena.</em> Cada batalha ganha sob sua inspiração parecia mais doce. Cada derrota, menos amarga.</p>
+
+      <p>O que ninguém via — ou queria ver — era o preço. Para ser a luz de todos, ela apagava seus próprios espaços escuros. Para ser amada por todos, ela nunca era verdadeiramente conhecida por ninguém. O Ego Humano que ela carregava não era arrogância; era a necessidade visceral de ser <em>vista</em>, não apenas admirada.</p>
+
+      <div class="bs-quote">"Se eu desaparecesse amanhã, sentiram minha falta? Ou apenas a falta da beleza?"</div>
+
+      <p>Quando os Flamechasers caíram — um por um, em sacrifícios que ela não pôde impedir — Elysia fez a única coisa que sabia fazer: <em>sorriu.</em> Não por indiferença. Mas porque se deixasse de sorrir, tudo desmoronaria. E alguém precisava guardar a memória de que o mundo, apesar de tudo, merece ser bonito.</p>
+
+      <p style="font-size:12px;color:var(--text-dim);margin-top:20px;font-style:italic">Ela caminha entre os mundos com um sorriso que nunca vacila e uma solidão que nunca confessa. A última Flamechaser. A mais bela. A que escolheu carregar o peso de amar a humanidade — mesmo quando a humanidade esqueceu de amá-la de volta.</p>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<div class="footer">
+  <p>D&D 5e — Wizards of the Coast &nbsp;·&nbsp; Personagem: Honkai Impact 3rd / HoYoverse &nbsp;·&nbsp; Mecânicas: Wizards of the Coast</p>
+  <p style="margin-top:4px;">Bardo · Colégio do Glamour · Aasimar Protetor · Nível 20 · Sem Multiclasse</p>
+</div>
+
+<script>
+/* ── Pétalas flutuantes ── */
+const petalBg = document.getElementById('petalBg');
+const petals = ['🌸', '✿', '❀', '✾', '🏵', '✦'];
+for (let i = 0; i < 25; i++) {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  p.textContent = petals[Math.floor(Math.random() * petals.length)];
+  p.style.left = Math.random() * 100 + '%';
+  p.style.animationDuration = (18 + Math.random() * 28) + 's';
+  p.style.animationDelay = (-Math.random() * 30) + 's';
+  p.style.fontSize = (10 + Math.random() * 16) + 'px';
+  petalBg.appendChild(p);
+}
+</script>
+</body>
+</html>

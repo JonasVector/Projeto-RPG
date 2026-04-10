@@ -1,0 +1,175 @@
+{
+  "metadata": {
+    "name": "Elysia",
+    "title": "Herrscher of Human Ego",
+    "origin": "Honkai Impact 3rd",
+    "version": "1.0",
+    "system": "D&D 5e",
+    "level": 20,
+    "created": "2026-04-10",
+    "language": "pt-BR"
+  },
+  "identity": {
+    "race": "Aasimar (Protetor)",
+    "class": "Bardo",
+    "subclass": "Colégio do Glamour",
+    "background": "Nobre",
+    "alignment": "Caótico Bom",
+    "languages": ["Comum", "Celestial", "Élfico"]
+  },
+  "attributes": {
+    "str": { "score": 8, "mod": -1 },
+    "dex": { "score": 14, "mod": 2 },
+    "con": { "score": 16, "mod": 3 },
+    "int": { "score": 10, "mod": 0 },
+    "wis": { "score": 12, "mod": 1 },
+    "cha": { "score": 20, "mod": 5 }
+  },
+  "combat": {
+    "ac": 15,
+    "acDescription": "Couro Batido +1 (13) + Des (2)",
+    "hp": 163,
+    "hitDice": "20d8",
+    "initiative": "+2",
+    "speed": "9m",
+    "proficiencyBonus": "+6",
+    "spellDC": 19,
+    "spellAttack": "+11",
+    "spellAbility": "Carisma"
+  },
+  "savingThrows": [
+    { "name": "Força", "value": -1, "proficient": false },
+    { "name": "Destreza", "value": 8, "proficient": true },
+    { "name": "Constituição", "value": 3, "proficient": false },
+    { "name": "Inteligência", "value": 0, "proficient": false },
+    { "name": "Sabedoria", "value": 1, "proficient": false },
+    { "name": "Carisma", "value": 11, "proficient": true }
+  ],
+  "skills": [
+    { "name": "Acrobacia", "value": 8, "proficient": true, "expertise": false, "attr": "DES" },
+    { "name": "Arcanismo", "value": 3, "proficient": false, "expertise": false, "attr": "INT" },
+    { "name": "Atletismo", "value": 2, "proficient": false, "expertise": false, "attr": "FOR" },
+    { "name": "Atuação", "value": 17, "proficient": true, "expertise": true, "attr": "CAR" },
+    { "name": "Enganação", "value": 11, "proficient": true, "expertise": false, "attr": "CAR" },
+    { "name": "Furtividade", "value": 5, "proficient": false, "expertise": false, "attr": "DES" },
+    { "name": "História", "value": 3, "proficient": false, "expertise": false, "attr": "INT" },
+    { "name": "Intuição", "value": 7, "proficient": true, "expertise": false, "attr": "SAB" },
+    { "name": "Intimidação", "value": 11, "proficient": false, "expertise": false, "attr": "CAR" },
+    { "name": "Investigação", "value": 3, "proficient": false, "expertise": false, "attr": "INT" },
+    { "name": "Lidar c/ Animais", "value": 4, "proficient": false, "expertise": false, "attr": "SAB" },
+    { "name": "Medicina", "value": 4, "proficient": false, "expertise": false, "attr": "SAB" },
+    { "name": "Natureza", "value": 3, "proficient": false, "expertise": false, "attr": "INT" },
+    { "name": "Percepção", "value": 7, "proficient": true, "expertise": false, "attr": "SAB" },
+    { "name": "Persuasão", "value": 17, "proficient": true, "expertise": true, "attr": "CAR" },
+    { "name": "Prestidigitação", "value": 5, "proficient": false, "expertise": false, "attr": "DES" },
+    { "name": "Religião", "value": 3, "proficient": false, "expertise": false, "attr": "INT" },
+    { "name": "Sobrevivência", "value": 4, "proficient": false, "expertise": false, "attr": "SAB" }
+  ],
+  "attacks": [
+    {
+      "name": "Espada Curta",
+      "bonus": "+8",
+      "damage": "1d6+2 Perfurante",
+      "range": "Corpo a corpo",
+      "notes": "Acuidade · DES mod"
+    },
+    {
+      "name": "Zombaria Cruel",
+      "bonus": "—",
+      "damage": "4d4 Psíquico",
+      "range": "18m",
+      "notes": "TR Sab CD 19 · Desvantagem no próximo ataque"
+    },
+    {
+      "name": "Radiance of the Dawn (Aasimar)",
+      "bonus": "—",
+      "damage": "20 Radiante",
+      "range": "Aura 9m",
+      "notes": "1×/descanso longo · Transformação celestial"
+    }
+  ],
+  "features": {
+    "subclass": [
+      {
+        "name": "Manto de Inspiração",
+        "level": 3,
+        "description": "Ação bônus — gasta 1 Inspiração Bárdica. Até 5 criaturas em 18m ganham 14 PV temporários e podem usar reação para mover sem provocar AO."
+      },
+      {
+        "name": "Aparência Encantadora",
+        "level": 3,
+        "description": "Após 1 min de performance: até 5 criaturas ficam encantadas, tratando Elysia como amiga."
+      },
+      {
+        "name": "Manto de Majestade",
+        "level": 6,
+        "description": "Ação bônus — Command a cada turno sem slot por 1 minuto. Encantados falham automaticamente. 1×/descanso longo."
+      },
+      {
+        "name": "Presença Imperturbável",
+        "level": 14,
+        "description": "Ação bônus — aparência divina. Atacantes devem TR CHA CD 19 ou escolher outro alvo. Se passarem, têm desvantagem."
+      }
+    ],
+    "class": [
+      { "name": "Inspiração Bárdica (d12)", "level": 1, "description": "Concede d12 a aliado para ataques, habilidades ou TRs. 5 usos por descanso curto." },
+      { "name": "Jack of All Trades", "level": 2, "description": "+3 em testes sem proficiência." },
+      { "name": "Canção de Descanso (d12)", "level": 2, "description": "Aliados recuperam +d12 PV extras em descanso curto." },
+      { "name": "Expertise", "level": 3, "description": "Atuação +17, Persuasão +17, Enganação, Percepção." },
+      { "name": "Contramágica", "level": 6, "description": "Inspiração para dissipar encantamento ou medo em aliados." },
+      { "name": "Segredos Mágicos", "level": 10, "description": "6 magias de qualquer classe." },
+      { "name": "Inspiração Superior", "level": 20, "description": "Sempre recupera 1 dado de inspiração ao rolar iniciativa se estiver sem." }
+    ],
+    "race": [
+      { "name": "Visão no Escuro", "description": "Enxerga em escuridão como luz fraca até 18m." },
+      { "name": "Mãos Curadoras", "description": "Cura 20 PV por toque. 1×/descanso longo." },
+      { "name": "Alma Radiante", "description": "Asas de luz, voo 9m por 1 min, +20 dano radiante. 1×/descanso longo." },
+      { "name": "Resistência", "description": "Resistência a dano necrótico e radiante." }
+    ],
+    "feats": [
+      { "name": "Lucky", "level": 12, "description": "3 pontos de sorte por descanso longo. Relança d20 em ataques, habilidades ou TRs." },
+      { "name": "War Caster", "level": 16, "description": "Vantagem em concentração. Magia como ataque de oportunidade." }
+    ]
+  },
+  "spells": {
+    "cantrips": [
+      { "name": "Zombaria Cruel", "school": "Encantamento", "damage": "4d4 psíquico", "notes": "TR Sab · Desvantagem no próximo ataque" },
+      { "name": "Prestidigitação", "school": "Transmutação", "notes": "Efeitos menores à vontade" },
+      { "name": "Luzes Dançantes", "school": "Evocação", "notes": "4 luzes, concentração 1 min" },
+      { "name": "Mensagem", "school": "Transmutação", "notes": "Sussurro mágico 36m" }
+    ],
+    "known": [
+      { "name": "Charm Person", "level": 1, "school": "Encantamento" },
+      { "name": "Healing Word", "level": 1, "school": "Evocação" },
+      { "name": "Hypnotic Pattern", "level": 3, "school": "Ilusão" },
+      { "name": "Greater Invisibility", "level": 4, "school": "Ilusão" },
+      { "name": "Dominate Person", "level": 5, "school": "Encantamento" },
+      { "name": "Hold Monster", "level": 5, "school": "Encantamento" },
+      { "name": "Mass Cure Wounds", "level": 5, "school": "Evocação" },
+      { "name": "Otto's Irresistible Dance", "level": 6, "school": "Encantamento" },
+      { "name": "Forcecage", "level": 7, "school": "Evocação", "source": "Segredo Mágico" },
+      { "name": "Foresight", "level": 9, "school": "Adivinhação" },
+      { "name": "Power Word Heal", "level": 9, "school": "Evocação", "source": "Segredo Mágico" }
+    ]
+  },
+  "equipment": [
+    "Espada Curta",
+    "Couro Batido +1",
+    "Lira de ouro rosé (foco arcano)",
+    "Roupas finas de seda celestial",
+    "Sinete de nobreza divina",
+    "Perfume de flores eternas",
+    "Diário de memórias"
+  ],
+  "personality": {
+    "traits": "Sempre sorrindo, sempre gentil — mas por trás da beleza infinita existe um vazio que ela nunca admite.",
+    "ideals": "A beleza é a verdade mais pura. Se o mundo é cruel, é porque falta alguém para mostrar que merece ser amado.",
+    "bonds": "Os Flamechasers — companheiros de uma era anterior, ecos de uma humanidade que ela jurou proteger.",
+    "flaws": "Incapaz de aceitar que não pode salvar todos. Precisa ser amada para existir."
+  },
+  "tags": [
+    "bardo", "glamour", "aasimar", "suporte", "controle",
+    "encantamento", "carisma", "nível-20", "honkai",
+    "sem-multiclasse", "cura", "inspiração"
+  ]
+}
