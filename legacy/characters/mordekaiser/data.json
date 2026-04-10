@@ -1,7 +1,40 @@
 {
-  "metadata": { "name": "Mordekaiser", "title": "O Senhor de Ferro", "origin": "League of Legends", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
-  "identity": { "race": "Reborn (Renascido)", "class": "Guerreiro", "subclass": "Cavaleiro Eco", "background": "Soldado", "alignment": "Leal Mau" },
-  "attributes": { "str": { "score": 20, "mod": 5 }, "dex": { "score": 10, "mod": 0 }, "con": { "score": 20, "mod": 5 }, "int": { "score": 14, "mod": 2 }, "wis": { "score": 10, "mod": 0 }, "cha": { "score": 12, "mod": 1 } },
-  "combat": { "ac": 20, "hp": 224, "speed": "9m", "proficiencyBonus": "+6", "extraAttacks": "4+Echo" },
-  "tags": ["guerreiro", "eco", "reborn", "melee", "tank", "nível-20", "league-of-legends"]
+  "metadata": {"name":"Mordekaiser","title":"O Imperador do Além","origin":"League of Legends","version":"2.0","system":"D&D 5e","level":20,"created":"2026-04-10","language":"pt-BR"},
+  "identity": {"race":"Humano (Variante)","class":"Paladino","subclass":"Juramento dos Conquistadores","background":"Senhor da Guerra","alignment":"Legal Mau","languages":["Comum","Sombrio","Infernal"],"xp":"355.000"},
+  "attributes": {"str":{"score":24,"mod":7},"dex":{"score":8,"mod":-1},"con":{"score":20,"mod":5},"int":{"score":10,"mod":0},"wis":{"score":12,"mod":1},"cha":{"score":20,"mod":5}},
+  "combat": {"ac":21,"acDescription":"Half Plate+1(16)+Escudo(+3)+Anel(+1)","hp":220,"hitDice":"20d10","initiative":"-1","speed":"9m","proficiencyBonus":"+6","spellDC":19,"divineSmite":"max 9d8","layOnHands":"100 PV/longo"},
+  "features": {
+    "subclass": [
+      {"name":"Tenência de Guerreiro","level":3,"description":"Ignora resistência a dano de criaturas aterrorizadas."},
+      {"name":"Canal Divino: Conquista","level":3,"description":"TR Sab CD 19 ou aterrorizados. Guided Strike: +10 a um ataque."},
+      {"name":"Aura de Conquista","level":7,"description":"Aterrorizados em 9m têm velocidade 0. Mordekaiser: +5 PV temp/criatura aterrorizada."},
+      {"name":"Realm of Death","level":20,"description":"Exila alvo para dimensão pessoal 1min. Drena atributos −1/turno ao acertar. Se morrer: servo permanente + +1 todos atributos."}
+    ],
+    "class": [
+      {"name":"Divine Smite","level":2,"description":"Slot de magia em acerto: +2d8 por slot e nível. Max 9d8. +1d8 vs mortos-vivos."},
+      {"name":"Aura de Proteção","level":6,"description":"+CAR (+5) em todos TRs de aliados em 18m."},
+      {"name":"Aura de Coragem","level":10,"description":"Aliados em 18m imunes a medo."},
+      {"name":"Lay on Hands","level":1,"description":"100 PV pool/longo. Cura doenças/venenos (5 PV)."}
+    ],
+    "feats": [
+      {"name":"Great Weapon Master","level":1,"description":"−5/+10 · Bônus após crítico ou derrubar."},
+      {"name":"Tough","level":8,"description":"+40 PV permanentes."},
+      {"name":"Sentinel","level":12,"description":"AO trava velocidade a 0. Protege aliados."}
+    ]
+  },
+  "spells": {
+    "ability":"Carisma","dc":19,"attack":"+11","class":"Paladino",
+    "prepared": [
+      {"name":"Hold Person","level":2,"notes":"TR Sab · Paralisado → Smite crítico"},
+      {"name":"Hold Monster","level":5,"notes":"TR Sab · Paralisado · Qualquer criatura"},
+      {"name":"Destructive Wave","level":5,"notes":"5d6+5d6 em raio 9m · Derrubado"},
+      {"name":"Banishment","level":4,"notes":"TR Car CD 19 · Exílio permanente"},
+      {"name":"Wrathful Smite","level":1,"notes":"+1d6 psíquico · TR Sab ou aterrorizado"},
+      {"name":"Command","level":1,"notes":"Ajoelhe · TR Sab CD 19 · Derrubado"},
+      {"name":"Dispel Magic","level":3,"notes":"Remove magia ≤3° automático"}
+    ]
+  },
+  "personality": {"traits":"Não existe pequeno ou grande — apenas conquistado e a conquistar.","ideals":"Conquista é a única lei universal. O mundo pertence aos que têm vontade de tomá-lo.","bonds":"Seu Império Eterno — a conquista que não acaba na morte mas começa nela.","flaws":"Incompleto enquanto houver qualquer ser que não lhe deva lealdade."},
+  "treasury": {"pc":0,"pp":0,"pe":0,"po":"∞","pl":0},
+  "tags": ["paladino","conquista","humano","corpo-a-corpo","smite","sem-multiclasse","nível-20","lol"]
 }

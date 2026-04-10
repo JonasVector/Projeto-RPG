@@ -1,7 +1,39 @@
 {
-  "metadata": { "name": "Morgana", "title": "O Anjo Caído", "origin": "League of Legends", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
-  "identity": { "race": "Aasimar (Caído)", "class": "Feiticeiro", "subclass": "Sombra Divina", "background": "Eremita", "alignment": "Caótico Neutro" },
-  "attributes": { "str": { "score": 8, "mod": -1 }, "dex": { "score": 14, "mod": 2 }, "con": { "score": 16, "mod": 3 }, "int": { "score": 10, "mod": 0 }, "wis": { "score": 12, "mod": 1 }, "cha": { "score": 20, "mod": 5 } },
-  "combat": { "ac": 15, "hp": 163, "speed": "9m (Voo 9m)", "proficiencyBonus": "+6", "spellDC": 19, "spellAttack": "+11", "sorceryPoints": 20 },
-  "tags": ["feiticeiro", "sombra-divina", "aasimar", "controle", "sombra", "nível-20", "league-of-legends"]
+  "metadata": {"name":"Morgana","title":"A Caída","origin":"League of Legends","version":"2.0","system":"D&D 5e","level":20,"created":"2026-04-10","language":"pt-BR"},
+  "identity": {"race":"Aasimar (Protegido)","class":"Feiticeiro","subclass":"Magia das Sombras","background":"Sábia","alignment":"Legal Neutro","languages":["Comum","Celestial","Infernal"],"xp":"355.000"},
+  "attributes": {"str":{"score":8,"mod":-1},"dex":{"score":14,"mod":2},"con":{"score":20,"mod":5},"int":{"score":14,"mod":2},"wis":{"score":14,"mod":2},"cha":{"score":20,"mod":5}},
+  "combat": {"ac":18,"hp":204,"hitDice":"20d6","initiative":"+2","speed":"9m","proficiencyBonus":"+6","spellDC":19,"spellAttack":"+11","spellAbility":"Carisma","sorceryPoints":20},
+  "features": {
+    "subclass": [
+      {"name":"Magia das Sombras Origin","level":1,"description":"Visão no Escuro 36m. Aprende Darkness. Reforço de Sombras: 20 PV temporários."},
+      {"name":"Forma das Sombras","level":6,"description":"Ação bônus: ser de pura sombra por 1 min. Resistência não-mágica + move por espaços estreitos."}
+    ],
+    "metamagic": [
+      {"name":"Empowered Spell","cost":"1 SP","description":"Relança até 5 dados de dano."},
+      {"name":"Heightened Spell","cost":"3 SP","description":"Desvantagem no TR de uma criatura."},
+      {"name":"Quickened Spell","cost":"2 SP","description":"Magia de ação como ação bônus."},
+      {"name":"Seeking Spell","cost":"2 SP","description":"Sem penalidade de cobertura/obstrução."}
+    ],
+    "race": [{"name":"Radiant Soul","description":"1×/longo: asas 1 min · Voo 9m · +5 radiante em magias de raio."}],
+    "feats": [
+      {"name":"War Caster","level":4,"description":"Vantagem Con para concentração. Magia como AO."},
+      {"name":"Resilient (Con)","level":8,"description":"+1 Con. Proficiência em TRs Con."}
+    ]
+  },
+  "spells": {
+    "ability":"Carisma","dc":19,"attack":"+11","class":"Feiticeiro",
+    "cantrips": [{"name":"Chill Touch","notes":"4d8 necrótico · Bloq. cura"},{"name":"Prestidigitação","notes":"Efeitos menores"}],
+    "known": [
+      {"name":"Dark Binding","level":3,"notes":"⛓ TR Con CD 19 · Imóvel → Enraizado · 27m"},
+      {"name":"Tormented Shadow","level":6,"notes":"8d6 necrótico/turno · Raio 9m · 1h conc."},
+      {"name":"Black Shield","level":1,"notes":"Imunidade encantamento/ilusão · 8h conc."},
+      {"name":"Blight","level":4,"notes":"8d8 necrótico · TR Con · Plantas: sem TR"},
+      {"name":"Forcecage","level":7,"notes":"Sem TR · 6m³ · 1h · Sem concentração"},
+      {"name":"Banishment","level":4,"notes":"TR Car CD 19 · Exílio · Permanente 1 min"},
+      {"name":"Dominate Person","level":5,"notes":"TR Sab CD 19 · Controle 1 min"}
+    ]
+  },
+  "personality": {"traits":"Carrega o peso de ser deusamente errada. Optou por ser humanamente certa.","ideals":"Justiça não é divina — é mortal. Os deuses julgam por decretos; mortais por compreensão.","bonds":"Os mortais que a humanidade negligenciou. Os condenados sem compreensão.","flaws":"Incapaz de perdoar Kayle. Essa relação nunca será resolvida enquanto ambas existirem."},
+  "treasury": {"pc":0,"pp":0,"pe":0,"po":"∞","pl":0},
+  "tags": ["feiticeiro","sombras","aasimar","controle","correntes","sem-multiclasse","nível-20","lol"]
 }

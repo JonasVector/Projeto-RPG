@@ -1,7 +1,32 @@
 {
-  "metadata": { "name": "Sett", "title": "O Chefe", "origin": "League of Legends", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
-  "identity": { "race": "Meio-Orc", "class": "Guerreiro", "subclass": "Campeão", "background": "Gladiador", "alignment": "Leal Neutro" },
-  "attributes": { "str": { "score": 20, "mod": 5 }, "dex": { "score": 14, "mod": 2 }, "con": { "score": 20, "mod": 5 }, "int": { "score": 8, "mod": -1 }, "wis": { "score": 12, "mod": 1 }, "cha": { "score": 14, "mod": 2 } },
-  "combat": { "ac": 20, "hp": 224, "speed": "9m", "proficiencyBonus": "+6", "critRange": "18-20", "extraAttacks": 4 },
-  "tags": ["guerreiro", "campeão", "meio-orc", "melee", "tank", "dano", "nível-20", "league-of-legends"]
+  "metadata": {"name":"Sett","title":"O Chefe","origin":"League of Legends","version":"2.0","system":"D&D 5e","level":20,"created":"2026-04-10","language":"pt-BR"},
+  "identity": {"race":"Meio-Orc","class":"Lutador","subclass":"Líder de Arena","background":"Combatente","alignment":"Caótico Neutro","languages":["Comum","Orc"],"xp":"355.000"},
+  "attributes": {"str":{"score":24,"mod":7},"dex":{"score":8,"mod":-1},"con":{"score":22,"mod":6},"int":{"score":8,"mod":-1},"wis":{"score":12,"mod":1},"cha":{"score":14,"mod":2}},
+  "combat": {"ac":20,"acDescription":"Plate +2 (18) + Escudo (+2) = CA 20","hp":264,"hitDice":"20d10","initiative":"-1","speed":"9m","proficiencyBonus":"+6","actionSurge":"2×/descanso curto","extraAttack":"4×/ação"},
+  "features": {
+    "subclass": [
+      {"name":"Boar's Charge","level":3,"description":"Movimento em linha reta: TR For CD 19 ou criaturas derrubadas."},
+      {"name":"Garra do Campeão","level":7,"description":"Após derrubar: ataque bônus imediato. 1×/turno."}
+    ],
+    "class": [
+      {"name":"Extra Attack ×4","level":20,"description":"4 ataques por ação."},
+      {"name":"Action Surge ×2","level":17,"description":"Ação adicional, 2×/descanso curto."},
+      {"name":"Indomável ×3","level":17,"description":"Relança TR falhado. 3×/longo."},
+      {"name":"Segundo Alento","level":1,"description":"1d10+20 PV como ação bônus."}
+    ],
+    "race": [{"name":"Relentless Endurance","description":"1×/longo: ao chegar a 0 PV, fica com 1 PV."},{"name":"Savage Attacks","description":"Crítico: adiciona 1 dado de dano."}],
+    "feats": [
+      {"name":"Great Weapon Master","level":4,"description":"−5/+10 · Bônus após crítico ou derrubar."},
+      {"name":"Sentinel","level":8,"description":"AO trava inimigo. Protege aliados."},
+      {"name":"Tough","level":18,"description":"+40 PV permanentes."}
+    ]
+  },
+  "attacks": [
+    {"name":"Soco Duplo (×4)","bonus":"+15","damage":"2d6+11 Contundente","notes":"GWM opcional −5/+10"},
+    {"name":"Show Stopper","bonus":"+15","damage":"6d6+13 área","notes":"Arremessa boss · TR For CD 19"},
+    {"name":"Suplexo","bonus":"+15","damage":"2d8+7 + Derrubado","notes":"Arremessa 3m"}
+  ],
+  "personality": {"traits":"De frente. Sempre de frente. Honestidade brutal.","ideals":"As regras são para quem não é forte. Tem as suas próprias.","bonds":"Sua mãe — a única coisa que ama sem qualificações.","flaws":"A raiva é um espetáculo e um problema."},
+  "treasury": {"pc":0,"pp":0,"pe":0,"po":"∞","pl":0},
+  "tags": ["lutador","arena","meio-orc","dps","corpo-a-corpo","sem-multiclasse","nível-20","lol"]
 }

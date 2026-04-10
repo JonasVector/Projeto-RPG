@@ -1,7 +1,43 @@
 {
-  "metadata": { "name": "Camellya", "title": "A Rosa de Espinhos", "origin": "Wuthering Waves", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
-  "identity": { "race": "Shifter (Longtooth)", "class": "Bárbaro", "subclass": "Caminho da Besta", "background": "Forasteira", "alignment": "Caótico Neutro", "languages": ["Comum", "Silvestre"] },
-  "attributes": { "str": { "score": 24, "mod": 7 }, "dex": { "score": 14, "mod": 2 }, "con": { "score": 24, "mod": 7 }, "int": { "score": 8, "mod": -1 }, "wis": { "score": 14, "mod": 2 }, "cha": { "score": 10, "mod": 0 } },
-  "combat": { "ac": 19, "hp": 285, "speed": "12m", "proficiencyBonus": "+6", "rages": "Ilimitadas", "rageDamage": "+4" },
-  "tags": ["bárbaro", "besta", "shifter", "melee", "dano", "tank", "nível-20", "wuthering-waves"]
+  "metadata": { "name": "Camellya", "title": "A Flor Carmesim", "origin": "Wuthering Waves", "version": "2.0", "system": "D&D 5e", "level": 20, "created": "2026-04-10", "language": "pt-BR" },
+  "identity": { "race": "Shadar-kai", "class": "Bárbaro", "subclass": "Caminho da Besta", "background": "Nobre", "alignment": "Caótico Neutro", "languages": ["Comum", "Élfico", "Sombrio"], "xp": "355.000" },
+  "attributes": { "str": {"score":24,"mod":7}, "dex": {"score":16,"mod":3}, "con": {"score":22,"mod":6}, "int": {"score":8,"mod":-1}, "wis": {"score":12,"mod":1}, "cha": {"score":14,"mod":2} },
+  "combat": { "ac": 19, "acDescription": "13 + CON (6) = CA 19 sem armadura", "hp": 252, "hitDice": "20d12", "initiative": "+3", "speed": "12m em Raiva", "proficiencyBonus": "+6", "rageBonus": "+4", "rageUses": "Ilimitado" },
+  "features": {
+    "subclass": [
+      {"name":"Forma da Besta","level":3,"description":"Em Raiva: garras (1d6, ação bônus), mordida (2d6, cura ½ dano) ou cauda (2d8, cone 10°, TR Des CD 19 derruba)."},
+      {"name":"Espíritos Bestiais","level":6,"description":"Em Raiva: voo 6m, nado, ou vantagem vs derrubado."},
+      {"name":"Infundir a Besta","level":10,"description":"Aliados que atacam Camellya: ataques mágicos +1d6 extra."},
+      {"name":"Raiva da Besta Primordial","level":14,"description":"Garras 2d8, mordida cura ao matar qualquer criatura, cauda 2 alvos."}
+    ],
+    "class": [
+      {"name":"Raiva Ilimitada","level":20,"description":"Nível 20: sem limite de usos de Raiva."},
+      {"name":"Primal Champion","level":20,"description":"FOR +4, CON +4 (incluído nos atributos)."},
+      {"name":"Ataque Imprudente","level":2,"description":"Vantagem em ataques de Força. Inimigos têm vantagem contra Camellya até próximo turno."},
+      {"name":"Movimento de Raiva","level":3,"description":"+3m em Raiva (total 12m)."}
+    ],
+    "race": [
+      {"name":"Blessing of the Raven Queen","description":"Teletransporte 9m + resistência a todos os danos por 1 turno. 1×/descanso longo."},
+      {"name":"Resistência Necrótica","description":"Resistência permanente a dano necrótico."},
+      {"name":"Visão no Escuro","description":"18m em escuridão como luz fraca."}
+    ],
+    "feats": [
+      {"name":"Great Weapon Master","level":4,"description":"−5/+10 · Bônus após crítico ou derrubar."},
+      {"name":"Polearm Master","level":8,"description":"AO ao inimigos entrarem no alcance. Ataque bônus com ponta."},
+      {"name":"Tough","level":16,"description":"+40 PV permanentes."}
+    ]
+  },
+  "attacks": [
+    {"name":"Machadão Duplo","bonus":"+15","damage":"2d6+11","range":"Melee","notes":"GWM −5/+10 opcional · 2×/turno"},
+    {"name":"Forma da Besta (Garras)","bonus":"+13","damage":"1d6+7 Cortante","range":"Melee","notes":"Ação bônus em Raiva"},
+    {"name":"Forma da Besta (Mordida)","bonus":"+13","damage":"2d6+7 Perfurante","range":"Melee","notes":"Cura ½ dano · Cura ao matar (nível 14)"}
+  ],
+  "personality": {
+    "traits": "Alternada entre ternura desconcertante e violência igualmente desconcertante. Abraça com força demais.",
+    "ideals": "Existe para florescer. Se exige sangue, floresce no sangue. Se exige gentileza, floresce em gentileza.",
+    "bonds": "Alguém que um dia apreciou a flor pela flor — não pelo espinho, não pelo perfume, mas pela existência dela.",
+    "flaws": "Não controla a transição entre ternura e fúria. Uma palavra errada e a flor crimesim se abre completamente."
+  },
+  "treasury": {"pc":0,"pp":0,"pe":0,"po":"∞","pl":0},
+  "tags": ["bárbaro","besta","shadar-kai","dps","corpo-a-corpo","sem-multiclasse","nível-20","wuthering-waves"]
 }

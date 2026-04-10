@@ -1,98 +1,163 @@
 {
   "metadata": {
     "name": "Kafka",
-    "title": "A Caçadora de Stellaron",
+    "title": "A Caçadora de Memórias",
     "origin": "Honkai Star Rail",
-    "version": "1.0",
+    "version": "2.0",
     "system": "D&D 5e",
     "level": 20,
     "created": "2026-04-10",
     "language": "pt-BR"
   },
   "identity": {
-    "race": "Tiefling (Glasya)",
+    "race": "Shadar-kai",
     "class": "Bruxo",
     "subclass": "Grande Antigo",
-    "background": "Criminosa",
+    "background": "Espiã",
     "alignment": "Neutro Mau",
-    "languages": ["Comum", "Infernal", "Profundo"]
+    "languages": ["Comum", "Profundo", "Sombrio"],
+    "xp": "355.000"
   },
   "attributes": {
-    "str": { "score": 8, "mod": -1 },
-    "dex": { "score": 16, "mod": 3 },
-    "con": { "score": 14, "mod": 2 },
+    "str": { "score": 10, "mod": 0 },
+    "dex": { "score": 18, "mod": 4 },
+    "con": { "score": 16, "mod": 3 },
     "int": { "score": 12, "mod": 1 },
     "wis": { "score": 10, "mod": 0 },
     "cha": { "score": 20, "mod": 5 }
   },
   "combat": {
-    "ac": 17,
-    "acDescription": "Mage Armor (13) + Des (3) + Shield",
-    "hp": 142,
+    "ac": 16,
+    "acDescription": "Couro +1 (12) + Des (4) = CA 16",
+    "hp": 154,
     "hitDice": "20d8",
-    "initiative": "+3",
+    "initiative": "+4",
     "speed": "9m",
     "proficiencyBonus": "+6",
     "spellDC": 19,
     "spellAttack": "+11",
     "spellAbility": "Carisma",
-    "pactSlots": 4,
-    "pactSlotLevel": 5
+    "pactMagic": "4 × 5° Círculo"
   },
   "savingThrows": [
-    { "name": "Força", "value": -1, "proficient": false },
-    { "name": "Destreza", "value": 3, "proficient": false },
-    { "name": "Constituição", "value": 2, "proficient": false },
+    { "name": "Força", "value": 0, "proficient": false },
+    { "name": "Destreza", "value": 4, "proficient": false },
+    { "name": "Constituição", "value": 3, "proficient": false },
     { "name": "Inteligência", "value": 1, "proficient": false },
     { "name": "Sabedoria", "value": 6, "proficient": true },
     { "name": "Carisma", "value": 11, "proficient": true }
   ],
   "skills": [
-    { "name": "Arcanismo", "value": 7, "proficient": true, "attr": "INT" },
-    { "name": "Enganação", "value": 11, "proficient": true, "attr": "CAR" },
-    { "name": "Intimidação", "value": 11, "proficient": true, "attr": "CAR" },
-    { "name": "Intuição", "value": 6, "proficient": true, "attr": "SAB" },
-    { "name": "Percepção", "value": 6, "proficient": true, "attr": "SAB" },
-    { "name": "Persuasão", "value": 11, "proficient": true, "attr": "CAR" }
+    { "name": "Acrobacia", "value": 4, "proficient": false, "expertise": false, "attr": "Des" },
+    { "name": "Arcanismo", "value": 1, "proficient": false, "expertise": false, "attr": "Int" },
+    { "name": "Atletismo", "value": 0, "proficient": false, "expertise": false, "attr": "For" },
+    { "name": "Atuação", "value": 5, "proficient": false, "expertise": false, "attr": "Car" },
+    { "name": "Enganação", "value": 11, "proficient": true, "expertise": false, "attr": "Car" },
+    { "name": "Furtividade", "value": 10, "proficient": true, "expertise": false, "attr": "Des" },
+    { "name": "História", "value": 1, "proficient": false, "expertise": false, "attr": "Int" },
+    { "name": "Intimidação", "value": 6, "proficient": false, "expertise": false, "attr": "Car" },
+    { "name": "Intuição", "value": 6, "proficient": true, "expertise": false, "attr": "Sab" },
+    { "name": "Investigação", "value": 1, "proficient": false, "expertise": false, "attr": "Int" },
+    { "name": "Lidar c/ Animais", "value": 0, "proficient": false, "expertise": false, "attr": "Sab" },
+    { "name": "Medicina", "value": 0, "proficient": false, "expertise": false, "attr": "Sab" },
+    { "name": "Natureza", "value": 1, "proficient": false, "expertise": false, "attr": "Int" },
+    { "name": "Percepção", "value": 0, "proficient": false, "expertise": false, "attr": "Sab" },
+    { "name": "Persuasão", "value": 11, "proficient": true, "expertise": false, "attr": "Car" },
+    { "name": "Prestidigitação", "value": 10, "proficient": true, "expertise": false, "attr": "Des" },
+    { "name": "Religião", "value": 1, "proficient": false, "expertise": false, "attr": "Int" },
+    { "name": "Sobrevivência", "value": 0, "proficient": false, "expertise": false, "attr": "Sab" }
+  ],
+  "attacks": [
+    { "name": "Eldritch Blast", "bonus": "+11", "damage": "4×1d10+5 Força", "range": "36m", "notes": "4 raios (nível 17+) · Agonizing Blast +5/raio" },
+    { "name": "Adaga (Espiã)", "bonus": "+10", "damage": "1d4+4 Perfurante", "range": "Melee / 6m", "notes": "Acuidade · Lacada em veneno" },
+    { "name": "Hex + Eldritch Blast", "bonus": "+11", "damage": "4×(1d10+5)+4d6", "range": "36m", "notes": "Hex ativo · +1d6 necrótico/raio" }
   ],
   "features": {
     "subclass": [
-      { "name": "Mente Desperta", "level": 1, "description": "Telepatia 9m com qualquer criatura que entenda idioma." },
-      { "name": "Proteção Entrópica", "level": 6, "description": "Reação: atacante que erra tem desvantagem no próximo TR." },
-      { "name": "Escudo de Pensamentos", "level": 10, "description": "Resistência a psíquico. Reflect mental damage." },
-      { "name": "Criar Lacaio do Caos", "level": 14, "description": "Encanta permanentemente criatura incapacitada como lacaio telepático." }
+      { "name": "Mente Expandida", "level": 1, "description": "Lê pensamentos superficiais em 9m (TR Sab CD 19). Comunicação telepática em 36m com qualquer criatura falante." },
+      { "name": "Enthralling Presence", "level": 1, "description": "1×/descanso curto: criaturas em 9m (TR Sab CD 19) ficam encantadas e incapacitadas até fins do turno ou Kafka atacar." },
+      { "name": "Thought Shield", "level": 6, "description": "Resistência psíquica. Ninguém lê seus pensamentos. Dano psíquico sofrido é refletido ao atacante." },
+      { "name": "Create Thrall", "level": 14, "description": "Toca criatura incapacitada: encantada permanentemente, obedece comandos telepáticos." }
+    ],
+    "class": [
+      { "name": "Dádiva do Pacto — Corrente", "level": 3, "description": "Familiar com formas exóticas: Imp, Pseudodragon, Quasit ou Sprite." },
+      { "name": "Eldritch Master", "level": 20, "description": "Recupera todos os slots Pact Magic em 1 min. 1×/descanso longo." }
+    ],
+    "race": [
+      { "name": "Visão no Escuro", "description": "18m em escuridão como luz fraca." },
+      { "name": "Blessing of the Raven Queen", "description": "Teletransporte 9m + resistência total 1 turno. 1×/descanso longo." },
+      { "name": "Resistência Necrótica", "description": "Resistência permanente a dano necrótico." }
+    ],
+    "feats": [
+      { "name": "Elusive", "level": 12, "description": "Ataques contra Kafka nunca têm vantagem." },
+      { "name": "Alert", "level": 16, "description": "+5 à Iniciativa. Não pode ser surpreendida." }
     ],
     "invocations": [
-      "Agonizing Blast", "Devil's Sight", "Thirsting Blade",
-      "Eldritch Smite", "Improved Pact Weapon", "Whispers of the Grave",
-      "Shroud of Shadow", "Lifedrinker"
+      { "name": "Agonizing Blast", "description": "+CAR (+5) no dano de cada raio do Eldritch Blast" },
+      { "name": "Repelling Blast", "description": "Alvos atingidos são empurrados 3m" },
+      { "name": "Voice of the Chain Master", "description": "Sente e fala pelo familiar a qualquer distância" },
+      { "name": "One with Shadows", "description": "Em obscuridade: torna-se invisível como ação" },
+      { "name": "Eldritch Mind", "description": "Vantagem em Con para manter concentração" },
+      { "name": "Grasp of Hadar", "description": "Raios puxam alvos 1,5m em direção a Kafka" },
+      { "name": "Sign of Ill Omen", "description": "Bestow Curse 1×/descanso longo sem slot" },
+      { "name": "Shroud of Shadow", "description": "Invisibilidade à vontade sem custo de slot" }
     ]
   },
   "spells": {
+    "ability": "Carisma",
+    "dc": 19,
+    "attack": "+11",
+    "class": "Bruxo",
+    "slots": "4 × 5° Círculo",
     "cantrips": [
-      { "name": "Eldritch Blast", "damage": "4×(1d10+5) força", "notes": "4 raios, +11 cada" },
-      { "name": "Minor Illusion", "notes": "Som ou imagem ilusória" }
+      { "name": "Eldritch Blast", "notes": "4 raios · +5 dano/raio · Empurra ou puxa" },
+      { "name": "Toll the Dead", "notes": "4d12 necrótico (alvo ferido) · TR Sab CD 19" },
+      { "name": "Minor Illusion", "notes": "Som ou imagem · 1 min · Inv. Int CD 19" }
     ],
     "known": [
-      { "name": "Hex", "level": 1 },
-      { "name": "Darkness", "level": 2 },
-      { "name": "Counterspell", "level": 3 },
-      { "name": "Shadow of Moil", "level": 4 },
-      { "name": "Synaptic Static", "level": 5 },
-      { "name": "Dominate Person", "level": 5 }
+      { "name": "Hex", "level": 1, "tags": ["ação bônus", "concentração 8h", "central"], "notes": "+1d6 necrótico · Desvantagem em atrib." },
+      { "name": "Hypnotic Pattern", "level": 3, "tags": ["ação", "concentração 1 min", "central"], "notes": "TR Sab CD 19 · Incapacitado + Encantado" },
+      { "name": "Counterspell", "level": 3, "tags": ["reação"], "notes": "Auto-cancel ≤5° com slot 5°" },
+      { "name": "Silvery Barbs", "level": 1, "tags": ["reação"], "notes": "Relança qualquer sucesso (pior) · Aliado com vantagem" },
+      { "name": "Hold Monster", "level": 5, "tags": ["ação", "concentração 1 min", "central"], "notes": "TR Sab CD 19 · Paralisado · Críticos auto" },
+      { "name": "Enemies Abound", "level": 3, "tags": ["ação", "concentração 1 min"], "notes": "TR Int CD 19 · Ataca aliados" },
+      { "name": "Far Step", "level": 5, "tags": ["ação bônus", "concentração 1 min"], "notes": "18m/turno por 1 min" },
+      { "name": "Synaptic Static", "level": 5, "tags": ["ação"], "notes": "8d6 psíquico · −1d6 em ataques e TR" },
+      { "name": "Hunger of Hadar", "level": 3, "tags": ["ação", "concentração 1 min"], "notes": "Zona de escuridão · 2d6 frio + 2d6 ácido/turno" }
     ],
-    "arcanum": [
-      { "name": "Mass Suggestion", "level": 6 },
-      { "name": "Finger of Death", "level": 7 },
-      { "name": "Feeblemind", "level": 8 },
-      { "name": "Psychic Scream", "level": 9 }
+    "mysticArcanum": [
+      { "level": 6, "name": "Mass Suggestion", "notes": "12 criaturas · TR Sab CD 19 · 24h sem conc" },
+      { "level": 7, "name": "Crown of Stars", "notes": "7 motes · 4d12 radiante/mote · 1h sem conc" },
+      { "level": 8, "name": "Dominate Monster", "notes": "Qualquer criatura · Controle total · Concentração 1h" },
+      { "level": 9, "name": "Psychic Scream", "notes": "10 alvos · 14d6 psíquico · Atordoado 1 turno" }
     ]
   },
+  "equipment": [
+    "Couro +1",
+    "Dagger of Venom (Adaga Venenosa)",
+    "Foco Arcano (cristal cósmico)",
+    "Kit de Disfarce Completo",
+    "Kit de Envenenamento Master",
+    "Ferramentas de Ladrão",
+    "Cordas de Seda (50m)",
+    "3 Frascos de Ácido",
+    "Diário criptografado"
+  ],
   "personality": {
-    "traits": "Calma predatória. Cada palavra calibrada para efeito máximo.",
-    "ideals": "O destino pode ser manipulado. O caos é ordem mal compreendida.",
-    "bonds": "Os Caçadores de Stellaron — especialmente o Trailblazer.",
-    "flaws": "Incapaz de relações genuínas. Intimidade é vulnerabilidade."
+    "traits": "Sorri constantemente, com leveza que nunca parece forçada. Fala pouco sobre si. Kafka não é misteriosa por esforço — ela simplesmente não existe da forma que os outros esperam.",
+    "ideals": "Informação é poder. Não serve à hierarquia porque acredita nela — serve porque é a posição mais conveniente.",
+    "bonds": "Silver — a parceira que talvez seja a única a saber onde Kafka termina e onde o Grande Antigo começa.",
+    "flaws": "A entidade reescreve memórias sem aviso. Kafka não sabe quais emoções são suas. A insegurança ontológica é o único sentimento do qual tem certeza."
   },
-  "tags": ["bruxo", "grande-antigo", "tiefling", "psíquico", "controle-mental", "nível-20", "honkai-star-rail"]
+  "appearance": {
+    "age": "Aparente 26",
+    "height": "1,69m",
+    "eyes": "Amarelo-dourado (anel cósmico na pupila direita)",
+    "hair": "Roxo escuro, longo",
+    "skin": "Clara, perfeita",
+    "type": "Shadar-kai",
+    "aura": "Violeta cósmica pulsante"
+  },
+  "treasury": { "pc": 0, "pp": 0, "pe": 0, "po": "∞", "pl": 0 },
+  "tags": ["bruxo", "grande-antigo", "shadar-kai", "controle", "psíquico", "sin-multiclasse", "nível-20", "honkai-star-rail", "telepatia", "infiltração"]
 }

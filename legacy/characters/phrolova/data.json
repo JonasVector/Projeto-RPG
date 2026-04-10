@@ -1,7 +1,68 @@
 {
-  "metadata": { "name": "Phrolova", "title": "Guardiã do Crepúsculo Gélido", "origin": "Wuthering Waves", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
-  "identity": { "race": "Eladrin (Inverno)", "class": "Clérigo", "subclass": "Domínio do Crepúsculo", "background": "Eremita", "alignment": "Neutro Bom", "languages": ["Comum", "Élfico", "Celestial"] },
-  "attributes": { "str": { "score": 10, "mod": 0 }, "dex": { "score": 14, "mod": 2 }, "con": { "score": 16, "mod": 3 }, "int": { "score": 10, "mod": 0 }, "wis": { "score": 20, "mod": 5 }, "cha": { "score": 14, "mod": 2 } },
-  "combat": { "ac": 20, "hp": 163, "initiative": "+7", "speed": "9m (Voo 9m)", "proficiencyBonus": "+6", "spellDC": 19, "spellAttack": "+11" },
-  "tags": ["clérigo", "crepúsculo", "eladrin", "suporte", "tank", "cura", "nível-20", "wuthering-waves"]
+  "metadata": { "name": "Phrolova", "title": "A Guardiã do Crepúsculo", "origin": "Wuthering Waves", "version": "2.0", "system": "D&D 5e", "level": 20, "created": "2026-04-10", "language": "pt-BR" },
+  "identity": { "race": "Aasimar (Vingador)", "class": "Clérigo", "subclass": "Domínio do Crepúsculo", "background": "Eremita", "alignment": "Leal Bom", "languages": ["Comum", "Celestial", "Pássaro"], "xp": "355.000" },
+  "attributes": { "str": {"score":16,"mod":3}, "dex": {"score":10,"mod":0}, "con": {"score":18,"mod":4}, "int": {"score":10,"mod":0}, "wis": {"score":20,"mod":5}, "cha": {"score":14,"mod":2} },
+  "combat": { "ac": 21, "acDescription": "Plate (18) + Escudo +1 (+3) = CA 21", "hp": 184, "hitDice": "20d8", "initiative": "+0", "speed": "9m", "proficiencyBonus": "+6", "spellDC": 19, "spellAttack": "+11", "spellAbility": "Sabedoria", "channelDivinity": "3×/descanso curto" },
+  "savingThrows": [
+    {"name":"Força","value":3,"proficient":false}, {"name":"Destreza","value":0,"proficient":false},
+    {"name":"Constituição","value":4,"proficient":false}, {"name":"Inteligência","value":0,"proficient":false},
+    {"name":"Sabedoria","value":11,"proficient":true}, {"name":"Carisma","value":8,"proficient":true}
+  ],
+  "features": {
+    "subclass": [
+      {"name":"Eyes of Night","level":1,"description":"Visão escuro 36m. Compartilha com até 10 aliados por 1h. 1×/descanso longo."},
+      {"name":"Vigilância no Crepúsculo","level":1,"description":"Vantagem em Percepção. Não pode ser surpreendida."},
+      {"name":"Canal Divino: Twilight Sanctuary","level":2,"description":"Aura 9m · Aliados curam 1d6+5 PV OU encerram encantamento/medo por turno · 1 min"},
+      {"name":"Steps of Night","level":6,"description":"Ação bônus em obscuridade: voo 9m por 1 turno. 1×/turno."},
+      {"name":"Divine Strike (Frio)","level":8,"description":"+2d8 frio em cada ataque com arma, 1×/turno."},
+      {"name":"Twilight Shroud","level":17,"description":"Aliados em Twilight Sanctuary têm cobertura parcial (+2 CA e TRs Des)."}
+    ],
+    "class": [
+      {"name":"Channel Divinity","level":2,"description":"3×/descanso curto. Twilight Sanctuary + Turn Undead."},
+      {"name":"Destroy Undead","level":5,"description":"Turn Undead destrói mortos-vivos MV ≤ 30."},
+      {"name":"Intervenção Divina Aprimorada","level":20,"description":"Intervenção Divina sempre funciona automaticamente."}
+    ],
+    "race": [
+      {"name":"Destructive Wrath","description":"1×/descanso longo: asas das trevas 1 min · Voo 9m · Aliados em 3m com vantagem em ataques"},
+      {"name":"Resistência","description":"Resistência a necrótico e radiante. Mãos Curadoras 20 PV 1×/descanso longo."}
+    ],
+    "feats": [
+      {"name":"War Caster","level":8,"description":"Vantagem em Con para concentração. Magia como AO."},
+      {"name":"Sentinel","level":12,"description":"AO reduz velocidade a 0. Protege aliados próximos."}
+    ]
+  },
+  "spells": {
+    "ability": "Sabedoria", "dc": 19, "attack": "+11", "class": "Clérigo",
+    "domainSpells": [
+      {"name":"Faerie Fire","level":1}, {"name":"Sleep","level":1},
+      {"name":"Moonbeam","level":3}, {"name":"Aura of Vitality","level":3},
+      {"name":"Aura of Life","level":5}, {"name":"Guardian of Faith","level":5},
+      {"name":"Greater Restoration","level":7}, {"name":"Circle of Power","level":7},
+      {"name":"Heal","level":9}, {"name":"Holy Aura","level":9}
+    ],
+    "cantrips": [
+      {"name":"Sacred Flame","notes":"4d8 radiante · TR Des CD 19"},
+      {"name":"Guidance","notes":"+1d4 em teste · Concentração"},
+      {"name":"Toll the Dead","notes":"4d12 necrótico · TR Sab · Alvo ferido"},
+      {"name":"Thaumaturgy","notes":"Efeitos menores · Intimidação com vantagem"}
+    ],
+    "prepared": [
+      {"name":"Heal","level":6,"notes":"70 PV (slot 6°) / 115 PV (slot 9°)"},
+      {"name":"Holy Aura","level":8,"notes":"Vantagem aliados · Desvantagem atacantes · 1 min"},
+      {"name":"Mass Cure Wounds","level":5,"notes":"5d8+5 em 6 aliados · Raio 9m"},
+      {"name":"Harm","level":6,"notes":"TR Con CD 19 · 14d6 necrótico · Reduz PV máx"},
+      {"name":"Spirit Guardians","level":3,"notes":"Aura 4,5m · 5d8 radiante/frio · Vel. ÷2"},
+      {"name":"Banishment","level":4,"notes":"TR Car CD 19 · 1 min · Exila para outro plano"}
+    ]
+  },
+  "equipment": ["Plate Armor","Escudo +1","Maça Sagrada +2","Símbolo sagrado do crepúsculo","Kit de herborismo","Grimório de orações"],
+  "personality": {
+    "traits": "Fala pouco, age muito. Olha para o horizonte antes de responder — buscando a fronteira entre o dia e a noite.",
+    "ideals": "O crepúsculo pertence a todos. Qualquer ser pode encontrar paz na liminalidade entre a luz e a escuridão.",
+    "bonds": "Os que foram perdidos na escuridão e nunca encontraram o caminho de volta. Phrolova não abandonou nenhum ainda.",
+    "flaws": "Tem dificuldade em deixar pessoas tomarem suas próprias decisões perigosas. Proteção às vezes se confunde com controle."
+  },
+  "appearance": { "age": "Aparente 24", "height": "1,72m", "eyes": "Roxo-prata", "hair": "Brancos, compridos", "mark": "Asas de sombra-luz na forma de Vingador" },
+  "treasury": {"pc":0,"pp":0,"pe":0,"po":"∞","pl":0},
+  "tags": ["clérigo","crepúsculo","aasimar","suporte","cura","proteção","sem-multiclasse","nível-20","wuthering-waves"]
 }

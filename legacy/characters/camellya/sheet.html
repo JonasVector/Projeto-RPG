@@ -3,252 +3,441 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Camellya — Ficha D&D 5e</title>
+<title>Camellya — A Flor Carmesim · Ficha D&D 5e</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
-:root{--blood:#8b0000;--blood-mid:#c0392b;--blood-bright:#e74c3c;--thorn:#2d1a1a;--crimson:#dc143c;--pale:#f0c8c8;--dark:#0a0404;--darker:#060202;--card:#140808;--card-light:#1e0c0c;--gold:#c9a227;--gold-light:#e8c85a;--text:#d8c0c0;--text-dim:#8a5858;--mist:#3a2222;--border:rgba(139,0,0,0.30);--border-bright:rgba(220,20,60,0.45);}
+:root {
+  --crimson:    #8b0000;
+  --blood:      #c0392b;
+  --petal:      #e74c3c;
+  --pale:       #ffe8e8;
+  --dark:       #0d040404;
+  --darker:     #080202;
+  --card:       #160808;
+  --card-light: #241010;
+  --gold:       #c9a227;
+  --gold-light: #e8c85a;
+  --text:       #e0c0c0;
+  --text-dim:   #7a3030;
+  --border:     rgba(139,0,0,0.35);
+  --border-bright: rgba(231,76,60,0.5);
+}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--darker);background-image:radial-gradient(ellipse at 25% 20%,rgba(139,0,0,0.10) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(220,20,60,0.06) 0%,transparent 45%);font-family:'Crimson Pro',Georgia,serif;color:var(--text);line-height:1.75;}
+body{background:var(--darker);background-image:radial-gradient(ellipse at 20% 10%,rgba(139,0,0,0.12) 0%,transparent 50%),radial-gradient(ellipse at 80% 90%,rgba(231,76,60,0.06) 0%,transparent 45%);font-family:'Crimson Pro',Georgia,serif;color:var(--text);line-height:1.75;}
 .page{max-width:960px;margin:0 auto;padding:0 0 80px;}
-.blood-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
-.blooddrop{position:absolute;width:2px;background:var(--crimson);border-radius:50% 50% 50% 50%;opacity:0;animation:drip linear infinite;}
-@keyframes drip{0%{transform:translateY(-5vh) scale(1);opacity:0;}5%{opacity:0.6;}80%{opacity:0.2;}100%{transform:translateY(110vh) scale(0.6);opacity:0;}}
-.header{background:linear-gradient(168deg,#060202 0%,#1a0808 55%,#060202 100%);border-bottom:2px solid var(--blood);position:relative;overflow:hidden;z-index:1;}
-.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blood-mid),var(--crimson),var(--blood-mid),transparent);opacity:0.6;}
+
+/* PETALS */
+.petal-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.petal{position:absolute;opacity:0;animation:petalFall ease-in-out infinite;color:var(--petal);font-size:12px;}
+@keyframes petalFall{0%{transform:translateY(-5vh) rotate(0deg);opacity:0;}10%{opacity:.35;}90%{opacity:.15;}100%{transform:translateY(110vh) translateX(60px) rotate(360deg);opacity:0;}}
+
+.header{background:linear-gradient(165deg,#080202 0%,#1a0808 50%,#080202 100%);border-bottom:2px solid var(--crimson);position:relative;overflow:hidden;z-index:1;}
+.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 60px,rgba(139,0,0,0.02) 60px,rgba(139,0,0,0.02) 61px);}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blood),var(--petal),var(--blood),transparent);opacity:.6;}
 .header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
-.header-portrait{width:220px;flex-shrink:0;background:#080303;border-right:2px solid var(--blood);display:flex;align-items:center;justify-content:center;}
-.portrait-inner{width:100%;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;}
-.portrait-symbol{font-size:80px;opacity:0.12;filter:drop-shadow(0 0 24px var(--crimson));}
-.portrait-ring{position:absolute;width:100px;height:100px;border:1px solid rgba(220,20,60,0.3);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:rp 3s ease-in-out infinite;}
-@keyframes rp{0%,100%{box-shadow:0 0 8px rgba(220,20,60,0.1);}50%{box-shadow:0 0 22px rgba(220,20,60,0.35);}}
-.portrait-ring::before{content:'';position:absolute;inset:8px;border:1px solid rgba(220,20,60,0.15);border-radius:50%;}
-.portrait-label{position:absolute;bottom:14px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--blood-mid);opacity:0.5;text-transform:uppercase;}
+.header-portrait{width:220px;flex-shrink:0;background:#0a0202;border-right:2px solid var(--crimson);overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.portrait-inner{width:100%;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;}
+.portrait-symbol{font-size:70px;opacity:0.12;filter:drop-shadow(0 0 24px var(--petal));line-height:1;}
+.portrait-ring{position:absolute;width:100px;height:100px;border:1px solid rgba(139,0,0,0.4);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:ringPulse 3s ease-in-out infinite;}
+@keyframes ringPulse{0%,100%{box-shadow:0 0 8px rgba(231,76,60,0.1);}50%{box-shadow:0 0 24px rgba(231,76,60,0.35);}}
+.portrait-ring::before{content:'';position:absolute;inset:8px;border:1px solid rgba(139,0,0,0.2);border-radius:50%;}
+.portrait-label{position:absolute;bottom:14px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--blood);opacity:.5;text-transform:uppercase;}
 .header-text{flex:1;padding:36px 44px;}
-.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--blood-mid);opacity:0.8;text-transform:uppercase;margin-bottom:10px;}
-.header-name{font-family:'Cinzel',serif;font-size:44px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(220,20,60,0.5);letter-spacing:3px;line-height:1;margin-bottom:4px;}
-.header-subtitle{font-family:'Crimson Pro',serif;font-style:italic;font-size:17px;color:var(--crimson);margin-bottom:22px;letter-spacing:1.5px;}
+.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--blood);opacity:.8;text-transform:uppercase;margin-bottom:10px;}
+.header-name{font-family:'Cinzel',serif;font-size:48px;font-weight:900;color:var(--pale);text-shadow:0 0 60px rgba(139,0,0,0.6);letter-spacing:4px;line-height:1;margin-bottom:4px;}
+.header-subtitle{font-family:'Crimson Pro',serif;font-style:italic;font-size:17px;color:var(--blood);margin-bottom:22px;letter-spacing:1.5px;}
 .header-tags{display:flex;gap:8px;flex-wrap:wrap;}
 .tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:4px 12px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(139,0,0,0.07);}
-.tag.hi{background:rgba(139,0,0,0.22);border-color:var(--blood-mid);color:var(--blood-bright);}
+.tag.hi{background:rgba(139,0,0,0.22);border-color:var(--blood);color:var(--petal);}
+
 .meta-bar{background:var(--card);border-bottom:1px solid var(--border);padding:14px 40px;display:flex;position:relative;z-index:1;}
 .meta-item{flex:1;border-right:1px solid var(--border);padding:0 20px;text-align:center;}
 .meta-item:first-child{padding-left:0;}.meta-item:last-child{border-right:none;padding-right:0;}
 .meta-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
-.meta-value{font-family:'Cinzel',serif;font-size:13px;color:var(--blood-bright);font-weight:600;}
-.section{padding:0 40px;margin-top:36px;position:relative;z-index:1;}
-.section-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--blood-mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
-.section-title::before{content:'🥀';font-size:12px;opacity:0.8;}
-.stat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:20px;}
-.stat-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:14px 4px 10px;position:relative;transition:border-color 0.2s,box-shadow 0.3s;}
-.stat-box:hover{border-color:var(--blood-mid);box-shadow:0 0 12px rgba(220,20,60,0.2);}
-.stat-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--blood),transparent);opacity:0;transition:opacity 0.2s;}
-.stat-box:hover::after{opacity:1;}
-.stat-name{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:6px;}
-.stat-val{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--pale);line-height:1;}
-.stat-val.peak{color:var(--crimson);text-shadow:0 0 16px rgba(220,20,60,0.4);}
-.stat-mod{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--blood-mid);margin-top:4px;display:block;}
-.combat-row{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:20px;}
-.combat-box{background:var(--card-light);border:1px solid var(--border);text-align:center;padding:12px 6px 10px;transition:border-color 0.2s;}
-.combat-box.accent{background:rgba(139,0,0,0.12);border-color:var(--blood-mid);}
-.combat-label{font-family:'Share Tech Mono',monospace;font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
-.combat-val{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--pale);line-height:1;}
-.combat-box.accent .combat-val{color:var(--crimson);}
-.combat-sub{font-size:10px;color:var(--text-dim);font-family:'Share Tech Mono',monospace;display:block;margin-top:2px;}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-.save-list{list-style:none;}
-.save-item{display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid rgba(139,0,0,0.08);font-size:13px;}
-.save-item:last-child{border-bottom:none;}
-.save-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;}
-.save-dot.filled{background:var(--blood);border-color:var(--blood-bright);box-shadow:0 0 5px rgba(220,20,60,0.5);}
-.save-score{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--blood-mid);min-width:26px;text-align:right;}
-.save-name{color:var(--text-dim);flex:1;}
-.skill-list{list-style:none;}
-.skill-item{display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid rgba(139,0,0,0.08);font-size:13px;}
-.skill-item:last-child{border-bottom:none;}
-.skill-dot{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;}
-.skill-dot.filled{background:var(--blood);border-color:var(--blood-bright);box-shadow:0 0 5px rgba(220,20,60,0.4);}
-.skill-bonus{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--blood-mid);min-width:26px;text-align:right;}
-.skill-name{color:var(--text-dim);flex:1;}
-.skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--mist);letter-spacing:1px;}
-.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
-.feature-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--blood);padding:12px 14px;transition:border-color 0.2s,transform 0.2s;}
-.feature-card:hover{border-color:var(--blood-mid);transform:translateY(-1px);}
-.feature-card.milestone{border-left-color:var(--crimson);}
-.feature-card.rage{border-left-color:var(--blood-bright);}
-.feature-name{font-family:'Cinzel',serif;font-size:11px;color:var(--blood-mid);letter-spacing:1px;margin-bottom:4px;text-transform:uppercase;}
-.feature-card.milestone .feature-name{color:var(--crimson);}
-.feature-card.rage .feature-name{color:var(--blood-bright);}
-.feature-source{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--blood);opacity:0.7;text-transform:uppercase;margin-bottom:4px;}
-.feature-desc{font-size:12px;color:var(--text-dim);line-height:1.5;}
-.lore-box{background:rgba(139,0,0,0.06);border:1px solid var(--border);border-left:3px solid var(--crimson);padding:14px 18px;font-size:13px;font-style:italic;color:var(--text-dim);margin:12px 0;line-height:1.7;}
-.trait-box{background:var(--card);border:1px solid var(--border);padding:16px 18px;height:100%;}
-.trait-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--blood);display:block;margin-bottom:8px;}
-.trait-text{font-size:14px;color:var(--text-dim);font-style:italic;}
-.backstory{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--blood);padding:28px 32px;}
-.backstory p{font-size:15px;color:var(--text-dim);margin-bottom:14px;line-height:1.85;}
-.bs-quote{font-style:italic;border-left:3px solid var(--crimson);padding:8px 0 8px 16px;color:var(--blood-bright);margin:16px 0;font-size:15px;}
+.meta-value{font-family:'Cinzel',serif;font-size:13px;color:var(--petal);font-weight:600;}
+
+.section{padding:0 40px;margin-top:32px;position:relative;z-index:1;}
+.section-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--blood);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.section-title::before{content:'🌹';font-size:12px;opacity:.7;}
+
+.stat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px;}
+.stat-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:12px 4px 10px;position:relative;transition:border-color .2s;}
+.stat-box:hover{border-color:var(--blood);}
+.stat-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--crimson);opacity:.6;}
+.stat-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--text-dim);display:block;text-transform:uppercase;margin-bottom:2px;}
+.stat-val{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:var(--pale);display:block;line-height:1.1;}
+.stat-val.peak{color:var(--petal);text-shadow:0 0 14px rgba(231,76,60,0.5);}
+.stat-mod{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--blood);display:block;}
+.combat-row{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:18px;}
+.combat-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:12px 6px;}
+.combat-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:4px;}
+.combat-val{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--pale);}
+.combat-box.pv-box{background:linear-gradient(135deg,var(--card) 0%,rgba(139,0,0,0.2) 100%);border-color:var(--blood);}
+.combat-box.pv-box .combat-val{color:var(--petal);}
+.two-col{display:grid;grid-template-columns:220px 1fr;gap:16px;}
+.save-list,.skill-list{list-style:none;}
+.save-item,.skill-item{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:13px;border-bottom:1px solid rgba(139,0,0,0.1);}
+.save-item:last-child,.skill-item:last-child{border-bottom:none;}
+.prof-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--text-dim);flex-shrink:0;}
+.prof-dot.filled{background:var(--blood);border-color:var(--petal);box-shadow:0 0 6px rgba(231,76,60,0.5);}
+.skill-score{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--blood);width:30px;text-align:right;flex-shrink:0;}
+.skill-score.peak{color:var(--petal);}
+.skill-name{color:var(--text);flex:1;}
+.skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text-dim);}
 .attack-table{width:100%;border-collapse:collapse;font-size:13px;}
-.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(139,0,0,0.08);}
-.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(139,0,0,0.08);color:var(--text-dim);}
+.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(139,0,0,0.1);}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(139,0,0,0.1);color:var(--text);}
+.attack-table tr:hover td{background:rgba(139,0,0,0.07);}
 .attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
-.attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--crimson);font-weight:700;}
-.attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--blood-bright);}
-.passive-block{background:rgba(139,0,0,0.08);border:1px solid var(--blood);padding:12px 16px;text-align:center;}
-.passive-num{font-family:'Cinzel',serif;font-size:32px;font-weight:900;color:var(--crimson);display:block;}
-.passive-lbl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);}
+.attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--blood);font-weight:700;}
+.attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--petal);}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.feature-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--crimson);padding:12px 14px;transition:border-color .2s,transform .2s;}
+.feature-card:hover{border-color:var(--blood);transform:translateY(-1px);}
+.feature-card.milestone{border-left-color:var(--petal);}
+.feature-card.rage{border-left-color:var(--gold);}
+.feature-name{font-family:'Cinzel',serif;font-size:11px;color:var(--blood);letter-spacing:1px;margin-bottom:4px;text-transform:uppercase;}
+.feature-card.milestone .feature-name{color:var(--petal);}
+.feature-card.rage .feature-name{color:var(--gold-light);}
+.feature-source{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--crimson);opacity:.7;text-transform:uppercase;margin-bottom:4px;}
+.feature-desc{font-size:12px;color:var(--text-dim);line-height:1.5;}
+.personality-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.personality-card{background:var(--card);border:1px solid var(--border);padding:14px 16px;}
+.personality-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--blood);display:block;margin-bottom:6px;}
+.personality-text{font-size:13px;color:var(--text-dim);font-style:italic;line-height:1.5;}
+.lore-box{background:rgba(139,0,0,0.07);border:1px solid var(--border);border-left:3px solid var(--petal);padding:14px 18px;font-size:13px;font-style:italic;color:var(--text-dim);margin:12px 0;line-height:1.7;}
+.alert-box{background:rgba(231,76,60,0.06);border:1px solid rgba(231,76,60,0.2);border-left:3px solid var(--petal);padding:12px 16px;margin:10px 0;font-size:13px;color:var(--petal);}
+.info-box{background:rgba(139,0,0,0.09);border:1px solid var(--border);border-left:3px solid var(--crimson);padding:12px 16px;margin:10px 0;font-size:12px;}
+.equip-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .equip-card{background:var(--card);border:1px solid var(--border);padding:12px 14px;}
 .equip-category{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blood);display:block;margin-bottom:6px;}
 .equip-list{list-style:none;font-size:13px;color:var(--text-dim);}
-.equip-list li{padding:2px 0;border-bottom:1px solid rgba(139,0,0,0.08);display:flex;align-items:center;gap:6px;}
-.equip-list li::before{content:'🥀';font-size:8px;}
-.divider{text-align:center;margin:36px 40px;display:flex;align-items:center;gap:16px;position:relative;z-index:1;}
-.divider::before,.divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--blood),transparent);opacity:0.4;}
-.divider-sym{font-size:16px;color:var(--crimson);opacity:0.5;}
-.footer{text-align:center;padding:28px 40px 0;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text-dim);opacity:0.5;position:relative;z-index:1;}
-@media(max-width:700px){.stat-grid{grid-template-columns:repeat(3,1fr);}.combat-row{grid-template-columns:repeat(4,1fr);}.two-col,.feature-grid{grid-template-columns:1fr;}.header-inner{flex-direction:column;}.header-portrait{width:100%;height:180px;}}
+.equip-list li{padding:2px 0;border-bottom:1px solid rgba(139,0,0,0.1);display:flex;align-items:center;gap:6px;}
+.equip-list li::before{content:'🌹';font-size:8px;}
+.level-timeline{display:flex;flex-direction:column;gap:2px;}
+.level-row{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--crimson);display:flex;overflow:hidden;}
+.level-row.milestone{border-left-color:var(--petal);}
+.level-row.capstone{border-left-color:var(--gold);}
+.level-num{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--blood);padding:8px 12px;min-width:60px;background:rgba(139,0,0,0.12);align-self:stretch;display:flex;align-items:center;}
+.level-content{padding:8px 14px;flex:1;}
+.level-feature-name{font-family:'Cinzel',serif;font-size:11px;color:var(--pale);letter-spacing:0.5px;margin-bottom:2px;}
+.level-note{font-size:12px;color:var(--text-dim);font-style:italic;}
+.passive-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:10px 8px;}
+.passive-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
+.passive-val{font-family:'Cinzel',serif;font-size:20px;font-weight:700;color:var(--pale);}
+.divider{text-align:center;margin:28px 40px;position:relative;z-index:1;}
+.divider::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--crimson),transparent);}
+.divider-text{position:relative;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:8px;color:var(--petal);background:var(--darker);padding:0 16px;opacity:.5;}
+.backstory-section{padding:0 40px;margin-top:32px;position:relative;z-index:1;}
+.backstory-body{background:var(--card);border:1px solid var(--border);padding:28px 32px;}
+.backstory-body p{font-size:13.5px;color:var(--text-dim);margin-bottom:12px;line-height:1.8;}
+.bold-italic{font-weight:600;font-style:italic;color:var(--pale);display:block;margin:14px 0 6px;}
+.dialog{background:rgba(139,0,0,0.1);border-left:2px solid var(--blood);padding:8px 16px;margin:8px 0;font-style:italic;font-size:13px;color:var(--text-dim);}
+.footer{text-align:center;padding:28px 40px 0;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text-dim);opacity:.5;position:relative;z-index:1;}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--darker);}::-webkit-scrollbar-thumb{background:var(--crimson);border-radius:3px;}
+@media(max-width:700px){.stat-grid{grid-template-columns:repeat(3,1fr);}.combat-row{grid-template-columns:repeat(4,1fr);}.two-col,.feature-grid,.equip-grid,.personality-grid{grid-template-columns:1fr;}.header-inner{flex-direction:column;}.header-portrait{width:100%;height:180px;}}
 </style>
 </head>
 <body>
-<div class="blood-bg" id="bloodBg"></div>
+<div class="petal-bg" id="petalBg"></div>
 <div class="page">
 
-<header class="header"><div class="header-inner">
-  <div class="header-portrait"><div class="portrait-inner"><div class="portrait-ring"></div><div class="portrait-symbol">🥀</div><span class="portrait-label">Camélia de Sangue</span></div></div>
-  <div class="header-text">
-    <div class="header-eyebrow">Ficha de Personagem · D&D 5e · Bárbaro · Caminho da Besta · Nível 20</div>
-    <h1 class="header-name">Camellya</h1>
-    <div class="header-subtitle">A Rosa de Espinhos — Beleza que Devora</div>
-    <div class="header-tags">
-      <span class="tag hi">Bárbaro 20</span><span class="tag hi">Caminho da Besta</span>
-      <span class="tag">Shifter (Longtooth)</span><span class="tag">Forasteira</span>
-      <span class="tag">Caótico Neutro</span><span class="tag">Sem Multiclasse</span>
+<div class="header">
+  <div class="header-inner">
+    <div class="header-portrait">
+      <div class="portrait-inner"><div class="portrait-ring"></div><div class="portrait-symbol">🌹</div><span class="portrait-label">Camélia</span></div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">// Ficha D&amp;D 5e · Bárbaro · Caminho da Besta · Nível 20</div>
+      <div class="header-name">Camellya</div>
+      <div class="header-subtitle">A Flor Carmesim — O Espinho que Abraça e Destrói</div>
+      <div class="header-tags">
+        <span class="tag hi">Bárbaro 20</span>
+        <span class="tag hi">Caminho da Besta</span>
+        <span class="tag">Shadar-kai</span>
+        <span class="tag">Nobre</span>
+        <span class="tag">Caótico Neutro</span>
+        <span class="tag">Sem Multiclasse</span>
+      </div>
     </div>
   </div>
-</div></header>
+</div>
 
 <div class="meta-bar">
-  <div class="meta-item"><span class="meta-label">Raça</span><span class="meta-value">Shifter</span></div>
+  <div class="meta-item"><span class="meta-label">Raça</span><span class="meta-value">Shadar-kai</span></div>
   <div class="meta-item"><span class="meta-label">Classe</span><span class="meta-value">Bárbaro</span></div>
-  <div class="meta-item"><span class="meta-label">Subclasse</span><span class="meta-value">Besta</span></div>
-  <div class="meta-item"><span class="meta-label">Antecedente</span><span class="meta-value">Forasteira</span></div>
+  <div class="meta-item"><span class="meta-label">Subclasse</span><span class="meta-value">Caminho da Besta</span></div>
+  <div class="meta-item"><span class="meta-label">Antecedente</span><span class="meta-value">Nobre</span></div>
   <div class="meta-item"><span class="meta-label">Tendência</span><span class="meta-value">Caótico Neutro</span></div>
   <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-value">20</span></div>
 </div>
 
-<div class="section"><h2 class="section-title">Atributos</h2>
+<div class="section">
+  <div class="section-title">Identidade</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+    <div class="combat-box"><span class="combat-label">Nome</span><span style="font-family:'Cinzel',serif;font-size:13px;color:var(--pale)">Camellya</span></div>
+    <div class="combat-box"><span class="combat-label">Classe &amp; Nível</span><span style="font-family:'Cinzel',serif;font-size:12px;color:var(--pale)">Bárbaro 20</span></div>
+    <div class="combat-box"><span class="combat-label">Raça</span><span style="font-family:'Cinzel',serif;font-size:12px;color:var(--pale)">Shadar-kai</span></div>
+    <div class="combat-box"><span class="combat-label">Antecedente</span><span style="font-family:'Cinzel',serif;font-size:13px;color:var(--pale)">Nobre</span></div>
+    <div class="combat-box"><span class="combat-label">Subclasse</span><span style="font-family:'Cinzel',serif;font-size:11px;color:var(--pale)">Caminho da Besta</span></div>
+    <div class="combat-box"><span class="combat-label">Tendência</span><span style="font-family:'Cinzel',serif;font-size:12px;color:var(--petal)">Caótico Neutro</span></div>
+    <div class="combat-box"><span class="combat-label">Idiomas</span><span style="font-family:'Cinzel',serif;font-size:11px;color:var(--pale)">Comum, Élfico, Sombrio</span></div>
+    <div class="combat-box"><span class="combat-label">XP</span><span style="font-family:'Cinzel',serif;font-size:14px;color:var(--pale)">355.000</span></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Atributos</div>
   <div class="stat-grid">
-    <div class="stat-box"><span class="stat-name">Força</span><span class="stat-val peak">24</span><span class="stat-mod">+7</span></div>
-    <div class="stat-box"><span class="stat-name">Destreza</span><span class="stat-val">14</span><span class="stat-mod">+2</span></div>
-    <div class="stat-box"><span class="stat-name">Constituição</span><span class="stat-val peak">24</span><span class="stat-mod">+7</span></div>
-    <div class="stat-box"><span class="stat-name">Inteligência</span><span class="stat-val">8</span><span class="stat-mod">−1</span></div>
-    <div class="stat-box"><span class="stat-name">Sabedoria</span><span class="stat-val">14</span><span class="stat-mod">+2</span></div>
-    <div class="stat-box"><span class="stat-name">Carisma</span><span class="stat-val">10</span><span class="stat-mod">+0</span></div>
+    <div class="stat-box" style="background:linear-gradient(135deg,var(--card) 0%,rgba(139,0,0,0.2) 100%);border-color:var(--blood)"><span class="stat-label">Força</span><span class="stat-val peak">24</span><span class="stat-mod">+7</span></div>
+    <div class="stat-box"><span class="stat-label">Destreza</span><span class="stat-val">16</span><span class="stat-mod">+3</span></div>
+    <div class="stat-box" style="background:linear-gradient(135deg,var(--card) 0%,rgba(139,0,0,0.15) 100%);border-color:var(--blood)"><span class="stat-label">Constituição</span><span class="stat-val peak">22</span><span class="stat-mod">+6</span></div>
+    <div class="stat-box"><span class="stat-label">Inteligência</span><span class="stat-val">8</span><span class="stat-mod">−1</span></div>
+    <div class="stat-box"><span class="stat-label">Sabedoria</span><span class="stat-val">12</span><span class="stat-mod">+1</span></div>
+    <div class="stat-box"><span class="stat-label">Carisma</span><span class="stat-val">14</span><span class="stat-mod">+2</span></div>
   </div>
-  <div class="lore-box"><strong style="color:var(--crimson)">Poder Primordial (Nível 20):</strong> FOR e CON aumentam em +4 cada, máximo 24. Camellya é força bruta encarnada — 24/24 nos dois atributos de combate.</div>
 </div>
 
-<div class="section"><h2 class="section-title">Estatísticas de Combate</h2>
+<div class="section">
+  <div class="section-title">Estatísticas de Combate</div>
   <div class="combat-row">
-    <div class="combat-box accent"><span class="combat-label">Classe Armadura</span><span class="combat-val">19</span><span class="combat-sub">Defesa sem Armadura</span></div>
-    <div class="combat-box accent"><span class="combat-label">Pontos de Vida</span><span class="combat-val">285</span><span class="combat-sub">12*20 + 140</span></div>
-    <div class="combat-box"><span class="combat-label">Iniciativa</span><span class="combat-val">+2</span><span class="combat-sub">Des mod</span></div>
-    <div class="combat-box"><span class="combat-label">Deslocamento</span><span class="combat-val">12m</span><span class="combat-sub">9m + 3m rápida</span></div>
-    <div class="combat-box"><span class="combat-label">Bônus Prof.</span><span class="combat-val">+6</span><span class="combat-sub">Nível 20</span></div>
-    <div class="combat-box accent"><span class="combat-label">Fúrias/Dia</span><span class="combat-val">∞</span><span class="combat-sub">Ilimitadas</span></div>
-    <div class="combat-box accent"><span class="combat-label">Dano Fúria</span><span class="combat-val">+4</span><span class="combat-sub">Bônus raiva</span></div>
+    <div class="combat-box pv-box"><span class="combat-label">CA (Raiva)</span><span class="combat-val">19</span></div>
+    <div class="combat-box pv-box"><span class="combat-label">PV Totais</span><span class="combat-val">252</span></div>
+    <div class="combat-box"><span class="combat-label">Iniciativa</span><span class="combat-val">+3</span></div>
+    <div class="combat-box"><span class="combat-label">Deslocamento</span><span class="combat-val">12m</span></div>
+    <div class="combat-box"><span class="combat-label">Bônus Prof.</span><span class="combat-val">+6</span></div>
+    <div class="combat-box"><span class="combat-label">Usos de Raiva</span><span class="combat-val">∞</span></div>
+    <div class="combat-box"><span class="combat-label">Dano Raiva</span><span class="combat-val">+4</span></div>
   </div>
-  <div class="lore-box"><strong style="color:var(--crimson)">Defesa sem Armadura:</strong> CA = 10 + Des (2) + Con (7) = <strong>19</strong>. Sem armadura, apenas instinto bestial. Em fúria: resistência a concussão, perfuração e cortante. 285 PV que efetivamente se tornam <strong>570</strong>.</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:4px;">
+    <div class="info-box"><strong style="color:var(--petal);font-family:'Cinzel',serif;font-size:11px">Dados de Vida:</strong> <span style="font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--pale)">20d12</span> <span style="color:var(--text-dim);font-size:12px">(252 PV com CON +6)</span></div>
+    <div class="info-box"><strong style="color:var(--petal);font-family:'Cinzel',serif;font-size:11px">CA Normal:</strong> <span style="font-size:12px;color:var(--text-dim)">13 + CON (+6) = <strong style="color:var(--pale)">19 sem armadura</strong></span></div>
+    <div class="info-box"><strong style="color:var(--petal);font-family:'Cinzel',serif;font-size:11px">Raiva:</strong> <span style="font-size:12px;color:var(--text-dim)">Ilimitada (Nível 20) · +4 dano · Resistência</span></div>
+  </div>
 </div>
 
-<div class="section"><h2 class="section-title">Ataques (em Fúria)</h2>
+<div class="section">
+  <div class="section-title">Testes de Resistência &amp; Perícias</div>
+  <div class="two-col">
+    <div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:8px">Testes de Resistência</div>
+      <ul class="save-list">
+        <li class="save-item"><span class="prof-dot filled"></span><span class="skill-score peak">+13</span><span class="skill-name">Força</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="skill-score">+3</span><span class="skill-name">Destreza</span></li>
+        <li class="save-item"><span class="prof-dot filled"></span><span class="skill-score peak">+12</span><span class="skill-name">Constituição</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="skill-score">−1</span><span class="skill-name">Inteligência</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="skill-score">+1</span><span class="skill-name">Sabedoria</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="skill-score">+2</span><span class="skill-name">Carisma</span></li>
+      </ul>
+      <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div class="passive-box"><span class="passive-label">Sab. Passiva</span><span class="passive-val">13</span></div>
+        <div class="passive-box"><span class="passive-label">Velocidade Raiva</span><span class="passive-val" style="font-size:13px;color:var(--petal)">12m</span></div>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:8px">Perícias</div>
+      <ul class="skill-list">
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-score peak">+13</span><span class="skill-name">Atletismo</span><span class="skill-attr">For</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-score">+7</span><span class="skill-name">Intimidação</span><span class="skill-attr">Car</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">+1</span><span class="skill-name">Intuição</span><span class="skill-attr">Sab</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">+1</span><span class="skill-name">Percepção</span><span class="skill-attr">Sab</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-score">+9</span><span class="skill-name">Acrobacia</span><span class="skill-attr">Des</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-score">+9</span><span class="skill-name">Furtividade</span><span class="skill-attr">Des</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">+1</span><span class="skill-name">Sobrevivência</span><span class="skill-attr">Sab</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-score">−1</span><span class="skill-name">Natureza</span><span class="skill-attr">Int</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ataques &amp; Ação de Combate em Raiva</div>
   <table class="attack-table">
-    <thead><tr><th>Ataque</th><th>Bônus</th><th>Dano / Tipo</th><th>Alcance</th><th>Notas</th></tr></thead>
+    <thead><tr><th>Ataque</th><th>Bônus</th><th>Dano</th><th>Alcance</th><th>Notas</th></tr></thead>
     <tbody>
-      <tr><td><span class="attack-name">Garras (Forma de Besta)</span></td><td><span class="attack-bonus">+13</span></td><td><span class="attack-damage">1d6+11 Cortante</span></td><td>Corpo a corpo</td><td style="font-size:11px">Ataque extra incluído · Ataque bônus com garra adicional</td></tr>
-      <tr><td><span class="attack-name">Cauda (Forma de Besta)</span></td><td><span class="attack-bonus">+13</span></td><td><span class="attack-damage">1d8+11 Perfurante</span></td><td>3m</td><td style="font-size:11px">Alcance · Reação: +1d8 CA contra 1 ataque</td></tr>
-      <tr><td><span class="attack-name">Mordida (Forma de Besta)</span></td><td><span class="attack-bonus">+13</span></td><td><span class="attack-damage">1d8+11 Perfurante</span></td><td>Corpo a corpo</td><td style="font-size:11px">Recupera FOR mod (7) PV/acerto se ≤½ PV</td></tr>
-      <tr><td><span class="attack-name">Greataxe</span></td><td><span class="attack-bonus">+13</span></td><td><span class="attack-damage">1d12+11 Cortante</span></td><td>Corpo a corpo</td><td style="font-size:11px">Pesada · Grande Mestre: −5/+10</td></tr>
+      <tr><td><span class="attack-name">Machadão Duplo — Atq 1</span></td><td><span class="attack-bonus">+15</span></td><td><span class="attack-damage">2d6+11 Cortante</span></td><td>Melee</td><td style="font-size:11px;color:var(--text-dim)">FOR +7 + Prof +6 +Raiva +4 = +17 · Grand Weapon Master possível</td></tr>
+      <tr><td><span class="attack-name">Machadão Duplo — Atq 2</span></td><td><span class="attack-bonus">+15</span></td><td><span class="attack-damage">2d6+11 Cortante</span></td><td>Melee</td><td style="font-size:11px;color:var(--text-dim)">Ataque Extra (nível 5) · Segundo golpe</td></tr>
+      <tr><td><span class="attack-name">Espinhos Bestiais (Besta)</span></td><td><span class="attack-bonus">+13</span></td><td><span class="attack-damage">1d6+7 Perfurante</span></td><td>Melee</td><td style="font-size:11px;color:var(--text-dim)">Garras/espinhos como ação bônus · Via Caminho da Besta</td></tr>
+      <tr><td><span class="attack-name">Arremesso de Machadão</span></td><td><span class="attack-bonus">+15</span></td><td><span class="attack-damage">2d6+11 Cortante</span></td><td>6/18m</td><td style="font-size:11px;color:var(--text-dim)">Returning Javelin rule · Thrown Property personalizada</td></tr>
     </tbody>
   </table>
 </div>
 
-<div class="divider"><span class="divider-sym">🥀 ✦ 🥀</span></div>
-
 <div class="section">
-  <h2 class="section-title">Habilidades — Caminho da Besta (TCoE)</h2>
-  <div class="feature-grid">
-    <div class="feature-card rage">
-      <div class="feature-name">Forma da Besta</div><div class="feature-source">Besta · Nível 3</div>
-      <div class="feature-desc">Ao entrar em fúria: manifesta arma natural. <strong style="color:var(--blood-bright)">Garras</strong> (1d6, ataque bônus extra), <strong>Cauda</strong> (1d8, alcance, +1d8 CA reação), ou <strong>Mordida</strong> (1d8, cura se ≤½ PV). A besta dentro de Camellya emerge.</div>
-    </div>
-    <div class="feature-card rage">
-      <div class="feature-name">Alma Bestial</div><div class="feature-source">Besta · Nível 6</div>
-      <div class="feature-desc">Armas naturais contam como <strong style="color:var(--blood-bright)">mágicas</strong>. Ganhos adicionais a cada descanso curto: natação ou escalada = deslocamento. A besta se adapta ao ambiente.</div>
-    </div>
-    <div class="feature-card milestone">
-      <div class="feature-name">Aura Infecciosa</div><div class="feature-source">Besta · Nível 10</div>
-      <div class="feature-desc">Em fúria: aliados em <strong style="color:var(--crimson)">3m têm vantagem</strong> em ataques contra inimigos em 1,5m de Camellya (≠ GWM). A fúria é contagiosa — a besta inspira violência.</div>
-    </div>
-    <div class="feature-card milestone">
-      <div class="feature-name">Chamado da Caçada</div><div class="feature-source">Besta · Nível 14</div>
-      <div class="feature-desc">Ao acertar um ataque: até <strong style="color:var(--crimson)">6 aliados em 9m</strong> podem usar reação para atacar o mesmo alvo (se estiverem em alcance). A matilha converge sobre a presa.</div>
+  <div class="section-title">Habilidades de Classe &amp; Raça</div>
+  <div style="margin-bottom:12px">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--petal);text-transform:uppercase;margin-bottom:8px">— Caminho da Besta</div>
+    <div class="feature-grid">
+      <div class="feature-card milestone">
+        <div class="feature-name">Forma da Besta</div>
+        <div class="feature-source">Besta · Nível 3</div>
+        <div class="feature-desc">Em Raiva: manifesta garras (1d6+7, ação bônus extra), mordida (2d6+7, cura ½ dano), ou cauda (2d8+7, cone 10°, TR Des CD 19 ou derrubado). Camellya escolhe a arma orgânica mais adequada à situação.</div>
+      </div>
+      <div class="feature-card milestone">
+        <div class="feature-name">Espíritos Bestiais</div>
+        <div class="feature-source">Besta · Nível 6</div>
+        <div class="feature-desc">Em Raiva: manifesta espíritos animais que: (terra) dão vantagem em TRs against Derrubado; (mar) velocidade de natação; (céu) velocidade de voo 6m. Camellya flutua como pétala e ataca como espinho.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Infundir a Besta</div>
+        <div class="feature-source">Besta · Nível 10</div>
+        <div class="feature-desc">Aliados que atacam a mesma criatura que Camellya: os ataques deles contam como mágicos e causam <strong style="color:var(--petal)">+1d6</strong> de dano extra (magia, fogo ou frio — Camellya escolhe). A flor que florece no combate transforma aliados em predadores.</div>
+      </div>
+      <div class="feature-card rage">
+        <div class="feature-name">Raiva da Besta Primordial</div>
+        <div class="feature-source">Besta · Nível 14</div>
+        <div class="feature-desc">Em Raiva: a manifestação da besta aumenta: garras causam <strong style="color:var(--gold-light)">2d8+7</strong>, a mordida recupera PV ao matar qualquer criatura (não apenas humanoides), a cauda pode atacar 2 criaturas. A flor crimesim florescida plenamente.</div>
+      </div>
     </div>
   </div>
-
-  <div style="margin-top:16px">
-    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--blood);text-transform:uppercase;margin-bottom:8px">— Bárbaro Geral & Raça</div>
+  <div style="margin-bottom:12px">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--petal);text-transform:uppercase;margin-bottom:8px">— Habilidades Gerais do Bárbaro</div>
+    <div class="feature-grid">
+      <div class="feature-card milestone">
+        <div class="feature-name">Raiva (Ilimitada) + Resistência</div>
+        <div class="feature-source">Bárbaro · Nível 20</div>
+        <div class="feature-desc">+4 de dano. Resistência a dano físico (concussão, cortante, perfurante). <strong style="color:var(--petal)">Raiva Ilimitada</strong> ao nível 20 — Camellya não tem limite de florescimento.</div>
+      </div>
+      <div class="feature-card milestone">
+        <div class="feature-name">Primal Champion — Capstone</div>
+        <div class="feature-source">Bárbaro · Nível 20</div>
+        <div class="feature-desc">FOR +4, CON +4 (incluído nos atributos). Força 24, Constituição 22. PV extras retroativos. A besta atingiu seu auge — Camellya é fisicamente impossível de superar.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Movimento de Raiva (+3m)</div>
+        <div class="feature-source">Bárbaro · Nível 3</div>
+        <div class="feature-desc">Em Raiva: +3m de velocidade. Com velocidade base 9m: <strong style="color:var(--petal)">12m durante Raiva</strong>. Pode usar Dash para dobrar para 24m. A flor vermelha que se move pelo campo de batalha como uma tempes.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Redução de Dano Brutal</div>
+        <div class="feature-source">Bárbaro · Nível 7+</div>
+        <div class="feature-desc">Reduz dano de qualquer ataque em <strong style="color:var(--petal)">3 pontos</strong> (nível 7), escalando com nível. Em Raiva: já tem resistência a físico. Combinados: Camellya ignora a maioria dos ataques normais.</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--petal);text-transform:uppercase;margin-bottom:8px">— Shadar-kai &amp; Talentos</div>
     <div class="feature-grid">
       <div class="feature-card">
-        <div class="feature-name">Fúria Implacável (∞)</div><div class="feature-source">Bárbaro · Nível 20</div>
-        <div class="feature-desc">Fúrias <strong style="color:var(--crimson)">ilimitadas</strong>. Resistência a dano físico permanente em combate. +4 dano por ataque. Camellya é a tempestade que nunca cessa.</div>
+        <div class="feature-name">Blessing of the Raven Queen</div>
+        <div class="feature-source">Shadar-kai · Raça</div>
+        <div class="feature-desc">Ação bônus: teletransporte 9m para espaço visível. Após: <strong style="color:var(--petal)">resistência a todos os danos</strong> por 1 turno. 1×/descanso longo. Combinado com Raiva: Camellya é virtualmente indestrutível por 1 turno.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-name">Ataque Brutal (3 dados)</div><div class="feature-source">Bárbaro · Nível 17</div>
-        <div class="feature-desc">Críticos adicionam <strong style="color:var(--crimson)">3 dados extras</strong> de dano. Crítico com Greataxe: 4d12+11 = potencial de 59 dano em um ataque.</div>
+        <div class="feature-name">Great Weapon Master</div>
+        <div class="feature-source">Talento · Nível 4</div>
+        <div class="feature-desc">No crítico ou ao derrubar: ataque extra como ação bônus. Pode optar por <strong style="color:var(--petal)">−5 acerto / +10 dano</strong>. Com +15 de ataque: pode usar sempre. Cada golpe de Camellya pode abrir três golpes no mesmo turno.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-name">Fúria Persistente</div><div class="feature-source">Bárbaro · Nível 15</div>
-        <div class="feature-desc">Fúria só termina se ficar inconsciente ou escolher. Não importa se não ataca ou sofre dano — a besta não dorme.</div>
+        <div class="feature-name">Polearm Master</div>
+        <div class="feature-source">Talento · Nível 8</div>
+        <div class="feature-desc">Inimigos que entrem no alcance da arma: ataque de oportunidade imediato. Ataque bônus com a ponta traseira (+11, 1d4+11). Camellya controla 3m por volta — ninguém entra no campo de pétalas sem sangrar.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-name">Shifting (Longtooth)</div><div class="feature-source">Raça · Shifter</div>
-        <div class="feature-desc">Ação bônus: ganha <strong>PV temporários (nível + Con)</strong> e um ataque de mordida bônus (1d6+For). A transformação se acumula com Forma da Besta.</div>
+        <div class="feature-name">Tough (Resistente)</div>
+        <div class="feature-source">Talento · Nível 16</div>
+        <div class="feature-desc">+40 PV permanentes (2 × nível). Total: 252 PV. Uma pétala que não murcha — Camellya é literalmente a pessoa mais difícil de matar na mesa.</div>
       </div>
     </div>
   </div>
 </div>
 
+<div class="divider"><span class="divider-text">🌹 🌹 🌹</span></div>
+
 <div class="section">
-  <h2 class="section-title">Personalidade</h2>
-  <div class="two-col">
-    <div class="trait-box"><span class="trait-label">Traços</span><p class="trait-text">Bela de um modo que incomoda — como flores venenosas. A gentileza é uma máscara sobre instintos que ela não se preocupa em esconder. Fala pouco; quando fala, é tarde demais.</p></div>
-    <div class="trait-box"><span class="trait-label">Ideais</span><p class="trait-text">A natureza não pede permissão para ser cruel. Por que ela deveria? Os fortes devoram, os fracos nutrem. A rosa mais bela é a que cresce em sangue.</p></div>
-    <div class="trait-box"><span class="trait-label">Ligações</span><p class="trait-text">A floresta interior — o espaço selvagem dentro dela que é mais real que qualquer civilização. E o Rover, o único que olhou para a besta e não fugiu.</p></div>
-    <div class="trait-box"><span class="trait-label">Defeitos</span><p class="trait-text">Não distingue desejo de necessidade. A fome é constante — de combate, de afeto, de destruição. Quando a besta toma conta, não há amigos.</p></div>
+  <div class="section-title">Como Camellya Joga</div>
+  <div class="feature-grid">
+    <div class="feature-card milestone"><div class="feature-name">1. Raiva + Forma da Besta</div><div class="feature-desc">Entra em Raiva (ação bônus) → Manifesta garras/mordida/cauda. Dois ataques base (Ataque Extra) + ação bônus com forma bestial = 3 ataques/turno padrão.</div></div>
+    <div class="feature-card milestone"><div class="feature-name">2. DPS Máximo</div><div class="feature-desc">GWM −5/+10 com +15 base = ainda +10 de acerto. Crítico (GWM): ação bônus extra = 4 ataques. Cada ataque: 2d6+17 (sem GWM) ou 2d6+21 (com GWM). Até 80+ dano/turno.</div></div>
+    <div class="feature-card"><div class="feature-name">3. Mobilidade</div><div class="feature-desc">12m em Raiva + Polearm Master (inimigos que chegam: AO) + Shadar-kai teletransporte (9m + resistência total). Camellya define o espaço e pune quem viola a fronteira.</div></div>
+    <div class="feature-card"><div class="feature-name">4. Sobrevivência</div><div class="feature-desc">252 PV + Resistência física + Redução de dano 3 + Mordida que cura ao matar + Resistência total do Shadar-kai. A flor que não murcha mesmo perfurada.</div></div>
+  </div>
+  <div class="alert-box" style="margin-top:12px">
+    🌹 <strong>Turno ideal:</strong> Raiva (bônus) + Forma da Besta (garras) → GWM Ataque 1 + Ataque 2 → Garras como ação bônus (1d6+11). Crítico? GWM ação bônus = 4 ataques totais. Polearm Master pune qualquer aproximação. Shadar-kai teletransporta para posição ideal e garante resistência total por 1 turno quando pressionada.
   </div>
 </div>
 
-<div class="divider"><span class="divider-sym">🥀 ✦ 🥀</span></div>
+<div class="section">
+  <div class="section-title">Progressão por Nível</div>
+  <div class="level-timeline">
+    <div class="level-row milestone"><div class="level-num">Nv 1</div><div class="level-content"><div class="level-feature-name">Raiva (d12) · Defesa Sem Armadura · Resistência a Raiva</div><div class="level-note">2 usos de Raiva · CA 13 + CON sem armadura</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 2</div><div class="level-content"><div class="level-feature-name">Ataque Imprudente · Sentido de Perigo</div><div class="level-note">Vantagem em ataques · Vantagem em TRs Des vs ataques visíveis</div></div></div>
+    <div class="level-row milestone"><div class="level-num">Nv 3</div><div class="level-content"><div class="level-feature-name">Caminho da Besta · Forma da Besta</div><div class="level-note">Garras, mordida ou cauda em Raiva · +3m de velocidade</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 4</div><div class="level-content"><div class="level-feature-name">Talento: Great Weapon Master</div><div class="level-note">−5/+10 · Ação bônus ao derrubar ou crítico</div></div></div>
+    <div class="level-row milestone"><div class="level-num">Nv 5</div><div class="level-content"><div class="level-feature-name">Ataque Extra · Movimento de Raiva</div><div class="level-note">2 ataques base · Velocidade 12m em Raiva</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 6</div><div class="level-content"><div class="level-feature-name">Espíritos Bestiais — voo, nado ou terra</div><div class="level-note">Voo 6m ou vantagem vs derrubado em Raiva</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 7</div><div class="level-content"><div class="level-feature-name">Instinto Selvagem (Iniciativa) · Redução de Dano</div><div class="level-note">Pode Raiviar ao rolar iniciativa · −3 dano em ataques</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 8</div><div class="level-content"><div class="level-feature-name">Talento: Polearm Master</div><div class="level-note">AO quando inimigos entram no alcance · Ataque bônus com ponta</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 9</div><div class="level-content"><div class="level-feature-name">Crítico Brutal (d12 a d12)</div><div class="level-note">Crítico adiciona 1 dado de dano extra</div></div></div>
+    <div class="level-row milestone"><div class="level-num">Nv 10</div><div class="level-content"><div class="level-feature-name">Infundir a Besta — aliados causam +1d6 extra</div><div class="level-note">O grupo inteiro se torna perigoso quando Camellya está furiosa</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 11</div><div class="level-content"><div class="level-feature-name">Raiva Relentless</div><div class="level-note">Ao chegar a 0 PV: TR Con CD 10 → sobrevive com 1 PV</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 12</div><div class="level-content"><div class="level-feature-name">ASI: CON +2 (20→22)</div><div class="level-note">PV retroativos +40 · CA sobe de 18 para 19</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 13</div><div class="level-content"><div class="level-feature-name">Crítico Brutal ×2</div><div class="level-note">Crítico adiciona 2 dados extras de dano</div></div></div>
+    <div class="level-row milestone"><div class="level-num">Nv 14</div><div class="level-content"><div class="level-feature-name">Raiva da Besta Primordial — forma aprimorada completa</div><div class="level-note">Garras 2d8 · Mordida cura ao matar qualquer criatura · Cauda: 2 alvos</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 15</div><div class="level-content"><div class="level-feature-name">Raiva Persistente</div><div class="level-note">Ao falhar em TR de Con: Raiva não encerra automaticamente</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 16</div><div class="level-content"><div class="level-feature-name">Talento: Tough (+40 PV)</div><div class="level-note">252 PV totais · A pétala impossível de matar</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 17</div><div class="level-content"><div class="level-feature-name">Crítico Brutal ×3</div><div class="level-note">Crítico adiciona 3 dados extras de dano</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 18</div><div class="level-content"><div class="level-feature-name">Poder Indômito</div><div class="level-note">TRs de For e Con não mínimos — relança e usa o melhor</div></div></div>
+    <div class="level-row"><div class="level-num">Nv 19</div><div class="level-content"><div class="level-feature-name">ASI: FOR +2 (22→24)</div><div class="level-note">Força máxima com Primal Champion já aplicado</div></div></div>
+    <div class="level-row capstone"><div class="level-num">Nv 20</div><div class="level-content"><div class="level-feature-name">Primal Champion — FOR +4, CON +4 · Raiva Ilimitada</div><div class="level-note">A flor carmesim em pleno florescimento — sem fim</div></div></div>
+  </div>
+</div>
 
 <div class="section">
-  <h2 class="section-title">História do Personagem</h2>
-  <div class="backstory">
-    <p><em>Ela nasceu entre espinhos. E os espinhos aprenderam a ter medo dela.</em></p>
-    <p>Camellya não é uma pessoa com uma besta interior. Camellya <em>é</em> a besta — e a parte humana é o disfarce. Desde criança, a fronteira entre garota e predadora era tênue; quando os outros Shifters mudavam brevemente, ela lutava para <em>voltar</em>.</p>
-    <div class="bs-quote">"Eu não me transformo. Eu paro de fingir."</div>
-    <p>A primeira vez que matou — genuinamente, sem hesitação — sentiu algo que outros descreveriam como horror. Ela descreveria como <em>alívio</em>. A floresta entendeu. As árvores não julgam leões. Por que julgariam Camellya?</p>
-    <p>Encontrou propósito não em causas nobres, mas na sensação pura do combate. Cada luta é uma dança; cada inimigo, um parceiro temporário. Os companheiros aprenderam que Camellya é a arma mais confiável do grupo — desde que não tentem adestrá-la.</p>
-    <div class="bs-quote">"A beleza é o que sobra depois que a violência passa. E eu sou o que sobra depois de tudo."</div>
-    <p style="font-size:12px;color:var(--text-dim);margin-top:20px;font-style:italic">Onde Camellya caminha, flores de sangue nascem. Literalmente — os espinhos no chão parecem responder à sua presença. Ninguém sabe se é magia ou instinto. Talvez não exista diferença.</p>
+  <div class="section-title">Equipamento &amp; Proficiências</div>
+  <div class="equip-grid">
+    <div class="equip-card"><span class="equip-category">Armas</span><ul class="equip-list"><li>Machadão Duplo +2 — 2d6+11</li><li>Lança de Espinhos Bestiais</li><li>4 Machadinhas arremessáveis</li></ul></div>
+    <div class="equip-card"><span class="equip-category">Armadura</span><ul class="equip-list"><li>Sem armadura (CA 13+CON=19)</li><li>Pulseiras de metal torcido</li><li>Amuleto de espinho carmesim</li></ul></div>
+    <div class="equip-card"><span class="equip-category">Outros Itens</span><ul class="equip-list"><li>Roupas de batalha rasgadas (autênticas)</li><li>Kit de primeiros socorros</li><li>Diário de jardim carmesim</li><li>Flor carmesim seca (memória)</li></ul></div>
+    <div class="equip-card"><span class="equip-category">Proficiências</span><ul class="equip-list"><li>Armaduras: Leves, Médias, Escudos</li><li>Armas: Simples, Marciais</li><li>Ferramentas: Nenhuma</li><li>Idiomas: Comum, Élfico, Sombrio</li></ul></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Personalidade</div>
+  <div class="personality-grid">
+    <div class="personality-card"><span class="personality-label">Traços</span><p class="personality-text">Alternada entre uma ternura desconcertante e uma violência igualmente desconcertante. Abraça com força demais — literalmente e metaforicamente. Não entende gradação.</p></div>
+    <div class="personality-card"><span class="personality-label">Ideais</span><p class="personality-text">Existe para florescer. Se isso exige sangue, floresce no sangue. Se exige gentileza, floresce em gentileza. A distinção não é importante — a flor crimesim cresce de qualquer maneira.</p></div>
+    <div class="personality-card"><span class="personality-label">Ligações</span><p class="personality-text">Alguém que um dia apreciou a flor pela flor — não pelo espinho, não pelo perfume, mas pela existência dela. Camellya procura essa pessoa em cada rosto que encontra.</p></div>
+    <div class="personality-card"><span class="personality-label">Defeitos</span><p class="personality-text">Não consegue controlar a transição entre a ternura e a fúria. Uma palavra errada, um movimento brusco — e a flor carmesim se abre completamente. Há pessoas que não sobreviveram a isso.</p></div>
+  </div>
+</div>
+
+<div class="section"><div class="section-title">Tesouro</div><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;"><div class="combat-box"><span class="combat-label">PC</span><span class="combat-val" style="font-size:16px">—</span></div><div class="combat-box"><span class="combat-label">PP</span><span class="combat-val" style="font-size:16px">—</span></div><div class="combat-box"><span class="combat-label">PE</span><span class="combat-val" style="font-size:16px">—</span></div><div class="combat-box pv-box"><span class="combat-label">PO</span><span class="combat-val" style="font-size:16px">∞</span></div><div class="combat-box"><span class="combat-label">PL</span><span class="combat-val" style="font-size:16px">—</span></div></div></div>
+
+<div class="divider"><span class="divider-text">🌹 🌹 🌹</span></div>
+
+<div class="backstory-section">
+  <div style="font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--petal);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:20px;display:flex;align-items:center;gap:10px;"><span style="opacity:.7">🌹</span> História</div>
+  <div class="backstory-body">
+    <div class="bold-italic">Camellya. A Flor Carmesim. A que abraça até partir e floresce no vermelho.</div>
+    <p>Existe uma certa lógica na flor carmesim: ela é vermelha porque sangra, e sangra porque cresceu entre pedras. Camellya não escolheu essa metáfora — ela simplesmente a viveu.</p>
+    <span class="bold-italic">O Florescimento — Quando a Besta Acordou</span>
+    <p>Havia uma pessoa que a regava. A deixava crescer. Depois foi embora — ou foi levado. Camellya não tem certeza. O que sabe é que a partir desse ponto, a flor que crescia em cuidado passou a crescer em determinação. A besta que dormia na raiz acordou.</p>
+    <div class="dialog">"Você vai sentir meu espinho antes de entender que sou uma flor. Isso é minha culpa. Mas não é algo que vou mudar."</div>
+    <p style="color:var(--text-dim);font-size:12px;margin-top:20px;font-style:italic">Ela floresce em batalha. E às vezes, brevemente, quando encontra alguém que não tem medo do espinho, floresce em algo mais suave. Por enquanto, apenas ela sabe distinguir os dois.</p>
   </div>
 </div>
 
 </div>
-<div class="footer"><p>D&D 5e · Wuthering Waves / Kuro Games · Bárbaro · Caminho da Besta · Nível 20</p></div>
+<div class="footer">
+  <p>D&D 5e — Wizards of the Coast &nbsp;·&nbsp; Personagem: Wuthering Waves / Kuro Games &nbsp;·&nbsp; Mecânicas: WotC</p>
+  <p style="margin-top:4px">Bárbaro · Caminho da Besta · Shadar-kai · Nível 20 · Sem Multiclasse</p>
+</div>
 
 <script>
-const bloodBg=document.getElementById('bloodBg');
-for(let i=0;i<20;i++){const d=document.createElement('div');d.className='blooddrop';d.style.left=Math.random()*100+'%';d.style.height=(8+Math.random()*20)+'px';d.style.width=(1+Math.random()*2)+'px';d.style.animationDuration=(4+Math.random()*8)+'s';d.style.animationDelay=(Math.random()*10)+'s';d.style.background=Math.random()>0.5?'#dc143c':'#8b0000';bloodBg.appendChild(d);}
+const petalBg = document.getElementById('petalBg');
+const petals = ['🌹','✿','❀','✾','·','*'];
+for (let i = 0; i < 20; i++) {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  p.textContent = petals[Math.floor(Math.random() * petals.length)];
+  p.style.left = Math.random() * 100 + '%';
+  p.style.animationDuration = (12 + Math.random() * 20) + 's';
+  p.style.animationDelay = (-Math.random() * 20) + 's';
+  p.style.fontSize = (8 + Math.random() * 12) + 'px';
+  petalBg.appendChild(p);
+}
 </script>
 </body>
 </html>

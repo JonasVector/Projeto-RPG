@@ -1,7 +1,29 @@
 {
-  "metadata": { "name": "Cantarella", "title": "A Lâmina Silenciosa", "origin": "Wuthering Waves", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
-  "identity": { "race": "Shadar-kai (Elfo da Sombra)", "class": "Patrulheiro", "subclass": "Perseguidor Sombrio", "background": "Espiã", "alignment": "Leal Mau", "languages": ["Comum", "Élfico", "Sombrio"] },
-  "attributes": { "str": { "score": 10, "mod": 0 }, "dex": { "score": 20, "mod": 5 }, "con": { "score": 14, "mod": 2 }, "int": { "score": 12, "mod": 1 }, "wis": { "score": 20, "mod": 5 }, "cha": { "score": 8, "mod": -1 } },
-  "combat": { "ac": 17, "hp": 182, "initiative": "+5", "speed": "9m", "proficiencyBonus": "+6", "spellDC": 19, "spellAttack": "+11" },
-  "tags": ["patrulheiro", "perseguidor-sombrio", "shadar-kai", "furtividade", "dps", "nível-20", "wuthering-waves"]
+  "metadata": {"name":"Cantarella","title":"A Dançarina Venenosa","origin":"Wuthering Waves","version":"2.0","system":"D&D 5e","level":20,"created":"2026-04-10","language":"pt-BR"},
+  "identity": {"race":"Eladrin (Verão)","class":"Ladino","subclass":"Assassino","background":"Espiã","alignment":"Neutro Mau","languages":["Comum","Élfico","Thieves Cant"],"xp":"355.000"},
+  "attributes": {"str":{"score":10,"mod":0},"dex":{"score":20,"mod":5},"con":{"score":16,"mod":3},"int":{"score":14,"mod":2},"wis":{"score":12,"mod":1},"cha":{"score":16,"mod":3}},
+  "combat": {"ac":18,"acDescription":"Couro +2 (14) + Des (5) = CA 18","hp":152,"hitDice":"20d8","initiative":"+11","speed":"9m","proficiencyBonus":"+6","sneakAttack":"10d6"},
+  "features": {
+    "subclass": [
+      {"name":"Assassinar","level":3,"description":"Na 1ª rodada, vantagem em ataques. Crítico automático em oponentes que não agiram ainda."},
+      {"name":"Infiltração","level":9,"description":"Cria identidades falsas permanentes. 7 identidades ativas."},
+      {"name":"Imposter","level":13,"description":"Duplica voz, escrita e gestos de qualquer criatura após 3h."},
+      {"name":"Death Strike","level":17,"description":"Assassinar ativo: TR Con CD 19 ou alvo sofre dobro do dano total."}
+    ],
+    "class": [
+      {"name":"Ataque Furtivo (10d6)","level":20,"description":"10d6 com vantagem ou aliado adjacente."},
+      {"name":"Evasão","level":7,"description":"TR Des sucesso = 0 dano. Falha = metade."},
+      {"name":"Espírito Esquivo","level":15,"description":"Vantagem em todos os TRs de Destreza."},
+      {"name":"Golpe Fortuito","level":20,"description":"1×/descanso curto: erro vira acerto."}
+    ],
+    "race": [{"name":"Fey Step (Verão)","description":"Teletransporte 9m. Verão: Charm TR Sab CD 13. 1×/descanso curto."}],
+    "feats": [
+      {"name":"Alert","level":4,"description":"+5 Iniciativa. Não pode ser surpreendida."},
+      {"name":"Lucky","level":8,"description":"3 sortes/descanso longo. Relança qualquer d20."}
+    ]
+  },
+  "equipment": ["4 Adagas Venenosas +2","Couro +2","Kit de Veneno Mestre ×3","12 doses Veneno Cantarella (4d10/rodada)","6 doses Veneno Paralisante","7 sets de disfarce","Documentos falsos certificados"],
+  "personality": {"traits":"A performance é constante. Cada sorriso é calculado, cada parede ensaiada.","ideals":"Beleza e eficiência são a mesma coisa. Um assassinato perfeito é obra de arte.","bonds":"A pessoa que viu a dançarina real por baixo das máscaras.","flaws":"Não consegue ser casual. Não há coreografia para vulnerabilidade."},
+  "treasury": {"pc":0,"pp":0,"pe":0,"po":"∞","pl":0},
+  "tags": ["ladino","assassino","eladrin","veneno","furtividade","sem-multiclasse","nível-20","wuthering-waves"]
 }

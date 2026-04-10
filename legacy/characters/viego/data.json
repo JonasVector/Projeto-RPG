@@ -1,7 +1,47 @@
 {
-  "metadata": { "name": "Viego", "title": "O Rei Arruinado", "origin": "League of Legends", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
-  "identity": { "race": "Dhampir", "class": "Paladino", "subclass": "Oathbreaker", "background": "Nobre", "alignment": "Neutro Mau" },
-  "attributes": { "str": { "score": 20, "mod": 5 }, "dex": { "score": 10, "mod": 0 }, "con": { "score": 16, "mod": 3 }, "int": { "score": 8, "mod": -1 }, "wis": { "score": 10, "mod": 0 }, "cha": { "score": 20, "mod": 5 } },
-  "combat": { "ac": 20, "hp": 204, "speed": "10,5m", "proficiencyBonus": "+6", "spellDC": 19 },
-  "tags": ["paladino", "oathbreaker", "dhampir", "melee", "necromancia", "nível-20", "league-of-legends"]
+  "metadata": {"name":"Viego","title":"O Rei Arruinado","origin":"League of Legends","version":"2.0","system":"D&D 5e","level":20,"created":"2026-04-10","language":"pt-BR"},
+  "identity": {"race":"Revenante","class":"Bruxo","subclass":"Grande Antigo","background":"Nobre","alignment":"Caótico Mau","languages":["Comum","Sombrio","Profundo"],"xp":"355.000"},
+  "attributes": {"str":{"score":18,"mod":4},"dex":{"score":14,"mod":2},"con":{"score":16,"mod":3},"int":{"score":10,"mod":0},"wis":{"score":10,"mod":0},"cha":{"score":20,"mod":5}},
+  "combat": {"ac":16,"hp":154,"hitDice":"20d8","initiative":"+2","speed":"9m","proficiencyBonus":"+6","spellDC":19,"spellAttack":"+11","spellAbility":"Carisma","pactMagic":"4×5° Círculo"},
+  "features": {
+    "subclass": [
+      {"name":"Mente Expandida","level":1,"description":"Telepatia 36m. Lê pensamentos em 9m (TR Sab CD 19)."},
+      {"name":"Thought Shield","level":6,"description":"Resistência psíquica. Reflete dano psíquico de volta ao atacante."},
+      {"name":"Create Thrall","level":14,"description":"Toca incapacitado: encantado permanente, obedece comandos."},
+      {"name":"Eldritch Master","level":20,"description":"Recupera todos os slots Pact Magic em 1 min. 1×/descanso longo."}
+    ],
+    "class": [
+      {"name":"Dádiva do Pacto — Lâmina","level":3,"description":"Espada da Névoa invocável como ação bônus."},
+      {"name":"Lifedrinker","level":7,"description":"+CAR (+5) à arma do Pacto."}
+    ],
+    "invocations": [
+      {"name":"Agonizing Blast","description":"+5/raio EB"},
+      {"name":"Grasp of Hadar","description":"Atrai alvo 1,5m"},
+      {"name":"Lifedrinker","description":"+CAR à Pact Blade"},
+      {"name":"Voice of Chain Master","description":"Fala pelo familiar"},
+      {"name":"Shroud of Shadow","description":"Invisível à vontade"},
+      {"name":"Sign of Ill Omen","description":"Bestow Curse 1×/longo"},
+      {"name":"Tomb of Levistus","description":"Escudo de gelo como reação"},
+      {"name":"Eldritch Mind","description":"Vantagem em Con para concentração"}
+    ]
+  },
+  "spells": {
+    "ability":"Carisma","dc":19,"attack":"+11","class":"Bruxo","slots":"4×5°",
+    "cantrips": [{"name":"Eldritch Blast","notes":"4×1d10+5 · Grasp"},{"name":"Toll the Dead","notes":"4d12 necrótico · TR Sab"}],
+    "known": [
+      {"name":"Hex","level":1,"notes":"+1d6 necrótico/ataque · 8h concentração"},
+      {"name":"Hold Monster","level":5,"notes":"TR Sab CD 19 · Paralisado · Crítico auto"},
+      {"name":"Hunger of Hadar","level":3,"notes":"Escuridão · 2d6 frio + 2d6 ácido/turno"},
+      {"name":"Synaptic Static","level":5,"notes":"8d6 psíquico · −1d6 ataques e TRs"},
+      {"name":"Counterspell","level":3,"notes":"Reação · Auto-cancel ≤3°"},
+      {"name":"Dimension Door","level":4,"notes":"Teleporte 152m · Leva aliado"}
+    ],
+    "mysticArcanum": [
+      {"level":6,"name":"Mass Suggestion"},{"level":7,"name":"Crown of Stars"},
+      {"level":8,"name":"Dominate Monster"},{"level":9,"name":"Psychic Scream"}
+    ]
+  },
+  "personality": {"traits":"Não entende 'não'. Não aceita 'impossível'. Para Viego, 'foi' não existe.","ideals":"Amor é absoluto. Um amor que aceita limitações não é amor real.","bonds":"Isolde. A esposa morta que foi o início e o fim de tudo.","flaws":"Incapaz de aceitar perda permanente."},
+  "treasury": {"pc":0,"pp":0,"pe":0,"po":"∞","pl":0},
+  "tags": ["bruxo","grande-antigo","revenante","controle","névoa","lol","sem-multiclasse","nível-20"]
 }

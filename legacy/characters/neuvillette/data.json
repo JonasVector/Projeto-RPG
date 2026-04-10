@@ -1,11 +1,64 @@
 {
-  "metadata": { "name": "Neuvillette", "title": "Soberano Dragão das Águas", "origin": "Genshin Impact", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
-  "identity": { "race": "Linhagem Personalizada (Dragão Soberano)", "class": "Feiticeiro", "subclass": "Linhagem Dracônica (Frio)", "background": "Magistrado", "alignment": "Leal Neutro", "languages": ["Comum", "Dracônico", "Primordial"] },
-  "attributes": { "str": { "score": 8, "mod": -1 }, "dex": { "score": 10, "mod": 0 }, "con": { "score": 16, "mod": 3 }, "int": { "score": 14, "mod": 2 }, "wis": { "score": 12, "mod": 1 }, "cha": { "score": 20, "mod": 5 } },
-  "combat": { "ac": 18, "acDescription": "Dracônico (13+Car 5)", "hp": 163, "hitDice": "20d6", "initiative": "+0", "speed": "9m (Voo 9m Nv14)", "proficiencyBonus": "+6", "spellDC": 19, "spellAttack": "+11", "sorceryPoints": 20 },
-  "savingThrows": [ { "name": "Constituição", "value": 9, "proficient": true }, { "name": "Carisma", "value": 11, "proficient": true } ],
-  "features": { "subclass": [ { "name": "Resiliência Dracônica", "level": 1 }, { "name": "Afinidade Elemental (Frio)", "level": 6 }, { "name": "Asas de Dragão", "level": 14 }, { "name": "Presença Dracônica", "level": 18 } ], "metamagic": [ "Magia Gêmea", "Magia Acelerada", "Magia Sutil", "Magia Potente" ] },
-  "spells": { "cantrips": [ { "name": "Ray of Frost", "damage": "4d8+5 frio" } ], "known": [ { "name": "Shield", "level": 1 }, { "name": "Cone of Cold", "level": 5 }, { "name": "Counterspell", "level": 3 }, { "name": "Meteor Swarm", "level": 9 }, { "name": "Wish", "level": 9 } ] },
-  "personality": { "traits": "Formal, preciso, emocionalmente contido.", "ideals": "Justiça acima da lei.", "bonds": "Fontaine e os Dragões Soberanos.", "flaws": "Dificuldade extrema com emoções humanas." },
-  "tags": ["feiticeiro", "dracônico", "frio", "controle", "dano", "nível-20", "genshin-impact"]
+  "metadata": { "name": "Neuvillette", "title": "O Iudex — A Última Wyrm das Águas", "origin": "Genshin Impact", "version": "2.0", "system": "D&D 5e", "level": 20, "created": "2026-04-10", "language": "pt-BR" },
+  "identity": { "race": "Yuan-ti Pureblood", "class": "Feiticeiro", "subclass": "Origem Dracônica (Água/Frio)", "background": "Magistrado", "alignment": "Leal Neutro", "languages": ["Comum", "Aquan", "Dracônico"], "xp": "355.000" },
+  "attributes": { "str": {"score":10,"mod":0}, "dex": {"score":10,"mod":0}, "con": {"score":20,"mod":5}, "int": {"score":16,"mod":3}, "wis": {"score":14,"mod":2}, "cha": {"score":20,"mod":5} },
+  "combat": { "ac": 18, "acDescription": "Mage Armor natural (13 + Con 5 = 18 sem armadura)", "hp": 204, "hitDice": "20d6", "initiative": "+0", "speed": "9m", "proficiencyBonus": "+6", "spellDC": 19, "spellAttack": "+11", "spellAbility": "Carisma", "sorceryPoints": 20 },
+  "savingThrows": [
+    {"name":"Força","value":0,"proficient":false}, {"name":"Destreza","value":0,"proficient":false},
+    {"name":"Constituição","value":11,"proficient":true}, {"name":"Inteligência","value":3,"proficient":false},
+    {"name":"Sabedoria","value":2,"proficient":false}, {"name":"Carisma","value":11,"proficient":true}
+  ],
+  "features": {
+    "subclass": [
+      {"name":"Resiliência Dracônica","level":1,"description":"+1 PV/nível feiticeiro. CA natural 13+Des sem armadura."},
+      {"name":"Afinidade Elemental (Frio)","level":6,"description":"+5 dano em magias de frio. Gasta 1 SP: resistência a frio 1h."},
+      {"name":"Dragon Wings","level":14,"description":"Voo 9m como ação bônus. Sem concentração."},
+      {"name":"Draconic Presence","level":18,"description":"5 SP: aura 18m, TR Sab CD 19 ou encantado/amedrontado. Sem concentração."}
+    ],
+    "metamagic": [
+      {"name":"Empowered Spell","cost":"1 SP","description":"Relança até 5 dados de dano, usa novos resultados."},
+      {"name":"Twinned Spell","cost":"1 SP/nível","description":"Duplica magia de alvo único para dois alvos."},
+      {"name":"Quickened Spell","cost":"2 SP","description":"Lança magia de ação como ação bônus."},
+      {"name":"Subtle Spell","cost":"1 SP","description":"Conjura sem componentes verbais ou somáticos."}
+    ],
+    "race": [
+      {"name":"Magic Resistance","description":"Vantagem em todos os TRs contra magias e efeitos mágicos."},
+      {"name":"Yuan-ti Purebloods","description":"Imunidade a veneno, encantamento e adormecimento mágico."}
+    ],
+    "feats": [
+      {"name":"Resilient (Con)","level":4,"description":"+1 Con. Proficiência em TRs de Constituição."},
+      {"name":"War Caster","level":8,"description":"Vantagem em Con para concentração. Magia como AO."},
+      {"name":"Elemental Adept (Frio)","level":12,"description":"Magias de frio ignoram resistência. 1s e 2s tratados como 3."}
+    ]
+  },
+  "spells": {
+    "ability": "Carisma", "dc": 19, "attack": "+11", "class": "Feiticeiro", "slots": "4/3/3/3/3/2/2/1/1",
+    "cantrips": [
+      {"name":"Ray of Frost","notes":"4d8+5 frio · Vel. −3m · Ataque +11"},
+      {"name":"Chill Touch","notes":"4d8 necrótico · Sem cura 1 turno · Ataque +11"},
+      {"name":"Shape Water","notes":"Controla água à vontade · Solidifica"},
+      {"name":"Prestidigitação","notes":"Efeitos frios menores à vontade"}
+    ],
+    "known": [
+      {"name":"Cone of Cold","level":5,"notes":"8d8+5 frio · Empowered · Twinned · Ignora resistência"},
+      {"name":"Slow","level":3,"notes":"6 criaturas · Vel÷2 −2CA −Rea/Bônus · 1 min"},
+      {"name":"Ice Storm","level":4,"notes":"2d8+5 frio + 4d6 concussão · Terreno difícil"},
+      {"name":"Hold Monster","level":5,"notes":"TR Sab CD 19 · Paralisado · Críticos auto"},
+      {"name":"Haste","level":3,"notes":"Vel×2 +2CA vantagem Des ação extra · Twinned"},
+      {"name":"Counterspell","level":3,"notes":"Reação · Auto-cancel ≤3°"},
+      {"name":"Wall of Ice","level":6,"notes":"10 painéis · 10d6 frio ao atravessar"},
+      {"name":"Prismatic Spray","level":7,"notes":"8 efeitos aleatórios · 10d6 vários tipos"},
+      {"name":"Power Word Stun","level":8,"notes":"Atordoado se ≤150 PV · TR Con/turno"},
+      {"name":"Wish","level":9,"notes":"Desejo ilimitado · Duplica até 8°"}
+    ]
+  },
+  "personality": {
+    "traits": "Fala com precisão cirúrgica. Nunca eleva a voz. Há uma quietude nele que é silêncio de montanha.",
+    "ideals": "A lei não é perfeita, mas é o que impede o caos. Quando a lei é injusta, seu dever é corrigi-la por dentro.",
+    "bonds": "Fontaine e Furina. Séculos de coexistência — e arrependimento por não ter interferido quando podia.",
+    "flaws": "Resolve tudo com a lei mesmo quando compaixão seria mais eficiente. Quando a lei falha, fica genuinamente sem saber o que fazer."
+  },
+  "appearance": { "age": "Aparente 35 (milênios real)", "height": "1,88m", "eyes": "Azul-prata, pupila reptiliana", "hair": "Branco-prateado, longo", "mark": "Escamas azul-prata aparecem sob emoção", "type": "Yuan-ti Pureblood (disfarce de dragão)" },
+  "treasury": {"pc":0,"pp":0,"pe":0,"po":"∞","pl":0},
+  "tags": ["feiticeiro","dracônico","água","frio","controle","yuan-ti","genshin","fontaine","nível-20","sem-multiclasse"]
 }

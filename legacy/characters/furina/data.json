@@ -1,36 +1,38 @@
 {
   "metadata": {
-    "name": "Furina",
-    "title": "Archon Hydro — Divindade das Águas",
+    "name": "Furina / Focalors",
+    "title": "A Arquidivina da Água",
     "origin": "Genshin Impact",
-    "version": "1.0",
+    "version": "2.0",
     "system": "D&D 5e",
     "level": 20,
     "created": "2026-04-10",
     "language": "pt-BR"
   },
   "identity": {
-    "race": "Genasi da Água",
+    "race": "Eladrin (Outono)",
     "class": "Bardo",
     "subclass": "Colégio da Eloquência",
-    "background": "Nobre",
-    "alignment": "Caótico Neutro",
-    "languages": ["Comum", "Primordial (Aquan)", "Élfico"]
+    "background": "Artista",
+    "alignment": "Neutro Bom",
+    "languages": ["Comum", "Élfico", "Aquan"],
+    "xp": "355.000"
   },
   "attributes": {
     "str": { "score": 8, "mod": -1 },
-    "dex": { "score": 14, "mod": 2 },
+    "dex": { "score": 16, "mod": 3 },
     "con": { "score": 16, "mod": 3 },
     "int": { "score": 12, "mod": 1 },
-    "wis": { "score": 10, "mod": 0 },
+    "wis": { "score": 12, "mod": 1 },
     "cha": { "score": 20, "mod": 5 }
   },
   "combat": {
     "ac": 15,
+    "acDescription": "Couro Batido +1 (12) + Des (3) = CA 15",
     "hp": 163,
     "hitDice": "20d8",
-    "initiative": "+2",
-    "speed": "9m (+ Natação 9m)",
+    "initiative": "+3",
+    "speed": "9m",
     "proficiencyBonus": "+6",
     "spellDC": 19,
     "spellAttack": "+11",
@@ -38,40 +40,108 @@
   },
   "savingThrows": [
     { "name": "Força", "value": -1, "proficient": false },
-    { "name": "Destreza", "value": 8, "proficient": true },
+    { "name": "Destreza", "value": 9, "proficient": true },
     { "name": "Constituição", "value": 3, "proficient": false },
     { "name": "Inteligência", "value": 1, "proficient": false },
-    { "name": "Sabedoria", "value": 0, "proficient": false },
+    { "name": "Sabedoria", "value": 1, "proficient": false },
     { "name": "Carisma", "value": 11, "proficient": true }
+  ],
+  "skills": [
+    { "name": "Acrobacia", "value": 3, "proficient": false, "expertise": false, "attr": "Des" },
+    { "name": "Arcanismo", "value": 1, "proficient": false, "expertise": false, "attr": "Int" },
+    { "name": "Atuação", "value": 17, "proficient": true, "expertise": true, "attr": "Car" },
+    { "name": "Enganação", "value": 11, "proficient": true, "expertise": false, "attr": "Car" },
+    { "name": "Furtividade", "value": 3, "proficient": false, "expertise": false, "attr": "Des" },
+    { "name": "História", "value": 7, "proficient": true, "expertise": false, "attr": "Int" },
+    { "name": "Intuição", "value": 7, "proficient": true, "expertise": false, "attr": "Sab" },
+    { "name": "Percepção", "value": 7, "proficient": true, "expertise": false, "attr": "Sab" },
+    { "name": "Persuasão", "value": 17, "proficient": true, "expertise": true, "attr": "Car" },
+    { "name": "Religião", "value": 7, "proficient": true, "expertise": false, "attr": "Int" }
+  ],
+  "attacks": [
+    { "name": "Zombaria Cruel", "bonus": "—", "damage": "4d4 Psíquico", "range": "18m", "notes": "TR Sab CD 19 · Desvantagem no próximo ataque" },
+    { "name": "Rapier (Estoque)", "bonus": "+9", "damage": "1d8+3 Perfurante", "range": "Melee", "notes": "Acuidade · Des mod" }
   ],
   "features": {
     "subclass": [
-      { "name": "Eloquência Universal", "level": 3, "description": "Mínimo 10 em Persuasão e Enganação." },
-      { "name": "Palavras Desencorajadoras", "level": 3, "description": "Subtrai dado de Inspiração do TR/ataque inimigo." },
-      { "name": "Discurso Irrenunciável", "level": 6, "description": "Encantamento/Ilusão tira reação e -10 velocidade." },
-      { "name": "Inspiração Infecciosa", "level": 14, "description": "Inspiração usada com sucesso gera dado gratuito para outro aliado." }
+      { "name": "Silver Tongue", "level": 3, "description": "Resultado de dado < 10 em Persuasão/Enganação é tratado como 10." },
+      { "name": "Unsettling Words", "level": 3, "description": "Ação bônus — gasta 1 Inspiração: alvo subtrai o dado de seu próximo TR." },
+      { "name": "Unfailing Inspiration", "level": 6, "description": "Aliado que falha ao usar inspiração não perde o dado." },
+      { "name": "Universal Speech", "level": 6, "description": "Gasta 1 inspiração: 5 criaturas entendem Furina por 10 min." },
+      { "name": "Infectious Inspiration", "level": 14, "description": "Reação quando inspiração usada com sucesso: outro aliado em 18m recebe dado gratuito." },
+      { "name": "Inspiração Superior", "level": 20, "description": "Recupera 1 dado de inspiração ao rolar iniciativa se estiver sem." }
+    ],
+    "class": [
+      { "name": "Inspiração Bárdica (d12)", "level": 1, "description": "Concede d12 a aliado para ataques, habilidades ou TRs. 5 usos/descanso curto." },
+      { "name": "Jack of All Trades", "level": 2, "description": "+3 em todos os testes sem proficiência." },
+      { "name": "Canção de Descanso (d12)", "level": 2, "description": "Aliados recuperam +d12 extras em descanso curto." },
+      { "name": "Expertise", "level": 3, "description": "Atuação +17, Persuasão +17, Enganação, Percepção." },
+      { "name": "Segredos Mágicos", "level": 10, "description": "6 magias de qualquer classe: Dissonant Whispers, Counterspell, Healing Spirit, Forcecage, Foresight, Power Word Heal." }
+    ],
+    "race": [
+      { "name": "Fey Step (Outono)", "description": "Teletransporte 9m (ação bônus). 1×/descanso curto. Outono: criatura visível TR Sab CD 19 ou encantada até o fim do próximo turno." },
+      { "name": "Fey Ancestry", "description": "Vantagem em TR contra encantamento. Não pode ser magicamente posto para dormir." }
+    ],
+    "feats": [
+      { "name": "Performer", "level": 4, "description": "+1 CAR. Reconhecida como performer." },
+      { "name": "Lucky", "level": 12, "description": "3 pontos de sorte/descanso longo. Relança d20 em qualquer rolagem." },
+      { "name": "War Caster", "level": 16, "description": "Vantagem em Con para concentração. Magia como ataque de oportunidade." }
     ]
   },
   "spells": {
+    "ability": "Carisma",
+    "dc": 19,
+    "attack": "+11",
+    "class": "Bardo",
+    "slots": "4/3/3/3/3/2/2/1/1",
     "cantrips": [
-      { "name": "Zombaria Cruel", "damage": "4d4 psíquico" },
-      { "name": "Shape Water", "notes": "Truque racial" }
+      { "name": "Zombaria Cruel", "notes": "4d4 psíquico · TR Sab CD 19 · Desvantagem no ataque" },
+      { "name": "Prestidigitação", "notes": "Efeitos menores à vontade" },
+      { "name": "Vicious Mockery", "notes": "4d4 psíquico · variante de Zombaria Cruel" }
     ],
     "known": [
-      { "name": "Suggestion", "level": 2 },
-      { "name": "Hypnotic Pattern", "level": 3 },
-      { "name": "Tidal Wave", "level": 3, "source": "Segredo Mágico" },
-      { "name": "Otto's Irresistible Dance", "level": 6 },
-      { "name": "Mass Suggestion", "level": 6 },
-      { "name": "Foresight", "level": 9 },
-      { "name": "Power Word Kill", "level": 9, "source": "Segredo Mágico" }
+      { "name": "Charm Person", "level": 1, "notes": "TR Sab CD 19 · 1h · Múltiplos com slot maior" },
+      { "name": "Healing Word", "level": 1, "notes": "Ação bônus · 1d4+5 PV · Escala com slot" },
+      { "name": "Hypnotic Pattern", "level": 3, "notes": "TR Sab CD 19 · Encantado + Incapacitado · Cubo 9m" },
+      { "name": "Greater Invisibility", "level": 4, "notes": "Invisibilidade total · 1 min" },
+      { "name": "Mass Cure Wounds", "level": 5, "notes": "5d8+5 PV · Até 6 aliados · Raio 9m" },
+      { "name": "Otto's Irresistible Dance", "level": 6, "notes": "Sem TR inicial · Velocidade 0 · 1 min" },
+      { "name": "Dominate Person", "level": 5, "notes": "TR Sab CD 19 · Controle total · 1 min" }
+    ],
+    "secretSpells": [
+      { "name": "Dissonant Whispers", "level": 1, "source": "Segredo Mágico", "notes": "3d6 psíquico · Fuga forçada + AO" },
+      { "name": "Counterspell", "level": 3, "source": "Segredo Mágico", "notes": "Reação · Auto-cancel ≤3°" },
+      { "name": "Healing Spirit", "level": 2, "source": "Segredo Mágico", "notes": "1d6 PV/turno · Até 25 usos" },
+      { "name": "Forcecage", "level": 7, "source": "Segredo Mágico", "notes": "Sem concentração · Sem TR · 1h" },
+      { "name": "Foresight", "level": 9, "source": "Segredo Mágico", "notes": "8h · Vantagem em tudo · Sem concentração" }
     ]
   },
+  "equipment": [
+    "Estoque (Rapier) — 1d8+3 Perfurante",
+    "Couro Batido +1",
+    "Foco Arcano (bastão aquático)",
+    "Trajes de corte elaborados",
+    "Flauta d'água encantada",
+    "Óculos monocle de ouro",
+    "Caderno de sentenças",
+    "Selos de jurisdição de Fontaine"
+  ],
   "personality": {
-    "traits": "Dramática ao extremo. Cada momento é um ato de sua ópera.",
-    "ideals": "A justiça é performance. A ordem é mantida pela atuação.",
-    "bonds": "Fontaine e seu povo. A promessa que custou séculos.",
-    "flaws": "Terror de ser descoberta como fraude."
+    "traits": "Dramática ao extremo. Quando não há plateia, existe uma quietude melancólica. Furina coleciona máscaras e usa todas com maestria.",
+    "ideals": "A verdade deve ser dita em voz alta, com eloquência e precisão. Ela julgou a si mesma e sobreviveu — pode julgar qualquer coisa.",
+    "bonds": "Fontaine e seu povo — protegidos por séculos atrás de uma performance que custou tudo. O único júri cujo veredito ela anseia.",
+    "flaws": "A persona pública é tão convincente que ela própria às vezes esquece quem é. Quando alguém perfura a performance, ela entra em pânico."
   },
-  "tags": ["bardo", "eloquência", "genasi-água", "controle", "social", "nível-20", "genshin-impact"]
+  "appearance": {
+    "age": "Aparente 17 (centenas real)",
+    "height": "1,58m",
+    "eyes": "Azul aquático",
+    "hair": "Espumante, bi-color (azul-branco)",
+    "skin": "Muito clara",
+    "mark": "Chapéu judicial alto característico",
+    "type": "Eladrin",
+    "season": "Outono"
+  },
+  "treasury": { "pc": 0, "pp": 0, "pe": 0, "po": "∞", "pl": 0 },
+  "tags": ["bardo", "eloquência", "eladrin", "outono", "suporte", "controle", "judicial", "fontaine", "genshin", "nível-20", "sem-multiclasse"]
 }

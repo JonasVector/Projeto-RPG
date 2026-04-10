@@ -1,7 +1,48 @@
 {
-  "metadata": { "name": "Nasus", "title": "O Curador do Deserto", "origin": "League of Legends", "version": "1.0", "system": "D&D 5e", "level": 20, "language": "pt-BR" },
-  "identity": { "race": "Loxodon", "class": "Mago", "subclass": "Escola de Necromancia", "background": "Sábio", "alignment": "Leal Neutro" },
-  "attributes": { "str": { "score": 10, "mod": 0 }, "dex": { "score": 10, "mod": 0 }, "con": { "score": 16, "mod": 3 }, "int": { "score": 20, "mod": 5 }, "wis": { "score": 16, "mod": 3 }, "cha": { "score": 8, "mod": -1 } },
-  "combat": { "ac": 15, "hp": 142, "speed": "9m", "proficiencyBonus": "+6", "spellDC": 19, "spellAttack": "+11" },
-  "tags": ["mago", "necromancia", "loxodon", "suporte", "controle", "nível-20", "league-of-legends"]
+  "metadata": {"name":"Nasus","title":"O Guardião da Areia","origin":"League of Legends","version":"2.0","system":"D&D 5e","level":20,"created":"2026-04-10","language":"pt-BR"},
+  "identity": {"race":"Anubita (Leonar)","class":"Clérigo","subclass":"Domínio do Conhecimento","background":"Acadêmico","alignment":"Legal Neutro","languages":["Todos os idiomas mortais"],"xp":"355.000 + Eterno"},
+  "attributes": {"str":{"score":20,"mod":5},"dex":{"score":10,"mod":0},"con":{"score":20,"mod":5},"int":{"score":18,"mod":4},"wis":{"score":20,"mod":5},"cha":{"score":14,"mod":2}},
+  "combat": {"ac":20,"acDescription":"Plate (18) + Escudo (+2) = CA 20","hp":200,"hitDice":"20d8","initiative":"+0","speed":"9m","proficiencyBonus":"+6","spellDC":19,"spellAttack":"+11","spellAbility":"Sabedoria","channelDivinity":"3×/descanso curto"},
+  "features": {
+    "subclass": [
+      {"name":"Knowledge of the Ages","level":2,"description":"Canal Divino: proficiência temporária em qualquer perícia ou ferramenta por 10 min."},
+      {"name":"Read Thoughts","level":2,"description":"Canal Divino: lê pensamentos de criatura em 18m. TR Sab CD 19 ou acessa."},
+      {"name":"Visions of the Past","level":17,"description":"Concentração 1 min: visões de eventos nos últimos dias em local ou objeto."}
+    ],
+    "class": [
+      {"name":"Siphoning Strike","description":"Cajado: +1d8 base bônus por cada criatura morta em combate enquanto usa. Escala sem limite."},
+      {"name":"Wither","description":"Canal Divino: TR Con CD 19 → velocidade ÷2, CA −3 por 1 min."},
+      {"name":"Expertise em Conhecimento","level":1,"description":"Expertise em Arcano, História, Natureza e Religião (+17 total)."},
+      {"name":"Intervenção Divina Automática","level":20,"description":"Funciona sempre. 1×/descanso longo."}
+    ],
+    "race": [
+      {"name":"Visão no Escuro","description":"18m em escuridão como luz fraca."},
+      {"name":"Resistência Necrótica","description":"Resistência a dano necrótico."},
+      {"name":"Herança Anubita","description":"+FOR, +CON, +INT por raça."}
+    ],
+    "feats": [
+      {"name":"War Caster","level":4,"description":"Vantagem Con para concentração. Magia como AO."},
+      {"name":"Observant","level":8,"description":"+5 Percepção Passiva (21 total). Leitura labial."}
+    ]
+  },
+  "spells": {
+    "ability":"Sabedoria","dc":19,"attack":"+11","class":"Clérigo",
+    "cantrips": [
+      {"name":"Sacred Flame","notes":"4d8 radiante · TR Des CD 19"},
+      {"name":"Toll the Dead","notes":"4d12 necrótico · TR Sab · Alvo ferido"},
+      {"name":"Guidance","notes":"+1d4 em teste · Concentração"}
+    ],
+    "prepared": [
+      {"name":"Spirit Guardians","level":3,"notes":"5d8 rad/necr · Vel÷2 · Raio 4,5m · 10 min conc."},
+      {"name":"Harm","level":6,"notes":"14d6 necrótico · Reduz PV máx · TR Con"},
+      {"name":"Heal","level":6,"notes":"70 PV instantâneos · Encerra cegueira e surdez"},
+      {"name":"Astral Projection","level":9,"notes":"Até 8 criaturas no Plano Astral · Sem tempo limite"},
+      {"name":"Mass Cure Wounds","level":5,"notes":"5d8+5 em 6 aliados"},
+      {"name":"True Seeing","level":6,"notes":"36m · 1h · Ilusões, invisíveis, planos éter"},
+      {"name":"Symbol","level":7,"notes":"Armadilha permanente · Qualquer efeito mágico"}
+    ]
+  },
+  "personality": {"traits":"Fala como se cada palavra custasse algo. Pausa longa. Resposta precisa.","ideals":"O conhecimento é sagrado. A sabedoria é divina. Nasus é o intermediário.","bonds":"Shurima. O ideal de civilização que conhecimento pode construir quando há humildade.","flaws":"Às vezes trata humanos como bibliotecas temporárias. O paternalismo dos milênios."},
+  "treasury": {"pc":0,"pp":0,"pe":0,"po":"∞","pl":0},
+  "tags": ["clérigo","conhecimento","anubita","suporte","conhecimento","sem-multiclasse","nível-20","lol","escala"]
 }
