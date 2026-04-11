@@ -3,1533 +3,357 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Viego, O Rei Arruinado — Ficha D&D 5e</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<title>Viego — O Rei Arruinado · Ficha D&amp;D 5e</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
-:root {
-  --pur: #3b0764;
-  --pur-mid: #7c3aed;
-  --pur-light: #a78bfa;
-  --mist: #c4b5fd;
-  --pale: #f5f0ff;
-  --dark: #050208;
-  --darker: #030106;
-  --card: #0a0514;
-  --card-light: #140a1f;
-  --gold: #c9a227;
-  --gold-light: #e8c557;
-  --text: #c0b0e0;
-  --text-dim: #4a2a6a;
-  --border: rgba(59,7,100,.35);
-  --border-bright: rgba(124,58,237,.45);
-  --glow: rgba(59,7,100,.15);
+:root{
+  --primary:    #263238;
+  --mid:        #546e7a;
+  --bright:     #90a4ae;
+  --pale:       #e0e8f0;
+  --dark:       #010408;
+  --darker:     #010306;
+  --card:       #050d14;
+  --card-light: #0a1820;
+  --text:       #b0c8d8;
+  --text-dim:   #405870;
+  --mist:       #0a1828;
+  --gold:       #c9a227;
+  --gold-light: #e8c85a;
+  --border:     rgba(38,50,56,0.50);
+  --border-bright:rgba(144,164,174,0.5);
+  --glow:       rgba(38,50,56,0.20);
 }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15%,rgba(38,50,56,0.15) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(84,110,122,0.08) 0%,transparent 45%);font-family:'EB Garamond',Georgia,serif;color:var(--text);line-height:1.75;}
+.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
 
-*{ margin:0; padding:0; box-sizing:border-box; }
+/* FLOATING PARTICLES */
+.particle-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.particle{position:absolute;font-size:11px;opacity:0;animation:floatP ease-in-out infinite;filter:blur(0.4px);color:var(--bright);}
+@keyframes floatP{0%{transform:translateY(108vh) translateX(0) rotate(0deg) scale(0.5);opacity:0;}8%{opacity:0.25;}50%{transform:translateY(50vh) translateX(35px) rotate(180deg) scale(0.75);opacity:0.15;}92%{opacity:0.06;}100%{transform:translateY(-8vh) translateX(-20px) rotate(340deg) scale(0.4);opacity:0;}}
 
-body {
-  background: var(--darker);
-  background-image:
-    radial-gradient(ellipse at 20% 15%, rgba(59,7,100,.09) 0%, transparent 50%),
-    radial-gradient(ellipse at 75% 85%, rgba(124,58,237,.06) 0%, transparent 45%),
-    radial-gradient(ellipse at 50% 45%, rgba(58,7,100,.04) 0%, transparent 70%);
-  font-family: 'Crimson Pro', Georgia, serif;
-  color: var(--text);
-  line-height: 1.75;
-}
+/* HEADER */
+.header{background:linear-gradient(165deg,#010408 0%,#050d14 50%,#010408 100%);border-bottom:2px solid var(--primary);position:relative;overflow:hidden;z-index:1;}
+.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 64px,rgba(38,50,56,0.15) 64px,rgba(38,50,56,0.15) 65px);}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--mid),var(--bright),var(--mid),transparent);opacity:0.55;}
+.header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
 
-.page { max-width: 960px; margin: 0 auto; padding: 0 0 80px; }
+/* PORTRAIT */
+.header-portrait{width:220px;flex-shrink:0;background:#010408;border-right:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+.portrait-inner{width:100%;height:290px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.portrait-photo{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 0.4s ease;}
+.portrait-photo:hover{transform:scale(1.04);}
+.portrait-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,#010306aa 100%);pointer-events:none;}
+.portrait-label{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--bright);opacity:0.6;text-transform:uppercase;text-shadow:0 0 8px var(--primary);}
 
-.mist-bg {
-  position: fixed; top:0; left:0; width:100%; height:100%;
-  pointer-events:none; z-index:0; overflow:hidden;
-}
-.mist-particle {
-  position: absolute;
-  font-size: 14px;
-  opacity: 0;
-  animation: floatMist ease-in-out infinite;
-  filter: blur(0.3px);
-  color: var(--mist);
-}
-@keyframes floatMist {
-  0%   { transform: translateY(110vh) translateX(0) rotate(0deg) scale(0.4); opacity:0; }
-  10%  { opacity: 0.25; }
-  50%  { transform: translateY(50vh) translateX(40px) rotate(180deg) scale(0.7); opacity:0.15; }
-  90%  { opacity: 0.08; }
-  100% { transform: translateY(-10vh) translateX(-20px) rotate(360deg) scale(0.3); opacity:0; }
-}
+/* HEADER TEXT */
+.header-text{flex:1;padding:34px 44px;}
+.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--mid);opacity:0.85;text-transform:uppercase;margin-bottom:10px;}
+.header-name{font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(38,50,56,0.20),0 0 15px rgba(38,50,56,0.20);letter-spacing:2px;line-height:1;margin-bottom:4px;}
+.header-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);margin-bottom:20px;letter-spacing:1.5px;opacity:0.95;}
+.header-tags{display:flex;gap:7px;flex-wrap:wrap;}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(38,50,56,0.15);}
+.tag.hi{background:rgba(38,50,56,0.20);border-color:var(--mid);color:var(--bright);}
+.tag.gold{background:rgba(201,162,39,0.10);border-color:rgba(201,162,39,0.4);color:var(--gold-light);}
 
-.header {
-  background: linear-gradient(165deg, #040208 0%, #140a1f 50%, #040208 100%);
-  border-bottom: 2px solid var(--pur);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-.header::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: repeating-linear-gradient(60deg, transparent, transparent 60px, rgba(59,7,100,.025) 60px, rgba(59,7,100,.025) 61px);
-}
-.header::after {
-  content: '';
-  position: absolute; bottom:0; left:0; right:0; height:1px;
-  background: linear-gradient(90deg, transparent, var(--pur-mid), var(--mist), var(--pur-mid), transparent);
-  opacity: 0.5;
-}
-.header-inner {
-  display: flex; align-items: stretch;
-  position: relative; z-index: 1;
-}
+/* STATS BAR */
+.stats-bar{background:var(--card);border-bottom:1px solid var(--border);padding:13px 40px;display:flex;flex-wrap:wrap;position:relative;z-index:1;gap:0;}
+.stat-item{flex:1;border-right:1px solid var(--border);padding:0 18px;text-align:center;min-width:90px;}
+.stat-item:first-child{padding-left:0;}.stat-item:last-child{border-right:none;padding-right:0;}
+.stat-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
+.stat-value{font-family:'Cinzel',serif;font-size:13px;color:var(--bright);font-weight:600;}
 
-.header-portrait {
-  width: 220px; flex-shrink: 0;
-  background: #060208;
-  border-right: 2px solid var(--pur);
-  overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-}
-.portrait-inner {
-  width: 100%; height: 280px;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 12px;
-  position: relative;
-}
-.portrait-symbol {
-  font-size: 88px;
-  opacity: 0.12;
-  filter: drop-shadow(0 0 24px var(--mist));
-  line-height: 1;
-}
-.portrait-ring {
-  position: absolute;
-  width: 100px; height: 100px;
-  border: 1px solid rgba(59,7,100,.3);
-  border-radius: 50%;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-}
-.portrait-ring::before {
-  content: '';
-  position: absolute; inset: 8px;
-  border: 1px solid rgba(124,58,237,.15);
-  border-radius: 50%;
-}
-.portrait-label {
-  position: absolute; bottom: 14px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 9px; letter-spacing: 3px;
-  color: var(--pur); opacity: 0.5;
-  text-transform: uppercase;
-}
+/* SECTION */
+.sec{padding:0 40px;margin-top:32px;position:relative;z-index:1;}
+.sec-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.sec-title::before{content:'✦';font-size:11px;color:var(--gold);}
 
-.header-text { flex:1; padding: 36px 44px; }
-.header-eyebrow {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 10px; letter-spacing: 4px;
-  color: var(--pur-mid); opacity: 0.8;
-  text-transform: uppercase; margin-bottom: 10px;
-}
-.header-name {
-  font-family: 'Cinzel', serif;
-  font-size: 40px; font-weight: 900;
-  color: var(--pale);
-  text-shadow: 0 0 60px rgba(59,7,100,.4), 0 0 20px rgba(196,181,253,.2);
-  letter-spacing: 2px; line-height: 1;
-  margin-bottom: 4px;
-}
-.header-subtitle {
-  font-family: 'Crimson Pro', serif;
-  font-style: italic; font-size: 17px;
-  color: var(--pur-mid); margin-bottom: 22px;
-  letter-spacing: 1.5px;
-}
-.header-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-.tag {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 9px; letter-spacing: 2px;
-  padding: 4px 12px;
-  border: 1px solid var(--border);
-  color: var(--text-dim); text-transform: uppercase;
-  background: rgba(59,7,100,.07);
-}
-.tag.hi {
-  background: rgba(124,58,237,.18);
-  border-color: var(--pur-mid); color: var(--mist);
-}
+/* ATTRIBUTES */
+.attr-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px;}
+.attr-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:12px 4px 10px;position:relative;}
+.attr-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--primary);opacity:0.45;}
+.attr-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
+.attr-value{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:var(--text);display:block;line-height:1;}
+.attr-value.peak{color:var(--bright);text-shadow:0 0 14px rgba(38,50,56,0.20);}
+.attr-mod{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--mid);display:block;margin-top:3px;}
 
-.meta-bar {
-  background: var(--card);
-  border-bottom: 1px solid var(--border);
-  padding: 14px 40px;
-  display: flex; gap: 0;
-  position: relative; z-index: 1;
-}
-.meta-item {
-  flex: 1;
-  border-right: 1px solid var(--border);
-  padding: 0 20px;
-  text-align: center;
-}
-.meta-item:first-child { padding-left: 0; }
-.meta-item:last-child  { border-right: none; padding-right: 0; }
-.meta-label {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 8px; letter-spacing: 3px;
-  color: var(--text-dim); text-transform: uppercase;
-  display: block; margin-bottom: 2px;
-}
-.meta-value {
-  font-family: 'Cinzel', serif; font-size: 13px;
-  color: var(--mist); font-weight: 600;
-}
+/* COMBAT NOTES */
+.special-notes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
 
-.section { padding: 0 40px; margin-top: 36px; position: relative; z-index: 1; }
-.section-title {
-  font-family: 'Cinzel', serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: 5px; text-transform: uppercase;
-  color: var(--pur-mid);
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 8px; margin-bottom: 20px;
-  display: flex; align-items: center; gap: 10px;
-}
-.section-title::before { content: '✦'; font-size: 12px; color: var(--mist); opacity: 0.8; }
+/* SAVES & SKILLS */
+.two-col{display:grid;grid-template-columns:230px 1fr;gap:16px;}
+.save-list,.skill-list{list-style:none;padding:0;}
+.save-item,.skill-item{display:flex;align-items:center;gap:7px;padding:3px 0;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.save-item:last-child,.skill-item:last-child{border-bottom:none;}
+.prof-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--text-dim);flex-shrink:0;}
+.prof-dot.filled{background:var(--mid);border-color:var(--bright);box-shadow:0 0 6px rgba(38,50,56,0.20);}
+.prof-dot.expertise{background:var(--gold);border-color:var(--gold-light);}
+.save-name,.skill-name{flex:1;color:var(--text);}
+.skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text-dim);width:28px;}
+.save-score,.skill-score{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text-dim);width:28px;text-align:right;}
+.save-score.filled,.skill-score.filled,.skill-score.peak{color:var(--bright);}
 
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 8px; margin-bottom: 20px;
-}
-.stat-box {
-  background: var(--card);
-  border: 1px solid var(--border);
-  text-align: center; padding: 14px 4px 10px;
-  position: relative; transition: border-color 0.2s;
-}
-.stat-box:hover { border-color: var(--pur-mid); }
-.stat-box::after {
-  content: '';
-  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--pur-mid), transparent);
-  opacity: 0; transition: opacity 0.2s;
-}
-.stat-box:hover::after { opacity: 1; }
-.stat-name {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 8px; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--text-dim);
-  display: block; margin-bottom: 6px;
-}
-.stat-val {
-  font-family: 'Cinzel', serif;
-  font-size: 28px; font-weight: 900;
-  color: var(--pale); line-height: 1;
-}
-.stat-val.peak { color: var(--mist); text-shadow: 0 0 16px rgba(196,181,253,.4); }
-.stat-mod {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px; color: var(--pur-mid);
-  margin-top: 4px; display: block;
-}
+/* ATTACKS */
+.attack-table{width:100%;border-collapse:collapse;font-size:13px;}
+.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(38,50,56,0.15);}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(38,50,56,0.50);color:var(--text);vertical-align:top;}
+.attack-table tr:hover td{background:rgba(38,50,56,0.20);}
+.attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
+.attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--bright);font-weight:700;}
+.attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--gold-light);}
+.attack-notes{font-size:12px;color:var(--text-dim);font-style:italic;}
 
-.combat-row {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 8px; margin-bottom: 20px;
-}
-.combat-box {
-  background: var(--card-light);
-  border: 1px solid var(--border);
-  text-align: center; padding: 12px 6px 10px;
-  position: relative;
-}
-.combat-box.accent {
-  background: rgba(124,58,237,.1);
-  border-color: var(--pur-mid);
-}
-.combat-label {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 7.5px; letter-spacing: 1.5px;
-  text-transform: uppercase; color: var(--text-dim);
-  display: block; margin-bottom: 4px;
-}
-.combat-val {
-  font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700;
-  color: var(--mist); line-height: 1;
-}
-.combat-box.accent .combat-val { color: var(--mist); }
-.combat-sub {
-  font-size: 10px; color: var(--text-dim);
-  font-family: 'Share Tech Mono', monospace;
-  display: block; margin-top: 2px;
-}
+/* FEATURES */
+.feat-section{margin-bottom:10px;}
+.feat-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:12px 0 8px;}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.trait-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);padding:12px 14px;}
+.trait-block.gold-accent{border-left-color:var(--gold);}
+.trait-block.dim-accent{border-left-color:var(--mist);}
+.trait-name{font-family:'Cinzel',serif;font-size:11px;color:var(--bright);letter-spacing:0.5px;margin-bottom:5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+.trait-block.gold-accent .trait-name{color:var(--gold-light);}
+.trait-block.dim-accent .trait-name{color:var(--text-dim);}
+.trait-desc{font-size:13.5px;color:var(--text-dim);line-height:1.6;}
+.trait-desc em{font-style:italic;color:var(--bright);}
+.trait-desc strong{color:var(--text);}
+.feat-level{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;background:rgba(38,50,56,0.20);color:var(--mid);padding:1px 6px;}
 
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+/* SPELLS */
+.spell-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.spell-tag{background:var(--card-light);color:var(--bright);font-family:'Cinzel',serif;font-size:10px;padding:3px 9px;letter-spacing:1px;border:1px solid var(--border);display:inline-block;}
+.spell-tag.gold{background:rgba(201,162,39,0.08);color:var(--gold-light);border-color:rgba(201,162,39,0.28);}
+.spell-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:13px 0 8px;}
+.spell-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:7px;}
+.sc{background:var(--card-light);border:1px solid var(--border);border-top:2px solid var(--mist);padding:9px 12px 10px;display:flex;flex-direction:column;gap:3px;}
+.sc.cantrip{border-top-color:rgba(38,50,56,0.50);}
+.sc.expanded{border-top-color:var(--gold);}
+.sc-type{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);opacity:0.65;}
+.sc-name{font-family:'Cinzel',serif;font-size:11.5px;font-weight:600;color:var(--bright);letter-spacing:0.4px;}
+.sc.cantrip .sc-name{color:var(--text-dim);}
+.sc.expanded .sc-name{color:var(--gold-light);}
+.sc-desc{font-size:12px;color:var(--text-dim);line-height:1.5;margin-top:1px;}
 
-.save-list { list-style: none; }
-.save-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 4px 0; border-bottom: 1px solid rgba(124,58,237,.1);
-  font-size: 14px;
-}
-.save-item:last-child { border-bottom: none; }
-.save-dot {
-  width: 10px; height: 10px; border-radius: 50%;
-  border: 1.5px solid var(--border); flex-shrink: 0;
-}
-.save-dot.filled {
-  background: var(--pur-mid); border-color: var(--mist);
-  box-shadow: 0 0 6px rgba(124,58,237,.5);
-}
-.save-score {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 12px; color: var(--pur-mid);
-  min-width: 28px; text-align: right;
-}
-.save-name { color: var(--text-dim); font-size: 14px; flex: 1; }
+/* TRAIT LIST (equipment) */
+ul.trait-list{list-style:none;padding:0;}
+ul.trait-list li{padding:3px 0 3px 18px;position:relative;font-size:14px;line-height:1.65;color:var(--text-dim);}
+ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold);font-size:7px;top:7px;}
 
-.skill-list { list-style: none; }
-.skill-item {
-  display: flex; align-items: center; gap: 8px;
-  padding: 3px 0; border-bottom: 1px solid rgba(124,58,237,.08);
-  font-size: 13px;
-}
-.skill-item:last-child { border-bottom: none; }
-.skill-dot {
-  width: 9px; height: 9px; border-radius: 50%;
-  border: 1.5px solid var(--border); flex-shrink: 0;
-}
-.skill-dot.filled {
-  background: var(--pur-mid); border-color: var(--mist);
-  box-shadow: 0 0 5px rgba(124,58,237,.4);
-}
-.skill-bonus {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px; color: var(--pur-mid);
-  min-width: 26px; text-align: right;
-}
-.skill-name { color: var(--text-dim); flex: 1; }
-.skill-attr {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 9px; color: var(--text-dim); letter-spacing: 1px;
-}
+/* DIVIDER */
+.divider{text-align:center;margin:24px 0;color:var(--mist);font-size:14px;letter-spacing:14px;opacity:0.5;}
 
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 18px 20px; margin-bottom: 12px;
-}
-.card-title {
-  font-family: 'Cinzel', serif;
-  font-size: 11px; font-weight: 700; letter-spacing: 3px;
-  color: var(--pur-mid); text-transform: uppercase;
-  margin-bottom: 8px; padding-bottom: 6px;
-  border-bottom: 1px solid var(--border);
-}
-.card p { font-size: 14px; color: var(--text-dim); }
+/* INFO PILLS */
+.info-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.info-pill{background:var(--card);border:1px solid var(--border);padding:8px 14px;font-size:13px;color:var(--text-dim);}
+.info-pill strong{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--mid);text-transform:uppercase;display:block;margin-bottom:3px;}
 
-.info-list { list-style: none; }
-.info-item {
-  padding: 6px 0; border-bottom: 1px solid rgba(124,58,237,.1);
-  display: flex; gap: 10px; font-size: 14px;
-}
-.info-item:last-child { border-bottom: none; }
-.info-key {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 9px; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--pur);
-  min-width: 90px; padding-top: 3px;
-}
-.info-val { color: var(--text-dim); flex: 1; }
+/* FOOTER */
+.footer{margin-top:50px;padding:22px 40px;text-align:center;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent 0%,#01030699 100%);position:relative;z-index:1;}
+.footer p{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);opacity:0.5;text-transform:uppercase;margin-bottom:4px;}
 
-.feature {
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(124,58,237,.1);
-}
-.feature:last-child { border-bottom: none; }
-.feature-name {
-  font-family: 'Cinzel', serif;
-  font-size: 12px; color: var(--mist);
-  margin-bottom: 4px;
-}
-.feature-source {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 8px; letter-spacing: 2px;
-  color: var(--pur); opacity: 0.7;
-  text-transform: uppercase; margin-bottom: 4px;
-}
-.feature p { font-size: 14px; color: var(--text-dim); }
-
-.spell-circle {
-  margin-bottom: 28px;
-}
-.spell-circle-header {
-  display: flex; align-items: center; gap: 14px;
-  margin-bottom: 14px;
-}
-.spell-circle-badge {
-  width: 36px; height: 36px;
-  border: 2px solid var(--pur-mid);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Cinzel', serif;
-  font-size: 14px; font-weight: 700;
-  color: var(--mist);
-  background: rgba(124,58,237,.1);
-  flex-shrink: 0;
-}
-.spell-circle-title {
-  font-family: 'Cinzel', serif;
-  font-size: 11px; letter-spacing: 4px;
-  text-transform: uppercase; color: var(--pur-mid);
-}
-.spell-circle-slots {
-  margin-left: auto;
-  display: flex; gap: 5px;
-}
-.slot {
-  width: 14px; height: 14px;
-  border: 1.5px solid var(--pur-mid);
-  border-radius: 50%;
-  background: rgba(124,58,237,.2);
-}
-
-.spell-entry {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--pur-mid);
-  padding: 10px 14px;
-  margin-bottom: 6px;
-  transition: border-color 0.2s, background 0.2s;
-}
-.spell-entry:hover {
-  background: var(--card-light);
-  border-color: var(--pur-light);
-  border-left-color: var(--mist);
-}
-.spell-entry-top {
-  display: flex; align-items: baseline; gap: 10px;
-  margin-bottom: 4px;
-}
-.spell-name {
-  font-family: 'Cinzel', serif;
-  font-size: 13px; font-weight: 600;
-  color: var(--mist);
-}
-.spell-tags-inline { display: flex; gap: 5px; }
-.spell-tag-small {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 8px; letter-spacing: 1px;
-  padding: 2px 7px;
-  border: 1px solid var(--border);
-  color: var(--text-dim); text-transform: uppercase;
-  background: rgba(124,58,237,.05);
-}
-.spell-tag-small.conc { border-color: rgba(124,58,237,.4); color: var(--pur-mid); }
-.spell-desc {
-  font-size: 13.5px; color: var(--text-dim);
-  line-height: 1.6;
-}
-.spell-mechanic {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 10px; color: var(--pur);
-  margin-top: 3px; display: block;
-}
-
-.spell-entry.cantrip { border-left-color: var(--gold); }
-.spell-entry.cantrip .spell-name { color: var(--gold-light); }
-.spell-entry.cantrip .spell-mechanic { color: var(--gold); }
-
-.divider {
-  text-align: center; margin: 36px 40px;
-  display: flex; align-items: center; gap: 16px;
-  position: relative; z-index: 1;
-}
-.divider::before, .divider::after {
-  content: '';
-  flex: 1; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--pur-mid), transparent);
-  opacity: 0.4;
-}
-.divider-sym {
-  font-size: 16px; color: var(--mist); opacity: 0.5;
-}
-
-.trait-box {
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 16px 18px; height: 100%;
-}
-.trait-label {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 8px; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--pur);
-  display: block; margin-bottom: 8px;
-}
-.trait-text { font-size: 14px; color: var(--text-dim); font-style: italic; }
-
-.equip-item {
-  padding: 8px 0; border-bottom: 1px solid rgba(124,58,237,.1);
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.equip-item:last-child { border-bottom: none; }
-.equip-icon { color: var(--mist); font-size: 14px; flex-shrink: 0; margin-top: 2px; }
-.equip-name {
-  font-family: 'Cinzel', serif; font-size: 12px;
-  color: var(--mist); display: block; margin-bottom: 2px;
-}
-.equip-note { font-size: 13px; color: var(--text-dim); }
-
-.backstory {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-top: 3px solid var(--pur-mid);
-  padding: 28px 32px;
-}
-.backstory p { font-size: 15px; color: var(--text-dim); margin-bottom: 14px; line-height: 1.85; }
-.backstory p:last-child { margin-bottom: 0; }
-.bs-quote {
-  font-style: italic;
-  border-left: 3px solid var(--pur-mid);
-  padding: 8px 0 8px 16px;
-  color: var(--mist); margin: 16px 0;
-  font-size: 15px;
-}
-
-.passive-block {
-  background: rgba(124,58,237,.08);
-  border: 1px solid var(--pur);
-  padding: 12px 16px; text-align: center;
-}
-.passive-num {
-  font-family: 'Cinzel', serif; font-size: 32px; font-weight: 900;
-  color: var(--mist);
-  text-shadow: 0 0 16px rgba(196,181,253,.3);
-  display: block;
-}
-.passive-lbl {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 8px; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--text-dim);
-}
-
-.death-saves { display: flex; flex-direction: column; gap: 6px; }
-.ds-row { display: flex; align-items: center; gap: 8px; }
-.ds-label {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 8px; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--text-dim);
-  min-width: 60px;
-}
-.ds-dots { display: flex; gap: 6px; }
-.ds-dot {
-  width: 14px; height: 14px;
-  border-radius: 50%; border: 1.5px solid var(--border);
-}
-
-.scroll-ornament {
-  text-align: center; padding: 20px 0;
-  color: var(--pur); opacity: 0.25; font-size: 22px;
-  position: relative; z-index: 1;
-}
-
-.level-badge {
-  display: inline-flex;
-  background: rgba(124,58,237,.15);
-  border: 1px solid var(--pur-mid);
-  border-radius: 2px;
-  padding: 2px 10px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 9px; letter-spacing: 2px;
-  color: var(--pur-mid); text-transform: uppercase;
-}
-
-.attack-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--card);
-  border: 1px solid var(--border);
-  margin-bottom: 20px;
-}
-.attack-table th {
-  background: var(--card-light);
-  border: 1px solid var(--border);
-  padding: 8px 12px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 9px; letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--pur-mid); text-align: left;
-}
-.attack-table td {
-  border: 1px solid var(--border);
-  padding: 8px 12px;
-  font-size: 13px;
-  color: var(--text-dim);
-}
-.attack-table tr:hover {
-  background: var(--card-light);
-}
-
-/* ══ LEVEL TIMELINE ══════════════════════════════════════ */
-.level-timeline { display:flex; flex-direction:column; gap:2px; }
-.level-row { background:var(--card); border:1px solid var(--border); border-left:3px solid var(--pur-mid, #7c3aed); display:flex; align-items:flex-start; gap:0; overflow:hidden; }
-.level-row.milestone { border-left-color:var(--pur-light, #a78bfa); }
-.level-row.capstone  { border-left-color:var(--gold, #c9a227); }
-.level-num { font-family:'Cinzel',serif; font-size:11px; font-weight:700; color:var(--pur-mid, #7c3aed); padding:8px 12px; min-width:60px; background:rgba(124,58,237,0.1); align-self:stretch; display:flex; align-items:center; justify-content:center; }
-.level-content { padding:8px 14px; flex:1; }
-.level-feature-name { font-family:'Cinzel',serif; font-size:11px; color:var(--pale); letter-spacing:0.5px; margin-bottom:2px; }
-.level-note { font-size:12px; color:var(--text-dim); font-style:italic; }
-
-@media (max-width: 700px) {
-  .stat-grid { grid-template-columns: repeat(3, 1fr); }
-  .combat-row { grid-template-columns: repeat(4, 1fr); }
-  .two-col, .three-col { grid-template-columns: 1fr; }
-  .header-inner { flex-direction: column; }
-  .header-portrait { width: 100%; height: 180px; }
+/* RESPONSIVE */
+@media(max-width:680px){
+  .header-inner{flex-direction:column;}
+  .header-portrait{width:100%;height:200px;}
+  .portrait-inner{height:200px;}
+  .attr-grid{grid-template-columns:repeat(3,1fr);}
+  .feature-grid{grid-template-columns:1fr;}
+  .spell-grid{grid-template-columns:1fr;}
+  .stats-bar{flex-wrap:wrap;gap:4px;}
+  .stat-item{flex:none;width:48%;border-right:none;border-bottom:1px solid var(--border);padding:6px 0;}
+  .two-col{grid-template-columns:1fr;}
+  .sec{padding:0 16px;}
+  .header-text{padding:20px 24px;}
+  .stats-bar{padding:10px 16px;}
 }
 </style>
 </head>
 <body>
 
-<div class="mist-bg" id="mistBg"></div>
+<!-- Floating Particles -->
+<div class="particle-bg" id="particleBg"></div>
 
 <div class="page">
 
-  <header class="header">
-    <div class="header-inner">
-      <div class="header-portrait">
-        <div class="portrait-inner">
-          <div class="portrait-ring"></div>
-          <div class="portrait-symbol">~</div>
-          <span class="portrait-label">Viego</span>
-        </div>
+<!-- ── HEADER ─────────────────────────────────── -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-portrait">
+      <div class="portrait-inner">
+        <img class="portrait-photo" src="/portraits/viego.jpg" alt="Viego" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;font-size:64px;opacity:0.15;filter:drop-shadow(0 0 20px var(--bright));">👑</div>
+        <div class="portrait-overlay"></div>
       </div>
-      <div class="header-text">
-        <div class="header-eyebrow">Ficha de Personagem ~ D&D 5e ~ Nível 20</div>
-        <h1 class="header-name">Viego</h1>
-        <div class="header-subtitle">O Rei Arruinado ~ Bruxo do Grande Antigo</div>
-        <div class="header-tags">
-          <span class="tag hi">Bruxo 20</span>
-          <span class="tag hi">Grande Antigo</span>
-          <span class="tag">Revenante</span>
-          <span class="tag">Controlador Mental</span>
-          <span class="tag">Caótico Mau</span>
-          <span class="tag">Monoclass</span>
-        </div>
-      </div>
+      <div class="portrait-label">Viego</div>
     </div>
-  </header>
-
-  <div class="meta-bar">
-    <div class="meta-item">
-      <span class="meta-label">Raça</span>
-      <span class="meta-value">Revenante</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Classe</span>
-      <span class="meta-value">Bruxo</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Subclasse</span>
-      <span class="meta-value">Grande Antigo</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Antecedente</span>
-      <span class="meta-value">Soldado</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Tendência</span>
-      <span class="meta-value">Caótico Mau</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Nível</span>
-      <span class="meta-value">20</span>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2 class="section-title">Atributos</h2>
-    <div class="stat-grid">
-      <div class="stat-box">
-        <span class="stat-name">Força</span>
-        <span class="stat-val">18</span>
-        <span class="stat-mod">+4</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-name">Destreza</span>
-        <span class="stat-val">14</span>
-        <span class="stat-mod">+2</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-name">Constituição</span>
-        <span class="stat-val">16</span>
-        <span class="stat-mod">+3</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-name">Inteligência</span>
-        <span class="stat-val">10</span>
-        <span class="stat-mod">+0</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-name">Sabedoria</span>
-        <span class="stat-val">10</span>
-        <span class="stat-mod">+0</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-name">Carisma</span>
-        <span class="stat-val peak">20</span>
-        <span class="stat-mod">+5</span>
+    <div class="header-text">
+      <div class="header-eyebrow">Ficha · D&amp;D 5e · League of Legends</div>
+      <div class="header-name">Viego</div>
+      <div class="header-sub">O Rei Arruinado</div>
+      <div class="header-tags">
+        <span class="tag hi">Revenante</span><span class="tag hi">Bruxo</span><span class="tag hi">Grande Antigo</span><span class="tag hi">League of Legends</span><span class="tag">Antecedente: Nobre</span><span class="tag">Nív. 20</span>
       </div>
     </div>
   </div>
-
-  <div class="section">
-    <h2 class="section-title">Estatísticas de Combate</h2>
-    <div class="combat-row">
-      <div class="combat-box accent">
-        <span class="combat-label">Classe Armadura</span>
-        <span class="combat-val">16</span>
-        <span class="combat-sub">Sem Armadura + CAR</span>
-      </div>
-      <div class="combat-box accent">
-        <span class="combat-label">Pontos de Vida</span>
-        <span class="combat-val">154</span>
-        <span class="combat-sub">20d8 + CON</span>
-      </div>
-      <div class="combat-box">
-        <span class="combat-label">Iniciativa</span>
-        <span class="combat-val">+2</span>
-        <span class="combat-sub">Des mod</span>
-      </div>
-      <div class="combat-box">
-        <span class="combat-label">Deslocamento</span>
-        <span class="combat-val">9m</span>
-        <span class="combat-sub">Padrão</span>
-      </div>
-      <div class="combat-box">
-        <span class="combat-label">Bônus Prof.</span>
-        <span class="combat-val">+6</span>
-        <span class="combat-sub">Nível 20</span>
-      </div>
-      <div class="combat-box accent">
-        <span class="combat-label">CD Magias</span>
-        <span class="combat-val">19</span>
-        <span class="combat-sub">8 + prof + CAR</span>
-      </div>
-      <div class="combat-box accent">
-        <span class="combat-label">Ataque Mágico</span>
-        <span class="combat-val">+11</span>
-        <span class="combat-sub">prof + CAR mod</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="two-col" style="gap:32px">
-
-      <div>
-        <h2 class="section-title">Testes de Resistência</h2>
-        <ul class="save-list">
-          <li class="save-item">
-            <div class="save-dot"></div>
-            <span class="save-name">Força</span>
-            <span class="save-score">+4</span>
-          </li>
-          <li class="save-item">
-            <div class="save-dot"></div>
-            <span class="save-name">Destreza</span>
-            <span class="save-score">+2</span>
-          </li>
-          <li class="save-item">
-            <div class="save-dot"></div>
-            <span class="save-name">Constituição</span>
-            <span class="save-score">+3</span>
-          </li>
-          <li class="save-item">
-            <div class="save-dot"></div>
-            <span class="save-name">Inteligência</span>
-            <span class="save-score">+0</span>
-          </li>
-          <li class="save-item">
-            <div class="save-dot filled"></div>
-            <span class="save-name">Sabedoria</span>
-            <span class="save-score">+6</span>
-          </li>
-          <li class="save-item">
-            <div class="save-dot filled"></div>
-            <span class="save-name">Carisma</span>
-            <span class="save-score">+11</span>
-          </li>
-        </ul>
-
-        <div style="margin-top:20px">
-          <h2 class="section-title">Dados de Vida & Morte</h2>
-          <div style="margin-bottom:10px">
-            <span class="meta-label" style="display:block;margin-bottom:4px">Dados de Vida</span>
-            <span style="font-family:'Cinzel',serif;font-size:18px;color:var(--mist)">20d8</span>
-          </div>
-          <div class="death-saves">
-            <div class="ds-row">
-              <span class="ds-label">Sucessos</span>
-              <div class="ds-dots">
-                <div class="ds-dot"></div>
-                <div class="ds-dot"></div>
-                <div class="ds-dot"></div>
-              </div>
-            </div>
-            <div class="ds-row">
-              <span class="ds-label">Fracassos</span>
-              <div class="ds-dots">
-                <div class="ds-dot"></div>
-                <div class="ds-dot"></div>
-                <div class="ds-dot"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-top:20px">
-          <h2 class="section-title">Percepção Passiva</h2>
-          <div class="passive-block">
-            <span class="passive-num">19</span>
-            <span class="passive-lbl">Intuição Passiva (Percepção)</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <h2 class="section-title">Perícias</h2>
-        <ul class="skill-list">
-          <li class="skill-item">
-            <div class="skill-dot"></div>
-            <span class="skill-bonus">+4</span>
-            <span class="skill-name">Acrobacia</span>
-            <span class="skill-attr">DES</span>
-          </li>
-          <li class="skill-item">
-            <div class="skill-dot"></div>
-            <span class="skill-bonus">+0</span>
-            <span class="skill-name">Arcanismo</span>
-            <span class="skill-attr">INT</span>
-          </li>
-          <li class="skill-item">
-            <div class="skill-dot filled"></div>
-            <span class="skill-bonus">+4</span>
-            <span class="skill-name">Atletismo</span>
-            <span class="skill-attr">FOR</span>
-          </li>
-          <li class="skill-item">
-            <div class="skill-dot"></div>
-            <span class="skill-bonus">+5</span>
-            <span class="skill-name">Atuação</span>
-            <span class="skill-attr">CAR</span>
-          </li>
-          <li class="skill-item">
-            <div class="skill-dot filled"></div>
-            <span class="skill-bonus">+11</span>
-            <span class="skill-name">Enganação</span>
-            <span class="skill-attr">CAR</span>
-          </li>
-          <li class="skill-item">
-            <div class="skill-dot"></div>
-            <span class="skill-bonus">+2</span>
-            <span class="skill-name">Furtividade</span>
-            <span class="skill-attr">DES</span>
-          </li>
-          <li class="skill-item">
-            <div class="skill-dot filled"></div>
-            <span class="skill-bonus">+6</span>
-            <span class="skill-name">História</span>
-            <span class="skill-attr">INT</span>
-          </li>
-          <li class="skill-item">
-            <div class="skill-dot filled"></div>
-            <span class="skill-bonus">+11</span>
-            <span class="skill-name">Intimidação</span>
-            <span class="skill-attr">CAR</span>
-          </li>
-          <li class="skill-item">
-            <div class="skill-dot filled"></div>
-            <span class="skill-bonus">+6</span>
-            <span class="skill-name">Intuição</span>
-            <span class="skill-attr">SAB</span>
-          </li>
-          <li class="skill-item">
-            <div class="skill-dot"></div>
-            <span class="skill-bonus">+0</span>
-            <span class="skill-name">Investigação</span>
-            <span class="skill-attr">INT</span>
-          </li>
-          <li class="skill-item">
-            <div class="skill-dot"></div>
-            <span class="skill-bonus">+0</span>
-            <span class="skill-name">Lidar com Animais</span>
-            <span class="skill-attr">SAB</span>
-          </li>
-          <li class="skill-item">
-            <div class="skill-dot"></div>
-            <span class="skill-bonus">+0</span>
-            <span class="skill-name">Medicina</span>
-            <span class="skill-attr">SAB</span>
-          </li>
-          <li class="skill-item">
-            <div class="skill-dot"></div>
-            <span class="skill-bonus">+0</span>
-            <span class="skill-name">Natureza</span>
-            <span class="skill-attr">INT</span>
-          </li>
-          <li class="skill-item">
-            <div class="skill-dot filled"></div>
-            <span class="skill-bonus">+6</span>
-            <span class="skill-name">Percepção</span>
-            <span class="skill-attr">SAB</span>
-          </li>
-          <li class="skill-item">
-            <div class="skill-dot filled"></div>
-            <span class="skill-bonus">+11</span>
-            <span class="skill-name">Persuasão</span>
-            <span class="skill-attr">CAR</span>
-          </li>
-          <li class="skill-item">
-            <div class="skill-dot"></div>
-            <span class="skill-bonus">+0</span>
-            <span class="skill-name">Religião</span>
-            <span class="skill-attr">INT</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2 class="section-title">Proficiências & Idiomas</h2>
-    <div class="two-col">
-      <div>
-        <div class="card">
-          <div class="card-title">Proficiências de Armadura</div>
-          <ul class="info-list">
-            <li class="info-item">
-              <span class="info-val">Armaduras Leves</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div>
-        <div class="card">
-          <div class="card-title">Proficiências de Arma</div>
-          <ul class="info-list">
-            <li class="info-item">
-              <span class="info-val">Armas Simples, Armas Marciais (Pact Blade)</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div style="margin-top:12px">
-      <div class="card">
-        <div class="card-title">Idiomas</div>
-        <ul class="info-list">
-          <li class="info-item">
-            <span class="info-val">Comum, Sombrio (da Corrupção), Profundo (do Grande Antigo)</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2 class="section-title">Equipamento Armazenado</h2>
-    <div class="two-col">
-      <div>
-        <div class="card">
-          <div class="card-title">Armas & Armadura</div>
-          <div class="equip-item">
-            <span class="equip-icon">◈</span>
-            <div>
-              <span class="equip-name">Espada Arruinada</span>
-              <span class="equip-note">Pact Blade mágica, invocada com ação bônus. +10 para acertar, 1d8+4 dano + 1d6 necrótico (Hex)</span>
-            </div>
-          </div>
-          <div class="equip-item">
-            <span class="equip-icon">◈</span>
-            <div>
-              <span class="equip-name">Foco Arcano</span>
-              <span class="equip-note">Usa Carisma para testes de magia; aprimorado com runas da Corrupção</span>
-            </div>
-          </div>
-          <div class="equip-item">
-            <span class="equip-icon">◈</span>
-            <div>
-              <span class="equip-name">Couro Reforçado +2</span>
-              <span class="equip-note">CA 16 (10 + 2 DEX + 5 CAR invocações); peso mínimo</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="card">
-          <div class="card-title">Acessórios Especiais</div>
-          <div class="equip-item">
-            <span class="equip-icon">◈</span>
-            <div>
-              <span class="equip-name">Coroa de Espinhos Negros</span>
-              <span class="equip-note">Símbolo do poder corrupto; confere +1 à CD de resistência psíquica dos inimigos (narrativa)</span>
-            </div>
-          </div>
-          <div class="equip-item">
-            <span class="equip-icon">◈</span>
-            <div>
-              <span class="equip-name">Manto da Névoa Etérea</span>
-              <span class="equip-note">Permite ativar Shroud of Shadow sem desgaste; invisível à vontade (ação bônus)</span>
-            </div>
-          </div>
-          <div class="equip-item">
-            <span class="equip-icon">◈</span>
-            <div>
-              <span class="equip-name">Frasco com Essência de Senna</span>
-              <span class="equip-note">Poção de foco telepático; amplifica Expanded Mind para 45m em vez de 36m</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2 class="section-title">Habilidades de Classe & Raça</h2>
-
-    <div class="card" style="margin-bottom:20px">
-      <div class="card-title">Habilidades de Raça: Revenante</div>
-      <div class="feature">
-        <div class="feature-name">Morto-Vivo</div>
-        <div class="feature-source">Raça Revenante</div>
-        <p>Imunidade a Envenenamento, Doença e Morte Mágica. Não respira, não precisa comer ou beber. Vejo no escuro até 36m. Vulnerável a dano Radiante; resistência a Necrótico. Curação mágica restaura apenas 1 PV (recebe 10× a quantidade gasta em slots).</p>
-      </div>
-      <div class="feature">
-        <div class="feature-name">Telepatia Revenante</div>
-        <div class="feature-source">Raça Revenante</div>
-        <p>Pode falar telepaticamente com qualquer criatura que veja em 36m, desde que a criatura entenda pelo menos um idioma. Pensamentos complexos transmitidos como conceitos visuais.</p>
-      </div>
-    </div>
-
-    <div class="card" style="margin-bottom:20px">
-      <div class="card-title">Habilidades de Classe: Bruxo Nível 20</div>
-      <div class="feature">
-        <div class="feature-name">Pact Magic</div>
-        <div class="feature-source">Bruxo Nível 1</div>
-        <p>4 slots de magia de 5° círculo (todos no mesmo nível). Recuperam em repouso curto. Conhece 4 truques + 12 magias. Escolha 6 magias preparadas para cada sessão (modificada pela casa-regras de conhecimento universal).</p>
-      </div>
-      <div class="feature">
-        <div class="feature-name">Otherworldly Patron: Grande Antigo</div>
-        <div class="feature-source">Bruxo Nível 1</div>
-        <p>Pactuou com entidade primordial. Ganha acesso a magias únicas do patron e habilidades relacionadas a telepatia, dano psíquico e controle mental. CD de magia = 19.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-name">Mente Expandida</div>
-        <div class="feature-source">Grande Antigo Nível 1</div>
-        <p>Pode falar telepaticamente com qualquer criatura que veja em 36m, contanto que ela entenda um idioma. Pode usar ação para tentar ler os pensamentos de uma criatura em 9m (TR SAB CD 19 ou lê superficial). Custo: nenhum, uso ilimitado.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-name">Pact of the Blade</div>
-        <div class="feature-source">Bruxo Nível 3</div>
-        <p>Ação bônus para invocar uma arma melee mágica (Espada Arruinada). Se separado, pode invocá-la novamente como ação bônus. A arma desaparece se tocar o solo; não pode ser confiscada. Dano escala com Carisma (+5).</p>
-      </div>
-      <div class="feature">
-        <div class="feature-name">Eldritch Invocations (8 Total)</div>
-        <div class="feature-source">Bruxo Níveis 2-20</div>
-        <p>Agonizing Blast, Grasp of Hadar, Lifedrinker, Voice of Chain Master, Shroud of Shadow, Sign of Ill Omen, Tomb of Levistus, Eldritch Mind. Veja seção dedicada abaixo.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-name">Thought Shield</div>
-        <div class="feature-source">Grande Antigo Nível 6</div>
-        <p>Resistência a dano psíquico. Se receber dano psíquico, pode usar reação para infligir dano psíquico igual ao dano recebido no atacante (resistência aplicada). Custo: 1 reação/turno.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-name">Lifedrinker</div>
-        <div class="feature-source">Grande Antigo Nível 7</div>
-        <p>Sua Pact Blade ganha +5 dano (Carisma). Dano é necrótico escuro.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-name">Create Thrall</div>
-        <div class="feature-source">Grande Antigo Nível 14</div>
-        <p>Se tocar uma criatura humanóide incapacitada, pode escolher aterrá-la indefinidamente. A criatura é encantada permanentemente; obedece comandos telepáticos; não pode resistir; recusa ordens suicidas. Máximo 6 thralls ativos simultaneamente.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-name">Eldritch Master</div>
-        <div class="feature-source">Grande Antigo Nível 20</div>
-        <p>Pode usar ação bônus para recuperar todos os 4 slots de Pact Magic em 1 minuto. Uso: 1×/repouso longo. Permite combates de duração muito prolongada com múltiplas rodadas de Dominate Monster.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2 class="section-title">Invocações Eldritch (8 Selecionadas)</h2>
-    <div class="card">
-      <div class="feature">
-        <div class="feature-name">◈ Agonizing Blast</div>
-        <div class="feature-source">Essencial</div>
-        <p>Adiciona modificador de Carisma (+5) ao dano de cada raio de Eldritch Blast. Imprescindível para dano competitivo.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-name">◈ Grasp of Hadar</div>
-        <div class="feature-source">Controle</div>
-        <p>Quando acerta com Eldritch Blast, pode puxar o alvo em sua direção até 1,5m. Excelente para desposicionar inimigos.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-name">◈ Lifedrinker</div>
-        <div class="feature-source">Pact Blade</div>
-        <p>Sua Pact Blade ganha +5 dano (CAR mod). Dano é necrótico. Sinergiza com Hex para dano brutal.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-name">◈ Voice of Chain Master</div>
-        <div class="feature-source">Familiar / Criados</div>
-        <p>Se tiver um familiar invocado, pode falar através dele e ouvir através dele. Excelente reconhecimento sem risco pessoal.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-name">◈ Shroud of Shadow</div>
-        <div class="feature-source">Mobilidade</div>
-        <p>Pode usar ação bônus (ou ação se houver Manto da Névoa) para ficar invisível enquanto permanece na escuridão ou na sombra. Permanece invisível até se mover ou atacar.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-name">◈ Sign of Ill Omen</div>
-        <div class="feature-source">Debuff</div>
-        <p>Conhece Bestow Curse. Pode lançá-lo 1×/repouso longo sem gastar slot de magia. Impõe −4 em tipo específico de teste por 1 minuto (concentração).</p>
-      </div>
-      <div class="feature">
-        <div class="feature-name">◈ Tomb of Levistus</div>
-        <div class="feature-source">Defesa</div>
-        <p>Quando recebe dano, pode usar reação para cobrir-se em gelo. Até o final do próximo turno, tem resistência ao dano não-mágico. Depois disso, fica rígido por 1 minuto (até aquecido). 1×/repouso longo.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-name">◈ Eldritch Mind</div>
-        <div class="feature-source">Concentração</div>
-        <p>Obtém vantagem em testes de resistência de Constituição para manter concentração. Praticamente garante sucesso em manter feitiços.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2 class="section-title">Ataques & Dano</h2>
-    <table class="attack-table">
-      <thead>
-        <tr>
-          <th>Ataque</th>
-          <th>Bônus de Ataque</th>
-          <th>Dano Médio</th>
-          <th>Alcance</th>
-          <th>Notas</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Eldritch Blast ×4</td>
-          <td>+11</td>
-          <td>4d10+20 (43)</td>
-          <td>36m</td>
-          <td>Agonizing Blast + 4 raios (nível 20). Cada raio independente. Grasp of Hadar puxa alvos.</td>
-        </tr>
-        <tr>
-          <td>Espada Arruinada</td>
-          <td>+10</td>
-          <td>1d8+4+1d6 (16)</td>
-          <td>Corpo a corpo</td>
-          <td>Pact Blade +1d6 de Hex necrótico. Invocada com ação bônus. Desaparece se cai.</td>
-        </tr>
-        <tr>
-          <td>Toll the Dead (Alternativa)</td>
-          <td>TR SAB CD 19</td>
-          <td>4d12 (26 ferido) / 4d8 (18 saudável)</td>
-          <td>18m</td>
-          <td>Truque alternativo. Mais dano bruto; sem modificadores de invocações.</td>
-        </tr>
-        <tr>
-          <td>Dominate Monster (8°)</td>
-          <td>TR SAB CD 19</td>
-          <td>Falha: controle 1h/conc</td>
-          <td>18m</td>
-          <td>Criatura humanóide praticamente servo permanente (repeats TR a cada 24h). Mystic Arcanum.</td>
-        </tr>
-        <tr>
-          <td>Psychic Scream (9°)</td>
-          <td>TR INT CD 19</td>
-          <td>14d6 psíquico (49) / metade acerto</td>
-          <td>18m raio</td>
-          <td>Até 10 alvos. Atordoado se falhar. Thought Shield reflete dano. Mystic Arcanum.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="section">
-    <h2 class="section-title">Grimório de Magias — Pact Magic (4×5°)</h2>
-    <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px">
-      Nota: Bruxo conhece todas as magias listadas abaixo. Slots de Pact Magic são todos 5° círculo e recuperam em repouso curto. Cada magia é lançada como se fosse do círculo de origem.
-    </p>
-
-    <!-- CANTRIPS -->
-    <div class="spell-circle">
-      <div class="spell-circle-header">
-        <div class="spell-circle-badge">0</div>
-        <div class="spell-circle-title">Truques (Cantrips)</div>
-        <div class="spell-circle-slots"></div>
-      </div>
-
-      <div class="spell-entry cantrip">
-        <div class="spell-entry-top">
-          <span class="spell-name">Eldritch Blast</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">Evocação</span>
-            <span class="spell-tag-small">Ataque Mágico</span>
-          </div>
-        </div>
-        <p class="spell-desc">Lança quatro raios de força sombria. Faça um ataque de magia à distância contra cada criatura em alcance: +11 para acertar. Acerto: 1d10+5 dano de força por raio. Cada raio pode atingir alvo diferente. Invocação Grasp of Hadar puxa alvo 1,5m após acerto.</p>
-        <span class="spell-mechanic">4 raios: +11 | 4d10+20 (43 médio) | 36m | Sem concentração</span>
-      </div>
-
-      <div class="spell-entry cantrip">
-        <div class="spell-entry-top">
-          <span class="spell-name">Toll the Dead</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">Necromancia</span>
-            <span class="spell-tag-small">Teste Salva</span>
-          </div>
-        </div>
-        <p class="spell-desc">Aponta para uma criatura que possa ver em 18m. A criatura faz TR SAB contra CD 19. Se falhar, sofre 4d12 dano necrótico (ou 4d8 se não tiver ferimentos). Efeito impactante em alvos já lesionados. Sem invocações modificam.</p>
-        <span class="spell-mechanic">TR SAB CD 19 | 4d12 (26 ferido) ou 4d8 (18 saudável) | 18m | Sem concentração</span>
-      </div>
-    </div>
-
-    <!-- PACT MAGIC SPELLS -->
-    <div class="spell-circle">
-      <div class="spell-circle-header">
-        <div class="spell-circle-badge">5</div>
-        <div class="spell-circle-title">Magia de Pacto (Todos 5°)</div>
-        <div class="spell-circle-slots">
-          <div class="slot"></div>
-          <div class="slot"></div>
-          <div class="slot"></div>
-          <div class="slot"></div>
-        </div>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Hex</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">Encantamento</span>
-            <span class="spell-tag-small conc">Concentração, 8h</span>
-          </div>
-        </div>
-        <p class="spell-desc">Para um alvo que você possa ver em 27m, escolha um atributo (Força, Destreza, Inteligência, Sabedoria, Carisma). Esse atributo é reduzido em −5 para testes e perícias. Além disso, ele sofre +1d6 dano necrótico em seu próximo ataque contra alvo durante a duração. Lançado como ação bônus. Pode mudar de alvo com ação bônus. Dura até 8 horas ou até ser disperso.</p>
-        <span class="spell-mechanic">Ação bônus | −5 atributo | +1d6 necr próximo ataque | 8h / conc | 27m</span>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Hold Monster</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">Encantamento</span>
-            <span class="spell-tag-small conc">Concentração, 1 min</span>
-          </div>
-        </div>
-        <p class="spell-desc">Escolha criatura que veja em 18m. TR SAB contra CD 19. Se falhar, fica paralisada enquanto a concentração se mantém (até 1 minuto). Pode repetir TR ao final de cada turno (vantagem se receber dano). Enquanto paralisada, recebe críticos automáticos de ataquantes corpo a corpo em 1,5m dela. Excelente para setup de aliados.</p>
-        <span class="spell-mechanic">Ação | TR SAB CD 19 | Paralisada até 1 min | 18m | Conc</span>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Hunger of Hadar</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">Conjuração</span>
-            <span class="spell-tag-small conc">Concentração, 1 min</span>
-          </div>
-        </div>
-        <p class="spell-desc">Cria zona de escuridão e frio em raio de 6m centrado em ponto que vê em 45m. Criaturas no raio ao lançar sofrem 2d6 frio + 2d6 ácido (TR DES metade). Criaturas que começam turno ali sofrem novamente. Criaturas dentro têm −4 em ataques contra alvos fora. Luz mágica não penetra. Isolamento efetivo de inimigos.</p>
-        <span class="spell-mechanic">Ação | 6m raio escuridão | 2d6 frio + 2d6 ácido (TR DES) | −4 ataques saindo | 1 min conc</span>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Synaptic Static</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">Abjuração</span>
-            <span class="spell-tag-small conc">Concentração, 1 min</span>
-          </div>
-        </div>
-        <p class="spell-desc">Cria pulso psíquico em raio 36m de si. Criaturas no raio fazem TR INT contra CD 19. Falha: 8d6 dano psíquico; durante 1 minuto, sofrem −1d6 em testes de ataque e testes de resistência. Acerto: metade dano, sem penalidade. Excelente dano em área com debuff.</p>
-        <span class="spell-mechanic">Ação | 8d6 psíquico (TR INT CD 19) | −1d6 ataques/TRs falha | 36m | Conc</span>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Counterspell</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">Abjuração</span>
-            <span class="spell-tag-small">Reação</span>
-          </div>
-        </div>
-        <p class="spell-desc">Quando vir criatura lançar magia em raio 18m, use reação para tentar bloqueá-la. Se a magia for 3° círculo ou menor, é automaticamente bloqueada. Se for 4° ou superior, faça teste de Ataque Mágico CD 19 contra a magia: acerto cancela. Anti-magia essencial contra casters inimigos.</p>
-        <span class="spell-mechanic">Reação | ≤3° auto-bloqueia | ≥4° teste CD 19 | 18m</span>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Dimension Door</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">Conjuração</span>
-          </div>
-        </div>
-        <p class="spell-desc">Teleporte instantâneo até 152m de si para espaço que vê ou conhece. Pode levar 1 criatura disposta que vê, até 152m também. Não pode teleportar para espaço ocupado. Escape garantido de combate hostil. Fuga de Dimension Door é extremamente difícil de contra-atacar.</p>
-        <span class="spell-mechanic">Ação | Teleporte até 152m | Pode levar 1 aliado | Sem conc</span>
-      </div>
-    </div>
-
-    <!-- MYSTIC ARCANUM 6° -->
-    <div class="spell-circle">
-      <div class="spell-circle-header">
-        <div class="spell-circle-badge">6</div>
-        <div class="spell-circle-title">Mystic Arcanum (6° — 1×/Repouso Longo)</div>
-        <div class="spell-circle-slots"></div>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Mass Suggestion</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">Encantamento</span>
-          </div>
-        </div>
-        <p class="spell-desc">Até 12 criaturas que vê em 18m fazem TR CAR contra CD 19. Se falhar, é encantada e segue sugestão específica (máx 25 palavras) por 8 horas. A sugestão deve ser razoável (suicida é ignorada). Excelente para controle social: sedação, recuo, rendição, aliança. Nenhuma concentração necessária após lançado.</p>
-        <span class="spell-mechanic">Ação | até 12 alvos | TR CAR CD 19 | 8h encantamento | Sem conc</span>
-      </div>
-    </div>
-
-    <!-- MYSTIC ARCANUM 7° -->
-    <div class="spell-circle">
-      <div class="spell-circle-header">
-        <div class="spell-circle-badge">7</div>
-        <div class="spell-circle-title">Mystic Arcanum (7° — 1×/Repouso Longo)</div>
-        <div class="spell-circle-slots"></div>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Crown of Stars</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">Evocação</span>
-            <span class="spell-tag-small conc">Concentração, 1 hora</span>
-          </div>
-        </div>
-        <p class="spell-desc">Sete estrelas mágicas orbitam sua cabeça por 1 hora. Como ação bônus, pode disparar uma estrela em criatura em 36m. Teste de ataque de magia +11 para acertar: 4d12 dano de força. Cada estrela pode ser disparada uma vez; reutilizável se recuperar concentração. Múltiplos disparos por turno possíveis. Ilumina 15m raio.</p>
-        <span class="spell-mechanic">Ação | 7 estrelas | Ação bônus/disparo | 4d12 força (26 médio) | 36m | Conc 1h</span>
-      </div>
-    </div>
-
-    <!-- MYSTIC ARCANUM 8° -->
-    <div class="spell-circle">
-      <div class="spell-circle-header">
-        <div class="spell-circle-badge">8</div>
-        <div class="spell-circle-title">Mystic Arcanum (8° — 1×/Repouso Longo)</div>
-        <div class="spell-circle-slots"></div>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Dominate Monster</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">Encantamento</span>
-            <span class="spell-tag-small conc">Concentração, 1 hora</span>
-          </div>
-        </div>
-        <p class="spell-desc">Criatura que vê em 18m faz TR SAB contra CD 19. Se falhar, é controlada por você por até 1 hora enquanto concentra. Você ordena ações telepáticamente; ela obedece ao melhor de sua habilidade. Repetições de TR a cada 24h com vantagem se esteve em combate. Humanoides sofrem −5 e são essencialmente escravos permanentes. Synergiza com Create Thrall para exército.</p>
-        <span class="spell-mechanic">Ação | TR SAB CD 19 | Controlada até 1h | 18m | Conc</span>
-      </div>
-    </div>
-
-    <!-- MYSTIC ARCANUM 9° -->
-    <div class="spell-circle">
-      <div class="spell-circle-header">
-        <div class="spell-circle-badge">9</div>
-        <div class="spell-circle-title">Mystic Arcanum (9° — 1×/Repouso Longo)</div>
-        <div class="spell-circle-slots"></div>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Psychic Scream</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">Abjuração</span>
-          </div>
-        </div>
-        <p class="spell-desc">Pulso psíquico silencioso em raio 18m de si. Até 10 criaturas no raio fazem TR INT contra CD 19. Falha: 14d6 dano psíquico; ficar atordoado até final próximo turno. Acerto: metade dano, sem atordoamento. Thought Shield reflete dano psíquico de volta ao atacante. Dano psíquico puro contra inimigos vulneráveis. Possivelmente de instância única em encontro.</p>
-        <span class="spell-mechanic">Ação | até 10 alvos | 14d6 psíquico (49 médio) | TR INT CD 19 | Atordoado falha</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="divider">
-    <span class="divider-sym">†</span>
-  </div>
-
-  <div class="section">
-    <h2 class="section-title">Como Viego Joga — Estratégia de Combate</h2>
-    <div class="two-col">
-      <div class="card">
-        <div class="card-title">◈ Névoa & Controle</div>
-        <p>Turno 1: Use Shroud of Shadow para ficar invisível. Turno 2: Mantenha distância (36m). Turno 3: Dimension Door para se reposicionar longe. Objetivo: permanecer vivo enquanto inimigos sofrem dano psíquico e debuff Hex. Create Thrall transforma humanoides incapacitados em servos permanentes — construa exército durante campanha.</p>
-      </div>
-      <div class="card">
-        <div class="card-title">◈ Raios da Ruína</div>
-        <p>Eldritch Blast 4×/turno com Agonizing Blast (+11, 4d10+20 médio 43). Cada raio acerta independente. Grasp of Hadar puxa alvos para perto. Toll the Dead como alternativa para dano bruto (4d12 ferido). Prioritize alvos enfraquecidos por Hex (−5 atributo, +1d6 necr próximo ataque).</p>
-      </div>
-      <div class="card">
-        <div class="card-title">◈ Criar Súditos</div>
-        <p>Hold Monster (nível 5, paralisado) para inimigos humanoides. Dominate Monster (nível 8, controlado 1h) para chefes. Create Thrall (incapacitado) para servo permanente. Roda: converter inimigos em aliados telepáticos, expandir mente para controle total do campo. 6 thralls máximo — respeite limite.</p>
-      </div>
-      <div class="card">
-        <div class="card-title">◈ Mystic Arcanum</div>
-        <p>Mass Suggestion (6°, 12 alvos, 8h encantamento): sedação social. Crown of Stars (7°, 7 disparos 4d12 cada): dano contínuo. Dominate Monster (8°): servidor de combate. Psychic Scream (9°, 14d6 em raio 18m): dano massivo final. Eldritch Master (1 min para 4 slots): ronda 2 de Dominate se necessário.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══ PROGRESSÃO NÍVEL A NÍVEL ══════════════════════════ -->
-  <div class="section">
-    <h2 class="section-title">Progressão por Nível — Bruxo do Grande Antigo</h2>
-    <div class="level-timeline">
-      <div class="level-row milestone"><div class="level-num">Nv 1</div><div class="level-content"><div class="level-feature-name">Pact Magic (1×1°) · Otherworldly Patron: Grande Antigo · Mente Expandida · Eldritch Blast</div><div class="level-note">Telepatia 36m · Leitura de pensamentos CD 19 · Truques: Eldritch Blast, Toll the Dead · 2 invocações</div></div></div>
-      <div class="level-row"><div class="level-num">Nv 2</div><div class="level-content"><div class="level-feature-name">Invocações: Agonizing Blast + Grasp of Hadar</div><div class="level-note">Eldritch Blast agora +5 CAR dano/raio · Raios puxam alvos 1,5m</div></div></div>
-      <div class="level-row milestone"><div class="level-num">Nv 3</div><div class="level-content"><div class="level-feature-name">Pact Boon: Pact of the Blade · 2×2° slots · Hunger of Hadar</div><div class="level-note">Espada Arruinada invocada (ação bônus) · Hunger of Hadar: escuridão 6m, 2d6 frio+ácido/turno</div></div></div>
-      <div class="level-row milestone"><div class="level-num">Nv 4</div><div class="level-content"><div class="level-feature-name">ASI: CAR +2 (18→20) · Talento: Resilient (CON)</div><div class="level-note">CD 19 atingida · TR CON com proficiência: concentração quase inquebrável</div></div></div>
-      <div class="level-row"><div class="level-num">Nv 5</div><div class="level-content"><div class="level-feature-name">2×3° slots · Invocação: Sign of Ill Omen · Eldritch Blast: 2 raios · Hold Monster</div><div class="level-note">Bestow Curse 1×/longo · Hold Monster: TR SAB CD 19, paralisado = críticos automáticos</div></div></div>
-      <div class="level-row"><div class="level-num">Nv 6</div><div class="level-content"><div class="level-feature-name">Thought Shield — resistência psíquica + reflexão · Synaptic Static</div><div class="level-note">Ninguém lê sua mente · Dano psíquico recebido volta ao atacante · Synaptic Static: 8d6 +debuff</div></div></div>
-      <div class="level-row"><div class="level-num">Nv 7</div><div class="level-content"><div class="level-feature-name">Lifedrinker — Pact Blade +CAR dano · 2×4° slots</div><div class="level-note">Espada agora 1d8+5 mágico escuro · Counterspell disponível (cancela ≤3° automático)</div></div></div>
-      <div class="level-row"><div class="level-num">Nv 8</div><div class="level-content"><div class="level-feature-name">Invocação: Voice of Chain Master</div><div class="level-note">Falar/ver pelo familiar telepático · Reconhecimento à distância</div></div></div>
-      <div class="level-row"><div class="level-num">Nv 9</div><div class="level-content"><div class="level-feature-name">2×5° slots · Eldritch Blast: 3 raios · Invocação: Eldritch Mind</div><div class="level-note">Pact Magic máximo (slots 5° recuperam em descanso curto) · Vantagem TR CON para concentração</div></div></div>
-      <div class="level-row"><div class="level-num">Nv 10</div><div class="level-content"><div class="level-feature-name">Invocação: Shroud of Shadow — invisível à vontade</div><div class="level-note">Invisibilidade sem custo de slot · Combinado com Pact Blade para gank</div></div></div>
-      <div class="level-row milestone"><div class="level-num">Nv 11</div><div class="level-content"><div class="level-feature-name">Mystic Arcanum 6° — Mass Suggestion</div><div class="level-note">1×/longo · Até 12 criaturas TR CAR CD 19 · Falha: sugestão por 8h</div></div></div>
-      <div class="level-row"><div class="level-num">Nv 12</div><div class="level-content"><div class="level-feature-name">Invocação: Eldritch Mind upgrade · Crown of Stars (7°)</div><div class="level-note">Crown of Stars: 7 motes, 4d12 força cada, 1 hora sem concentração</div></div></div>
-      <div class="level-row"><div class="level-num">Nv 13</div><div class="level-content"><div class="level-feature-name">Mystic Arcanum 7° extra · Dimension Door</div><div class="level-note">Teleporte 152m + aliado · Fuga garantida de qualquer situação</div></div></div>
-      <div class="level-row milestone"><div class="level-num">Nv 14</div><div class="level-content"><div class="level-feature-name">Create Thrall — controle permanente via toque em incapacitado</div><div class="level-note">Servo telepático permanente · Combine com Hold Monster para capturar e converter bosses</div></div></div>
-      <div class="level-row"><div class="level-num">Nv 15</div><div class="level-content"><div class="level-feature-name">Mystic Arcanum 8° — Dominate Monster</div><div class="level-note">Qualquer criatura TR SAB CD 19 · Controle total 1h concentração · Dragões inclusos</div></div></div>
-      <div class="level-row"><div class="level-num">Nv 16</div><div class="level-content"><div class="level-feature-name">4×5° slots (máximo) · Recupera em descanso curto</div><div class="level-note">Quatro rodadas de Hold Monster ou Dominate por descanso curto</div></div></div>
-      <div class="level-row"><div class="level-num">Nv 17</div><div class="level-content"><div class="level-feature-name">Mystic Arcanum 9° — Psychic Scream</div><div class="level-note">14d6 psíquico em 10 alvos raio 18m · TR INT CD 19 · Atordoamento · Thought Shield reflete</div></div></div>
-      <div class="level-row"><div class="level-num">Nv 18</div><div class="level-content"><div class="level-feature-name">Eldritch Blast: 4 raios · Invocação final</div><div class="level-note">4 raios × 1d10+5 = 4d10+20 dano/turno · Tomb of Levistus: escudo de gelo como reação</div></div></div>
-      <div class="level-row"><div class="level-num">Nv 19</div><div class="level-content"><div class="level-feature-name">Preparação para capstone</div><div class="level-note">Todos os sistemas operacionais · Exército de thralls construído · 4 slots 5°</div></div></div>
-      <div class="level-row capstone"><div class="level-num">Nv 20</div><div class="level-content"><div class="level-feature-name">Eldritch Master — recupera TODOS os slots em 1 minuto · 1×/longo</div><div class="level-note">4×5° em 1 min = Dominate Monster × 4 seguidos · Create Thrall · Psychic Scream · O Rei Eterno</div></div></div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2 class="section-title">Personalidade & Ideologia</h2>
-    <div class="three-col">
-      <div class="trait-box">
-        <span class="trait-label">Traços Pessoais</span>
-        <span class="trait-text">Fala com tom baixo, ameaçador. Move-se como se flotando. Sempre estratégico; nunca impulsivo. Odeia perder controle de si mesmo. Fascínio morboso por corrupção e degeneração.</span>
-      </div>
-      <div class="trait-box">
-        <span class="trait-label">Ideais</span>
-        <span class="trait-text">Poder acima de tudo. Controlar é natural; ser controlado é morte. A corrupção é beleza. Humanidade é fraqueza. A Névoa é a verdadeira realidade.</span>
-      </div>
-      <div class="trait-box">
-        <span class="trait-label">Ligações</span>
-        <span class="trait-text">Pacto com o Grande Antigo (existência). Buscar a Fonte Original (motivação). Expandir o reino da Corrupção (longo prazo). Ninguém pode ser verdadeiramente confiável.</span>
-      </div>
-    </div>
-    <div style="margin-top:12px">
-      <div class="trait-box">
-        <span class="trait-label">Defeitos</span>
-        <span class="trait-text">Extremamente paranóico; suspeita de todos. Compulsão para dominar—não consegue deixar ir. Ódio irrefrenável por qualquer uma que resista seu controle. Trata humanoides como peças, não pessoas. Capaz de sacrificar qualquer coisa pelo poder.</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2 class="section-title">Tesouro & Riqueza</h2>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
-      <div class="card">
-        <div class="card-title">Moedas</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-          <div style="text-align:center;padding:10px;background:var(--card-light);border:1px solid var(--border)">
-            <div style="font-family:'Cinzel',serif;font-size:24px;color:var(--gold);font-weight:700">450</div>
-            <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px">Ouro</div>
-          </div>
-          <div style="text-align:center;padding:10px;background:var(--card-light);border:1px solid var(--border)">
-            <div style="font-family:'Cinzel',serif;font-size:24px;color:var(--mist);font-weight:700">380</div>
-            <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px">Prata</div>
-          </div>
-          <div style="text-align:center;padding:10px;background:var(--card-light);border:1px solid var(--border)">
-            <div style="font-family:'Cinzel',serif;font-size:24px;color:var(--pur-light);font-weight:700">120</div>
-            <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px">Cobre</div>
-          </div>
-          <div style="text-align:center;padding:10px;background:var(--card-light);border:1px solid var(--border)">
-            <div style="font-family:'Cinzel',serif;font-size:24px;color:var(--text-dim);font-weight:700">0</div>
-            <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px">Platina</div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">Itens Especiais</div>
-        <ul class="info-list">
-          <li class="info-item">
-            <span class="info-val">Joia Hexada (transmissão remota de controle telepático)</span>
-          </li>
-          <li class="info-item">
-            <span class="info-val">3× Poção de Inteligência +2 (mental clarity)</span>
-          </li>
-          <li class="info-item">
-            <span class="info-val">Fragmento de Cristal Primordial (símbolo do pacto)</span>
-          </li>
-          <li class="info-item">
-            <span class="info-val">Pergaminho antigo (pistas sobre o Grande Antigo)</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2 class="section-title">História & Lore</h2>
-    <div class="backstory">
-      <p>
-        Viego foi um rei em tempos remotos. Seu reino era próspero, seu poder inquestionável. Mas a prosperidade gerou decadência, e a decadência gerou desespero. Quando sua esposa adoeceu de um mal sem cura, ele procurou poder além dos limites mortais. Em cavernas sombrias, encontrou os sussurros de uma entidade primordial — o Grande Antigo — que ofreceu um pacto: poder absoluto em troca de escravidão voluntária.
-      </p>
-      <p>
-        Viego aceitou. Sua morte veio rápida, seu retorno mais rápido ainda. Mas ele não retornou como homem. A corrupção o transformou em Revenante — morto-vivo, imortal, consumido pela Névoa da Corrupção. Seu amor pela esposa se tornou obsessão, sua compaixão se transformou em ódio por tudo que era vivo e livre. O Grande Antigo sussurra em sua mente constantemente, prometendo poder sem fim se simplesmente ele continuar a expandir a Corrupção, continuar a controlar, continuar a dominar.
-      </p>
-      <p>
-        Agora, no auge de seu poder (nível 20), Viego comanda um exército de thralls — humanoides controlados telepaticamente, servo permanentes de sua vontade. Invocações como Shroud of Shadow o deixam invisível e imbatível em infiltração. Dominate Monster lhe permite tomar controle absoluto de inimigos. E Eldritch Master garante combates prolongados com múltiplas rodadas de Dominate, tornando-o praticamente imbatível em qualquer encontro.
-      </p>
-      <p>
-        Seu próximo objetivo é claro: libertar completamente o Grande Antigo de suas prisões dimensionais, permitindo que a Corrupção consuma todos os planos. E nenhum herói — nenhuma magia, nenhuma arma, nenhum deus — será capaz de detê-lo. Viego é o Rei Arruinado, e a Ruína é seu presente para o mundo.
-      </p>
-      <div class="bs-quote">
-        "O poder é verdade. Tudo mais é ilusão de frágeis."
-      </div>
-    </div>
-  </div>
-
-  <div class="scroll-ornament">† ~ ◈ ~ †</div>
-
 </div>
 
+<!-- ── STATS BAR ──────────────────────────────── -->
+<div class="stats-bar">
+<div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">16</span></div><div class="stat-item"><span class="stat-label">PV</span><span class="stat-value">154</span></div><div class="stat-item"><span class="stat-label">Deslocamento</span><span class="stat-value">9m</span></div><div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value">+2</span></div><div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div><div class="stat-item"><span class="stat-label">CD de Magia</span><span class="stat-value">19</span></div><div class="stat-item"><span class="stat-label">Atq. Mágico</span><span class="stat-value">+11</span></div>
+</div>
+
+<!-- ── IDENTIDADE ────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Identidade</div>
+  <div class="info-pills">
+    <div class="info-pill"><strong>Raça</strong>Revenante</div>
+    <div class="info-pill"><strong>Classe</strong>Bruxo</div>
+    <div class="info-pill"><strong>Subclasse</strong>Grande Antigo</div>
+    <div class="info-pill"><strong>Antecedente</strong>Nobre</div>
+    <div class="info-pill"><strong>Tendência</strong>Caótico Mau</div>
+    <div class="info-pill"><strong>Idiomas</strong>Comum, Sombrio, Profundo</div>
+    <div class="info-pill"><strong>Dado de Vida</strong>20d8</div>
+    <div class="info-pill"><strong>Magia</strong>Carisma</div>
+  </div>
+  <div class="info-pills"><span class='tag hi'>pactMagic: 4×5° Círculo</span></div>
+</div>
+
+<!-- ── ATRIBUTOS ──────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Atributos</div>
+  <div class="attr-grid">
+        <div class="attr-box">
+          <span class="attr-label">FOR</span>
+          <span class="attr-value peak">18</span>
+          <span class="attr-mod">+4</span>
+        </div>
+        <div class="attr-box">
+          <span class="attr-label">DES</span>
+          <span class="attr-value ">14</span>
+          <span class="attr-mod">+2</span>
+        </div>
+        <div class="attr-box">
+          <span class="attr-label">CON</span>
+          <span class="attr-value ">16</span>
+          <span class="attr-mod">+3</span>
+        </div>
+        <div class="attr-box">
+          <span class="attr-label">INT</span>
+          <span class="attr-value ">10</span>
+          <span class="attr-mod">+0</span>
+        </div>
+        <div class="attr-box">
+          <span class="attr-label">SAB</span>
+          <span class="attr-value ">10</span>
+          <span class="attr-mod">+0</span>
+        </div>
+        <div class="attr-box">
+          <span class="attr-label">CAR</span>
+          <span class="attr-value peak">20</span>
+          <span class="attr-mod">+5</span>
+        </div></div>
+  
+</div>
+
+
+
+
+
+
+
+<!-- ── HABILIDADES ───────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Habilidades</div>
+  <div class="feat-section"><div class="feat-section-label">Habilidades de Subclasse</div><div class="feature-grid"><div class="trait-block ">
+              <div class="trait-name">Mente Expandida <span class="feat-level">Nív.1</span></div>
+              <div class="trait-desc">Telepatia 36m. Lê pensamentos em 9m (TR Sab CD 19).</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Thought Shield <span class="feat-level">Nív.6</span></div>
+              <div class="trait-desc">Resistência psíquica. Reflete dano psíquico de volta ao atacante.</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Create Thrall <span class="feat-level">Nív.14</span></div>
+              <div class="trait-desc">Toca incapacitado: encantado permanente, obedece comandos.</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Eldritch Master <span class="feat-level">Nív.20</span></div>
+              <div class="trait-desc">Recupera todos os slots Pact Magic em 1 min. 1×/descanso longo.</div>
+            </div></div></div><div class="feat-section"><div class="feat-section-label">Habilidades de Classe</div><div class="feature-grid"><div class="trait-block ">
+              <div class="trait-name">Dádiva do Pacto — Lâmina <span class="feat-level">Nív.3</span></div>
+              <div class="trait-desc">Espada da Névoa invocável como ação bônus.</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Lifedrinker <span class="feat-level">Nív.7</span></div>
+              <div class="trait-desc">+CAR (+5) à arma do Pacto.</div>
+            </div></div></div><div class="feat-section"><div class="feat-section-label">Invocações Místicas</div><div class="feature-grid"><div class="trait-block ">
+              <div class="trait-name">Agonizing Blast </div>
+              <div class="trait-desc">+5/raio EB</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Grasp of Hadar </div>
+              <div class="trait-desc">Atrai alvo 1,5m</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Lifedrinker </div>
+              <div class="trait-desc">+CAR à Pact Blade</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Voice of Chain Master </div>
+              <div class="trait-desc">Fala pelo familiar</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Shroud of Shadow </div>
+              <div class="trait-desc">Invisível à vontade</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Sign of Ill Omen </div>
+              <div class="trait-desc">Bestow Curse 1×/longo</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Tomb of Levistus </div>
+              <div class="trait-desc">Escudo de gelo como reação</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Eldritch Mind </div>
+              <div class="trait-desc">Vantagem em Con para concentração</div>
+            </div></div></div>
+</div>
+
+<!-- ── MAGIAS ───────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Magia</div>
+  <div class="spell-meta">
+      <span class="spell-tag">CD 19</span>
+      <span class="spell-tag">Ataque +11</span>
+      <span class="spell-tag">Carisma</span>
+      <span class="spell-tag gold">4×5°</span>
+    </div><div class="spell-section-label">Truques (Cantrips)</div><div class="spell-grid"><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Eldritch Blast</span><span class="sc-desc">4×1d10+5 · Grasp</span></div><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Toll the Dead</span><span class="sc-desc">4d12 necrótico · TR Sab</span></div></div><div class="spell-section-label">Magias</div><div class="spell-grid"><div class="sc"><span class="sc-type">1° </span><span class="sc-name">Hex</span><span class="sc-desc">+1d6 necrótico/ataque · 8h concentração</span></div><div class="sc"><span class="sc-type">5° </span><span class="sc-name">Hold Monster</span><span class="sc-desc">TR Sab CD 19 · Paralisado · Crítico auto</span></div><div class="sc"><span class="sc-type">3° </span><span class="sc-name">Hunger of Hadar</span><span class="sc-desc">Escuridão · 2d6 frio + 2d6 ácido/turno</span></div><div class="sc"><span class="sc-type">5° </span><span class="sc-name">Synaptic Static</span><span class="sc-desc">8d6 psíquico · −1d6 ataques e TRs</span></div><div class="sc"><span class="sc-type">3° </span><span class="sc-name">Counterspell</span><span class="sc-desc">Reação · Auto-cancel ≤3°</span></div><div class="sc"><span class="sc-type">4° </span><span class="sc-name">Dimension Door</span><span class="sc-desc">Teleporte 152m · Leva aliado</span></div></div><div class="spell-section-label">Arcanum Místico</div><div class="spell-grid"><div class="sc expanded"><span class="sc-type">6° Círculo</span><span class="sc-name">Mass Suggestion</span><span class="sc-desc"></span></div><div class="sc expanded"><span class="sc-type">7° Círculo</span><span class="sc-name">Crown of Stars</span><span class="sc-desc"></span></div><div class="sc expanded"><span class="sc-type">8° Círculo</span><span class="sc-name">Dominate Monster</span><span class="sc-desc"></span></div><div class="sc expanded"><span class="sc-type">9° Círculo</span><span class="sc-name">Psychic Scream</span><span class="sc-desc"></span></div></div>
+</div>
+
+
+
+
+<!-- ── PERSONALIDADE ─────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Personalidade</div>
+  <div class="trait-block"><div class="trait-name">Traços de Personalidade</div><div class="trait-desc">Não entende 'não'. Não aceita 'impossível'. Para Viego, 'foi' não existe.</div></div><div class="trait-block"><div class="trait-name">Ideais</div><div class="trait-desc">Amor é absoluto. Um amor que aceita limitações não é amor real.</div></div><div class="trait-block"><div class="trait-name">Vínculos</div><div class="trait-desc">Isolde. A esposa morta que foi o início e o fim de tudo.</div></div><div class="trait-block"><div class="trait-name">Fraquezas</div><div class="trait-desc">Incapaz de aceitar perda permanente.</div></div>
+</div>
+
+<div class="divider">✦ ✧ ✦</div>
+
+<!-- ── FOOTER ────────────────────────────────── -->
+<div class="footer">
+  <p>Viego · Bruxo Grande Antigo · Nível 20</p>
+  <p>D&amp;D 5e · League of Legends · Sistema de Fichas RPG</p>
+</div>
+
+</div><!-- /page -->
+
 <script>
-const mistBg = document.getElementById('mistBg');
-const symbols = ['~', '◈', '†', '◇', '○'];
-for (let i = 0; i < 12; i++) {
-  const mist = document.createElement('div');
-  mist.className = 'mist-particle';
-  mist.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-  mist.style.left = Math.random() * 100 + '%';
-  mist.style.animationDelay = (Math.random() * 8 - 8) + 's';
-  mist.style.animationDuration = (8 + Math.random() * 10) + 's';
-  mist.style.fontSize = (10 + Math.random() * 16) + 'px';
-  mistBg.appendChild(mist);
-}
+(function() {
+  const particles = "🌫️👁️💙".split("");
+  const container = document.getElementById('particleBg');
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('span');
+    p.className = 'particle';
+    p.textContent = particles[i % particles.length];
+    p.style.left = (Math.random() * 100) + '%';
+    p.style.animationDuration = (12 + Math.random() * 18) + 's';
+    p.style.animationDelay = (Math.random() * 20) + 's';
+    p.style.fontSize = (9 + Math.random() * 6) + 'px';
+    container.appendChild(p);
+  }
+})();
 </script>
 
 </body>

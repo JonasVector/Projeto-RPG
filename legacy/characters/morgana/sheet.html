@@ -3,1383 +3,342 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Morgana, A Caída — Ficha D&D 5e</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;0,700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<title>Morgana — A Caída · Ficha D&amp;D 5e</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
-:root {
-  --shadow:        #1a0a2e;
-  --shadow-mid:    #4a2080;
-  --spec:          #7b4fc8;
-  --spec-light:    #a87fe8;
-  --soul:          #c8b0f0;
-  --dark:          #060308;
-  --darker:        #040206;
-  --card:          #0c080f;
-  --gold:          #c9a227;
-  --pale:          #f0eaff;
-  --text:          #c8b8d8;
-  --text-dim:      #5a406a;
-  --border:        rgba(123,79,200,.28);
-  --border-bright: rgba(168,127,232,.45);
-  --glow:          rgba(123,79,200,.15);
+:root{
+  --primary:    #4a1080;
+  --mid:        #7b1fa2;
+  --bright:     #ce93d8;
+  --pale:       #f3e5f5;
+  --dark:       #060108;
+  --darker:     #040106;
+  --card:       #120520;
+  --card-light: #1a0830;
+  --text:       #e0c8f0;
+  --text-dim:   #7a4a8a;
+  --mist:       #2a0840;
+  --gold:       #c9a227;
+  --gold-light: #e8c85a;
+  --border:     rgba(74,16,128,0.40);
+  --border-bright:rgba(206,147,216,0.5);
+  --glow:       rgba(74,16,128,0.15);
 }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15%,rgba(74,16,128,0.12) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(123,31,162,0.06) 0%,transparent 45%);font-family:'EB Garamond',Georgia,serif;color:var(--text);line-height:1.75;}
+.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
 
-*{ margin:0; padding:0; box-sizing:border-box; }
+/* FLOATING PARTICLES */
+.particle-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.particle{position:absolute;font-size:11px;opacity:0;animation:floatP ease-in-out infinite;filter:blur(0.4px);color:var(--bright);}
+@keyframes floatP{0%{transform:translateY(108vh) translateX(0) rotate(0deg) scale(0.5);opacity:0;}8%{opacity:0.25;}50%{transform:translateY(50vh) translateX(35px) rotate(180deg) scale(0.75);opacity:0.15;}92%{opacity:0.06;}100%{transform:translateY(-8vh) translateX(-20px) rotate(340deg) scale(0.4);opacity:0;}}
 
-body {
-  background: var(--darker);
-  background-image:
-    radial-gradient(ellipse at 20% 15%, rgba(123,79,200,0.09) 0%, transparent 50%),
-    radial-gradient(ellipse at 75% 85%, rgba(168,127,232,0.06) 0%, transparent 45%),
-    radial-gradient(ellipse at 50% 45%, rgba(74,32,128,0.04) 0%, transparent 70%);
-  font-family: 'EB Garamond', Georgia, serif;
-  color: var(--text);
-  line-height: 1.75;
-}
+/* HEADER */
+.header{background:linear-gradient(165deg,#060108 0%,#120520 50%,#060108 100%);border-bottom:2px solid var(--primary);position:relative;overflow:hidden;z-index:1;}
+.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 64px,rgba(74,16,128,0.12) 64px,rgba(74,16,128,0.12) 65px);}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--mid),var(--bright),var(--mid),transparent);opacity:0.55;}
+.header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
 
-.page { max-width: 960px; margin: 0 auto; padding: 0 0 80px; }
+/* PORTRAIT */
+.header-portrait{width:220px;flex-shrink:0;background:#060108;border-right:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+.portrait-inner{width:100%;height:290px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.portrait-photo{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 0.4s ease;}
+.portrait-photo:hover{transform:scale(1.04);}
+.portrait-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,#040106aa 100%);pointer-events:none;}
+.portrait-label{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--bright);opacity:0.6;text-transform:uppercase;text-shadow:0 0 8px var(--primary);}
 
-/* ── FLOATING CHAINS ───────────────────────────── */
-.leaf-bg {
-  position: fixed; top:0; left:0; width:100%; height:100%;
-  pointer-events:none; z-index:0; overflow:hidden;
-}
-.leaf {
-  position: absolute;
-  font-size: 14px;
-  opacity: 0;
-  animation: floatLeaf ease-in-out infinite;
-  filter: blur(0.3px);
-  color: var(--spec-light);
-}
-@keyframes floatLeaf {
-  0%   { transform: translateY(110vh) translateX(0) rotate(0deg) scale(0.4); opacity:0; }
-  10%  { opacity: 0.35; }
-  50%  { transform: translateY(50vh) translateX(40px) rotate(180deg) scale(0.7); opacity:0.2; }
-  90%  { opacity: 0.1; }
-  100% { transform: translateY(-10vh) translateX(-20px) rotate(360deg) scale(0.3); opacity:0; }
-}
+/* HEADER TEXT */
+.header-text{flex:1;padding:34px 44px;}
+.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--mid);opacity:0.85;text-transform:uppercase;margin-bottom:10px;}
+.header-name{font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(74,16,128,0.5),0 0 15px rgba(74,16,128,0.3);letter-spacing:2px;line-height:1;margin-bottom:4px;}
+.header-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);margin-bottom:20px;letter-spacing:1.5px;opacity:0.95;}
+.header-tags{display:flex;gap:7px;flex-wrap:wrap;}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(74,16,128,0.12);}
+.tag.hi{background:rgba(74,16,128,0.15);border-color:var(--mid);color:var(--bright);}
+.tag.gold{background:rgba(201,162,39,0.10);border-color:rgba(201,162,39,0.4);color:var(--gold-light);}
 
-/* ── HEADER ─────────────────────────────────────── */
-.header {
-  background: linear-gradient(165deg, #0a0415 0%, #1a0a2e 50%, #0a0415 100%);
-  border-bottom: 2px solid var(--spec);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-.header::before {
-  content: '';
-  position: absolute; inset: 0;
-  background:
-    repeating-linear-gradient(
-      60deg, transparent, transparent 60px,
-      rgba(123,79,200,0.025) 60px, rgba(123,79,200,0.025) 61px
-    );
-}
-.header::after {
-  content: '';
-  position: absolute; bottom:0; left:0; right:0; height:1px;
-  background: linear-gradient(90deg, transparent, var(--spec), var(--spec-light), var(--spec), transparent);
-  opacity: 0.5;
-}
-.header-inner {
-  display: flex; align-items: stretch;
-  position: relative; z-index: 1;
-}
+/* STATS BAR */
+.stats-bar{background:var(--card);border-bottom:1px solid var(--border);padding:13px 40px;display:flex;flex-wrap:wrap;position:relative;z-index:1;gap:0;}
+.stat-item{flex:1;border-right:1px solid var(--border);padding:0 18px;text-align:center;min-width:90px;}
+.stat-item:first-child{padding-left:0;}.stat-item:last-child{border-right:none;padding-right:0;}
+.stat-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
+.stat-value{font-family:'Cinzel',serif;font-size:13px;color:var(--bright);font-weight:600;}
 
-.header-portrait {
-  width: 220px; flex-shrink: 0;
-  background: #050308;
-  border-right: 2px solid var(--spec);
-  overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-}
-.portrait-inner {
-  width: 100%; height: 280px;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 12px;
-  position: relative;
-}
-.portrait-symbol {
-  font-size: 88px;
-  opacity: 0.12;
-  filter: drop-shadow(0 0 24px var(--spec-light));
-  line-height: 1;
-}
-.portrait-ring {
-  position: absolute;
-  width: 100px; height: 100px;
-  border: 1px solid rgba(123,79,200,0.3);
-  border-radius: 50%;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-}
-.portrait-ring::before {
-  content: '';
-  position: absolute; inset: 8px;
-  border: 1px solid rgba(123,79,200,0.15);
-  border-radius: 50%;
-}
-.portrait-label {
-  position: absolute; bottom: 14px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 9px; letter-spacing: 3px;
-  color: var(--spec); opacity: 0.5;
-  text-transform: uppercase;
-}
+/* SECTION */
+.sec{padding:0 40px;margin-top:32px;position:relative;z-index:1;}
+.sec-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.sec-title::before{content:'✦';font-size:11px;color:var(--gold);}
 
-.header-text { flex:1; padding: 36px 44px; }
-.header-eyebrow {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 10px; letter-spacing: 4px;
-  color: var(--spec); opacity: 0.8;
-  text-transform: uppercase; margin-bottom: 10px;
-}
-.header-name {
-  font-family: 'Cinzel', serif;
-  font-size: 40px; font-weight: 900;
-  color: var(--pale);
-  text-shadow: 0 0 60px rgba(123,79,200,0.4), 0 0 20px rgba(168,127,232,0.2);
-  letter-spacing: 2px; line-height: 1;
-  margin-bottom: 4px;
-}
-.header-subtitle {
-  font-family: 'EB Garamond', serif;
-  font-style: italic; font-size: 17px;
-  color: var(--spec-light); margin-bottom: 22px;
-  letter-spacing: 1.5px;
-}
-.header-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-.tag {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 9px; letter-spacing: 2px;
-  padding: 4px 12px;
-  border: 1px solid var(--border);
-  color: var(--text-dim); text-transform: uppercase;
-  background: rgba(123,79,200,0.07);
-}
-.tag.hi {
-  background: rgba(123,79,200,0.18);
-  border-color: var(--spec); color: var(--spec-light);
-}
+/* ATTRIBUTES */
+.attr-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px;}
+.attr-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:12px 4px 10px;position:relative;}
+.attr-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--primary);opacity:0.45;}
+.attr-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
+.attr-value{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:var(--text);display:block;line-height:1;}
+.attr-value.peak{color:var(--bright);text-shadow:0 0 14px rgba(74,16,128,0.45);}
+.attr-mod{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--mid);display:block;margin-top:3px;}
 
-/* ── META BAR ─────────────────────────────────────── */
-.meta-bar {
-  background: var(--card);
-  border-bottom: 1px solid var(--border);
-  padding: 14px 40px;
-  display: flex; gap: 0;
-  position: relative; z-index: 1;
-}
-.meta-item {
-  flex: 1;
-  border-right: 1px solid var(--border);
-  padding: 0 20px;
-  text-align: center;
-}
-.meta-item:first-child { padding-left: 0; }
-.meta-item:last-child  { border-right: none; padding-right: 0; }
-.meta-label {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 8px; letter-spacing: 3px;
-  color: var(--text-dim); text-transform: uppercase;
-  display: block; margin-bottom: 2px;
-}
-.meta-value {
-  font-family: 'Cinzel', serif; font-size: 13px;
-  color: var(--soul); font-weight: 600;
-}
+/* COMBAT NOTES */
+.special-notes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
 
-/* ── SECTION ──────────────────────────────────────── */
-.section { padding: 0 40px; margin-top: 36px; position: relative; z-index: 1; }
-.section-title {
-  font-family: 'Cinzel', serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: 5px; text-transform: uppercase;
-  color: var(--spec);
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 8px; margin-bottom: 20px;
-  display: flex; align-items: center; gap: 10px;
-}
-.section-title::before { content: '†'; font-size: 12px; color: var(--spec-light); opacity: 0.8; }
+/* SAVES & SKILLS */
+.two-col{display:grid;grid-template-columns:230px 1fr;gap:16px;}
+.save-list,.skill-list{list-style:none;padding:0;}
+.save-item,.skill-item{display:flex;align-items:center;gap:7px;padding:3px 0;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.save-item:last-child,.skill-item:last-child{border-bottom:none;}
+.prof-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--text-dim);flex-shrink:0;}
+.prof-dot.filled{background:var(--mid);border-color:var(--bright);box-shadow:0 0 6px rgba(74,16,128,0.5);}
+.prof-dot.expertise{background:var(--gold);border-color:var(--gold-light);}
+.save-name,.skill-name{flex:1;color:var(--text);}
+.skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text-dim);width:28px;}
+.save-score,.skill-score{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text-dim);width:28px;text-align:right;}
+.save-score.filled,.skill-score.filled,.skill-score.peak{color:var(--bright);}
 
-/* ── STAT GRID ───────────────────────────────────── */
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 8px; margin-bottom: 20px;
-}
-.stat-box {
-  background: var(--card);
-  border: 1px solid var(--border);
-  text-align: center; padding: 14px 4px 10px;
-  position: relative; transition: border-color 0.2s;
-}
-.stat-box:hover { border-color: var(--spec); }
-.stat-box::after {
-  content: '';
-  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--spec), transparent);
-  opacity: 0; transition: opacity 0.2s;
-}
-.stat-box:hover::after { opacity: 1; }
-.stat-name {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 8px; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--text-dim);
-  display: block; margin-bottom: 6px;
-}
-.stat-val {
-  font-family: 'Cinzel', serif;
-  font-size: 28px; font-weight: 900;
-  color: var(--pale); line-height: 1;
-}
-.stat-val.peak { color: var(--spec-light); text-shadow: 0 0 16px rgba(168,127,232,0.4); }
-.stat-mod {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px; color: var(--spec);
-  margin-top: 4px; display: block;
-}
+/* ATTACKS */
+.attack-table{width:100%;border-collapse:collapse;font-size:13px;}
+.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(74,16,128,0.12);}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(74,16,128,0.40);color:var(--text);vertical-align:top;}
+.attack-table tr:hover td{background:rgba(74,16,128,0.15);}
+.attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
+.attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--bright);font-weight:700;}
+.attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--gold-light);}
+.attack-notes{font-size:12px;color:var(--text-dim);font-style:italic;}
 
-/* ── COMBAT STATS ─────────────────────────────────── */
-.combat-row {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 8px; margin-bottom: 20px;
-}
-.combat-box {
-  background: var(--card);
-  border: 1px solid var(--border);
-  text-align: center; padding: 12px 6px 10px;
-  position: relative;
-}
-.combat-box.accent {
-  background: rgba(123,79,200,0.1);
-  border-color: var(--spec);
-}
-.combat-label {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 7.5px; letter-spacing: 1.5px;
-  text-transform: uppercase; color: var(--text-dim);
-  display: block; margin-bottom: 4px;
-}
-.combat-val {
-  font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700;
-  color: var(--soul); line-height: 1;
-}
-.combat-box.accent .combat-val { color: var(--spec-light); }
-.combat-sub {
-  font-size: 10px; color: var(--text-dim);
-  font-family: 'Share Tech Mono', monospace;
-  display: block; margin-top: 2px;
-}
+/* FEATURES */
+.feat-section{margin-bottom:10px;}
+.feat-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:12px 0 8px;}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.trait-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);padding:12px 14px;}
+.trait-block.gold-accent{border-left-color:var(--gold);}
+.trait-block.dim-accent{border-left-color:var(--mist);}
+.trait-name{font-family:'Cinzel',serif;font-size:11px;color:var(--bright);letter-spacing:0.5px;margin-bottom:5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+.trait-block.gold-accent .trait-name{color:var(--gold-light);}
+.trait-block.dim-accent .trait-name{color:var(--text-dim);}
+.trait-desc{font-size:13.5px;color:var(--text-dim);line-height:1.6;}
+.trait-desc em{font-style:italic;color:var(--bright);}
+.trait-desc strong{color:var(--text);}
+.feat-level{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;background:rgba(74,16,128,0.15);color:var(--mid);padding:1px 6px;}
 
-/* ── TWO COLUMN ───────────────────────────────────– */
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+/* SPELLS */
+.spell-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.spell-tag{background:var(--card-light);color:var(--bright);font-family:'Cinzel',serif;font-size:10px;padding:3px 9px;letter-spacing:1px;border:1px solid var(--border);display:inline-block;}
+.spell-tag.gold{background:rgba(201,162,39,0.08);color:var(--gold-light);border-color:rgba(201,162,39,0.28);}
+.spell-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:13px 0 8px;}
+.spell-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:7px;}
+.sc{background:var(--card-light);border:1px solid var(--border);border-top:2px solid var(--mist);padding:9px 12px 10px;display:flex;flex-direction:column;gap:3px;}
+.sc.cantrip{border-top-color:rgba(74,16,128,0.40);}
+.sc.expanded{border-top-color:var(--gold);}
+.sc-type{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);opacity:0.65;}
+.sc-name{font-family:'Cinzel',serif;font-size:11.5px;font-weight:600;color:var(--bright);letter-spacing:0.4px;}
+.sc.cantrip .sc-name{color:var(--text-dim);}
+.sc.expanded .sc-name{color:var(--gold-light);}
+.sc-desc{font-size:12px;color:var(--text-dim);line-height:1.5;margin-top:1px;}
 
-/* ── SAVE THROWS ──────────────────────────────────– */
-.save-list { list-style: none; }
-.save-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 4px 0; border-bottom: 1px solid rgba(123,79,200,0.1);
-  font-size: 14px;
-}
-.save-item:last-child { border-bottom: none; }
-.save-dot {
-  width: 10px; height: 10px; border-radius: 50%;
-  border: 1.5px solid var(--border); flex-shrink: 0;
-}
-.save-dot.filled {
-  background: var(--spec); border-color: var(--spec-light);
-  box-shadow: 0 0 6px rgba(123,79,200,0.5);
-}
-.save-score {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 12px; color: var(--spec);
-  min-width: 28px; text-align: right;
-}
-.save-name { color: var(--text-dim); font-size: 14px; flex: 1; }
+/* TRAIT LIST (equipment) */
+ul.trait-list{list-style:none;padding:0;}
+ul.trait-list li{padding:3px 0 3px 18px;position:relative;font-size:14px;line-height:1.65;color:var(--text-dim);}
+ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold);font-size:7px;top:7px;}
 
-/* ── SKILLS ───────────────────────────────────────– */
-.skill-list { list-style: none; }
-.skill-item {
-  display: flex; align-items: center; gap: 8px;
-  padding: 3px 0; border-bottom: 1px solid rgba(123,79,200,0.08);
-  font-size: 13px;
-}
-.skill-item:last-child { border-bottom: none; }
-.skill-dot {
-  width: 9px; height: 9px; border-radius: 50%;
-  border: 1.5px solid var(--border); flex-shrink: 0;
-}
-.skill-dot.filled {
-  background: var(--spec); border-color: var(--spec-light);
-  box-shadow: 0 0 5px rgba(123,79,200,0.4);
-}
-.skill-bonus {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px; color: var(--spec);
-  min-width: 26px; text-align: right;
-}
-.skill-name { color: var(--text-dim); flex: 1; }
-.skill-attr {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 9px; color: var(--shadow-mid); letter-spacing: 1px;
-}
+/* DIVIDER */
+.divider{text-align:center;margin:24px 0;color:var(--mist);font-size:14px;letter-spacing:14px;opacity:0.5;}
 
-/* ── CARD BLOCK ───────────────────────────────────– */
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 18px 20px; margin-bottom: 12px;
-}
-.card-title {
-  font-family: 'Cinzel', serif;
-  font-size: 11px; font-weight: 700; letter-spacing: 3px;
-  color: var(--spec); text-transform: uppercase;
-  margin-bottom: 8px; padding-bottom: 6px;
-  border-bottom: 1px solid var(--border);
-}
-.card p { font-size: 14px; color: var(--text-dim); }
+/* INFO PILLS */
+.info-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.info-pill{background:var(--card);border:1px solid var(--border);padding:8px 14px;font-size:13px;color:var(--text-dim);}
+.info-pill strong{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--mid);text-transform:uppercase;display:block;margin-bottom:3px;}
 
-/* ── INFO LIST ────────────────────────────────────– */
-.info-list { list-style: none; }
-.info-item {
-  padding: 6px 0; border-bottom: 1px solid rgba(123,79,200,0.1);
-  display: flex; gap: 10px; font-size: 14px;
-}
-.info-item:last-child { border-bottom: none; }
-.info-key {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 9px; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--spec);
-  min-width: 90px; padding-top: 3px;
-}
-.info-val { color: var(--text-dim); flex: 1; }
+/* FOOTER */
+.footer{margin-top:50px;padding:22px 40px;text-align:center;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent 0%,#04010699 100%);position:relative;z-index:1;}
+.footer p{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);opacity:0.5;text-transform:uppercase;margin-bottom:4px;}
 
-/* ── FEATURE BLOCK ────────────────────────────────– */
-.feature {
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(123,79,200,0.1);
-}
-.feature:last-child { border-bottom: none; }
-.feature-name {
-  font-family: 'Cinzel', serif;
-  font-size: 12px; color: var(--soul);
-  margin-bottom: 4px;
-}
-.feature-source {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 8px; letter-spacing: 2px;
-  color: var(--spec); opacity: 0.7;
-  text-transform: uppercase; margin-bottom: 4px;
-}
-.feature p { font-size: 14px; color: var(--text-dim); }
-
-/* ── SPELL SECTION ────────────────────────────────– */
-.spell-circle {
-  margin-bottom: 28px;
-}
-.spell-circle-header {
-  display: flex; align-items: center; gap: 14px;
-  margin-bottom: 14px;
-}
-.spell-circle-badge {
-  width: 36px; height: 36px;
-  border: 2px solid var(--spec);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Cinzel', serif;
-  font-size: 14px; font-weight: 700;
-  color: var(--spec-light);
-  background: rgba(123,79,200,0.1);
-  flex-shrink: 0;
-}
-.spell-circle-title {
-  font-family: 'Cinzel', serif;
-  font-size: 11px; letter-spacing: 4px;
-  text-transform: uppercase; color: var(--spec);
-}
-.spell-circle-slots {
-  margin-left: auto;
-  display: flex; gap: 5px;
-}
-.slot {
-  width: 14px; height: 14px;
-  border: 1.5px solid var(--spec);
-  border-radius: 50%;
-  background: rgba(123,79,200,0.2);
-}
-
-.spell-entry {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--spec);
-  padding: 10px 14px;
-  margin-bottom: 6px;
-  transition: border-color 0.2s, background 0.2s;
-}
-.spell-entry:hover {
-  background: rgba(123,79,200,0.05);
-  border-color: var(--spec);
-  border-left-color: var(--spec-light);
-}
-.spell-entry-top {
-  display: flex; align-items: baseline; gap: 10px;
-  margin-bottom: 4px;
-}
-.spell-name {
-  font-family: 'Cinzel', serif;
-  font-size: 13px; font-weight: 600;
-  color: var(--soul);
-}
-.spell-tags-inline { display: flex; gap: 5px; }
-.spell-tag-small {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 8px; letter-spacing: 1px;
-  padding: 2px 7px;
-  border: 1px solid var(--border);
-  color: var(--text-dim); text-transform: uppercase;
-  background: rgba(123,79,200,0.05);
-}
-.spell-tag-small.conc { border-color: rgba(123,79,200,0.4); color: var(--spec); }
-.spell-desc {
-  font-size: 13.5px; color: var(--text-dim);
-  line-height: 1.6;
-}
-.spell-mechanic {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 10px; color: var(--spec);
-  margin-top: 3px; display: block;
-}
-
-.spell-entry.cantrip { border-left-color: var(--gold); }
-.spell-entry.cantrip .spell-name { color: var(--gold); }
-.spell-entry.cantrip .spell-mechanic { color: var(--gold); }
-
-/* ── DIVIDER ──────────────────────────────────────– */
-.divider {
-  text-align: center; margin: 36px 40px;
-  display: flex; align-items: center; gap: 16px;
-  position: relative; z-index: 1;
-}
-.divider::before, .divider::after {
-  content: '';
-  flex: 1; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--spec), transparent);
-  opacity: 0.4;
-}
-.divider-sym {
-  font-size: 16px; color: var(--spec-light); opacity: 0.5;
-}
-
-/* ── TRAIT BOXES ──────────────────────────────────– */
-.trait-box {
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 16px 18px; height: 100%;
-}
-.trait-label {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 8px; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--spec);
-  display: block; margin-bottom: 8px;
-}
-.trait-text { font-size: 14px; color: var(--text-dim); font-style: italic; }
-
-/* ── EQUIPMENT ────────────────────────────────────– */
-.equip-item {
-  padding: 8px 0; border-bottom: 1px solid rgba(123,79,200,0.1);
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.equip-item:last-child { border-bottom: none; }
-.equip-icon { color: var(--spec-light); font-size: 14px; flex-shrink: 0; margin-top: 2px; }
-.equip-name {
-  font-family: 'Cinzel', serif; font-size: 12px;
-  color: var(--soul); display: block; margin-bottom: 2px;
-}
-.equip-note { font-size: 13px; color: var(--text-dim); }
-
-/* ── BACKSTORY ────────────────────────────────────– */
-.backstory {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-top: 3px solid var(--spec);
-  padding: 28px 32px;
-}
-.backstory p { font-size: 15px; color: var(--text-dim); margin-bottom: 14px; line-height: 1.85; }
-.backstory p:last-child { margin-bottom: 0; }
-.bs-quote {
-  font-style: italic;
-  border-left: 3px solid var(--spec);
-  padding: 8px 0 8px 16px;
-  color: var(--soul); margin: 16px 0;
-  font-size: 15px;
-}
-
-/* ── PASSIVE / LEGEND ─────────────────────────────– */
-.passive-block {
-  background: rgba(123,79,200,0.08);
-  border: 1px solid var(--spec);
-  padding: 12px 16px; text-align: center;
-}
-.passive-num {
-  font-family: 'Cinzel', serif; font-size: 32px; font-weight: 900;
-  color: var(--spec-light);
-  text-shadow: 0 0 16px rgba(168,127,232,0.3);
-  display: block;
-}
-.passive-lbl {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 8px; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--text-dim);
-}
-
-/* ── SCROLL ACCENT ────────────────────────────────– */
-.scroll-ornament {
-  text-align: center; padding: 20px 0;
-  color: var(--spec); opacity: 0.25; font-size: 22px;
-  position: relative; z-index: 1;
-}
-
-/* ── LEVEL BADGE ──────────────────────────────────– */
-.level-badge {
-  display: inline-flex;
-  background: rgba(123,79,200,0.15);
-  border: 1px solid var(--spec);
-  border-radius: 2px;
-  padding: 2px 10px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 9px; letter-spacing: 2px;
-  color: var(--spec); text-transform: uppercase;
-}
-
-/* ── RESPONSIVE ───────────────────────────────────– */
-@media (max-width: 700px) {
-  .stat-grid { grid-template-columns: repeat(3, 1fr); }
-  .combat-row { grid-template-columns: repeat(4, 1fr); }
-  .two-col, .three-col { grid-template-columns: 1fr; }
-  .header-inner { flex-direction: column; }
-  .header-portrait { width: 100%; height: 180px; }
+/* RESPONSIVE */
+@media(max-width:680px){
+  .header-inner{flex-direction:column;}
+  .header-portrait{width:100%;height:200px;}
+  .portrait-inner{height:200px;}
+  .attr-grid{grid-template-columns:repeat(3,1fr);}
+  .feature-grid{grid-template-columns:1fr;}
+  .spell-grid{grid-template-columns:1fr;}
+  .stats-bar{flex-wrap:wrap;gap:4px;}
+  .stat-item{flex:none;width:48%;border-right:none;border-bottom:1px solid var(--border);padding:6px 0;}
+  .two-col{grid-template-columns:1fr;}
+  .sec{padding:0 16px;}
+  .header-text{padding:20px 24px;}
+  .stats-bar{padding:10px 16px;}
 }
 </style>
 </head>
 <body>
 
-<!-- floating chains -->
-<div class="leaf-bg" id="leafBg"></div>
+<!-- Floating Particles -->
+<div class="particle-bg" id="particleBg"></div>
 
 <div class="page">
 
-  <!-- ══ HEADER ══════════════════════════════════════════ -->
-  <header class="header">
-    <div class="header-inner">
-      <div class="header-portrait">
-        <div class="portrait-inner">
-          <div class="portrait-symbol">◆</div>
-          <div class="portrait-ring"></div>
-          <span class="portrait-label">MORGANA</span>
-        </div>
+<!-- ── HEADER ─────────────────────────────────── -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-portrait">
+      <div class="portrait-inner">
+        <img class="portrait-photo" src="/portraits/morgana.png" alt="Morgana" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;font-size:64px;opacity:0.15;filter:drop-shadow(0 0 20px var(--bright));">🦋</div>
+        <div class="portrait-overlay"></div>
       </div>
-
-      <div class="header-text">
-        <div class="header-eyebrow">◈ A Caída ◈</div>
-        <h1 class="header-name">MORGANA</h1>
-        <p class="header-subtitle">The Fallen Angel · League of Legends</p>
-        <div class="header-tags">
-          <span class="tag hi">Feiticeiro 20</span>
-          <span class="tag hi">Magia das Sombras</span>
-          <span class="tag">Aasimar Protegido</span>
-          <span class="tag">Legal Neutro</span>
-        </div>
+      <div class="portrait-label">Morgana</div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">Ficha · D&amp;D 5e · League of Legends</div>
+      <div class="header-name">Morgana</div>
+      <div class="header-sub">A Caída</div>
+      <div class="header-tags">
+        <span class="tag hi">Aasimar (Protegido)</span><span class="tag hi">Feiticeiro</span><span class="tag hi">Magia das Sombras</span><span class="tag hi">League of Legends</span><span class="tag">Antecedente: Sábia</span><span class="tag">Nív. 20</span>
       </div>
-    </div>
-  </header>
-
-  <!-- ══ META BAR ════════════════════════════════════════ -->
-  <div class="meta-bar">
-    <div class="meta-item">
-      <span class="meta-label">Raça</span>
-      <span class="meta-value">Aasimar (Protegido)</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Classe</span>
-      <span class="meta-value">Feiticeiro</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Subclasse</span>
-      <span class="meta-value">Magia das Sombras</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Antecedente</span>
-      <span class="meta-value">Eremita Caída</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Tendência</span>
-      <span class="meta-value">Legal Neutro</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Nível</span>
-      <span class="meta-value">20</span>
     </div>
   </div>
-
-  <!-- ══ ATTRIBUTES ══════════════════════════════════════ -->
-  <section class="section">
-    <h2 class="section-title">Atributos</h2>
-    <div class="stat-grid">
-      <div class="stat-box">
-        <span class="stat-name">Força</span>
-        <span class="stat-val">8</span>
-        <span class="stat-mod">-1</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-name">Destreza</span>
-        <span class="stat-val">14</span>
-        <span class="stat-mod">+2</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-name">Constituição</span>
-        <span class="stat-val peak">20</span>
-        <span class="stat-mod">+5</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-name">Inteligência</span>
-        <span class="stat-val">14</span>
-        <span class="stat-mod">+2</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-name">Sabedoria</span>
-        <span class="stat-val">14</span>
-        <span class="stat-mod">+2</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-name">Carisma</span>
-        <span class="stat-val peak">20</span>
-        <span class="stat-mod">+5</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ COMBAT STATS ════════════════════════════════════ -->
-  <section class="section">
-    <h2 class="section-title">Combate</h2>
-    <div class="combat-row">
-      <div class="combat-box accent">
-        <span class="combat-label">CA</span>
-        <span class="combat-val">18</span>
-        <span class="combat-sub">Mage Armor +DES</span>
-      </div>
-      <div class="combat-box accent">
-        <span class="combat-label">PV</span>
-        <span class="combat-val">204</span>
-        <span class="combat-sub">20d6 + CON</span>
-      </div>
-      <div class="combat-box">
-        <span class="combat-label">Iniciativa</span>
-        <span class="combat-val">+2</span>
-        <span class="combat-sub">DEX</span>
-      </div>
-      <div class="combat-box">
-        <span class="combat-label">Velocidade</span>
-        <span class="combat-val">9m</span>
-        <span class="combat-sub">caminhada</span>
-      </div>
-      <div class="combat-box accent">
-        <span class="combat-label">Prof</span>
-        <span class="combat-val">+6</span>
-        <span class="combat-sub">nível 20</span>
-      </div>
-      <div class="combat-box accent">
-        <span class="combat-label">CD Magia</span>
-        <span class="combat-val">19</span>
-        <span class="combat-sub">CAR + Prof</span>
-      </div>
-      <div class="combat-box accent">
-        <span class="combat-label">Ataque Mágico</span>
-        <span class="combat-val">+11</span>
-        <span class="combat-sub">CAR + Prof</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ SORCERY POINTS ══════════════════════════════════ -->
-  <section class="section">
-    <h2 class="section-title">Poderes</h2>
-    <div class="combat-row" style="grid-template-columns: repeat(2, 1fr)">
-      <div class="combat-box accent">
-        <span class="combat-label">Pontos de Feitiçaria</span>
-        <span class="combat-val">20</span>
-        <span class="combat-sub">repouso longo</span>
-      </div>
-      <div class="combat-box">
-        <span class="combat-label">Proficiência</span>
-        <span class="combat-val">+6</span>
-        <span class="combat-sub">testes de resistência</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ SAVING THROWS ═══════════════════════════════════ -->
-  <section class="section">
-    <h2 class="section-title">Testes de Resistência</h2>
-    <div class="two-col">
-      <ul class="save-list">
-        <li class="save-item">
-          <span class="save-dot filled"></span>
-          <span class="save-name">FOR</span>
-          <span class="save-score">-1</span>
-        </li>
-        <li class="save-item">
-          <span class="save-dot"></span>
-          <span class="save-name">DEX</span>
-          <span class="save-score">+2</span>
-        </li>
-        <li class="save-item">
-          <span class="save-dot filled"></span>
-          <span class="save-name">CON</span>
-          <span class="save-score">+11</span>
-        </li>
-      </ul>
-      <ul class="save-list">
-        <li class="save-item">
-          <span class="save-dot"></span>
-          <span class="save-name">INT</span>
-          <span class="save-score">+2</span>
-        </li>
-        <li class="save-item">
-          <span class="save-dot"></span>
-          <span class="save-name">SAB</span>
-          <span class="save-score">+2</span>
-        </li>
-        <li class="save-item">
-          <span class="save-dot filled"></span>
-          <span class="save-name">CAR</span>
-          <span class="save-score">+11</span>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ══ SKILLS ══════════════════════════════════════════ -->
-  <section class="section">
-    <h2 class="section-title">Perícias</h2>
-    <div class="three-col">
-      <ul class="skill-list">
-        <li class="skill-item">
-          <span class="skill-dot filled"></span>
-          <span class="skill-name">Acrobacia</span>
-          <span class="skill-attr">DEX</span>
-          <span class="skill-bonus">+2</span>
-        </li>
-        <li class="skill-item">
-          <span class="skill-dot filled"></span>
-          <span class="skill-name">Arcanismo</span>
-          <span class="skill-attr">INT</span>
-          <span class="skill-bonus">+8</span>
-        </li>
-        <li class="skill-item">
-          <span class="skill-dot"></span>
-          <span class="skill-name">Atletismo</span>
-          <span class="skill-attr">FOR</span>
-          <span class="skill-bonus">-1</span>
-        </li>
-        <li class="skill-item">
-          <span class="skill-dot"></span>
-          <span class="skill-name">Atuação</span>
-          <span class="skill-attr">CAR</span>
-          <span class="skill-bonus">+5</span>
-        </li>
-      </ul>
-      <ul class="skill-list">
-        <li class="skill-item">
-          <span class="skill-dot"></span>
-          <span class="skill-name">Enganação</span>
-          <span class="skill-attr">CAR</span>
-          <span class="skill-bonus">+5</span>
-        </li>
-        <li class="skill-item">
-          <span class="skill-dot filled"></span>
-          <span class="skill-name">Furtividade</span>
-          <span class="skill-attr">DEX</span>
-          <span class="skill-bonus">+8</span>
-        </li>
-        <li class="skill-item">
-          <span class="skill-dot filled"></span>
-          <span class="skill-name">Intuição</span>
-          <span class="skill-attr">SAB</span>
-          <span class="skill-bonus">+8</span>
-        </li>
-        <li class="skill-item">
-          <span class="skill-dot filled"></span>
-          <span class="skill-name">Investigação</span>
-          <span class="skill-attr">INT</span>
-          <span class="skill-bonus">+8</span>
-        </li>
-      </ul>
-      <ul class="skill-list">
-        <li class="skill-item">
-          <span class="skill-dot filled"></span>
-          <span class="skill-name">Medicina</span>
-          <span class="skill-attr">SAB</span>
-          <span class="skill-bonus">+8</span>
-        </li>
-        <li class="skill-item">
-          <span class="skill-dot filled"></span>
-          <span class="skill-name">Natureza</span>
-          <span class="skill-attr">INT</span>
-          <span class="skill-bonus">+8</span>
-        </li>
-        <li class="skill-item">
-          <span class="skill-dot filled"></span>
-          <span class="skill-name">Percepção</span>
-          <span class="skill-attr">SAB</span>
-          <span class="skill-bonus">+8</span>
-        </li>
-        <li class="skill-item">
-          <span class="skill-dot"></span>
-          <span class="skill-name">Persuasão</span>
-          <span class="skill-attr">CAR</span>
-          <span class="skill-bonus">+5</span>
-        </li>
-      </ul>
-    </div>
-    <div style="margin-top:14px">
-      <ul class="skill-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-        <li class="skill-item">
-          <span class="skill-dot filled"></span>
-          <span class="skill-name">Religião</span>
-          <span class="skill-attr">INT</span>
-          <span class="skill-bonus">+8</span>
-        </li>
-        <li class="skill-item">
-          <span class="skill-dot"></span>
-          <span class="skill-name">Sobrevivência</span>
-          <span class="skill-attr">SAB</span>
-          <span class="skill-bonus">+2</span>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ══ PROFICIENCIES ═══════════════════════════════════ -->
-  <section class="section">
-    <h2 class="section-title">Proficiências</h2>
-    <div class="two-col">
-      <div class="card">
-        <span class="card-title">Armas</span>
-        <p>Armas simples, Fundas</p>
-      </div>
-      <div class="card">
-        <span class="card-title">Armaduras</span>
-        <p>Nenhuma proficiência (somente Mage Armor)</p>
-      </div>
-    </div>
-    <div class="card" style="margin-top: 12px;">
-      <span class="card-title">Idiomas</span>
-      <p>Comum, Celestial, Abissal</p>
-    </div>
-  </section>
-
-  <!-- ══ CLASS ABILITIES ═════════════════════════════════ -->
-  <section class="section">
-    <h2 class="section-title">Habilidades de Classe e Raça</h2>
-
-    <div class="card">
-      <span class="card-title">Visão no Escuro (Magia das Sombras)</span>
-      <p>Você tem visão no escuro a 36 metros. Em completa escuridão, você enxerga em tons de cinza monocromático e não pode discernir cores.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Sombra Reforçada</span>
-      <p>Como ação bônus uma vez por repouso longo, você pode conceder a si mesmo 20 pontos de vida temporários. Sua sombra ganha peso e substância, formando uma barreira entre você e o dano.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Forma das Sombras (Nível 6)</span>
-      <p>Como ação bônus, você se transforma em sombra pura por até 1 minuto (concentração). Enquanto nessa forma, você tem resistência ao dano que não seja mágico, pode se mover através de espaços tão estreitos quanto 1 polegada de largura, e pode entrar em um espaço ocupado por outra criatura ou objeto. Termina a forma se pegar luz de raio de sol direto.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Escuridão Amplificada (Nível 14)</span>
-      <p>Quando você lança Darkness ou vê através da escuridão com Visão no Escuro, você pode ver através de magias de escuridão não criadas por você.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Aura Necrótica (Nível 14)</span>
-      <p>Quando você alcança o 14º nível, como ação, você pode criar uma aura de morte a um raio de 9 metros por até 1 minuto. Quando uma criatura não aliada começa o turno nessa aura, ela sofre 3d6 de dano necrótico (TR CON CD 19 para metade). A aura desaparece se você se afastar a mais de 9 metros.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Metamágica: Flexible Casting</span>
-      <p>Como bônus no seu turno, você pode usar Flexible Casting para converter Sorcery Points em slots de magia (1 SP = 1º círculo; aumenta para círculos superiores) ou converter slots não usados em SP (1º círculo = 1 SP).</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Metamágica: Empowered Spell (1 SP)</span>
-      <p>Quando você rola dados de dano para uma magia, você pode gastar 1 Sorcery Point para relançar até 5 dados de dano. Você deve usar os novos resultados. Pode fazer isso apenas uma vez por magia.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Metamágica: Heightened Spell (3 SP)</span>
-      <p>Quando você lança uma magia que força uma criatura a fazer um teste de resistência, você pode gastar 3 Sorcery Points para lhe dar desvantagem no teste.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Metamágica: Quickened Spell (2 SP)</span>
-      <p>Quando você lança uma magia cuja ação for de ação, você pode gastar 2 Sorcery Points para lançá-la como ação bônus.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Metamágica: Twinned Spell (1 SP/nível de círculo)</span>
-      <p>Quando você lança uma magia que afeta apenas uma criatura e você não a força a fazer uma salvaguarda, você pode gastar um número de Sorcery Points igual ao nível do círculo da magia para alvejar uma segunda criatura na alcance com a mesma magia (1 SP para 1º círculo, 2 SP para 2º, etc.).</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">War Caster (Feat - Nível 4)</span>
-      <p>Você tem vantagem em testes de resistência de Concentração provocados por dano que você sofre. Você pode executar componentes somáticas de magias mesmo quando estiver com as mãos ocupadas com armas ou escudos.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Cura Radiante (Aasimar Protegido - Nível 20)</span>
-      <p>Uma vez por repouso longo, como ação, você pode tocar uma criatura disposta e curar 10d4 + 20 pontos de vida. A cura é acompanhada por um brilho radiante dourado que dura um instante.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Resistência Celestial (Aasimar Protegido)</span>
-      <p>Você tem resistência ao dano radiante e necrótico.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Sorcerous Restoration (Nível 20)</span>
-      <p>Uma vez por repouso longo, quando você termina um descanso curto, você pode recuperar todos os seus Sorcery Points gastos. Se você fizer isso, até o final do próximo repouso, você não pode recuperar Sorcery Points usando Flexible Casting.</p>
-    </div>
-
-  </section>
-
-  <!-- ══ SPELLCASTING ════════════════════════════════════ -->
-  <section class="section">
-    <h2 class="section-title">Magias Conhecidas</h2>
-
-    <!-- TRUQUES -->
-    <div class="spell-circle">
-      <div class="spell-circle-header">
-        <div class="spell-circle-badge" style="border-color:var(--gold);color:var(--gold);background:rgba(201,162,39,0.1)">0</div>
-        <span class="spell-circle-title" style="color:var(--gold)">Truques — Cantrips</span>
-        <div class="spell-circle-slots" style="margin-left:auto">
-          <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text-dim);letter-spacing:1px">Ilimitado</span>
-        </div>
-      </div>
-
-      <div class="spell-entry cantrip">
-        <div class="spell-entry-top">
-          <span class="spell-name">Chill Touch</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação</span>
-            <span class="spell-tag-small">36m</span>
-            <span class="spell-tag-small">ataque mágico</span>
-          </div>
-        </div>
-        <p class="spell-desc">Você cria uma mão espectal gélida para atacar um alvo que você possa ver em alcance de 36 metros. Faça uma verificação de ataque mágico. Em caso de sucesso, o alvo sofre <strong>4d8 de dano necrótico</strong>. O alvo não pode recuperar pontos de vida até o final do seu próximo turno. É a marca da feiticeira das sombras — um toque de morte que remove até mesmo a cura.</p>
-        <span class="spell-mechanic">⚔ Ataque +11 · 4d8 necrótico · Alvo não cura até próximo turno</span>
-      </div>
-
-      <div class="spell-entry cantrip">
-        <div class="spell-entry-top">
-          <span class="spell-name">Prestidigitation</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação</span>
-            <span class="spell-tag-small">3m</span>
-            <span class="spell-tag-small">utilitário</span>
-          </div>
-        </div>
-        <p class="spell-desc">Você realiza um pequeno truque mágico: criar uma chama inofensiva que dura 1 minuto, mudança de cor, sabor ou odor de algo, criar um pequeno som, limpar ou sujar algo, fazer um pequeno objeto desaparecer ou reaparecer. Pequenas magia sem poder destruidor — truques menores da feiticeira.</p>
-        <span class="spell-mechanic">✦ Utilitário · Sem dano ou efeito mecânico</span>
-      </div>
-
-      <div class="spell-entry cantrip">
-        <div class="spell-entry-top">
-          <span class="spell-name">Minor Illusion</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação</span>
-            <span class="spell-tag-small">9m</span>
-            <span class="spell-tag-small conc">concentração · 1 min</span>
-          </div>
-        </div>
-        <p class="spell-desc">Você cria uma ilusão não mágica em um cubo que você possa ver dentro do alcance de 9 metros. Deve caber em um cubo de 1,5 metro. A ilusão inclui som, imagem e/ou temperatura, mas não causa dano ou obscurece permanentemente visão. Uma criatura que usa uma ação para examinar a ilusão pode determinar que é ilusão com um teste de Inteligência (Investigação).</p>
-        <span class="spell-mechanic">◈ Ilusão sensorial · Cubo 1,5m · TR Int para perceber</span>
-      </div>
-
-      <div class="spell-entry cantrip">
-        <div class="spell-entry-top">
-          <span class="spell-name">Mage Hand</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação</span>
-            <span class="spell-tag-small">9m</span>
-            <span class="spell-tag-small">utilitário</span>
-          </div>
-        </div>
-        <p class="spell-desc">Você cria uma mão espectral invisível que pode manipular objetos, abrir portas ou baús, desligar armadilhas ou esvaziar bolsas. A mão é capaz de levantar até 2,5 kg. Dura 1 minuto. Uma das ferramentas práticas da feiticeira para agir à distância.</p>
-        <span class="spell-mechanic">✦ Mão invisível · Alcance 9m · Carga 2,5 kg</span>
-      </div>
-    </div>
-
-    <!-- 1º CÍRCULO -->
-    <div class="spell-circle">
-      <div class="spell-circle-header">
-        <div class="spell-circle-badge">1</div>
-        <span class="spell-circle-title">1º Círculo — Espaços: 4</span>
-        <div class="spell-circle-slots">
-          <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
-        </div>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Dark Binding</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação</span>
-            <span class="spell-tag-small">27m</span>
-            <span class="spell-tag-small conc">TR Con CD 19 · concentração até 1 min</span>
-          </div>
-        </div>
-        <p class="spell-desc">Uma criatura que você possa ver a 27 metros deve fazer um teste de resistência de Constituição. Se falhar, fica enraizada (velocidade 0) até o fim do efeito. As correntes astrais de Morgana imobilizam seu alvo perfeitamente, doces mas inegáveis — as mesma correntes que prenderam seu próprio coração uma vez.</p>
-        <span class="spell-mechanic">✦ TR Con CD 19 · Falha: enraizado (velocidade 0) · Concentração até 1 min</span>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Mage Armor</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação</span>
-            <span class="spell-tag-small">toque</span>
-            <span class="spell-tag-small">8 horas</span>
-          </div>
-        </div>
-        <p class="spell-desc">Você toca uma criatura que concorda. Até o encantamento terminar, a criatura tem classe de armadura de 13 + seu modificador de Destreza. O encantamento termina se a criatura o lançar ou não puder estar em alcance de toque de você por 1 minuto consecutivo. Morgana envolve seu corpo em uma camada de purpura mágica mais espessa que qualquer armadura material.</p>
-        <span class="spell-mechanic">◈ CA 13 + DES · Duração 8 horas</span>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Detect Magic</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação</span>
-            <span class="spell-tag-small">ritual</span>
-            <span class="spell-tag-small conc">concentração até 10 min</span>
-          </div>
-        </div>
-        <p class="spell-desc">Durante a duração, você sente a presença de magia em alcance de 9 metros de você. Se sentir magia, você usar sua ação em seu turno para senti-la; aprenda sua localização e sua escola de magia (se houver). O encantamento penetra a maioria das barreiras, mas é bloqueado por 1 pé de pedra, 1 polegada de metal comum, ou camada fina de chumbo.</p>
-        <span class="spell-mechanic">† Detecta magia · Alcance 9m · Ritual (sem slot se prepara)</span>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Absorb Elements</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">reação</span>
-            <span class="spell-tag-small">própria</span>
-            <span class="spell-tag-small">instante</span>
-          </div>
-        </div>
-        <p class="spell-desc">Você usa sua reação quando você sofre dano de ácido, frio, fogo, relâmpago ou trovão. Você reduz o dano que você sofre desse ataque pela metade. Enquanto isso, a energia absorvida fica armazenada até o final do seu próximo turno — seu próximo ataque corpo a corpo causa dano adicional de 1d6 do tipo absorvido.</p>
-        <span class="spell-mechanic">◈ Reação · Reduz dano elemental à metade · +1d6 próximo ataque corpo a corpo</span>
-      </div>
-    </div>
-
-    <!-- 2º CÍRCULO -->
-    <div class="spell-circle">
-      <div class="spell-circle-header">
-        <div class="spell-circle-badge">2</div>
-        <span class="spell-circle-title">2º Círculo — Espaços: 3</span>
-        <div class="spell-circle-slots">
-          <div class="slot"></div><div class="slot"></div><div class="slot"></div>
-        </div>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Shadow Blade</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação bônus</span>
-            <span class="spell-tag-small">própria</span>
-            <span class="spell-tag-small conc">concentração até 1 min</span>
-          </div>
-        </div>
-        <p class="spell-desc">Você invoca uma arma de pura escuridão em sua mão livre para atacar corpo a corpo. A arma é uma espada longa de sombra com propriedades mágicas. Você tem vantagem em testes de ataque quando não há luz dentro de 3 metros de você. A arma desaparece se você soltá-la ou se o encantamento terminar. Morgana manifesta suas correntes como lâminas assassinas de noite pura.</p>
-        <span class="spell-mechanic">⚔ Espada de sombra · 2d8 psíquico · Vantagem sem luz</span>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Misty Step</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação bônus</span>
-            <span class="spell-tag-small">próprio</span>
-            <span class="spell-tag-small">instante</span>
-          </div>
-        </div>
-        <p class="spell-desc">Você teleporta até 9 metros para um espaço que você possa ver. Esse espaço deve estar no chão. A feiticeira das sombras desvanece em escuridão em um local e aparece em outro — perfeito para posicionamento ofensivo ou defensivo.</p>
-        <span class="spell-mechanic">✦ Teleporte · 9m · Ação bônus</span>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Mirror Image</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação</span>
-            <span class="spell-tag-small">próprio</span>
-            <span class="spell-tag-small conc">concentração até 1 min</span>
-          </div>
-        </div>
-        <p class="spell-desc">Três cópias ilísorias de você aparecem em seu espaço. Até o encantamento terminar, as cópias partilham seu espaço e uma criatura com eles não pode determinar qual é qual através da visão de senso comum. Sempre que uma criatura alvejar você com um ataque enquanto você tiver 1 ou mais cópias restantes, role um d20 para determinar se o ataque acerta você ou uma cópia (50% de chance cada para 1 cópia, 33% para 2, 25% para 3).</p>
-        <span class="spell-mechanic">◈ 3 cópias · Visão obscurece real · Miss 25-50%</span>
-      </div>
-    </div>
-
-    <!-- 3º CÍRCULO -->
-    <div class="spell-circle">
-      <div class="spell-circle-header">
-        <div class="spell-circle-badge">3</div>
-        <span class="spell-circle-title">3º Círculo — Espaços: 3</span>
-        <div class="spell-circle-slots">
-          <div class="slot"></div><div class="slot"></div><div class="slot"></div>
-        </div>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Counterspell</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">reação</span>
-            <span class="spell-tag-small">18m</span>
-            <span class="spell-tag-small">instante</span>
-          </div>
-        </div>
-        <p class="spell-desc">Você usa sua reação quando uma criatura em alcance de 18 metros que você possa ver lança uma magia. Instantaneamente, você cancela a magia se ela for de nível 3 ou menor. Se a magia for de nível 4 ou superior, a criatura lançador faz um teste de resistência de Inteligência (CD 19). Em uma falha, a magia é cancelada. A feiticeira da escuridão esmaga magia com poder de vontade pura — nenhum escudo de magia pode resistir seu domínio.</p>
-        <span class="spell-mechanic">† Reação · Cancela magia nv3- automaticamente · Magia nv4+: TR Int CD 19</span>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Hypnotic Pattern</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação</span>
-            <span class="spell-tag-small">36m · raio 9m</span>
-            <span class="spell-tag-small conc">concentração até 1 min</span>
-          </div>
-        </div>
-        <p class="spell-desc">Você cria um padrão de cores ondulantes num raio de 9 metros no chão. Cada criatura na área que possa vê-lo deve fazer um teste de resistência de Sabedoria (CD 19). Em uma falha, uma criatura fica incapacitada e fascinada; ela não pode se mover ou tomar ações ou reações até que o encantamento termine. Criaturas que começam o turno na área fazem novo teste. Morgana tece padrões de escuridão hipnotizante que prendem a mente — nenhum aliado verdadeiramente livre quando ela assim deseja.</p>
-        <span class="spell-mechanic">◈ TR Sab CD 19 · Falha: incapacitado e fascinado · Raio 9m · Concentração</span>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Nondetection</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação</span>
-            <span class="spell-tag-small">toque</span>
-            <span class="spell-tag-small">8 horas</span>
-          </div>
-        </div>
-        <p class="spell-desc">Você toca uma criatura ou objeto durante o efeito estar dentro de um aura de escuridão que impede ser localizada por divination magic. Por 8 horas, a criatura ou objeto não pode ser alvo de magia de adivinhação e não pode ser vista por sensores mágicos como globos de cristal. Uma criatura incapaz de sofrer uma magia não é afetada. O encantamento termina se a criatura ou objeto cair para 0 PV.</p>
-        <span class="spell-mechanic">✦ Sem divination · Sem sensores mágicos · 8 horas</span>
-      </div>
-    </div>
-
-    <!-- 4º CÍRCULO -->
-    <div class="spell-circle">
-      <div class="spell-circle-header">
-        <div class="spell-circle-badge">4</div>
-        <span class="spell-circle-title">4º Círculo — Espaços: 3</span>
-        <div class="spell-circle-slots">
-          <div class="slot"></div><div class="slot"></div><div class="slot"></div>
-        </div>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Banishment</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação</span>
-            <span class="spell-tag-small">18m</span>
-            <span class="spell-tag-small conc">concentração até 1 min</span>
-          </div>
-        </div>
-        <p class="spell-desc">Uma criatura que você possa ver em alcance de 18 metros deve fazer um teste de resistência de Carisma (CD 19). Se ela falhar, você bane-a. Se a criatura tiver 50 PV ou menos quando você o lança, a criatura desaparece para o plano astral. Caso contrário, uma criatura é capaz de fazer outro teste a cada final de seu turno no plano astral; em uma sucesso, o encantamento termina. A mão de Morgana empurra inimigos perigosos para a escuridão eterna.</p>
-        <span class="spell-mechanic">◈ TR Car CD 19 · Banido (≤50 PV: automático; >50 PV: novo TR/turno)</span>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Dimension Door</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação</span>
-            <span class="spell-tag-small">próximo + 152m</span>
-            <span class="spell-tag-small">instante</span>
-          </div>
-        </div>
-        <p class="spell-desc">Você escolhe um espaço que você possa ver em alcance de 152 metros. Você e qualquer criatura que você escolha que pueda vê-lo teleporta para esse espaço. Se você quiser, você pode teleportar uma criatura desejosa que você toque em vez de si mesmo. Cada criatura teleportada pode levar um objeto não mágico de tamanho Grande ou menor que ele usa ou carrega — sem limite de peso. Você não pode teleportar para frente de uma parede sólida.</p>
-        <span class="spell-mechanic">✦ Teleporte próprio + 1 aliado · 152m · Instante</span>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Black Tentacles</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação</span>
-            <span class="spell-tag-small">18m · área 6×6m</span>
-            <span class="spell-tag-small conc">concentração até 1 min</span>
-          </div>
-        </div>
-        <p class="spell-desc">Um cilindro de escuridão com raio de 6 metros desce num ponto que você escolha em alcance de 18 metros. Cada criatura naquele espaço deve fazer um teste de resistência de Destreza (CD 19). Em uma falha, ela fica restrita pelos tentáculos de escuridão. Criaturas que começam o turno na área são atingidas com <strong>3d6 de dano esmagador</strong> e têm velocidade 0 enquanto não escaparem. As correntes eternas de Morgana manifestam em bravura física e inteligência predatória.</p>
-        <span class="spell-mechanic">† TR Des CD 19 · 3d6 esmagador · Velocidade 0 · Concentração</span>
-      </div>
-    </div>
-
-    <!-- 5º CÍRCULO -->
-    <div class="spell-circle">
-      <div class="spell-circle-header">
-        <div class="spell-circle-badge">5</div>
-        <span class="spell-circle-title">5º Círculo — Espaços: 2</span>
-        <div class="spell-circle-slots">
-          <div class="slot"></div><div class="slot"></div>
-        </div>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Tormented Shadow</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação</span>
-            <span class="spell-tag-small">9m · raio 9m</span>
-            <span class="spell-tag-small conc">concentração até 1 h</span>
-          </div>
-        </div>
-        <p class="spell-desc">Um cilindro de escuridão sofrida com raio de 9 metros desce num ponto que você possa ver em alcance de 9 metros. Cada criatura não aliada naquele ponto deve fazer um teste de resistência de Sabedoria (CD 19). Uma criatura sofre <strong>8d6 de dano necrótico</strong> em uma falha ou metade em um sucesso. Cada criatura não aliada que começar o turno na área sofre o mesmo dano novamente. A velocidade de uma criatura que falha é reduzida pela metade até o final do próximo turno. Morgana tece escuridão sofrida que constrói a própria dor — uma aura de tormento que apenas ela pode controlar.</p>
-        <span class="spell-mechanic">◈ TR Sab CD 19 · 8d6 necrótico cada turno · Velocidade reduzida · Concentração até 1h</span>
-      </div>
-
-      <div class="spell-entry">
-        <div class="spell-entry-top">
-          <span class="spell-name">Enervation</span>
-          <div class="spell-tags-inline">
-            <span class="spell-tag-small">ação</span>
-            <span class="spell-tag-small">18m</span>
-            <span class="spell-tag-small conc">concentração até 1 min</span>
-          </div>
-        </div>
-        <p class="spell-desc">Um feixe de escuridão negra emerge de você em direção a uma criatura que você possa ver em alcance de 18 metros. Uma criatura alvo deve fazer um teste de resistência de Destreza (CD 19). A criatura sofre <strong>4d8 de dano necrótico</strong> em uma falha ou metade em um sucesso. Você cura uma quantidade de PV igual à metade do dano necrótico. No seu turno seguinte, a criatura sofre o mesmo dano novamente se ainda estiver ao alcance. Morgana literalmente drena a vida e a substitui em seu corpo — a verdadeira natureza de sua magia predatória.</p>
-        <span class="spell-mechanic">✦ TR Des CD 19 · 4d8 necrótico (Morgana cura metade) · Repete próximo turno</span>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- ══ EQUIPMENT ═══════════════════════════════════════ -->
-  <section class="section">
-    <h2 class="section-title">Equipamento</h2>
-
-    <div class="card">
-      <span class="card-title">Grimório Sombrio (Foco Mágico)</span>
-      <p>Um grimório encadernado em couro negro com páginas cor de amora. Contém todos os rituais mágicos conhecidos e hinos da escuridão. Funciona como foco arcano para magias.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Anel do Nulo (Foco Mágico Secundário)</span>
-      <p>Um anel de prata com uma ametista flutuante impossível. Permite lançar cantrips sem componentes somáticas dentro de alcance de toque. Resgata Morgana quando suas mãos estão ocupadas em combate corpo a corpo.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Manto das Almas</span>
-      <p>Uma capa roxa flutuante que parece feita de luz solidificada das sombras. Fornece proteção contra frio extremo e proporciona +1 na defesa contra magias baseadas em frio.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Correntes Eternas (Foco Mágico Terciário)</span>
-      <p>Correntes astrais que circundam Morgana permanentemente. Não físicas, mas mágicas. Servem como um terceiro foco para lançar magias quando os outros falham ou estão em combate próximo.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Báculo Caído</span>
-      <p>Um báculo de madeira preta com uma ponta de safira escura. Aumenta +1 o nível de círculo de uma magia lançada uma vez por repouso longo. Última arma de Morgana quando a magia pura não é suficiente.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Moedas</span>
-      <p><strong>Ouro:</strong> 2400 · <strong>Prata:</strong> 150 · <strong>Cobre:</strong> 80</p>
-    </div>
-
-  </section>
-
-  <!-- ══ PERSONALITY ════════════════════════════════════ -->
-  <section class="section">
-    <h2 class="section-title">Personalidade e Motivação</h2>
-
-    <div class="backstory">
-      <p>Morgana é uma anjo caída — literal e figurativamente. Quando sua irmã Kayle defendia a ordem celestial e a justiça divina, Morgana viu o sofrimento dos mortais e recusou-se a aceitar que eram fracos ou indignacos de ajuda. Ela quebrou seus votos celestiais e desceu para o mundo material com uma verdade simples: se os deuses não ajudariam os mortais, ela o faria, mesmo que fosse através da escuridão.</p>
-
-      <p>A magia de Morgana é nascida dessa compaixão pervertida. Ela crê profundamente em justiça, mas sua justiça é sombria e absoluta. Aqueles que sofrem ganham seu apoio; aqueles que oprimem ganham sua destruição. Ela não vê a escuridão como mal — vê como libertação. Suas correntes não prendem — liberam as pessoas de seus grilhões invisíveis de dor.</p>
-
-      <p class="bs-quote">"Eu quebrei minhas correntes celestiais para que pudesse realmente servir aqueles que sofrem. Minha irmã prega ordem divina. Eu entrego libertação através da noite."</p>
-
-      <p>Morgana carrega a dor de sua queda como insígnia de honra. Ela não lamenta sua escolha — a cada aliado que protege, a cada opressor que derrota, ela reafirma que fez a coisa certa. Sua conexão com Kayle é complicada — amor familiar mesclado com discordância fundamental sobre como o bem deve ser distribuído.</p>
-    </div>
-
-  </section>
-
-  <!-- ══ STRATEGIES ══════════════════════════════════════ -->
-  <section class="section">
-    <h2 class="section-title">Como Morgana Joga</h2>
-
-    <div class="card">
-      <span class="card-title">Controle de Campo</span>
-      <p>Morgana é uma mestre de controle. Suas magias não apenas causam dano — elas prendem, movem e controlam inimigos. Hypnotic Pattern incapacita múltiplos inimigos com um único lançamento. Black Tentacles restringe e causa dano persistente. Dark Binding imobiliza. Seu papel é fazer o inimigo incapaz de agir.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Proteção com Black Shield</span>
-      <p>Morgana protege seus aliados contra magia. Uma criatura sob seu Black Shield não pode ser enfeitiçada ou iludida. Em combate contra casters, ela torna seus aliados imunes aos piores efeitos da magia inimiga. Usa Heightened Spell para que a salvaguarda seja quase impossível de quebrar.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Dano Sustentado</span>
-      <p>Tormented Shadow causa 8d6 de dano necrótico POR TURNO em uma área de 9 metros. Com concentração por até 1 hora, isso é um ataque persistente que drena saúde do inimigo continuamente. Enervation cura Morgana enquanto fere — ela literalmente drena vida e substitui em seu próprio corpo.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-title">Forma das Sombras para Fuga</span>
-      <p>Quando em perigo, Morgana se torna sombra pura — resistência a dano não-mágico, pode passar por qualquer abertura, move-se silenciosamente. Use Forma das Sombras para escapar, reposicionar, ou se infiltrar. Sair de combate é tão importante quanto estar nele.</p>
-    </div>
-
-  </section>
-
-  <!-- ══ FOOTER ══════════════════════════════════════════ -->
-  <div class="scroll-ornament">◆</div>
-
 </div>
 
+<!-- ── STATS BAR ──────────────────────────────── -->
+<div class="stats-bar">
+<div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">18</span></div><div class="stat-item"><span class="stat-label">PV</span><span class="stat-value">204</span></div><div class="stat-item"><span class="stat-label">Deslocamento</span><span class="stat-value">9m</span></div><div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value">+2</span></div><div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div><div class="stat-item"><span class="stat-label">CD de Magia</span><span class="stat-value">19</span></div><div class="stat-item"><span class="stat-label">Atq. Mágico</span><span class="stat-value">+11</span></div>
+</div>
+
+<!-- ── IDENTIDADE ────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Identidade</div>
+  <div class="info-pills">
+    <div class="info-pill"><strong>Raça</strong>Aasimar (Protegido)</div>
+    <div class="info-pill"><strong>Classe</strong>Feiticeiro</div>
+    <div class="info-pill"><strong>Subclasse</strong>Magia das Sombras</div>
+    <div class="info-pill"><strong>Antecedente</strong>Sábia</div>
+    <div class="info-pill"><strong>Tendência</strong>Legal Neutro</div>
+    <div class="info-pill"><strong>Idiomas</strong>Comum, Celestial, Infernal</div>
+    <div class="info-pill"><strong>Dado de Vida</strong>20d6</div>
+    <div class="info-pill"><strong>Magia</strong>Carisma</div>
+  </div>
+  <div class="info-pills"><span class='tag hi'>sorceryPoints: 20</span></div>
+</div>
+
+<!-- ── ATRIBUTOS ──────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Atributos</div>
+  <div class="attr-grid">
+        <div class="attr-box">
+          <span class="attr-label">FOR</span>
+          <span class="attr-value ">8</span>
+          <span class="attr-mod">-1</span>
+        </div>
+        <div class="attr-box">
+          <span class="attr-label">DES</span>
+          <span class="attr-value ">14</span>
+          <span class="attr-mod">+2</span>
+        </div>
+        <div class="attr-box">
+          <span class="attr-label">CON</span>
+          <span class="attr-value peak">20</span>
+          <span class="attr-mod">+5</span>
+        </div>
+        <div class="attr-box">
+          <span class="attr-label">INT</span>
+          <span class="attr-value ">14</span>
+          <span class="attr-mod">+2</span>
+        </div>
+        <div class="attr-box">
+          <span class="attr-label">SAB</span>
+          <span class="attr-value ">14</span>
+          <span class="attr-mod">+2</span>
+        </div>
+        <div class="attr-box">
+          <span class="attr-label">CAR</span>
+          <span class="attr-value peak">20</span>
+          <span class="attr-mod">+5</span>
+        </div></div>
+  
+</div>
+
+
+
+
+
+
+
+<!-- ── HABILIDADES ───────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Habilidades</div>
+  <div class="feat-section"><div class="feat-section-label">Habilidades de Subclasse</div><div class="feature-grid"><div class="trait-block ">
+              <div class="trait-name">Magia das Sombras Origin <span class="feat-level">Nív.1</span></div>
+              <div class="trait-desc">Visão no Escuro 36m. Aprende Darkness. Reforço de Sombras: 20 PV temporários.</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Forma das Sombras <span class="feat-level">Nív.6</span></div>
+              <div class="trait-desc">Ação bônus: ser de pura sombra por 1 min. Resistência não-mágica + move por espaços estreitos.</div>
+            </div></div></div><div class="feat-section"><div class="feat-section-label">Habilidades Raciais</div><div class="feature-grid"><div class="trait-block dim-accent">
+              <div class="trait-name">Radiant Soul </div>
+              <div class="trait-desc">1×/longo: asas 1 min · Voo 9m · +5 radiante em magias de raio.</div>
+            </div></div></div><div class="feat-section"><div class="feat-section-label">Talentos (Feats)</div><div class="feature-grid"><div class="trait-block gold-accent">
+              <div class="trait-name">War Caster <span class="feat-level">Nív.4</span></div>
+              <div class="trait-desc">Vantagem Con para concentração. Magia como AO.</div>
+            </div><div class="trait-block gold-accent">
+              <div class="trait-name">Resilient (Con) <span class="feat-level">Nív.8</span></div>
+              <div class="trait-desc">+1 Con. Proficiência em TRs Con.</div>
+            </div></div></div><div class="feat-section"><div class="feat-section-label">Metamagia</div><div class="feature-grid"><div class="trait-block gold-accent">
+              <div class="trait-name">Empowered Spell <span class="feat-level">1 SP</span></div>
+              <div class="trait-desc">Relança até 5 dados de dano.</div>
+            </div><div class="trait-block gold-accent">
+              <div class="trait-name">Heightened Spell <span class="feat-level">3 SP</span></div>
+              <div class="trait-desc">Desvantagem no TR de uma criatura.</div>
+            </div><div class="trait-block gold-accent">
+              <div class="trait-name">Quickened Spell <span class="feat-level">2 SP</span></div>
+              <div class="trait-desc">Magia de ação como ação bônus.</div>
+            </div><div class="trait-block gold-accent">
+              <div class="trait-name">Seeking Spell <span class="feat-level">2 SP</span></div>
+              <div class="trait-desc">Sem penalidade de cobertura/obstrução.</div>
+            </div></div></div>
+</div>
+
+<!-- ── MAGIAS ───────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Magia</div>
+  <div class="spell-meta">
+      <span class="spell-tag">CD 19</span>
+      <span class="spell-tag">Ataque +11</span>
+      <span class="spell-tag">Carisma</span>
+      
+    </div><div class="spell-section-label">Truques (Cantrips)</div><div class="spell-grid"><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Chill Touch</span><span class="sc-desc">4d8 necrótico · Bloq. cura</span></div><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Prestidigitação</span><span class="sc-desc">Efeitos menores</span></div></div><div class="spell-section-label">Magias</div><div class="spell-grid"><div class="sc"><span class="sc-type">3° </span><span class="sc-name">Dark Binding</span><span class="sc-desc">⛓ TR Con CD 19 · Imóvel → Enraizado · 27m</span></div><div class="sc"><span class="sc-type">6° </span><span class="sc-name">Tormented Shadow</span><span class="sc-desc">8d6 necrótico/turno · Raio 9m · 1h conc.</span></div><div class="sc"><span class="sc-type">1° </span><span class="sc-name">Black Shield</span><span class="sc-desc">Imunidade encantamento/ilusão · 8h conc.</span></div><div class="sc"><span class="sc-type">4° </span><span class="sc-name">Blight</span><span class="sc-desc">8d8 necrótico · TR Con · Plantas: sem TR</span></div><div class="sc"><span class="sc-type">7° </span><span class="sc-name">Forcecage</span><span class="sc-desc">Sem TR · 6m³ · 1h · Sem concentração</span></div><div class="sc"><span class="sc-type">4° </span><span class="sc-name">Banishment</span><span class="sc-desc">TR Car CD 19 · Exílio · Permanente 1 min</span></div><div class="sc"><span class="sc-type">5° </span><span class="sc-name">Dominate Person</span><span class="sc-desc">TR Sab CD 19 · Controle 1 min</span></div></div>
+</div>
+
+
+
+
+<!-- ── PERSONALIDADE ─────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Personalidade</div>
+  <div class="trait-block"><div class="trait-name">Traços de Personalidade</div><div class="trait-desc">Carrega o peso de ser deusamente errada. Optou por ser humanamente certa.</div></div><div class="trait-block"><div class="trait-name">Ideais</div><div class="trait-desc">Justiça não é divina — é mortal. Os deuses julgam por decretos; mortais por compreensão.</div></div><div class="trait-block"><div class="trait-name">Vínculos</div><div class="trait-desc">Os mortais que a humanidade negligenciou. Os condenados sem compreensão.</div></div><div class="trait-block"><div class="trait-name">Fraquezas</div><div class="trait-desc">Incapaz de perdoar Kayle. Essa relação nunca será resolvida enquanto ambas existirem.</div></div>
+</div>
+
+<div class="divider">✦ ✧ ✦</div>
+
+<!-- ── FOOTER ────────────────────────────────── -->
+<div class="footer">
+  <p>Morgana · Feiticeiro Magia das Sombras · Nível 20</p>
+  <p>D&amp;D 5e · League of Legends · Sistema de Fichas RPG</p>
+</div>
+
+</div><!-- /page -->
+
 <script>
-// floating chains animation
-function createLeaves() {
-  const container = document.getElementById('leafBg');
-  const symbols = ['†', '◈', '◆', '✦'];
-
-  for (let i = 0; i < 12; i++) {
-    const leaf = document.createElement('div');
-    leaf.className = 'leaf';
-    leaf.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-    leaf.style.left = Math.random() * 100 + '%';
-    leaf.style.animationDelay = Math.random() * 20 + 's';
-    leaf.style.animationDuration = (15 + Math.random() * 10) + 's';
-    container.appendChild(leaf);
+(function() {
+  const particles = "🌑🖤✦".split("");
+  const container = document.getElementById('particleBg');
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('span');
+    p.className = 'particle';
+    p.textContent = particles[i % particles.length];
+    p.style.left = (Math.random() * 100) + '%';
+    p.style.animationDuration = (12 + Math.random() * 18) + 's';
+    p.style.animationDelay = (Math.random() * 20) + 's';
+    p.style.fontSize = (9 + Math.random() * 6) + 'px';
+    container.appendChild(p);
   }
-}
-
-createLeaves();
+})();
 </script>
 
 </body>

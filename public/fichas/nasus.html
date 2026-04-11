@@ -3,366 +3,352 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nasus — O Guardião da Areia · Ficha D&D 5e</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<title>Nasus — O Guardião da Areia · Ficha D&amp;D 5e</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
-:root{--sand:#78350f;--sm:#d97706;--sl:#fbbf24;--pale:#fffbeb;--dark:#060402;--darker:#040300;--card:#110800;--card-light:#1a0e00;--text:#d4b896;--td:#6b4a20;--border:rgba(120,53,15,.4);--gold:#c9a227;--gl:#e8c85a;}
+:root{
+  --primary:    #8b6914;
+  --mid:        #c9a227;
+  --bright:     #e8c85a;
+  --pale:       #faf5e4;
+  --dark:       #080602;
+  --darker:     #060401;
+  --card:       #180f04;
+  --card-light: #241608;
+  --text:       #f0e0b0;
+  --text-dim:   #8a7030;
+  --mist:       #4a3008;
+  --gold:       #c9a227;
+  --gold-light: #e8c85a;
+  --border:     rgba(139,105,20,0.40);
+  --border-bright:rgba(232,200,90,0.5);
+  --glow:       rgba(139,105,20,0.15);
+}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--darker);background-image:radial-gradient(ellipse at 20% 10%,rgba(120,53,15,.15) 0%,transparent 55%),radial-gradient(ellipse at 80% 90%,rgba(217,119,6,.06) 0%,transparent 45%);font-family:'Crimson Pro',Georgia,serif;color:var(--text);line-height:1.75;}
+body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15%,rgba(139,105,20,0.12) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(201,162,39,0.06) 0%,transparent 45%);font-family:'EB Garamond',Georgia,serif;color:var(--text);line-height:1.75;}
 .page{max-width:960px;margin:0 auto;padding:0 0 80px;}
-.sand-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
-.sand-p{position:absolute;background:rgba(217,119,6,.03);animation:sandDrift ease-in-out infinite;}
-@keyframes sandDrift{0%,100%{transform:translateX(0);opacity:0;}25%{opacity:1;}75%{opacity:.6;}100%{transform:translateX(80px);opacity:0;}}
-.header{background:linear-gradient(165deg,#040300 0%,#120900 50%,#040300 100%);border-bottom:2px solid var(--sand);position:relative;overflow:hidden;z-index:1;}
-.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--sm),var(--sl),var(--sm),transparent);opacity:.6;}
+
+/* FLOATING PARTICLES */
+.particle-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.particle{position:absolute;font-size:11px;opacity:0;animation:floatP ease-in-out infinite;filter:blur(0.4px);color:var(--bright);}
+@keyframes floatP{0%{transform:translateY(108vh) translateX(0) rotate(0deg) scale(0.5);opacity:0;}8%{opacity:0.25;}50%{transform:translateY(50vh) translateX(35px) rotate(180deg) scale(0.75);opacity:0.15;}92%{opacity:0.06;}100%{transform:translateY(-8vh) translateX(-20px) rotate(340deg) scale(0.4);opacity:0;}}
+
+/* HEADER */
+.header{background:linear-gradient(165deg,#080602 0%,#180f04 50%,#080602 100%);border-bottom:2px solid var(--primary);position:relative;overflow:hidden;z-index:1;}
+.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 64px,rgba(139,105,20,0.12) 64px,rgba(139,105,20,0.12) 65px);}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--mid),var(--bright),var(--mid),transparent);opacity:0.55;}
 .header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
-.hp{width:220px;flex-shrink:0;background:#060300;border-right:2px solid var(--sand);display:flex;align-items:center;justify-content:center;}
-.pi{width:100%;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;}
-.ps{font-size:70px;opacity:.12;filter:drop-shadow(0 0 24px var(--sm));line-height:1;}
-.pr{position:absolute;width:100px;height:100px;border:1px solid rgba(120,53,15,.45);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:rp 6s ease-in-out infinite;}
-@keyframes rp{0%,100%{box-shadow:0 0 10px rgba(217,119,6,.1);}50%{box-shadow:0 0 35px rgba(251,191,36,.35);}}
-.pr::before{content:'';position:absolute;inset:8px;border:1px solid rgba(120,53,15,.2);border-radius:50%;}
-.prl{position:absolute;bottom:14px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--sm);opacity:.5;text-transform:uppercase;}
-.ha{flex:1;padding:36px 44px;}
-.he{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--sm);opacity:.8;text-transform:uppercase;margin-bottom:10px;}
-.hn{font-family:'Cinzel',serif;font-size:56px;font-weight:900;color:var(--pale);text-shadow:0 0 60px rgba(120,53,15,.8);letter-spacing:5px;line-height:1;margin-bottom:4px;}
-.hs{font-family:'Crimson Pro',serif;font-style:italic;font-size:17px;color:var(--sm);margin-bottom:22px;letter-spacing:1.5px;}
-.htags{display:flex;gap:8px;flex-wrap:wrap;}
-.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:4px 12px;border:1px solid var(--border);color:var(--td);text-transform:uppercase;background:rgba(120,53,15,.07);}
-.tag.hi{background:rgba(120,53,15,.25);border-color:var(--sm);color:var(--sl);}
-.meta-bar{background:var(--card);border-bottom:1px solid var(--border);padding:14px 40px;display:flex;position:relative;z-index:1;}
-.mi{flex:1;border-right:1px solid var(--border);padding:0 20px;text-align:center;}
-.mi:first-child{padding-left:0;}.mi:last-child{border-right:none;padding-right:0;}
-.mlbl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--td);text-transform:uppercase;display:block;margin-bottom:2px;}
-.mv{font-family:'Cinzel',serif;font-size:13px;color:var(--sm);font-weight:600;}
-.section{padding:0 40px;margin-top:32px;position:relative;z-index:1;}
-.st{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--sm);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
-.st::before{content:'📜';font-size:11px;opacity:.7;}
-.stat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
-.sb{background:var(--card);border:1px solid var(--border);text-align:center;padding:12px 4px 10px;position:relative;}
-.sb::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--sand);opacity:.6;}
-.slbl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--td);display:block;text-transform:uppercase;margin-bottom:2px;}
-.sv{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:var(--pale);display:block;line-height:1.1;}
-.sv.pk{color:var(--sl);text-shadow:0 0 14px rgba(251,191,36,.5);}
-.smod{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--sm);display:block;}
-.combat-row{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;}
-.cbox{background:var(--card);border:1px solid var(--border);text-align:center;padding:12px 6px;}
-.clbl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;color:var(--td);text-transform:uppercase;display:block;margin-bottom:4px;}
-.cval{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--pale);}
-.pv{background:linear-gradient(135deg,var(--card) 0%,rgba(120,53,15,.25) 100%);border-color:var(--sm);}
-.pv .cval{color:var(--sl);}
-.tcol{display:grid;grid-template-columns:220px 1fr;gap:16px;}
-.slist{list-style:none;}
-.si{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:13px;border-bottom:1px solid rgba(120,53,15,.1);}
-.si:last-child{border-bottom:none;}
-.pd{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--td);flex-shrink:0;}
-.pd.f{background:var(--sm);border-color:var(--sl);box-shadow:0 0 6px rgba(217,119,6,.5);}
-.sc{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--sm);width:30px;text-align:right;flex-shrink:0;}
-.sc.pk{color:var(--sl);}
-.sn{color:var(--text);flex:1;}
-.sa{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--td);}
-.atbl{width:100%;border-collapse:collapse;font-size:13px;}
-.atbl th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--td);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(120,53,15,.1);}
-.atbl td{padding:8px 10px;border-bottom:1px solid rgba(120,53,15,.1);color:var(--text);}
-.an{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
-.ab{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--sm);font-weight:700;}
-.ad{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--sl);}
-.fg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
-.fc{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--sand);padding:12px 14px;transition:border-color .2s;}
-.fc:hover{border-color:var(--sm);}
-.fc.ml{border-left-color:var(--sl);}
-.fc.gd{border-left-color:var(--gold);}
-.fn{font-family:'Cinzel',serif;font-size:11px;color:var(--sm);letter-spacing:1px;margin-bottom:4px;text-transform:uppercase;}
-.fc.ml .fn{color:var(--sl);}
-.fc.gd .fn{color:var(--gl);}
-.fsrc{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--sand);opacity:.7;text-transform:uppercase;margin-bottom:4px;}
-.fd{font-size:12px;color:var(--td);line-height:1.5;}
-.sg{margin-bottom:20px;}
-.sgh{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
-.spb{width:36px;height:36px;border:2px solid var(--sand);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:var(--sm);background:rgba(120,53,15,.15);flex-shrink:0;}
-.spb.c0{border-color:var(--gold);color:var(--gl);}
-.sgt{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--sm);}
-.se{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--sand);padding:10px 14px;margin-bottom:6px;transition:border-color .2s,background .2s;}
-.se:hover{background:var(--card-light);}
-.se.core{border-left-color:var(--sl);}
-.se.ul{border-left-color:var(--gold);}
-.set{display:flex;align-items:baseline;gap:10px;margin-bottom:5px;flex-wrap:wrap;}
-.spn{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--pale);}
-.spn.c0n{color:var(--gl);}
-.sti{display:flex;gap:5px;flex-wrap:wrap;}
-.stag{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;padding:2px 7px;border:1px solid var(--border);color:var(--td);text-transform:uppercase;}
-.stag.conc{border-color:rgba(217,119,6,.4);color:var(--sl);}
-.stag.ct{border-color:rgba(217,119,6,.5);color:var(--sl);}
-.stag.ul{border-color:rgba(201,162,39,.5);color:var(--gl);}
-.sd{font-size:12px;color:var(--td);line-height:1.6;}
-.sm{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--sm);margin-top:4px;display:block;}
-.pg{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.pc{background:var(--card);border:1px solid var(--border);padding:14px 16px;}
-.pclbl{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--sm);display:block;margin-bottom:6px;}
-.pct{font-size:13px;color:var(--td);font-style:italic;line-height:1.5;}
-.lb{background:rgba(120,53,15,.07);border:1px solid var(--border);border-left:3px solid var(--sl);padding:14px 18px;font-size:13px;font-style:italic;color:var(--td);margin:12px 0;line-height:1.7;}
-.ab-box{background:rgba(217,119,6,.06);border:1px solid rgba(217,119,6,.2);border-left:3px solid var(--sl);padding:12px 16px;margin:10px 0;font-size:13px;color:var(--sl);}
-.ib{background:rgba(120,53,15,.09);border:1px solid var(--border);border-left:3px solid var(--sand);padding:12px 16px;margin:10px 0;font-size:12px;}
-.eg{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.ec{background:var(--card);border:1px solid var(--border);padding:12px 14px;}
-.ecat{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--sm);display:block;margin-bottom:6px;}
-.elist{list-style:none;font-size:13px;color:var(--td);}
-.elist li{padding:2px 0;border-bottom:1px solid rgba(120,53,15,.1);display:flex;align-items:center;gap:6px;}
-.elist li::before{content:'📜';font-size:8px;}
-.lt{display:flex;flex-direction:column;gap:2px;}
-.lr{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--sand);display:flex;overflow:hidden;}
-.lr.ml{border-left-color:var(--sl);}
-.lr.cp{border-left-color:var(--gold);}
-.lnum{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--sm);padding:8px 12px;min-width:60px;background:rgba(120,53,15,.12);align-self:stretch;display:flex;align-items:center;}
-.lc{padding:8px 14px;flex:1;}
-.lfn{font-family:'Cinzel',serif;font-size:11px;color:var(--pale);letter-spacing:.5px;margin-bottom:2px;}
-.lnt{font-size:12px;color:var(--td);font-style:italic;}
-.dv{text-align:center;margin:28px 40px;position:relative;z-index:1;}
-.dv::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--sand),transparent);}
-.dvt{position:relative;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:8px;color:var(--sl);background:var(--darker);padding:0 16px;opacity:.5;}
-.bss{padding:0 40px;margin-top:32px;position:relative;z-index:1;}
-.bsb{background:var(--card);border:1px solid var(--border);padding:28px 32px;}
-.bsb p{font-size:13.5px;color:var(--td);margin-bottom:12px;line-height:1.8;}
-.bi{font-weight:600;font-style:italic;color:var(--pale);display:block;margin:14px 0 6px;}
-.dlg{background:rgba(120,53,15,.1);border-left:2px solid var(--sm);padding:8px 16px;margin:8px 0;font-style:italic;font-size:13px;color:var(--td);}
-.ftr{text-align:center;padding:28px 40px 0;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--td);opacity:.5;position:relative;z-index:1;}
-::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--darker);}::-webkit-scrollbar-thumb{background:var(--sand);border-radius:3px;}
-@media(max-width:700px){.stat-grid{grid-template-columns:repeat(3,1fr);}.combat-row{grid-template-columns:repeat(4,1fr);}.tcol,.fg,.eg,.pg{grid-template-columns:1fr;}.header-inner{flex-direction:column;}.hp{width:100%;height:180px;}}
+
+/* PORTRAIT */
+.header-portrait{width:220px;flex-shrink:0;background:#080602;border-right:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+.portrait-inner{width:100%;height:290px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.portrait-photo{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 0.4s ease;}
+.portrait-photo:hover{transform:scale(1.04);}
+.portrait-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,#060401aa 100%);pointer-events:none;}
+.portrait-label{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--bright);opacity:0.6;text-transform:uppercase;text-shadow:0 0 8px var(--primary);}
+
+/* HEADER TEXT */
+.header-text{flex:1;padding:34px 44px;}
+.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--mid);opacity:0.85;text-transform:uppercase;margin-bottom:10px;}
+.header-name{font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(139,105,20,0.5),0 0 15px rgba(139,105,20,0.3);letter-spacing:2px;line-height:1;margin-bottom:4px;}
+.header-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);margin-bottom:20px;letter-spacing:1.5px;opacity:0.95;}
+.header-tags{display:flex;gap:7px;flex-wrap:wrap;}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(139,105,20,0.12);}
+.tag.hi{background:rgba(139,105,20,0.15);border-color:var(--mid);color:var(--bright);}
+.tag.gold{background:rgba(201,162,39,0.10);border-color:rgba(201,162,39,0.4);color:var(--gold-light);}
+
+/* STATS BAR */
+.stats-bar{background:var(--card);border-bottom:1px solid var(--border);padding:13px 40px;display:flex;flex-wrap:wrap;position:relative;z-index:1;gap:0;}
+.stat-item{flex:1;border-right:1px solid var(--border);padding:0 18px;text-align:center;min-width:90px;}
+.stat-item:first-child{padding-left:0;}.stat-item:last-child{border-right:none;padding-right:0;}
+.stat-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
+.stat-value{font-family:'Cinzel',serif;font-size:13px;color:var(--bright);font-weight:600;}
+
+/* SECTION */
+.sec{padding:0 40px;margin-top:32px;position:relative;z-index:1;}
+.sec-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.sec-title::before{content:'✦';font-size:11px;color:var(--gold);}
+
+/* ATTRIBUTES */
+.attr-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px;}
+.attr-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:12px 4px 10px;position:relative;}
+.attr-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--primary);opacity:0.45;}
+.attr-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
+.attr-value{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:var(--text);display:block;line-height:1;}
+.attr-value.peak{color:var(--bright);text-shadow:0 0 14px rgba(139,105,20,0.45);}
+.attr-mod{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--mid);display:block;margin-top:3px;}
+
+/* COMBAT NOTES */
+.special-notes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+
+/* SAVES & SKILLS */
+.two-col{display:grid;grid-template-columns:230px 1fr;gap:16px;}
+.save-list,.skill-list{list-style:none;padding:0;}
+.save-item,.skill-item{display:flex;align-items:center;gap:7px;padding:3px 0;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.save-item:last-child,.skill-item:last-child{border-bottom:none;}
+.prof-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--text-dim);flex-shrink:0;}
+.prof-dot.filled{background:var(--mid);border-color:var(--bright);box-shadow:0 0 6px rgba(139,105,20,0.5);}
+.prof-dot.expertise{background:var(--gold);border-color:var(--gold-light);}
+.save-name,.skill-name{flex:1;color:var(--text);}
+.skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text-dim);width:28px;}
+.save-score,.skill-score{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text-dim);width:28px;text-align:right;}
+.save-score.filled,.skill-score.filled,.skill-score.peak{color:var(--bright);}
+
+/* ATTACKS */
+.attack-table{width:100%;border-collapse:collapse;font-size:13px;}
+.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(139,105,20,0.12);}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(139,105,20,0.40);color:var(--text);vertical-align:top;}
+.attack-table tr:hover td{background:rgba(139,105,20,0.15);}
+.attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
+.attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--bright);font-weight:700;}
+.attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--gold-light);}
+.attack-notes{font-size:12px;color:var(--text-dim);font-style:italic;}
+
+/* FEATURES */
+.feat-section{margin-bottom:10px;}
+.feat-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:12px 0 8px;}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.trait-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);padding:12px 14px;}
+.trait-block.gold-accent{border-left-color:var(--gold);}
+.trait-block.dim-accent{border-left-color:var(--mist);}
+.trait-name{font-family:'Cinzel',serif;font-size:11px;color:var(--bright);letter-spacing:0.5px;margin-bottom:5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+.trait-block.gold-accent .trait-name{color:var(--gold-light);}
+.trait-block.dim-accent .trait-name{color:var(--text-dim);}
+.trait-desc{font-size:13.5px;color:var(--text-dim);line-height:1.6;}
+.trait-desc em{font-style:italic;color:var(--bright);}
+.trait-desc strong{color:var(--text);}
+.feat-level{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;background:rgba(139,105,20,0.15);color:var(--mid);padding:1px 6px;}
+
+/* SPELLS */
+.spell-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.spell-tag{background:var(--card-light);color:var(--bright);font-family:'Cinzel',serif;font-size:10px;padding:3px 9px;letter-spacing:1px;border:1px solid var(--border);display:inline-block;}
+.spell-tag.gold{background:rgba(201,162,39,0.08);color:var(--gold-light);border-color:rgba(201,162,39,0.28);}
+.spell-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:13px 0 8px;}
+.spell-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:7px;}
+.sc{background:var(--card-light);border:1px solid var(--border);border-top:2px solid var(--mist);padding:9px 12px 10px;display:flex;flex-direction:column;gap:3px;}
+.sc.cantrip{border-top-color:rgba(139,105,20,0.40);}
+.sc.expanded{border-top-color:var(--gold);}
+.sc-type{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);opacity:0.65;}
+.sc-name{font-family:'Cinzel',serif;font-size:11.5px;font-weight:600;color:var(--bright);letter-spacing:0.4px;}
+.sc.cantrip .sc-name{color:var(--text-dim);}
+.sc.expanded .sc-name{color:var(--gold-light);}
+.sc-desc{font-size:12px;color:var(--text-dim);line-height:1.5;margin-top:1px;}
+
+/* TRAIT LIST (equipment) */
+ul.trait-list{list-style:none;padding:0;}
+ul.trait-list li{padding:3px 0 3px 18px;position:relative;font-size:14px;line-height:1.65;color:var(--text-dim);}
+ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold);font-size:7px;top:7px;}
+
+/* DIVIDER */
+.divider{text-align:center;margin:24px 0;color:var(--mist);font-size:14px;letter-spacing:14px;opacity:0.5;}
+
+/* INFO PILLS */
+.info-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.info-pill{background:var(--card);border:1px solid var(--border);padding:8px 14px;font-size:13px;color:var(--text-dim);}
+.info-pill strong{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--mid);text-transform:uppercase;display:block;margin-bottom:3px;}
+
+/* FOOTER */
+.footer{margin-top:50px;padding:22px 40px;text-align:center;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent 0%,#06040199 100%);position:relative;z-index:1;}
+.footer p{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);opacity:0.5;text-transform:uppercase;margin-bottom:4px;}
+
+/* RESPONSIVE */
+@media(max-width:680px){
+  .header-inner{flex-direction:column;}
+  .header-portrait{width:100%;height:200px;}
+  .portrait-inner{height:200px;}
+  .attr-grid{grid-template-columns:repeat(3,1fr);}
+  .feature-grid{grid-template-columns:1fr;}
+  .spell-grid{grid-template-columns:1fr;}
+  .stats-bar{flex-wrap:wrap;gap:4px;}
+  .stat-item{flex:none;width:48%;border-right:none;border-bottom:1px solid var(--border);padding:6px 0;}
+  .two-col{grid-template-columns:1fr;}
+  .sec{padding:0 16px;}
+  .header-text{padding:20px 24px;}
+  .stats-bar{padding:10px 16px;}
+}
 </style>
 </head>
 <body>
-<div class="sand-bg" id="sandBg"></div>
+
+<!-- Floating Particles -->
+<div class="particle-bg" id="particleBg"></div>
+
 <div class="page">
 
+<!-- ── HEADER ─────────────────────────────────── -->
 <div class="header">
   <div class="header-inner">
-    <div class="hp"><div class="pi"><div class="pr"></div><div class="ps">📜</div><span class="prl">Guardião da Areia</span></div></div>
-    <div class="ha">
-      <div class="he">// D&amp;D 5e · Clérigo · Domínio do Conhecimento · Nível 20</div>
-      <div class="hn">Nasus</div>
-      <div class="hs">O Guardião Perpétuo da Areia — League of Legends</div>
-      <div class="htags">
-        <span class="tag hi">Clérigo 20</span><span class="tag hi">Conhecimento</span><span class="tag">Anubita (Leonar)</span><span class="tag">Acadêmico</span><span class="tag">Legal Neutro</span><span class="tag">Sem Multiclasse</span>
+    <div class="header-portrait">
+      <div class="portrait-inner">
+        <img class="portrait-photo" src="/portraits/nasus.jpg" alt="Nasus" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;font-size:64px;opacity:0.15;filter:drop-shadow(0 0 20px var(--bright));">🐺</div>
+        <div class="portrait-overlay"></div>
+      </div>
+      <div class="portrait-label">Nasus</div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">Ficha · D&amp;D 5e · League of Legends</div>
+      <div class="header-name">Nasus</div>
+      <div class="header-sub">O Guardião da Areia</div>
+      <div class="header-tags">
+        <span class="tag hi">Anubita (Leonar)</span><span class="tag hi">Clérigo</span><span class="tag hi">Domínio do Conhecimento</span><span class="tag hi">League of Legends</span><span class="tag">Antecedente: Acadêmico</span><span class="tag">Nív. 20</span>
       </div>
     </div>
   </div>
 </div>
 
-<div class="meta-bar">
-  <div class="mi"><span class="mlbl">Raça</span><span class="mv">Anubita (Leonar)</span></div>
-  <div class="mi"><span class="mlbl">Classe</span><span class="mv">Clérigo</span></div>
-  <div class="mi"><span class="mlbl">Subclasse</span><span class="mv">Conhecimento</span></div>
-  <div class="mi"><span class="mlbl">Antecedente</span><span class="mv">Acadêmico</span></div>
-  <div class="mi"><span class="mlbl">Tendência</span><span class="mv">Legal Neutro</span></div>
-  <div class="mi"><span class="mlbl">Nível</span><span class="mv">20</span></div>
+<!-- ── STATS BAR ──────────────────────────────── -->
+<div class="stats-bar">
+<div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">20</span></div><div class="stat-item"><span class="stat-label">PV</span><span class="stat-value">200</span></div><div class="stat-item"><span class="stat-label">Deslocamento</span><span class="stat-value">9m</span></div><div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value">+0</span></div><div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div><div class="stat-item"><span class="stat-label">CD de Magia</span><span class="stat-value">19</span></div><div class="stat-item"><span class="stat-label">Atq. Mágico</span><span class="stat-value">+11</span></div>
 </div>
 
-<div class="section">
-  <div class="st">Identidade</div>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
-    <div class="cbox"><span class="clbl">Nome</span><span style="font-family:'Cinzel',serif;font-size:13px;color:var(--pale)">Nasus</span></div>
-    <div class="cbox"><span class="clbl">Classe</span><span style="font-family:'Cinzel',serif;font-size:12px;color:var(--pale)">Clérigo 20</span></div>
-    <div class="cbox"><span class="clbl">Raça</span><span style="font-family:'Cinzel',serif;font-size:12px;color:var(--pale)">Anubita (Leonar)</span></div>
-    <div class="cbox"><span class="clbl">Antecedente</span><span style="font-family:'Cinzel',serif;font-size:13px;color:var(--pale)">Acadêmico</span></div>
-    <div class="cbox"><span class="clbl">Subclasse</span><span style="font-family:'Cinzel',serif;font-size:11px;color:var(--pale)">Dom. Conhecimento</span></div>
-    <div class="cbox"><span class="clbl">Tendência</span><span style="font-family:'Cinzel',serif;font-size:12px;color:var(--sl)">Legal Neutro</span></div>
-    <div class="cbox"><span class="clbl">Idiomas</span><span style="font-family:'Cinzel',serif;font-size:11px;color:var(--pale)">Todos (+6 extra)</span></div>
-    <div class="cbox"><span class="clbl">XP</span><span style="font-family:'Cinzel',serif;font-size:14px;color:var(--pale)">355.000 + Eterno</span></div>
+<!-- ── IDENTIDADE ────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Identidade</div>
+  <div class="info-pills">
+    <div class="info-pill"><strong>Raça</strong>Anubita (Leonar)</div>
+    <div class="info-pill"><strong>Classe</strong>Clérigo</div>
+    <div class="info-pill"><strong>Subclasse</strong>Domínio do Conhecimento</div>
+    <div class="info-pill"><strong>Antecedente</strong>Acadêmico</div>
+    <div class="info-pill"><strong>Tendência</strong>Legal Neutro</div>
+    <div class="info-pill"><strong>Idiomas</strong>Todos os idiomas mortais</div>
+    <div class="info-pill"><strong>Dado de Vida</strong>20d8</div>
+    <div class="info-pill"><strong>Magia</strong>Sabedoria</div>
   </div>
+  <div class="info-pills"><span class='tag hi'>channelDivinity: 3×/descanso curto</span></div>
 </div>
 
-<div class="section">
-  <div class="st">Atributos</div>
-  <div class="stat-grid" style="margin-bottom:16px">
-    <div class="sb" style="background:linear-gradient(135deg,var(--card) 0%,rgba(120,53,15,.2) 100%);border-color:var(--sm)"><span class="slbl">Força</span><span class="sv pk">20</span><span class="smod">+5</span></div>
-    <div class="sb"><span class="slbl">Destreza</span><span class="sv">10</span><span class="smod">+0</span></div>
-    <div class="sb" style="background:linear-gradient(135deg,var(--card) 0%,rgba(120,53,15,.18) 100%);border-color:var(--sm)"><span class="slbl">Constituição</span><span class="sv pk">20</span><span class="smod">+5</span></div>
-    <div class="sb"><span class="slbl">Inteligência</span><span class="sv">18</span><span class="smod">+4</span></div>
-    <div class="sb" style="background:linear-gradient(135deg,var(--card) 0%,rgba(120,53,15,.18) 100%);border-color:var(--sm)"><span class="slbl">Sabedoria</span><span class="sv pk">20</span><span class="smod">+5</span></div>
-    <div class="sb"><span class="slbl">Carisma</span><span class="sv">14</span><span class="smod">+2</span></div>
-  </div>
+<!-- ── ATRIBUTOS ──────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Atributos</div>
+  <div class="attr-grid">
+        <div class="attr-box">
+          <span class="attr-label">FOR</span>
+          <span class="attr-value peak">20</span>
+          <span class="attr-mod">+5</span>
+        </div>
+        <div class="attr-box">
+          <span class="attr-label">DES</span>
+          <span class="attr-value ">10</span>
+          <span class="attr-mod">+0</span>
+        </div>
+        <div class="attr-box">
+          <span class="attr-label">CON</span>
+          <span class="attr-value peak">20</span>
+          <span class="attr-mod">+5</span>
+        </div>
+        <div class="attr-box">
+          <span class="attr-label">INT</span>
+          <span class="attr-value peak">18</span>
+          <span class="attr-mod">+4</span>
+        </div>
+        <div class="attr-box">
+          <span class="attr-label">SAB</span>
+          <span class="attr-value peak">20</span>
+          <span class="attr-mod">+5</span>
+        </div>
+        <div class="attr-box">
+          <span class="attr-label">CAR</span>
+          <span class="attr-value ">14</span>
+          <span class="attr-mod">+2</span>
+        </div></div>
+  <p style="font-size:12px;color:var(--text-dim);font-style:italic;">Plate (18) + Escudo (+2) = CA 20</p>
 </div>
 
-<div class="section">
-  <div class="st">Estatísticas de Combate</div>
-  <div class="combat-row" style="margin-bottom:16px">
-    <div class="cbox pv"><span class="clbl">CA</span><span class="cval">20</span></div>
-    <div class="cbox pv"><span class="clbl">PV</span><span class="cval">200</span></div>
-    <div class="cbox"><span class="clbl">Iniciativa</span><span class="cval">+0</span></div>
-    <div class="cbox"><span class="clbl">Vel.</span><span class="cval">9m</span></div>
-    <div class="cbox"><span class="clbl">Prof.</span><span class="cval">+6</span></div>
-    <div class="cbox"><span class="clbl">CD Magias</span><span class="cval">19</span></div>
-    <div class="cbox"><span class="clbl">Canal Div.</span><span class="cval">3×</span></div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
-    <div class="ib"><strong style="color:var(--sl)">Cajado de Siphoning:</strong> +7d8 extra em acerto com cajado · Cresce sem limite</div>
-    <div class="ib"><strong style="color:var(--sl)">CA:</strong> Plate (18) + Escudo (+2) = <strong style="color:var(--pale)">CA 20</strong></div>
-    <div class="ib"><strong style="color:var(--sl)">Idiomas:</strong> Todos os idiomas mortais (milagre · 20°)</div>
-  </div>
+
+
+
+
+
+
+<!-- ── HABILIDADES ───────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Habilidades</div>
+  <div class="feat-section"><div class="feat-section-label">Habilidades de Subclasse</div><div class="feature-grid"><div class="trait-block ">
+              <div class="trait-name">Knowledge of the Ages <span class="feat-level">Nív.2</span></div>
+              <div class="trait-desc">Canal Divino: proficiência temporária em qualquer perícia ou ferramenta por 10 min.</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Read Thoughts <span class="feat-level">Nív.2</span></div>
+              <div class="trait-desc">Canal Divino: lê pensamentos de criatura em 18m. TR Sab CD 19 ou acessa.</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Visions of the Past <span class="feat-level">Nív.17</span></div>
+              <div class="trait-desc">Concentração 1 min: visões de eventos nos últimos dias em local ou objeto.</div>
+            </div></div></div><div class="feat-section"><div class="feat-section-label">Habilidades de Classe</div><div class="feature-grid"><div class="trait-block ">
+              <div class="trait-name">Siphoning Strike </div>
+              <div class="trait-desc">Cajado: +1d8 base bônus por cada criatura morta em combate enquanto usa. Escala sem limite.</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Wither </div>
+              <div class="trait-desc">Canal Divino: TR Con CD 19 → velocidade ÷2, CA −3 por 1 min.</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Expertise em Conhecimento <span class="feat-level">Nív.1</span></div>
+              <div class="trait-desc">Expertise em Arcano, História, Natureza e Religião (+17 total).</div>
+            </div><div class="trait-block ">
+              <div class="trait-name">Intervenção Divina Automática <span class="feat-level">Nív.20</span></div>
+              <div class="trait-desc">Funciona sempre. 1×/descanso longo.</div>
+            </div></div></div><div class="feat-section"><div class="feat-section-label">Habilidades Raciais</div><div class="feature-grid"><div class="trait-block dim-accent">
+              <div class="trait-name">Visão no Escuro </div>
+              <div class="trait-desc">18m em escuridão como luz fraca.</div>
+            </div><div class="trait-block dim-accent">
+              <div class="trait-name">Resistência Necrótica </div>
+              <div class="trait-desc">Resistência a dano necrótico.</div>
+            </div><div class="trait-block dim-accent">
+              <div class="trait-name">Herança Anubita </div>
+              <div class="trait-desc">+FOR, +CON, +INT por raça.</div>
+            </div></div></div><div class="feat-section"><div class="feat-section-label">Talentos (Feats)</div><div class="feature-grid"><div class="trait-block gold-accent">
+              <div class="trait-name">War Caster <span class="feat-level">Nív.4</span></div>
+              <div class="trait-desc">Vantagem Con para concentração. Magia como AO.</div>
+            </div><div class="trait-block gold-accent">
+              <div class="trait-name">Observant <span class="feat-level">Nív.8</span></div>
+              <div class="trait-desc">+5 Percepção Passiva (21 total). Leitura labial.</div>
+            </div></div></div>
 </div>
 
-<div class="section">
-  <div class="st">Testes de Resistência &amp; Perícias</div>
-  <div class="tcol">
-    <div>
-      <ul class="slist">
-        <li class="si"><span class="pd"></span><span class="sc">+5</span><span class="sn">Força</span></li>
-        <li class="si"><span class="pd"></span><span class="sc">+0</span><span class="sn">Destreza</span></li>
-        <li class="si"><span class="pd f"></span><span class="sc pk">+11</span><span class="sn">Constituição</span></li>
-        <li class="si"><span class="pd f"></span><span class="sc">+10</span><span class="sn">Inteligência</span></li>
-        <li class="si"><span class="pd f"></span><span class="sc pk">+11</span><span class="sn">Sabedoria</span></li>
-        <li class="si"><span class="pd"></span><span class="sc">+2</span><span class="sn">Carisma</span></li>
-      </ul>
-      <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-        <div style="background:var(--card);border:1px solid var(--border);text-align:center;padding:10px;"><span style="font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--td);display:block">Sab. Passiva</span><span style="font-family:'Cinzel',serif;font-size:18px;color:var(--pale)">21</span></div>
-        <div style="background:var(--card);border:1px solid var(--border);text-align:center;padding:10px;"><span style="font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--td);display:block">Visão Escuro</span><span style="font-family:'Cinzel',serif;font-size:13px;color:var(--sl)">18m</span></div>
-      </div>
-    </div>
-    <div>
-      <ul class="slist">
-        <li class="si"><span class="pd f"></span><span class="sc pk">+17</span><span class="sn">Arcane (Exp.)</span><span class="sa">Int</span></li>
-        <li class="si"><span class="pd f"></span><span class="sc pk">+17</span><span class="sn">História (Exp.)</span><span class="sa">Int</span></li>
-        <li class="si"><span class="pd f"></span><span class="sc pk">+17</span><span class="sn">Natureza (Exp.)</span><span class="sa">Int</span></li>
-        <li class="si"><span class="pd f"></span><span class="sc pk">+17</span><span class="sn">Religião (Exp.)</span><span class="sa">Int</span></li>
-        <li class="si"><span class="pd f"></span><span class="sc pk">+11</span><span class="sn">Medicina</span><span class="sa">Sab</span></li>
-        <li class="si"><span class="pd f"></span><span class="sc pk">+11</span><span class="sn">Percepção</span><span class="sa">Sab</span></li>
-        <li class="si"><span class="pd f"></span><span class="sc pk">+11</span><span class="sn">Intuição</span><span class="sa">Sab</span></li>
-        <li class="si"><span class="pd f"></span><span class="sc pk">+11</span><span class="sn">Investigação</span><span class="sa">Sab</span></li>
-        <li class="si"><span class="pd f"></span><span class="sc pk">+11</span><span class="sn">Sobrevivência</span><span class="sa">Sab</span></li>
-        <li class="si"><span class="pd f"></span><span class="sc">+8</span><span class="sn">Persuasão</span><span class="sa">Car</span></li>
-      </ul>
-    </div>
-  </div>
+<!-- ── MAGIAS ───────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Magia</div>
+  <div class="spell-meta">
+      <span class="spell-tag">CD 19</span>
+      <span class="spell-tag">Ataque +11</span>
+      <span class="spell-tag">Sabedoria</span>
+      
+    </div><div class="spell-section-label">Truques (Cantrips)</div><div class="spell-grid"><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Sacred Flame</span><span class="sc-desc">4d8 radiante · TR Des CD 19</span></div><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Toll the Dead</span><span class="sc-desc">4d12 necrótico · TR Sab · Alvo ferido</span></div><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Guidance</span><span class="sc-desc">+1d4 em teste · Concentração</span></div></div><div class="spell-section-label">Magias</div><div class="spell-grid"><div class="sc"><span class="sc-type">3° </span><span class="sc-name">Spirit Guardians</span><span class="sc-desc">5d8 rad/necr · Vel÷2 · Raio 4,5m · 10 min conc.</span></div><div class="sc"><span class="sc-type">6° </span><span class="sc-name">Harm</span><span class="sc-desc">14d6 necrótico · Reduz PV máx · TR Con</span></div><div class="sc"><span class="sc-type">6° </span><span class="sc-name">Heal</span><span class="sc-desc">70 PV instantâneos · Encerra cegueira e surdez</span></div><div class="sc"><span class="sc-type">9° </span><span class="sc-name">Astral Projection</span><span class="sc-desc">Até 8 criaturas no Plano Astral · Sem tempo limite</span></div><div class="sc"><span class="sc-type">5° </span><span class="sc-name">Mass Cure Wounds</span><span class="sc-desc">5d8+5 em 6 aliados</span></div><div class="sc"><span class="sc-type">6° </span><span class="sc-name">True Seeing</span><span class="sc-desc">36m · 1h · Ilusões, invisíveis, planos éter</span></div><div class="sc"><span class="sc-type">7° </span><span class="sc-name">Symbol</span><span class="sc-desc">Armadilha permanente · Qualquer efeito mágico</span></div></div>
 </div>
 
-<div class="section">
-  <div class="st">Ataques</div>
-  <table class="atbl">
-    <thead><tr><th>Ataque</th><th>Bônus</th><th>Dano</th><th>Alcance</th><th>Notas</th></tr></thead>
-    <tbody>
-      <tr><td><span class="an">Cajado de Siphoning (Stack)</span></td><td><span class="ab">+11</span></td><td><span class="ad">1d8+5 + 7d8+ extra</span></td><td>Melee</td><td style="font-size:11px;color:var(--td)">7d8 base mínimo + acumula sem limite com cada morte</td></tr>
-      <tr><td><span class="an">Wither (Murchar)</span></td><td><span class="ab">—</span></td><td><span class="ad">−Vel. 50% + −CA</span></td><td>9m</td><td style="font-size:11px;color:var(--td)">TR Con CD 19 · Murcha por 1 min · Velocidade ÷2 · −CA</td></tr>
-      <tr><td><span class="an">Sacred Flame</span></td><td><span class="ab">—</span></td><td><span class="ad">4d8 Radiante</span></td><td>18m</td><td style="font-size:11px;color:var(--td)">TR Des CD 19 · Indiferente a escudo</td></tr>
-    </tbody>
-  </table>
+
+
+
+<!-- ── PERSONALIDADE ─────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Personalidade</div>
+  <div class="trait-block"><div class="trait-name">Traços de Personalidade</div><div class="trait-desc">Fala como se cada palavra custasse algo. Pausa longa. Resposta precisa.</div></div><div class="trait-block"><div class="trait-name">Ideais</div><div class="trait-desc">O conhecimento é sagrado. A sabedoria é divina. Nasus é o intermediário.</div></div><div class="trait-block"><div class="trait-name">Vínculos</div><div class="trait-desc">Shurima. O ideal de civilização que conhecimento pode construir quando há humildade.</div></div><div class="trait-block"><div class="trait-name">Fraquezas</div><div class="trait-desc">Às vezes trata humanos como bibliotecas temporárias. O paternalismo dos milênios.</div></div>
 </div>
 
-<div class="section">
-  <div class="st">Habilidades de Classe &amp; Raça</div>
-  <div class="fg">
-    <div class="fc ml"><div class="fn">Domínio do Conhecimento — Visions of the Past</div><div class="fsrc">Conhecimento · Nível 17</div><div class="fd">Concentração de 1 min sobre um local: recebe visões de eventos passados ali nos últimos dias. Nasus viu a história de Shurima. Agora vê a história deste lugar — qualquer que seja.</div></div>
-    <div class="fc ml"><div class="fn">Siphoning Strike — Cajado que Cresce</div><div class="fsrc">Habilidade Central · Nível 1+</div><div class="fd">A cada criatura morta em combate enquanto Nasus usa o cajado: o bônus de dano permanente aumenta em <strong style="color:var(--sl)">+1d8</strong>. Começa em 7d8 (base nível 20) e escala sem limite. Quanto mais tempo na luta, mais letal.</div></div>
-    <div class="fc"><div class="fn">Wither (Murchar)</div><div class="fsrc">Habilidade Especial · Canal Divino</div><div class="fd">Canal Divino: TR Con CD 19 ou alvo tem velocidade reduzida à metade e CA reduzida em −3 por 1 min. Nasus não destrói fisicamente — ele enfraquece o alvo metodicamente.</div></div>
-    <div class="fc gd"><div class="fn">Intervenção Divina Automática</div><div class="fsrc">Clérigo · Nível 20 · Capstone</div><div class="fd">Funciona sempre. 1×/descanso longo. Os deuses sempre respondem ao chamado de Nasus — porque ele é o guardião da memória deles tanto quanto eles são seus criadores.</div></div>
-  </div>
-  <div class="fg" style="margin-top:10px">
-    <div class="fc ml"><div class="fn">Read Thoughts (Canal Divino)</div><div class="fsrc">Conhecimento · Nível 2</div><div class="fd">Canal Divino: lê pensamentos de criatura em 18m. TR Sab CD 19 ou Nasus acessa seus pensamentos ativos. Pode fazer perguntas — Nasus guarda as respostas por era.</div></div>
-    <div class="fc"><div class="fn">Expertise em Conhecimento × 2</div><div class="fsrc">Conhecimento · Nível 1</div><div class="fd">Expertise em Arcano, História, Natureza e Religião: +17 em todos. Nasus não escreve livros — ele é a fonte de onde os livros são escritos.</div></div>
-    <div class="fc"><div class="fn">Anubita — Visão no Escuro + Resistência</div><div class="fsrc">Raça (Leonar Costom)</div><div class="fd">Visão no Escuro 18m. Resistência a dano necrótico. +FOR, +CON, +INT por raça. Nasus carrega a herança de uma civilização inteira em cada gene.</div></div>
-    <div class="fc gd"><div class="fn">War Caster + Observant</div><div class="fsrc">Talentos · Níveis 4, 8</div><div class="fd">War Caster: vantagem Con para concentração. Observant: +5 Percepção Passiva (21 total). Nasus observa tudo — e nunca esquece o que vê.</div></div>
-  </div>
+<div class="divider">✦ ✧ ✦</div>
+
+<!-- ── FOOTER ────────────────────────────────── -->
+<div class="footer">
+  <p>Nasus · Clérigo Domínio do Conhecimento · Nível 20</p>
+  <p>D&amp;D 5e · League of Legends · Sistema de Fichas RPG</p>
 </div>
 
-<div class="dv"><span class="dvt">◈ ◈ ◈</span></div>
-
-<div class="section">
-  <div class="st">Grimório · SAB+5 · CD 19 · Ataque +11</div>
-  <div class="sg">
-    <div class="sgh"><div class="spb c0">0</div><span class="sgt">Truques</span></div>
-    <div class="se core"><div class="set"><span class="spn">Sacred Flame</span><div class="sti"><span class="stag ct">★</span></div></div><p class="sd">4d8 radiante · TR Des CD 19. A chama sagrada que não serve para iluminar scrollos — serve para julgar.</p><span class="sm">☀ TR Des CD 19 · 4d8 radiante</span></div>
-    <div class="se"><div class="set"><span class="spn">Toll the Dead</span></div><p class="sd">4d12 necrótico em alvo ferido (TR Sab CD 19). A morte que Nasus anuncia — o preço de lutar contra o guardião da eternidade.</p></div>
-    <div class="se"><div class="set"><span class="spn">Guidance</span></div><p class="sd">+1d4 em teste de habilidade. A sabedoria de séculos — Nasus a distribui em momentos brevíssimos.</p></div>
-  </div>
-  <div class="sg">
-    <div class="sgh"><div class="spb">✦</div><span class="sgt">Magias</span></div>
-    <div class="se core"><div class="set"><span class="spn">Spirit Guardians</span><div class="sti"><span class="stag conc">concentração · 10 min</span><span class="stag ct">★ central</span></div></div><p class="sd">Espíritos que circundam Nasus em raio 4,5m: ao entrar ou iniciar o turno, <strong>5d8 Radiante ou Necrótico</strong> (TR Sab CD 19, metade em sucesso) + velocidade ÷2. A biblioteca animada do guardião.</p><span class="sm">📜 TR Sab CD 19 · 5d8 · Vel ÷2 · 4,5m · 10 min</span></div>
-    <div class="se core"><div class="set"><span class="spn">Harm / Heal</span><div class="sti"><span class="stag ct">★ julgamento/cura</span></div></div><p class="sd"><strong>Harm:</strong> 14d6 necrótico (TR Con CD 19, metade) · Reduz PV máx. <strong>Heal:</strong> 70 PV instantâneos + encerra cegueira/surdez. Nasus decide — com a mesma certeza que decide qual página consultar.</p><span class="sm">⚖ Harm: 14d6+reduz PV · Heal: 70 PV instantâneos</span></div>
-    <div class="se ul"><div class="set"><span class="spn c0n">Astral Projection</span><div class="sti"><span class="stag ul">★ Nível 9°</span></div></div><p class="sd">Nasus e até 8 aliados projetam suas almas no Plano Astral. No plano material, seus corpos jazem inertes mas são imunes a dano. No Astral: exploram sem limites de tempo. A biblioteca infinita de Nasus estende-se além dos planos.</p><span class="sm">✦ Até 8 criaturas · Plano Astral ilimitado · Corpos protegidos</span></div>
-    <div class="se"><div class="set"><span class="spn">Mass Cure Wounds</span><div class="sti"><span class="stag">ação</span><span class="stag">raio 9m</span></div></div><p class="sd">Cura 5d8+5 em até 6 aliados. Com slot 9°: 9d8+5. O guardião que preserva.</p><span class="sm">💙 5d8+5 em 6 aliados · Raio 9m</span></div>
-    <div class="se"><div class="set"><span class="spn">Symbol / Glyph of Warding</span><div class="sti"><span class="stag">ritual</span></div></div><p class="sd">Inscreve armadilha mágica permanente com qualquer efeito de magia escolhido. Nasus sela salas inteiras com gliphos da areia — o guardião que protege até na ausência.</p><span class="sm">📜 Armadilha permanente · Qualquer efeito de magia</span></div>
-    <div class="se"><div class="set"><span class="spn">True Seeing</span><div class="sti"><span class="stag">1h</span></div></div><p class="sd">Visão verdadeira em 36m. Enxerga no escuro, ilusões, invisíveis, formas verdadeiras de metamorfos, planos étereos. Nasus não precisa desta magia — ele simplesmente a tem, como tem tudo o que foi escrito.</p><span class="sm">👁 36m · 1h · Enxerga tudo · Ilusões, invisíveis, planos éter</span></div>
-  </div>
-</div>
-
-<div class="section">
-  <div class="st">Como Nasus Joga</div>
-  <div class="fg">
-    <div class="fc ml"><div class="fn">1. Escalar com o Tempo</div><div class="fd">Cajado de Siphoning: +1d8 por morte. Quanto mais o combate se arrasta, mais impactante fica cada golpe de Nasus. O guardião que nunca perde no longo prazo.</div></div>
-    <div class="fc ml"><div class="fn">2. Spirit Guardians</div><div class="fd">Spirit Guardians sempre ativo (5d8/turno em raio 4,5m, vel÷2). Nasus parado no centro = campo de batalha dividido na metade da velocidade inimiga. A biblioteca que ninguém atravessa facilmente.</div></div>
-    <div class="fc"><div class="fn">3. Murchar + Golpear</div><div class="fd">Wither (canal divino) → velocidade e CA reduzidas → Cajado com 7d8+. Cada golpe do Cajado stacks mais dano. Patience, como o próprio Nasus diria.</div></div>
-    <div class="fc"><div class="fn">4. Ancoragem Divina</div><div class="fd">200 PV + CA 20 + Spirit Guardians (dano passivo) + Heal (70 PV instantâneos). Nasus simplesmente persiste — o atrito de milênios condensado numa batalha.</div></div>
-  </div>
-  <div class="ab-box">◈ <strong>"Apenas paciência."</strong> — O turno ideal de Nasus nunca existe de forma isolada. Ele é um personagem de longo prazo: Spirit Guardians sempre ativo, Cajado acumulando a cada combate, Read Thoughts fornecendo informação estratégica, Visões do Passado revelando segredos de locais. Nasus é o mais poderoso no turno 100, não no turno 1.</div>
-</div>
-
-<div class="section">
-  <div class="st">Progressão por Nível</div>
-  <div class="lt">
-    <div class="lr ml"><div class="lnum">Nv 1</div><div class="lc"><div class="lfn">Dom. Conhecimento · Expertise ×4 · Cajado de Siphoning</div></div></div>
-    <div class="lr"><div class="lnum">Nv 2</div><div class="lc"><div class="lfn">Canal Divino: Read Thoughts · Knowledge of the Ages</div></div></div>
-    <div class="lr"><div class="lnum">Nv 3</div><div class="lc"><div class="lfn">Siphoning Strike — cajado escala +1d8 por criatura morta em combate</div><div class="lnt">Sem limite de escala · 1d8+5 base → 300d8+5 em campanha longa</div></div></div>
-    <div class="lr"><div class="lnum">Nv 4</div><div class="lc"><div class="lfn">Talento: War Caster · SAB +2 → 18</div></div></div>
-    <div class="lr"><div class="lnum">Nv 5</div><div class="lc"><div class="lfn">Destroy Undead · Spirit Guardians disponível</div></div></div>
-    <div class="lr"><div class="lnum">Nv 6</div><div class="lc"><div class="lfn">Canal Divino adicional · Read Magic (à vontade)</div></div></div>
-    <div class="lr"><div class="lnum">Nv 7</div><div class="lc"><div class="lfn">Slots 4° · Siphoning Strike escala · 2 ataques com cajado</div><div class="lnt">Guardians + Strike: Spirit Guardians persiste enquanto Sett ataca · Escalonamento acelerado</div></div></div>
-    <div class="lr"><div class="lnum">Nv 8</div><div class="lc"><div class="lfn">Talento: Observant (+5 Perc. Passiva = 21) · SAB → 20</div></div></div>
-    <div class="lr"><div class="lnum">Nv 9</div><div class="lc"><div class="lfn">Slots 5° · Mass Cure Wounds + Astral Projection disponíveis</div><div class="lnt">Mass Cure: 5d8+5 PV para 6 aliados · Astral Projection: exploração segura ilimitada</div></div></div>
-    <div class="lr"><div class="lnum">Nv 10</div><div class="lc"><div class="lfn">Intervenção Divina (1d100 ≤ nível)</div></div></div>
-    <div class="lr"><div class="lnum">Nv 11</div><div class="lc"><div class="lfn">Slots 6° · Heal · Harm disponíveis</div></div></div>
-    <div class="lr"><div class="lnum">Nv 12</div><div class="lc"><div class="lfn">ASI: SAB +2 (18→20) · Expertise agora +17 em 4 perícias</div><div class="lnt">CD 19 estabilizada · Arcano/História/Natureza/Religião: rola +17</div></div></div>
-    <div class="lr"><div class="lnum">Nv 13</div><div class="lc"><div class="lfn">Slots 6° · Heal (70 PV instantâneo) + Harm (14d6 necrótico)</div><div class="lnt">Triagem de 70 PV em 1 ação · Harm reduz PV máximo do alvo até repouso longo</div></div></div>
-    <div class="lr"><div class="lnum">Nv 14</div><div class="lc"><div class="lfn">Siphoning Strike: após 50+ mortes, dano de arma ≈ 50d8+5</div><div class="lnt">Campanha média: ~50 mortes acumuladas → dano por ataque catastrófico</div></div></div>
-    <div class="lr"><div class="lnum">Nv 15</div><div class="lc"><div class="lfn">Slots 7° · Symbol disponível · True Seeing</div><div class="lnt">Symbol: armadilha mágica permanente · True Seeing 36m: vê invisibilidade/ilusão/éter</div></div></div>
-    <div class="lr"><div class="lnum">Nv 16</div><div class="lc"><div class="lfn">Slots 8° · Earthquake + Tsunami disponíveis</div><div class="lnt">Controle de terreno em área massiva · Catástrofe ambiental como ferramenta</div></div></div>
-    <div class="lr ml"><div class="lnum">Nv 17</div><div class="lc"><div class="lfn">Visions of the Past — visões históricas de locais e objetos</div></div></div>
-    <div class="lr"><div class="lnum">Nv 18</div><div class="lc"><div class="lfn">Canal Divino 3×/curto · Slots 9° disponíveis</div></div></div>
-    <div class="lr ml"><div class="lnum">Nv 19</div><div class="lc"><div class="lfn">ASI: CON → 20 · FOR → 20</div></div></div>
-    <div class="lr cp"><div class="lnum">Nv 20</div><div class="lc"><div class="lfn">Intervenção Divina Automática · Cajado ao máximo histórico acumulado</div><div class="lnt">O guardião eterno que superou o tempo</div></div></div>
-  </div>
-</div>
-
-<div class="section">
-  <div class="st">Equipamento</div>
-  <div class="eg">
-    <div class="ec"><span class="ecat">Armadura</span><ul class="elist"><li>Plate Armor (CA 18)</li><li>Escudo sagrado (CA+2)</li><li>Bracelete de ouro de Shurima</li></ul></div>
-    <div class="ec"><span class="ecat">Armas</span><ul class="elist"><li>Cajado de Siphoning (escalar infinito)</li><li>Foco divino: anel de areia dourada</li></ul></div>
-    <div class="ec"><span class="ecat">Relíquias</span><ul class="elist"><li>Biblioteca Pessoal (50 volumes)</li><li>Pergaminhos de Shurima anciã</li><li>Cristal de memória (3.000 anos)</li></ul></div>
-    <div class="ec"><span class="ecat">Proficiências</span><ul class="elist"><li>Armaduras: Todas + Escudo</li><li>Armas: Simples + Cajado</li><li>Ferramentas: Caligrafia, Cartografia</li><li>Idiomas: Todos</li></ul></div>
-  </div>
-</div>
-
-<div class="section">
-  <div class="st">Personalidade</div>
-  <div class="pg">
-    <div class="pc"><span class="pclbl">Traços</span><p class="pct">Fala como se cada palavra custasse algo — porque para ele, que guardou cada palavra dita em séculos, a imprecisão é um desperdício. Pausa longa. Resposta precisa.</p></div>
-    <div class="pc"><span class="pclbl">Ideais</span><p class="pct">O conhecimento é sagrado, mas a sabedoria — a aplicação do conhecimento — é divina. Nasus é o intermediário entre ambos. Sua função não é possuir o saber, mas preservá-lo e transmiti-lo no momento certo.</p></div>
-    <div class="pc"><span class="pclbl">Ligações</span><p class="pct">Shurima. Não a cidade que foi — o ideal que representa. O conhecimento que civilizações constroem quando têm tempo suficiente e humildade suficiente para construir juntas.</p></div>
-    <div class="pc"><span class="pclbl">Defeitos</span><p class="pct">Enxerga os mortais com um afeto que às vezes se confunde com paternalismo. O problema de ter vivido séculos: é difícil não tratar humanos como bibliotecas temporárias de experiência.</p></div>
-  </div>
-</div>
-
-<div class="section"><div class="st">Tesouro</div><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;"><div class="cbox"><span class="clbl">PC</span><span class="cval" style="font-size:16px">—</span></div><div class="cbox"><span class="clbl">PP</span><span class="cval" style="font-size:16px">—</span></div><div class="cbox"><span class="clbl">PE</span><span class="cval" style="font-size:16px">—</span></div><div class="cbox pv"><span class="clbl">PO</span><span class="cval" style="font-size:16px">∞</span></div><div class="cbox"><span class="clbl">PL</span><span class="cval" style="font-size:16px">—</span></div></div></div>
-
-<div class="dv"><span class="dvt">◈ ◈ ◈</span></div>
-
-<div class="bss">
-  <div style="font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--sl);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:20px">◈ História</div>
-  <div class="bsb">
-    <div class="bi">Nasus. Guardião de Shurima. Custódio do conhecimento mortal. O ser que decidiu que preservar é tão sagrado quanto criar.</div>
-    <p>Existiu muito antes das primeiras palavras escritas serem gravadas. Foi testemunha do nascimento e queda de civilizações que não deixaram nem nome. Guardou-as de qualquer maneira — na memória que os deuses lhe deram e que nenhum exército pôde ainda apagar.</p>
-    <span class="bi">A Areia como Memória</span>
-    <p>Shurima caiu. Nasus viu o deserto engolir o que foi dorne de uma semana ao que levou-se séculos a construir. A mais dolorosa das lições: o tempo não preserva nada. Somente os guardiões preservam. Somente a memória deliberada resiste à areia.</p>
-    <div class="dlg">"Você pergunta quanto tempo tenho. A resposta correta: o suficiente para saber que pressa é o principal inimigo do conhecimento."</div>
-    <p style="color:var(--td);font-size:12px;margin-top:20px;font-style:italic">O cajado escala. O guardião persiste. A biblioteca cresce — página por página, memória por memória, até que tudo o que foi, possa nunca deixar de ser.</p>
-  </div>
-</div>
-
-</div>
-<div class="ftr"><p>D&D 5e — WotC · Personagem: League of Legends / Riot Games</p><p style="margin-top:4px">Clérigo · Domínio do Conhecimento · Anubita (Leonar) · Nível 20 · Sem Multiclasse</p></div>
+</div><!-- /page -->
 
 <script>
-const b=document.getElementById('sandBg');
-for(let i=0;i<8;i++){const s=document.createElement('div');s.className='sand-p';s.style.width=(200+Math.random()*300)+'px';s.style.height=(60+Math.random()*100)+'px';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDuration=(20+Math.random()*25)+'s';s.style.animationDelay=(Math.random()*20)+'s';s.style.borderRadius='50%';b.appendChild(s);}
+(function() {
+  const particles = "📜⚖️🌙".split("");
+  const container = document.getElementById('particleBg');
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('span');
+    p.className = 'particle';
+    p.textContent = particles[i % particles.length];
+    p.style.left = (Math.random() * 100) + '%';
+    p.style.animationDuration = (12 + Math.random() * 18) + 's';
+    p.style.animationDelay = (Math.random() * 20) + 's';
+    p.style.fontSize = (9 + Math.random() * 6) + 'px';
+    container.appendChild(p);
+  }
+})();
 </script>
+
 </body>
 </html>
