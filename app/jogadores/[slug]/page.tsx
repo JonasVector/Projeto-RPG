@@ -2,6 +2,7 @@ import { getPlayer, getAllPlayers } from "@/lib/players";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import OrnamentLine from "@/components/ui/OrnamentLine";
+import CharacterCard from "@/components/players/CharacterCard";
 import { SYSTEM_LABELS, SYSTEM_ICONS } from "@/lib/system-labels";
 
 export async function generateStaticParams() {
@@ -193,67 +194,16 @@ export default async function PlayerPage({
 
               <div className="grid gap-3 sm:grid-cols-2">
                 {characters.map((ch) => (
-                  <Link
+                  <CharacterCard
                     key={ch.slug}
-                    href={`/sistemas-de-rpg/${ch.system}/personagens/${ch.slug}`}
-                    className="block group"
-                  >
-                    <div
-                      className="border rounded p-4 transition-all duration-200 flex items-center gap-4 group-hover:translate-y-[-1px]"
-                      style={{
-                        background: bg,
-                        borderColor: `${sysAccent}35`,
-                      }}
-                      onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLDivElement).style.borderColor = sysAccent;
-                        (e.currentTarget as HTMLDivElement).style.boxShadow = `0 4px 16px ${sysAccent}20`;
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLDivElement).style.borderColor = `${sysAccent}35`;
-                        (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
-                      }}
-                    >
-                      {/* System icon */}
-                      <div
-                        className="flex-shrink-0 w-10 h-10 rounded border flex items-center justify-center font-display font-bold"
-                        style={{
-                          background: `${sysAccent}10`,
-                          borderColor: `${sysAccent}40`,
-                          color: sysAccent,
-                        }}
-                      >
-                        {sysIcon}
-                      </div>
-
-                      <div className="flex-1 min-w-0">
-                        <div
-                          className="font-display font-semibold text-sm tracking-wide truncate"
-                          style={{ color: "var(--color-rpg-text)" }}
-                        >
-                          {ch.label}
-                        </div>
-                        <div
-                          className="font-mono text-[9px] uppercase tracking-widest flex items-center gap-2 mt-0.5"
-                          style={{ color: "var(--color-rpg-text-muted)" }}
-                        >
-                          <span
-                            className="w-1.5 h-1.5 rounded-full inline-block"
-                            style={{
-                              background: ch.status === "active" ? sysAccent : "var(--color-rpg-text-muted)",
-                            }}
-                          />
-                          {ch.status === "active" ? "Ativo" : ch.status === "retired" ? "Aposentado" : "NPC"}
-                        </div>
-                      </div>
-
-                      <span
-                        className="font-mono text-xs opacity-40 group-hover:opacity-80 transition-opacity"
-                        style={{ color: sysAccent }}
-                      >
-                        →
-                      </span>
-                    </div>
-                  </Link>
+                    slug={ch.slug}
+                    system={ch.system}
+                    label={ch.label}
+                    status={ch.status}
+                    sysAccent={sysAccent}
+                    sysIcon={sysIcon}
+                    bg={bg}
+                  />
                 ))}
               </div>
             </section>
