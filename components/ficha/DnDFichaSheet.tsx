@@ -3,10 +3,24 @@ import FichaView from "@/components/ficha/FichaView";
 import type { DnDFicha } from "@/types/character";
 
 const LEGACY_SLUGS = new Set([
+  // Original legacy HTML sheets
   "Nahida_Lesser_Lord_Kusanali",
   "Arlecchino_The_Knave_v2",
   "Corven_Cogspire_Ficha",
   "Build_Klein_Moretti_v2",
+  // Legacy character sheets (migrated from legacy/characters/)
+  "camellya",
+  "cantarella",
+  "elysia",
+  "furina",
+  "kafka",
+  "mordekaiser",
+  "morgana",
+  "nasus",
+  "neuvillette",
+  "phrolova",
+  "sett",
+  "viego",
 ]);
 
 interface DnDFichaSheetProps {

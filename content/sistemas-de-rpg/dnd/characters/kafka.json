@@ -1,0 +1,15 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "Kafka",
+      "titulo": "A Caçadora de Memórias",
+      "raca": "Shadar-kai",
+      "classe": "Bruxo",
+      "nivel": 20,
+      "subclasse": "Grande Antigo",
+      "antecedente": "Sombrio",
+      "tendencia": "Neutro",
+      "origem": "Honkai: Star Rail"
+    }
+  }
+}

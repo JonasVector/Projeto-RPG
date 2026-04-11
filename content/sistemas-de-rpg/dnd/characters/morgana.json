@@ -1,0 +1,15 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "Morgana",
+      "titulo": "A Caída",
+      "raca": "Aasimar (Protegido)",
+      "classe": "Feiticeiro",
+      "nivel": 20,
+      "subclasse": "Magia das Sombras",
+      "antecedente": "Eremita",
+      "tendencia": "Neutro Bom",
+      "origem": "League of Legends"
+    }
+  }
+}

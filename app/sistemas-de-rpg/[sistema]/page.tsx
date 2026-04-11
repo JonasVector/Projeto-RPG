@@ -86,7 +86,7 @@ export default async function SystemPage({
                 background: "var(--color-theme-card)",
               }}
             >
-              <span className="text-4xl block mb-4 opacity-30">📜</span>
+              <span className="font-display text-4xl block mb-4 opacity-20">✦</span>
               <p style={{ color: "var(--color-theme-text-dim)" }}>
                 Nenhum personagem neste sistema ainda.
               </p>

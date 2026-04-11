@@ -1,0 +1,15 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "Phrolova",
+      "titulo": "A Guardiã do Crepúsculo",
+      "raca": "Aasimar (Vingador)",
+      "classe": "Clérigo",
+      "nivel": 20,
+      "subclasse": "Domínio do Crepúsculo",
+      "antecedente": "Eremita",
+      "tendencia": "Leal Bom",
+      "origem": "Wuthering Waves"
+    }
+  }
+}

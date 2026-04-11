@@ -1,0 +1,15 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "Camellya",
+      "titulo": "A Flor Carmesim",
+      "raca": "Shadar-kai",
+      "classe": "Bárbaro",
+      "nivel": 20,
+      "subclasse": "Caminho da Besta",
+      "antecedente": "Forasteiro",
+      "tendencia": "Caótico Neutro",
+      "origem": "Wuthering Waves"
+    }
+  }
+}

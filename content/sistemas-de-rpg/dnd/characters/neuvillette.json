@@ -1,0 +1,15 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "Neuvillette",
+      "titulo": "O Iudex — A Última Wyrm das Águas",
+      "raca": "Yuan-ti Pureblood",
+      "classe": "Feiticeiro",
+      "nivel": 20,
+      "subclasse": "Origem Dracônica (Água/Frio)",
+      "antecedente": "Nobre",
+      "tendencia": "Leal Neutro",
+      "origem": "Genshin Impact"
+    }
+  }
+}

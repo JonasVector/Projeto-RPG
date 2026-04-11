@@ -6,15 +6,21 @@ import OrnamentLine from "@/components/ui/OrnamentLine";
 import SystemCard from "@/components/home/SystemCard";
 
 const SYSTEM_ACCENT: Record<string, string> = {
-  dnd: "#8b0000",
-  daggerheart: "#c24d2c",
-  vampiro: "#6e0010",
+  dnd:        "#8b0000",
+  daggerheart:"#c24d2c",
+  vampiro:    "#6e0010",
+  candela:    "#c9892e",
+  sacramento: "#4a7fa8",
+  avatar:     "#7aa87a",
 };
 
 const SYSTEM_GLOW: Record<string, string> = {
-  dnd: "rgba(139,0,0,0.35)",
-  daggerheart: "rgba(194,77,44,0.35)",
-  vampiro: "rgba(110,0,16,0.45)",
+  dnd:        "rgba(139,0,0,0.35)",
+  daggerheart:"rgba(194,77,44,0.35)",
+  vampiro:    "rgba(110,0,16,0.45)",
+  candela:    "rgba(201,137,46,0.38)",
+  sacramento: "rgba(74,127,168,0.35)",
+  avatar:     "rgba(122,168,122,0.32)",
 };
 
 export default function Home() {
@@ -89,7 +95,7 @@ export default function Home() {
               background: "var(--color-rpg-surface-raised)",
             }}
           >
-            <span className="text-4xl block mb-4 opacity-30">📜</span>
+            <span className="font-display text-4xl block mb-4 opacity-20">✦</span>
             <p className="text-lg" style={{ color: "var(--color-rpg-text-muted)" }}>
               Nenhum personagem criado ainda.
             </p>

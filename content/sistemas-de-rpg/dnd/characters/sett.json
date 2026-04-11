@@ -1,0 +1,15 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "Sett",
+      "titulo": "O Chefe",
+      "raca": "Meio-Orc",
+      "classe": "Lutador",
+      "nivel": 20,
+      "subclasse": "Líder de Arena",
+      "antecedente": "Forasteiro",
+      "tendencia": "Caótico Neutro",
+      "origem": "League of Legends"
+    }
+  }
+}

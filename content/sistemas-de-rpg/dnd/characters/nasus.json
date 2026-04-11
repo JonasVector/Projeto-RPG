@@ -1,0 +1,15 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "Nasus",
+      "titulo": "O Guardião da Areia",
+      "raca": "Anubita (Leonar)",
+      "classe": "Clérigo",
+      "nivel": 20,
+      "subclasse": "Domínio do Conhecimento",
+      "antecedente": "Sábio",
+      "tendencia": "Leal Neutro",
+      "origem": "League of Legends"
+    }
+  }
+}

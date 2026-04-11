@@ -3,21 +3,30 @@ import SistemasHero from "@/components/sistemas/SistemasHero";
 import SistemaCard from "@/components/sistemas/SistemaCard";
 
 const SYSTEM_ACCENT: Record<string, string> = {
-  dnd: "#8b0000",
-  daggerheart: "#c24d2c",
-  vampiro: "#6e0010",
+  dnd:        "#8b0000",
+  daggerheart:"#c24d2c",
+  vampiro:    "#6e0010",
+  candela:    "#c9892e",
+  sacramento: "#4a7fa8",
+  avatar:     "#7aa87a",
 };
 
 const SYSTEM_GLOW: Record<string, string> = {
-  dnd: "rgba(139,0,0,0.4)",
-  daggerheart: "rgba(194,77,44,0.4)",
-  vampiro: "rgba(110,0,16,0.5)",
+  dnd:        "rgba(139,0,0,0.4)",
+  daggerheart:"rgba(194,77,44,0.4)",
+  vampiro:    "rgba(110,0,16,0.5)",
+  candela:    "rgba(201,137,46,0.4)",
+  sacramento: "rgba(74,127,168,0.4)",
+  avatar:     "rgba(122,168,122,0.38)",
 };
 
 const SYSTEM_DESC: Record<string, string> = {
-  dnd: "Masmorra & Dragões • Alta Fantasia Medieval",
-  daggerheart: "Fantasia Narrativa • Hope & Fear",
-  vampiro: "Horror Gótico • Mundo das Trevas",
+  dnd:        "Masmorra & Dragões • Alta Fantasia Medieval",
+  daggerheart:"Fantasia Narrativa • Hope & Fear",
+  vampiro:    "Horror Gótico • Mundo das Trevas",
+  candela:    "Horror Investigativo • Era Vitoriana",
+  sacramento: "Investigação e Intriga • Sistema Único",
+  avatar:     "As Quatro Nações • Dobramento de Elementos",
 };
 
 export default function SistemasDeRPG() {
@@ -55,7 +64,7 @@ export default function SistemasDeRPG() {
             className="text-center py-16"
             style={{ color: "var(--color-rpg-text-muted)" }}
           >
-            <span className="text-4xl block mb-4 opacity-30">📜</span>
+            <span className="font-display text-4xl block mb-4 opacity-20">⊛</span>
             <p className="text-lg">Nenhum sistema configurado ainda.</p>
           </div>
         )}

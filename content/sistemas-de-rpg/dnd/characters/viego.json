@@ -1,0 +1,15 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "Viego",
+      "titulo": "O Rei Arruinado",
+      "raca": "Revenante",
+      "classe": "Bruxo",
+      "nivel": 20,
+      "subclasse": "Grande Antigo",
+      "antecedente": "Nobre",
+      "tendencia": "Caótico Maligno",
+      "origem": "League of Legends"
+    }
+  }
+}

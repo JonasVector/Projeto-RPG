@@ -1,0 +1,15 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "Mordekaiser",
+      "titulo": "O Imperador do Além",
+      "raca": "Humano (Variante)",
+      "classe": "Paladino",
+      "nivel": 20,
+      "subclasse": "Juramento dos Conquistadores",
+      "antecedente": "Soldado",
+      "tendencia": "Leal Maligno",
+      "origem": "League of Legends"
+    }
+  }
+}

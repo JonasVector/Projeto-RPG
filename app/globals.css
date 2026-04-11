@@ -112,6 +112,72 @@ body {
 }
 
 /* ══════════════════════════════════════════════ */
+/* CANDELA OBSCURA — Victorian Gaslit Horror       */
+/* ══════════════════════════════════════════════ */
+[data-system-theme="candela"] {
+  --color-theme-brand: #c9892e;
+  --color-theme-brand-mid: #d4a050;
+  --color-theme-brand-bright: #e8b86d;
+  --color-theme-brand-dark: #7a5218;
+  --color-theme-surface: #120e08;
+  --color-theme-surface-raised: #1a1208;
+  --color-theme-surface-light: #221a0e;
+  --color-theme-border: rgba(201,137,46,0.30);
+  --color-theme-border-bright: rgba(232,184,109,0.50);
+  --color-theme-text: #e0cfa8;
+  --color-theme-text-dim: #7a6840;
+  --color-theme-bone: #f0e0c0;
+  --color-theme-bone-dim: #a09060;
+  --color-theme-ember: #ff9a3c;
+  --color-theme-glow: rgba(201,137,46,0.18);
+  --color-theme-card: #120e08;
+}
+
+/* ══════════════════════════════════════════════ */
+/* SACRAMENTO — Deep Investigations               */
+/* ══════════════════════════════════════════════ */
+[data-system-theme="sacramento"] {
+  --color-theme-brand: #4a7fa8;
+  --color-theme-brand-mid: #5e97c0;
+  --color-theme-brand-bright: #74aed4;
+  --color-theme-brand-dark: #2c5070;
+  --color-theme-surface: #080d14;
+  --color-theme-surface-raised: #0e1520;
+  --color-theme-surface-light: #162030;
+  --color-theme-border: rgba(74,127,168,0.30);
+  --color-theme-border-bright: rgba(116,174,212,0.48);
+  --color-theme-text: #c8d8e8;
+  --color-theme-text-dim: #4a6880;
+  --color-theme-bone: #dce8f0;
+  --color-theme-bone-dim: #7a9ab0;
+  --color-theme-ember: #5e97c0;
+  --color-theme-glow: rgba(74,127,168,0.15);
+  --color-theme-card: #080d14;
+}
+
+/* ══════════════════════════════════════════════ */
+/* AVATAR LEGENDS — Four Nations                  */
+/* ══════════════════════════════════════════════ */
+[data-system-theme="avatar"] {
+  --color-theme-brand: #7aa87a;
+  --color-theme-brand-mid: #8cc08c;
+  --color-theme-brand-bright: #a0d4a0;
+  --color-theme-brand-dark: #4a6c4a;
+  --color-theme-surface: #0c1208;
+  --color-theme-surface-raised: #141a0e;
+  --color-theme-surface-light: #1c2416;
+  --color-theme-border: rgba(122,168,122,0.28);
+  --color-theme-border-bright: rgba(160,212,160,0.45);
+  --color-theme-text: #d4e8c8;
+  --color-theme-text-dim: #5a7850;
+  --color-theme-bone: #e4f0d8;
+  --color-theme-bone-dim: #8aaa78;
+  --color-theme-ember: #d4a050;
+  --color-theme-glow: rgba(122,168,122,0.14);
+  --color-theme-card: #0c1208;
+}
+
+/* ══════════════════════════════════════════════ */
 /* BACKGROUND TEXTURES PER THEME                  */
 /* ══════════════════════════════════════════════ */
 .theme-bg-radial-dnd {
@@ -130,6 +196,24 @@ body {
     radial-gradient(ellipse at 20% 10%, rgba(139,0,0,0.1) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 90%, rgba(255,107,53,0.05) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 50%, rgba(139,0,0,0.03) 0%, transparent 70%);
+}
+.theme-bg-radial-candela {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(201,137,46,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(255,154,60,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 40%, rgba(201,137,46,0.04) 0%, transparent 60%);
+}
+.theme-bg-radial-sacramento {
+  background:
+    radial-gradient(ellipse at 30% 10%, rgba(74,127,168,0.10) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 90%, rgba(94,151,192,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(74,127,168,0.03) 0%, transparent 70%);
+}
+.theme-bg-radial-avatar {
+  background:
+    radial-gradient(ellipse at 40% 0%, rgba(122,168,122,0.10) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(212,160,80,0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 60%, rgba(122,168,122,0.04) 0%, transparent 60%);
 }
 
 /* Cross-hatch subtle pattern for gothic themes */
@@ -351,6 +435,36 @@ body {
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E"),
     radial-gradient(ellipse at 50% -10%, rgba(120,0,20,0.35) 0%, transparent 55%),
     radial-gradient(ellipse at 80% 80%, rgba(80,0,10,0.15) 0%, transparent 50%);
+  background-size: 300px 300px, 100% 100%, 100% 100%;
+}
+
+/* Candela Obscura */
+[data-system-theme="candela"] .system-hero-bg {
+  background-color: #100c06;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 50% -5%, rgba(201,137,46,0.28) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(255,154,60,0.10) 0%, transparent 50%);
+  background-size: 300px 300px, 100% 100%, 100% 100%;
+}
+
+/* Sacramento */
+[data-system-theme="sacramento"] .system-hero-bg {
+  background-color: #070c14;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 50% -10%, rgba(74,127,168,0.28) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 80%, rgba(94,151,192,0.10) 0%, transparent 50%);
+  background-size: 300px 300px, 100% 100%, 100% 100%;
+}
+
+/* Avatar Legends */
+[data-system-theme="avatar"] .system-hero-bg {
+  background-color: #090e06;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 50% -5%, rgba(122,168,122,0.22) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(212,160,80,0.10) 0%, transparent 50%);
   background-size: 300px 300px, 100% 100%, 100% 100%;
 }
 

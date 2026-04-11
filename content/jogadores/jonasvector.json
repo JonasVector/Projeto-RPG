@@ -1,0 +1,29 @@
+{
+  "id": "jonasvector",
+  "name": "JonasVector",
+  "displayName": "JonasVector",
+  "joinedAt": "2026-04-10",
+  "activeSince": "2026",
+  "bio": "Mestre e jogador veterano do grupo. Criador das fichas do projeto.",
+  "role": "Jogador & Mestre",
+  "characters": [
+    { "system": "dnd", "slug": "elysia",      "label": "Elysia",      "status": "active" },
+    { "system": "dnd", "slug": "phrolova",    "label": "Phrolova",    "status": "active" },
+    { "system": "dnd", "slug": "furina",      "label": "Furina",      "status": "active" },
+    { "system": "dnd", "slug": "kafka",       "label": "Kafka",       "status": "active" },
+    { "system": "dnd", "slug": "camellya",    "label": "Camellya",    "status": "active" },
+    { "system": "dnd", "slug": "cantarella",  "label": "Cantarella",  "status": "active" },
+    { "system": "dnd", "slug": "mordekaiser", "label": "Mordekaiser", "status": "active" },
+    { "system": "dnd", "slug": "morgana",     "label": "Morgana",     "status": "active" },
+    { "system": "dnd", "slug": "nasus",       "label": "Nasus",       "status": "active" },
+    { "system": "dnd", "slug": "neuvillette", "label": "Neuvillette", "status": "active" },
+    { "system": "dnd", "slug": "sett",        "label": "Sett",        "status": "active" },
+    { "system": "dnd", "slug": "viego",       "label": "Viego",       "status": "active" }
+  ],
+  "stats": {
+    "totalCharacters": 12,
+    "primarySystem": "dnd",
+    "favoriteSystems": ["dnd"]
+  },
+  "tags": ["dnd", "criador", "level-20"]
+}

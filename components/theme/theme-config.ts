@@ -1,4 +1,4 @@
-export type SystemTheme = "dnd" | "daggerheart" | "vampiro";
+export type SystemTheme = "dnd" | "daggerheart" | "vampiro" | "candela" | "sacramento" | "avatar";
 
 export interface SystemThemeConfig {
   theme: SystemTheme;
@@ -12,23 +12,44 @@ export const THEME_CONFIG: Record<SystemTheme, SystemThemeConfig> = {
   dnd: {
     theme: "dnd",
     label: "D&D 5e",
-    icon: "\u{1F409}",
-    decorIcon: "\u2715",
+    icon: "⚔",
+    decorIcon: "✕",
     bgClass: "theme-bg-radial-dnd",
   },
   daggerheart: {
     theme: "daggerheart",
     label: "Daggerheart",
-    icon: "\u{1F49A}",
-    decorIcon: "\u25C6",
+    icon: "◆",
+    decorIcon: "◆",
     bgClass: "theme-bg-radial-daggerheart",
   },
   vampiro: {
     theme: "vampiro",
-    label: "Vampiro: A M\u00E1scara",
-    icon: "\u{1FA78}",
-    decorIcon: "\u2715",
+    label: "Vampiro: A Máscara",
+    icon: "✦",
+    decorIcon: "✕",
     bgClass: "theme-bg-radial-vampiro",
+  },
+  candela: {
+    theme: "candela",
+    label: "Candela Obscura",
+    icon: "◉",
+    decorIcon: "◉",
+    bgClass: "theme-bg-radial-candela",
+  },
+  sacramento: {
+    theme: "sacramento",
+    label: "Sacramento",
+    icon: "⬡",
+    decorIcon: "⬡",
+    bgClass: "theme-bg-radial-sacramento",
+  },
+  avatar: {
+    theme: "avatar",
+    label: "Avatar Legends",
+    icon: "☯",
+    decorIcon: "☯",
+    bgClass: "theme-bg-radial-avatar",
   },
 };
 
@@ -37,8 +58,8 @@ export function getThemeConfig(system: string): SystemThemeConfig {
     THEME_CONFIG[system as SystemTheme] || {
       theme: "dnd" as SystemTheme,
       label: system,
-      icon: "\u2699",
-      decorIcon: "\u2726",
+      icon: "⊛",
+      decorIcon: "✦",
       bgClass: "",
     }
   );

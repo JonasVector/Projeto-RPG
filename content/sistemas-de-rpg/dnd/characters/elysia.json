@@ -1,0 +1,15 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "Elysia",
+      "titulo": "Herrscher of Human Ego",
+      "raca": "Aasimar (Protetor)",
+      "classe": "Bardo",
+      "nivel": 20,
+      "subclasse": "Colégio do Glamour",
+      "antecedente": "Nobre",
+      "tendencia": "Caótico Bom",
+      "origem": "Honkai Impact 3rd"
+    }
+  }
+}

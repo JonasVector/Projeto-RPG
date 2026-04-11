@@ -1,0 +1,15 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "Furina",
+      "titulo": "A Arquidivina da Água",
+      "raca": "Eladrin (Outono)",
+      "classe": "Bardo",
+      "nivel": 20,
+      "subclasse": "Colégio da Eloquência",
+      "antecedente": "Nobre",
+      "tendencia": "Caótico Bom",
+      "origem": "Genshin Impact"
+    }
+  }
+}

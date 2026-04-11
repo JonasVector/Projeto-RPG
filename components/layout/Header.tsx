@@ -32,6 +32,13 @@ export default function Header() {
           >
             Sistemas
           </Link>
+          <Link
+            href="/jogadores"
+            className="transition-colors hover:text-[var(--color-rpg-gold-light)]"
+            style={{ color: "var(--color-rpg-text-muted)" }}
+          >
+            Jogadores
+          </Link>
         </nav>
       </div>
     </header>

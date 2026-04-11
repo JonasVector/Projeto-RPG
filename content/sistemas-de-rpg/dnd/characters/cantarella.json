@@ -1,0 +1,15 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "Cantarella",
+      "titulo": "A Dançarina Venenosa",
+      "raca": "Eladrin (Verão)",
+      "classe": "Ladino",
+      "nivel": 20,
+      "subclasse": "Assassino",
+      "antecedente": "Criminoso",
+      "tendencia": "Neutro Maligno",
+      "origem": "Wuthering Waves"
+    }
+  }
+}
