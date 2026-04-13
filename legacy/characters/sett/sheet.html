@@ -3,361 +3,991 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sett — O Chefe · Ficha D&amp;D 5e</title>
+<title>Sett — O Chefe · Ficha D&D 5e</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root{
-  --primary:    #b71c1c;
-  --mid:        #e53935;
-  --bright:     #ef9a9a;
+  --primary:    #9b0000;
+  --mid:        #d32f2f;
+  --bright:     #f44336;
   --pale:       #ffebee;
-  --dark:       #080100;
-  --darker:     #050100;
-  --card:       #180404;
-  --card-light: #280808;
-  --text:       #f0c8c8;
-  --text-dim:   #8a4040;
-  --mist:       #5a1010;
-  --gold:       #ff8f00;
-  --gold-light: #ffc107;
-  --border:     rgba(183,28,28,0.40);
-  --border-bright:rgba(239,154,154,0.5);
-  --glow:       rgba(183,28,28,0.15);
+  --dark:       #090101;
+  --card:       #160202;
+  --card-light: #220404;
+  --text:       #f5d0d0;
+  --text-dim:   #8a3535;
+  --mist:       #5a1212;
+  --gold:       #e65100;
+  --gold-light: #ff8f00;
+  --amber:      #ffc107;
+  --chain:      #6d4c41;
+  --border:     rgba(155,0,0,0.40);
+  --border-bright: rgba(244,67,54,0.5);
+  --glow:       rgba(155,0,0,0.18);
+  --spotlight:  rgba(255,160,0,0.06);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15%,rgba(183,28,28,0.15) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(229,57,53,0.06) 0%,transparent 45%);font-family:'EB Garamond',Georgia,serif;color:var(--text);line-height:1.75;}
-.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
+html{scroll-behavior:smooth;}
+body{
+  background:#090101;
+  background-image:
+    radial-gradient(ellipse at 20% 0%,rgba(155,0,0,0.18) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 0%,rgba(155,0,0,0.12) 0%,transparent 45%),
+    radial-gradient(ellipse at 50% 100%,rgba(80,20,0,0.15) 0%,transparent 40%);
+  background-attachment:fixed;
+  font-family:'EB Garamond',Georgia,serif;
+  color:var(--text);
+  line-height:1.75;
+  min-height:100vh;
+}
+.page{max-width:min(960px,100vw - 1rem);margin:0 auto;padding:0 0 80px;position:relative;z-index:1;}
 
-/* FLOATING PARTICLES */
-.particle-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
-.particle{position:absolute;font-size:11px;opacity:0;animation:floatP ease-in-out infinite;filter:blur(0.4px);color:var(--bright);}
-@keyframes floatP{0%{transform:translateY(108vh) translateX(0) rotate(0deg) scale(0.5);opacity:0;}8%{opacity:0.25;}50%{transform:translateY(50vh) translateX(35px) rotate(180deg) scale(0.75);opacity:0.15;}92%{opacity:0.06;}100%{transform:translateY(-8vh) translateX(-20px) rotate(340deg) scale(0.4);opacity:0;}}
+/* ── ATMOSPHERIC LAYERS ──────────────────────────────── */
+.atmo-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
 
-/* HEADER */
-.header{background:linear-gradient(165deg,#080100 0%,#180404 50%,#080100 100%);border-bottom:2px solid var(--primary);position:relative;overflow:hidden;z-index:1;}
-.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 64px,rgba(183,28,28,0.15) 64px,rgba(183,28,28,0.15) 65px);}
-.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--mid),var(--bright),var(--mid),transparent);opacity:0.55;}
+/* Arena spotlights — two cones from above */
+.spotlight{
+  position:absolute;top:-20px;
+  width:0;height:0;
+  border-left:solid transparent;border-right:solid transparent;border-top:solid;
+  opacity:0;animation:spotOn ease-in-out infinite alternate;
+}
+.spotlight.left{left:18%;border-left-width:120px;border-right-width:120px;border-top-width:700px;border-top-color:var(--spotlight);}
+.spotlight.right{right:18%;border-left-width:120px;border-right-width:120px;border-top-width:700px;border-top-color:var(--spotlight);}
+@keyframes spotOn{
+  0%  {opacity:0.5;}
+  40% {opacity:0.8;}
+  60% {opacity:0.6;}
+  100%{opacity:0.45;}
+}
+
+/* Blood drops */
+.blood-drop{
+  position:absolute;width:3px;height:6px;
+  background:var(--primary);border-radius:0 0 50% 50%;
+  opacity:0;animation:bloodFall linear infinite;
+}
+@keyframes bloodFall{
+  0%  {transform:translateY(-10px);opacity:0;}
+  5%  {opacity:0.7;}
+  90% {opacity:0.4;}
+  100%{transform:translateY(101vh);opacity:0;}
+}
+
+/* Dust motes rising from bottom */
+.dust{
+  position:absolute;border-radius:50%;
+  background:rgba(180,80,20,0.3);opacity:0;
+  animation:dustRise ease-out infinite;
+}
+@keyframes dustRise{
+  0%  {transform:translateY(0) scale(0.5);opacity:0;}
+  15% {opacity:0.5;}
+  70% {opacity:0.15;}
+  100%{transform:translateY(-280px) scale(2.5);opacity:0;}
+}
+
+/* Crowd roar pulse rings */
+.roar-ring{
+  position:fixed;border-radius:50%;
+  border:1px solid rgba(155,0,0,0.15);
+  transform:scale(0);opacity:0;
+  animation:roarExpand ease-out infinite;
+}
+@keyframes roarExpand{
+  0%  {transform:scale(0);opacity:0.5;}
+  100%{transform:scale(8);opacity:0;}
+}
+
+/* Impact crack lines behind bg */
+.bg-crack{
+  position:fixed;font-size:380px;color:rgba(155,0,0,0.025);
+  font-family:'Cinzel',serif;pointer-events:none;z-index:0;
+  animation:crackPulse 7s ease-in-out infinite alternate;
+  user-select:none;
+  left:50%;top:40%;transform:translate(-50%,-50%);
+}
+@keyframes crackPulse{0%{opacity:0.025;transform:translate(-50%,-50%) scale(1);}100%{opacity:0.04;transform:translate(-50%,-50%) scale(1.05);}}
+
+/* ── HEADER ──────────────────────────────────────────── */
+.header{
+  background:linear-gradient(165deg,#090101 0%,#1e0404 50%,#090101 100%);
+  border-bottom:3px solid var(--primary);
+  position:relative;overflow:hidden;z-index:1;
+}
+.header::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(55deg,transparent,transparent 60px,rgba(155,0,0,0.12) 60px,rgba(155,0,0,0.12) 61px);
+}
+/* chain border across header bottom */
+.header::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--mid),var(--bright),var(--mid),transparent);
+  opacity:0.7;
+}
 .header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
 
-/* PORTRAIT */
-.header-portrait{width:220px;flex-shrink:0;background:#080100;border-right:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
-.portrait-inner{width:100%;height:290px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.portrait-photo{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 0.4s ease;}
+/* portrait */
+.header-portrait{
+  width:240px;flex-shrink:0;
+  background:#0a0101;border-right:2px solid var(--primary);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;
+}
+.portrait-inner{width:100%;height:320px;position:relative;}
+.portrait-photo{
+  width:100%;height:100%;object-fit:cover;object-position:center 10%;
+  display:block;transition:transform 0.5s ease;
+  animation:portraitGlowS 4s ease-in-out infinite alternate;
+}
+@keyframes portraitGlowS{
+  0% {filter:drop-shadow(0 0 8px rgba(155,0,0,0.3));}
+  100%{filter:drop-shadow(0 0 22px rgba(244,67,54,0.55));}
+}
 .portrait-photo:hover{transform:scale(1.04);}
-.portrait-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,#050100aa 100%);pointer-events:none;}
-.portrait-label{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--bright);opacity:0.6;text-transform:uppercase;text-shadow:0 0 8px var(--primary);}
+.portrait-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,#0a010199 100%);
+  pointer-events:none;
+}
+/* chain border frame */
+.portrait-chains{
+  position:absolute;top:0;left:0;right:0;
+  font-family:'Share Tech Mono',monospace;font-size:14px;
+  color:rgba(109,76,65,0.4);letter-spacing:3px;text-align:center;
+  padding:4px 0;user-select:none;
+}
+.portrait-label{
+  position:absolute;bottom:10px;left:0;right:0;text-align:center;
+  font-family:'Share Tech Mono',monospace;font-size:9px;
+  letter-spacing:3px;color:var(--bright);opacity:0.55;
+  text-transform:uppercase;text-shadow:0 0 8px var(--primary);
+}
+.portrait-fallback{display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;font-size:80px;opacity:0.1;}
 
-/* HEADER TEXT */
-.header-text{flex:1;padding:34px 44px;}
-.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--mid);opacity:0.85;text-transform:uppercase;margin-bottom:10px;}
-.header-name{font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(183,28,28,0.5),0 0 15px rgba(183,28,28,0.3);letter-spacing:2px;line-height:1;margin-bottom:4px;}
-.header-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);margin-bottom:20px;letter-spacing:1.5px;opacity:0.95;}
+/* header text */
+.header-text{flex:1;padding:36px 44px;}
+.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--mid);opacity:0.8;text-transform:uppercase;margin-bottom:10px;}
+.header-name{
+  font-family:'Cinzel',serif;font-size:52px;font-weight:900;
+  color:var(--pale);letter-spacing:3px;line-height:1;margin-bottom:4px;
+  animation:nameGlowSett 4s ease-in-out infinite alternate;
+  text-shadow:0 0 60px rgba(155,0,0,0.5),0 0 20px rgba(155,0,0,0.3);
+}
+@keyframes nameGlowSett{
+  0% {text-shadow:0 0 50px rgba(155,0,0,0.4),0 0 15px rgba(155,0,0,0.25);}
+  100%{text-shadow:0 0 80px rgba(244,67,54,0.6),0 0 30px rgba(155,0,0,0.45);letter-spacing:3.5px;}
+}
+.header-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:17px;color:var(--gold-light);margin-bottom:22px;letter-spacing:1.5px;opacity:0.95;}
 .header-tags{display:flex;gap:7px;flex-wrap:wrap;}
-.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(183,28,28,0.15);}
-.tag.hi{background:rgba(183,28,28,0.15);border-color:var(--mid);color:var(--bright);}
-.tag.gold{background:rgba(201,162,39,0.10);border-color:rgba(201,162,39,0.4);color:var(--gold-light);}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(155,0,0,0.1);}
+.tag.hi{background:rgba(155,0,0,0.2);border-color:var(--mid);color:var(--bright);}
+.tag.gold{background:rgba(230,81,0,0.10);border-color:rgba(255,143,0,0.4);color:var(--amber);}
 
-/* STATS BAR */
-.stats-bar{background:var(--card);border-bottom:1px solid var(--border);padding:13px 40px;display:flex;flex-wrap:wrap;position:relative;z-index:1;gap:0;}
-.stat-item{flex:1;border-right:1px solid var(--border);padding:0 18px;text-align:center;min-width:90px;}
-.stat-item:first-child{padding-left:0;}.stat-item:last-child{border-right:none;padding-right:0;}
+/* ── STATS BAR ───────────────────────────────────────── */
+.stats-bar{
+  background:var(--card);border-bottom:1px solid var(--border);
+  padding:13px 40px;display:flex;flex-wrap:wrap;position:relative;z-index:1;gap:0;
+}
+.stat-item{flex:1;border-right:1px solid var(--border);padding:0 18px;text-align:center;min-width:80px;}
+.stat-item:first-child{padding-left:0;}
+.stat-item:last-child{border-right:none;padding-right:0;}
 .stat-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
-.stat-value{font-family:'Cinzel',serif;font-size:13px;color:var(--bright);font-weight:600;}
+.stat-value{font-family:'Cinzel',serif;font-size:14px;color:var(--bright);font-weight:700;}
 
-/* SECTION */
+/* ── SECTIONS ────────────────────────────────────────── */
 .sec{padding:0 40px;margin-top:32px;position:relative;z-index:1;}
-.sec-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
-.sec-title::before{content:'✦';font-size:11px;color:var(--gold);}
+.sec-title{
+  font-family:'Cinzel',serif;font-size:11px;font-weight:700;
+  letter-spacing:5px;text-transform:uppercase;color:var(--mid);
+  border-bottom:1px solid var(--border);padding-bottom:9px;margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.sec-title::before{content:'👊';font-size:12px;}
 
-/* ATTRIBUTES */
+/* ── ATTRIBUTES ──────────────────────────────────────── */
 .attr-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px;}
-.attr-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:12px 4px 10px;position:relative;}
-.attr-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--primary);opacity:0.45;}
+.attr-box{
+  background:var(--card);border:1px solid var(--border);
+  text-align:center;padding:13px 4px 10px;position:relative;
+  transition:border-color 0.2s;
+}
+.attr-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--primary);opacity:0.55;}
+.attr-box:hover{border-color:var(--mid);}
 .attr-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
-.attr-value{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:var(--text);display:block;line-height:1;}
-.attr-value.peak{color:var(--bright);text-shadow:0 0 14px rgba(183,28,28,0.45);}
-.attr-mod{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--mid);display:block;margin-top:3px;}
+.attr-value{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--text);display:block;line-height:1;}
+.attr-value.peak{color:var(--bright);text-shadow:0 0 16px rgba(155,0,0,0.5);}
+.attr-mod{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--mid);display:block;margin-top:3px;}
 
-/* COMBAT NOTES */
-.special-notes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
-
-/* SAVES & SKILLS */
-.two-col{display:grid;grid-template-columns:230px 1fr;gap:16px;}
+/* ── SAVES & SKILLS ──────────────────────────────────── */
+.two-col{display:grid;grid-template-columns:240px 1fr;gap:18px;}
+.saves-col,.skills-col{background:var(--card);border:1px solid var(--border);padding:16px;}
+.col-title{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mid);margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:6px;}
 .save-list,.skill-list{list-style:none;padding:0;}
-.save-item,.skill-item{display:flex;align-items:center;gap:7px;padding:3px 0;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.save-item,.skill-item{display:flex;align-items:center;gap:7px;padding:3px 0;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.03);}
 .save-item:last-child,.skill-item:last-child{border-bottom:none;}
 .prof-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--text-dim);flex-shrink:0;}
-.prof-dot.filled{background:var(--mid);border-color:var(--bright);box-shadow:0 0 6px rgba(183,28,28,0.5);}
-.prof-dot.expertise{background:var(--gold);border-color:var(--gold-light);}
+.prof-dot.filled{background:var(--mid);border-color:var(--bright);box-shadow:0 0 6px rgba(155,0,0,0.5);}
 .save-name,.skill-name{flex:1;color:var(--text);}
 .skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text-dim);width:28px;}
 .save-score,.skill-score{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text-dim);width:28px;text-align:right;}
-.save-score.filled,.skill-score.filled,.skill-score.peak{color:var(--bright);}
+.save-score.filled,.skill-score.filled{color:var(--bright);}
 
-/* ATTACKS */
+/* ── ATTACKS ─────────────────────────────────────────── */
 .attack-table{width:100%;border-collapse:collapse;font-size:13px;}
-.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(183,28,28,0.15);}
-.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(183,28,28,0.40);color:var(--text);vertical-align:top;}
-.attack-table tr:hover td{background:rgba(183,28,28,0.15);}
+.attack-table th{
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text-dim);padding:6px 10px;
+  text-align:left;border-bottom:1px solid var(--border);
+  background:rgba(155,0,0,0.15);
+}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(155,0,0,0.22);color:var(--text);vertical-align:top;}
+.attack-table tr:hover td{background:rgba(155,0,0,0.1);}
 .attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
 .attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--bright);font-weight:700;}
-.attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--gold-light);}
+.attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--amber);}
 .attack-notes{font-size:12px;color:var(--text-dim);font-style:italic;}
 
-/* FEATURES */
-.feat-section{margin-bottom:10px;}
-.feat-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:12px 0 8px;}
+/* ── SHOWSTOPPER BOX ─────────────────────────────────── */
+.showstopper-box{
+  background:linear-gradient(135deg,rgba(155,0,0,0.15) 0%,rgba(80,0,0,0.2) 100%);
+  border:1px solid var(--border);border-top:3px solid var(--bright);
+  padding:18px 22px;margin-top:14px;
+}
+.showstopper-title{
+  font-family:'Cinzel',serif;font-size:14px;color:var(--pale);
+  letter-spacing:2px;margin-bottom:10px;
+  display:flex;align-items:center;gap:10px;
+  text-shadow:0 0 20px rgba(244,67,54,0.4);
+}
+.showstopper-title::before{content:'💥';font-size:18px;}
+.showstopper-row{display:flex;flex-wrap:wrap;gap:14px;font-family:'Share Tech Mono',monospace;font-size:12px;margin-bottom:8px;}
+.stopper-calc{color:var(--text-dim);}
+.stopper-calc strong{color:var(--bright);}
+
+/* Action Surge burst table */
+.surge-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px;}
+.surge-table th{
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;
+  padding:4px 8px;text-align:left;border-bottom:1px solid var(--border);
+  color:var(--text-dim);background:rgba(155,0,0,0.1);
+}
+.surge-table td{padding:5px 8px;border-bottom:1px solid rgba(155,0,0,0.15);color:var(--text-dim);}
+.surge-table td:first-child{color:var(--bright);font-family:'Share Tech Mono',monospace;}
+.surge-table td strong{color:var(--amber);}
+
+/* ── FEATURES ────────────────────────────────────────── */
+.feat-section{margin-bottom:12px;}
+.feat-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:14px 0 8px;}
 .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.trait-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);padding:12px 14px;}
+.trait-block{
+  background:var(--card);border:1px solid var(--border);
+  border-left:3px solid var(--primary);padding:12px 14px;
+  transition:all 0.2s;
+}
+.trait-block:hover{border-color:var(--mid);transform:translateX(1px);}
 .trait-block.gold-accent{border-left-color:var(--gold);}
 .trait-block.dim-accent{border-left-color:var(--mist);}
-.trait-name{font-family:'Cinzel',serif;font-size:11px;color:var(--bright);letter-spacing:0.5px;margin-bottom:5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+.trait-block.amber-accent{border-left-color:var(--amber);}
+.trait-block.bright-accent{border-left-color:var(--bright);}
+.trait-name{
+  font-family:'Cinzel',serif;font-size:11px;color:var(--bright);
+  letter-spacing:0.5px;margin-bottom:5px;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;
+}
 .trait-block.gold-accent .trait-name{color:var(--gold-light);}
 .trait-block.dim-accent .trait-name{color:var(--text-dim);}
+.trait-block.amber-accent .trait-name{color:var(--amber);}
+.trait-block.bright-accent .trait-name{color:var(--pale);}
 .trait-desc{font-size:13.5px;color:var(--text-dim);line-height:1.6;}
 .trait-desc em{font-style:italic;color:var(--bright);}
 .trait-desc strong{color:var(--text);}
-.feat-level{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;background:rgba(183,28,28,0.15);color:var(--mid);padding:1px 6px;}
+.feat-level{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;background:rgba(155,0,0,0.2);color:var(--mid);padding:1px 6px;}
 
-/* SPELLS */
-.spell-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
-.spell-tag{background:var(--card-light);color:var(--bright);font-family:'Cinzel',serif;font-size:10px;padding:3px 9px;letter-spacing:1px;border:1px solid var(--border);display:inline-block;}
-.spell-tag.gold{background:rgba(201,162,39,0.08);color:var(--gold-light);border-color:rgba(201,162,39,0.28);}
-.spell-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:13px 0 8px;}
-.spell-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:7px;}
-.sc{background:var(--card-light);border:1px solid var(--border);border-top:2px solid var(--mist);padding:9px 12px 10px;display:flex;flex-direction:column;gap:3px;}
-.sc.cantrip{border-top-color:rgba(183,28,28,0.40);}
-.sc.expanded{border-top-color:var(--gold);}
-.sc-type{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);opacity:0.65;}
-.sc-name{font-family:'Cinzel',serif;font-size:11.5px;font-weight:600;color:var(--bright);letter-spacing:0.4px;}
-.sc.cantrip .sc-name{color:var(--text-dim);}
-.sc.expanded .sc-name{color:var(--gold-light);}
-.sc-desc{font-size:12px;color:var(--text-dim);line-height:1.5;margin-top:1px;}
-
-/* TRAIT LIST (equipment) */
+/* ── EQUIPMENT ───────────────────────────────────────── */
 ul.trait-list{list-style:none;padding:0;}
-ul.trait-list li{padding:3px 0 3px 18px;position:relative;font-size:14px;line-height:1.65;color:var(--text-dim);}
-ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold);font-size:7px;top:7px;}
+ul.trait-list li{padding:4px 0 4px 20px;position:relative;font-size:14px;line-height:1.65;color:var(--text-dim);border-bottom:1px solid rgba(155,0,0,0.08);}
+ul.trait-list li:last-child{border-bottom:none;}
+ul.trait-list li::before{content:'⛓';position:absolute;left:0;color:var(--chain);font-size:10px;top:5px;}
 
-/* DIVIDER */
-.divider{text-align:center;margin:24px 0;color:var(--mist);font-size:14px;letter-spacing:14px;opacity:0.5;}
-
-/* INFO PILLS */
+/* ── INFO PILLS ──────────────────────────────────────── */
 .info-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
-.info-pill{background:var(--card);border:1px solid var(--border);padding:8px 14px;font-size:13px;color:var(--text-dim);}
+.info-pill{background:var(--card);border:1px solid var(--border);padding:8px 14px;font-size:13.5px;color:var(--text-dim);}
 .info-pill strong{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--mid);text-transform:uppercase;display:block;margin-bottom:3px;}
 
-/* FOOTER */
-.footer{margin-top:50px;padding:22px 40px;text-align:center;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent 0%,#05010099 100%);position:relative;z-index:1;}
-.footer p{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);opacity:0.5;text-transform:uppercase;margin-bottom:4px;}
+/* ── PROGRESSION ─────────────────────────────────────── */
+.level-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);margin-bottom:8px;overflow:hidden;}
+.level-header{display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(155,0,0,0.07);cursor:pointer;user-select:none;}
+.level-header:hover{background:rgba(155,0,0,0.15);}
+.level-num{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--bright);letter-spacing:2px;min-width:52px;}
+.level-gains{font-size:13px;color:var(--text-dim);flex:1;}
+.level-gains strong{color:var(--text);}
+.tier-badge{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;padding:2px 8px;border:1px solid var(--border);color:var(--text-dim);}
+.tier-badge.t1{border-color:rgba(155,0,0,0.4);color:var(--mid);}
+.tier-badge.t2{border-color:rgba(230,81,0,0.4);color:var(--gold);}
+.tier-badge.t3{border-color:rgba(255,143,0,0.4);color:var(--gold-light);}
+.tier-badge.t4{border-color:rgba(255,193,7,0.5);color:var(--amber);background:rgba(155,0,0,0.08);}
+.level-body{padding:10px 14px 12px;display:none;border-top:1px solid var(--border);font-size:13px;color:var(--text-dim);line-height:1.7;}
+.level-body.open{display:block;}
+.level-body ul{padding-left:16px;}
+.level-body li{padding:2px 0;}
+.level-body li::marker{color:var(--bright);}
+.tier-note{font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:var(--bright);letter-spacing:2px;text-transform:uppercase;margin:18px 0 8px;border-bottom:1px solid var(--border);padding-bottom:6px;}
 
-/* RESPONSIVE */
+/* ── LORE ────────────────────────────────────────────── */
+.lore-text{font-size:14.5px;color:var(--text-dim);line-height:1.85;}
+.lore-text p{margin-bottom:14px;}
+.lore-text em{color:var(--bright);font-style:italic;}
+
+/* ── DIVIDER ─────────────────────────────────────────── */
+.divider{text-align:center;margin:28px 0;color:var(--mist);font-size:14px;letter-spacing:14px;opacity:0.45;}
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.footer{margin-top:50px;padding:22px 40px;text-align:center;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent 0%,rgba(9,1,1,0.7) 100%);position:relative;z-index:1;}
+.footer p{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);opacity:0.4;text-transform:uppercase;margin-bottom:4px;}
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
 @media(max-width:680px){
   .header-inner{flex-direction:column;}
-  .header-portrait{width:100%;height:200px;}
-  .portrait-inner{height:200px;}
+  .header-portrait{width:100%;height:220px;}
+  .portrait-inner{height:220px;}
   .attr-grid{grid-template-columns:repeat(3,1fr);}
   .feature-grid{grid-template-columns:1fr;}
-  .spell-grid{grid-template-columns:1fr;}
   .stats-bar{flex-wrap:wrap;gap:4px;}
   .stat-item{flex:none;width:48%;border-right:none;border-bottom:1px solid var(--border);padding:6px 0;}
   .two-col{grid-template-columns:1fr;}
   .sec{padding:0 16px;}
-  .header-text{padding:20px 24px;}
+  .header-text{padding:20px 20px;}
   .stats-bar{padding:10px 16px;}
+  .footer{padding:18px 16px;}
+  .surge-table{font-size:11px;}
 }
 </style>
 </head>
 <body>
 
-<!-- Floating Particles -->
-<div class="particle-bg" id="particleBg"></div>
+<!-- Atmospheric background -->
+<div class="atmo-bg" id="atmoBg">
+  <div class="spotlight left"></div>
+  <div class="spotlight right"></div>
+</div>
+<div class="bg-crack">✊</div>
 
 <div class="page">
 
-<!-- ── HEADER ─────────────────────────────────── -->
+<!-- ── HEADER ─────────────────────────────────────────── -->
 <div class="header">
   <div class="header-inner">
     <div class="header-portrait">
       <div class="portrait-inner">
-        <img class="portrait-photo" src="/portraits/sett.jpg" alt="Sett" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;font-size:64px;opacity:0.15;filter:drop-shadow(0 0 20px var(--bright));">👊</div>
+        <div class="portrait-chains">⛓ · · · ⛓ · · · ⛓</div>
+        <img class="portrait-photo" src="/portraits/sett.jpg" alt="Sett"
+          onerror="this.style.display='none';document.getElementById('settFallback').style.display='flex'">
+        <div id="settFallback" class="portrait-fallback">👊</div>
         <div class="portrait-overlay"></div>
       </div>
-      <div class="portrait-label">Sett</div>
+      <div class="portrait-label">Sett · O Chefe</div>
     </div>
     <div class="header-text">
       <div class="header-eyebrow">Ficha · D&amp;D 5e · League of Legends</div>
       <div class="header-name">Sett</div>
-      <div class="header-sub">O Chefe</div>
+      <div class="header-sub">O Chefe · Rei dos Poços de Luta</div>
       <div class="header-tags">
-        <span class="tag hi">Meio-Orc</span><span class="tag hi">Lutador</span><span class="tag hi">Líder de Arena</span><span class="tag hi">League of Legends</span><span class="tag">Antecedente: Combatente</span><span class="tag">Nív. 20</span>
+        <span class="tag hi">Meio-Vastayan (Meio-Orc)</span>
+        <span class="tag hi">Lutador · Líder de Arena</span>
+        <span class="tag hi">Combatente</span>
+        <span class="tag gold">Nível 20</span>
+        <span class="tag">Caótico Neutro</span>
+        <span class="tag">League of Legends</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── STATS BAR ──────────────────────────────── -->
+<!-- ── STATS BAR ──────────────────────────────────────── -->
 <div class="stats-bar">
-<div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">20</span></div><div class="stat-item"><span class="stat-label">PV</span><span class="stat-value">264</span></div><div class="stat-item"><span class="stat-label">Deslocamento</span><span class="stat-value">9m</span></div><div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value">-1</span></div><div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div>
+  <div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">20</span></div>
+  <div class="stat-item"><span class="stat-label">PV</span><span class="stat-value">268</span></div>
+  <div class="stat-item"><span class="stat-label">Deslocamento</span><span class="stat-value">9m</span></div>
+  <div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value">−1</span></div>
+  <div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div>
+  <div class="stat-item"><span class="stat-label">Extra Attack</span><span class="stat-value">×4</span></div>
+  <div class="stat-item"><span class="stat-label">Action Surge</span><span class="stat-value">2×/DC</span></div>
+  <div class="stat-item"><span class="stat-label">Indomável</span><span class="stat-value">3×/DL</span></div>
 </div>
 
-<!-- ── IDENTIDADE ────────────────────────────── -->
+<!-- ── IDENTIDADE ─────────────────────────────────────── -->
 <div class="sec">
   <div class="sec-title">Identidade</div>
   <div class="info-pills">
-    <div class="info-pill"><strong>Raça</strong>Meio-Orc</div>
+    <div class="info-pill"><strong>Raça</strong>Meio-Vastayan (Meio-Orc)</div>
     <div class="info-pill"><strong>Classe</strong>Lutador</div>
     <div class="info-pill"><strong>Subclasse</strong>Líder de Arena</div>
     <div class="info-pill"><strong>Antecedente</strong>Combatente</div>
     <div class="info-pill"><strong>Tendência</strong>Caótico Neutro</div>
-    <div class="info-pill"><strong>Idiomas</strong>Comum, Orc</div>
-    <div class="info-pill"><strong>Dado de Vida</strong>20d10</div>
-    
+    <div class="info-pill"><strong>Idiomas</strong>Comum, Orc, Ioniano</div>
+    <div class="info-pill"><strong>Dado de Vida</strong>20d10 + 120</div>
+    <div class="info-pill"><strong>Estilo de Luta</strong>Defensor (Armas Marciais)</div>
   </div>
-  <div class="info-pills"><span class='tag hi'>actionSurge: 2×/descanso curto</span> <span class='tag hi'>extraAttack: 4×/ação</span></div>
 </div>
 
-<!-- ── ATRIBUTOS ──────────────────────────────── -->
+<!-- ── ATRIBUTOS ──────────────────────────────────────── -->
 <div class="sec">
   <div class="sec-title">Atributos</div>
   <div class="attr-grid">
-        <div class="attr-box">
-          <span class="attr-label">FOR</span>
-          <span class="attr-value peak">24</span>
-          <span class="attr-mod">+7</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">DES</span>
-          <span class="attr-value ">8</span>
-          <span class="attr-mod">-1</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">CON</span>
-          <span class="attr-value peak">22</span>
-          <span class="attr-mod">+6</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">INT</span>
-          <span class="attr-value ">8</span>
-          <span class="attr-mod">-1</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">SAB</span>
-          <span class="attr-value ">12</span>
-          <span class="attr-mod">+1</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">CAR</span>
-          <span class="attr-value ">14</span>
-          <span class="attr-mod">+2</span>
-        </div></div>
-  <p style="font-size:12px;color:var(--text-dim);font-style:italic;">Plate +2 (18) + Escudo (+2) = CA 20</p>
+    <div class="attr-box"><span class="attr-label">FOR</span><span class="attr-value peak">24</span><span class="attr-mod">+7</span></div>
+    <div class="attr-box"><span class="attr-label">DES</span><span class="attr-value">8</span><span class="attr-mod">−1</span></div>
+    <div class="attr-box"><span class="attr-label">CON</span><span class="attr-value peak">22</span><span class="attr-mod">+6</span></div>
+    <div class="attr-box"><span class="attr-label">INT</span><span class="attr-value">8</span><span class="attr-mod">−1</span></div>
+    <div class="attr-box"><span class="attr-label">SAB</span><span class="attr-value">12</span><span class="attr-mod">+1</span></div>
+    <div class="attr-box"><span class="attr-label">CAR</span><span class="attr-value">14</span><span class="attr-mod">+2</span></div>
+  </div>
+  <p style="font-size:12px;color:var(--text-dim);font-style:italic;">Plate Armor +2 (CA 20) · PV: 20d10 + 120 (CON×20) + 40 (Tough) = 268 médio · Segunda Fôlego: 1d10+20</p>
 </div>
 
+<!-- ── TESTES & PERÍCIAS ──────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Resistências &amp; Perícias</div>
+  <div class="two-col">
+    <div class="saves-col">
+      <div class="col-title">Testes de Resistência</div>
+      <ul class="save-list">
+        <li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Força</span><span class="save-score filled">+13</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Destreza</span><span class="save-score">−1</span></li>
+        <li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Constituição</span><span class="save-score filled">+12</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Inteligência</span><span class="save-score">−1</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Sabedoria</span><span class="save-score">+1</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Carisma</span><span class="save-score">+2</span></li>
+      </ul>
+      <p style="margin-top:10px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim);">Indomável: relança TR falhado <strong style="color:var(--bright)">3×</strong>/descanso longo</p>
+    </div>
+    <div class="skills-col">
+      <div class="col-title">Perícias</div>
+      <ul class="skill-list">
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Atletismo</span><span class="skill-attr">FOR</span><span class="skill-score filled">+13</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Intimidação</span><span class="skill-attr">CAR</span><span class="skill-score filled">+8</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Percepção</span><span class="skill-attr">SAB</span><span class="skill-score filled">+7</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Sobrevivência</span><span class="skill-attr">SAB</span><span class="skill-score filled">+7</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Acrobacia</span><span class="skill-attr">DES</span><span class="skill-score filled">+5</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-name">História</span><span class="skill-attr">INT</span><span class="skill-score">−1</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-name">Persuasão</span><span class="skill-attr">CAR</span><span class="skill-score">+2</span></li>
+      </ul>
+      <p style="margin-top:10px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim);">Percepção Passiva: <strong style="color:var(--bright)">17</strong> · Proficiências: todas armas, todas armaduras</p>
+    </div>
+  </div>
+</div>
 
-
-
-<!-- ── ATAQUES ──────────────────────────────── -->
+<!-- ── ATAQUES ─────────────────────────────────────────── -->
 <div class="sec">
   <div class="sec-title">Ataques</div>
   <table class="attack-table">
-    <thead><tr>
-      <th>Ataque</th><th>Bônus</th><th>Dano</th><th>Notas</th>
-    </tr></thead><tbody><tr>
-      <td class="attack-name">Soco Duplo (×4)</td>
-      <td class="attack-bonus">+15</td>
-      <td class="attack-damage">2d6+11 Contundente</td>
-      <td class="attack-notes">GWM opcional −5/+10</td>
-    </tr><tr>
-      <td class="attack-name">Show Stopper</td>
-      <td class="attack-bonus">+15</td>
-      <td class="attack-damage">6d6+13 área</td>
-      <td class="attack-notes">Arremessa boss · TR For CD 19</td>
-    </tr><tr>
-      <td class="attack-name">Suplexo</td>
-      <td class="attack-bonus">+15</td>
-      <td class="attack-damage">2d8+7 + Derrubado</td>
-      <td class="attack-notes">Arremessa 3m</td>
-    </tr></tbody></table>
+    <thead>
+      <tr><th>Ataque / Habilidade</th><th>Bônus</th><th>Dano</th><th>Tipo / Notas</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="attack-name">Soco (×4 por ação)</span></td>
+        <td><span class="attack-bonus">+15</span></td>
+        <td><span class="attack-damage">2d6+9</span></td>
+        <td><span class="attack-notes">Contundente · Punhos como armas marciais</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Soco + GWM</span></td>
+        <td><span class="attack-bonus">+10</span></td>
+        <td><span class="attack-damage">2d6+19</span></td>
+        <td><span class="attack-notes">Contundente · −5 acerto, +10 dano</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Facebreaker (E)</span></td>
+        <td><span class="attack-bonus">+15</span></td>
+        <td><span class="attack-damage">2d8+9</span></td>
+        <td><span class="attack-notes">Atinge 2 alvos laterais · TR For CD 21 ou Atordoado 1 rod.</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Suplexo (Grapple)</span></td>
+        <td><span class="attack-bonus">+15</span></td>
+        <td><span class="attack-damage">2d8+9</span></td>
+        <td><span class="attack-notes">Alvo Agarrado + Derrubado · Atira 3m em falha de For</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Show Stopper (R) — Ação</span></td>
+        <td><span class="attack-bonus">+15</span></td>
+        <td><span class="attack-damage">6d6+9 área</span></td>
+        <td><span class="attack-notes">Levanta boss, arremessa na multidão · TR For CD 21 ou derrubado + dano de área 3d6</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Boar's Charge (carga)</span></td>
+        <td><span class="attack-bonus">+15</span></td>
+        <td><span class="attack-damage">2d6+9</span></td>
+        <td><span class="attack-notes">Move linha reta ≥6m · TR For CD 21 · todos derrubados no caminho</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Action Surge burst box -->
+  <div class="showstopper-box">
+    <div class="showstopper-title">Action Surge — Burst Round Máximo</div>
+    <div class="showstopper-row">
+      <span class="stopper-calc">Ação normal: <strong>4 socos</strong></span>
+      <span class="stopper-calc">+ Action Surge: <strong>+4 socos</strong></span>
+      <span class="stopper-calc">= <strong>8 ataques por rodada</strong></span>
+    </div>
+    <table class="surge-table">
+      <thead>
+        <tr><th>Cenário</th><th>Ataques</th><th>Dano por Golpe</th><th>Total Médio</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Normal</td><td>4×</td><td>2d6+9 = 16 méd</td><td><strong>~64</strong></td></tr>
+        <tr><td>GWM</td><td>4×</td><td>2d6+19 = 26 méd</td><td><strong>~104</strong></td></tr>
+        <tr><td>Action Surge normal</td><td>8×</td><td>2d6+9 = 16 méd</td><td><strong>~128</strong></td></tr>
+        <tr><td>Action Surge GWM</td><td>8×</td><td>2d6+19 = 26 méd</td><td><strong>~208</strong></td></tr>
+        <tr><td>Critical + GWM + Savage</td><td>1×</td><td>4d6+19 + 1d6 = ~43</td><td><strong>+43 bônus</strong></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--text-dim);margin-top:8px;font-style:italic;">2× Action Surge por descanso curto. Em um encontro de combate crucial, Sett pode soltar dois burst rounds: uma tempestade de <strong style="color:var(--bright)">16 ataques</strong> totais ao longo de dois turnos.</p>
+  </div>
 </div>
 
-<!-- ── HABILIDADES ───────────────────────────── -->
+<!-- ── HABILIDADES ─────────────────────────────────────── -->
 <div class="sec">
-  <div class="sec-title">Habilidades</div>
-  <div class="feat-section"><div class="feat-section-label">Habilidades de Subclasse</div><div class="feature-grid"><div class="trait-block ">
-              <div class="trait-name">Boar's Charge <span class="feat-level">Nív.3</span></div>
-              <div class="trait-desc">Movimento em linha reta: TR For CD 19 ou criaturas derrubadas.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Garra do Campeão <span class="feat-level">Nív.7</span></div>
-              <div class="trait-desc">Após derrubar: ataque bônus imediato. 1×/turno.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Habilidades de Classe</div><div class="feature-grid"><div class="trait-block ">
-              <div class="trait-name">Extra Attack ×4 <span class="feat-level">Nív.20</span></div>
-              <div class="trait-desc">4 ataques por ação.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Action Surge ×2 <span class="feat-level">Nív.17</span></div>
-              <div class="trait-desc">Ação adicional, 2×/descanso curto.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Indomável ×3 <span class="feat-level">Nív.17</span></div>
-              <div class="trait-desc">Relança TR falhado. 3×/longo.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Segundo Alento <span class="feat-level">Nív.1</span></div>
-              <div class="trait-desc">1d10+20 PV como ação bônus.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Habilidades Raciais</div><div class="feature-grid"><div class="trait-block dim-accent">
-              <div class="trait-name">Relentless Endurance </div>
-              <div class="trait-desc">1×/longo: ao chegar a 0 PV, fica com 1 PV.</div>
-            </div><div class="trait-block dim-accent">
-              <div class="trait-name">Savage Attacks </div>
-              <div class="trait-desc">Crítico: adiciona 1 dado de dano.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Talentos (Feats)</div><div class="feature-grid"><div class="trait-block gold-accent">
-              <div class="trait-name">Great Weapon Master <span class="feat-level">Nív.4</span></div>
-              <div class="trait-desc">−5/+10 · Bônus após crítico ou derrubar.</div>
-            </div><div class="trait-block gold-accent">
-              <div class="trait-name">Sentinel <span class="feat-level">Nív.8</span></div>
-              <div class="trait-desc">AO trava inimigo. Protege aliados.</div>
-            </div><div class="trait-block gold-accent">
-              <div class="trait-name">Tough <span class="feat-level">Nív.18</span></div>
-              <div class="trait-desc">+40 PV permanentes.</div>
-            </div></div></div>
+  <div class="sec-title">Habilidades de Classe &amp; Raça</div>
+
+  <div class="feat-section">
+    <div class="feat-section-label">Subclasse — Líder de Arena</div>
+    <div class="feature-grid">
+      <div class="trait-block bright-accent">
+        <div class="trait-name">Boar's Charge <span class="feat-level">Nív. 3</span></div>
+        <div class="trait-desc">Ao se mover em linha reta por ≥6m e atacar, todos no caminho fazem <em>TR For CD 21</em> ou são derrubados. Funciona contra múltiplos alvos simultaneamente.</div>
+      </div>
+      <div class="trait-block bright-accent">
+        <div class="trait-name">Garra do Campeão <span class="feat-level">Nív. 7</span></div>
+        <div class="trait-desc">Após derrubar uma criatura: ataque de bônus imediato contra ela. <em>1× por turno.</em> Derrubar + socar já no chão é a sequência padrão de Sett.</div>
+      </div>
+      <div class="trait-block bright-accent">
+        <div class="trait-name">Facebreaker <span class="feat-level">Nív. 10</span></div>
+        <div class="trait-desc">Atinge criaturas de cada lado simultaneamente. TR For CD 21 — falha: <em>Atordoado por 1 rodada</em>. Dano: 2d8+9 em cada alvo atingido.</div>
+      </div>
+      <div class="trait-block bright-accent">
+        <div class="trait-name">Show Stopper <span class="feat-level">Nív. 15</span></div>
+        <div class="trait-desc">Agarra criatura de tamanho até Grande, <em>levanta</em> e arremessa com força sobrenatural. Dano 6d6+9. Área de impacto: 3d6 em raio 3m. TR For CD 21 ou derrubado.</div>
+      </div>
+      <div class="trait-block bright-accent">
+        <div class="trait-name">Presença de Arena <span class="feat-level">Nív. 18</span></div>
+        <div class="trait-desc">Aliados a 9m ganham <em>vantagem em ataques</em> quando Sett atingiu um inimigo naquele turno. A multidão acende, os aliados sentem a virada.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <div class="feat-section-label">Habilidades de Classe — Lutador</div>
+    <div class="feature-grid">
+      <div class="trait-block">
+        <div class="trait-name">Extra Attack ×4 <span class="feat-level">Nív. 20</span></div>
+        <div class="trait-desc">Quatro ataques por ação. Com Action Surge: oito ataques num único turno. O lutador que não para até o inimigo parar.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Action Surge ×2 <span class="feat-level">Nív. 17</span></div>
+        <div class="trait-desc">2× por descanso curto: uma ação adicional completa. O pico de dano do Lutador — nenhuma outra classe chega perto disso por rodada.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Indomável ×3 <span class="feat-level">Nív. 17</span></div>
+        <div class="trait-desc">3× por descanso longo: relança um teste de resistência falhado. Mantém o resultado do relance. Sett não aceita derrota.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Segunda Fôlego <span class="feat-level">Nív. 1</span></div>
+        <div class="trait-desc"><em>1d10+20 PV</em> como ação bônus. 1× por descanso curto. Quando Sett está no chão com sangue no rosto, ele levanta.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Estilo de Luta: Defensor <span class="feat-level">Nív. 1</span></div>
+        <div class="trait-desc">+1 CA enquanto usa armadura pesada. Incluso na CA 20 total.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Manobras Marciais <span class="feat-level">Nív. 3</span></div>
+        <div class="trait-desc">Battle Master alternativo: Disarming Strike, Pushing Attack, Trip Attack — 5 dados de superioridade d12, CD 21 para efeitos.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <div class="feat-section-label">Habilidades Raciais — Meio-Vastayan</div>
+    <div class="feature-grid">
+      <div class="trait-block dim-accent">
+        <div class="trait-name">Relentless Endurance</div>
+        <div class="trait-desc">1× por descanso longo: ao chegar a 0 PV, cai para <em>1 PV</em> em vez de desmaiar. Sett não fica no chão.</div>
+      </div>
+      <div class="trait-block dim-accent">
+        <div class="trait-name">Savage Attacks</div>
+        <div class="trait-desc">Em um acerto crítico: adiciona <em>1 dado de dano</em> extra ao dano. Com 2d6 base: crítico = 4d6 + 1d6 adicional.</div>
+      </div>
+      <div class="trait-block dim-accent">
+        <div class="trait-name">Herança Vastayan</div>
+        <div class="trait-desc">Percepção aprimorada (vantagem em testes de Percepção auditiva). Seu pai não-humano lhe deu sentidos além do comum.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <div class="feat-section-label">Talentos (Feats)</div>
+    <div class="feature-grid">
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Great Weapon Master <span class="feat-level">Nív. 4</span></div>
+        <div class="trait-desc">−5 acerto / +10 dano. Após crítico ou matar: ataque de bônus. Com socos tratados como arma improvised marcial (+FOR = GWM aplica).</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Sentinel <span class="feat-level">Nív. 8</span></div>
+        <div class="trait-desc">Ataque de Oportunidade acertado: velocidade do alvo cai a 0. Aliados adjacentes não provocam AO. O guardião do ringue.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Tavern Brawler <span class="feat-level">Nív. 12</span></div>
+        <div class="trait-desc">Socos: 1d6 → tratados como arma marcial com +FOR. Pode usar agarramento como ação bônus. +1 FOR (já incluso).</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Tough <span class="feat-level">Nív. 16</span></div>
+        <div class="trait-desc">+40 PV permanentes (2× por nível). Incluso nos 268 PV totais. Sett tem mais PV do que a maioria dos trolls.</div>
+      </div>
+    </div>
+  </div>
 </div>
 
+<!-- ── EQUIPAMENTO ─────────────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Equipamento</div>
+  <ul class="trait-list">
+    <li><strong>Plate Armor +2</strong> — CA 20. Forjada pelos melhores artesãos ioniano-noxianos. Encantada com proteção contra magia de movimento (Sentinel funciona mesmo contra resistências de DES).</li>
+    <li><strong>Punhos Encantados +2</strong> — Bandagens mágicas que encantam os socos como se fossem armas +2. +9 bônus de FOR +2 +6 prof = +15 ao total de ataque. Tratadas como armas mágicas.</li>
+    <li><strong>Amuleto da Saúde</strong> — CON efetiva 22 (já inclusa). Permite sobreviver a pancadas que matariam qualquer mortal comum.</li>
+    <li><strong>Cinto da Força de Gigante (Colina)</strong> — FOR efetiva 24. Sett já era brutal — o cinto o elevou a um patamar diferente de humano.</li>
+    <li><strong>Anel de Regeneração</strong> — Recupera 1d6 PV por turno quando abaixo da metade dos PV. Passivo. Nunca foi ativado — Sett raramente chega à metade.</li>
+    <li><strong>Poções de Cura Superior ×6</strong> — 8d4+8 cada. Guardadas no coldre da armadura. Usadas por aliados — Sett usa Segunda Fôlego.</li>
+    <li><strong>A Cadeira do Chefe</strong> — Símbolo de poder, não carregada. Qualquer combate iniciado no território de Sett concede vantagem em rolagens de iniciativa para ele.</li>
+  </ul>
+</div>
 
-
-
-
-
-
-<!-- ── PERSONALIDADE ─────────────────────────── -->
+<!-- ── PERSONALIDADE ───────────────────────────────────── -->
 <div class="sec">
   <div class="sec-title">Personalidade</div>
-  <div class="trait-block"><div class="trait-name">Traços de Personalidade</div><div class="trait-desc">De frente. Sempre de frente. Honestidade brutal.</div></div><div class="trait-block"><div class="trait-name">Ideais</div><div class="trait-desc">As regras são para quem não é forte. Tem as suas próprias.</div></div><div class="trait-block"><div class="trait-name">Vínculos</div><div class="trait-desc">Sua mãe — a única coisa que ama sem qualificações.</div></div><div class="trait-block"><div class="trait-name">Fraquezas</div><div class="trait-desc">A raiva é um espetáculo e um problema.</div></div>
+  <div class="feature-grid">
+    <div class="trait-block">
+      <div class="trait-name">Traços de Personalidade</div>
+      <div class="trait-desc">De frente. Sempre de frente. Honestidade brutal que não conhece diplomacia — ou não quer conhecer. Quando Sett fala, não tem subentendido: é exatamente o que parece.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Ideais</div>
+      <div class="trait-desc">As regras são para quem não é forte o suficiente para criar as suas próprias. Não obediência — <em>mérito</em>. Quem vence merece liderar. Simples assim.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Vínculos</div>
+      <div class="trait-desc">Sua mãe — a única coisa que Sett ama sem qualificações, sem condições, sem uma única ressalva. Quem tocar nela acaba com Show Stopper no rosto.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Fraquezas</div>
+      <div class="trait-desc">A raiva é tanto um espetáculo quanto um problema. Quando a plateia vê Sett explodindo, eles amam. Mas inimigos que sabem como provocá-lo usam isso contra ele.</div>
+    </div>
+  </div>
 </div>
 
-<div class="divider">✦ ✧ ✦</div>
+<!-- ── LORE ────────────────────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Lore — O Bastardo que Virou Rei</div>
+  <div class="lore-text">
+    <p>Sett cresceu nas ruas de Ionia sem nome, sem família reconhecida, sem o conforto de pertencer a lugar nenhum. Seu pai — um Vastayan, uma dessas criaturas que carregam sangue além do humano — desapareceu quando ele ainda era jovem. Sua mãe ficou. Trabalhou. Aguentou. E Sett aprendeu o que essa palavra significa: <em>aguentar</em>.</p>
+    <p>Os Poços de Luta foram o lugar que o aceitou — não por bondade, mas porque ele era bom nisso. Melhor que bom. Sett nunca perdeu uma luta que importasse. E as que importavam eram todas. Cada soco era um argumento, cada vitória uma declaração: <em>eu existo, eu permaneço, eu comando</em>.</p>
+    <p>Agora ele não apenas luta nos poços — ele os controla. Decide quem entra, quem recebe chances, quem sai de pé. É um rei sem coroa e sem castello, mas com algo mais real: <em>respeito conquistado com os punhos</em>. E isso, ao contrário das coroas, ninguém tira de você.</p>
+    <p>A única coisa que Sett não entende é por que as pessoas complicam. Para ele, o mundo é simples: você ou é forte o suficiente, ou não é. E se não é — talvez seja hora de treinar mais.</p>
+  </div>
+</div>
 
-<!-- ── FOOTER ────────────────────────────────── -->
+<div class="divider">⛓ · 👊 · ⛓</div>
+
+<!-- ── GUIA DE PROGRESSÃO ──────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Guia de Progressão — Nível 1 ao 20</div>
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px;font-style:italic;">Lutador (Líder de Arena) · Meio-Vastayan · Combatente. Clique para expandir cada nível.</p>
+
+  <div class="tier-note">Tier 1 · Nível 1–4 — Novato nos Poços</div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 1</span>
+      <span class="level-gains"><strong>Lutador 1</strong> · Segunda Fôlego · Estilo de Luta: Defensor</span>
+      <span class="tier-badge t1">Tier 1</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Segunda Fôlego:</strong> 1d10+1 PV como ação bônus. 1× por descanso curto. Já no nível 1, Sett pode se recuperar durante a luta.</li>
+        <li><strong>Estilo de Luta Defensor:</strong> +1 CA enquanto usa armadura. Com Plate (CA 18), começa com CA 19.</li>
+        <li>Socos: 1d4+FOR por enquanto (sem Tavern Brawler). Foque em Atletismo para agarramentos — o controle de batalha começa aqui.</li>
+        <li>PV: 10 + 2 (CON inicial) = 12</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 2</span>
+      <span class="level-gains"><strong>Action Surge 1×</strong> · Foco no grapple</span>
+      <span class="tier-badge t1">Tier 1</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Action Surge 1×:</strong> Uma ação extra completa, 1× por descanso curto. Use para grapple + soco no mesmo turno.</li>
+        <li>Rotação básica: Ataque → Grapple (ação bônus com Tavern Brawler no futuro), derruba, ataca com vantagem.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 3</span>
+      <span class="level-gains"><strong>Líder de Arena:</strong> Boar's Charge · Manobras Marciais</span>
+      <span class="tier-badge t1">Tier 1</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Boar's Charge:</strong> Corra em linha reta ≥6m antes de atacar. TR For CD 15 (+FOR em vez de +CD fixo nível baixo) ou derrubados.</li>
+        <li>Manobras: Trip Attack (derruba alvo), Pushing Attack (empurra 4,5m), Disarming Strike (derruba arma).</li>
+        <li>5 dados de superioridade d8 nível 3. Escala com o nível.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 4</span>
+      <span class="level-gains"><strong>Feat: Great Weapon Master</strong> · Extra Attack se aproximando</span>
+      <span class="tier-badge t1">Tier 1</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>GWM:</strong> −5/+10. Com Tavern Brawler no futuro (+FOR = +7): punhos viram 2d6+17 com GWM ativo. Para já, use quando o acerto é quase garantido.</li>
+        <li>GWM bônus: após crítico ou eliminar criatura, ataque de bônus. Soco adicional grátis.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tier-note">Tier 2 · Nível 5–10 — Rei dos Poços Locais</div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 5</span>
+      <span class="level-gains"><strong>Extra Attack (2×)</strong> · Dano dobra</span>
+      <span class="tier-badge t2">Tier 2</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li>2 ataques por ação. Com Action Surge: 4 num turno. O ritmo de combate de Sett começa a ganhar forma.</li>
+        <li>Combo padrão: Boar's Charge → derruba → 2 ataques com vantagem (alvo deitado) → GWM bônus após crítico.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 6</span>
+      <span class="level-gains"><strong>Melhoria de Atributo</strong> · FOR → 20 ou CON → 18</span>
+      <span class="tier-badge t2">Tier 2</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li>Aumente FOR para 20 (+5): acerto +11, dano +5. Ou CON para 18: +40 PV e melhor concentração em grapple.</li>
+        <li>Recomendado: CON para 18 (mais PV agora) e deixe FOR para o Cinto de Gigante depois.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 7</span>
+      <span class="level-gains"><strong>Garra do Campeão</strong> · Indomável 1×</span>
+      <span class="tier-badge t2">Tier 2</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Garra do Campeão:</strong> derruba alvo → ataque de bônus imediato. Com Boar's Charge derrubando múltiplos, Sett ataca de bônus o mais fraco.</li>
+        <li><strong>Indomável 1×:</strong> rerolls em TRs falhados. Contra feitiços de controle mental, Sett manda de volta.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 8–10</span>
+      <span class="level-gains"><strong>Feat: Sentinel</strong> · Facebreaker · Extra Attack (3×)</span>
+      <span class="tier-badge t2">Tier 2</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li>Nível 8: <strong>Sentinel</strong>. Ninguém passa por Sett. AO trava a vel. a 0. Combinado com Boar's Charge: Sett entra, derruba, e bloqueia a saída.</li>
+        <li>Nível 10: <strong>Facebreaker</strong>. Atinge dois alvos laterais. TR For CD crescente ou Atordoado. Em grupo de inimigos, essa é a AoE de Sett.</li>
+        <li>Nível 11: 3 ataques por ação. 6 com Action Surge. Dados de superioridade sobem para d10.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tier-note">Tier 3 · Nível 11–16 — O Chefe que Assombra Arenas</div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 11–12</span>
+      <span class="level-gains"><strong>3 ataques</strong> · Feat: Tavern Brawler · Indomável 2×</span>
+      <span class="tier-badge t3">Tier 3</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Tavern Brawler:</strong> socos viram 1d6, tratados como arma marcial. +1 FOR (total 21). Grapple como ação bônus todo turno agora.</li>
+        <li>Rotação tier 3: Ataque ×3 + Ação Bônus Grapple → tudo no chão, todos derrotados, Sett de pé.</li>
+        <li>Indomável 2×: pode rerollar dois TRs falhados por descanso longo.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 13–15</span>
+      <span class="level-gains"><strong>Action Surge 2×</strong> · Indomável 3× · Show Stopper</span>
+      <span class="tier-badge t3">Tier 3</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li>Nível 13: <strong>Action Surge 2×</strong> por descanso curto. Dois burst rounds disponíveis por encontro curto. Devastador em bosses.</li>
+        <li>Nível 15: <strong>Show Stopper</strong>. A habilidade que define Sett em LoL — levanta um boss, arremessa. Em D&D: 6d6+9 direto + área de impacto. Use contra o maior inimigo em campo.</li>
+        <li>Dados de superioridade: d12 no nível 15. CD 20 nos efeitos de manobra.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 16</span>
+      <span class="level-gains"><strong>Feat: Tough</strong> · +40 PV · Pico de sobrevivência</span>
+      <span class="tier-badge t3">Tier 3</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Tough:</strong> +40 PV permanentes. Com CON 22 e Tough, Sett passa de 220 para 268 PV. Mais tank que qualquer Guerreiro convencional.</li>
+        <li>Com Relentless Endurance + Segunda Fôlego + Tough + Indomável ×3: praticamente impossível de derrubar em um único encontro.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tier-note">Tier 4 · Nível 17–20 — Rei Absoluto da Arena</div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 17</span>
+      <span class="level-gains"><strong>Action Surge 2×</strong> confirmado · Indomável 3× · Dados d12</span>
+      <span class="tier-badge t4">Tier 4</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li>Action Surge já está em 2× desde nível 17 por regra base do Lutador. Indomável em 3×.</li>
+        <li>Dados de superioridade: d12 garantido. CD das manobras: 21 (8 + prof +6 + FOR +7).</li>
+        <li>Em um burst total (2× Action Surge em dois turnos separados): 16 ataques distribuídos por dois turnos. Nenhuma criatura sobrevive a isso.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 18</span>
+      <span class="level-gains"><strong>Presença de Arena</strong> · Aliados com vantagem</span>
+      <span class="tier-badge t4">Tier 4</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Presença de Arena:</strong> quando Sett acerta, aliados em 9m ganham vantagem nos ataques. A aura do campeão infecta os que lutam com ele.</li>
+        <li>Em combate em grupo: o primeiro soco de Sett é o sinal. Todos entram com vantagem. O trovão antes da avalanche.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 19–20</span>
+      <span class="level-gains"><strong>Extra Attack ×4</strong> · Feat final · Pico absoluto</span>
+      <span class="tier-badge t4">Tier 4</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li>Nível 19: ASI final — suba FOR com Cinto de Gigante (FOR 24 via item, feat pode dar +1 mais) ou tome outro feat (Shield Master, Crusher).</li>
+        <li>Nível 20: <strong>4 ataques por ação</strong>. Com Action Surge: 8 ataques por turno. A maior rajada de dano físico puro de D&D 5e.</li>
+        <li>Cálculo final: 8 socos × 2d6+9 = 128 médio sem GWM. Com GWM: 8 × 26 = 208 médio. Sem incluir Presença de Arena, manobras, Boar's Charge, ou Show Stopper.</li>
+        <li><em>"Todo mundo tem um plano até levar um soco na cara."</em></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="divider">⛓ · 👊 · ⛓</div>
+
+<!-- ── FOOTER ──────────────────────────────────────────── -->
 <div class="footer">
-  <p>Sett · Lutador Líder de Arena · Nível 20</p>
-  <p>D&amp;D 5e · League of Legends · Sistema de Fichas RPG</p>
+  <p>Sett · O Chefe · Lutador Líder de Arena · Nível 20</p>
+  <p>D&amp;D 5e · League of Legends · Akasharium — Sistema de Fichas RPG</p>
 </div>
 
 </div><!-- /page -->
 
 <script>
 (function() {
-  const particles = "👊💥⚡".split("");
-  const container = document.getElementById('particleBg');
-  for (let i = 0; i < 20; i++) {
-    const p = document.createElement('span');
-    p.className = 'particle';
-    p.textContent = particles[i % particles.length];
-    p.style.left = (Math.random() * 100) + '%';
-    p.style.animationDuration = (12 + Math.random() * 18) + 's';
-    p.style.animationDelay = (Math.random() * 20) + 's';
-    p.style.fontSize = (9 + Math.random() * 6) + 'px';
-    container.appendChild(p);
+  const container = document.getElementById('atmoBg');
+  if (!container) return;
+
+  // Blood drops falling from ceiling
+  for (let i = 0; i < 35; i++) {
+    const d = document.createElement('div');
+    d.className = 'blood-drop';
+    const w = 2 + Math.random() * 3;
+    const h = 5 + Math.random() * 9;
+    d.style.cssText = `
+      left:${Math.random()*100}%;
+      width:${w}px;height:${h}px;
+      animation-duration:${3+Math.random()*8}s;
+      animation-delay:${Math.random()*15}s;
+      opacity:0;
+      background:rgba(${120+Math.floor(Math.random()*60)},0,0,0.65);
+    `;
+    container.appendChild(d);
   }
+
+  // Dust motes rising from ground
+  for (let i = 0; i < 20; i++) {
+    const du = document.createElement('div');
+    du.className = 'dust';
+    const sz = 3 + Math.random() * 8;
+    du.style.cssText = `
+      left:${Math.random()*100}%;
+      bottom:${Math.random()*60}px;
+      width:${sz}px;height:${sz}px;
+      animation-duration:${4+Math.random()*6}s;
+      animation-delay:${Math.random()*10}s;
+    `;
+    container.appendChild(du);
+  }
+
+  // Crowd roar rings
+  const ringPositions = [[25,50],[50,45],[75,52],[50,60],[35,55]];
+  ringPositions.forEach(([lp,tp],i) => {
+    const ring = document.createElement('div');
+    ring.className = 'roar-ring';
+    const sz = 60 + Math.random()*40;
+    ring.style.cssText = `
+      left:${lp}%;top:${tp}%;
+      width:${sz}px;height:${sz}px;
+      margin-left:-${sz/2}px;margin-top:-${sz/2}px;
+      animation-duration:${5+Math.random()*8}s;
+      animation-delay:${i*2+Math.random()*3}s;
+    `;
+    container.appendChild(ring);
+  });
 })();
+
+// Progression guide accordion
+function toggleLevel(header) {
+  const body = header.nextElementSibling;
+  if (!body) return;
+  body.classList.toggle('open');
+}
 </script>
 
 </body>

@@ -9,12 +9,18 @@
 :root{--bz:#b87333;--cp:#da8a67;--gd:#c9a227;--gl:#e8c85a;--te:#5aacbf;--ac:#4a8fa8;--dk:#080604;--dr:#050402;--cd:#100d09;--cl:#1a150f;--tx:#d4c9b0;--td:#8a7a60;--br:rgba(184,115,51,0.28);}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--dr);background-image:radial-gradient(ellipse at 25% 20%,rgba(184,115,51,0.06) 0%,transparent 50%),radial-gradient(ellipse at 70% 75%,rgba(74,143,168,0.05) 0%,transparent 50%);font-family:'Crimson Pro',Georgia,serif;color:var(--tx);line-height:1.75;}
-.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
-.gbg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
-.fg{position:absolute;opacity:0;animation:fg linear infinite;color:var(--bz);filter:blur(0.4px);}
-@keyframes fg{0%{transform:translateY(110vh) rotate(0deg) scale(0.4);opacity:0;}8%{opacity:0.2;}50%{transform:translateY(50vh) rotate(200deg) scale(0.7);opacity:0.13;}92%{opacity:0.05;}100%{transform:translateY(-10vh) rotate(400deg) scale(0.3);opacity:0;}}
-.sk{position:absolute;width:2px;height:2px;background:var(--gl);border-radius:50%;opacity:0;animation:sk linear infinite;}
-@keyframes sk{0%{transform:translateY(0) translateX(0) scale(1);opacity:0.8;}100%{transform:translateY(-80px) translateX(var(--tx2,20px)) scale(0);opacity:0;}}
+.page{max-width:min(960px,100vw - 1rem);margin:0 auto;padding:0 0 80px;}
+#atmoBg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.gear-sym{position:absolute;opacity:0;animation:gearRise linear infinite;color:var(--bz);font-size:18px;line-height:1;filter:blur(0.3px);}
+@keyframes gearRise{0%{transform:translateY(110vh) rotate(0deg);opacity:0;}8%{opacity:0.18;}50%{transform:translateY(50vh) rotate(var(--grx,200deg)) translateX(var(--gdx,0px));opacity:0.10;}92%{opacity:0.04;}100%{transform:translateY(-10vh) rotate(var(--grx2,400deg));opacity:0;}}
+.spark{position:absolute;width:2px;height:2px;background:var(--gl);border-radius:50%;opacity:0;animation:sparkFly linear infinite;}
+@keyframes sparkFly{0%{transform:translateY(0) translateX(0) scale(1);opacity:0.9;}100%{transform:translateY(-90px) translateX(var(--sdx,20px)) scale(0);opacity:0;}}
+.mist-orb{position:absolute;border-radius:50%;opacity:0;animation:mistDrift ease-in-out infinite alternate;background:radial-gradient(circle,rgba(184,115,51,0.10) 0%,transparent 70%);}
+@keyframes mistDrift{0%{opacity:0;transform:translate(0,0);}40%{opacity:0.8;}100%{opacity:0;transform:translate(var(--mdx,40px),var(--mdy,-30px));}}
+.arc-flash{position:absolute;height:1px;background:linear-gradient(90deg,transparent,var(--gl),var(--te),transparent);opacity:0;animation:arcFlash ease-in-out infinite;}
+@keyframes arcFlash{0%,90%,100%{opacity:0;}45%,55%{opacity:0.5;}}
+.wm{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:280px;opacity:0.025;pointer-events:none;z-index:0;animation:wmPulse 9s ease-in-out infinite alternate;}
+@keyframes wmPulse{0%{opacity:0.018;}100%{opacity:0.030;}}
 .hdr{background:linear-gradient(160deg,#0a0705 0%,#160f09 60%,#0a0705 100%);border-bottom:2px solid var(--bz);position:relative;overflow:hidden;z-index:1;}
 .hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gd),var(--cp),var(--gd),transparent);opacity:0.5;}
 .hi{display:flex;align-items:stretch;position:relative;z-index:1;}
@@ -143,14 +149,39 @@ body{background:var(--dr);background-image:radial-gradient(ellipse at 25% 20%,rg
 .cd2{background:var(--cd);border:1px solid var(--br);padding:16px 18px;margin-bottom:10px;}
 .ct{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--bz);margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--br);}
 .cd2 p{font-size:13px;color:var(--td);}
+.mech-box{background:rgba(184,115,51,0.05);border:1px solid var(--br);border-left:4px solid var(--gd);padding:16px 18px;margin-bottom:14px;}
+.mech-title{font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:1px;color:var(--gl);margin-bottom:4px;}
+.mech-subtitle{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--bz);margin-bottom:10px;}
+.mech-body{font-size:13px;color:var(--td);line-height:1.6;margin-bottom:8px;}
+.mech-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px;}
+.mech-table th{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--td);padding:4px 8px;text-align:left;border-bottom:1px solid var(--br);background:rgba(184,115,51,0.08);}
+.mech-table td{padding:5px 8px;border-bottom:1px solid rgba(184,115,51,0.07);color:var(--tx);}
+.prog-level{border:1px solid var(--br);margin-bottom:6px;overflow:hidden;}
+.prog-header{display:flex;align-items:center;gap:12px;padding:11px 14px;cursor:pointer;background:rgba(184,115,51,0.05);}
+.prog-header:hover{background:rgba(184,115,51,0.11);}
+.prog-level-num{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--bz);min-width:62px;}
+.prog-level-title{font-family:'Cinzel',serif;font-size:12px;color:var(--tx);flex:1;}
+.prog-arrow{font-size:10px;color:var(--td);transition:transform 0.25s;}
+.prog-body{display:none;padding:14px 16px;background:var(--cd);font-size:13px;color:var(--td);line-height:1.7;}
+.prog-body.open{display:block;}
+.prog-body ul{margin:6px 0 8px 16px;}
+.prog-body li{margin-bottom:4px;}
+.prog-body strong{color:var(--tx);}
 </style>
 </head>
 <body>
-<div class="gbg" id="gbg"></div>
+<div id="atmoBg"></div>
 <div class="page">
 
 <header class="hdr"><div class="hi">
-<div class="hp"><div class="pi"><div class="pr"></div><div class="ps">⚙</div><span class="pl">Cogspire</span></div></div>
+<div class="hp"><div class="pi">
+  <img src="/portraits/corven.jpg" alt="Corven Cogspire"
+    style="width:100%;height:270px;object-fit:cover;object-position:top;opacity:0.9;"
+    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+  <div style="display:none;flex-direction:column;align-items:center;justify-content:center;width:100%;height:270px;gap:8px;">
+    <div class="pr"></div><div class="ps">⚙</div><span class="pl">Cogspire</span>
+  </div>
+</div></div>
 <div class="ht">
 <div class="ey">Ficha de Personagem · D&amp;D 5e · Artificer Armeiro · Nível 4 · CORRIGIDA</div>
 <h1 class="hn">Corven Cogspire</h1>
@@ -375,39 +406,288 @@ body{background:var(--dr);background-image:radial-gradient(ellipse at 25% 20%,rg
 
 <div class="dv"><span class="ds">⚙ ✦ ⚙</span></div>
 
+<!-- ═══ MECÂNICAS ASSINATURA ══════════════════════════════════════ -->
+<div class="sec"><h2 class="st">Mecânicas Assinatura</h2>
+
+  <div class="mech-box">
+    <div class="mech-title">Rotação de Combate — Infiltrador Completo</div>
+    <div class="mech-subtitle">Ação · Ação Bônus · Homúnculo · Cada Turno</div>
+    <div class="mech-body">A rotação central de Corven combina o Homúnculo como fonte de vantagem constante com o Lançador de Raios como arma principal. A partir do Nível 5, Extra Attack dobra a saída de dano por ação. A altitude garante imunidade prática a ataques de oportunidade.</div>
+    <table class="mech-table">
+      <thead><tr><th>Fase</th><th>Recurso</th><th>Efeito</th></tr></thead>
+      <tbody>
+        <tr><td>Pré-combate</td><td>Homúnculo (Ajuda)</td><td>Vantagem garantida no primeiro disparo do turno</td></tr>
+        <tr><td>Abertura opcional</td><td>Fogo das Fadas (1° slot)</td><td>Vantagem p/ <em>todo</em> o grupo contra alvos afetados</td></tr>
+        <tr><td>Nível 4 — Ação</td><td>Lançador de Raios +6</td><td>1d6 Elétrico + 1d6 extra (1×/turno)</td></tr>
+        <tr><td>Nível 5+ — Ação</td><td>Extra Attack (2×)</td><td>2d6 Elétrico + 1d6 extra no 1° acerto</td></tr>
+        <tr><td>Nível 15 — Acerto</td><td>Infiltrador Perfeito</td><td>Alvo brilha: vantagem em <em>todos</em> os ataques do grupo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mech-box">
+    <div class="mech-title">Sistema de Infusões — Slots Regulares + Armadura Arcana</div>
+    <div class="mech-subtitle">Artificer · Nível 2+ · Expansão Progressiva</div>
+    <div class="mech-body">O Armeiro tem dois pools de infusão: o regular (escala com nível) e os 4 slots exclusivos da armadura arcana (Nível 9), que não contam para o limite normal. Isso permite configurar defesas, ferramentas e a armadura de forma independente.</div>
+    <table class="mech-table">
+      <thead><tr><th>Pool</th><th>Nível Desbloqueio</th><th>Slots</th><th>Exemplos Corven</th></tr></thead>
+      <tbody>
+        <tr><td>Regulares</td><td>Nível 2</td><td>2 ativos</td><td>Homúnculo + Bag of Holding</td></tr>
+        <tr><td>Regulares</td><td>Nível 6</td><td>3 ativos</td><td>+ Defesa Aprimorada</td></tr>
+        <tr><td>Regulares</td><td>Nível 10</td><td>4 ativos</td><td>+ Enhanced Arcane Focus</td></tr>
+        <tr><td>Regulares</td><td>Nível 18</td><td>6 ativos</td><td>Configuração final completa</td></tr>
+        <tr><td><strong style="color:var(--te)">Armadura</strong></td><td>Nível 9</td><td><strong style="color:var(--te)">4 extras</strong></td><td>Não contam no limite — defesa total</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mech-box">
+    <div class="mech-title">Capstone de Combate — Armadura Perfeita (Nív.15) + Soul of Artifice (Nív.20)</div>
+    <div class="mech-subtitle">Armeiro Infiltrador · Pico de Eficiência Tática</div>
+    <div class="mech-body">O nível 15 transforma Corven num marcador de batalha: cada acerto com o Lançador ilumina o alvo, dando vantagem a <em>todo</em> o grupo. O nível 20 adiciona uma última linha de defesa — sacrificar uma infusão para sobreviver a 1 PV, honrando a promessa feita a Eliora.</div>
+    <table class="mech-table">
+      <thead><tr><th>Evento</th><th>Efeito</th><th>Duração</th></tr></thead>
+      <tbody>
+        <tr><td>Acerto Lançador de Raios (Nív.15)</td><td>Alvo fica iluminado (glow mágico)</td><td>Até próximo turno de Corven</td></tr>
+        <tr><td>Alvo iluminado</td><td>Vantagem em TODOS os ataques vs. ele</td><td>Enquanto brilha</td></tr>
+        <tr><td>Alvo iluminado</td><td>Sem invisibilidade ou camuflagem</td><td>Enquanto brilha</td></tr>
+        <tr><td>Soul of Artifice (Nív.20)</td><td>+1 em todos os TRs por item atuado (máx +10)</td><td>Permanente</td></tr>
+        <tr><td>Reduzido a 0 PV (Nív.20)</td><td>Reação: encerra 1 infusão → cai para 1 PV</td><td>1× por ocorrência</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
 <div class="sec">
 <h2 class="st" style="font-size:13px;letter-spacing:6px">Guia de Progressão · Armeiro Infiltrador · Nível 4 → 20</h2>
-<div class="al">⚙ <strong>Filosofia do Armeiro Infiltrador:</strong> Corven é um operativo — voa no ar, ataca à distância com o Lançador de Raios da armadura arcana, usa o Homúnculo para apoio e age como a armadura que ele veste. Diferente do Artilheiro, aqui a força cresce junto com a armadura, não com um canhão separado. O pico é o nível 15: a armadura perfeita faz os inimigos brilharem com cada acerto.</div>
+<div class="al">⚙ <strong>Filosofia do Armeiro Infiltrador:</strong> Corven é um operativo — voa no ar, ataca à distância com o Lançador de Raios da armadura arcana, usa o Homúnculo para apoio e age como a armadura que ele veste. O pico é o nível 15: cada acerto ilumina o alvo, dando vantagem ao grupo inteiro. No nível 20, Soul of Artifice transforma cada infusão ativa em bônus de salvaguarda — e permite sacrificar uma criação para não morrer.</div>
 
-<div class="gph">
-<div class="gpt">Fase 1 — Consolidação (Níveis 4–6)</div>
-<div class="gl2"><span class="gln">Nv 4</span><div class="gc"><div class="gf">Estado atual · Feat já obtido</div><div class="gn">Lançador de Raios (+6, 1d6 + extra 1d6/turno), Homúnculo para Ajuda (vantagem), Besta como backup. Com a Oficina de Bolso: CD 15 e ataque +7 ao segurar. Rotação padrão: Homúnculo Ajuda → Lançador de Raios (1d6+1d6). Voe alto, atire de longe.</div><div class="gs">Rotação: Homúnculo Ajuda → Lançador +6 (1d6+extra 1d6/turno) · Besta como backup</div></div></div>
-<div class="gl2 bg"><span class="gln">Nv 5</span><div class="gc"><div class="gf">⚙ MAIOR SALTO — Extra Attack + 2° Círculo de Magias</div><div class="gn"><strong>Extra Attack:</strong> 2 ataques por ação com as armas da armadura (Lançador de Raios conta). Dois disparos elétricos por ação + 1d6 extra no primeiro acerto por turno. Além disso, acesso ao <strong>2° círculo de magias do Artificer</strong>. Web (teia de controle), Invisibility (furtividade mágica) passam a ser opção. Proficiência sobe para +3: CD 16, ataque +7.</div><div class="gs te">+ Extra Attack (2 disparos/ação) · + 2° círculo · Prof +3 → CD 16 · Ataque mágico +7</div></div></div>
-<div class="gl2 ms"><span class="gln">Nv 6</span><div class="gc"><div class="gf">3ª Infusão Ativa — Escolha que muda a build</div><div class="gn">Prioridades: <strong>(1) Defesa Aprimorada</strong> na armadura arcana — +1 CA permanente (CA 13→14, ou mais se armadura melhor). <strong>(2) Arma Aprimorada</strong> na Besta ou em uma adaga — +1 hit e dano. <strong>(3) Enhanced Arcane Focus</strong> — +1 adicional ao ataque mágico e CD. Todas as três são fortes; Defesa Aprimorada é a mais segura para sobrevivência.</div><div class="gs te">+ 3ª infusão ativa · Prioridade: Defesa Aprimorada na armadura (+1 CA permanente)</div></div></div>
-</div>
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 4</span>
+      <span class="prog-level-title">Estado Atual — Lançador de Raios + Homúnculo</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Ativas:</strong>
+      <ul>
+        <li><em>Lançador de Raios:</em> +6 para acertar (INT), 1d6 Elétrico + 1d6 extra 1×/turno. Alcance 27m/90m.</li>
+        <li><em>Servo Homúnculo:</em> Ajuda como ação (vantagem no disparo). PV: 5, CA 13, voo 18m. Único modo de curar: Remendo (2d6).</li>
+        <li><em>Oficina de Bolso:</em> +1 CD/ataque enquanto segura (CD 15, ataque +7). Conjura truques de qualquer classe por 8h.</li>
+      </ul>
+      <strong>Rotação:</strong> Homúnculo Ajuda → Lançador de Raios com vantagem (+6/+7, 1d6+1d6). Posição de altitude. Besta Leve como backup.
+    </div>
+  </div>
 
-<div class="gph">
-<div class="gpt">Fase 2 — Poder Crescente (Níveis 7–10)</div>
-<div class="gl2"><span class="gln">Nv 7</span><div class="gc"><div class="gf">3° Círculo de Magias · Prof +3 consolidado</div><div class="gn">Acesso ao 3° círculo do Artificer. Opções notáveis: <strong>Haste</strong> (velocidade dobrada, ação extra, +2 CA — poderosa mas perde turno se concentração cair), <strong>Fly</strong> (60m de voo mágico para aliado que não voa), <strong>Dispel Magic</strong> (reação para desfazer magia). Corven já voa — Fly é melhor dado a aliados terrestres.</div><div class="gs te">+ 3° círculo · Sugestões: Haste (buff agressivo) · Fly (para aliados) · Dispel Magic</div></div></div>
-<div class="gl2 ms"><span class="gln">Nv 8</span><div class="gc"><div class="gf">ASI — +2 Inteligência (18 → 20) · MÁXIMO</div><div class="gn">INT 20. CD de magias sobe para <strong>16</strong>. Ataque mágico: <strong>+8</strong>. Todas as magias ficam mais difíceis de resistir. Toda habilidade baseada em INT (Investigação, Arcanismo, Flash of Genius futuro) sobe. Este é o investimento mais importante — INT afeta tudo no Artificer.</div><div class="gs">INT 18→20 · CD 15→16 (17 c/ Oficina) · Ataque +7→+8 (+9 c/ Oficina) · Mínimo de erro</div></div></div>
-<div class="gl2"><span class="gln">Nv 9</span><div class="gc"><div class="gf">⚙ MODIFICAÇÕES DE ARMADURA — A habilidade mais única do Armeiro</div><div class="gn">A armadura arcana ganha <strong>4 slots de infusão que NÃO contam para o seu limite normal</strong>. Você pode imbuir infusões especificamente na armadura além das suas infusões regulares. Isso significa mais +CA, resistências ou propriedades mágicas extra. Com 4° círculo acessível: <strong>Fabricate</strong> (cria objetos instantaneamente de matérias primas), <strong>Wall of Fire</strong> (parede de fogo), <strong>Blight</strong> (4d8 necrótico, TR Con).</div><div class="gs te">4 slots de infusão NA armadura (fora do limite normal) · + 4° círculo · Armadura cresce</div></div></div>
-<div class="gl2 ms"><span class="gln">Nv 10</span><div class="gc"><div class="gf">Flash of Genius + 4ª Infusão Regular + 3° Truque</div><div class="gn"><strong>Flash of Genius (reação):</strong> adiciona INT mod (+5) a qualquer TR ou teste de habilidade de criatura próxima — inclusive você. Com INT 20: +5 pode virar um TR com sucesso numa situação crítica. 4ª infusão regular ativa — configure com Repor Item Mágico para um item do universo D&D. Ganhe um 3° truque de Artificer (sugestão: Guidance ou Thunderclap).</div><div class="gs te">Flash of Genius reação (+5 em TRs) · 4ª infusão regular · 3° truque · Prof +4</div></div></div>
-</div>
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 5</span>
+      <span class="prog-level-title">MAIOR SALTO — Extra Attack + 2° Círculo</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Extra Attack:</em> 2 ataques por ação com armas da armadura. Dois disparos elétricos por ação + 1d6 extra no 1° acerto/turno. Dano médio dobra instantaneamente.</li>
+        <li><em>2° Círculo de Magias:</em> Web (teia de controle, TR Des), Invisibility (furtividade mágica), Spider Climb. Proficiência sobe para +3.</li>
+      </ul>
+      <strong>Estatísticas:</strong> CD 16 (17 c/ Oficina) · Ataque mágico +7 (+8 c/ Oficina) · Prof +3.<br>
+      <strong>Rotação:</strong> Homúnculo Ajuda → 2× Lançador de Raios com vantagem → 1d6 extra no 1° acerto.
+    </div>
+  </div>
 
-<div class="gph">
-<div class="gpt">Fase 3 — Dominância (Níveis 11–15)</div>
-<div class="gl2"><span class="gln">Nv 11</span><div class="gc"><div class="gf">5° Círculo — Arsenal completo do Artificer</div><div class="gn">Máximo de círculo. <strong>Bigby's Hand</strong> (mão arcana gigante, múltiplos usos), <strong>Creation</strong> (cria objetos ilusórios), <strong>Animate Objects</strong> (anima até 10 objetos pequenos como servos). Com Prof +4: CD 18 (19 c/ Oficina!), ataque mágico +9 (+10 c/ Oficina). A maioria dos inimigos falha na maioria dos TRs agora.</div><div class="gs te">+ 5° círculo · CD 18 (19 c/ Oficina) · Ataque +9 (+10 c/ Oficina) · Arsenal completo</div></div></div>
-<div class="gl2 ms"><span class="gln">Nv 12</span><div class="gc"><div class="gf">ASI / Feat — Com INT 20, hora de expandir</div><div class="gn">Com INT no máximo, esse ASI vai para feat. Melhores opções: <strong>War Caster</strong> (vantagem em Con para concentração + pode conjurar como ataque de oportunidade), <strong>Alert</strong> (+5 iniciativa, nunca surpreendido — crucial para Corven que quer agir primeiro), <strong>Resilient (Con)</strong> (salva concentrações). War Caster é o mais impactante para proteger Haste e outras concentrações.</div><div class="gs">Recomendação: War Caster · INT 20 já maximizada · Foco em proteção de concentração</div></div></div>
-<div class="gl2 ms"><span class="gln">Nv 14</span><div class="gc"><div class="gf">Magic Item Savant + 5ª Infusão</div><div class="gn"><strong>Magic Item Savant:</strong> atune-se a qualquer item mágico ignorando restrições de classe/raça/nível em 1 minuto. Isso abre itens exclusivos que normalmente seriam bloqueados. 5ª infusão regular: adicione <strong>Boots of the Winding Path</strong> (teletransporte de 1,5m) ou <strong>Mind Sharpener</strong> (protege concentração com cargas) ao arsenal.</div><div class="gs te">Magic Item Savant · 5ª infusão · Sugestão: Mind Sharpener (protege Haste e Fly)</div></div></div>
-<div class="gl2 bg"><span class="gln">Nv 15</span><div class="gc"><div class="gf">⚙ ARMADURA PERFEITA — O Ápice do Armeiro Infiltrador</div><div class="gn">O capstone tático do Armeiro. Modo <strong>Infiltrador aprimorado:</strong> quando você acerta com o Lançador de Raios, pode fazer o alvo <strong>brilhar até o início do seu próximo turno</strong> — ataques contra ele têm vantagem e ele não pode se beneficiar de invisibilidade. Toda vez que Corven acerta, o alvo fica marcado para o grupo inteiro. O campo de batalha tem um spotlight mágico que ilumina os inimigos no pior momento para eles.</div><div class="gs te">Infiltrador perfeito: acerto → alvo brilha → vantagem em TODOS ataques contra ele · Sem invisibilidade</div></div></div>
-</div>
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 6</span>
+      <span class="prog-level-title">3ª Infusão Ativa — Escolha Que Define a Build</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li>3ª infusão ativa simultânea. Prioridade: <strong>Defesa Aprimorada</strong> na armadura arcana → +1 CA permanente (CA 13→14+).</li>
+        <li>Alternativas: <strong>Arma Aprimorada</strong> na Besta (+1 hit/dano) ou <strong>Enhanced Arcane Focus</strong> (+1 CD/ataque adicional).</li>
+      </ul>
+      <strong>Nota:</strong> Defesa Aprimorada é a escolha mais robusta — Corven não tem alta CA sem ela, e altitude não substitui armadura em todos os cenários.
+    </div>
+  </div>
 
-<div class="gph">
-<div class="gpt">Fase 4 — Maestria Final (Níveis 16–20)</div>
-<div class="gl2 ms"><span class="gln">Nv 16</span><div class="gc"><div class="gf">ASI / Feat — Personalização final</div><div class="gn">Com INT 20 e War Caster (ou Alert) já obtidos: <strong>Lucky</strong> (3× relança d20), <strong>Sentinel</strong> (para alvos que movem + ataque de oportunidade sempre), ou <strong>Crossbow Expert</strong> (ignora desvantagem em melee com besta, ataque bônus). Sentinel funciona especialmente bem com a armadura Infiltradora — Corven marca um alvo, o grupo tem vantagem, e ninguém escapa.</div><div class="gs">Opções: Lucky · Sentinel (controle total) · Crossbow Expert (dano extra besta)</div></div></div>
-<div class="gl2 ms"><span class="gln">Nv 18</span><div class="gc"><div class="gf">Magic Item Master + 6ª Infusão</div><div class="gn">6 infusões ativas simultâneas. Configuração final sugerida: Bag of Holding · Homúnculo · Defesa Aprimorada (armadura) · Enhanced Arcane Focus · Mind Sharpener · + 1 nas 4 slots da armadura separadamente. Com tudo ativo, Corven tem a melhor configuração de defesa e ataque possível sem depender de itens externos.</div><div class="gs te">6 infusões + 4 slots da armadura · Config. final: Bag · Homúnculo · Defesa · Focus · Mind Sharpener</div></div></div>
-<div class="gl2 cp2"><span class="gln">Nv 20</span><div class="gc"><div class="gf" style="color:var(--gl)">⚙ SOUL OF ARTIFICE — A Alma do Artífice</div><div class="gn" style="color:var(--tx)"><strong style="color:var(--gl)">+1 em TODOS os TRs por item mágico atuado.</strong> Com 6 infusões + 4 slots da armadura + outros itens: potencialmente <strong>+10 em todos os TRs simultaneamente</strong>. E o poder mais dramático: quando reduzido a 0 PV, reação para <strong>encerrar 1 infusão e cair para 1 PV</strong> em vez de 0. Corven sacrifica uma de suas criações para continuar de pé — porque há uma promessa que ainda não foi cumprida.</div><div class="gs te">+10 em TODOS os TRs (todos os itens atuados) · Reação: sacrifica infusão → 1 PV em vez de 0</div></div></div>
-</div>
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 7</span>
+      <span class="prog-level-title">3° Círculo de Magias — Haste + Fly + Dispel</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Haste:</em> Velocidade dobrada, ação extra, +2 CA. Poderosa mas perde turno se a concentração cair — War Caster (Nível 12) mitiga esse risco.</li>
+        <li><em>Fly:</em> 60m de voo mágico para aliado terrestre. Corven já voa — dê aos aliados terrestres.</li>
+        <li><em>Dispel Magic:</em> Encerra efeitos mágicos ativos. Essencial contra magia de controle.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 8</span>
+      <span class="prog-level-title">ASI — Inteligência 18 → 20 (MÁXIMO)</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li>INT 20: CD 16 (17 c/ Oficina) → CD 17 (18 c/ Oficina após o aumento).</li>
+        <li>Ataque mágico +7 → +8 (+9 c/ Oficina). Investigação, Arcanismo e Flash of Genius (Nível 10) todos melhoram.</li>
+      </ul>
+      <strong>Nota:</strong> O investimento mais impactante da build — INT afeta CD, ataque, perícias e habilidades de classe simultaneamente.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 9</span>
+      <span class="prog-level-title">Modificações de Armadura — 4 Slots Extras Exclusivos</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Armor Modifications:</em> A armadura arcana ganha <strong>4 slots de infusão que NÃO contam para o limite normal</strong>. Corven pode imbuir infusões extras especificamente na armadura — mais CA, resistências ou propriedades mágicas adicionais independentes.</li>
+        <li><em>4° Círculo de Magias:</em> Fabricate (cria objetos de matérias-primas instantaneamente), Wall of Fire, Blight (4d8 necrótico, TR Con).</li>
+      </ul>
+      <strong>Config. ideal da armadura:</strong> Defesa Aprimorada + 3 outras infusões defensivas nos slots extras = Corven com CA muito maior sem gastar infusões regulares.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 10</span>
+      <span class="prog-level-title">Flash of Genius + 4ª Infusão Regular + 3° Truque</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Flash of Genius (reação):</em> Adiciona INT mod (+5) a qualquer TR ou teste de habilidade de criatura nas proximidades — inclusive Corven. Com INT 20: +5 pode transformar uma falha crítica em sucesso.</li>
+        <li>4ª infusão regular: adicione Repor Item Mágico (cria item mágico comum/incomum) para ampliar o arsenal.</li>
+        <li>3° truque de Artificer — sugestão: Guidance (bônus de 1d4 em testes de aliados) ou Thunderclap (trovão em área próxima).</li>
+      </ul>
+      <strong>Prof +4:</strong> CD 18 (19 c/ Oficina). Ataque mágico +9 (+10 c/ Oficina).
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 11</span>
+      <span class="prog-level-title">5° Círculo — Arsenal Completo do Artificer</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Bigby's Hand:</em> Mão arcana gigante com múltiplas funções (agarrar, esmagar, bloquear, empurrar). Concentração, 1 min.</li>
+        <li><em>Animate Objects:</em> Anima até 10 objetos pequenos como servos atacantes. Caos organizado de fogo de cobertura.</li>
+        <li><em>Creation:</em> Cria objetos de matéria ilusória permanente até 5 min/nível. Para armadilhas, pontes, coberturas.</li>
+      </ul>
+      <strong>CD 18 (19 c/ Oficina):</strong> A maioria dos inimigos falha em TRs. Ataque mágico +9 (+10 c/ Oficina).
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 12</span>
+      <span class="prog-level-title">ASI / Feat — Com INT 20, Hora de Expandir</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Opções (INT já maximizada):</strong>
+      <ul>
+        <li><em>War Caster (recomendado):</em> Vantagem em TR de Con para concentração + pode conjurar como ataque de oportunidade. Protege Haste, Fly e Animate Objects.</li>
+        <li><em>Alert:</em> +5 iniciativa, nunca surpreendido. Corven que age primeiro é Corven que marca alvos antes de todo mundo atacar.</li>
+        <li><em>Resilient (Con):</em> Prof em TRs de Con. Alternativa mais simples ao War Caster para proteger concentração.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 14</span>
+      <span class="prog-level-title">Magic Item Savant + 5ª Infusão</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Magic Item Savant:</em> Atune-se a qualquer item mágico ignorando restrições de classe, raça ou nível em 1 minuto. Abre acesso a itens normalmente bloqueados.</li>
+        <li>5ª infusão regular: <strong>Mind Sharpener</strong> (4 cargas que absorvem falhas em TR de Con para concentração) ou <strong>Boots of the Winding Path</strong> (teletransporte de 1,5m como ação bônus).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 15</span>
+      <span class="prog-level-title">⚙ ARMADURA PERFEITA — O Ápice do Armeiro Infiltrador</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Infiltrador Aprimorado:</em> Quando Corven acerta com o Lançador de Raios, o alvo <strong>brilha até o início do próximo turno de Corven</strong>. Enquanto brilha: todos os ataques contra ele têm <strong>vantagem</strong>, e ele não pode se beneficiar de invisibilidade ou camuflagem.</li>
+      </ul>
+      <strong>Impacto:</strong> Cada acerto de Corven potencializa TODOS os ataques do grupo. Não é buff — é um spotlight que denuncia os inimigos no momento mais inconveniente para eles. O Homúnculo ainda usa Ajuda, Fogo das Fadas ainda funciona em área. Tudo se soma.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 16</span>
+      <span class="prog-level-title">ASI / Feat — Personalização Final</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Opções com INT 20 e War Caster/Alert já obtidos:</strong>
+      <ul>
+        <li><em>Lucky:</em> 3× por dia, relança qualquer d20 e escolhe o melhor. Elimina falhas críticas em momentos decisivos.</li>
+        <li><em>Sentinel:</em> Para qualquer criatura que tente se afastar do alcance de Corven (com Polearm Master ou similar), e ataques de oportunidade sempre acertam — fecha o campo de batalha.</li>
+        <li><em>Crossbow Expert:</em> Ignora desvantagem em melee com besta, ataque bônus com arma de mão leve. Para situações de combate próximo.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 18</span>
+      <span class="prog-level-title">Magic Item Master + 6ª Infusão</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li>6 infusões ativas simultâneas. Configuração final ideal: <strong>Bag of Holding · Homúnculo · Defesa Aprimorada (armadura) · Enhanced Arcane Focus · Mind Sharpener · +1 infusão livre</strong>.</li>
+        <li>Os 4 slots da armadura separadamente adicionam mais 4 propriedades defensivas ou mágicas.</li>
+      </ul>
+      <strong>Total:</strong> 10 itens mágicos infundidos simultaneamente (6 regulares + 4 da armadura). Cada um contribui para Soul of Artifice (Nível 20).
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 20</span>
+      <span class="prog-level-title">⚙ SOUL OF ARTIFICE — A Alma do Artífice</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Soul of Artifice:</em> <strong>+1 em TODOS os TRs por item mágico atuado.</strong> Com 6 infusões + 4 slots da armadura + outros itens atunados: potencialmente <strong>+10 em todos os TRs simultaneamente</strong>.</li>
+        <li><em>Sobrevivência Final:</em> Quando reduzido a 0 PV, pode usar reação para <strong>encerrar 1 infusão ativa e cair para 1 PV</strong> em vez de 0. Corven sacrifica uma de suas criações para continuar de pé.</li>
+      </ul>
+      <strong>Identidade final:</strong> A promessa que fez a Eliora não admite morte. Cada infusão é uma criação — e ele pode sacrificá-las, uma a uma, para cumprir o que jurou. O campo de batalha tem um artífice que literalmente transforma suas obras em vida.
+    </div>
+  </div>
 </div>
 
 <div class="sec"><h2 class="st">Rotação de Combate Ideal</h2>
@@ -534,10 +814,90 @@ body{background:var(--dr);background-image:radial-gradient(ellipse at 25% 20%,rg
 </div>
 
 <script>
-const bg=document.getElementById('gbg');
-const sy=['⚙','⚙','⚙','✦','·','⋆'];
-for(let i=0;i<22;i++){const g=document.createElement('span');g.className='fg';g.textContent=sy[Math.floor(Math.random()*sy.length)];g.style.left=Math.random()*100+'%';g.style.animationDuration=(18+Math.random()*26)+'s';g.style.animationDelay=(Math.random()*22)+'s';g.style.fontSize=(10+Math.random()*14)+'px';bg.appendChild(g);}
-for(let i=0;i<18;i++){const s=document.createElement('div');s.className='sk';s.style.left=(10+Math.random()*80)+'%';s.style.bottom=(Math.random()*40)+'%';s.style.animationDuration=(1.5+Math.random()*2.5)+'s';s.style.animationDelay=(Math.random()*10)+'s';s.style.setProperty('--tx2',(Math.random()*40-20)+'px');bg.appendChild(s);}
+function toggleLevel(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.prog-arrow');
+  const isOpen = body.classList.toggle('open');
+  arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+}
+
+(function () {
+  const bg = document.getElementById('atmoBg');
+  if (!bg) return;
+
+  // 25 floating gear symbols
+  const gearSyms = ['⚙','⚙','⚙','✦','·','⋆'];
+  for (let i = 0; i < 25; i++) {
+    const g = document.createElement('span');
+    g.className = 'gear-sym';
+    const grx  = (150 + Math.random() * 250).toFixed(0) + 'deg';
+    const grx2 = (300 + Math.random() * 200).toFixed(0) + 'deg';
+    const gdx  = ((Math.random() - 0.5) * 60).toFixed(0) + 'px';
+    g.textContent = gearSyms[Math.floor(Math.random() * gearSyms.length)];
+    g.style.cssText = `
+      left:${(Math.random()*100).toFixed(1)}%;
+      font-size:${(10+Math.random()*14).toFixed(0)}px;
+      animation-duration:${(18+Math.random()*26).toFixed(1)}s;
+      animation-delay:${(Math.random()*22).toFixed(1)}s;
+      --grx:${grx};--grx2:${grx2};--gdx:${gdx};
+    `;
+    bg.appendChild(g);
+  }
+
+  // 20 sparks
+  for (let i = 0; i < 20; i++) {
+    const s = document.createElement('div');
+    s.className = 'spark';
+    const sdx = ((Math.random() * 40) - 20).toFixed(0) + 'px';
+    s.style.cssText = `
+      left:${(10+Math.random()*80).toFixed(1)}%;
+      bottom:${(Math.random()*40).toFixed(1)}%;
+      animation-duration:${(1.5+Math.random()*2.5).toFixed(1)}s;
+      animation-delay:${(Math.random()*10).toFixed(1)}s;
+      --sdx:${sdx};
+    `;
+    bg.appendChild(s);
+  }
+
+  // 5 mist orbs
+  for (let i = 0; i < 5; i++) {
+    const m = document.createElement('div');
+    m.className = 'mist-orb';
+    const mdx = ((Math.random()-0.5)*80).toFixed(0) + 'px';
+    const mdy = ((Math.random()-0.5)*50).toFixed(0) + 'px';
+    const sz = (100 + Math.random() * 180).toFixed(0) + 'px';
+    m.style.cssText = `
+      left:${(Math.random()*90).toFixed(1)}%;
+      top:${(Math.random()*80).toFixed(1)}%;
+      width:${sz};height:${sz};
+      animation-duration:${(10+Math.random()*12).toFixed(1)}s;
+      animation-delay:${(Math.random()*8).toFixed(1)}s;
+      --mdx:${mdx};--mdy:${mdy};
+    `;
+    bg.appendChild(m);
+  }
+
+  // 5 arc flashes
+  for (let i = 0; i < 5; i++) {
+    const a = document.createElement('div');
+    a.className = 'arc-flash';
+    a.style.cssText = `
+      left:${(Math.random()*70).toFixed(1)}%;
+      top:${(Math.random()*90).toFixed(1)}%;
+      width:${(60+Math.random()*120).toFixed(0)}px;
+      transform:rotate(${(Math.random()*360).toFixed(0)}deg);
+      animation-duration:${(4+Math.random()*6).toFixed(1)}s;
+      animation-delay:${(Math.random()*10).toFixed(1)}s;
+    `;
+    bg.appendChild(a);
+  }
+
+  // ⚙ watermark
+  const wm = document.createElement('div');
+  wm.className = 'wm';
+  wm.textContent = '⚙';
+  bg.appendChild(wm);
+})();
 </script>
 </body>
 </html>

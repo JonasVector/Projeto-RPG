@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kafka — A Caçadora de Memórias · Ficha D&amp;D 5e</title>
+<title>Kafka — A Caçadora de Memórias · Ficha D&D 5e</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root{
   --primary:    #4a0e8f;
   --mid:        #7c3aed;
   --bright:     #c084fc;
+  --lightning:  #fbbf24;
   --pale:       #f3e8ff;
   --dark:       #050010;
   --darker:     #030008;
@@ -20,68 +21,156 @@
   --mist:       #2a0860;
   --gold:       #c9a227;
   --gold-light: #e8c85a;
-  --border:     rgba(74,14,143,0.40);
+  --border:     rgba(74,14,143,0.42);
   --border-bright:rgba(192,132,252,0.5);
-  --glow:       rgba(74,14,143,0.15);
+  --glow:       rgba(74,14,143,0.18);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15%,rgba(74,14,143,0.15) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(124,58,237,0.06) 0%,transparent 45%);font-family:'EB Garamond',Georgia,serif;color:var(--text);line-height:1.75;}
-.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
+html{scroll-behavior:smooth;}
+body{
+  background:#030008;
+  background-image:
+    radial-gradient(ellipse at 50% 0%,rgba(74,14,143,0.25) 0%,transparent 55%),
+    radial-gradient(ellipse at 80% 80%,rgba(124,58,237,0.10) 0%,transparent 45%),
+    radial-gradient(ellipse at 15% 60%,rgba(74,14,143,0.08) 0%,transparent 38%);
+  background-attachment:fixed;
+  font-family:'EB Garamond',Georgia,serif;
+  color:var(--text);
+  line-height:1.75;
+  min-height:100vh;
+}
+.page{max-width:min(960px,100vw - 1rem);margin:0 auto;padding:0 0 80px;position:relative;z-index:1;}
 
-/* FLOATING PARTICLES */
-.particle-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
-.particle{position:absolute;font-size:11px;opacity:0;animation:floatP ease-in-out infinite;filter:blur(0.4px);color:var(--bright);}
-@keyframes floatP{0%{transform:translateY(108vh) translateX(0) rotate(0deg) scale(0.5);opacity:0;}8%{opacity:0.25;}50%{transform:translateY(50vh) translateX(35px) rotate(180deg) scale(0.75);opacity:0.15;}92%{opacity:0.06;}100%{transform:translateY(-8vh) translateX(-20px) rotate(340deg) scale(0.4);opacity:0;}}
+/* ── ATMOSPHERIC LAYERS ──────────────────────────────── */
+#atmoBg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
 
-/* HEADER */
-.header{background:linear-gradient(165deg,#050010 0%,#0e0528 50%,#050010 100%);border-bottom:2px solid var(--primary);position:relative;overflow:hidden;z-index:1;}
-.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 64px,rgba(74,14,143,0.15) 64px,rgba(74,14,143,0.15) 65px);}
-.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--mid),var(--bright),var(--mid),transparent);opacity:0.55;}
+/* Nebula drifts */
+.nebula{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(ellipse at 50% 50%,rgba(124,58,237,0.15),transparent 70%);
+  opacity:0;animation:nebulaDrift ease-in-out infinite;
+  filter:blur(8px);
+}
+@keyframes nebulaDrift{
+  0%  {transform:translate(0,0) scale(0.6);opacity:0;}
+  12% {opacity:0.6;}
+  50% {transform:translate(var(--ndx),var(--ndy)) scale(1.1);opacity:0.35;}
+  88% {opacity:0.08;}
+  100%{transform:translate(calc(var(--ndx)*1.6),calc(var(--ndy)*1.4)) scale(0.7);opacity:0;}
+}
+
+/* Electric sparks */
+.elec-spark{
+  position:absolute;
+  width:1px;
+  background:linear-gradient(180deg,var(--lightning),transparent);
+  opacity:0;
+  animation:elecFlash ease-out infinite;
+  transform-origin:top center;
+}
+@keyframes elecFlash{
+  0%,88%,100%{opacity:0;}
+  90%{opacity:0.6;}
+  94%{opacity:0.2;}
+  97%{opacity:0.5;}
+}
+
+/* Stars */
+.void-star{
+  position:absolute;width:1px;height:1px;border-radius:50%;
+  background:var(--bright);animation:starTwinkle ease-in-out infinite;
+}
+@keyframes starTwinkle{0%,100%{opacity:0.06;}50%{opacity:0.4;}}
+
+/* Memory fragments */
+.mem-frag{
+  position:absolute;
+  font-family:'Share Tech Mono',monospace;font-size:9px;
+  color:rgba(192,132,252,0.25);
+  letter-spacing:2px;opacity:0;
+  animation:memDrift ease-in-out infinite;
+}
+@keyframes memDrift{
+  0%  {transform:translateY(108vh) translateX(0);opacity:0;}
+  10% {opacity:0.22;}
+  50% {transform:translateY(50vh) translateX(var(--mfx));opacity:0.14;}
+  90% {opacity:0.03;}
+  100%{transform:translateY(-5vh) translateX(calc(var(--mfx)*1.4));opacity:0;}
+}
+
+/* Cosmic ripple */
+.cosmic-ring{
+  position:fixed;border:1px solid rgba(192,132,252,0.10);border-radius:50%;
+  left:50%;top:50%;width:120px;height:120px;
+  transform:translate(-50%,-50%) scale(0);
+  animation:cosmicExpand ease-out infinite;pointer-events:none;
+}
+@keyframes cosmicExpand{
+  0%  {transform:translate(-50%,-50%) scale(0);opacity:0.45;}
+  100%{transform:translate(-50%,-50%) scale(9);opacity:0;}
+}
+
+/* Watermark */
+.watermark{
+  position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-size:480px;opacity:0.020;color:var(--bright);pointer-events:none;
+  animation:wmBreathe 6s ease-in-out infinite;filter:blur(2px);line-height:1;
+}
+@keyframes wmBreathe{0%,100%{opacity:0.016;transform:translate(-50%,-50%) scale(1);}50%{opacity:0.030;transform:translate(-50%,-50%) scale(1.03);}}
+
+/* ── HEADER ──────────────────────────────────────────── */
+.header{
+  background:linear-gradient(165deg,#050010 0%,#0e0528 50%,#050010 100%);
+  border-bottom:2px solid var(--primary);
+  position:relative;overflow:hidden;z-index:1;
+}
+.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 64px,rgba(74,14,143,0.12) 64px,rgba(74,14,143,0.12) 65px);}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--mid),var(--bright),var(--mid),transparent);opacity:0.5;}
 .header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
 
-/* PORTRAIT */
-.header-portrait{width:220px;flex-shrink:0;background:#050010;border-right:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+.header-portrait{width:220px;flex-shrink:0;background:#050010;border-right:2px solid var(--primary);overflow:hidden;position:relative;}
 .portrait-inner{width:100%;height:290px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.portrait-photo{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 0.4s ease;}
+.portrait-photo{width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;transition:transform 0.4s ease;}
 .portrait-photo:hover{transform:scale(1.04);}
-.portrait-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,#030008aa 100%);pointer-events:none;}
-.portrait-label{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--bright);opacity:0.6;text-transform:uppercase;text-shadow:0 0 8px var(--primary);}
+.portrait-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(3,0,8,0.85) 100%);pointer-events:none;}
+.portrait-glow{position:absolute;inset:-2px;border:1px solid rgba(192,132,252,0.20);animation:portraitGlowK 3.5s ease-in-out infinite;}
+@keyframes portraitGlowK{0%,100%{box-shadow:inset 0 0 30px rgba(74,14,143,0.35);}50%{box-shadow:inset 0 0 50px rgba(192,132,252,0.20),0 0 0 1px rgba(251,191,36,0.08);}}
+.portrait-label{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--bright);opacity:0.55;text-transform:uppercase;}
 
-/* HEADER TEXT */
 .header-text{flex:1;padding:34px 44px;}
 .header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--mid);opacity:0.85;text-transform:uppercase;margin-bottom:10px;}
-.header-name{font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(74,14,143,0.5),0 0 15px rgba(74,14,143,0.3);letter-spacing:2px;line-height:1;margin-bottom:4px;}
-.header-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);margin-bottom:20px;letter-spacing:1.5px;opacity:0.95;}
+.header-name{font-family:'Cinzel',serif;font-size:52px;font-weight:900;color:var(--pale);letter-spacing:3px;line-height:1;margin-bottom:4px;animation:nameGlowK 4s ease-in-out infinite;}
+@keyframes nameGlowK{0%,100%{text-shadow:0 0 50px rgba(74,14,143,0.45),0 0 12px rgba(74,14,143,0.25);}50%{text-shadow:0 0 80px rgba(192,132,252,0.35),0 0 20px rgba(251,191,36,0.12);}}
+.header-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:17px;color:var(--gold);margin-bottom:20px;letter-spacing:1.5px;opacity:0.95;}
 .header-tags{display:flex;gap:7px;flex-wrap:wrap;}
-.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(74,14,143,0.15);}
-.tag.hi{background:rgba(74,14,143,0.15);border-color:var(--mid);color:var(--bright);}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(74,14,143,0.12);}
+.tag.hi{background:rgba(74,14,143,0.18);border-color:var(--mid);color:var(--bright);}
 .tag.gold{background:rgba(201,162,39,0.10);border-color:rgba(201,162,39,0.4);color:var(--gold-light);}
+.tag.elec{background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.35);color:var(--lightning);}
 
-/* STATS BAR */
-.stats-bar{background:var(--card);border-bottom:1px solid var(--border);padding:13px 40px;display:flex;flex-wrap:wrap;position:relative;z-index:1;gap:0;}
-.stat-item{flex:1;border-right:1px solid var(--border);padding:0 18px;text-align:center;min-width:90px;}
+/* ── STATS BAR ───────────────────────────────────────── */
+.stats-bar{background:var(--card);border-bottom:1px solid var(--border);padding:13px 40px;display:flex;flex-wrap:wrap;z-index:1;position:relative;}
+.stat-item{flex:1;border-right:1px solid var(--border);padding:0 16px;text-align:center;min-width:85px;}
 .stat-item:first-child{padding-left:0;}.stat-item:last-child{border-right:none;padding-right:0;}
 .stat-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
 .stat-value{font-family:'Cinzel',serif;font-size:13px;color:var(--bright);font-weight:600;}
 
-/* SECTION */
+/* ── SECTIONS ────────────────────────────────────────── */
 .sec{padding:0 40px;margin-top:32px;position:relative;z-index:1;}
 .sec-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
-.sec-title::before{content:'✦';font-size:11px;color:var(--gold);}
+.sec-title::before{content:'🌌';font-size:11px;}
 
-/* ATTRIBUTES */
-.attr-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px;}
+/* ── ATTRIBUTES ──────────────────────────────────────── */
+.attr-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:12px;}
 .attr-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:12px 4px 10px;position:relative;}
-.attr-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--primary);opacity:0.45;}
+.attr-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--primary);opacity:0.5;}
 .attr-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
 .attr-value{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:var(--text);display:block;line-height:1;}
-.attr-value.peak{color:var(--bright);text-shadow:0 0 14px rgba(74,14,143,0.45);}
+.attr-value.peak{color:var(--bright);text-shadow:0 0 14px rgba(74,14,143,0.5);}
+.attr-value.elec{color:var(--lightning);text-shadow:0 0 12px rgba(251,191,36,0.4);}
 .attr-mod{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--mid);display:block;margin-top:3px;}
 
-/* COMBAT NOTES */
-.special-notes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
-
-/* SAVES & SKILLS */
+/* ── SAVES & SKILLS ──────────────────────────────────── */
 .two-col{display:grid;grid-template-columns:230px 1fr;gap:16px;}
 .save-list,.skill-list{list-style:none;padding:0;}
 .save-item,.skill-item{display:flex;align-items:center;gap:7px;padding:3px 0;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.04);}
@@ -92,66 +181,105 @@ body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15
 .save-name,.skill-name{flex:1;color:var(--text);}
 .skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text-dim);width:28px;}
 .save-score,.skill-score{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text-dim);width:28px;text-align:right;}
-.save-score.filled,.skill-score.filled,.skill-score.peak{color:var(--bright);}
+.save-score.filled,.skill-score.filled{color:var(--bright);}
 
-/* ATTACKS */
+/* ── ATTACKS ─────────────────────────────────────────── */
 .attack-table{width:100%;border-collapse:collapse;font-size:13px;}
-.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(74,14,143,0.15);}
-.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(74,14,143,0.40);color:var(--text);vertical-align:top;}
-.attack-table tr:hover td{background:rgba(74,14,143,0.15);}
+.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(74,14,143,0.14);}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(74,14,143,0.38);color:var(--text);vertical-align:top;}
+.attack-table tr:hover td{background:rgba(74,14,143,0.14);}
 .attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
 .attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--bright);font-weight:700;}
 .attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--gold-light);}
 .attack-notes{font-size:12px;color:var(--text-dim);font-style:italic;}
 
-/* FEATURES */
+/* ── MECHANIC BOXES ──────────────────────────────────── */
+.mech-box{background:rgba(74,14,143,0.10);border:1px solid var(--border);border-left:4px solid var(--bright);padding:16px 18px;margin-bottom:16px;}
+.mech-box.elec-box{border-left-color:var(--lightning);background:rgba(251,191,36,0.05);}
+.mech-box.gold-box{border-left-color:var(--gold);}
+.mech-title{font-family:'Cinzel',serif;font-size:12px;color:var(--bright);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase;}
+.mech-box.elec-box .mech-title{color:var(--lightning);}
+.mech-box.gold-box .mech-title{color:var(--gold-light);}
+.mech-body{font-size:13.5px;color:var(--text-dim);line-height:1.7;}
+.mech-body em{color:var(--bright);font-style:italic;}
+.mech-body strong{color:var(--text);}
+.mech-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px;}
+.mech-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--text-dim);padding:4px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;text-align:center;}
+.mech-table td{padding:5px 8px;border-bottom:1px solid rgba(74,14,143,0.25);text-align:center;color:var(--text-dim);}
+.mech-table td.hi{color:var(--bright);font-family:'Share Tech Mono',monospace;font-weight:700;}
+.mech-table td.gold-v{color:var(--gold-light);font-family:'Share Tech Mono',monospace;}
+.mech-table td.elec-v{color:var(--lightning);font-family:'Share Tech Mono',monospace;font-weight:700;}
+
+/* ── FEATURES ────────────────────────────────────────── */
 .feat-section{margin-bottom:10px;}
 .feat-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:12px 0 8px;}
 .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .trait-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);padding:12px 14px;}
 .trait-block.gold-accent{border-left-color:var(--gold);}
+.trait-block.elec-accent{border-left-color:var(--lightning);}
 .trait-block.dim-accent{border-left-color:var(--mist);}
 .trait-name{font-family:'Cinzel',serif;font-size:11px;color:var(--bright);letter-spacing:0.5px;margin-bottom:5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
 .trait-block.gold-accent .trait-name{color:var(--gold-light);}
+.trait-block.elec-accent .trait-name{color:var(--lightning);}
 .trait-block.dim-accent .trait-name{color:var(--text-dim);}
 .trait-desc{font-size:13.5px;color:var(--text-dim);line-height:1.6;}
 .trait-desc em{font-style:italic;color:var(--bright);}
 .trait-desc strong{color:var(--text);}
-.feat-level{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;background:rgba(74,14,143,0.15);color:var(--mid);padding:1px 6px;}
+.feat-level{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;background:rgba(74,14,143,0.18);color:var(--mid);padding:1px 6px;}
 
-/* SPELLS */
+/* ── SPELLS ──────────────────────────────────────────── */
 .spell-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
-.spell-tag{background:var(--card-light);color:var(--bright);font-family:'Cinzel',serif;font-size:10px;padding:3px 9px;letter-spacing:1px;border:1px solid var(--border);display:inline-block;}
+.spell-tag{background:var(--card-light);color:var(--bright);font-family:'Cinzel',serif;font-size:10px;padding:3px 9px;letter-spacing:1px;border:1px solid var(--border);}
 .spell-tag.gold{background:rgba(201,162,39,0.08);color:var(--gold-light);border-color:rgba(201,162,39,0.28);}
 .spell-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:13px 0 8px;}
 .spell-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:7px;}
 .sc{background:var(--card-light);border:1px solid var(--border);border-top:2px solid var(--mist);padding:9px 12px 10px;display:flex;flex-direction:column;gap:3px;}
 .sc.cantrip{border-top-color:rgba(74,14,143,0.40);}
-.sc.expanded{border-top-color:var(--gold);}
+.sc.signature{border-top-color:var(--bright);background:rgba(74,14,143,0.12);}
+.sc.arcanum{border-top-color:var(--gold);}
+.sc.elec{border-top-color:var(--lightning);background:rgba(251,191,36,0.05);}
 .sc-type{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);opacity:0.65;}
-.sc-name{font-family:'Cinzel',serif;font-size:11.5px;font-weight:600;color:var(--bright);letter-spacing:0.4px;}
+.sc-name{font-family:'Cinzel',serif;font-size:11.5px;font-weight:600;color:var(--bright);}
 .sc.cantrip .sc-name{color:var(--text-dim);}
-.sc.expanded .sc-name{color:var(--gold-light);}
+.sc.arcanum .sc-name{color:var(--gold-light);}
+.sc.elec .sc-name{color:var(--lightning);}
 .sc-desc{font-size:12px;color:var(--text-dim);line-height:1.5;margin-top:1px;}
 
-/* TRAIT LIST (equipment) */
+/* ── LISTS ───────────────────────────────────────────── */
 ul.trait-list{list-style:none;padding:0;}
 ul.trait-list li{padding:3px 0 3px 18px;position:relative;font-size:14px;line-height:1.65;color:var(--text-dim);}
 ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold);font-size:7px;top:7px;}
-
-/* DIVIDER */
-.divider{text-align:center;margin:24px 0;color:var(--mist);font-size:14px;letter-spacing:14px;opacity:0.5;}
-
-/* INFO PILLS */
 .info-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
 .info-pill{background:var(--card);border:1px solid var(--border);padding:8px 14px;font-size:13px;color:var(--text-dim);}
 .info-pill strong{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--mid);text-transform:uppercase;display:block;margin-bottom:3px;}
+.divider{text-align:center;margin:24px 0;color:var(--mist);font-size:14px;letter-spacing:14px;opacity:0.55;}
 
-/* FOOTER */
-.footer{margin-top:50px;padding:22px 40px;text-align:center;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent 0%,#03000899 100%);position:relative;z-index:1;}
-.footer p{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);opacity:0.5;text-transform:uppercase;margin-bottom:4px;}
+/* ── PROGRESSION GUIDE ───────────────────────────────── */
+.guide-level{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);margin-bottom:8px;overflow:hidden;}
+.guide-level.tier-2{border-left-color:var(--bright);}
+.guide-level.tier-3{border-left-color:var(--lightning);}
+.guide-level.tier-4{border-left-color:var(--gold);}
+.level-header{display:flex;align-items:center;gap:12px;padding:10px 16px;cursor:pointer;user-select:none;transition:background 0.2s;}
+.level-header:hover{background:rgba(74,14,143,0.18);}
+.level-num{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--mid);width:52px;flex-shrink:0;}
+.level-title{font-family:'Cinzel',serif;font-size:12px;color:var(--bright);font-weight:700;flex:1;}
+.guide-level.tier-2 .level-title{color:var(--bright);}
+.guide-level.tier-3 .level-title{color:var(--lightning);}
+.guide-level.tier-4 .level-title{color:var(--gold-light);}
+.level-toggle{font-size:10px;color:var(--text-dim);transition:transform 0.2s;}
+.level-body{display:none;padding:0 16px 14px;border-top:1px solid var(--border);}
+.level-body.open{display:block;}
+.level-body p{font-size:13.5px;color:var(--text-dim);line-height:1.7;margin-bottom:8px;}
+.level-body p:last-child{margin-bottom:0;}
+.level-body em{color:var(--bright);font-style:italic;}
+.level-body strong{color:var(--text);}
+.spell-pill{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:2px 7px;background:rgba(74,14,143,0.18);border:1px solid var(--border);color:var(--bright);margin:2px 2px;}
+.spell-pill.gold{background:rgba(201,162,39,0.10);border-color:rgba(201,162,39,0.35);color:var(--gold-light);}
+.spell-pill.elec{background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.35);color:var(--lightning);}
 
-/* RESPONSIVE */
+.footer{margin-top:50px;padding:22px 40px;text-align:center;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent 0%,rgba(3,0,8,0.95) 100%);position:relative;z-index:1;}
+.footer p{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);opacity:0.45;text-transform:uppercase;margin-bottom:4px;}
+
 @media(max-width:680px){
   .header-inner{flex-direction:column;}
   .header-portrait{width:100%;height:200px;}
@@ -170,242 +298,784 @@ ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold
 </head>
 <body>
 
-<!-- Floating Particles -->
-<div class="particle-bg" id="particleBg"></div>
+<div id="atmoBg">
+  <div class="watermark">🌌</div>
+  <div class="cosmic-ring" style="animation-delay:0s;animation-duration:11s;"></div>
+  <div class="cosmic-ring" style="animation-delay:3.7s;animation-duration:11s;left:28%;top:38%;"></div>
+</div>
 
 <div class="page">
 
-<!-- ── HEADER ─────────────────────────────────── -->
+<!-- ── HEADER ─────────────────────────────────────────── -->
 <div class="header">
   <div class="header-inner">
     <div class="header-portrait">
       <div class="portrait-inner">
-        <img class="portrait-photo" src="/portraits/kafka.jpg" alt="Kafka" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;font-size:64px;opacity:0.15;filter:drop-shadow(0 0 20px var(--bright));">🌌</div>
+        <img class="portrait-photo" src="/portraits/kafka.jpg" alt="Kafka"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;font-size:72px;opacity:0.12;filter:drop-shadow(0 0 24px var(--bright));">🌌</div>
         <div class="portrait-overlay"></div>
+        <div class="portrait-glow"></div>
       </div>
-      <div class="portrait-label">Kafka</div>
+      <div class="portrait-label">Kafka · A Caçadora de Memórias</div>
     </div>
     <div class="header-text">
-      <div class="header-eyebrow">Ficha · D&amp;D 5e · Honkai Star Rail</div>
+      <div class="header-eyebrow">Ficha · D&amp;D 5e · Honkai: Star Rail</div>
       <div class="header-name">Kafka</div>
-      <div class="header-sub">A Caçadora de Memórias</div>
+      <div class="header-sub">A Caçadora de Memórias · Nihility</div>
       <div class="header-tags">
-        <span class="tag hi">Shadar-kai</span><span class="tag hi">Bruxo</span><span class="tag hi">Grande Antigo</span><span class="tag hi">Honkai Star Rail</span><span class="tag">Antecedente: Espiã</span><span class="tag">Nív. 20</span>
+        <span class="tag hi">Shadar-kai</span>
+        <span class="tag hi">Bruxo</span>
+        <span class="tag hi">Grande Antigo</span>
+        <span class="tag hi">Honkai: Star Rail</span>
+        <span class="tag elec">Dot Specialist</span>
+        <span class="tag">Antecedente: Espiã</span>
+        <span class="tag gold">Nível 20</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── STATS BAR ──────────────────────────────── -->
+<!-- ── STATS BAR ───────────────────────────────────────── -->
 <div class="stats-bar">
-<div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">16</span></div><div class="stat-item"><span class="stat-label">PV</span><span class="stat-value">154</span></div><div class="stat-item"><span class="stat-label">Deslocamento</span><span class="stat-value">9m</span></div><div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value">+4</span></div><div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div><div class="stat-item"><span class="stat-label">CD de Magia</span><span class="stat-value">19</span></div><div class="stat-item"><span class="stat-label">Atq. Mágico</span><span class="stat-value">+11</span></div>
+  <div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">16</span></div>
+  <div class="stat-item"><span class="stat-label">PV</span><span class="stat-value">154</span></div>
+  <div class="stat-item"><span class="stat-label">Deslocamento</span><span class="stat-value">9m</span></div>
+  <div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value">+9</span></div>
+  <div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div>
+  <div class="stat-item"><span class="stat-label">CD de Magia</span><span class="stat-value">19</span></div>
+  <div class="stat-item"><span class="stat-label">Atq. Mágico</span><span class="stat-value">+11</span></div>
+  <div class="stat-item"><span class="stat-label">Pacto Mágico</span><span class="stat-value">4×5°</span></div>
 </div>
 
-<!-- ── IDENTIDADE ────────────────────────────── -->
+<!-- ── IDENTIDADE ─────────────────────────────────────── -->
 <div class="sec">
   <div class="sec-title">Identidade</div>
   <div class="info-pills">
     <div class="info-pill"><strong>Raça</strong>Shadar-kai</div>
-    <div class="info-pill"><strong>Classe</strong>Bruxo</div>
+    <div class="info-pill"><strong>Classe</strong>Bruxo 20</div>
     <div class="info-pill"><strong>Subclasse</strong>Grande Antigo</div>
     <div class="info-pill"><strong>Antecedente</strong>Espiã</div>
     <div class="info-pill"><strong>Tendência</strong>Neutro Mau</div>
     <div class="info-pill"><strong>Idiomas</strong>Comum, Profundo, Sombrio</div>
     <div class="info-pill"><strong>Dado de Vida</strong>20d8</div>
-    <div class="info-pill"><strong>Magia</strong>Carisma</div>
+    <div class="info-pill"><strong>Atributo de Magia</strong>Carisma</div>
   </div>
-  <div class="info-pills"><span class='tag hi'>pactMagic: 4 × 5° Círculo</span></div>
 </div>
 
-<!-- ── ATRIBUTOS ──────────────────────────────── -->
+<!-- ── ATRIBUTOS ───────────────────────────────────────── -->
 <div class="sec">
   <div class="sec-title">Atributos</div>
   <div class="attr-grid">
-        <div class="attr-box">
-          <span class="attr-label">FOR</span>
-          <span class="attr-value ">10</span>
-          <span class="attr-mod">+0</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">DES</span>
-          <span class="attr-value peak">18</span>
-          <span class="attr-mod">+4</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">CON</span>
-          <span class="attr-value ">16</span>
-          <span class="attr-mod">+3</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">INT</span>
-          <span class="attr-value ">12</span>
-          <span class="attr-mod">+1</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">SAB</span>
-          <span class="attr-value ">10</span>
-          <span class="attr-mod">+0</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">CAR</span>
-          <span class="attr-value peak">20</span>
-          <span class="attr-mod">+5</span>
-        </div></div>
-  <p style="font-size:12px;color:var(--text-dim);font-style:italic;">Couro +1 (12) + Des (4) = CA 16</p>
+    <div class="attr-box"><span class="attr-label">FOR</span><span class="attr-value">10</span><span class="attr-mod">+0</span></div>
+    <div class="attr-box"><span class="attr-label">DES</span><span class="attr-value elec">18</span><span class="attr-mod">+4</span></div>
+    <div class="attr-box"><span class="attr-label">CON</span><span class="attr-value">16</span><span class="attr-mod">+3</span></div>
+    <div class="attr-box"><span class="attr-label">INT</span><span class="attr-value">12</span><span class="attr-mod">+1</span></div>
+    <div class="attr-box"><span class="attr-label">SAB</span><span class="attr-value">10</span><span class="attr-mod">+0</span></div>
+    <div class="attr-box"><span class="attr-label">CAR</span><span class="attr-value peak">20</span><span class="attr-mod">+5</span></div>
+  </div>
+  <p style="font-size:12px;color:var(--text-dim);font-style:italic;margin-bottom:0;">Couro +1 (12) + Des (+4) = CA 16 · Iniciativa: DES +4 + Alert +5 = +9</p>
 </div>
 
-<!-- ── SALVAGUARDAS & PERÍCIAS ─────────────── -->
+<!-- ── TESTES DE RESISTÊNCIA & PERÍCIAS ───────────────── -->
 <div class="sec">
-  <div class="sec-title">Salvaguardas &amp; Perícias</div>
+  <div class="sec-title">Testes de Resistência &amp; Perícias</div>
   <div class="two-col">
     <div>
-      <div class="feat-section-label">Salvaguardas</div>
-      <ul class="save-list"><li class="save-item"><span class="prof-dot "></span><span class="save-name">Força</span><span class="save-score ">+0</span></li><li class="save-item"><span class="prof-dot "></span><span class="save-name">Destreza</span><span class="save-score ">+4</span></li><li class="save-item"><span class="prof-dot "></span><span class="save-name">Constituição</span><span class="save-score ">+3</span></li><li class="save-item"><span class="prof-dot "></span><span class="save-name">Inteligência</span><span class="save-score ">+1</span></li><li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Sabedoria</span><span class="save-score filled">+6</span></li><li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Carisma</span><span class="save-score filled">+11</span></li></ul>
+      <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px;color:var(--bright);margin-bottom:8px;text-transform:uppercase;">Testes de Resistência</div>
+      <ul class="save-list">
+        <li class="save-item"><div class="prof-dot"></div><span class="save-name">Força</span><span class="save-score">+0</span></li>
+        <li class="save-item"><div class="prof-dot"></div><span class="save-name">Destreza</span><span class="save-score">+4</span></li>
+        <li class="save-item"><div class="prof-dot"></div><span class="save-name">Constituição</span><span class="save-score">+3</span></li>
+        <li class="save-item"><div class="prof-dot"></div><span class="save-name">Inteligência</span><span class="save-score">+1</span></li>
+        <li class="save-item"><div class="prof-dot filled"></div><span class="save-name">Sabedoria</span><span class="save-score filled">+6</span></li>
+        <li class="save-item"><div class="prof-dot filled"></div><span class="save-name">Carisma</span><span class="save-score filled">+11</span></li>
+      </ul>
     </div>
     <div>
-      <div class="feat-section-label">Perícias</div>
-      <ul class="skill-list"><li class="skill-item"><span class="prof-dot "></span><span class="skill-name">Acrobacia</span><span class="skill-attr">Des</span><span class="skill-score ">+4</span></li><li class="skill-item"><span class="prof-dot "></span><span class="skill-name">Arcanismo</span><span class="skill-attr">Int</span><span class="skill-score ">+1</span></li><li class="skill-item"><span class="prof-dot "></span><span class="skill-name">Atletismo</span><span class="skill-attr">For</span><span class="skill-score ">+0</span></li><li class="skill-item"><span class="prof-dot "></span><span class="skill-name">Atuação</span><span class="skill-attr">Car</span><span class="skill-score ">+5</span></li><li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Enganação</span><span class="skill-attr">Car</span><span class="skill-score peak">+11</span></li><li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Furtividade</span><span class="skill-attr">Des</span><span class="skill-score peak">+10</span></li><li class="skill-item"><span class="prof-dot "></span><span class="skill-name">História</span><span class="skill-attr">Int</span><span class="skill-score ">+1</span></li><li class="skill-item"><span class="prof-dot "></span><span class="skill-name">Intimidação</span><span class="skill-attr">Car</span><span class="skill-score ">+6</span></li><li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Intuição</span><span class="skill-attr">Sab</span><span class="skill-score peak">+6</span></li><li class="skill-item"><span class="prof-dot "></span><span class="skill-name">Investigação</span><span class="skill-attr">Int</span><span class="skill-score ">+1</span></li><li class="skill-item"><span class="prof-dot "></span><span class="skill-name">Lidar c/ Animais</span><span class="skill-attr">Sab</span><span class="skill-score ">+0</span></li><li class="skill-item"><span class="prof-dot "></span><span class="skill-name">Medicina</span><span class="skill-attr">Sab</span><span class="skill-score ">+0</span></li><li class="skill-item"><span class="prof-dot "></span><span class="skill-name">Natureza</span><span class="skill-attr">Int</span><span class="skill-score ">+1</span></li><li class="skill-item"><span class="prof-dot "></span><span class="skill-name">Percepção</span><span class="skill-attr">Sab</span><span class="skill-score ">+0</span></li><li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Persuasão</span><span class="skill-attr">Car</span><span class="skill-score peak">+11</span></li><li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Prestidigitação</span><span class="skill-attr">Des</span><span class="skill-score peak">+10</span></li><li class="skill-item"><span class="prof-dot "></span><span class="skill-name">Religião</span><span class="skill-attr">Int</span><span class="skill-score ">+1</span></li><li class="skill-item"><span class="prof-dot "></span><span class="skill-name">Sobrevivência</span><span class="skill-attr">Sab</span><span class="skill-score ">+0</span></li></ul>
+      <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px;color:var(--bright);margin-bottom:8px;text-transform:uppercase;">Perícias Principais</div>
+      <ul class="skill-list">
+        <li class="skill-item"><div class="prof-dot expertise"></div><span class="skill-attr">CAR</span><span class="skill-name">Enganação</span><span class="skill-score filled">+17</span></li>
+        <li class="skill-item"><div class="prof-dot expertise"></div><span class="skill-attr">CAR</span><span class="skill-name">Persuasão</span><span class="skill-score filled">+17</span></li>
+        <li class="skill-item"><div class="prof-dot expertise"></div><span class="skill-attr">DES</span><span class="skill-name">Furtividade</span><span class="skill-score filled">+16</span></li>
+        <li class="skill-item"><div class="prof-dot expertise"></div><span class="skill-attr">DES</span><span class="skill-name">Prestidigitação</span><span class="skill-score filled">+16</span></li>
+        <li class="skill-item"><div class="prof-dot filled"></div><span class="skill-attr">SAB</span><span class="skill-name">Intuição</span><span class="skill-score filled">+6</span></li>
+        <li class="skill-item"><div class="prof-dot filled"></div><span class="skill-attr">CAR</span><span class="skill-name">Intimidação</span><span class="skill-score filled">+11</span></li>
+        <li class="skill-item"><div class="prof-dot"></div><span class="skill-attr">DES</span><span class="skill-name">Acrobacia</span><span class="skill-score">+4</span></li>
+        <li class="skill-item"><div class="prof-dot"></div><span class="skill-attr">INT</span><span class="skill-name">Investigação</span><span class="skill-score">+1</span></li>
+      </ul>
     </div>
   </div>
 </div>
 
-<!-- ── ATAQUES ──────────────────────────────── -->
+<!-- ── ATAQUES ─────────────────────────────────────────── -->
 <div class="sec">
-  <div class="sec-title">Ataques</div>
+  <div class="sec-title">Ataques &amp; Magia de Combate</div>
   <table class="attack-table">
-    <thead><tr>
-      <th>Ataque</th><th>Bônus</th><th>Dano</th><th>Notas</th>
-    </tr></thead><tbody><tr>
-      <td class="attack-name">Eldritch Blast</td>
-      <td class="attack-bonus">+11</td>
-      <td class="attack-damage">4×1d10+5 Força</td>
-      <td class="attack-notes">4 raios (nível 17+) · Agonizing Blast +5/raio</td>
-    </tr><tr>
-      <td class="attack-name">Adaga (Espiã)</td>
-      <td class="attack-bonus">+10</td>
-      <td class="attack-damage">1d4+4 Perfurante</td>
-      <td class="attack-notes">Acuidade · Lacada em veneno</td>
-    </tr><tr>
-      <td class="attack-name">Hex + Eldritch Blast</td>
-      <td class="attack-bonus">+11</td>
-      <td class="attack-damage">4×(1d10+5)+4d6</td>
-      <td class="attack-notes">Hex ativo · +1d6 necrótico/raio</td>
-    </tr></tbody></table>
+    <thead><tr><th>Nome</th><th>Bônus / CD</th><th>Dano</th><th>Tipo / Notas</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="attack-name">Explosão Eldritch</span></td>
+        <td><span class="attack-bonus">+11</span></td>
+        <td><span class="attack-damage">4×(1d10+5)</span></td>
+        <td><span class="attack-notes">Força · 4 raios · Empurra 3m OU puxa 1,5m/raio · Média 42/turno</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Explosão + Maldição</span></td>
+        <td><span class="attack-bonus">+11</span></td>
+        <td><span class="attack-damage">4×(1d10+5)+4d6</span></td>
+        <td><span class="attack-notes">Força+necrótico · Hex ativo: +1d6 necrótico em cada raio que acerta</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Ruptura da Memória</span></td>
+        <td><span class="attack-bonus">Ação Bônus</span></td>
+        <td><span class="attack-damage">+6d6</span></td>
+        <td><span class="attack-notes">Necrótico · Detona Maldição em todos alvo em 9m simultaneamente · 3 SP</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Toque do Vácuo</span></td>
+        <td><span class="attack-bonus">CD 19 SAB</span></td>
+        <td><span class="attack-damage">4d12</span></td>
+        <td><span class="attack-notes">Necrótico · 4d12 se ferido, 4d8 se sano · Sem TR se sano · 18m</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Padrão Hipnótico</span></td>
+        <td><span class="attack-bonus">CD 19 SAB</span></td>
+        <td><span class="attack-damage">Incapacitado</span></td>
+        <td><span class="attack-notes">Conc. 1 min · Raio 9m · Encantado + Incapacitado · TR cada turno</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Adaga da Espiã</span></td>
+        <td><span class="attack-bonus">+10</span></td>
+        <td><span class="attack-damage">1d4+4+2d6</span></td>
+        <td><span class="attack-notes">Perfurante+veneno · Acuidade · Vantajosa quando invisível (Furtivo)</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Estática Sináptica</span></td>
+        <td><span class="attack-bonus">CD 19 INT</span></td>
+        <td><span class="attack-damage">8d6</span></td>
+        <td><span class="attack-notes">Psíquico · −1d6 ataques/TRs 1 min · Raio 6m · Média 28+debuff</span></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-<!-- ── HABILIDADES ───────────────────────────── -->
+<!-- ── HABILIDADES ESPECIAIS ──────────────────────────── -->
 <div class="sec">
-  <div class="sec-title">Habilidades</div>
-  <div class="feat-section"><div class="feat-section-label">Habilidades de Subclasse</div><div class="feature-grid"><div class="trait-block ">
-              <div class="trait-name">Mente Expandida <span class="feat-level">Nív.1</span></div>
-              <div class="trait-desc">Lê pensamentos superficiais em 9m (TR Sab CD 19). Comunicação telepática em 36m com qualquer criatura falante.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Enthralling Presence <span class="feat-level">Nív.1</span></div>
-              <div class="trait-desc">1×/descanso curto: criaturas em 9m (TR Sab CD 19) ficam encantadas e incapacitadas até fins do turno ou Kafka atacar.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Thought Shield <span class="feat-level">Nív.6</span></div>
-              <div class="trait-desc">Resistência psíquica. Ninguém lê seus pensamentos. Dano psíquico sofrido é refletido ao atacante.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Create Thrall <span class="feat-level">Nív.14</span></div>
-              <div class="trait-desc">Toca criatura incapacitada: encantada permanentemente, obedece comandos telepáticos.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Habilidades de Classe</div><div class="feature-grid"><div class="trait-block ">
-              <div class="trait-name">Dádiva do Pacto — Corrente <span class="feat-level">Nív.3</span></div>
-              <div class="trait-desc">Familiar com formas exóticas: Imp, Pseudodragon, Quasit ou Sprite.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Eldritch Master <span class="feat-level">Nív.20</span></div>
-              <div class="trait-desc">Recupera todos os slots Pact Magic em 1 min. 1×/descanso longo.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Habilidades Raciais</div><div class="feature-grid"><div class="trait-block dim-accent">
-              <div class="trait-name">Visão no Escuro </div>
-              <div class="trait-desc">18m em escuridão como luz fraca.</div>
-            </div><div class="trait-block dim-accent">
-              <div class="trait-name">Blessing of the Raven Queen </div>
-              <div class="trait-desc">Teletransporte 9m + resistência total 1 turno. 1×/descanso longo.</div>
-            </div><div class="trait-block dim-accent">
-              <div class="trait-name">Resistência Necrótica </div>
-              <div class="trait-desc">Resistência permanente a dano necrótico.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Talentos (Feats)</div><div class="feature-grid"><div class="trait-block gold-accent">
-              <div class="trait-name">Elusive <span class="feat-level">Nív.12</span></div>
-              <div class="trait-desc">Ataques contra Kafka nunca têm vantagem.</div>
-            </div><div class="trait-block gold-accent">
-              <div class="trait-name">Alert <span class="feat-level">Nív.16</span></div>
-              <div class="trait-desc">+5 à Iniciativa. Não pode ser surpreendida.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Invocações Místicas</div><div class="feature-grid"><div class="trait-block ">
-              <div class="trait-name">Agonizing Blast </div>
-              <div class="trait-desc">+CAR (+5) no dano de cada raio do Eldritch Blast</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Repelling Blast </div>
-              <div class="trait-desc">Alvos atingidos são empurrados 3m</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Voice of the Chain Master </div>
-              <div class="trait-desc">Sente e fala pelo familiar a qualquer distância</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">One with Shadows </div>
-              <div class="trait-desc">Em obscuridade: torna-se invisível como ação</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Eldritch Mind </div>
-              <div class="trait-desc">Vantagem em Con para manter concentração</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Grasp of Hadar </div>
-              <div class="trait-desc">Raios puxam alvos 1,5m em direção a Kafka</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Sign of Ill Omen </div>
-              <div class="trait-desc">Bestow Curse 1×/descanso longo sem slot</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Shroud of Shadow </div>
-              <div class="trait-desc">Invisibilidade à vontade sem custo de slot</div>
-            </div></div></div>
+  <div class="sec-title">Habilidades Especiais</div>
+
+  <!-- Ruptura da Memória -->
+  <div class="mech-box elec-box">
+    <div class="mech-title">⚡ Ruptura da Memória (Memory Rupture — Signature)</div>
+    <div class="mech-body">
+      <strong>Ação bônus · Custo: 3 Pontos de Feitiçaria · Raio 9m</strong><br>
+      Kafka concentra a névoa mental do Grande Antigo e <em>força todos os alvos com Maldição ativa</em> dentro de 9 metros a sofrer imediatamente o dano do próximo turno da Maldição — sem esperar. Cada alvo marcado sofre <em>1d6 de dano necrótico</em> da Maldição neste instante, sem precisar que Kafka ataque.<br><br>
+      <strong>Na prática:</strong> Se Kafka tiver 3 alvos com Maldição ativa (possível upcasting ou relançando), a Ruptura faz 3d6 médio 10 em área de ação bônus, sem usar um slot.<br>
+      <strong>Mecânica temática:</strong> Corresponde ao kit de DoT instantâneo de Kafka em Honkai: Star Rail, onde ela força a ativação de todos os DoTs aplicados de uma vez.
+    </div>
+    <table class="mech-table">
+      <thead><tr><th>Alvos Malditos</th><th>Custo</th><th>Dano Detonado</th><th>Turno Seguinte</th></tr></thead>
+      <tbody>
+        <tr><td>1 alvo</td><td>3 SP</td><td class="hi">1d6 ~ 3,5</td><td>Maldição continua normalmente</td></tr>
+        <tr><td>2 alvos</td><td>3 SP</td><td class="hi">2d6 ~ 7</td><td>Ambos continuam malditos</td></tr>
+        <tr><td>3 alvos</td><td>3 SP</td><td class="elec-v">3d6 ~ 10</td><td>Triple coverage mantida</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Enthralling Presence -->
+  <div class="mech-box">
+    <div class="mech-title">🌌 Presença Encantadora (Enthralling Presence)</div>
+    <div class="mech-body">
+      <strong>Ação · CD 19 Sabedoria · Raio 9m · 1× por descanso curto</strong><br>
+      Kafka libera um pulso de influência psíquica do Grande Antigo. Todas as criaturas em <em>9 metros</em> que falharem no TR ficam <em>Encantadas</em> e <em>Incapacitadas</em> até o fim do próximo turno de Kafka, ou até Kafka atacar qualquer criatura.<br><br>
+      <strong>Uso ideal:</strong> Use na primeira rodada de combate → criaturas incapacitadas não podem realizar ações → Kafka aplica Maldição em cada uma (sem custo extra de slot, pois o slot vai na Maldição) → ataca normalmente quebrando o encanto mas com Maldição já aplicada.<br>
+      <strong>Combinação com Criar Servo:</strong> Criatura encantada = incapacitada. Se Kafka tocar qualquer alvo incapacitado durante esta janela, ativa Criar Servo.
+    </div>
+  </div>
+
+  <!-- Bênção da Rainha Corvo -->
+  <div class="mech-box gold-box">
+    <div class="mech-title">🌑 Bênção da Rainha Corvo (Shadar-kai)</div>
+    <div class="mech-body">
+      <strong>Reação · 1× por descanso longo · Quando sofre dano</strong><br>
+      Kafka <em>teletransporta-se até 9 metros</em> para um espaço não ocupado visível, e ganha <em>resistência a todo dano</em> até o início do próximo turno.<br><br>
+      <strong>Timing perfeito:</strong> Use como reação ao hit que seria letal — o teleporte ocorre antes do dano ser calculado, e a resistência reduz pela metade qualquer dano do próprio ataque que ativou a habilidade. Escape + sobrevivência em uma única reação.<br>
+      <strong>Sinergia:</strong> Após o teleporte, Kafka pode estar em penumbra → ativar One with Shadows (invisível imediatamente) → próximo turno emerge de surpresa.
+    </div>
+  </div>
 </div>
 
-<!-- ── MAGIAS ───────────────────────────────── -->
+<!-- ── HABILIDADES DE CLASSE ───────────────────────────── -->
 <div class="sec">
-  <div class="sec-title">Magia</div>
+  <div class="sec-title">Habilidades de Classe &amp; Subclasse</div>
+
+  <div class="feat-section">
+    <span class="feat-section-label">Grande Antigo — Habilidades de Subclasse</span>
+    <div class="feature-grid">
+      <div class="trait-block">
+        <div class="trait-name">Mente Desperta <span class="feat-level">Nív.1</span></div>
+        <div class="trait-desc">Telepathy 9m — transmite pensamentos a qualquer criatura que entenda um idioma. Kafka pode ler pensamentos superficiais de criaturas em 9m (TR SAB CD 19). Comunicação telepática à distância: <em>36m</em> com criaturas familiarizadas.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Presença Encantadora <span class="feat-level">Nív.1</span></div>
+        <div class="trait-desc">1× por descanso curto: ação, raio 9m, TR SAB CD 19 ou Encantado + Incapacitado até fim do turno de Kafka. Veja seção Habilidades Especiais.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Escudo do Pensamento <span class="feat-level">Nív.10</span></div>
+        <div class="trait-desc"><em>Resistência a dano psíquico.</em> Nenhuma criatura pode ler os pensamentos de Kafka telepaticamente. Dano psíquico causado a Kafka é <em>refletido de volta ao atacante</em> automaticamente, sem TR.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Criar Servo <span class="feat-level">Nív.14</span></div>
+        <div class="trait-desc">Toca criatura <em>incapacitada</em>: encantada permanentemente, obedece comandos telepáticos. Combine com Presença Encantadora para criar servos em combate sem slots extras.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <span class="feat-section-label">Habilidades de Classe</span>
+    <div class="feature-grid">
+      <div class="trait-block">
+        <div class="trait-name">Dádiva do Pacto: Corrente <span class="feat-level">Nív.3</span></div>
+        <div class="trait-desc">Familiar com formas exóticas: Imp, Pseudodragon, Quasit ou Sprite. Kafka usa um <em>Pseudodragon</em> como observador encoberto — vê e fala através dele a qualquer distância via Voice of the Chain Master.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Mestre Eldritch <span class="feat-level">Nív.20</span></div>
+        <div class="trait-desc">1 minuto de comunicação com o Grande Antigo: recupera <em>todos os slots de Magia do Pacto</em>. 1× por descanso longo. Dobra o pool de recursos em sessões longas.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <span class="feat-section-label">Habilidades Raciais — Shadar-kai</span>
+    <div class="feature-grid">
+      <div class="trait-block dim-accent">
+        <div class="trait-name">Bênção da Rainha Corvo</div>
+        <div class="trait-desc">Reação: teletransporte 9m + resistência a todo dano 1 turno. 1× por descanso longo. Escape de emergência ou reposicionamento tático. Veja seção Habilidades Especiais.</div>
+      </div>
+      <div class="trait-block dim-accent">
+        <div class="trait-name">Resistência Necrótica</div>
+        <div class="trait-desc">Resistência permanente a dano <em>necrótico</em>. Relevante porque Kafka usa Maldição constantemente — dano necrótico de reflexo ou de zona não a afeta completamente.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <span class="feat-section-label">Talentos (Feats)</span>
+    <div class="feature-grid">
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Alerta <span class="feat-level">Nív.4</span></div>
+        <div class="trait-desc">+5 à Iniciativa (total +9). Não pode ser surpreendida. Kafka age primeiro no combate quase sempre, aplicando Maldição e Presença Encantadora antes que inimigos possam agir.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Elusiva <span class="feat-level">Nív.12</span></div>
+        <div class="trait-desc">Ataques contra Kafka nunca têm vantagem. Nenhum efeito pode conceder vantagem para atingi-la — inimigos com flanking, vantagem por Adormecida, etc., perdem todos os benefícios.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <span class="feat-section-label">Invocações Místicas (8 ao nível 20)</span>
+    <div class="feature-grid">
+      <div class="trait-block elec-accent">
+        <div class="trait-name">Blasfêmia Agônica</div>
+        <div class="trait-desc">+CAR (+5) ao dano de cada raio da Explosão Eldritch. Com 4 raios: +20 dano total. Essencial para o output sustentado de Kafka.</div>
+      </div>
+      <div class="trait-block elec-accent">
+        <div class="trait-name">Repulsar/Atrair Eldritch</div>
+        <div class="trait-desc">Repelling Blast: empurra 3m por raio. OU Grasp of Hadar: puxa 1,5m. Kafka escolhe qual usar por turno para posicionar alvos na Névoa Faminta.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Voz do Mestre da Corrente</div>
+        <div class="trait-desc">Sente e fala pelo familiar a qualquer distância planar. O Pseudodragon de Kafka é seus olhos em qualquer sala antes de entrar.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Um com as Sombras</div>
+        <div class="trait-desc">Em obscuridade ou escuridão: torna-se <em>invisível</em> como ação. Complementa Shadar-kai para operações de infiltração silenciosa.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Manto da Sombra</div>
+        <div class="trait-desc">Invisibilidade à vontade sem custo de slot — a qualquer momento, como ação. Sobrepõe Um com as Sombras para uso em luz plena também.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Mente Eldritch</div>
+        <div class="trait-desc">Vantagem em TRs de Constituição para manter concentração. Fundamental para Maldição (8h em 5°) e Padrão Hipnótico simultâneos.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Sinal do Mau Agouro</div>
+        <div class="trait-desc">Maldição Bestial 1× por descanso longo gratuita — impõe desvantagem em TR de um atributo. Use sobre o alvo a ser controlado para garantir falha em Padrão Hipnótico.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Passo Distante</div>
+        <div class="trait-desc">Far Step: teletransporte 18m por turno por 1 min como ação bônus. Mobilidade extrema. Alternativa ao Manto da Sombra para hit-and-run.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAGIAS ───────────────────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Repertório de Magias</div>
   <div class="spell-meta">
-      <span class="spell-tag">CD 19</span>
-      <span class="spell-tag">Ataque +11</span>
-      <span class="spell-tag">Carisma</span>
-      <span class="spell-tag gold">4 × 5° Círculo</span>
-    </div><div class="spell-section-label">Truques (Cantrips)</div><div class="spell-grid"><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Eldritch Blast</span><span class="sc-desc">4 raios · +5 dano/raio · Empurra ou puxa</span></div><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Toll the Dead</span><span class="sc-desc">4d12 necrótico (alvo ferido) · TR Sab CD 19</span></div><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Minor Illusion</span><span class="sc-desc">Som ou imagem · 1 min · Inv. Int CD 19</span></div></div><div class="spell-section-label">Magias</div><div class="spell-grid"><div class="sc"><span class="sc-type">1° </span><span class="sc-name">Hex</span><span class="sc-desc">+1d6 necrótico · Desvantagem em atrib.</span></div><div class="sc"><span class="sc-type">3° </span><span class="sc-name">Hypnotic Pattern</span><span class="sc-desc">TR Sab CD 19 · Incapacitado + Encantado</span></div><div class="sc"><span class="sc-type">3° </span><span class="sc-name">Counterspell</span><span class="sc-desc">Auto-cancel ≤5° com slot 5°</span></div><div class="sc"><span class="sc-type">1° </span><span class="sc-name">Silvery Barbs</span><span class="sc-desc">Relança qualquer sucesso (pior) · Aliado com vantagem</span></div><div class="sc"><span class="sc-type">5° </span><span class="sc-name">Hold Monster</span><span class="sc-desc">TR Sab CD 19 · Paralisado · Críticos auto</span></div><div class="sc"><span class="sc-type">3° </span><span class="sc-name">Enemies Abound</span><span class="sc-desc">TR Int CD 19 · Ataca aliados</span></div><div class="sc"><span class="sc-type">5° </span><span class="sc-name">Far Step</span><span class="sc-desc">18m/turno por 1 min</span></div><div class="sc"><span class="sc-type">5° </span><span class="sc-name">Synaptic Static</span><span class="sc-desc">8d6 psíquico · −1d6 em ataques e TR</span></div><div class="sc"><span class="sc-type">3° </span><span class="sc-name">Hunger of Hadar</span><span class="sc-desc">Zona de escuridão · 2d6 frio + 2d6 ácido/turno</span></div></div><div class="spell-section-label">Arcanum Místico</div><div class="spell-grid"><div class="sc expanded"><span class="sc-type">6° Círculo</span><span class="sc-name">Mass Suggestion</span><span class="sc-desc">12 criaturas · TR Sab CD 19 · 24h sem conc</span></div><div class="sc expanded"><span class="sc-type">7° Círculo</span><span class="sc-name">Crown of Stars</span><span class="sc-desc">7 motes · 4d12 radiante/mote · 1h sem conc</span></div><div class="sc expanded"><span class="sc-type">8° Círculo</span><span class="sc-name">Dominate Monster</span><span class="sc-desc">Qualquer criatura · Controle total · Concentração 1h</span></div><div class="sc expanded"><span class="sc-type">9° Círculo</span><span class="sc-name">Psychic Scream</span><span class="sc-desc">10 alvos · 14d6 psíquico · Atordoado 1 turno</span></div></div>
+    <span class="spell-tag">CD 19 SAB/INT</span>
+    <span class="spell-tag">Ataque +11</span>
+    <span class="spell-tag">Carisma</span>
+    <span class="spell-tag gold">4 Slots 5° (desc. curto)</span>
+    <span class="spell-tag">15 Magias Conhecidas</span>
+  </div>
+
+  <div class="spell-section-label">Truques (Cantrips) — conhece 4</div>
+  <div class="spell-grid">
+    <div class="sc cantrip">
+      <span class="sc-type">Truque · Atq +11</span>
+      <span class="sc-name">Explosão Eldritch</span>
+      <span class="sc-desc">4×1d10+5 força · Empurra 3m ou puxa 1,5m por raio · Alcance 36m</span>
+    </div>
+    <div class="sc cantrip">
+      <span class="sc-type">Truque · CD 19 SAB</span>
+      <span class="sc-name">Toque do Vácuo</span>
+      <span class="sc-desc">4d12 necrótico se alvo ferido, 4d8 se sano · Sem TR se sano · 18m</span>
+    </div>
+    <div class="sc cantrip">
+      <span class="sc-type">Truque · Ilusão</span>
+      <span class="sc-name">Ilusão Menor</span>
+      <span class="sc-desc">Som ou imagem estática · 1 min · Inv. INT CD 19 · Distração para furtividade</span>
+    </div>
+    <div class="sc cantrip">
+      <span class="sc-type">Truque</span>
+      <span class="sc-name">Prestidigitação</span>
+      <span class="sc-desc">Efeitos mágicos menores · Disfarce, limpeza, odores, pequenas chamas</span>
+    </div>
+  </div>
+
+  <div class="spell-section-label">Magias do Pacto</div>
+  <div class="spell-grid">
+    <div class="sc signature">
+      <span class="sc-type">1° · Conc. 8h (5° slot) · +1d6/atq</span>
+      <span class="sc-name">Maldição</span>
+      <span class="sc-desc">Necrótico por ataque · Desvantagem em atrib. escolhido · Dura 8h em 5° slot · Pilar central</span>
+    </div>
+    <div class="sc signature">
+      <span class="sc-type">3° · Conc. 1 min · CD 19 SAB</span>
+      <span class="sc-name">Padrão Hipnótico</span>
+      <span class="sc-desc">Raio 9m · Encantado + Incapacitado · TR SAB cada turno · Melhor controle de área de Kafka</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">3° · Reação</span>
+      <span class="sc-name">Contrafeitiço</span>
+      <span class="sc-desc">Auto-cancela ≤3° automaticamente · Em 5° slot: auto-cancela ≤5°. Proteção do grupo</span>
+    </div>
+    <div class="sc signature">
+      <span class="sc-type">1° · Reação</span>
+      <span class="sc-name">Faíscas Prateadas</span>
+      <span class="sc-desc">Alvo com sucesso em TR relança (pior resultado) · Aliado: vantagem no próximo TR · Gratuito!</span>
+    </div>
+    <div class="sc signature">
+      <span class="sc-type">5° · Conc. 1 min · CD 19 SAB</span>
+      <span class="sc-name">Prender Monstro</span>
+      <span class="sc-desc">Qualquer criatura · TR SAB ou Paralisado · Crítico automático adjacente · Cria Servos</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">3° · Conc. 1 min · CD 19 INT</span>
+      <span class="sc-name">Inimigos em Abundância</span>
+      <span class="sc-desc">Alvo falha TR INT: considera todos aliados inimigos · Ataca companheiros por 1 min</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">5° · Conc. 1 min · Bônus/turno</span>
+      <span class="sc-name">Passo Distante</span>
+      <span class="sc-desc">Ação bônus: teletransporte 18m por turno por 1 min · Mobilidade perfeita para hit-and-run</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">5° · CD 19 INT · Raio 6m</span>
+      <span class="sc-name">Estática Sináptica</span>
+      <span class="sc-desc">8d6 psíquico · TR INT ou −1d6 ataques/TRs por 1 min · Área de debuff + dano simultâneo</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">3° · Conc. 1 min · Zona</span>
+      <span class="sc-name">Névoa Faminta de Hadar</span>
+      <span class="sc-desc">Esfera 9m raio · Cega · 2d6 frio + 2d6 ácido/turno · Kafka vê dentro via Visão no Escuro</span>
+    </div>
+  </div>
+
+  <div class="spell-section-label">Arcanum Místico — 1× por Descanso Longo Cada</div>
+  <div class="spell-grid">
+    <div class="sc arcanum">
+      <span class="sc-type">6° · Sem conc. · CD 19 SAB</span>
+      <span class="sc-name">Sugestão em Massa</span>
+      <span class="sc-desc">12 criaturas, sugestão razoável por 24h sem concentração · A manipulação definitiva de Kafka</span>
+    </div>
+    <div class="sc arcanum">
+      <span class="sc-type">7° · Sem conc. · 1h</span>
+      <span class="sc-name">Coroa de Estrelas</span>
+      <span class="sc-desc">7 motes · Ação bônus: 4d12 radiante/mote, +11 ataque · Média 26/mote · Total potencial 182</span>
+    </div>
+    <div class="sc arcanum">
+      <span class="sc-type">8° · Conc. 1h · CD 19 SAB</span>
+      <span class="sc-name">Dominar Monstro</span>
+      <span class="sc-desc">Qualquer criatura · Controle total · 1h concentração · Versão de combate de Criar Servo</span>
+    </div>
+    <div class="sc arcanum">
+      <span class="sc-type">9° · CD 19 INT · 10 alvos</span>
+      <span class="sc-name">Grito Psíquico</span>
+      <span class="sc-desc">14d6 psíquico em 10 alvos · Falha: Atordoado 1 min · Ressonância com Escudo do Pensamento</span>
+    </div>
+  </div>
 </div>
 
-<!-- ── EQUIPAMENTO ──────────────────────────── -->
+<!-- ── EQUIPAMENTO ─────────────────────────────────────── -->
 <div class="sec">
-  <div class="sec-title">Equipamento</div>
-  <ul class="trait-list"><li>Couro +1</li><li>Dagger of Venom (Adaga Venenosa)</li><li>Foco Arcano (cristal cósmico)</li><li>Kit de Disfarce Completo</li><li>Kit de Envenenamento Master</li><li>Ferramentas de Ladrão</li><li>Cordas de Seda (50m)</li><li>3 Frascos de Ácido</li><li>Diário criptografado</li></ul>
+  <div class="sec-title">Equipamento &amp; Itens</div>
+  <ul class="trait-list">
+    <li><strong>Couro +1</strong> — CA 12+1+DES = 16; leve, silencioso para Furtividade</li>
+    <li><strong>Adaga do Veneno</strong> — 1d4+4 perfurante + 2d6 veneno, Acuidade; Kafka a mantém em vária posições escondidas</li>
+    <li><strong>Foco Arcano — Cristal Cósmico</strong> — pendant de pedra estelar que pulsa com energia do Grande Antigo; canaliza magias sem componentes materiais</li>
+    <li><strong>Kit de Disfarce Completo</strong> — 10 identidades documentadas, cabelos, lentes, roupas de vários estratos sociais</li>
+    <li><strong>Kit de Envenenamento Master</strong> — 12 doses de venenos distintos, todos aplicáveis à adaga como ação bônus</li>
+    <li><strong>Ferramentas de Ladrão</strong> — proficiência; abre qualquer fechadura mecânica em 6s</li>
+    <li><strong>Diário Criptografado</strong> — cifrado em linguagem do Grande Antigo; lista contatos, missões passadas, memórias alteradas</li>
+    <li><strong>Poções de Cura Superior ×2</strong> — 8d4+8 PV como ação bônus</li>
+  </ul>
 </div>
 
-<!-- ── PERSONALIDADE ─────────────────────────── -->
+<!-- ── PERSONALIDADE ───────────────────────────────────── -->
 <div class="sec">
-  <div class="sec-title">Personalidade</div>
-  <div class="trait-block"><div class="trait-name">Traços de Personalidade</div><div class="trait-desc">Sorri constantemente, com leveza que nunca parece forçada. Fala pouco sobre si. Kafka não é misteriosa por esforço — ela simplesmente não existe da forma que os outros esperam.</div></div><div class="trait-block"><div class="trait-name">Ideais</div><div class="trait-desc">Informação é poder. Não serve à hierarquia porque acredita nela — serve porque é a posição mais conveniente.</div></div><div class="trait-block"><div class="trait-name">Vínculos</div><div class="trait-desc">Silver — a parceira que talvez seja a única a saber onde Kafka termina e onde o Grande Antigo começa.</div></div><div class="trait-block"><div class="trait-name">Fraquezas</div><div class="trait-desc">A entidade reescreve memórias sem aviso. Kafka não sabe quais emoções são suas. A insegurança ontológica é o único sentimento do qual tem certeza.</div></div>
+  <div class="sec-title">Personalidade &amp; Lore</div>
+  <div class="feature-grid">
+    <div class="trait-block">
+      <div class="trait-name">Traços de Personalidade</div>
+      <div class="trait-desc">Sorri constantemente, com leveza que nunca parece forçada. Fala pouco sobre si. Kafka não é misteriosa por esforço — ela simplesmente <em>não existe da forma que os outros esperam</em> que uma pessoa exista.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Ideais</div>
+      <div class="trait-desc"><em>Informação é poder.</em> Kafka não serve à hierarquia porque acredita nela — serve porque é a posição mais conveniente. Qualquer lealdade que demonstra pode ser revogada sem culpa ou aviso.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Vínculos</div>
+      <div class="trait-desc"><em>Silver</em> — a parceira que talvez seja a única a saber onde Kafka termina e onde o Grande Antigo começa. Kafka protege esse vínculo de formas que ela mesma não consegue nomear.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Fraquezas</div>
+      <div class="trait-desc">A entidade <em>reescreve memórias sem aviso</em>. Kafka não sabe quais emoções são suas e quais foram implantadas. A insegurança ontológica é o único sentimento do qual tem certeza de ser dela.</div>
+    </div>
+  </div>
+
+  <div class="divider">⭐ · · · 🌌 · · · ⭐</div>
+
+  <div class="trait-block" style="margin-top:16px;">
+    <div class="trait-name">Histórico — O Que Resta de uma Pessoa</div>
+    <div class="trait-desc">
+      Kafka não sabe exatamente quando estabeleceu o pacto com o Grande Antigo. Essa é, de certa forma, a essência do problema.<br><br>
+      Ela serve à Nihility — uma organização que opera nas margens do cosmos, coletando informações sobre civilizações inteiras antes de permitir que o destino as consuma. Não por crueldade: por <em>convicção filosófica de que o fim é inevitável</em>, e que vale documentar o que existiu antes do silêncio.<br><br>
+      Seu papel é infiltrar, extrair, manipular. Kafka entra em estruturas de poder como névoa — invisível até que seja tarde demais. Ela não deixa inimigos vivos como ato de misericórdia: deixa porque inimigos conscientes são mais úteis que corpos.<br><br>
+      A Grande Entidade sussurra constantemente. Kafka aprendeu a tratar os sussurros como ruído de fundo — como quem vive perto de uma cachoeira e deixa de ouvi-la. Mas às vezes, quando está quieta demais, ela percebe que os pensamentos que acredita serem seus têm uma <em>qualidade ligeiramente diferente da sua voz interna</em>.<br><br>
+      Ela nunca menciona isso.
+    </div>
+  </div>
 </div>
 
-<div class="divider">✦ ✧ ✦</div>
+<div class="divider">🌌 ✦ 🌌</div>
 
-<!-- ── FOOTER ────────────────────────────────── -->
+<!-- ── GUIA DE PROGRESSÃO ───────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Guia de Progressão — Níveis 1 a 20</div>
+  <p style="font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:18px;">Bruxo · Grande Antigo · Shadar-kai · Clique para expandir</p>
+
+  <div class="guide-level">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 1</span>
+      <span class="level-title">Primeiro Contato — A Entidade Sussurra</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Habilidades de Subclasse:</strong> <em>Mente Desperta</em> (telepatia 9m, lê pensamentos com TR SAB CD) e <em>Presença Encantadora</em> (1× descanso curto: CD SAB, encantado + incapacitado).</p>
+      <p><strong>Truques (2):</strong> <span class="spell-pill">Explosão Eldritch</span> — 1d10 força a distância; <span class="spell-pill">Toque do Vácuo</span> — 1d8/1d12 necrótico sem TR.</p>
+      <p><strong>Magias (2):</strong> <span class="spell-pill">Maldição</span> — +1d6 necrótico por ataque; <span class="spell-pill">Faíscas Prateadas</span> — reação gratuita que pode transformar sucesso inimigo em falha.</p>
+      <p><strong>Tática nível 1:</strong> Use Presença Encantadora no primeiro turno (1 slot de 1° gasto + Maldição aplicada durante a janela). Depois Explosão Eldritch com Maldição fazendo +1d6 extra. Faíscas Prateadas como reação para proteger aliados de saves críticos.</p>
+    </div>
+  </div>
+
+  <div class="guide-level">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 2</span>
+      <span class="level-title">Invocações — O Pacto Ganha Forma</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Invocações Místicas (2):</strong> <em>Blasfêmia Agônica</em> (+CHA ao dano de cada raio) e <em>Sinal do Mau Agouro</em> (Maldição Bestial gratuita 1×/longo, impõe desvantagem em TR escolhido).</p>
+      <p><strong>Magia nova:</strong> <span class="spell-pill">Ilusão Menor</span> como truque adicional — cria distrações para furtividade. <span class="spell-pill">Névoa Faminta de Hadar</span> (1° slot) — zona de controle e dano.</p>
+      <p><strong>Tática nível 2:</strong> Sinal do Mau Agouro no alvo prioritário (desvantagem em SAB) → Maldição no mesmo alvo → Explosão Eldritch. O alvo agora tem desvantagem em qualquer TR de SAB futuro (Padrão Hipnótico, etc.).</p>
+    </div>
+  </div>
+
+  <div class="guide-level">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 3</span>
+      <span class="level-title">Dádiva da Corrente — O Familiar Espião</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Dádiva do Pacto: Corrente</strong> — Kafka invoca um <em>Pseudodragon</em> como familiar. Invisível, pode sobrevoar e observar. Com Voice of the Chain Master (futura invocação), transmite visão e sons a qualquer distância.</p>
+      <p><strong>Invocação nova:</strong> <em>Um com as Sombras</em> — em obscuridade: ação, torna-se invisível. Kafka pode se posicionar no escuro antes de atacar (vantagem em todos os ataques até o fim do turno).</p>
+      <p><strong>Magia nova (slots de 2°):</strong> <span class="spell-pill">Padrão Hipnótico</span> — Raio 9m, CD SAB, encantado + incapacitado. Este será o segundo pilar do kit ao lado da Maldição.</p>
+    </div>
+  </div>
+
+  <div class="guide-level">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 4</span>
+      <span class="level-title">Alerta — Kafka Sempre Age Primeiro</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>ASI escolhida:</strong> <em>Alerta</em> — +5 à Iniciativa (total +9 com DES+4). Não pode ser surpreendida. Com Iniciativa +9, Kafka age antes de praticamente todo antagonista — Presença Encantadora no turno 0, inimigos incapacitados já na primeira ação do grupo.</p>
+      <p><strong>Truque novo (total 3):</strong> <span class="spell-pill">Prestidigitação</span> — efeitos de disfarce, comunicação não-verbal, manipulação ambiental.</p>
+      <p><strong>Vantagem do Alerta:</strong> No início do combate, Kafka age primeiro → Presença Encantadora incapacita todos em 9m → aliados têm turno completo de setup com inimigos incapacitados → quando inimigos finalmente agem, já estão maldicentes e posicionados desvantajosamente.</p>
+    </div>
+  </div>
+
+  <div class="guide-level tier-2">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 5</span>
+      <span class="level-title">Tier 2 — Slots de 3° e Controle Real</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Slots de 3° círculo (2 slots).</strong> Maldição em slot 3° dura 8 horas. Padrão Hipnótico em slot 3° é agora o controle de grupo padrão.</p>
+      <p><strong>Invocação nova:</strong> <em>Voz do Mestre da Corrente</em> — Kafka sente e fala pelo Pseudodragon a qualquer distância. Ele pode infiltrar salas, ouvir conversas, transmitir para Kafka que está escondida.</p>
+      <p><strong>Magia nova:</strong> <span class="spell-pill">Inimigos em Abundância</span> (3°) — TR INT CD 19, alvo ataca seus aliados. Complemento de controle quando Padrão Hipnótico não é aplicável (alvos imunes a encantamento).</p>
+      <p><strong>Combo DoT nível 5:</strong> Maldição (8h, 1 slot) → cada Explosão Eldritch: 1d10+5+1d6 = média 12 por raio, 48/turno com 4 raios. Sustentado sem gastar mais slots.</p>
+    </div>
+  </div>
+
+  <div class="guide-level tier-2">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 6</span>
+      <span class="level-title">Mente Eldritch — Concentração Inabalável</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Invocação nova:</strong> <em>Mente Eldritch</em> — vantagem em TRs de CON para concentração. Kafka pode manter Maldição e Padrão Hipnótico simultaneamente — se levar hit, a vantagem no TR evita perder ambas as concentrações.</p>
+      <p><strong>Magia nova:</strong> <span class="spell-pill">Contrafeitiço</span> (3°) — cancela magia inimiga como reação. Vital em encontros com conjuradores.</p>
+      <p><strong>Invocação extra:</strong> <em>Garra de Hadar</em> — cada raio puxa 1,5m. Movimente alvos para dentro da Névoa Faminta ou fora de posições vantajosas.</p>
+      <p><strong>Escudo do Pensamento (Subclasse lv10 — planejando):</strong> Quando ativo, dano psíquico de inimigos que tentarem ler pensamentos de Kafka é refletido de volta. Com Grito Psíquico (Arcanum 9°) futuro, isso cria uma zona de retribuição.</p>
+    </div>
+  </div>
+
+  <div class="guide-level tier-2">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 7–8</span>
+      <span class="level-title">Expansão do Arsenal — Slots de 4° e ASI</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Nível 7 — Slots de 4° círculo.</strong> Maldição em slot 4° ainda apenas 8h (slot 5° é o cap para 8h). Mas agora Kafka tem mais flexibilidade: 2 slots de 4°.</p>
+      <p><strong>Magia nova (lv7):</strong> <span class="spell-pill">Passo Distante</span> — teletransporte 18m por turno como ação bônus por 1 minuto. Kafka torna-se literalmente impossível de alcançar em mêlée.</p>
+      <p><strong>Nível 8 — ASI:</strong> +2 CAR (18→20). CD: <em>19</em>. Ataque: <em>+11</em>. Blasfêmia Agônica: <em>+5/raio</em>. Todas as magias de controle ficam notavelmente mais difíceis de resistir.</p>
+      <p><strong>Dano nível 8 por turno (Maldição ativa, 4 raios):</strong> 4×(1d10+5+1d6) = 4×12 = média <em>48 dano sustentado</em> sem gastar novos slots.</p>
+    </div>
+  </div>
+
+  <div class="guide-level tier-2">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 9</span>
+      <span class="level-title">Slots de 5° — Prender Monstro e Maldição Eterna</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Slots de 5° círculo!</strong> Bruxos recuperam em descanso curto. <em>Maldição em 5° slot dura 8 horas</em> — não apenas um encontro, mas toda a sessão de combate.</p>
+      <p><strong>Magia nova:</strong> <span class="spell-pill">Prender Monstro</span> — CD SAB, qualquer criatura paralisada 1 min. Crítico automático adjacente. Combine com Criar Servo (nível 14) para converter inimigos.</p>
+      <p><strong>Magia nova:</strong> <span class="spell-pill">Estática Sináptica</span> — 8d6 psíquico em raio 6m, TR INT, falha = −1d6 ataques/TRs por 1 minuto. Debuff massivo de área além do dano.</p>
+      <p><strong>Economia de slots nível 9:</strong> Use 1 slot de 5° na Maldição (8h) → 3 slots restantes para Prender Monstro, Estática Sináptica ou Contrafeitiço durante o dia. Eldritch Master futuramente duplicará isso.</p>
+    </div>
+  </div>
+
+  <div class="guide-level tier-2">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 10</span>
+      <span class="level-title">Escudo do Pensamento — Reflexo Psíquico</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Habilidade nova (Subclasse):</strong> <em>Escudo do Pensamento</em> — resistência a dano psíquico + reflexo: qualquer criatura que cause dano psíquico a Kafka sofre o mesmo valor de volta automaticamente.</p>
+      <p><strong>Invocação nova:</strong> <em>Manto da Sombra</em> — invisibilidade à vontade, qualquer lugar, como ação. Sobreescala Um com as Sombras. Kafka agora pode desaparecer em qualquer situação, não apenas em escuridão.</p>
+      <p><strong>4 slots de 5° disponíveis.</strong> Com 2 descansos curtos por dia longo: 8 uses de Prender Monstro/Maldição. Kafka é praticamente inesgotável em recursos de controle.</p>
+    </div>
+  </div>
+
+  <div class="guide-level tier-3">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 11</span>
+      <span class="level-title">Tier 3 — Arcanum Místico e Poder Cósmico</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Arcanum Místico (6°):</strong> <em>Sugestão em Massa</em> — 12 criaturas por 24h sem concentração. TR SAB CD 19. A ferramenta de manipulação política definitiva de Kafka para além do combate.</p>
+      <p><strong>Ruptura da Memória ativa:</strong> Em nível 11, Kafka tem Pontos de Feitiçaria suficientes (11 SP = nível) para usar Ruptura (3 SP) repetidamente durante o dia, independente dos slots.</p>
+      <p><strong>Sinergia nível 11:</strong> Padrão Hipnótico em grupo → aplica Maldição em 3+ alvos incapacitados → Ruptura da Memória detonando 3d6 imediatamente como ação bônus → Explosão Eldritch com todos os 4 raios em sequência. Um turno que faz mais dano médio que a maioria de personagens de ataque.</p>
+    </div>
+  </div>
+
+  <div class="guide-level tier-3">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 12</span>
+      <span class="level-title">Elusiva — Impossível de Acertar com Vantagem</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>ASI escolhida:</strong> <em>Elusiva</em> — ataques contra Kafka nunca têm vantagem. Nenhum flanking, nenhuma condição, nenhuma magia pode conceder vantagem para atingi-la.</p>
+      <p><strong>Sinergia defensiva completa:</strong><br>
+      — Elusiva: sem vantagem contra ela<br>
+      — Manto da Sombra: invisível à vontade<br>
+      — Bênção da Rainha Corvo: teleporte + resistência total como reação<br>
+      — Passo Distante: move 18m/turno inalcançável</p>
+      <p>Kafka nível 12 é praticamente impossível de eliminar para inimigos sem recursos específicos anti-fuga.</p>
+    </div>
+  </div>
+
+  <div class="guide-level tier-3">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 13</span>
+      <span class="level-title">Arcanum 7° — Coroa de Estrelas</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Arcanum Místico (7°):</strong> <em>Coroa de Estrelas</em> — 7 motes orbitam Kafka por 1h. Ação bônus: dispara 1 mote em alcance 36m, +11 ataque, 4d12 radiante (média 26). Não gasta slot, sem concentração.</p>
+      <p><strong>Turno completo de burst nível 13:</strong> Explosão Eldritch 4 raios (média 42) + Maldição (+4d6 = +14) + Mote da Coroa (ação bônus, +26) = <em>~82 dano médio em um turno</em> sem gastar slot.</p>
+      <p>Os 7 motes somam potencial de <em>182 dano radiante</em> ao longo de 7 turnos — essencialmente um recurso extra de dano paralelo ao kit principal.</p>
+    </div>
+  </div>
+
+  <div class="guide-level tier-3">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 14</span>
+      <span class="level-title">Criar Servo — Manipulação Permanente</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Habilidade nova (Subclasse):</strong> <em>Criar Servo</em> — toque em incapacitado: encantado permanentemente. Sem limite de servos.</p>
+      <p><strong>Combo Kafka-style:</strong> Presença Encantadora (incapacita grupo) → toca o mais valioso → servo permanente imediato. Tudo em uma abertura de combate.</p>
+      <p><strong>Ou via Prender Monstro:</strong> Slot 5° → paralisado = incapacitado → toque → servo. Mais lento (2 turnos) mas funciona em qualquer criatura, não apenas humanos.</p>
+      <p><strong>Kafka como agente de longo prazo:</strong> Ao longo de uma campanha, Kafka pode ter acumulado dezenas de servos em posições estratégicas — informantes, guardas corrompidos, aliados políticos. Mais poderosa fora do combate do que dentro.</p>
+    </div>
+  </div>
+
+  <div class="guide-level tier-3">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 15–16</span>
+      <span class="level-title">Arcanum 8° e Último ASI</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Arcanum Místico (8°):</strong> <em>Dominar Monstro</em> — qualquer criatura, TR SAB CD 19, controle total por 1h/concentração. Versão de combate de Criar Servo — imediata mas temporária.</p>
+      <p><strong>Nível 16 — Invocação extra (8ª):</strong> <em>Passo Distante como Invocação</em> — complementa Manto da Sombra para máxima mobilidade sem gastar slots.</p>
+      <p><strong>Posição nível 16:</strong> 4 slots de 5° (1 Maldição 8h + 3 para Prender Monstro/Estática Sináptica), Arcanum 8° Dominar Monstro, 11 SP para Ruptura da Memória e Contrafeitiços. Kafka opera em capacidade quase plena.</p>
+    </div>
+  </div>
+
+  <div class="guide-level tier-4">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 17</span>
+      <span class="level-title">Tier 4 — Grito Psíquico: 10 Alvos, 14d6</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Arcanum 9°:</strong> <em>Grito Psíquico</em> — 10 alvos, 14d6 psíquico (média 49) cada, TR INT CD 19 ou <em>Atordoado por 1 minuto</em>. Atordoado = crítico automático adjacente.</p>
+      <p><strong>Sinergia com Escudo do Pensamento:</strong> Inimigo causa dano psíquico a Kafka → sofre o mesmo de volta. Com Grito Psíquico, qualquer contra-ataque psíquico retroalimenta.</p>
+      <p><strong>Explosão Eldritch:</strong> 4 raios completos (máximo em nível 17). Dano sustentado com Maldição: 4×(1d10+5)+4d6 = média <em>56/turno</em> sem gastar um único slot.</p>
+      <p><strong>Abertura ideal nível 17:</strong> Alerta (+9 init) → age primeiro → Grito Psíquico (10 alvos Atordoados, 49 médio cada) → todos críticos automáticos para aliados → Kafka aplica Maldição durante janela de Presença Encantadora → campo de batalha dominado em turno 1.</p>
+    </div>
+  </div>
+
+  <div class="guide-level tier-4">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 18–19</span>
+      <span class="level-title">Penúltima Fase — Maldição Diária</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Maldição em 5° slot = 8h:</strong> Em dias de campanha onde há múltiplos encontros, Kafka aplica Maldição uma vez e ela persiste pelo dia inteiro. Todos os 4 raios de EB carregam o bônus de 1d6 extra sem custo adicional por encontro.</p>
+      <p><strong>Nível 19 — Último Talento:</strong> Opção A: <em>Tough</em> (+40 PV, total 194) para durabilidade. Opção B: <em>Observador</em> (+5 Percepção passiva, lê lábios) para roleplay de espiã.</p>
+      <p><strong>Pontos de Feitiçaria (19 SP):</strong> Ruptura da Memória (3 SP) pode ser usada ~6 vezes por dia. Combinada com Maldição persistente em múltiplos alvos, isso é ~18d6 de dano de ação bônus por dia sem tocar um único slot.</p>
+    </div>
+  </div>
+
+  <div class="guide-level tier-4">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 20</span>
+      <span class="level-title">Mestre Eldritch — A Caçadora Completa</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Habilidade final:</strong> <em>Mestre Eldritch</em> — 1 minuto com a Entidade: recupera todos os 4 slots de 5°. 1× por descanso longo. Em sessões longas, Kafka efetivamente dobra seus recursos de controle.</p>
+      <p><strong>Estatísticas finais:</strong> CA 16, 154 PV, CD 19, Atq +11, Init +9 (nunca surpreendida), Elusiva (sem vantagem contra). 20 SP por desc. longo + Mestre Eldritch.</p>
+      <p><strong>Sequência de combate definitiva (nível 20):</strong></p>
+      <p><em>Antes do combate:</em> Maldição em 5° slot (8h) no alvo prioritário. Pseudodragon observa a sala. Kafka ativa Manto da Sombra para aproximação invisível.</p>
+      <p><em>Rodada 1 (Iniciativa +9 — age primeiro):</em> Grito Psíquico (Arcanum 9°) → 10 alvos, 14d6 médio 49 cada. Falha = Atordoados 1 min. Ação bônus: Coroa de Estrelas disparada no alvo mais resistente (4d12 ~26).</p>
+      <p><em>Rodada 2:</em> Presença Encantadora (1× desc. curto) → inimigos que sobreviveram ficam incapacitados → Kafka aplica segunda Maldição no mini-boss (agora dois alvos maldicentes). Ação bônus: Ruptura da Memória (3 SP) detona ambas as Maldições (~2d6 = 7 imediato). Mote da Coroa no mais fraco.</p>
+      <p><em>Rodada 3+:</em> Explosão Eldritch (4 raios) + Maldição ativa = 56/turno médio. Se boss, Prender Monstro (1 slot 5°) → paralisado → Criar Servo = convertido. Faíscas Prateadas como reação para proteger TR de aliado crítico.</p>
+      <p><strong>Kafka nível 20 não é um caster de dano nem um controller puro. É uma máquina de informação e manipulação</strong> com poder de combate suficiente para sustentar a posição sozinha. Ela converte inimigos, reescreve lealdades, e desaparece antes que alguém entenda o que aconteceu. Exatamente como o Grande Antigo que a alimenta.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider">🌌 ✦ 🌌</div>
+
 <div class="footer">
   <p>Kafka · Bruxo Grande Antigo · Nível 20</p>
-  <p>D&amp;D 5e · Honkai Star Rail · Sistema de Fichas RPG</p>
+  <p>D&amp;D 5e · Honkai: Star Rail · Shadar-kai</p>
+  <p>Akasharium · Sistema de Fichas RPG</p>
 </div>
 
 </div><!-- /page -->
 
 <script>
-(function() {
-  const particles = "⭐✦🌌".split("");
-  const container = document.getElementById('particleBg');
-  for (let i = 0; i < 20; i++) {
-    const p = document.createElement('span');
-    p.className = 'particle';
-    p.textContent = particles[i % particles.length];
-    p.style.left = (Math.random() * 100) + '%';
-    p.style.animationDuration = (12 + Math.random() * 18) + 's';
-    p.style.animationDelay = (Math.random() * 20) + 's';
-    p.style.fontSize = (9 + Math.random() * 6) + 'px';
-    container.appendChild(p);
+(function(){
+  const bg=document.getElementById('atmoBg');
+
+  // Nebula blobs (18)
+  for(let i=0;i<18;i++){
+    const n=document.createElement('div');
+    n.className='nebula';
+    const sz=80+Math.random()*160;
+    n.style.cssText=`left:${Math.random()*110-5}%;top:${Math.random()*110-5}%;width:${sz}px;height:${sz}px;--ndx:${-60+Math.random()*120}px;--ndy:${-60+Math.random()*120}px;animation-duration:${20+Math.random()*25}s;animation-delay:${Math.random()*30}s;`;
+    bg.appendChild(n);
+  }
+
+  // Stars (40)
+  for(let i=0;i<40;i++){
+    const s=document.createElement('div');
+    s.className='void-star';
+    s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;animation-duration:${2+Math.random()*5}s;animation-delay:${Math.random()*7}s;`;
+    bg.appendChild(s);
+  }
+
+  // Memory fragments (10)
+  const frags=['█▓░','▒▓█','░░█','███','▓▒░','◆◇◆','∿∾∿','⬡⬢⬡'];
+  for(let i=0;i<10;i++){
+    const m=document.createElement('div');
+    m.className='mem-frag';
+    m.textContent=frags[i%frags.length];
+    m.style.cssText=`left:${Math.random()*100}%;--mfx:${-30+Math.random()*60}px;animation-duration:${16+Math.random()*20}s;animation-delay:${Math.random()*25}s;`;
+    bg.appendChild(m);
+  }
+
+  // Electric sparks (12)
+  for(let i=0;i<12;i++){
+    const e=document.createElement('div');
+    e.className='elec-spark';
+    const h=30+Math.random()*80;
+    e.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;height:${h}px;transform:rotate(${Math.random()*360}deg);animation-duration:${4+Math.random()*8}s;animation-delay:${Math.random()*15}s;`;
+    bg.appendChild(e);
   }
 })();
-</script>
 
+function toggleLevel(header){
+  const body=header.nextElementSibling;
+  const toggle=header.querySelector('.level-toggle');
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  toggle.style.transform=isOpen?'':'rotate(180deg)';
+}
+</script>
 </body>
 </html>

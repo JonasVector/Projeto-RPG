@@ -81,14 +81,14 @@ export default function HomeHero({ characterCount }: HomeHeroProps) {
 
           {characterCount > 0 && (
             <a
-              href="#personagens"
+              href="/jogadores"
               className="font-mono text-xs uppercase tracking-[0.2em] px-10 py-3 border transition-colors hover:border-[rgba(201,162,39,0.4)]"
               style={{
                 borderColor: "rgba(255,255,255,0.12)",
                 color: "var(--color-rpg-text-muted)",
               }}
             >
-              Ver Personagens ({characterCount})
+              Ver Jogadores
             </a>
           )}
         </div>

@@ -14,6 +14,7 @@ export interface PlayerStats {
   totalCharacters: number;
   primarySystem: string;
   favoriteSystems: string[];
+  [key: string]: unknown;
 }
 
 export interface Player {

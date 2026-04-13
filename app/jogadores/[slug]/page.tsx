@@ -2,8 +2,8 @@ import { getPlayer, getAllPlayers } from "@/lib/players";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import OrnamentLine from "@/components/ui/OrnamentLine";
-import CharacterCard from "@/components/players/CharacterCard";
 import { SYSTEM_LABELS, SYSTEM_ICONS } from "@/lib/system-labels";
+import SystemSelectionCard from "@/components/players/SystemSelectionCard";
 
 export async function generateStaticParams() {
   const players = getAllPlayers();
@@ -19,6 +19,15 @@ const SYSTEM_ACCENT: Record<string, string> = {
   avatar:     "#7aa87a",
 };
 
+const SYSTEM_DESCRIPTIONS: Record<string, string> = {
+  dnd:        "Dungeons & Dragons 5ª Edição",
+  daggerheart:"Sistema narrativo de fantasia",
+  vampiro:    "Vampiro: A Máscara 5ª Edição",
+  candela:    "Horror investigativo vitoriano",
+  sacramento: "RPG de ficção científica",
+  avatar:     "Lendas de Avatar",
+};
+
 export default async function PlayerPage({
   params,
 }: {
@@ -28,12 +37,12 @@ export default async function PlayerPage({
   const player = getPlayer(slug);
   if (!player) notFound();
 
-  // Group characters by system
-  const bySystem: Record<string, typeof player.characters> = {};
+  // Group characters by system, count per system
+  const bySystem: Record<string, number> = {};
   for (const ch of player.characters) {
-    if (!bySystem[ch.system]) bySystem[ch.system] = [];
-    bySystem[ch.system].push(ch);
+    bySystem[ch.system] = (bySystem[ch.system] || 0) + 1;
   }
+  const systems = Object.keys(bySystem);
 
   const accent = "#b87333";
   const border = "rgba(184,115,51,0.25)";
@@ -50,7 +59,6 @@ export default async function PlayerPage({
           borderBottom: `2px solid ${accent}`,
         }}
       >
-        {/* Subtle pattern */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -69,7 +77,7 @@ export default async function PlayerPage({
 
           <OrnamentLine color={accent} opacity={0.45} width={160} />
 
-          <div className="flex items-end gap-8 mt-3">
+          <div className="flex flex-col sm:flex-row sm:items-end gap-4 sm:gap-8 mt-3">
             {/* Avatar sigil */}
             <div
               className="flex-shrink-0 w-20 h-20 rounded border-2 flex items-center justify-center font-display text-4xl font-bold animate-fade-rise"
@@ -90,7 +98,7 @@ export default async function PlayerPage({
                 {player.role}
               </div>
               <h1
-                className="font-display font-bold text-5xl tracking-wider glow-pulse-gold"
+                className="font-display font-bold text-3xl sm:text-5xl tracking-wider glow-pulse-gold"
                 style={{ color: "var(--color-rpg-gold-light)" }}
               >
                 {player.displayName}
@@ -108,7 +116,7 @@ export default async function PlayerPage({
 
       {/* Meta bar */}
       <div
-        className="border-b px-6 py-3 flex flex-wrap gap-6 font-mono text-xs max-w-4xl mx-auto"
+        className="border-b px-6 py-3 flex flex-wrap gap-3 font-mono text-xs max-w-4xl mx-auto"
         style={{ borderColor: border, background: bg }}
       >
         {player.tags.map((tag) => (
@@ -127,15 +135,12 @@ export default async function PlayerPage({
       </div>
 
       {/* Main content */}
-      <main className="max-w-4xl mx-auto px-6 py-10 space-y-12">
+      <main className="max-w-4xl mx-auto px-6 py-10 space-y-10">
 
         {/* Bio */}
         {player.bio && (
           <section>
-            <h2
-              className="section-title"
-              style={{ color: accent, borderColor: border }}
-            >
+            <h2 className="section-title" style={{ color: accent, borderColor: border }}>
               Sobre o Jogador
             </h2>
             <div
@@ -147,15 +152,53 @@ export default async function PlayerPage({
                 borderTopColor: accent,
               }}
             >
-              <p
-                className="text-base leading-relaxed"
-                style={{ color: "var(--color-rpg-text-muted)" }}
-              >
+              <p className="text-base leading-relaxed" style={{ color: "var(--color-rpg-text-muted)" }}>
                 {player.bio}
               </p>
             </div>
           </section>
         )}
+
+        {/* System selection — primary action */}
+        <section>
+          <h2 className="section-title" style={{ color: accent, borderColor: border }}>
+            Selecione um Sistema
+          </h2>
+          <p
+            className="font-mono text-[11px] tracking-widest uppercase mb-6"
+            style={{ color: "var(--color-rpg-text-muted)" }}
+          >
+            Escolha o sistema de RPG para ver as fichas
+          </p>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {systems.map((system, i) => {
+              const sysAccent = SYSTEM_ACCENT[system] || accent;
+              const sysLabel = SYSTEM_LABELS[system] || system;
+              const sysIcon = SYSTEM_ICONS[system] || "⊛";
+              const sysDesc = SYSTEM_DESCRIPTIONS[system] || "";
+              const count = bySystem[system];
+
+              return (
+                <div
+                  key={system}
+                  className="card-enter"
+                  style={{ "--card-i": i } as React.CSSProperties}
+                >
+                  <SystemSelectionCard
+                    href={`/jogadores/${slug}/${system}`}
+                    icon={sysIcon}
+                    label={sysLabel}
+                    description={sysDesc}
+                    count={count}
+                    accent={sysAccent}
+                    bg={bg}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </section>
 
         {/* Stats */}
         <section>
@@ -169,50 +212,11 @@ export default async function PlayerPage({
             <StatBox label="Ingressou" value={player.joinedAt} accent={accent} border={border} bg={bg} />
           </div>
         </section>
-
-        {/* Characters by system */}
-        {Object.entries(bySystem).map(([system, characters]) => {
-          const sysAccent = SYSTEM_ACCENT[system] || accent;
-          const sysLabel = SYSTEM_LABELS[system] || system;
-          const sysIcon = SYSTEM_ICONS[system] || "⊛";
-
-          return (
-            <section key={system}>
-              <h2
-                className="section-title"
-                style={{ color: sysAccent, borderColor: `${sysAccent}40` }}
-              >
-                <span className="font-mono">{sysIcon}</span>
-                {sysLabel}
-                <span
-                  className="font-mono text-xs ml-auto opacity-60"
-                  style={{ color: "var(--color-rpg-text-muted)" }}
-                >
-                  {characters.length} personagem{characters.length !== 1 ? "s" : ""}
-                </span>
-              </h2>
-
-              <div className="grid gap-3 sm:grid-cols-2">
-                {characters.map((ch) => (
-                  <CharacterCard
-                    key={ch.slug}
-                    slug={ch.slug}
-                    system={ch.system}
-                    label={ch.label}
-                    status={ch.status}
-                    sysAccent={sysAccent}
-                    sysIcon={sysIcon}
-                    bg={bg}
-                  />
-                ))}
-              </div>
-            </section>
-          );
-        })}
       </main>
     </div>
   );
 }
+
 
 function StatBox({
   label,
@@ -237,10 +241,7 @@ function StatBox({
         borderColor: highlight ? accent : border,
       }}
     >
-      <span
-        className="font-mono text-[9px] uppercase tracking-widest block mb-1"
-        style={{ color: "var(--color-rpg-text-muted)" }}
-      >
+      <span className="font-mono text-[9px] uppercase tracking-widest block mb-1" style={{ color: "var(--color-rpg-text-muted)" }}>
         {label}
       </span>
       <span

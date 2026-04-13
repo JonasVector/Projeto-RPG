@@ -42,17 +42,17 @@ body {
   line-height: 1.7;
 }
 
-.page { max-width: 920px; margin: 0 auto; padding: 0 0 80px; }
+.page { max-width: min(960px, 100vw - 1rem); margin: 0 auto; padding: 0 0 80px; }
 
-/* ── EMBERS ─────────────────────────────── */
-.ember-bg {
+/* ── ATMOSPHERIC BG ─────────────────────────── */
+#atmoBg {
   position: fixed; top:0; left:0; width:100%; height:100%;
   pointer-events:none; z-index:0; overflow:hidden;
 }
+
+/* Rising embers */
 .ember {
   position: absolute;
-  width: 3px; height: 3px;
-  background: var(--ember);
   border-radius: 50%;
   opacity: 0;
   animation: floatEmber linear infinite;
@@ -60,10 +60,65 @@ body {
 }
 @keyframes floatEmber {
   0%   { transform: translateY(110vh) translateX(0) scale(0); opacity:0; }
-  10%  { opacity: 0.7; }
-  50%  { opacity: 0.4; }
-  90%  { opacity: 0.2; }
-  100% { transform: translateY(-10vh) translateX(60px) scale(0.5); opacity:0; }
+  8%   { opacity: 0.8; }
+  50%  { transform: translateY(50vh) translateX(var(--edx,40px)); opacity: 0.4; }
+  90%  { opacity: 0.15; }
+  100% { transform: translateY(-10vh) translateX(var(--edx2,-20px)) scale(0.4); opacity:0; }
+}
+
+/* Blood drip */
+.blood-drip {
+  position: absolute;
+  width: 2px;
+  border-radius: 0 0 50% 50%;
+  background: linear-gradient(180deg, transparent, var(--crimson-mid), var(--crimson));
+  opacity: 0;
+  animation: dripFall ease-in infinite;
+}
+@keyframes dripFall {
+  0%  { height: 0; opacity: 0; transform: translateY(0); }
+  20% { height: var(--dh, 20px); opacity: 0.5; }
+  80% { opacity: 0.3; }
+  100%{ height: var(--dh, 20px); opacity: 0; transform: translateY(30px); }
+}
+
+/* Dark mist wisps */
+.mist-wisp {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139,0,0,0.12), transparent 70%);
+  animation: mistDrift ease-in-out infinite alternate;
+}
+@keyframes mistDrift {
+  0%  { transform: translateX(0) translateY(0); opacity:0.4; }
+  100%{ transform: translateX(var(--mdx,30px)) translateY(var(--mdy,-15px)); opacity:0.08; }
+}
+
+/* Fire crack */
+.fire-crack {
+  position: absolute;
+  width: 1px;
+  background: linear-gradient(180deg, var(--ember), var(--crimson-bright), transparent);
+  opacity: 0;
+  animation: crackFlash linear infinite;
+}
+@keyframes crackFlash {
+  0%,85%{ opacity:0; }
+  88%   { opacity:0.6; }
+  92%   { opacity:0.3; }
+  95%,100%{ opacity:0; }
+}
+
+/* Watermark */
+.wm {
+  position: fixed; bottom:6%; right:4%;
+  font-size:150px; opacity:0.025;
+  pointer-events:none; user-select:none;
+  animation: wmPulse 8s ease-in-out infinite alternate;
+}
+@keyframes wmPulse {
+  0%  { opacity:0.02; transform:scale(1) rotate(-3deg); }
+  100%{ opacity:0.04; transform:scale(1.04) rotate(0deg); }
 }
 
 /* ── HEADER ─────────────────────────────── */
@@ -133,7 +188,35 @@ body {
   border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 18px;
   display: flex; align-items: center; gap: 10px;
 }
-.section-title::before { content: '✕'; font-size: 12px; color: var(--scarlet); opacity: 0.7; }
+.section-title::before { content: '🔥'; font-size: 13px; }
+
+/* ── MECHANIC BOXES ─────────────────────────── */
+.mech-box { background:linear-gradient(135deg,#120a0a,#1a0c0c); border:1px solid var(--border-bright); border-left:4px solid var(--scarlet); padding:18px 20px; margin-bottom:14px; position:relative; overflow:hidden; }
+.mech-box::before { content:''; position:absolute; top:0; right:0; bottom:0; width:3px; background:linear-gradient(180deg,transparent,var(--ember),transparent); opacity:0.4; }
+.mech-title { font-family:'Cinzel',serif; font-size:13px; font-weight:700; color:var(--bone); letter-spacing:1px; margin-bottom:3px; text-transform:uppercase; }
+.mech-subtitle { font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:2px; color:var(--ember); opacity:0.8; margin-bottom:10px; }
+.mech-body { font-size:13.5px; color:var(--text); line-height:1.65; }
+.mech-body strong { color:var(--bone); }
+.mech-body em { color:var(--scarlet); font-style:normal; }
+.mech-table { width:100%; border-collapse:collapse; margin-top:10px; font-size:12px; }
+.mech-table th { font-family:'Share Tech Mono',monospace; font-size:8px; letter-spacing:1.5px; text-transform:uppercase; color:var(--bone-dim); padding:4px 8px; border-bottom:1px solid var(--border); text-align:left; background:rgba(139,0,0,0.1); }
+.mech-table td { padding:5px 8px; border-bottom:1px solid rgba(139,0,0,0.15); color:var(--text); }
+.mech-table tr:last-child td { border-bottom:none; }
+.mech-table td:first-child { color:var(--scarlet); font-family:'Share Tech Mono',monospace; }
+
+/* ── PROGRESSION ACCORDION ──────────────────── */
+.prog-level { margin-bottom:5px; border:1px solid var(--border); }
+.prog-header { background:var(--card); padding:10px 16px; cursor:pointer; display:flex; align-items:center; gap:14px; transition:background 0.2s; user-select:none; }
+.prog-header:hover { background:rgba(139,0,0,0.15); }
+.prog-level-num { font-family:'Cinzel',serif; font-size:11px; font-weight:700; color:var(--scarlet); letter-spacing:2px; min-width:52px; }
+.prog-level-title { font-family:'Crimson Pro',serif; font-size:14px; color:var(--text); flex:1; }
+.prog-arrow { font-size:10px; color:var(--text-dim); transition:transform 0.2s; }
+.prog-body { display:none; padding:12px 16px; background:rgba(18,10,10,0.7); font-size:13.5px; color:var(--text); line-height:1.7; }
+.prog-body.open { display:block; }
+.prog-body strong { color:var(--bone); }
+.prog-body em { color:var(--ember); font-style:normal; }
+.prog-body ul { margin:6px 0 6px 18px; }
+.prog-body ul li { margin-bottom:3px; }
 
 /* ── STAT GRID ─────────────────────────────── */
 .stat-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 18px; }
@@ -321,7 +404,7 @@ body {
 </head>
 <body>
 
-<div class="ember-bg" id="embers"></div>
+<div id="atmoBg"></div>
 
 <div class="page">
 
@@ -330,8 +413,12 @@ body {
   <div class="header-inner">
     <div class="header-portrait">
       <div class="portrait-placeholder">
-        <div class="portrait-symbol">⚔</div>
-        <div class="portrait-cross"></div>
+        <img style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 0.4s ease;filter:brightness(0.95) contrast(1.05);" src="/portraits/arlecchino.jpg" alt="Arlecchino"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;">
+          <div class="portrait-symbol">⚔</div>
+          <div class="portrait-cross"></div>
+        </div>
       </div>
     </div>
     <div class="header-text">
@@ -1083,6 +1170,285 @@ body {
   </div>
 </div>
 
+<!-- ═══ MECÂNICAS ASSINATURA ══════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Mecânicas Assinatura</div>
+
+  <div class="mech-box">
+    <div class="mech-title">Turno de Pressão Melee — 3 Ataques + Lifedrinker + GWM</div>
+    <div class="mech-subtitle">Hexblade + Polearm Master + Thirsting Blade · Ação Completa</div>
+    <div class="mech-body">
+      Arlecchino tem <strong>3 ataques por turno</strong>: Ataque 1 e 2 via <em>Thirsting Blade</em> (Extra Attack do Hexblade), Ataque 3 via <em>Polearm Master</em> (ação bônus com o cabo). Cada acerto soma <strong>+5 via Lifedrinker</strong> (mod. CAR via Hexblade). Com <em>Great Weapon Master</em> em modo execução (−5 acerto, +10 dano), o dano por turno ultrapassa 100 sem crits.
+      <table class="mech-table">
+        <thead><tr><th>Ataque</th><th>Bônus</th><th>Dano Base</th><th>+GWM</th><th>Total Médio</th></tr></thead>
+        <tbody>
+          <tr><td>Foice Atq.1</td><td>+11 (ou +6 GWM)</td><td>1d10+10 Cort.</td><td>+10</td><td>~26 (ou ~36)</td></tr>
+          <tr><td>Foice Atq.2</td><td>+11 (ou +6 GWM)</td><td>1d10+10 Cort.</td><td>+10</td><td>~26 (ou ~36)</td></tr>
+          <tr><td>Cabo (bônus)</td><td>+11 (ou +6 GWM)</td><td>1d4+10 Contund.</td><td>+10</td><td>~17 (ou ~27)</td></tr>
+          <tr><td><strong>Total/turno</strong></td><td>—</td><td>—</td><td>—</td><td><strong>~69 (ou ~99 GWM)</strong></td></tr>
+        </tbody>
+      </table>
+      <strong>Hexblade's Curse ativo:</strong> +prof (+6) no dano de cada acerto = +18 total por turno. Crítico em 19-20 = dobro de dados. Em Eldritch Smite no crítico: +6d8 Força adicional.
+    </div>
+  </div>
+
+  <div class="mech-box">
+    <div class="mech-title">Trevas + Visão do Diabo — Controle de Campo Absoluto</div>
+    <div class="mech-subtitle">Invocação: Devil's Sight + Magia: Darkness (3° slot) · Sem Concentração Adicional</div>
+    <div class="mech-body">
+      <em>Trevas (Darkness)</em> cria escuridão mágica impenetrável em raio de 4,5m — nenhuma magia de luz funciona dentro. <em>Visão do Diabo (Devil's Sight)</em> (invocação) dá a Arlecchino visão perfeita em escuridão mágica até 36m. Resultado: <strong>apenas ela enxerga</strong> dentro da área. Todos os ataques contra ela têm <em>desvantagem</em>. Todos os ataques dela têm <em>vantagem</em>.
+      <table class="mech-table">
+        <thead><tr><th>Condição</th><th>Ataques dela</th><th>Ataques vs. ela</th><th>Slot gasto</th></tr></thead>
+        <tbody>
+          <tr><td>Trevas ativa</td><td>Vantagem (vê, inimigos cegos)</td><td>Desvantagem (cegos)</td><td>2° slot</td></tr>
+          <tr><td>+Shadow of Moil</td><td>Vantagem</td><td>Desvantagem dupla</td><td>4° slot</td></tr>
+          <tr><td>+Armor of Hexes</td><td>Vantagem</td><td>50% miss automático</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <strong>Empilhamento máximo:</strong> Trevas + Shadow of Moil + Armor of Hexes = praticamente intocável. Ataques a distância ficam impossíveis (desvantagem + 50% miss + escuridão). Arlecchino torna-se um fantasma de crimson no vazio.
+    </div>
+  </div>
+
+  <div class="mech-box">
+    <div class="mech-title">Armadura de Ágatas + Manto de Sombras — Defesa em Camadas</div>
+    <div class="mech-subtitle">Armor of Agathys + Shadow of Moil + Shadar-kai Teleporte · Sobrevivência Extrema</div>
+    <div class="mech-body">
+      Arlecchino é uma frontliner que <strong>não cai</strong>. Três camadas de defesa distintas operam simultaneamente: <em>Armor of Agathys</em> concede PV temporários e causa 5×nível de slot em dano de frio a qualquer atacante corpo a corpo. <em>Shadow of Moil</em> impõe desvantagem em ataques e pune acertos com 2d8 necrótico. O teletransporte Shadar-kai (50% resistência a todos os danos) é seu botão de pânico.
+      <table class="mech-table">
+        <thead><tr><th>Camada</th><th>Benefício</th><th>Custo</th></tr></thead>
+        <tbody>
+          <tr><td>Armor of Agathys (5°)</td><td>25 PV temp + 25 Frio/acerto melee</td><td>Slot 5° Pact Magic</td></tr>
+          <tr><td>Shadow of Moil</td><td>Desvantagem vs. ela + 2d8 necrótico/acerto</td><td>Slot 4°, concentração</td></tr>
+          <tr><td>Armor of Hexes</td><td>50% chance de miss automático vs. alvo maldito</td><td>Invocação passiva</td></tr>
+          <tr><td>Shadar-kai Teleporte</td><td>Teletransporte 9m + resistência TODOS danos 1 turno</td><td>1×/descanso curto</td></tr>
+          <tr><td>Blink</td><td>50% chance de desaparecer para plano etéreo/turno</td><td>Slot, sem concentração</td></tr>
+        </tbody>
+      </table>
+      Com todas as camadas ativas: efetivamente imortal em combate de duração média. Apenas dano maciço e instantâneo em um único golpe pode derrubar Arlecchino.
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PROGRESSÃO NÍVEL A NÍVEL ═══════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Guia de Progressão — Níveis 1 a 20</div>
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;font-style:italic;">Clique em cada nível para expandir.</p>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 1</span>
+      <span class="prog-level-title">A Lâmina Acorda — Hexblade + Armadura de Pacto</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Maldição do Hexblade (Hexblade's Curse):</em> Ação bônus, alvo em 9m. Por 1 min: +prof. no dano (+6 no nível 20), crítico em 19-20, recupera PV ao matar o alvo. 1×/descanso curto.</li>
+        <li><em>Guerreiro Hexblade (Hex Warrior):</em> Proficiência com armaduras médias, escudos e espadas. Pode usar CAR para ataque/dano com sua Arma de Pacto.</li>
+        <li><em>Conjuração:</em> Slots 1×/descanso curto (Pact Magic). Aprenda 2 magias de 1°: <strong>Armor of Agathys</strong> (PV temp + punição de frio) e <strong>Hex</strong> (concentração, +1d6 necrótico/acerto).</li>
+        <li>Truques: <strong>Eldritch Blast</strong> (1d10 Força, 36m) e <strong>Toll the Dead</strong> (2d8 ou 2d12 se danificado).</li>
+      </ul>
+      <strong>Estratégia:</strong> Hexblade's Curse no alvo principal + Armor of Agathys (proteção e punição) + Eldritch Blast a distância ou ataque corpo a corpo. Foco em um alvo de cada vez — a maldição é o multiplicador de dano mais importante da build.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 2</span>
+      <span class="prog-level-title">Invocações Éldricas — Visão do Diabo + Explosão Agoniante</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Invocações Éldricas (2):</em> Escolha <strong>Visão do Diabo</strong> (Devil's Sight — visão em escuridão mágica 36m) e <strong>Explosão Agoniante</strong> (Agonizing Blast — adiciona CAR +5 em cada raio de Eldritch Blast).</li>
+        <li>Eldritch Blast agora: 1d10+5 Força por raio. A base do dano a distância está pronta.</li>
+      </ul>
+      <strong>Estratégia:</strong> Devil's Sight + Darkness é o combo central da build — desbloqueie assim que tiver acesso a Darkness. Agonizing Blast torna o ataque de truque em opção de dano séria a distância.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 3</span>
+      <span class="prog-level-title">Pacto da Lâmina + Trevas — O Combo Central Ativado</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Pacto da Lâmina (Pact of the Blade):</em> Invocação Éldrida. Conjura a foice como Arma de Pacto — ela conta como mágica, usa CAR para ataque/dano.</li>
+        <li>Slot de magia sobe para 2° nível. Aprenda <strong>Trevas (Darkness)</strong> — escuridão mágica em raio 4,5m, cobre você e você pode movê-la.</li>
+        <li>Slots: 2×/descanso curto (2° nível).</li>
+      </ul>
+      <strong>Estratégia:</strong> Darkness centrada em si mesma + Devil's Sight = você enxerga, inimigos não. Todos os ataques contra você têm desvantagem. Seus ataques têm vantagem. Use Armor of Agathys no início do encontro e entre na escuridão.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 4</span>
+      <span class="prog-level-title">Talento: Mestre da Arma Longa — Terceiro Ataque</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Talento: Mestre da Arma de Longo Alcance (Polearm Master):</em> Ação bônus — ataque com o cabo da foice (1d4 contundente + CAR). Ataque de Oportunidade contra qualquer criatura que entre no alcance (9m).</li>
+        <li>A build agora tem 2 ataques/turno (ação + bônus) antes do nível 5.</li>
+        <li>Slots sobem para 3° nível.</li>
+      </ul>
+      <strong>Estratégia:</strong> Com Polearm Master + Hexblade's Curse ativo: 2 ataques por turno, cada um com +6 dano de maldição. Total por turno: ~2d10+22. Armor of Hexes (invocação): cancela 50% dos ataques do alvo maldito.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 5</span>
+      <span class="prog-level-title">Lâmina Sôfrega — Segundo Ataque + Eldritch Smite</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Lâmina Sôfrega (Thirsting Blade — invocação):</em> Extra Attack — agora tem 2 ataques com a foice + 1 ação bônus (Polearm Master) = <strong>3 ataques/turno</strong>.</li>
+        <li><em>Golpe Éldrido (Eldritch Smite — invocação):</em> Ao acertar com Arma de Pacto, pode gastar slot para causar <strong>+1d8 Força por nível do slot</strong> (max +6d8). Crítico automático em 19-20 com maldição ativa.</li>
+        <li>Slots sobem para 3° nível. Aprenda <strong>Contrafeitiço (Counterspell)</strong> e <strong>Hold Person</strong>.</li>
+      </ul>
+      <strong>Estratégia:</strong> O pico de dano da build começa aqui. Hold Person + crítico automático + Eldritch Smite = combo de execução. 3 ataques com maldição ativa: ~3d10+48 por turno básico.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 6</span>
+      <span class="prog-level-title">Mystic Arcanum 6° — Investiture of Flame</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Arcanum Místico 6°:</em> <strong>Investiture of Flame</strong> — entra em chamas sobrenaturais. Imunidade a fogo e frio. Aura de 1d10 fogo/turno. Jato de fogo 4d8 como ação. Concentração 10 min. 1×/descanso longo.</li>
+        <li>Slots sobem para 3° nível (Pact Magic). Mais invocações disponíveis.</li>
+      </ul>
+      <strong>Estratégia:</strong> Investiture of Flame transforma a imagem visual de Arlecchino. Em combate prolongado: Darkness + em chamas = fantasma ardente invisível no vazio. A aura de dano de fogo passivo pressiona inimigos que se aproximem.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 7</span>
+      <span class="prog-level-title">Mestre do Grande Guerreiro — Modo Execução</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Talento: Grande Guerreiro (Great Weapon Master):</em> Ao matar ou acertar um crítico, realize um ataque extra como ação bônus. Opção: −5 no acerto para +10 no dano.</li>
+        <li>Slots sobem para 4° nível. Aprenda <strong>Shadow of Moil</strong> e <strong>Banishing Smite</strong>.</li>
+      </ul>
+      <strong>Estratégia:</strong> GWM +10/−5 com maldição ativa e vantagem de Trevas = os −5 de penalidade de acerto são absorvidos pela vantagem. O +10 de dano se aplica a cada um dos 3 ataques. Turno de GWM completo: ~3d10+78.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 8</span>
+      <span class="prog-level-title">Arcanum 7° — Dedo da Morte</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Arcanum Místico 7°:</em> <strong>Dedo da Morte (Finger of Death)</strong> — 7d8+30 necrótico (Con CD 19). Humanoides mortos levantam como zumbis permanentes.</li>
+        <li>Mais uma invocação disponível. Adicione <strong>Armor of Hexes</strong> se não tiver ainda.</li>
+      </ul>
+      <strong>Estratégia:</strong> Finger of Death como execução de alvo único com HP médio-alto. O zumbi permanente é um bônus de longo prazo — Arlecchino vai acumulando os derrotados como força permanente.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 9</span>
+      <span class="prog-level-title">Talento: Fey Touched — Misty Step Gratuito</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Talento: Fey Touched (+1 CAR → 20):</em> Aprende <strong>Misty Step</strong> e <strong>Command</strong>, ambos 1×/descanso curto sem slot. CAR atinge 20 — CD 19, ataque +11. Valores fixos até o fim.</li>
+        <li>Slots sobem para 5° nível. Aprenda <strong>Far Step</strong> e <strong>Hold Monster</strong>.</li>
+      </ul>
+      <strong>Estratégia:</strong> CAR 20 completa a build de atributos. Misty Step + Far Step = mobilidade absoluta. Hold Monster + maldição + crítico automático = execução garantida de qualquer boss.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 10</span>
+      <span class="prog-level-title">Arcanum 8° — Escuridão Enlouquecedora</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Arcanum Místico 8°:</em> <strong>Escuridão Enlouquecedora (Maddening Darkness)</strong> — raio 18m, 8d8 psíquico/turno (Sab CD 19). Com Devil's Sight, Arlecchino enxerga e está imune. A área inteira se torna sua fortaleza de trevas.</li>
+        <li>Shadar-kai Resistência das Sombras (racial): resistência a todos os danos 1 turno + teletransporte 9m, 1×/descanso curto.</li>
+      </ul>
+      <strong>Estratégia:</strong> Maddening Darkness em campo aberto = todo inimigo recebe 8d8 psíquico por turno enquanto Arlecchino opera dentro sem restrições. O campo de batalha pertence a ela inteiramente.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 11-15</span>
+      <span class="prog-level-title">Refinamento — Arcanum 9° + Invocações Finais</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas (Nív.11):</strong>
+      <ul>
+        <li><em>Arcanum Místico 9°:</em> <strong>Lâmina do Desastre (Blade of Disaster)</strong> — lâmina de força autônoma, 2 ataques +11, 2d12 Força cada, crítico 18-20, ignora resistências. Ação bônus/turno. 10 min concentração.</li>
+      </ul>
+      <strong>Habilidades Obtidas (Nív.12 — ASI):</strong>
+      <ul>
+        <li>+2 CAR — mas já tem 20. Opção: +2 CON (16→18) para mais PV. Ou talento adicional.</li>
+      </ul>
+      <strong>Habilidades Obtidas (Nív.13-15 — Invocações):</strong>
+      <ul>
+        <li>Desbloqueie <strong>Bebedor de Vida (Lifedrinker):</em> +CAR mod (+5) em todo ataque com Arma de Pacto. O maior multiplicador de dano da build.</li>
+        <li>Adicione <strong>Blink</strong> (50% evasão sem concentração) e <strong>Enervation</strong> (drenagem de vida).</li>
+      </ul>
+      <strong>Estratégia:</strong> Lifedrinker + 3 ataques + maldição = +11 em CADA ataque de dano. Blade of Disaster como ação bônus enquanto a foice ataca na ação principal = pico de dano total do personagem.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 16-20</span>
+      <span class="prog-level-title">A Harbinger Completa — Domínio Total</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas (Nív.16-20):</strong>
+      <ul>
+        <li>Todas as invocações escolhidas: Lifedrinker, Eldritch Smite, Thirsting Blade, Devil's Sight, Agonizing Blast, Polearm Master, Armor of Hexes. 8 invocações totais no nível 20.</li>
+        <li>Eldritch Blast: 4 raios no nível 17+ (4×1d10+5 = média 60 dano/turno a distância).</li>
+        <li>Pact Magic: 2 slots de 5° por descanso curto — 4 recargas por descanso longo.</li>
+      </ul>
+      <strong>Sequência de Combate Nível 20:</strong>
+      <ul>
+        <li><strong>Bônus pré-combate:</strong> Armor of Agathys (5°) — 25 PV temp + punição frio.</li>
+        <li><strong>Turno 1:</strong> Hexblade's Curse (bônus) → Investiture of Flame (free action) → Darkness centrada → 3 ataques GWM (3d10+78) + Eldritch Smite no crit (slot 5°, +6d8).</li>
+        <li><strong>Turno 2:</strong> Shadow of Moil ativo → Blade of Disaster (bônus, 2 ataques) → 3 ataques foice (ação).</li>
+        <li><strong>Turno 3+:</strong> Maddening Darkness (se encontro grande) → Far Step (bônus) → 3 ataques.</li>
+        <li><strong>Execução:</strong> Hold Monster + crítico automático + Eldritch Smite ou Finger of Death.</li>
+      </ul>
+      <strong>Identidade Final:</strong> A Father não combate. Ela executa sentenças. E a sentença já foi decidida antes do combate começar.
+    </div>
+  </div>
+</div>
+
 <div class="divider"><span class="divider-text">✕ ✕ ✕</span></div>
 
 <!-- ═══ HISTÓRIA ══════════════════════════════════════════════ -->
@@ -1120,18 +1486,90 @@ body {
 </div>
 
 <script>
-const container = document.getElementById('embers');
-for (let i = 0; i < 25; i++) {
-  const e = document.createElement('div');
-  e.className = 'ember';
-  e.style.left = Math.random() * 100 + '%';
-  e.style.width  = (1 + Math.random() * 3) + 'px';
-  e.style.height = e.style.width;
-  e.style.animationDuration = (8 + Math.random() * 14) + 's';
-  e.style.animationDelay   = (Math.random() * 12) + 's';
-  e.style.background = Math.random() > 0.5 ? '#ff6b35' : '#d63031';
-  container.appendChild(e);
+function toggleLevel(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.prog-arrow');
+  const isOpen = body.classList.toggle('open');
+  arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
 }
+
+(function () {
+  const bg = document.getElementById('atmoBg');
+  if (!bg) return;
+
+  // 35 embers
+  const emberColors = ['#ff6b35','#d63031','#e84393','#c0392b','#ff4444'];
+  for (let i = 0; i < 35; i++) {
+    const e = document.createElement('div');
+    e.className = 'ember';
+    const edx  = ((Math.random() - 0.5) * 60).toFixed(1);
+    const edx2 = ((Math.random() - 0.5) * 40).toFixed(1);
+    e.style.cssText = `
+      left:${(Math.random()*100).toFixed(1)}%;
+      bottom:${(Math.random()*20).toFixed(1)}%;
+      width:${(1.5+Math.random()*3).toFixed(1)}px;
+      height:${(1.5+Math.random()*3).toFixed(1)}px;
+      background:${emberColors[Math.floor(Math.random()*emberColors.length)]};
+      animation-duration:${(8+Math.random()*14).toFixed(1)}s;
+      animation-delay:${(Math.random()*12).toFixed(1)}s;
+      --edx:${edx}px;--edx2:${edx2}px;
+    `;
+    bg.appendChild(e);
+  }
+
+  // 12 blood drips
+  for (let i = 0; i < 12; i++) {
+    const d = document.createElement('div');
+    d.className = 'blood-drip';
+    const dh = (30 + Math.random() * 80).toFixed(0);
+    d.style.cssText = `
+      left:${(Math.random()*100).toFixed(1)}%;
+      top:0;
+      animation-duration:${(4+Math.random()*8).toFixed(1)}s;
+      animation-delay:${(Math.random()*10).toFixed(1)}s;
+      --dh:${dh}px;
+    `;
+    bg.appendChild(d);
+  }
+
+  // 5 mist wisps
+  for (let i = 0; i < 5; i++) {
+    const m = document.createElement('div');
+    m.className = 'mist-wisp';
+    const mdx = ((Math.random()-0.5)*120).toFixed(0);
+    const mdy = ((Math.random()-0.5)*60).toFixed(0);
+    m.style.cssText = `
+      left:${(Math.random()*100).toFixed(1)}%;
+      top:${(20+Math.random()*60).toFixed(1)}%;
+      animation-duration:${(12+Math.random()*10).toFixed(1)}s;
+      animation-delay:${(Math.random()*8).toFixed(1)}s;
+      --mdx:${mdx}px;--mdy:${mdy}px;
+    `;
+    bg.appendChild(m);
+  }
+
+  // 6 fire cracks
+  for (let i = 0; i < 6; i++) {
+    const c = document.createElement('div');
+    c.className = 'fire-crack';
+    c.style.cssText = `
+      left:${(Math.random()*100).toFixed(1)}%;
+      top:${(Math.random()*100).toFixed(1)}%;
+      width:${(40+Math.random()*60).toFixed(0)}px;
+      height:${(1+Math.random()*2).toFixed(1)}px;
+      transform:rotate(${(Math.random()*360).toFixed(0)}deg);
+      animation-duration:${(3+Math.random()*5).toFixed(1)}s;
+      animation-delay:${(Math.random()*8).toFixed(1)}s;
+    `;
+    bg.appendChild(c);
+  }
+
+  // ⚔ watermark
+  const wm = document.createElement('div');
+  wm.className = 'wm';
+  wm.textContent = '⚔';
+  bg.appendChild(wm);
+})();
 </script>
 </body>
 </html>

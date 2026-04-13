@@ -6,338 +6,1283 @@
 <title>Cantarella — A Dançarina Venenosa · Ficha D&amp;D 5e</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
+/* ═══════════════════════════════════════════════════
+   CANTARELLA · A DANÇARINA VENENOSA
+   Ladino / Assassino · Eladrin (Verão) · Nível 20
+   Tema: Água-Viva · Veneno · Elegância Mortal
+═══════════════════════════════════════════════════ */
 :root{
   --primary:    #6b21a8;
   --mid:        #a855f7;
   --bright:     #d8b4fe;
   --pale:       #f5f0ff;
+  --deep:       #3b0764;
+  --teal:       #38bdf8;
+  --poison:     #4ade80;
+  --poison-dim: #166534;
   --dark:       #060210;
   --darker:     #040108;
   --card:       #0f0520;
-  --card-light: #1a0835;
+  --card-light: #190836;
   --text:       #d0b8f0;
   --text-dim:   #7a5aac;
   --mist:       #3a1460;
   --gold:       #c9a227;
   --gold-light: #e8c85a;
-  --border:     rgba(107,33,168,0.35);
-  --border-bright:rgba(168,85,247,0.5);
-  --glow:       rgba(107,33,168,0.15);
+  --border:     rgba(107,33,168,0.38);
+  --border-bright:rgba(168,85,247,0.55);
+  --glow:       rgba(107,33,168,0.20);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15%,rgba(107,33,168,0.12) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(168,85,247,0.06) 0%,transparent 45%);font-family:'EB Garamond',Georgia,serif;color:var(--text);line-height:1.75;}
-.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--darker);
+  background-image:
+    radial-gradient(ellipse at 10% 8%,  rgba(107,33,168,0.16) 0%,transparent 52%),
+    radial-gradient(ellipse at 85% 15%, rgba(56,189,248,0.06) 0%,transparent 44%),
+    radial-gradient(ellipse at 50% 88%, rgba(59,7,100,0.14)   0%,transparent 55%),
+    radial-gradient(ellipse at 18% 65%, rgba(74,222,128,0.03) 0%,transparent 38%);
+  font-family:'EB Garamond',Georgia,serif;
+  color:var(--text);
+  line-height:1.75;
+  overflow-x:hidden;
+}
+.page{max-width:min(960px,100vw - 1rem);margin:0 auto;padding:0 0 80px;position:relative;z-index:1;}
 
-/* FLOATING PARTICLES */
+/* ═══════════════════════════════════════
+   ATMOSPHERIC LAYERS
+═══════════════════════════════════════ */
 .particle-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
-.particle{position:absolute;font-size:11px;opacity:0;animation:floatP ease-in-out infinite;filter:blur(0.4px);color:var(--bright);}
-@keyframes floatP{0%{transform:translateY(108vh) translateX(0) rotate(0deg) scale(0.5);opacity:0;}8%{opacity:0.25;}50%{transform:translateY(50vh) translateX(35px) rotate(180deg) scale(0.75);opacity:0.15;}92%{opacity:0.06;}100%{transform:translateY(-8vh) translateX(-20px) rotate(340deg) scale(0.4);opacity:0;}}
+.mist-layer{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
 
-/* HEADER */
-.header{background:linear-gradient(165deg,#060210 0%,#0f0520 50%,#060210 100%);border-bottom:2px solid var(--primary);position:relative;overflow:hidden;z-index:1;}
-.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 64px,rgba(107,33,168,0.12) 64px,rgba(107,33,168,0.12) 65px);}
-.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--mid),var(--bright),var(--mid),transparent);opacity:0.55;}
+/* Large jellyfish watermark */
+.bg-jelly{
+  position:fixed;right:-40px;bottom:-60px;
+  pointer-events:none;z-index:0;
+  animation:bgJellyPulse 10s ease-in-out infinite alternate;
+  opacity:0.028;
+}
+.bg-jelly-bell{
+  width:340px;height:180px;
+  border-radius:50% 50% 0 0;
+  background:radial-gradient(ellipse at 40% 35%,rgba(168,85,247,0.9) 0%,rgba(107,33,168,0.4) 50%,transparent 80%);
+  border:2px solid rgba(168,85,247,0.25);
+}
+.bg-jelly-tentacles{display:flex;justify-content:space-around;padding:0 30px;}
+.bg-jelly-tent{width:4px;background:linear-gradient(180deg,rgba(168,85,247,0.4) 0%,transparent 100%);border-radius:0 0 2px 2px;}
+@keyframes bgJellyPulse{
+  0%  {opacity:0.022;transform:scale(0.94) translateY(5px);}
+  100%{opacity:0.036;transform:scale(1.04) translateY(-8px);}
+}
+
+/* Floating sparkle particles */
+.sparkle{
+  position:absolute;opacity:0;
+  animation:sparkleFade ease-in-out infinite;
+  pointer-events:none;will-change:transform,opacity;
+}
+@keyframes sparkleFade{
+  0%  {transform:translateY(110vh) scale(0.3);opacity:0;}
+  6%  {opacity:0.55;}
+  50% {transform:translateY(50vh)  scale(1);  opacity:0.30;}
+  94% {opacity:0.04;}
+  100%{transform:translateY(-8vh)  scale(0.5);opacity:0;}
+}
+
+/* Floating jellyfish */
+.jelly{
+  position:absolute;pointer-events:none;
+  animation:jellyFloat ease-in-out infinite;will-change:transform,opacity;
+}
+.jelly-bell{
+  border-radius:50% 50% 0 0;
+  position:relative;overflow:visible;
+}
+.jelly-inner{
+  position:absolute;inset:3px 5px auto;
+  border-radius:50% 50% 0 0;
+  background:radial-gradient(ellipse at 40% 30%,rgba(255,255,255,0.18) 0%,transparent 60%);
+}
+.jelly-tent{
+  position:absolute;bottom:-1px;
+  border-radius:0 0 50% 50%;
+}
+@keyframes jellyFloat{
+  0%,100%{transform:translateY(0) scaleX(1);}
+  25%    {transform:translateY(-14px) scaleX(0.93);}
+  50%    {transform:translateY(-6px)  scaleX(1.05);}
+  75%    {transform:translateY(-18px) scaleX(0.96);}
+}
+
+/* Mist wisps */
+.mist-wisp{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(107,33,168,0.07) 0%,transparent 70%);
+  animation:wispDrift ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes wispDrift{
+  0%  {transform:translateX(-40px) translateY(0);opacity:0;}
+  12% {opacity:1;}
+  50% {transform:translateX(50px)  translateY(-15px);}
+  88% {opacity:0.4;}
+  100%{transform:translateX(100px) translateY(8px);opacity:0;}
+}
+
+/* Poison bubble particles */
+.poison-bubble{
+  position:absolute;border-radius:50%;opacity:0;
+  border:1px solid rgba(74,222,128,0.20);
+  animation:bubbleRise ease-in infinite;
+  pointer-events:none;
+}
+@keyframes bubbleRise{
+  0%  {transform:translateY(105vh) scale(0.6);opacity:0;}
+  8%  {opacity:0.30;}
+  80% {opacity:0.12;}
+  100%{transform:translateY(-5vh)  scale(1.2);opacity:0;}
+}
+
+/* ═══════════════════════════════════════
+   HEADER
+═══════════════════════════════════════ */
+.header{
+  background:linear-gradient(165deg,#060210 0%,#0f0520 50%,#060210 100%);
+  border-bottom:2px solid var(--primary);
+  position:relative;overflow:hidden;z-index:2;
+}
+.header::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(55deg,transparent,transparent 64px,rgba(107,33,168,0.08) 64px,rgba(107,33,168,0.08) 65px);
+  pointer-events:none;
+}
+.header::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--mid),var(--bright),var(--teal),var(--bright),var(--mid),transparent);
+  opacity:0.50;
+}
+
+/* Corner jelly ornament */
+.header-jelly-ornament{
+  position:absolute;top:14px;right:18px;
+  pointer-events:none;z-index:0;opacity:0.08;
+  animation:jellyFloat 7s ease-in-out infinite;
+}
+.header-jelly-ornament .jelly-bell{
+  width:70px;height:36px;
+  background:radial-gradient(ellipse at 40% 30%,rgba(168,85,247,1) 0%,rgba(107,33,168,0.5) 70%,transparent 100%);
+  border:1px solid rgba(168,85,247,0.4);
+}
+
 .header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
 
 /* PORTRAIT */
-.header-portrait{width:220px;flex-shrink:0;background:#060210;border-right:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
-.portrait-inner{width:100%;height:290px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.portrait-photo{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 0.4s ease;}
-.portrait-photo:hover{transform:scale(1.04);}
-.portrait-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,#040108aa 100%);pointer-events:none;}
-.portrait-label{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--bright);opacity:0.6;text-transform:uppercase;text-shadow:0 0 8px var(--primary);}
+.header-portrait{
+  width:260px;flex-shrink:0;
+  background:#060210;border-right:2px solid var(--primary);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;
+}
+.portrait-inner{width:100%;height:340px;position:relative;}
+.portrait-photo{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center 20%;
+  display:block;
+  transition:transform 0.6s ease;
+  filter:brightness(0.90) contrast(1.05) saturate(1.15);
+}
+.portrait-photo:hover{transform:scale(1.05);}
+.portrait-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(6,2,16,0.15) 0%,transparent 30%,transparent 60%,rgba(6,2,16,0.88) 100%);
+  pointer-events:none;
+}
+.portrait-glow{
+  position:absolute;inset:0;pointer-events:none;
+  animation:portraitGlowP 5s ease-in-out infinite alternate;
+}
+@keyframes portraitGlowP{
+  0%  {box-shadow:inset 0 0 18px rgba(107,33,168,0.15),0 0 8px rgba(107,33,168,0.08);}
+  100%{box-shadow:inset 0 0 38px rgba(168,85,247,0.28),0 0 20px rgba(107,33,168,0.20);}
+}
+.portrait-corner{
+  position:absolute;font-size:18px;color:var(--bright);z-index:3;
+  animation:cornerPulseP 5s ease-in-out infinite alternate;
+}
+@keyframes cornerPulseP{
+  0%  {opacity:0.25;text-shadow:none;}
+  100%{opacity:0.55;text-shadow:0 0 12px var(--mid);}
+}
+.portrait-corner.tl{top:6px; left:6px;}
+.portrait-corner.tr{top:6px; right:6px;}
+.portrait-corner.bl{bottom:22px;left:6px;}
+.portrait-corner.br{bottom:22px;right:6px;}
+.portrait-label{
+  position:absolute;bottom:8px;left:0;right:0;
+  text-align:center;
+  font-family:'Share Tech Mono',monospace;font-size:9px;
+  letter-spacing:3px;color:var(--bright);
+  opacity:0.65;text-transform:uppercase;
+  text-shadow:0 0 10px var(--primary);z-index:3;
+}
 
 /* HEADER TEXT */
 .header-text{flex:1;padding:34px 44px;}
 .header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--mid);opacity:0.85;text-transform:uppercase;margin-bottom:10px;}
-.header-name{font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(107,33,168,0.5),0 0 15px rgba(107,33,168,0.3);letter-spacing:2px;line-height:1;margin-bottom:4px;}
+.header-name{
+  font-family:'Cinzel',serif;font-size:46px;font-weight:900;color:var(--pale);
+  letter-spacing:2px;line-height:1;margin-bottom:4px;
+  animation:nameGlowP 5s ease-in-out infinite alternate;
+}
+@keyframes nameGlowP{
+  0%  {text-shadow:0 0 40px rgba(107,33,168,0.42),0 0 12px rgba(107,33,168,0.20);}
+  100%{text-shadow:0 0 75px rgba(168,85,247,0.65),0 0 25px rgba(56,189,248,0.22);}
+}
 .header-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);margin-bottom:20px;letter-spacing:1.5px;opacity:0.95;}
-.header-tags{display:flex;gap:7px;flex-wrap:wrap;}
-.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(107,33,168,0.12);}
-.tag.hi{background:rgba(107,33,168,0.15);border-color:var(--mid);color:var(--bright);}
+.header-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(107,33,168,0.10);}
+.tag.hi{background:rgba(107,33,168,0.18);border-color:var(--mid);color:var(--bright);}
 .tag.gold{background:rgba(201,162,39,0.10);border-color:rgba(201,162,39,0.4);color:var(--gold-light);}
+.tag.poison{background:rgba(74,222,128,0.08);border-color:rgba(74,222,128,0.30);color:var(--poison);}
 
-/* STATS BAR */
-.stats-bar{background:var(--card);border-bottom:1px solid var(--border);padding:13px 40px;display:flex;flex-wrap:wrap;position:relative;z-index:1;gap:0;}
-.stat-item{flex:1;border-right:1px solid var(--border);padding:0 18px;text-align:center;min-width:90px;}
-.stat-item:first-child{padding-left:0;}.stat-item:last-child{border-right:none;padding-right:0;}
+/* ═══════════════════════════════════════
+   STATS BAR
+═══════════════════════════════════════ */
+.stats-bar{
+  background:var(--card);border-bottom:1px solid var(--border);
+  padding:13px 40px;display:flex;flex-wrap:wrap;
+  position:relative;z-index:2;
+}
+.stat-item{flex:1;border-right:1px solid var(--border);padding:0 14px;text-align:center;min-width:80px;}
+.stat-item:first-child{padding-left:0;}
+.stat-item:last-child{border-right:none;padding-right:0;}
 .stat-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
 .stat-value{font-family:'Cinzel',serif;font-size:13px;color:var(--bright);font-weight:600;}
+.stat-value.accent{color:var(--gold-light);text-shadow:0 0 8px rgba(201,162,39,0.3);}
+.stat-value.poison{color:var(--poison);text-shadow:0 0 8px rgba(74,222,128,0.25);}
 
-/* SECTION */
-.sec{padding:0 40px;margin-top:32px;position:relative;z-index:1;}
-.sec-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
-.sec-title::before{content:'✦';font-size:11px;color:var(--gold);}
+/* ═══════════════════════════════════════
+   SECTIONS
+═══════════════════════════════════════ */
+.sec{padding:0 40px;margin-top:30px;position:relative;z-index:2;}
+.sec-title{
+  font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;
+  text-transform:uppercase;color:var(--mid);
+  padding-bottom:8px;margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;position:relative;
+}
+.sec-title::before{content:'✦';font-size:12px;color:var(--gold);}
+.sec-title::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--border-bright),var(--border),transparent);}
+.thorn-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(168,85,247,0.2),transparent);margin-left:4px;align-self:center;}
+
+/* INFO PILLS */
+.info-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.info-pill{background:var(--card);border:1px solid var(--border);padding:8px 14px;font-size:13px;color:var(--text-dim);}
+.info-pill strong{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--mid);text-transform:uppercase;display:block;margin-bottom:3px;}
 
 /* ATTRIBUTES */
-.attr-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px;}
-.attr-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:12px 4px 10px;position:relative;}
+.attr-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:10px;}
+.attr-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:12px 4px 10px;position:relative;transition:border-color 0.2s,box-shadow 0.2s;}
+.attr-box:hover{border-color:var(--mid);box-shadow:0 0 12px rgba(107,33,168,0.18);}
 .attr-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--primary);opacity:0.45;}
+.attr-box.peak::after{background:var(--bright);opacity:0.65;}
 .attr-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
 .attr-value{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:var(--text);display:block;line-height:1;}
 .attr-value.peak{color:var(--bright);text-shadow:0 0 14px rgba(107,33,168,0.45);}
 .attr-mod{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--mid);display:block;margin-top:3px;}
 
-/* COMBAT NOTES */
-.special-notes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
-
 /* SAVES & SKILLS */
-.two-col{display:grid;grid-template-columns:230px 1fr;gap:16px;}
+.two-col{display:grid;grid-template-columns:240px 1fr;gap:20px;margin-top:18px;}
 .save-list,.skill-list{list-style:none;padding:0;}
 .save-item,.skill-item{display:flex;align-items:center;gap:7px;padding:3px 0;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.04);}
 .save-item:last-child,.skill-item:last-child{border-bottom:none;}
 .prof-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--text-dim);flex-shrink:0;}
 .prof-dot.filled{background:var(--mid);border-color:var(--bright);box-shadow:0 0 6px rgba(107,33,168,0.5);}
-.prof-dot.expertise{background:var(--gold);border-color:var(--gold-light);}
+.prof-dot.expertise{background:var(--gold);border-color:var(--gold-light);box-shadow:0 0 6px rgba(201,162,39,0.4);}
 .save-name,.skill-name{flex:1;color:var(--text);}
 .skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text-dim);width:28px;}
 .save-score,.skill-score{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text-dim);width:28px;text-align:right;}
-.save-score.filled,.skill-score.filled,.skill-score.peak{color:var(--bright);}
+.save-score.filled,.skill-score.filled{color:var(--bright);}
+.skill-score.peak{color:var(--gold-light);}
+.col-header{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mid);margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid var(--border);}
 
 /* ATTACKS */
 .attack-table{width:100%;border-collapse:collapse;font-size:13px;}
-.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(107,33,168,0.12);}
-.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(107,33,168,0.35);color:var(--text);vertical-align:top;}
-.attack-table tr:hover td{background:rgba(107,33,168,0.15);}
-.attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
+.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:7px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(107,33,168,0.12);}
+.attack-table td{padding:9px 10px;border-bottom:1px solid rgba(107,33,168,0.28);color:var(--text);vertical-align:top;}
+.attack-table tr:last-child td{border-bottom:none;}
+.attack-table tr:hover td{background:rgba(107,33,168,0.12);}
+.attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);font-weight:600;}
 .attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--bright);font-weight:700;}
 .attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--gold-light);}
 .attack-notes{font-size:12px;color:var(--text-dim);font-style:italic;}
 
+/* ASSASSINATION BOX */
+.assassin-box{
+  background:linear-gradient(135deg,#0a0218 0%,#140530 100%);
+  border:1px solid rgba(168,85,247,0.32);border-left:4px solid var(--mid);
+  padding:22px 26px;margin:16px 0;position:relative;overflow:hidden;
+}
+.assassin-box::before{
+  content:'✦';position:absolute;right:18px;top:50%;
+  transform:translateY(-50%);
+  font-size:88px;opacity:0.05;color:var(--bright);
+  filter:drop-shadow(0 0 10px var(--mid));
+}
+.assassin-box::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--mid),rgba(168,85,247,0.3),transparent);
+}
+.assassin-box-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:3px;color:var(--bright);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.assassin-box p{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:8px;}
+.assassin-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;margin-top:12px;}
+.assassin-row{font-size:13px;color:var(--text-dim);line-height:1.6;padding:4px 0;border-bottom:1px solid rgba(107,33,168,0.12);}
+.assassin-row strong{color:var(--bright);font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px;display:block;font-weight:600;margin-bottom:1px;}
+
+/* POISON BOX */
+.poison-section{
+  background:linear-gradient(135deg,#04120a 0%,#0a1c0f 100%);
+  border:1px solid rgba(74,222,128,0.20);border-left:4px solid var(--poison-dim);
+  padding:20px 24px;margin:16px 0;position:relative;overflow:hidden;
+}
+.poison-section::before{
+  content:'⚗';position:absolute;right:16px;top:50%;
+  transform:translateY(-50%);font-size:72px;opacity:0.06;
+  filter:drop-shadow(0 0 8px var(--poison));
+}
+.poison-section::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,rgba(74,222,128,0.5),rgba(74,222,128,0.15),transparent);
+}
+.poison-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:3px;color:var(--poison);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.poison-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px;}
+.poison-card{background:rgba(74,222,128,0.04);border:1px solid rgba(74,222,128,0.15);border-top:2px solid var(--poison-dim);padding:12px 14px;}
+.poison-card-name{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--poison);letter-spacing:0.5px;margin-bottom:6px;text-transform:uppercase;}
+.poison-card-desc{font-size:13px;color:var(--text-dim);line-height:1.6;}
+.poison-card-desc em{color:var(--poison);font-style:normal;}
+
 /* FEATURES */
-.feat-section{margin-bottom:10px;}
-.feat-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:12px 0 8px;}
+.feat-section{margin-bottom:14px;}
+.feat-section-label{
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;color:var(--bright);
+  font-weight:700;display:block;margin:14px 0 10px;
+  padding-bottom:4px;border-bottom:1px solid rgba(168,85,247,0.18);
+}
 .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.trait-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);padding:12px 14px;}
+.trait-block{
+  background:var(--card);border:1px solid var(--border);
+  border-left:3px solid var(--primary);padding:13px 15px;
+  transition:border-color 0.2s,box-shadow 0.2s,transform 0.15s;
+}
+.trait-block:hover{border-color:var(--mid);box-shadow:0 4px 18px rgba(107,33,168,0.20);transform:translateX(1px);}
 .trait-block.gold-accent{border-left-color:var(--gold);}
 .trait-block.dim-accent{border-left-color:var(--mist);}
-.trait-name{font-family:'Cinzel',serif;font-size:11px;color:var(--bright);letter-spacing:0.5px;margin-bottom:5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+.trait-block.poison-accent{border-left-color:var(--poison-dim);background:linear-gradient(135deg,#04120a 0%,#0a1810 100%);}
+.trait-name{font-family:'Cinzel',serif;font-size:11px;color:var(--bright);letter-spacing:0.5px;margin-bottom:6px;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
 .trait-block.gold-accent .trait-name{color:var(--gold-light);}
 .trait-block.dim-accent .trait-name{color:var(--text-dim);}
-.trait-desc{font-size:13.5px;color:var(--text-dim);line-height:1.6;}
+.trait-block.poison-accent .trait-name{color:var(--poison);}
+.trait-desc{font-size:13.5px;color:var(--text-dim);line-height:1.65;}
 .trait-desc em{font-style:italic;color:var(--bright);}
 .trait-desc strong{color:var(--text);}
-.feat-level{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;background:rgba(107,33,168,0.15);color:var(--mid);padding:1px 6px;}
+.feat-level{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;background:rgba(107,33,168,0.18);color:var(--mid);padding:2px 7px;flex-shrink:0;}
+.feat-level.gold{background:rgba(201,162,39,0.15);color:var(--gold);}
 
-/* SPELLS */
-.spell-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
-.spell-tag{background:var(--card-light);color:var(--bright);font-family:'Cinzel',serif;font-size:10px;padding:3px 9px;letter-spacing:1px;border:1px solid var(--border);display:inline-block;}
-.spell-tag.gold{background:rgba(201,162,39,0.08);color:var(--gold-light);border-color:rgba(201,162,39,0.28);}
-.spell-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:13px 0 8px;}
-.spell-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:7px;}
-.sc{background:var(--card-light);border:1px solid var(--border);border-top:2px solid var(--mist);padding:9px 12px 10px;display:flex;flex-direction:column;gap:3px;}
-.sc.cantrip{border-top-color:rgba(107,33,168,0.35);}
-.sc.expanded{border-top-color:var(--gold);}
-.sc-type{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);opacity:0.65;}
-.sc-name{font-family:'Cinzel',serif;font-size:11.5px;font-weight:600;color:var(--bright);letter-spacing:0.4px;}
-.sc.cantrip .sc-name{color:var(--text-dim);}
-.sc.expanded .sc-name{color:var(--gold-light);}
-.sc-desc{font-size:12px;color:var(--text-dim);line-height:1.5;margin-top:1px;}
+/* EQUIPMENT */
+ul.item-list{list-style:none;padding:0;}
+ul.item-list li{padding:5px 0 5px 22px;position:relative;font-size:13.5px;line-height:1.65;color:var(--text-dim);border-bottom:1px solid rgba(107,33,168,0.08);}
+ul.item-list li:last-child{border-bottom:none;}
+ul.item-list li::before{content:'◆';position:absolute;left:0;color:var(--gold);font-size:8px;top:8px;}
+ul.item-list li strong{color:var(--text);}
+.equip-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 
-/* TRAIT LIST (equipment) */
-ul.trait-list{list-style:none;padding:0;}
-ul.trait-list li{padding:3px 0 3px 18px;position:relative;font-size:14px;line-height:1.65;color:var(--text-dim);}
-ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold);font-size:7px;top:7px;}
+/* PERSONALITY */
+.personality-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.pers-block{background:var(--card);border:1px solid var(--border);border-top:2px solid var(--primary);padding:14px 16px;transition:border-color 0.2s,box-shadow 0.2s;}
+.pers-block:hover{border-color:var(--mid);box-shadow:0 0 12px rgba(107,33,168,0.15);}
+.pers-title{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
+.pers-text{font-size:14px;color:var(--text-dim);line-height:1.7;font-style:italic;}
+
+/* LORE BOX */
+.lore-box{
+  background:linear-gradient(135deg,#08021a 0%,#120530 100%);
+  border:1px solid rgba(107,33,168,0.30);border-left:4px solid var(--primary);
+  padding:24px 28px;margin:16px 0;position:relative;overflow:hidden;
+}
+.lore-box::before{
+  content:'✦';position:absolute;right:18px;top:14px;
+  font-size:52px;opacity:0.07;color:var(--bright);
+  animation:sparkleFade 7s ease-in-out infinite alternate;
+}
+.lore-box::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--primary),var(--mid),var(--primary));opacity:0.6;}
+.lore-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:3px;color:var(--bright);text-transform:uppercase;margin-bottom:14px;}
+.lore-body{font-size:14px;color:var(--text-dim);line-height:1.85;}
+.lore-body p{margin-bottom:10px;}
+.lore-body em{font-style:italic;color:var(--pale);}
+.lore-body strong{color:var(--text);}
+
+/* PROGRESSION */
+.level-block{background:var(--card);border:1px solid var(--border);border-top:2px solid var(--mist);margin-bottom:10px;overflow:hidden;transition:border-color 0.2s,box-shadow 0.2s;}
+.level-block:hover{border-color:var(--mid);box-shadow:0 0 14px rgba(107,33,168,0.15);}
+.level-block.milestone{border-top-color:var(--mid);}
+.level-block.major{border-top-color:var(--bright);background:linear-gradient(135deg,#0f0520 0%,#1a0838 100%);}
+.level-block.pinnacle{border-top-color:var(--gold);background:linear-gradient(135deg,#0c0418 0%,#160c04 100%);}
+.level-header{display:flex;align-items:baseline;gap:14px;padding:13px 16px 0;margin-bottom:10px;}
+.level-num{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;white-space:nowrap;}
+.level-block.milestone .level-num{color:var(--mid);}
+.level-block.major .level-num{color:var(--bright);}
+.level-block.pinnacle .level-num{color:var(--gold);}
+.level-feat{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--text);letter-spacing:0.5px;}
+.level-body{padding:0 16px 14px;font-size:13.5px;color:var(--text-dim);line-height:1.7;}
+.level-body p{margin-bottom:8px;}
+.sub-feat{margin:10px 0 8px;padding:10px 14px;background:rgba(107,33,168,0.06);border-left:2px solid var(--primary);}
+.sub-feat-name{font-family:'Cinzel',serif;font-size:11px;font-weight:600;letter-spacing:1px;color:var(--bright);margin-bottom:5px;text-transform:uppercase;}
+.sub-feat-name.gold{color:var(--gold-light);}
+.sub-feat-name.poison{color:var(--poison);}
+.tier-note{background:rgba(59,7,100,0.22);border:1px solid rgba(107,33,168,0.22);border-left:3px solid var(--deep);padding:10px 14px;margin:12px 0 8px;font-style:italic;font-size:13px;color:var(--text-dim);line-height:1.6;}
 
 /* DIVIDER */
-.divider{text-align:center;margin:24px 0;color:var(--mist);font-size:14px;letter-spacing:14px;opacity:0.5;}
-
-/* INFO PILLS */
-.info-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
-.info-pill{background:var(--card);border:1px solid var(--border);padding:8px 14px;font-size:13px;color:var(--text-dim);}
-.info-pill strong{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--mid);text-transform:uppercase;display:block;margin-bottom:3px;}
+.divider{
+  text-align:center;margin:28px 0;
+  color:var(--mist);font-size:14px;letter-spacing:14px;opacity:0.50;
+  position:relative;
+}
+.divider::before,.divider::after{content:'';position:absolute;top:50%;width:28%;height:1px;background:linear-gradient(90deg,transparent,rgba(107,33,168,0.35));}
+.divider::before{right:55%;transform:scaleX(-1);}
+.divider::after{left:55%;}
 
 /* FOOTER */
-.footer{margin-top:50px;padding:22px 40px;text-align:center;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent 0%,#04010899 100%);position:relative;z-index:1;}
-.footer p{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);opacity:0.5;text-transform:uppercase;margin-bottom:4px;}
+.footer{margin-top:50px;padding:22px 40px;text-align:center;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent 0%,rgba(4,1,8,0.55) 100%);position:relative;z-index:2;}
+.footer::before{content:'✦ ✧ ✦';display:block;font-size:14px;letter-spacing:10px;color:var(--mist);opacity:0.40;margin-bottom:12px;}
+.footer p{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);opacity:0.45;text-transform:uppercase;margin-bottom:4px;}
 
 /* RESPONSIVE */
 @media(max-width:680px){
+  .page{padding:0 0 60px;}
   .header-inner{flex-direction:column;}
-  .header-portrait{width:100%;height:200px;}
-  .portrait-inner{height:200px;}
-  .attr-grid{grid-template-columns:repeat(3,1fr);}
-  .feature-grid{grid-template-columns:1fr;}
-  .spell-grid{grid-template-columns:1fr;}
-  .stats-bar{flex-wrap:wrap;gap:4px;}
-  .stat-item{flex:none;width:48%;border-right:none;border-bottom:1px solid var(--border);padding:6px 0;}
-  .two-col{grid-template-columns:1fr;}
-  .sec{padding:0 16px;}
+  .header-portrait{width:100%;height:240px;}
+  .portrait-inner{height:240px;}
   .header-text{padding:20px 24px;}
-  .stats-bar{padding:10px 16px;}
+  .header-name{font-size:34px;}
+  .stats-bar{padding:10px 16px;flex-wrap:wrap;gap:4px;}
+  .stat-item{flex:none;width:48%;border-right:none;border-bottom:1px solid var(--border);padding:6px 4px;}
+  .sec{padding:0 16px;}
+  .attr-grid{grid-template-columns:repeat(3,1fr);}
+  .two-col{grid-template-columns:1fr;}
+  .feature-grid{grid-template-columns:1fr;}
+  .equip-grid{grid-template-columns:1fr;}
+  .personality-grid{grid-template-columns:1fr;}
+  .assassin-grid{grid-template-columns:1fr;}
+  .poison-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
 
-<!-- Floating Particles -->
+<!-- ══ ATMOSPHERIC LAYERS ══════════════════════════ -->
 <div class="particle-bg" id="particleBg"></div>
-
-<div class="page">
-
-<!-- ── HEADER ─────────────────────────────────── -->
-<div class="header">
-  <div class="header-inner">
-    <div class="header-portrait">
-      <div class="portrait-inner">
-        <img class="portrait-photo" src="/portraits/cantarella.jpg" alt="Cantarella" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;font-size:64px;opacity:0.15;filter:drop-shadow(0 0 20px var(--bright));">💜</div>
-        <div class="portrait-overlay"></div>
-      </div>
-      <div class="portrait-label">Cantarella</div>
-    </div>
-    <div class="header-text">
-      <div class="header-eyebrow">Ficha · D&amp;D 5e · Wuthering Waves</div>
-      <div class="header-name">Cantarella</div>
-      <div class="header-sub">A Dançarina Venenosa</div>
-      <div class="header-tags">
-        <span class="tag hi">Eladrin (Verão)</span><span class="tag hi">Ladino</span><span class="tag hi">Assassino</span><span class="tag hi">Wuthering Waves</span><span class="tag">Antecedente: Espiã</span><span class="tag">Nív. 20</span>
-      </div>
-    </div>
+<div class="mist-layer"  id="mistLayer"></div>
+<div class="bg-jelly">
+  <div class="bg-jelly-bell"></div>
+  <div class="bg-jelly-tentacles">
+    <div class="bg-jelly-tent" style="height:90px;"></div>
+    <div class="bg-jelly-tent" style="height:60px;"></div>
+    <div class="bg-jelly-tent" style="height:110px;"></div>
+    <div class="bg-jelly-tent" style="height:75px;"></div>
+    <div class="bg-jelly-tent" style="height:95px;"></div>
+    <div class="bg-jelly-tent" style="height:55px;"></div>
+    <div class="bg-jelly-tent" style="height:80px;"></div>
   </div>
 </div>
 
-<!-- ── STATS BAR ──────────────────────────────── -->
-<div class="stats-bar">
-<div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">18</span></div><div class="stat-item"><span class="stat-label">PV</span><span class="stat-value">152</span></div><div class="stat-item"><span class="stat-label">Deslocamento</span><span class="stat-value">9m</span></div><div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value">+11</span></div><div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div>
+<div class="page">
+
+<!-- ══ HEADER ══════════════════════════════════════ -->
+<div class="header">
+  <div class="header-jelly-ornament">
+    <div class="jelly-bell"></div>
+  </div>
+  <div class="header-inner">
+
+    <!-- PORTRAIT -->
+    <div class="header-portrait">
+      <div class="portrait-inner">
+        <span class="portrait-corner tl">✦</span>
+        <span class="portrait-corner tr">✦</span>
+        <span class="portrait-corner bl">✦</span>
+        <span class="portrait-corner br">✦</span>
+        <img class="portrait-photo"
+          src="/portraits/cantarella.jpg"
+          alt="Cantarella — A Dançarina Venenosa"
+          onerror="this.style.display='none';document.getElementById('portFallback').style.display='flex'">
+        <div id="portFallback"
+          style="display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(6,2,16,0.9);">
+          <span style="font-size:72px;opacity:0.18;filter:drop-shadow(0 0 22px var(--mid));">💜</span>
+          <span style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;">Cantarella</span>
+        </div>
+        <div class="portrait-overlay"></div>
+        <div class="portrait-glow"></div>
+      </div>
+      <div class="portrait-label">✦ Cantarella ✦</div>
+    </div>
+
+    <!-- HEADER TEXT -->
+    <div class="header-text">
+      <div class="header-eyebrow">Ficha · D&amp;D 5e · Wuthering Waves</div>
+      <div class="header-name">Cantarella</div>
+      <div class="header-sub">A Dançarina Venenosa · A Água-Viva de Gelo</div>
+      <div class="header-tags">
+        <span class="tag hi">Eladrin (Verão)</span>
+        <span class="tag hi">Ladino 20</span>
+        <span class="tag hi">Assassino</span>
+        <span class="tag hi">Wuthering Waves</span>
+        <span class="tag">Espiã</span>
+        <span class="tag gold">Nível 20</span>
+        <span class="tag gold">152 PV</span>
+        <span class="tag poison">Sneak 10d6</span>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<!-- ── IDENTIDADE ────────────────────────────── -->
+<!-- ══ STATS BAR ════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">18</span></div>
+  <div class="stat-item"><span class="stat-label">Pontos de Vida</span><span class="stat-value">152</span></div>
+  <div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value accent">+11</span></div>
+  <div class="stat-item"><span class="stat-label">Velocidade</span><span class="stat-value">9m</span></div>
+  <div class="stat-item"><span class="stat-label">Dado de Vida</span><span class="stat-value">20d8</span></div>
+  <div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div>
+  <div class="stat-item"><span class="stat-label">Ataque Furtivo</span><span class="stat-value poison">10d6</span></div>
+  <div class="stat-item"><span class="stat-label">Fey Step</span><span class="stat-value accent">1/curto</span></div>
+</div>
+
+<!-- ══ IDENTIDADE ════════════════════════════════════ -->
 <div class="sec">
-  <div class="sec-title">Identidade</div>
+  <div class="sec-title">Identidade<span class="thorn-line"></span></div>
   <div class="info-pills">
     <div class="info-pill"><strong>Raça</strong>Eladrin (Verão)</div>
     <div class="info-pill"><strong>Classe</strong>Ladino</div>
     <div class="info-pill"><strong>Subclasse</strong>Assassino</div>
     <div class="info-pill"><strong>Antecedente</strong>Espiã</div>
     <div class="info-pill"><strong>Tendência</strong>Neutro Mau</div>
-    <div class="info-pill"><strong>Idiomas</strong>Comum, Élfico, Thieves Cant</div>
-    <div class="info-pill"><strong>Dado de Vida</strong>20d8</div>
-    
+    <div class="info-pill"><strong>Idiomas</strong>Comum, Élfico, Gíria dos Ladrões</div>
+    <div class="info-pill"><strong>XP</strong>355.000</div>
+    <div class="info-pill"><strong>Origem</strong>Wuthering Waves</div>
   </div>
-  <div class="info-pills"><span class='tag hi'>sneakAttack: 10d6</span></div>
 </div>
 
-<!-- ── ATRIBUTOS ──────────────────────────────── -->
+<!-- ══ ATRIBUTOS + SAVES + SKILLS ════════════════════ -->
 <div class="sec">
-  <div class="sec-title">Atributos</div>
+  <div class="sec-title">Atributos<span class="thorn-line"></span></div>
   <div class="attr-grid">
-        <div class="attr-box">
-          <span class="attr-label">FOR</span>
-          <span class="attr-value ">10</span>
-          <span class="attr-mod">+0</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">DES</span>
-          <span class="attr-value peak">20</span>
-          <span class="attr-mod">+5</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">CON</span>
-          <span class="attr-value ">16</span>
-          <span class="attr-mod">+3</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">INT</span>
-          <span class="attr-value ">14</span>
-          <span class="attr-mod">+2</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">SAB</span>
-          <span class="attr-value ">12</span>
-          <span class="attr-mod">+1</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">CAR</span>
-          <span class="attr-value ">16</span>
-          <span class="attr-mod">+3</span>
-        </div></div>
-  <p style="font-size:12px;color:var(--text-dim);font-style:italic;">Couro +2 (14) + Des (5) = CA 18</p>
+    <div class="attr-box">
+      <span class="attr-label">FOR</span><span class="attr-value">10</span><span class="attr-mod">+0</span>
+    </div>
+    <div class="attr-box peak">
+      <span class="attr-label">DES</span><span class="attr-value peak">20</span><span class="attr-mod">+5</span>
+    </div>
+    <div class="attr-box">
+      <span class="attr-label">CON</span><span class="attr-value">16</span><span class="attr-mod">+3</span>
+    </div>
+    <div class="attr-box">
+      <span class="attr-label">INT</span><span class="attr-value">14</span><span class="attr-mod">+2</span>
+    </div>
+    <div class="attr-box">
+      <span class="attr-label">SAB</span><span class="attr-value">12</span><span class="attr-mod">+1</span>
+    </div>
+    <div class="attr-box">
+      <span class="attr-label">CAR</span><span class="attr-value">16</span><span class="attr-mod">+3</span>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--text-dim);font-style:italic;margin-bottom:4px;">
+    CA: Couro Encantado +2 (13) + DES (+5) = 18 · Iniciativa: DES (+5) + Alert (+5) + bônus Espiã (+1) = +11
+  </p>
+
+  <div class="two-col">
+    <!-- SAVING THROWS -->
+    <div>
+      <div class="col-header">Testes de Resistência</div>
+      <ul class="save-list">
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Força</span><span class="save-score">+0</span></li>
+        <li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Destreza</span><span class="save-score filled">+11</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Constituição</span><span class="save-score">+3</span></li>
+        <li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Inteligência</span><span class="save-score filled">+8</span></li>
+        <li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Sabedoria</span><span class="save-score filled">+7</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Carisma</span><span class="save-score">+3</span></li>
+      </ul>
+      <p style="font-size:11px;color:var(--text-dim);font-style:italic;margin-top:6px;">SAB prof. via Espírito Esquivo (nív.15)</p>
+    </div>
+    <!-- SKILLS -->
+    <div>
+      <div class="col-header">Perícias <span style="font-size:9px;color:var(--text-dim);"> — ◆ = Expertise (dobro)</span></div>
+      <ul class="skill-list">
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Acrobacia</span><span class="skill-attr">DES</span><span class="skill-score filled">+11</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-name">Adestrar Animais</span><span class="skill-attr">SAB</span><span class="skill-score">+1</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-name">Atletismo</span><span class="skill-attr">FOR</span><span class="skill-score">+0</span></li>
+        <li class="skill-item"><span class="prof-dot expertise"></span><span class="skill-name">Enganação</span><span class="skill-attr">CAR</span><span class="skill-score peak">+15</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">História</span><span class="skill-attr">INT</span><span class="skill-score filled">+8</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Intimidação</span><span class="skill-attr">CAR</span><span class="skill-score filled">+9</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Intuição</span><span class="skill-attr">SAB</span><span class="skill-score filled">+7</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Investigação</span><span class="skill-attr">INT</span><span class="skill-score filled">+8</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-name">Medicina</span><span class="skill-attr">SAB</span><span class="skill-score">+1</span></li>
+        <li class="skill-item"><span class="prof-dot expertise"></span><span class="skill-name">Percepção</span><span class="skill-attr">SAB</span><span class="skill-score peak">+13</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Performance</span><span class="skill-attr">CAR</span><span class="skill-score filled">+9</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Persuasão</span><span class="skill-attr">CAR</span><span class="skill-score filled">+9</span></li>
+        <li class="skill-item"><span class="prof-dot expertise"></span><span class="skill-name">Prestidigitação</span><span class="skill-attr">DES</span><span class="skill-score peak">+17</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-name">Religião</span><span class="skill-attr">INT</span><span class="skill-score">+2</span></li>
+        <li class="skill-item"><span class="prof-dot expertise"></span><span class="skill-name">Furtividade</span><span class="skill-attr">DES</span><span class="skill-score peak">+17</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Sobrevivência</span><span class="skill-attr">SAB</span><span class="skill-score filled">+7</span></li>
+      </ul>
+      <p style="font-size:11px;color:var(--text-dim);font-style:italic;margin-top:6px;">Talento Confiável: min. 10 em jogadas de prof. (nív.11)</p>
+    </div>
+  </div>
 </div>
 
-
-
-
-
-
-
-<!-- ── HABILIDADES ───────────────────────────── -->
+<!-- ══ ATAQUES ════════════════════════════════════════ -->
 <div class="sec">
-  <div class="sec-title">Habilidades</div>
-  <div class="feat-section"><div class="feat-section-label">Habilidades de Subclasse</div><div class="feature-grid"><div class="trait-block ">
-              <div class="trait-name">Assassinar <span class="feat-level">Nív.3</span></div>
-              <div class="trait-desc">Na 1ª rodada, vantagem em ataques. Crítico automático em oponentes que não agiram ainda.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Infiltração <span class="feat-level">Nív.9</span></div>
-              <div class="trait-desc">Cria identidades falsas permanentes. 7 identidades ativas.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Imposter <span class="feat-level">Nív.13</span></div>
-              <div class="trait-desc">Duplica voz, escrita e gestos de qualquer criatura após 3h.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Death Strike <span class="feat-level">Nív.17</span></div>
-              <div class="trait-desc">Assassinar ativo: TR Con CD 19 ou alvo sofre dobro do dano total.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Habilidades de Classe</div><div class="feature-grid"><div class="trait-block ">
-              <div class="trait-name">Ataque Furtivo (10d6) <span class="feat-level">Nív.20</span></div>
-              <div class="trait-desc">10d6 com vantagem ou aliado adjacente.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Evasão <span class="feat-level">Nív.7</span></div>
-              <div class="trait-desc">TR Des sucesso = 0 dano. Falha = metade.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Espírito Esquivo <span class="feat-level">Nív.15</span></div>
-              <div class="trait-desc">Vantagem em todos os TRs de Destreza.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Golpe Fortuito <span class="feat-level">Nív.20</span></div>
-              <div class="trait-desc">1×/descanso curto: erro vira acerto.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Habilidades Raciais</div><div class="feature-grid"><div class="trait-block dim-accent">
-              <div class="trait-name">Fey Step (Verão) </div>
-              <div class="trait-desc">Teletransporte 9m. Verão: Charm TR Sab CD 13. 1×/descanso curto.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Talentos (Feats)</div><div class="feature-grid"><div class="trait-block gold-accent">
-              <div class="trait-name">Alert <span class="feat-level">Nív.4</span></div>
-              <div class="trait-desc">+5 Iniciativa. Não pode ser surpreendida.</div>
-            </div><div class="trait-block gold-accent">
-              <div class="trait-name">Lucky <span class="feat-level">Nív.8</span></div>
-              <div class="trait-desc">3 sortes/descanso longo. Relança qualquer d20.</div>
-            </div></div></div>
+  <div class="sec-title">Ataques<span class="thorn-line"></span></div>
+  <table class="attack-table">
+    <thead><tr>
+      <th>Ataque</th><th>Bônus</th><th>Dano</th><th>Tipo</th><th>Notas</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="attack-name">Adaga Venenosa +2 (principal)</td>
+        <td class="attack-bonus">+13</td>
+        <td class="attack-damage">1d4+7 + 10d6</td>
+        <td style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text-dim);">Perfurante</td>
+        <td class="attack-notes">Ataque Furtivo (10d6) com vantagem ou aliado adj. · Finesse</td>
+      </tr>
+      <tr>
+        <td class="attack-name">Adaga Mão Livre (bônus)</td>
+        <td class="attack-bonus">+13</td>
+        <td class="attack-damage">1d4+2</td>
+        <td style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text-dim);">Perfurante</td>
+        <td class="attack-notes">Leve · Ação bônus (Luta com Duas Armas) · Sem Furtivo</td>
+      </tr>
+      <tr>
+        <td class="attack-name">Adaga Arremessada</td>
+        <td class="attack-bonus">+13</td>
+        <td class="attack-damage">1d4+7</td>
+        <td style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text-dim);">Perfurante</td>
+        <td class="attack-notes">Alcance 6m/18m · Furtivo aplicável · Arremessar e Esconder</td>
+      </tr>
+      <tr>
+        <td class="attack-name">Veneno Cantarella (aplicado)</td>
+        <td class="attack-bonus">—</td>
+        <td class="attack-damage">4d10/rodada</td>
+        <td style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--poison);">Veneno</td>
+        <td class="attack-notes">TR Con CD 18 por 4 rodadas · Dano acumulativo · Não detectável</td>
+      </tr>
+      <tr>
+        <td class="attack-name">Crítico (Assassinar)</td>
+        <td class="attack-bonus">+13</td>
+        <td class="attack-damage">2d4+7 + 20d6</td>
+        <td style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text-dim);">Perfurante</td>
+        <td class="attack-notes">Auto-crit em alvo surpreso · Death Strike: dobra tudo se falhar TR Con CD 19</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-
-
-
-<!-- ── EQUIPAMENTO ──────────────────────────── -->
+<!-- ══ ASSASSINATO — BLOCO ESPECIAL ════════════════════ -->
 <div class="sec">
-  <div class="sec-title">Equipamento</div>
-  <ul class="trait-list"><li>4 Adagas Venenosas +2</li><li>Couro +2</li><li>Kit de Veneno Mestre ×3</li><li>12 doses Veneno Cantarella (4d10/rodada)</li><li>6 doses Veneno Paralisante</li><li>7 sets de disfarce</li><li>Documentos falsos certificados</li></ul>
+  <div class="assassin-box">
+    <div class="assassin-box-title">✦ Assassinar — A Arte da Morte Perfeita</div>
+    <p>O que Cantarella faz não é simplesmente matar — é compor. Cada assassinato é uma peça que ela ensaiou, um personagem que ela habitou, uma entrada que ninguém viu chegar. O veneno dança antes da lâmina.</p>
+    <div class="assassin-grid">
+      <div class="assassin-row"><strong>Rodada 1 — Vantagem</strong>Ataques com vantagem automática na primeira rodada de combate (Assassinar).</div>
+      <div class="assassin-row"><strong>Alvo Surpreso</strong>Crítico automático. Dados de dano dobrando: 2d4 + 20d6 + 7.</div>
+      <div class="assassin-row"><strong>Death Strike</strong>Alvo surpreso: TR Constituição CD 19 ou sofre o dobro do dano total.</div>
+      <div class="assassin-row"><strong>Iniciativa +11</strong>Alert (+5) garante que Cantarella age antes de quase todos os alvos.</div>
+      <div class="assassin-row"><strong>Burst Máximo</strong>Crit + Death Strike + Veneno: ~(44+70+7)×2 + 4d10 = ~250+ dano.</div>
+      <div class="assassin-row"><strong>Golpe Fortuito</strong>1×/descanso curto: transformar erro em acerto. Nunca desperdiçar o assassinato.</div>
+    </div>
+  </div>
 </div>
 
-<!-- ── PERSONALIDADE ─────────────────────────── -->
+<!-- ══ ARSENAL DE VENENOS ═══════════════════════════════ -->
 <div class="sec">
-  <div class="sec-title">Personalidade</div>
-  <div class="trait-block"><div class="trait-name">Traços de Personalidade</div><div class="trait-desc">A performance é constante. Cada sorriso é calculado, cada parede ensaiada.</div></div><div class="trait-block"><div class="trait-name">Ideais</div><div class="trait-desc">Beleza e eficiência são a mesma coisa. Um assassinato perfeito é obra de arte.</div></div><div class="trait-block"><div class="trait-name">Vínculos</div><div class="trait-desc">A pessoa que viu a dançarina real por baixo das máscaras.</div></div><div class="trait-block"><div class="trait-name">Fraquezas</div><div class="trait-desc">Não consegue ser casual. Não há coreografia para vulnerabilidade.</div></div>
+  <div class="sec-title">Arsenal de Venenos<span class="thorn-line"></span></div>
+  <div class="poison-section">
+    <div class="poison-title">⚗ Cantarella — A Alquimia da Dançarina</div>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:14px;">Cantarella domina a arte dos venenos como extensão da dança — cada substância aplicada em momentos precisos, invisíveis ao olho não treinado. O <em>Kit de Veneno Mestre</em> permite criar e modificar venenos durante descansos curtos. CD de TR para todos os venenos de Cantarella: <strong style="color:var(--poison);">18</strong>.</p>
+    <div class="poison-grid">
+      <div class="poison-card">
+        <div class="poison-card-name">Veneno Cantarella</div>
+        <div class="poison-card-desc">Veneno de contato/arma. TR Con CD 18 a cada rodada por <em>4 rodadas</em>. Falha: <em>4d10</em> dano de veneno por rodada. Inodoro e incolor. 12 doses disponíveis.</div>
+      </div>
+      <div class="poison-card">
+        <div class="poison-card-name">Veneno Paralisante</div>
+        <div class="poison-card-desc">TR Con CD 18 ou <em>paralisado</em> por 1 minuto. TR novamente ao fim de cada turno. Ideal para captura silenciosa. <em>6 doses.</em> Pode combinar com Assassinar para crit garantido.</div>
+      </div>
+      <div class="poison-card">
+        <div class="poison-card-name">Veneno de Sono</div>
+        <div class="poison-card-desc">TR Con CD 18 ou <em>inconsciente</em> por 1 hora. Não detectável por cheiro. TR novamente se danificado. <em>Criado com Kit Mestre.</em> Não letal — para extrações e interrogatórios.</div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="divider">✦ ✧ ✦</div>
+<!-- ══ HABILIDADES ════════════════════════════════════ -->
+<div class="sec">
+  <div class="sec-title">Habilidades de Subclasse — Assassino<span class="thorn-line"></span></div>
 
-<!-- ── FOOTER ────────────────────────────────── -->
+  <div class="feature-grid">
+    <div class="trait-block">
+      <div class="trait-name">Assassinar <span class="feat-level">Nív.3</span></div>
+      <div class="trait-desc">Na <strong>primeira rodada</strong> de combate, todos os ataques de Cantarella têm <em>vantagem automática</em> contra qualquer criatura que ainda não tenha agido. Contra criaturas surpreendidas, <strong>crítico automático</strong> — todos os dados de dano são dobrados, incluindo Ataque Furtivo.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Perícia em Infiltração <span class="feat-level">Nív.9</span></div>
+      <div class="trait-desc">Cria <strong>identidades falsas permanentes</strong> em 7 dias de trabalho. Inclui documentos, história de vida e referências verificáveis. Cantarella mantém <strong>7 identidades ativas</strong> simultaneamente — cada uma com disfarce, nome e antecedentes distintos.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Impostor <span class="feat-level">Nív.13</span></div>
+      <div class="trait-desc">Após <strong>3 horas estudando</strong> uma criatura humanoide, Cantarella pode duplicar sua voz, escrita, maneirismos e gestos com precisão perfeita. Nenhum teste de Percepção ou Intuição passivo detecta a imitação — apenas interrogação direta e contradições de informação.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Death Strike <span class="feat-level">Nív.17</span></div>
+      <div class="trait-desc">Quando Assassinar está ativo, o alvo de um crítico deve fazer <strong>TR Constituição CD 19</strong>. Em caso de falha, o alvo sofre <em>o dobro do dano total causado pelo ataque</em> — incluindo Ataque Furtivo e dano mágico. Combinado com crítico automático em alvo surpreso, este é o ataque de maior burst do jogo.</div>
+    </div>
+  </div>
+
+  <div class="sec-title" style="margin-top:28px;">Habilidades de Classe — Ladino<span class="thorn-line"></span></div>
+  <div class="feature-grid">
+    <div class="trait-block">
+      <div class="trait-name">Ataque Furtivo (10d6) <span class="feat-level">Nív.20</span></div>
+      <div class="trait-desc"><strong>10d6 dano extra</strong> em um ataque por turno quando Cantarella tem vantagem ou um aliado adjacente ao alvo. O dano é do mesmo tipo do ataque. Média: 35 dano extra por ataque qualificado — em um crítico com Assassinar, sobe para 20d6 (média 70).</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Ação Ardilosa <span class="feat-level">Nív.2</span></div>
+      <div class="trait-desc"><strong>Ação bônus</strong> para Correr, Desengajar ou Esconder a cada turno. Fundação da mobilidade e furtividade táticas. Após arremessar uma adaga, Cantarella pode se esconder como bônus — mantendo-a fora de linha de visão para o próximo ataque.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Esquiva Sobrenatural <span class="feat-level">Nív.5</span></div>
+      <div class="trait-desc">Usa <strong>reação</strong> para reduzir à metade o dano de um ataque que acertou. Funciona contra qualquer ataque com dano, incluindo ataques de área que especificamente a acertam. Combinado com Evasão, torna Cantarella extraordinariamente difícil de eliminar.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Evasão <span class="feat-level">Nív.7</span></div>
+      <div class="trait-desc">Em TR de Destreza contra efeitos de área: <strong>sucesso = 0 dano</strong>, falha = metade do dano. Nunca sofre dano total de bolas de fogo, relâmpagos ou explosões que permitam TR de Destreza. Combinado com Espírito Esquivo (+vantagem), é virtualmente imune a efeitos de área.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Talento Confiável <span class="feat-level">Nív.11</span></div>
+      <div class="trait-desc">Em testes de habilidade que incluam proficiência, o <strong>resultado mínimo no d20 é 10</strong> (trate dados abaixo de 10 como 10). Com Expertise em Furtividade (+17), o mínimo garantido é 27 — torna falhas em perícias-chave praticamente impossíveis.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Sentido Cego <span class="feat-level">Nív.14</span></div>
+      <div class="trait-desc">Percebe automaticamente a <strong>localização exata</strong> de qualquer criatura invisível ou escondida dentro de <em>3m</em>. Não pode ser surpreendida por criaturas ocultas nesse raio. Complementa o Assassinar — nenhum alvo se esconde perfeitamente de Cantarella.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Espírito Esquivo <span class="feat-level">Nív.15</span></div>
+      <div class="trait-desc"><strong>Vantagem em todos os TRs de Destreza</strong> e <strong>proficiência em TRs de Sabedoria</strong> (SAB +7). Combinado com Evasão: áreas de efeito causam 0 dano em sucesso e metade em falha — com vantagem no TR. A maioria dos feitiços de área simplesmente não acerta Cantarella.</div>
+    </div>
+    <div class="trait-block gold-accent">
+      <div class="trait-name">Evasivo <span class="feat-level gold">Nív.18</span></div>
+      <div class="trait-desc"><strong>Nenhum ataque tem vantagem</strong> contra Cantarella enquanto ela não estiver incapacitada. Isso inclui flanqueamento, ataques enquanto paralisada (somente incapacitação anula), e qualquer fonte que normalmente concedesse vantagem. Torna-a extraordinariamente difícil de acertar.</div>
+    </div>
+    <div class="trait-block gold-accent">
+      <div class="trait-name">Golpe Fortuito <span class="feat-level gold">Nív.20</span></div>
+      <div class="trait-desc"><strong>1×/descanso curto</strong>: se Cantarella errar um ataque ou falhar em um TR, ela pode transformar automaticamente em acerto ou sucesso. Use exclusivamente para o assassinato principal da sessão — quando errar Death Strike significaria perder a oportunidade de burst total.</div>
+    </div>
+  </div>
+
+  <div class="sec-title" style="margin-top:28px;">Habilidades Raciais — Eladrin (Verão)<span class="thorn-line"></span></div>
+  <div class="feature-grid">
+    <div class="trait-block dim-accent">
+      <div class="trait-name">Fey Step (Verão)</div>
+      <div class="trait-desc"><strong>Ação bônus</strong>: teletransporte até <em>9m</em> para espaço desocupado visível. <em>1×/descanso curto.</em> Efeito de Verão: a criatura mais próxima após o teletransporte deve fazer <strong>TR Sabedoria CD 13</strong> ou ficar <em>enfeitiçada</em> até o fim do próximo turno de Cantarella. Reposicionamento tático instantâneo.</div>
+    </div>
+    <div class="trait-block dim-accent">
+      <div class="trait-name">Ancestral Feérico</div>
+      <div class="trait-desc"><strong>Vantagem em TRs contra encantamento</strong>. <strong>Imune a sono mágico</strong>. A natureza feérica de Cantarella a protege das manipulações mentais que ela própria usa em outros. Ironia técnica: seus venenos de sono funcionam por mecanismo bioquímico, não mágico.</div>
+    </div>
+    <div class="trait-block dim-accent">
+      <div class="trait-name">Visão no Escuro</div>
+      <div class="trait-desc">Enxerga em escuridão completa como <strong>luz fraca até 18m</strong>. Elemento tático essencial: Cantarella escolhe escuridão sempre que possível, onde sua Furtividade (+17, mínimo garantido 27) supera qualquer percepção passiva inimiga.</div>
+    </div>
+  </div>
+
+  <div class="sec-title" style="margin-top:28px;">Talentos (Feats)<span class="thorn-line"></span></div>
+  <div class="feature-grid">
+    <div class="trait-block gold-accent">
+      <div class="trait-name">Alert <span class="feat-level gold">Nív.4</span></div>
+      <div class="trait-desc"><strong>+5 à Iniciativa</strong>. Cantarella nunca pode ser surpreendida enquanto consciente. Ataques de criaturas ocultas não têm vantagem automática contra ela. Com DES +5 e Alert +5: iniciativa +10 base — age antes de quase todos os encontros, ativando Assassinar na primeira rodada.</div>
+    </div>
+    <div class="trait-block gold-accent">
+      <div class="trait-name">Lucky <span class="feat-level gold">Nív.8</span></div>
+      <div class="trait-desc"><strong>3 sortes por descanso longo</strong>. Em qualquer jogada de ataque, TR ou teste de habilidade — própria ou de inimigo —, Cantarella pode gastar uma sorte para rolar um d20 adicional e escolher qual resultado usar. Pode usar na jogada do inimigo para forçar o resultado menos favorável.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ EQUIPAMENTO ════════════════════════════════════ -->
+<div class="sec">
+  <div class="sec-title">Equipamento<span class="thorn-line"></span></div>
+  <div class="equip-grid">
+    <div>
+      <div class="col-header" style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mid);margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid var(--border);">Armas e Armadura</div>
+      <ul class="item-list">
+        <li><strong>4 Adagas Venenosas +2</strong> — lâminas de gelo feérico, encantadas. 1d4+7 perfurante. Leves, finesse, arremessáveis. Pré-envoltas em Veneno Cantarella.</li>
+        <li><strong>Couro Encantado +2</strong> — colete de dança, reforçado magicamente. CA 13 + DES = CA 18. Não interfere em Furtividade ou Acrobacia.</li>
+        <li><strong>Kit de Veneno Mestre</strong> — reagentes raros, destiladores de campo, seringas de precisão. Permite criar venenos em 1h (descanso curto).</li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-header" style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mid);margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid var(--border);">Pertences e Identidades</div>
+      <ul class="item-list">
+        <li><strong>12 doses — Veneno Cantarella</strong> — 4d10/rodada, 4 rodadas, TR Con CD 18.</li>
+        <li><strong>6 doses — Veneno Paralisante</strong> — paralisado, TR Con CD 18.</li>
+        <li><strong>7 kits de disfarce completos</strong> — um por identidade falsa, incluindo roupas, documentos e adereços.</li>
+        <li><strong>Documentos forjados certificados</strong> — cédulas de nobreza, cartas de recomendação, mandatos de realeza.</li>
+        <li><strong>Espelho de Distorção</strong> — permite alterar aparência física por 1 hora. Complementa Impostor.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PERSONALIDADE ════════════════════════════════════ -->
+<div class="sec">
+  <div class="sec-title">Personalidade<span class="thorn-line"></span></div>
+  <div class="personality-grid">
+    <div class="pers-block">
+      <div class="pers-title">Traços de Personalidade</div>
+      <div class="pers-text">A performance é constante. Cada sorriso é calculado, cada palavra ensaiada, cada postura estudada horas antes de ser executada. A dançarina que as pessoas veem nunca é a pessoa real — e Cantarella perdeu a memória de qual versão é a real.</div>
+    </div>
+    <div class="pers-block">
+      <div class="pers-title">Ideais</div>
+      <div class="pers-text">Beleza e eficiência são a mesma coisa. Um assassinato perfeito é obra de arte — o alvo nunca viu a lâmina, o veneno dançou sem deixar rastro, e o mundo acordou levemente mais arrumado. A imperfeição a incomoda profundamente.</div>
+    </div>
+    <div class="pers-block">
+      <div class="pers-title">Vínculos</div>
+      <div class="pers-text">Existe uma pessoa que viu a dançarina real por baixo das máscaras — não o personagem, não a assassina, não a espiã. Cantarella não sabe se isso a torna um alvo ou a única ancora que possui. Não conseguiu decidir qual das duas opções a assusta mais.</div>
+    </div>
+    <div class="pers-block">
+      <div class="pers-title">Fraquezas</div>
+      <div class="pers-text">Não consegue ser casual. Não existe coreografia para vulnerabilidade — quando alguém toca genuinamente em algo verdadeiro, o único reflexo é a máscara errada. Já usou a identidade de assassina para fugir de uma conversa honesta.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HISTÓRIA ════════════════════════════════════════ -->
+<div class="sec">
+  <div class="sec-title">História<span class="thorn-line"></span></div>
+  <div class="lore-box">
+    <div class="lore-title">✦ A Água-Viva que Aprendeu a Dançar</div>
+    <div class="lore-body">
+      <p>Nos reinos feéricos de verão, onde a magia flui quente como brasa e os Eladrin mudam de forma com as estações, havia uma corte onde a beleza era a única moeda que importava. Cantarella aprendeu cedo que a criatura mais perigosa de qualquer sala não é aquela com a espada mais longa — é aquela de quem ninguém suspeita.</p>
+      <p>Ela começou como dançarina. Não como disfarce — genuinamente, apaixonadamente, a dança foi a primeira linguagem que entendeu completamente. O movimento que não mente, o corpo que não precisa de palavras. <em>Era boa demais nisso para não ser notada. E foi notada pelas pessoas erradas.</em></p>
+      <p>A Corte das Sombras Feéricas — uma facção que opera nos interstícios entre reinos — a recruiu não pela habilidade com lâminas, mas pela capacidade de ser qualquer pessoa em qualquer sala. Eles a ensinaram o resto: venenos que dançam no sangue, lâminas que cantam no escuro, identidades que vestem como segunda pele.</p>
+      <p><strong>O problema com aprender a ser qualquer pessoa</strong> é que eventualmente você esquece quem era antes. Cantarella tem sete identidades falsas com histórias mais ricas que a verdadeira, e alguns dias não consegue se lembrar qual nome é dela. O veneno que a Corte lhe ensinou a usar é também o que usa em si mesma.</p>
+      <p>Ela aceitou uma última missão — <em>uma que não deveria existir, para um cliente que não deveria saber de sua existência</em> — e desapareceu. Não fuga. Escolha. As águas-vivas não fogem da corrente. Elas simplesmente param de seguir uma corrente específica e deixam outra levá-las.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider">✦ ✧ 💜 ✧ ✦</div>
+
+<!-- ══ GUIA DE PROGRESSÃO ════════════════════════════ -->
+<div class="sec">
+  <div class="sec-title">Guia de Progressão — Nível 1 ao 20<span class="thorn-line"></span></div>
+  <p style="font-size:13.5px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;font-style:italic;">Cantarella segue o Caminho do Assassino — a build mais letal de burst único no D&D 5e. O kit é construído em torno de uma janela de oportunidade: agir antes, matar em um turno com Assassinar + Death Strike + Veneno. Fora dessa janela, ela é uma Ladina de alta mobilidade com Furtividade excepcional.</p>
+
+  <div class="tier-note">🎭 <strong>Tier 1 (Nível 1-4):</strong> A dançarina aprende a esconder a lâmina. Foco em Furtividade, Enganação e posicionamento. Sneak Attack ainda modesto, mas Assassinar já funciona ao nível 3.</div>
+
+  <div class="level-block milestone">
+    <div class="level-header">
+      <span class="level-num">Nível 1</span>
+      <span class="level-feat">Ladino — Perícia e Ataque Furtivo 1d6</span>
+    </div>
+    <div class="level-body">
+      <p>O primeiro nível estabelece a identidade da build: mobilidade e perícias como armas.</p>
+      <div class="sub-feat">
+        <div class="sub-feat-name">Expertise Dupla (Nível 1)</div>
+        <p>Escolha Furtividade e Enganação. Com DES 16 (+3) e INT 14: Furtividade +9, Enganação +5 já no nível 1. Expertise dobra o bônus de proficiência em ambas — a fundação de toda a infiltração.</p>
+      </div>
+      <div class="sub-feat">
+        <div class="sub-feat-name">Ataque Furtivo 1d6</div>
+        <p>1d6 de dano extra com vantagem ou aliado adjacente. Pequeno agora, mas escala para 10d6 ao nível 20. Sempre priorize condições que gerem vantagem.</p>
+      </div>
+      <p><strong>Atributos iniciais sugeridos:</strong> FOR 10, DES 16, CON 14, INT 14, SAB 12, CAR 14. DES é absoluta prioridade — ataque, dano, CA e todas as perícias-chave.</p>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header">
+      <span class="level-num">Nível 2</span>
+      <span class="level-feat">Ação Ardilosa — Mobilidade como Arma</span>
+    </div>
+    <div class="level-body">
+      <div class="sub-feat">
+        <div class="sub-feat-name">Ação Ardilosa</div>
+        <p>Esconder como ação bônus é a ferramenta mais importante da build. Estabelece o padrão de turno: atacar → esconder → repositionar. Inimigos raramente acertam um alvo que esconde entre ataques, e Cantarella fica com vantagem garantida no próximo turno.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-block milestone">
+    <div class="level-header">
+      <span class="level-num">Nível 3</span>
+      <span class="level-feat">Subclasse: Assassino — Assassinar</span>
+    </div>
+    <div class="level-body">
+      <p>O momento que define a build. <strong>Assassinar</strong> transforma Cantarella de ladina competente em eliminadora.</p>
+      <div class="sub-feat">
+        <div class="sub-feat-name">Assassinar — Primeira Rodada</div>
+        <p>Vantagem automática em todos os ataques na primeira rodada contra qualquer alvo que ainda não agiu. Crítico automático contra alvos surpresos. Com 3d6 de Sneak Attack, um crit já é devastador. Invista em iniciativa alta desde agora.</p>
+      </div>
+      <div class="sub-feat">
+        <div class="sub-feat-name poison">Bônus de Proficiência: Kit de Disfarce e Kit de Veneno</div>
+        <p>Assassinos recebem proficiência com Kit de Disfarce e Kit de Envenenamento. Começa a coleção de venenos — mesmo doses pequenas mudam encontros. Veneno básico: 1d4+4 por 1 hora, TR Con CD 10 para usar com adaga.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-block major">
+    <div class="level-header">
+      <span class="level-num">Nível 4</span>
+      <span class="level-feat">Feat: Alert — Iniciativa como Recurso</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Não tome ASI aqui</strong>. Alert é a pedra angular de toda a build de Assassino.</p>
+      <div class="sub-feat">
+        <div class="sub-feat-name gold">Alert</div>
+        <p>+5 à iniciativa (total: DES +3 + Alert +5 = +8 base). Cantarella não pode ser surpreendida. Agir na primeira posição da ordem de iniciativa é pré-requisito para Assassinar funcionar — sem isso, alvos já agiram e a janela se fecha.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tier-note">🗡 <strong>Tier 2 (Nível 5-10):</strong> A assassina se afina. Esquiva Sobrenatural e Evasão criam uma sobrevivência de elite. Segunda Expertise fecha o kit de perícias. Sneak Attack cresce para 5d6.</div>
+
+  <div class="level-block milestone">
+    <div class="level-header">
+      <span class="level-num">Nível 5</span>
+      <span class="level-feat">Esquiva Sobrenatural — Sobrevivência Reativa</span>
+    </div>
+    <div class="level-body">
+      <div class="sub-feat">
+        <div class="sub-feat-name">Esquiva Sobrenatural</div>
+        <p>Reação para reduzir à metade qualquer ataque que acertar. Compensa a CA 18 média — quando inimigos a atingem, o dano é gerenciável. Reservar para ataques inesperadamente altos; usar rotineiramente esgota as reações.</p>
+      </div>
+      <p>Sneak Attack: 3d6. Ataque com vantagem (Assassinar): 2d4 + 6d6 + bônus. Já respeitável.</p>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header">
+      <span class="level-num">Nível 6</span>
+      <span class="level-feat">Segunda Expertise — Furtividade ao Máximo</span>
+    </div>
+    <div class="level-body">
+      <div class="sub-feat">
+        <div class="sub-feat-name">Expertise: Furtividade e Prestidigitação</div>
+        <p>Com DES 16 (+3) e prof +3 ×2 = +9: Furtividade +12, Prestidigitação +12. A Furtividade de Cantarella agora supera percepções passivas de qualquer criatura que não seja específicamente treinada para rastreá-la.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header">
+      <span class="level-num">Nível 7</span>
+      <span class="level-feat">Evasão — Imunidade a Efeitos de Área</span>
+    </div>
+    <div class="level-body">
+      <div class="sub-feat">
+        <div class="sub-feat-name">Evasão</div>
+        <p>TR Destreza: sucesso = 0 dano. Falha = metade. Magos inimigos que usam bola de fogo como resposta ao assassinato descobrem que ela simplesmente <em>desaparece</em> da explosão. Transformador contra encontros com casters.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-block major">
+    <div class="level-header">
+      <span class="level-num">Nível 8</span>
+      <span class="level-feat">Feat: Lucky — Nunca Errar o Momento</span>
+    </div>
+    <div class="level-body">
+      <div class="sub-feat">
+        <div class="sub-feat-name gold">Lucky</div>
+        <p>3 sortes por descanso longo para rolar d20 adicional em qualquer jogada. Prioritize para Assassinar + Death Strike: <em>nunca</em> deixe uma janela de assassinato perder para um azar. Pode forçar relançamento do TR do inimigo — se ele passar no Death Strike, força novo rolar.</p>
+      </div>
+      <p>DES agora 18 após esta ASI opcional — mas Lucky tem mais valor. Considere ASI DES +2 se Alert + Lucky já garantem a rotina.</p>
+    </div>
+  </div>
+
+  <div class="level-block milestone">
+    <div class="level-header">
+      <span class="level-num">Nível 9</span>
+      <span class="level-feat">Perícia em Infiltração — Identidades Permanentes</span>
+    </div>
+    <div class="level-body">
+      <div class="sub-feat">
+        <div class="sub-feat-name">Infiltração</div>
+        <p>Cria identidades falsas legalmente documentadas. 7 dias por identidade. Comece a construir a rede de personagens — a assassina, a mercante, a nobre, a guarda, a curandeira, a bibliotecária, a refugiada. Cada uma para um tipo diferente de acesso.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header">
+      <span class="level-num">Nível 10</span>
+      <span class="level-feat">ASI: DES 16 → 18 — Melhorando o Núcleo</span>
+    </div>
+    <div class="level-body">
+      <p>ASI DES +2 (16→18, mod +4). Impacto: +1 ataque, +1 dano, +1 CA (18→19), +1 em todas as perícias de DES. Sneak Attack: 5d6. Expertise em Furtividade: +14. A melhora incremental é sólida — a base agora é muito resistente.</p>
+    </div>
+  </div>
+
+  <div class="tier-note">💜 <strong>Tier 3 (Nível 11-16):</strong> A assassina perfeita. Talento Confiável elimina falhas críticas. Impostor completa a infiltração. Death Strike entra e transforma a build em ameaça existencial.</div>
+
+  <div class="level-block milestone">
+    <div class="level-header">
+      <span class="level-num">Nível 11</span>
+      <span class="level-feat">Talento Confiável — Sem Falhas em Perícias</span>
+    </div>
+    <div class="level-body">
+      <div class="sub-feat">
+        <div class="sub-feat-name">Talento Confiável</div>
+        <p>Mínimo 10 no d20 para qualquer teste com proficiência. Com Expertise em Furtividade (+14 neste nível), mínimo garantido é 24. Nenhuma criatura sem Percepção passiva extraordinária detecta Cantarella involuntariamente. Ela sempre passa em Enganação e Prestidigitação.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-block major">
+    <div class="level-header">
+      <span class="level-num">Nível 12</span>
+      <span class="level-feat">ASI: DES 18 → 20 — Destreza Máxima</span>
+    </div>
+    <div class="level-body">
+      <p>DES 20 (+5). CA final: 18 (+5 DES, +2 couro +2). Iniciativa: +10. Furtividade: +17 (mínimo garantido: 27). Ataque: +11. Todas as métricas do atributo principal atingem o teto. A build está madura para os últimos marcos.</p>
+      <p>Sneak Attack: 6d6. Turno de assassinato padrão: 2d4+7 + 12d6 em crítico. Média: ~55 dano sem veneno.</p>
+    </div>
+  </div>
+
+  <div class="level-block milestone">
+    <div class="level-header">
+      <span class="level-num">Nível 13</span>
+      <span class="level-feat">Impostor — A Máscara Perfeita</span>
+    </div>
+    <div class="level-body">
+      <div class="sub-feat">
+        <div class="sub-feat-name">Impostor</div>
+        <p>Duplicação perfeita de qualquer humanoide após 3h de estudo. Combinado com Infiltração, Cantarella pode substituir qualquer membro de qualquer organização indefinidamente. Mechanicamente: testes de Percepção/Intuição não detectam a imitação passivamente — apenas contradições de informação específica.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header">
+      <span class="level-num">Nível 14</span>
+      <span class="level-feat">Sentido Cego — Nenhum Esconderijo é Seguro</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Sentido Cego 3m</strong>: detecta automaticamente criaturas ocultas ou invisíveis adjacentes. Cantarella não pode ser surpreendida por criaturas nesse raio — anula uma das poucas fraquezas da build (ser emboscada enquanto embosca).</p>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header">
+      <span class="level-num">Nível 15</span>
+      <span class="level-feat">Espírito Esquivo — Vantagem em TRs de Des e Prof. em Sab</span>
+    </div>
+    <div class="level-body">
+      <div class="sub-feat">
+        <div class="sub-feat-name">Espírito Esquivo</div>
+        <p>Vantagem em TRs de Destreza + proficiência em TRs de Sabedoria (SAB +7). Com Evasão + vantagem no TR: bolas de fogo causam 0 dano com sucesso e metade com falha — mas com vantagem, a chance de sucesso dispara. Praticamente imune a magia de área agora.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-block major">
+    <div class="level-header">
+      <span class="level-num">Nível 16</span>
+      <span class="level-feat">ASI: CON 14 → 16 — Sobrevivência Final</span>
+    </div>
+    <div class="level-body">
+      <p>CON +2 (14→16, mod +3). +40 PV retroativos (2 PV/nível desde o início). Total: 152 PV. TRs de Constituição: +3 (importante para resistir aos próprios venenos acidentais e efeitos de concentração se houver multiclasse futura).</p>
+    </div>
+  </div>
+
+  <div class="tier-note">✦ <strong>Tier 4 (Nível 17-20):</strong> A obra-prima. Death Strike cria o burst final. Evasivo torna Cantarella intocável fora de combate direto. Golpe Fortuito elimina o último elemento de azar.</div>
+
+  <div class="level-block major">
+    <div class="level-header">
+      <span class="level-num">Nível 17</span>
+      <span class="level-feat">Death Strike — O Golpe Definitivo</span>
+    </div>
+    <div class="level-body">
+      <p>Marco máximo da subclasse. Cantarella atinge seu potencial de burst absoluto.</p>
+      <div class="sub-feat">
+        <div class="sub-feat-name">Death Strike</div>
+        <p>Alvo surpreso (Assassinar ativo): TR Constituição CD 19 ou sofre o <strong>dobro do dano total</strong>. Com crítico automático + 9d6 Sneak Attack: dano base ~(4d4+14 + 18d6). Se Death Strike: dobra tudo. Média: ~250 dano. A maioria dos chefes não sobrevive ao primeiro turno.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-block milestone">
+    <div class="level-header">
+      <span class="level-num">Nível 18</span>
+      <span class="level-feat">Evasivo — Intocável</span>
+    </div>
+    <div class="level-body">
+      <div class="sub-feat">
+        <div class="sub-feat-name gold">Evasivo</div>
+        <p>Nenhum ataque tem vantagem contra Cantarella (se não estiver incapacitada). Anula flanqueamento, visão verdadeira parcial e qualquer fonte de vantagem. A dançarina que nunca para de se mover nunca é atingida com precisão. Defensivamente, é o feature mais poderoso da build.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header">
+      <span class="level-num">Nível 19</span>
+      <span class="level-feat">ASI: CAR 14 → 16 — Enganação ao Topo</span>
+    </div>
+    <div class="level-body">
+      <p>CAR +2 (14→16, mod +3). Enganação: +15. Persuasão e Performance: +9. Sneak Attack: 10d6. A última melhoria de atributo consolida as perícias sociais — Cantarella fora de combate é tão letal quanto dentro, apenas de forma diferente.</p>
+    </div>
+  </div>
+
+  <div class="level-block pinnacle">
+    <div class="level-header">
+      <span class="level-num">Nível 20</span>
+      <span class="level-feat">Golpe Fortuito — A Dançarina Perfeita</span>
+    </div>
+    <div class="level-body">
+      <p>Estado final. Cantarella não erra. Não é capturada. Não é surpreendida. Não é vista, até o momento exato em que quer ser vista.</p>
+      <div class="sub-feat">
+        <div class="sub-feat-name gold">Golpe Fortuito</div>
+        <p>1×/descanso curto: transformar erro em acerto ou falha em sucesso. Use exclusivamente no turno de Assassinar + Death Strike — garante que a janela de burst nunca se perca para um dado ruim.</p>
+      </div>
+      <p><strong>Rotina de assassinato padrão (nível 20, alvo surpreso):</strong></p>
+      <p>Iniciativa +11 (age primeiro) → Assassinar ativo → Crítico automático → 2d4+7 + 20d6 → Death Strike: TR Con CD 19 ou dobrar → Veneno Cantarella: 4d10/rodada × 4 → <strong>Total médio: ~230-280 dano no Turno 1.</strong></p>
+    </div>
+  </div>
+</div>
+
+<div class="divider">✦ ✧ 💜 ✧ ✦</div>
+
+<!-- ══ FOOTER ════════════════════════════════════════ -->
 <div class="footer">
-  <p>Cantarella · Ladino Assassino · Nível 20</p>
-  <p>D&amp;D 5e · Wuthering Waves · Sistema de Fichas RPG</p>
+  <p>Cantarella · A Dançarina Venenosa · Ladino Assassino · Eladrin (Verão) · Nível 20</p>
+  <p>D&amp;D 5e · Wuthering Waves · Sistema de Fichas RPG — Akasharium</p>
 </div>
 
 </div><!-- /page -->
 
 <script>
 (function() {
-  const particles = "✦✧❋".split("");
-  const container = document.getElementById('particleBg');
-  for (let i = 0; i < 20; i++) {
-    const p = document.createElement('span');
-    p.className = 'particle';
-    p.textContent = particles[i % particles.length];
-    p.style.left = (Math.random() * 100) + '%';
-    p.style.animationDuration = (12 + Math.random() * 18) + 's';
-    p.style.animationDelay = (Math.random() * 20) + 's';
-    p.style.fontSize = (9 + Math.random() * 6) + 'px';
-    container.appendChild(p);
+  const bg = document.getElementById('particleBg');
+  const ml = document.getElementById('mistLayer');
+
+  // 1. Sparkle/star particles
+  const sparkleSymbols = ['✦','✧','❋','✵','⋆','◆'];
+  const sparkleColors  = ['rgba(216,180,254,0.65)','rgba(168,85,247,0.55)','rgba(56,189,248,0.45)','rgba(245,240,255,0.50)'];
+  for (let i = 0; i < 28; i++) {
+    const s = document.createElement('span');
+    s.className = 'sparkle';
+    s.textContent = sparkleSymbols[i % sparkleSymbols.length];
+    s.style.cssText = [
+      'left:'              + (Math.random() * 100) + '%',
+      'bottom:-20px',
+      'font-size:'         + (7 + Math.random() * 8) + 'px',
+      'color:'             + sparkleColors[i % sparkleColors.length],
+      'animation-duration:'+ (14 + Math.random() * 18) + 's',
+      'animation-delay:'   + (Math.random() * 28) + 's',
+      'opacity:0',
+    ].join(';');
+    bg.appendChild(s);
+  }
+
+  // 2. Jellyfish floating creatures
+  const jellyData = [
+    {size:28,color:'rgba(168,85,247,0.18)',border:'rgba(168,85,247,0.22)',tents:5,tentH:[22,16,28,18,24]},
+    {size:18,color:'rgba(107,33,168,0.14)',border:'rgba(168,85,247,0.15)',tents:4,tentH:[14,18,12,16]},
+    {size:38,color:'rgba(56,189,248,0.10)',border:'rgba(56,189,248,0.18)',tents:6,tentH:[28,20,34,22,26,18]},
+    {size:22,color:'rgba(216,180,254,0.12)',border:'rgba(216,180,254,0.16)',tents:5,tentH:[18,24,14,20,16]},
+    {size:14,color:'rgba(168,85,247,0.10)',border:'rgba(168,85,247,0.12)',tents:3,tentH:[12,16,10]},
+    {size:32,color:'rgba(107,33,168,0.16)',border:'rgba(168,85,247,0.20)',tents:5,tentH:[24,30,18,26,22]},
+    {size:20,color:'rgba(56,189,248,0.08)',border:'rgba(56,189,248,0.14)',tents:4,tentH:[16,12,20,14]},
+    {size:44,color:'rgba(168,85,247,0.08)',border:'rgba(168,85,247,0.12)',tents:7,tentH:[32,24,40,28,36,20,30]},
+  ];
+  jellyData.forEach(function(d, i) {
+    const wrap = document.createElement('div');
+    wrap.className = 'jelly';
+    wrap.style.cssText = [
+      'left:'              + (5 + Math.random() * 88) + '%',
+      'top:'               + (Math.random() * 80) + '%',
+      'animation-duration:'+ (6 + Math.random() * 8) + 's',
+      'animation-delay:'   + (Math.random() * 10) + 's',
+      'opacity:'           + (0.5 + Math.random() * 0.5),
+    ].join(';');
+
+    const bell = document.createElement('div');
+    bell.className = 'jelly-bell';
+    bell.style.cssText = [
+      'width:'             + d.size + 'px',
+      'height:'            + (d.size * 0.55) + 'px',
+      'background:radial-gradient(ellipse at 40% 30%,' + d.color + ' 0%,transparent 75%)',
+      'border:1px solid '  + d.border,
+    ].join(';');
+
+    const inner = document.createElement('div');
+    inner.className = 'jelly-inner';
+    bell.appendChild(inner);
+
+    // tentacles
+    const tentRow = document.createElement('div');
+    tentRow.style.cssText = 'display:flex;justify-content:space-around;padding:0 ' + Math.round(d.size * 0.12) + 'px;';
+    d.tentH.forEach(function(h) {
+      const t = document.createElement('div');
+      t.className = 'jelly-tent';
+      const w = 1.5 + Math.random() * 1.5;
+      t.style.cssText = [
+        'width:'      + w + 'px',
+        'height:'     + h + 'px',
+        'background:linear-gradient(180deg,' + d.color + ' 0%,transparent 100%)',
+        'border-radius:0 0 50% 50%',
+        'position:relative',
+      ].join(';');
+      tentRow.appendChild(t);
+    });
+
+    wrap.appendChild(bell);
+    wrap.appendChild(tentRow);
+    bg.appendChild(wrap);
+  });
+
+  // 3. Poison bubble particles
+  for (let i = 0; i < 12; i++) {
+    const b = document.createElement('div');
+    b.className = 'poison-bubble';
+    const size = 6 + Math.random() * 14;
+    b.style.cssText = [
+      'left:'              + (Math.random() * 100) + '%',
+      'bottom:-20px',
+      'width:'             + size + 'px',
+      'height:'            + size + 'px',
+      'animation-duration:'+ (12 + Math.random() * 18) + 's',
+      'animation-delay:'   + (Math.random() * 24) + 's',
+    ].join(';');
+    bg.appendChild(b);
+  }
+
+  // 4. Mist wisps
+  for (let i = 0; i < 5; i++) {
+    const m = document.createElement('div');
+    m.className = 'mist-wisp';
+    const w = 250 + Math.random() * 400;
+    const h = 100 + Math.random() * 160;
+    m.style.cssText = [
+      'left:'              + (-w * 0.3) + 'px',
+      'top:'               + (8 + Math.random() * 78) + '%',
+      'width:'             + w + 'px',
+      'height:'            + h + 'px',
+      'animation-duration:'+ (30 + Math.random() * 35) + 's',
+      'animation-delay:'   + (Math.random() * 28) + 's',
+    ].join(';');
+    ml.appendChild(m);
   }
 })();
 </script>

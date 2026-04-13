@@ -39,16 +39,17 @@ body {
   line-height: 1.75;
 }
 
-.page { max-width: 960px; margin: 0 auto; padding: 0 0 80px; }
+.page { max-width: min(960px, 100vw - 1rem); margin: 0 auto; padding: 0 0 80px; }
 
-/* ── FLOATING LEAVES ───────────────────────────── */
-.leaf-bg {
+/* ── ATMOSPHERIC BACKGROUND ────────────────────── */
+#atmoBg {
   position: fixed; top:0; left:0; width:100%; height:100%;
   pointer-events:none; z-index:0; overflow:hidden;
 }
+
+/* Leaves */
 .leaf {
   position: absolute;
-  font-size: 14px;
   opacity: 0;
   animation: floatLeaf ease-in-out infinite;
   filter: blur(0.3px);
@@ -57,9 +58,65 @@ body {
 @keyframes floatLeaf {
   0%   { transform: translateY(110vh) translateX(0) rotate(0deg) scale(0.4); opacity:0; }
   10%  { opacity: 0.35; }
-  50%  { transform: translateY(50vh) translateX(40px) rotate(180deg) scale(0.7); opacity:0.2; }
+  50%  { transform: translateY(50vh) translateX(var(--ldx,40px)) rotate(180deg) scale(0.7); opacity:0.2; }
   90%  { opacity: 0.1; }
   100% { transform: translateY(-10vh) translateX(-20px) rotate(360deg) scale(0.3); opacity:0; }
+}
+
+/* Seed/spore particles */
+.spore {
+  position: absolute;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--dendro-bright);
+  box-shadow: 0 0 4px var(--dendro-bright);
+  animation: sporeFloat ease-in-out infinite;
+  opacity: 0;
+}
+@keyframes sporeFloat {
+  0%   { transform: translateY(105vh) translateX(0); opacity:0; }
+  8%   { opacity:0.5; }
+  50%  { transform: translateY(50vh) translateX(var(--sdx,20px)); opacity:0.25; }
+  92%  { opacity:0.08; }
+  100% { transform: translateY(-5vh) translateX(var(--sdx2,-15px)); opacity:0; }
+}
+
+/* Dendro bloom rings */
+.bloom-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(78,158,96,0.3);
+  transform: translate(-50%,-50%) scale(0);
+  animation: bloomRing ease-out infinite;
+  opacity: 0;
+}
+@keyframes bloomRing {
+  0%  { transform: translate(-50%,-50%) scale(0); opacity:0.45; }
+  100%{ transform: translate(-50%,-50%) scale(6); opacity:0; }
+}
+
+/* Green glow orbs */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(78,158,96,0.18), transparent 70%);
+  animation: orbDrift ease-in-out infinite alternate;
+}
+@keyframes orbDrift {
+  0%  { transform: translateX(0) translateY(0); opacity:0.3; }
+  100%{ transform: translateX(var(--odx,30px)) translateY(var(--ody,-20px)); opacity:0.08; }
+}
+
+/* Watermark */
+.wm {
+  position: fixed; bottom:7%; right:4%;
+  font-size:160px; opacity:0.03;
+  pointer-events:none; user-select:none;
+  animation: wmBreathe 10s ease-in-out infinite alternate;
+}
+@keyframes wmBreathe {
+  0%  { opacity:0.025; transform:scale(1) rotate(-5deg); }
+  100%{ opacity:0.045; transform:scale(1.05) rotate(0deg); }
 }
 
 /* ── HEADER ─────────────────────────────────────── */
@@ -207,7 +264,44 @@ body {
   padding-bottom: 8px; margin-bottom: 20px;
   display: flex; align-items: center; gap: 10px;
 }
-.section-title::before { content: '✦'; font-size: 12px; color: var(--dendro-bright); opacity: 0.8; }
+.section-title::before { content: '🌿'; font-size: 13px; }
+
+/* ── MECHANIC BOXES ───────────────────────────────── */
+.mech-box {
+  background: linear-gradient(135deg, #0a170c, #0e1f12);
+  border: 1px solid var(--border-bright);
+  border-left: 4px solid var(--dendro-bright);
+  padding: 18px 20px; margin-bottom: 14px;
+  position: relative; overflow: hidden;
+}
+.mech-box::before {
+  content:''; position:absolute; top:0; right:0; bottom:0; width:3px;
+  background:linear-gradient(180deg,transparent,var(--dendro),transparent); opacity:0.3;
+}
+.mech-title { font-family:'Cinzel',serif; font-size:13px; font-weight:700; color:var(--pale); letter-spacing:1px; margin-bottom:3px; text-transform:uppercase; }
+.mech-subtitle { font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:2px; color:var(--dendro-bright); opacity:0.8; margin-bottom:10px; }
+.mech-body { font-size:13.5px; color:var(--text-dim); line-height:1.65; }
+.mech-body strong { color:var(--text); }
+.mech-body em { color:var(--sage); font-style:normal; }
+.mech-table { width:100%; border-collapse:collapse; margin-top:10px; font-size:12px; }
+.mech-table th { font-family:'Share Tech Mono',monospace; font-size:8px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-dim); padding:4px 8px; border-bottom:1px solid var(--border); text-align:left; background:rgba(78,158,96,0.06); }
+.mech-table td { padding:5px 8px; border-bottom:1px solid rgba(78,158,96,0.15); color:var(--text-dim); }
+.mech-table tr:last-child td { border-bottom:none; }
+.mech-table td:first-child { color:var(--dendro-bright); font-family:'Share Tech Mono',monospace; }
+
+/* ── PROGRESSION ACCORDION ────────────────────────── */
+.prog-level { margin-bottom:6px; border:1px solid var(--border); }
+.prog-header { background:var(--card); padding:10px 16px; cursor:pointer; display:flex; align-items:center; gap:14px; transition:background 0.2s; user-select:none; }
+.prog-header:hover { background:rgba(78,158,96,0.12); }
+.prog-level-num { font-family:'Cinzel',serif; font-size:11px; font-weight:700; color:var(--dendro-bright); letter-spacing:2px; min-width:52px; }
+.prog-level-title { font-family:'EB Garamond',serif; font-size:14px; color:var(--text); flex:1; }
+.prog-arrow { font-size:10px; color:var(--text-dim); transition:transform 0.2s; }
+.prog-body { display:none; padding:12px 16px; background:rgba(10,23,12,0.6); font-size:13.5px; color:var(--text-dim); line-height:1.7; }
+.prog-body.open { display:block; }
+.prog-body strong { color:var(--text); }
+.prog-body em { color:var(--sage); font-style:normal; }
+.prog-body ul { margin:6px 0 6px 18px; }
+.prog-body ul li { margin-bottom:3px; }
 
 /* ── STAT GRID ───────────────────────────────────── */
 .stat-grid {
@@ -589,8 +683,7 @@ body {
 </head>
 <body>
 
-<!-- floating leaves -->
-<div class="leaf-bg" id="leafBg"></div>
+<div id="atmoBg"></div>
 
 <div class="page">
 
@@ -599,8 +692,13 @@ body {
     <div class="header-inner">
       <div class="header-portrait">
         <div class="portrait-inner">
-          <div class="portrait-ring"></div>
-          <div class="portrait-symbol">🌿</div>
+          <img style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 0.4s ease;" src="/portraits/nahida.jpg" alt="Nahida"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;">
+            <div class="portrait-ring"></div>
+            <div class="portrait-symbol">🌿</div>
+          </div>
+          <div class="portrait-overlay" style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,#030905aa 100%);pointer-events:none;"></div>
           <span class="portrait-label">Kusanali</span>
         </div>
       </div>
@@ -1807,25 +1905,330 @@ body {
 
   <div class="divider"><span class="divider-sym">✦ 🌿 ✦</span></div>
 
-  <!-- ══ PROGRESSÃO RESUMIDA ══════════════════════════════ -->
+  <!-- ══ MECÂNICAS ASSINATURA ═════════════════════════════ -->
   <div class="section">
-    <h2 class="section-title">Resumo da Progressão por Nível</h2>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
-      <div class="card" style="padding:12px 14px">
-        <div class="card-title" style="font-size:9px">Nível 1-2</div>
-        <p style="font-size:12px">Spellcasting · Wild Shape · Druidic · Balm of the Summer Court · Identidade de suporte e controle básico.</p>
+    <h2 class="section-title">Mecânicas Assinatura</h2>
+
+    <div class="mech-box">
+      <div class="mech-title">Bálsamo da Corte do Verão — Cura Sem Slots</div>
+      <div class="mech-subtitle">Subclasse Nív.2 · Ação Bônus · 100 PV de Reservatório Total</div>
+      <div class="mech-body">
+        Nahida possui um reservatório de cura de <strong>5 × nível druida = 100 PV</strong> totais. Como <em>ação bônus</em>, ela distribui dados de d6 para aliados conscientes em 36m, sem gastar um único slot de magia. Cada dado distribuído também concede PV temporários iguais ao resultado. O reservatório recarrega completamente em cada descanso longo.
+        <table class="mech-table">
+          <thead><tr><th>Dados Gastos</th><th>Cura (d6s)</th><th>PV Temporários</th><th>Custo</th></tr></thead>
+          <tbody>
+            <tr><td>1d6</td><td>~3.5 PV</td><td>~3.5 temp</td><td>0 slots</td></tr>
+            <tr><td>5d6</td><td>~17.5 PV</td><td>~17.5 temp</td><td>0 slots</td></tr>
+            <tr><td>16d6 (máx. turno)</td><td>~56 PV</td><td>~56 temp</td><td>0 slots</td></tr>
+            <tr><td>Total disponível</td><td>100 PV</td><td>100 temp</td><td>0 slots</td></tr>
+          </tbody>
+        </table>
+        <strong>Resultado:</strong> Nahida é um curador sustentável fora do sistema de slots — permitindo que todos os slots sejam reservados para magia de controle e dano.
       </div>
-      <div class="card" style="padding:12px 14px">
-        <div class="card-title" style="font-size:9px">Nível 3-5</div>
-        <p style="font-size:12px">2° e 3° círculo · Controle de mapa com Spike Growth e Plant Growth · Revivify · Speak with Plants.</p>
+    </div>
+
+    <div class="mech-box">
+      <div class="mech-title">Caminhos Ocultos + Andarilha dos Sonhos — Mobilidade Sobrenatural</div>
+      <div class="mech-subtitle">Subclasse Nív.10 + Nív.14 · Teletransporte + Magia Sem Slot</div>
+      <div class="mech-body">
+        <em>Caminhos Ocultos (Nív.10):</em> Nahida pode se teletransportar até <strong>18m</strong> para um espaço visível, ou teleportar uma criatura voluntária que toque para até 30m. Usos: <strong>+5 por descanso longo</strong> (mod. Sabedoria). <em>Andarilha dos Sonhos (Nív.14):</em> ao terminar um descanso curto, conjure um de três efeitos sem slot de magia: <strong>Sonho</strong> (comunicação onírica a distância ilimitada), <strong>Adivinhação</strong> (olho mágico a qualquer lugar já visitado), ou <strong>Círculo de Teletransporte</strong> (portal permanente a local familiar).
+        <table class="mech-table">
+          <thead><tr><th>Habilidade</th><th>Efeito</th><th>Usos</th></tr></thead>
+          <tbody>
+            <tr><td>Caminhos Ocultos</td><td>Teletransporte pessoal 18m ou aliado 30m</td><td>5×/descanso longo</td></tr>
+            <tr><td>Andarilha: Sonho</td><td>Mensagem onírica a qualquer dormente</td><td>1×/descanso curto</td></tr>
+            <tr><td>Andarilha: Adivinhação</td><td>Bola de cristal em local familiar</td><td>1×/descanso curto</td></tr>
+            <tr><td>Andarilha: Círculo</td><td>Portal de teletransporte para local conhecido</td><td>1×/descanso curto</td></tr>
+          </tbody>
+        </table>
       </div>
-      <div class="card" style="padding:12px 14px">
-        <div class="card-title" style="font-size:9px">Nível 6-10</div>
-        <p style="font-size:12px">Hearth of M&amp;S · Hidden Paths · 4° ao 5° círculo · Telepathic (nível 8) · War Caster (nível 12).</p>
+    </div>
+
+    <div class="mech-box">
+      <div class="mech-title">Controle de Campo — Chicote de Espinhos + Enredar + Crescimento de Plantas</div>
+      <div class="mech-subtitle">Combo de Controle · Sem Concentração Dupla</div>
+      <div class="mech-body">
+        O kit de controle de Nahida funciona em camadas: <em>Enredar</em> (concentração, TR Força CD19, Preso) cria o bloqueio base. Inimigos parados recebem <strong>Chicote de Espinhos</strong> (+11, 4d6 perfurante, puxa 3m) para reposicionamento tático. Para encontros prolongados, <em>Crescimento de Plantas</em> transforma a área em terreno 8× mais difícil — sem concentração, sem slot gasto de forma permanente durante o combate.
+        <table class="mech-table">
+          <thead><tr><th>Magia</th><th>Efeito Principal</th><th>Conc.?</th><th>Slot</th></tr></thead>
+          <tbody>
+            <tr><td>Chicote de Espinhos</td><td>4d6 perfurante + puxa 3m</td><td>Não</td><td>Truque</td></tr>
+            <tr><td>Enredar</td><td>Preso (TR Força CD 19)</td><td>Sim (1 min)</td><td>1°</td></tr>
+            <tr><td>Crescimento de Espinhos</td><td>2d4 dano/3m + terreno difícil</td><td>Sim (10 min)</td><td>2°</td></tr>
+            <tr><td>Crescimento de Plantas</td><td>Área 8× terreno difícil permanente</td><td>Não</td><td>3°</td></tr>
+          </tbody>
+        </table>
+        <strong>Combo ideal:</strong> Crescimento de Plantas (sem conc.) → Enredar (conc., inimigos presos) → Chicote de Espinhos (puxa para área dificultada) → aliados atacam com vantagem sobre alvos presos.
       </div>
-      <div class="card" style="padding:12px 14px">
-        <div class="card-title" style="font-size:9px">Nível 14-20</div>
-        <p style="font-size:12px">Walker in Dreams · 7°-9° círculo · Timeless Body · Beast Spells · Archdruid — forma divina completa.</p>
+    </div>
+  </div>
+
+  <!-- ══ PROGRESSÃO NÍVEL A NÍVEL ══════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title">Guia de Progressão — Níveis 1 a 20</h2>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;font-style:italic;">Clique em cada nível para expandir.</p>
+
+    <div class="prog-level">
+      <div class="prog-header" onclick="toggleLevel(this)">
+        <span class="prog-level-num">NÍV. 1</span>
+        <span class="prog-level-title">O Despertar — Conjuração Druídica + Forma Animal</span>
+        <span class="prog-arrow">▼</span>
+      </div>
+      <div class="prog-body">
+        <strong>Habilidades Obtidas:</strong>
+        <ul>
+          <li><em>Conjuração Druídica:</em> Habilidade mágica = Sabedoria. Aprende Truques: <strong>Orientação</strong>, <strong>Chicote de Espinhos</strong>, <strong>Chamar Chama</strong>, <strong>Artesanato Druídico</strong>. Magias preparadas: 6 (Sab mod + nível).</li>
+          <li><em>Druídico:</em> Conhece a linguagem secreta dos druidas — pode deixar mensagens em qualquer natureza.</li>
+          <li><em>Wild Shape (Forma Animal) — 2×/descanso curto:</em> Transforma em besta CR ¼ sem capacidade de natação. Para Nahida: infiltração, exploração.</li>
+          <li><em>Fairy:</em> Tamanho Pequeno, voo 9m, visão no escuro 18m, tipo Feérico.</li>
+        </ul>
+        <strong>Magias Preparadas Recomendadas:</strong> Baga Mágica, Enredar, Cura de Ferimentos, Armadura Feérica, Absorver Elementos, Detectar Magia.<br>
+        <strong>Estratégia:</strong> Enredar é sua jogada mais poderosa neste nível — um slot de 1° que paralisa 6 criaturas. Use Orientação para apoiar aliados em testes. Voe acima do campo de batalha para segurança.
+      </div>
+    </div>
+
+    <div class="prog-level">
+      <div class="prog-header" onclick="toggleLevel(this)">
+        <span class="prog-level-num">NÍV. 2</span>
+        <span class="prog-level-title">Bálsamo da Corte do Verão — Cura Infinita Desbloqueada</span>
+        <span class="prog-arrow">▼</span>
+      </div>
+      <div class="prog-body">
+        <strong>Habilidades Obtidas:</strong>
+        <ul>
+          <li><em>Bálsamo da Corte do Verão (Círculo dos Sonhos):</em> Reservatório de 10 PV (5×nível 2). Ação bônus: distribua dados d6 a aliados em 36m sem slot. Aumenta para 100 PV no nível 20.</li>
+          <li><em>Wild Shape melhora:</em> CR ¼ com natação disponível.</li>
+          <li>Mais magias preparadas: adicione <strong>Crescimento de Espinhos</strong> (dano + terreno difícil, 2°).</li>
+        </ul>
+        <strong>Estratégia:</strong> O Bálsamo transforma Nahida em curadora sustentável desde o nível 2. Ela nunca desperdiça um slot de magia em Cura de Ferimentos enquanto tiver dados no reservatório. Enredar continua sendo o controle principal.
+      </div>
+    </div>
+
+    <div class="prog-level">
+      <div class="prog-header" onclick="toggleLevel(this)">
+        <span class="prog-level-num">NÍV. 3</span>
+        <span class="prog-level-title">2° Círculo — Crescimento de Espinhos + Revitalizar</span>
+        <span class="prog-arrow">▼</span>
+      </div>
+      <div class="prog-body">
+        <strong>Habilidades Obtidas:</strong>
+        <ul>
+          <li>Acesso a magias de 2° nível. Slots: 4/2.</li>
+          <li>Aprenda <strong>Crescimento de Espinhos</strong> (2d4 por 3m percorrido, concentração 10 min) e <strong>Passes de Passe</strong> (acesso a locais bloqueados).</li>
+          <li>Adicione <strong>Vento Cortante</strong> se precisar de dano de área sem concentração.</li>
+        </ul>
+        <strong>Estratégia:</strong> Crescimento de Espinhos + Enredar combinados fazem criaturas sofrerem dano tanto por estarem presas quanto por tentarem se mover. Com Wild Shape CR ½ disponível (nível 4), prepare para Forma Animal mais versátil.
+      </div>
+    </div>
+
+    <div class="prog-level">
+      <div class="prog-header" onclick="toggleLevel(this)">
+        <span class="prog-level-num">NÍV. 4</span>
+        <span class="prog-level-title">ASI — Sabedoria +2 (17→19)</span>
+        <span class="prog-arrow">▼</span>
+      </div>
+      <div class="prog-body">
+        <strong>Habilidades Obtidas:</strong>
+        <ul>
+          <li><em>ASI:</em> +2 Sabedoria (17→19). CD de Magia sobe para 17. Ataque mágico: +9.</li>
+          <li>Wild Shape: CR 1 desbloqueado.</li>
+          <li>Magias preparadas: 9 (4 prof + 5 Sab mod).</li>
+        </ul>
+        <strong>Estratégia:</strong> Com Sab 19, Intuição +9 — Nahida lê intenções com precisão cirúrgica. Adicione <strong>Revitalizar</strong> às magias preparadas (ressuscita aliado com 1 PV, slot 3°) para situações críticas.
+      </div>
+    </div>
+
+    <div class="prog-level">
+      <div class="prog-header" onclick="toggleLevel(this)">
+        <span class="prog-level-num">NÍV. 5</span>
+        <span class="prog-level-title">3° Círculo — Crescimento de Plantas + Invocar Relâmpago</span>
+        <span class="prog-arrow">▼</span>
+      </div>
+      <div class="prog-body">
+        <strong>Habilidades Obtidas:</strong>
+        <ul>
+          <li>Acesso a magias de 3° nível. Slots: 4/3/2.</li>
+          <li>Aprenda <strong>Crescimento de Plantas</strong> (sem concentração, transforma área inteira em terreno 8× difícil — permanente até fim do efeito).</li>
+          <li>Aprenda <strong>Invocar Relâmpago</strong> (concentração, 3d10 elétrico por turno como ação bônus).</li>
+          <li>Aprenda <strong>Revitalizar</strong> (ressurreição de combate sem custo de componente de diamante — versão druídica).</li>
+        </ul>
+        <strong>Estratégia:</strong> Crescimento de Plantas é uma das magias mais poderosas de controle de mapa no jogo. Inimigos com 9m de deslocamento agora movem apenas ~1m/turno na área. Combine com Enredar e Chicote de Espinhos para imobilização total.
+      </div>
+    </div>
+
+    <div class="prog-level">
+      <div class="prog-header" onclick="toggleLevel(this)">
+        <span class="prog-level-num">NÍV. 6</span>
+        <span class="prog-level-title">Lar do Luar e da Sombra — Campo de Descanso Protegido</span>
+        <span class="prog-arrow">▼</span>
+      </div>
+      <div class="prog-body">
+        <strong>Habilidades Obtidas:</strong>
+        <ul>
+          <li><em>Lar do Luar e da Sombra (Círculo dos Sonhos):</em> Ao iniciar descanso curto/longo, conjura espaço de 9m de raio. Criaturas dentro ganham <strong>+5 Percepção</strong> e <strong>+5 Furtividade</strong>. Fontes de luz ficam invisíveis de fora.</li>
+          <li>Wild Shape: CR 2 desbloqueado.</li>
+        </ul>
+        <strong>Estratégia:</strong> O Lar é essencial para segurança em descansos — inimigos não conseguem detectar luz ou barulho de dentro. +5 Percepção significa que ninguém surpreende o grupo durante o repouso.
+      </div>
+    </div>
+
+    <div class="prog-level">
+      <div class="prog-header" onclick="toggleLevel(this)">
+        <span class="prog-level-num">NÍV. 7-8</span>
+        <span class="prog-level-title">4° Círculo + Telepático — Sabedoria 20</span>
+        <span class="prog-arrow">▼</span>
+      </div>
+      <div class="prog-body">
+        <strong>Habilidades Obtidas (Nív.7):</strong>
+        <ul>
+          <li>Acesso a 4° círculo: <strong>Polimorfismo</strong> (CR máximo ≤ Nível Druida/3), <strong>Guardiões do Espírito</strong> (3d8 Radiante em aura 4,5m), <strong>Liberdade de Movimento</strong>.</li>
+        </ul>
+        <strong>Habilidades Obtidas (Nív.8 — ASI):</strong>
+        <ul>
+          <li><em>Talento: Telepático:</em> +1 Sabedoria (19→20). Comunicação telepática em 18m à vontade. Pode ler superfície de pensamentos (TR Sab CD 15). Nahida literalmente lê mentes — como nos jogos.</li>
+          <li>CD de Magia: 19. Ataque mágico: +11. Fixos daqui em diante.</li>
+        </ul>
+        <strong>Estratégia:</strong> Nahida agora tem Sabedoria 20 — o máximo padrão. Sua identidade como deusa da sabedoria está mecanicamente completa. Telepático permite comunicação silenciosa durante combate.
+      </div>
+    </div>
+
+    <div class="prog-level">
+      <div class="prog-header" onclick="toggleLevel(this)">
+        <span class="prog-level-num">NÍV. 9</span>
+        <span class="prog-level-title">5° Círculo — Reviver os Mortos + Cura em Massa</span>
+        <span class="prog-arrow">▼</span>
+      </div>
+      <div class="prog-body">
+        <strong>Habilidades Obtidas:</strong>
+        <ul>
+          <li>Acesso a 5° círculo. Slots: 4/3/3/3/2.</li>
+          <li>Aprenda <strong>Reviver os Mortos</strong> (ressurreição completa, 1 dia morto máximo, slot 5°).</li>
+          <li>Aprenda <strong>Cura em Massa</strong> (cura 3d8+5 em todos os aliados em 9m, sem alvo individual, slot 5°).</li>
+          <li>Aprenda <strong>Controlar o Clima</strong> (se disponível no nível) ou <strong>Contagiar</strong>.</li>
+        </ul>
+        <strong>Estratégia:</strong> Reviver os Mortos + Bálsamo da Corte do Verão = Nahida nunca perde um aliado permanentemente SE tiver slot 5°. Cura em Massa para recuperação em massa em um único turno.
+      </div>
+    </div>
+
+    <div class="prog-level">
+      <div class="prog-header" onclick="toggleLevel(this)">
+        <span class="prog-level-num">NÍV. 10</span>
+        <span class="prog-level-title">Caminhos Ocultos — Teletransporte 5×/Descanso</span>
+        <span class="prog-arrow">▼</span>
+      </div>
+      <div class="prog-body">
+        <strong>Habilidades Obtidas:</strong>
+        <ul>
+          <li><em>Caminhos Ocultos (Círculo dos Sonhos):</em> 5 usos/descanso longo. Teletransporte pessoal 18m ou aliado para 30m. Ação bônus.</li>
+          <li>Imunidade a Envelhecimento Mágico.</li>
+        </ul>
+        <strong>Estratégia:</strong> Nahida pode reposicionar aliados em perigo (teletransporte de aliado para 30m) ou escapar instantaneamente de situações desesperadas. Em combate: posicione-se idealmente a cada turno como ação bônus enquanto usa a ação principal para controle/cura.
+      </div>
+    </div>
+
+    <div class="prog-level">
+      <div class="prog-header" onclick="toggleLevel(this)">
+        <span class="prog-level-num">NÍV. 11-12</span>
+        <span class="prog-level-title">6° Círculo + Conjurador de Guerra</span>
+        <span class="prog-arrow">▼</span>
+      </div>
+      <div class="prog-body">
+        <strong>Habilidades Obtidas (Nív.11):</strong>
+        <ul>
+          <li>Acesso a 6° círculo: <strong>Raio Solar</strong> (6d8 Radiante + cego, concentração 1 min), <strong>Cura em Massa Superior</strong> (8d8+5 em aliados na área), <strong>Transporte por Plantas</strong>.</li>
+          <li>Primeira magia de 6° não gasta slot se souber de cor (druidas preparam).</li>
+        </ul>
+        <strong>Habilidades Obtidas (Nív.12 — ASI):</strong>
+        <ul>
+          <li><em>Talento: Conjurador de Guerra:</em> Vantagem em TR Constituição para concentração. Pode usar magia como ataque de oportunidade.</li>
+        </ul>
+        <strong>Estratégia:</strong> War Caster + Telepático = Nahida nunca é surpreendida mentalmente e raramente perde concentração. Raio Solar como dano de área Radiante — excelente contra mortos-vivos e criaturas de escuridão.
+      </div>
+    </div>
+
+    <div class="prog-level">
+      <div class="prog-header" onclick="toggleLevel(this)">
+        <span class="prog-level-num">NÍV. 13-14</span>
+        <span class="prog-level-title">7° Círculo + Andarilha dos Sonhos</span>
+        <span class="prog-arrow">▼</span>
+      </div>
+      <div class="prog-body">
+        <strong>Habilidades Obtidas (Nív.13):</strong>
+        <ul>
+          <li>Acesso a 7° círculo: <strong>Regenerar</strong> (cura 4d8+15 + regeneração 1 PV/turno por 1 min), <strong>Animar Plantas</strong> (até 2 criaturas vegetal animadas), <strong>Reverter Envelhecimento</strong>.</li>
+        </ul>
+        <strong>Habilidades Obtidas (Nív.14 — Andarilha dos Sonhos):</strong>
+        <ul>
+          <li>Após descanso curto: <strong>Sonho</strong> (mensagem onírica), <strong>Adivinhação</strong> (bola de cristal a longa distância), ou <strong>Círculo de Teletransporte</strong> (portal sem componentes caros). 1×/descanso longo total.</li>
+        </ul>
+        <strong>Estratégia:</strong> Andarilha dos Sonhos transforma a utilidade fora de combate de Nahida. Círculo de Teletransporte sem material (giz 50gp não necessário) = retorno a qualquer cidade já visitada a qualquer momento. Regenerar funciona até em aliados inconscientes.
+      </div>
+    </div>
+
+    <div class="prog-level">
+      <div class="prog-header" onclick="toggleLevel(this)">
+        <span class="prog-level-num">NÍV. 15-16</span>
+        <span class="prog-level-title">8° Círculo + Resiliente (Con) — Concentração Indestrutível</span>
+        <span class="prog-arrow">▼</span>
+      </div>
+      <div class="prog-body">
+        <strong>Habilidades Obtidas (Nív.15):</strong>
+        <ul>
+          <li>Acesso a 8° círculo: <strong>Terremoto</strong> (concentração, terreno extremamente difícil + derruba estruturas), <strong>Sunburst</strong> (12d6 Radiante + cega, sem concentração).</li>
+          <li>Wild Shape: CR 6 desbloqueado.</li>
+        </ul>
+        <strong>Habilidades Obtidas (Nív.16 — ASI):</strong>
+        <ul>
+          <li><em>Talento: Resiliente (Con):</em> +1 Constituição (15→16). Proficiência em TRs de Constituição. Com War Caster + Resiliente: quebrar concentração de Nahida requer dano extremo.</li>
+        </ul>
+        <strong>Estratégia:</strong> TR Con +9 com vantagem = quase impossível perder concentração. Nahida pode manter Enredar, Crescimento de Espinhos ou Raio Solar por combates inteiros sem interrupção.
+      </div>
+    </div>
+
+    <div class="prog-level">
+      <div class="prog-header" onclick="toggleLevel(this)">
+        <span class="prog-level-num">NÍV. 17-18</span>
+        <span class="prog-level-title">9° Círculo — Corpo Intemporal + Magias em Forma Animal</span>
+        <span class="prog-arrow">▼</span>
+      </div>
+      <div class="prog-body">
+        <strong>Habilidades Obtidas (Nív.17):</strong>
+        <ul>
+          <li>Acesso a 9° círculo (slot único): <strong>Reparar Ferimentos em Massa</strong> (700 PV distribuídos em criaturas dentro de 18m), <strong>Desejo</strong>, <strong>Verdadeira Ressurreição</strong> (sem limite de tempo, sem componentes de diamante 25,000gp — se disponível).</li>
+        </ul>
+        <strong>Habilidades Obtidas (Nív.18):</strong>
+        <ul>
+          <li><em>Corpo Intemporal:</em> Nahida não envelhece mais. Não precisa de comida ou água.</li>
+          <li><em>Magias em Forma Animal:</em> Pode conjurar magias druídicas enquanto em Wild Shape.</li>
+        </ul>
+        <strong>Estratégia:</strong> Reparar Ferimentos em Massa (9°) distribui 700 PV — literalmente ressuscita um grupo inteiro de zero. Magias em Forma Animal significa que Nahida em forma de criatua pequena e furtiva ainda pode lançar Enredar ou Crescimento de Plantas.
+      </div>
+    </div>
+
+    <div class="prog-level">
+      <div class="prog-header" onclick="toggleLevel(this)">
+        <span class="prog-level-num">NÍV. 19-20</span>
+        <span class="prog-level-title">Archdruid — A Forma Divina Completa</span>
+        <span class="prog-arrow">▼</span>
+      </div>
+      <div class="prog-body">
+        <strong>Habilidades Obtidas (Nív.19 — ASI):</strong>
+        <ul>
+          <li>+2 Constituição (16→18). PV aumentam para 152 (médio) a 176 (máximo).</li>
+        </ul>
+        <strong>Habilidades Obtidas (Nív.20 — Archdruid):</strong>
+        <ul>
+          <li><em>Archdruid:</em> Wild Shape ilimitado. Ignora componentes verbais e somáticos em todas as magias druídicas — Nahida conjura em silêncio absoluto, sem gestos, pelo puro pensamento.</li>
+          <li>Bálsamo: 100 PV totais. Caminhos Ocultos: 5 teletransportes. Andarilha dos Sonhos ativa.</li>
+        </ul>
+        <strong>Identidade Final:</strong>
+        <ul>
+          <li>CA 19 (Armadura Casca + Escudo). PV 152+. CD Magia 19. Ataque +11.</li>
+          <li>Conjura sem componentes V/S — em silêncio total, sem gestos. Em qualquer forma.</li>
+          <li>Cura sem slots (100 PV/longo repouso). Teletransporte 5×. Magia onírica de longa distância.</li>
+          <li>Não envelhece. Não precisa comer. Lê mentes. Fala telepaticamente. Voa.</li>
+        </ul>
+        Ela não nasceu. Ela despertou. E neste nível, o mundo lembra disso.
       </div>
     </div>
   </div>
@@ -1848,19 +2251,63 @@ body {
 </div><!-- /page -->
 
 <script>
-// Floating leaf particles
-const container = document.getElementById('leafBg');
-const symbols = ['🍃','🌿','✦','·','❋','⋆'];
-for (let i = 0; i < 28; i++) {
-  const leaf = document.createElement('span');
-  leaf.className = 'leaf';
-  leaf.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-  leaf.style.left = Math.random() * 100 + '%';
-  leaf.style.animationDuration = (12 + Math.random() * 20) + 's';
-  leaf.style.animationDelay = (Math.random() * 20) + 's';
-  leaf.style.fontSize = (10 + Math.random() * 12) + 'px';
-  container.appendChild(leaf);
+function toggleLevel(header){
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.prog-arrow');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
 }
+
+(function(){
+  const bg = document.getElementById('atmoBg');
+
+  // 30 floating leaves/symbols
+  const symbols = ['🍃','🌿','✦','·','❋','⋆','🌱'];
+  for(let i=0;i<30;i++){
+    const leaf = document.createElement('span');
+    leaf.className = 'leaf';
+    leaf.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+    const ldx = -50+Math.random()*100;
+    leaf.style.cssText = `left:${Math.random()*100}%;--ldx:${ldx}px;animation-duration:${12+Math.random()*20}s;animation-delay:${-Math.random()*20}s;font-size:${10+Math.random()*12}px;`;
+    bg.appendChild(leaf);
+  }
+
+  // 25 spore particles
+  for(let i=0;i<25;i++){
+    const s = document.createElement('div');
+    s.className = 'spore';
+    const sdx = -30+Math.random()*60;
+    const sdx2 = -20+Math.random()*40;
+    s.style.cssText = `left:${Math.random()*100}%;--sdx:${sdx}px;--sdx2:${sdx2}px;animation-duration:${8+Math.random()*12}s;animation-delay:${-Math.random()*15}s;`;
+    bg.appendChild(s);
+  }
+
+  // 4 bloom rings
+  for(let i=0;i<4;i++){
+    const r = document.createElement('div');
+    r.className = 'bloom-ring';
+    r.style.cssText = `left:${15+Math.random()*70}%;top:${10+Math.random()*80}%;width:40px;height:40px;animation-duration:${6+Math.random()*4}s;animation-delay:${i*2.2}s;`;
+    bg.appendChild(r);
+  }
+
+  // 3 glow orbs
+  for(let i=0;i<3;i++){
+    const o = document.createElement('div');
+    o.className = 'glow-orb';
+    const sz = 120+Math.random()*180;
+    const odx = -40+Math.random()*80;
+    const ody = -30+Math.random()*60;
+    o.style.cssText = `left:${Math.random()*80}%;top:${Math.random()*80}%;width:${sz}px;height:${sz}px;--odx:${odx}px;--ody:${ody}px;animation-duration:${10+Math.random()*8}s;animation-delay:${-Math.random()*10}s;`;
+    bg.appendChild(o);
+  }
+
+  // Watermark
+  const wm = document.createElement('div');
+  wm.className = 'wm';
+  wm.textContent = '🌿';
+  bg.appendChild(wm);
+})();
 </script>
 
 </body>

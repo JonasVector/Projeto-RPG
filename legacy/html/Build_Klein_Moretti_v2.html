@@ -9,10 +9,16 @@
 :root{--fog:#9b6ddb;--fog-mid:#7c4fc9;--fog-bright:#c4a0f5;--mist:#5a3d8a;--dark:#06030d;--darker:#030108;--card:#0d0818;--card-light:#160c22;--gold:#c9a227;--gold-light:#e8c85a;--text:#cec6e2;--text-dim:#7a6898;--border:rgba(155,109,219,0.25);--border-bright:rgba(196,160,245,0.42);}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 20%,rgba(124,79,201,0.10) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(201,162,39,0.05) 0%,transparent 45%),radial-gradient(ellipse at 50% 50%,rgba(90,61,138,0.04) 0%,transparent 65%);font-family:'EB Garamond',Georgia,serif;color:var(--text);line-height:1.75;}
-.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
-.mist-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
-.mist-p{position:absolute;font-size:12px;opacity:0;animation:floatMist ease-in-out infinite;filter:blur(0.5px);color:var(--fog-bright);}
-@keyframes floatMist{0%{transform:translateY(105vh) translateX(0) rotate(0deg) scale(0.5);opacity:0;}8%{opacity:0.22;}45%{transform:translateY(52vh) translateX(30px) rotate(150deg) scale(0.8);opacity:0.13;}92%{opacity:0.05;}100%{transform:translateY(-8vh) translateX(-25px) rotate(320deg) scale(0.4);opacity:0;}}
+.page{max-width:min(960px,100vw - 1rem);margin:0 auto;padding:0 0 80px;}
+#atmoBg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.fog-sym{position:absolute;font-size:12px;opacity:0;animation:fogRise ease-in-out infinite;filter:blur(0.5px);color:var(--fog-bright);}
+@keyframes fogRise{0%{transform:translateY(105vh) translateX(0) rotate(0deg) scale(0.5);opacity:0;}8%{opacity:0.20;}45%{transform:translateY(52vh) translateX(var(--fdx,30px)) rotate(var(--fr,150deg)) scale(0.8);opacity:0.12;}92%{opacity:0.04;}100%{transform:translateY(-8vh) translateX(var(--fdx2,-25px)) rotate(var(--fr2,320deg)) scale(0.4);opacity:0;}}
+.ghost-orb{position:absolute;border-radius:50%;opacity:0;animation:orbDrift ease-in-out infinite alternate;background:radial-gradient(circle,rgba(155,109,219,0.12) 0%,transparent 70%);}
+@keyframes orbDrift{0%{opacity:0;transform:translate(0,0);}40%{opacity:0.85;}100%{opacity:0;transform:translate(var(--ox,40px),var(--oy,-30px));}}
+.void-crack{position:absolute;height:1px;background:linear-gradient(90deg,transparent,var(--fog-mid),var(--fog-bright),transparent);opacity:0;animation:crackFlash ease-in-out infinite;}
+@keyframes crackFlash{0%,85%,100%{opacity:0;}42%,58%{opacity:0.42;}}
+.wm{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:300px;opacity:0.022;pointer-events:none;z-index:0;animation:wmPulse 10s ease-in-out infinite alternate;}
+@keyframes wmPulse{0%{opacity:0.015;}100%{opacity:0.028;}}
 .header{background:linear-gradient(165deg,#040210 0%,#0e0820 50%,#040210 100%);border-bottom:2px solid var(--fog);position:relative;overflow:hidden;z-index:1;}
 .header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 65px,rgba(124,79,201,0.022) 65px,rgba(124,79,201,0.022) 66px);}
 .header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--fog-mid),var(--fog-bright),var(--fog-mid),transparent);opacity:0.55;}
@@ -111,15 +117,28 @@ ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold
 .footer{margin-top:50px;padding:22px 40px;text-align:center;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent 0%,rgba(13,8,24,0.6) 100%);position:relative;z-index:1;}
 .footer p{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);opacity:0.5;text-transform:uppercase;margin-bottom:4px;}
 @media(max-width:680px){.header-inner{flex-direction:column;}.header-portrait{width:100%;height:160px;}.portrait-inner{height:160px;}.attr-grid{grid-template-columns:repeat(3,1fr);}.tarot-grid{grid-template-columns:1fr;}.spell-grid{grid-template-columns:1fr;}.stats-bar{flex-wrap:wrap;gap:8px;}.stat-item{flex:none;width:48%;border-right:none;border-bottom:1px solid var(--border);padding:6px 0;}}
+.mech-box{background:rgba(155,109,219,0.05);border:1px solid var(--border);border-left:4px solid var(--fog);padding:16px 18px;margin-bottom:14px;}
+.mech-title{font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:1px;color:var(--fog-bright);margin-bottom:4px;}
+.mech-subtitle{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--fog);margin-bottom:10px;}
+.mech-body{font-size:13px;color:var(--text-dim);line-height:1.6;margin-bottom:8px;}
+.mech-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px;}
+.mech-table th{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:4px 8px;text-align:left;border-bottom:1px solid var(--border);background:rgba(155,109,219,0.08);}
+.mech-table td{padding:5px 8px;border-bottom:1px solid rgba(155,109,219,0.07);color:var(--text);}
+.level-header{cursor:pointer;user-select:none;}
+.level-body{display:none;}
+.level-body.open{display:block;}
 </style>
 </head>
 <body>
-<div class="mist-bg" id="mistBg"></div>
+<div id="atmoBg"></div>
 <div class="page">
 
 <!-- HEADER -->
 <div class="header"><div class="header-inner">
   <div class="header-portrait">
+    <img src="/portraits/klein.jpg" alt="Klein Moretti"
+      style="width:100%;height:100%;object-fit:cover;object-position:top;opacity:0.88;position:absolute;top:0;left:0;z-index:2;"
+      onerror="this.style.display='none';">
     <div class="portrait-ring"></div>
     <div class="portrait-inner">
       <div class="tarot-card-frame">
@@ -239,6 +258,62 @@ ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold
     <div class="attr-box"><span class="attr-label">Car</span><span class="attr-value peak">17</span><span class="attr-mod">+3</span></div>
   </div>
   <div class="lore-note">Con já inclui o bônus racial +1 do Changeling (13→14). Car já inclui o bônus racial +2 (15→17).</div>
+</div>
+
+<div class="divider">✦ ✧ ✦</div>
+
+<!-- MECÂNICAS ASSINATURA -->
+<div class="sec">
+  <div class="sec-title">Mecânicas Assinatura</div>
+
+  <div class="mech-box">
+    <div class="mech-title">O Louco Indetectável — Disfarce + Magia Sem Rastros</div>
+    <div class="mech-subtitle">Changeling · Alma Aberrante · Metamágica · Nível 6+</div>
+    <div class="mech-body">A sinergia central de Klein: o Changeling assume qualquer identidade visualmente, enquanto a metamágica elimina todos os sinais externos de conjuração. Com Feitiçaria Psíquica (Nível 6), as magias psíquicas não requerem componentes somáticos ou materiais — resultando em conjuração absolutamente indetectável: sem sons, sem gestos, sem rastros. Uma operação fantasma em forma humana.</div>
+    <table class="mech-table">
+      <thead><tr><th>Habilidade</th><th>Custo</th><th>Efeito</th></tr></thead>
+      <tbody>
+        <tr><td>Ser Mutável</td><td>1 ação</td><td>Assume qualquer forma humanoide — visual perfeito</td></tr>
+        <tr><td>Magia Silenciosa</td><td>1 pt feitiçaria</td><td>Sem componentes verbais</td></tr>
+        <tr><td>Magia Sutil</td><td>1 pt feitiçaria</td><td>Sem verbais E sem somáticos</td></tr>
+        <tr><td>Feitiçaria Psíquica (Nív.6)</td><td>—</td><td>Magias psíquicas sem somáticos/materiais automaticamente</td></tr>
+        <tr><td><strong style="color:var(--fog-bright)">Combinado</strong></td><td>2 pts</td><td><strong style="color:var(--fog-bright)">Zero sons · Zero gestos · Absolutamente indetectável</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mech-box">
+    <div class="mech-title">Arsenal Psíquico — Cinco Camadas de Controle</div>
+    <div class="mech-subtitle">Magias Psíquicas Expandidas · Níveis 1-9 · Sem custo de slots conhecidos</div>
+    <div class="mech-body">As magias psíquicas não contam para o limite de magias conhecidas e escalam automaticamente com o nível do Feiticeiro. Cada camada abre um novo vetor de domínio sobre aliados, inimigos e informação — do dano psíquico de nível 1 até o controle cinético de objetos e criaturas de nível 9.</div>
+    <table class="mech-table">
+      <thead><tr><th>Nível</th><th>Magia</th><th>Efeito Chave</th></tr></thead>
+      <tbody>
+        <tr><td>1°</td><td>Sussurros Dissonantes</td><td>3d6 psíquico + movimento forçado → ataque de oportunidade dos aliados</td></tr>
+        <tr><td>2°</td><td>Detectar Pensamentos</td><td>Lê pensamentos superficiais → aprofunda (TR Sab) para memórias ocultas</td></tr>
+        <tr><td>3°</td><td>Fome de Hadar</td><td>Zona 9m: cega, surdeia, 2d6 frio + 2d6 ácido/turno</td></tr>
+        <tr><td>4°</td><td>Tentáculos de Evard</td><td>Agarra + restringe + 3d6 contundente/turno em área de 6m</td></tr>
+        <tr><td>5°</td><td>Telecinese</td><td>Move criaturas/objetos até 9m; restringe com TR de Força</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mech-box">
+    <div class="mech-title">Metamágica — Combinações de Alto Impacto</div>
+    <div class="mech-subtitle">Magia Acelerada · Duplicada · Silenciosa · Sutil · 4 opções disponíveis</div>
+    <div class="mech-body">Cada metamágica é multiplicadora: Magia Acelerada comprime a linha do tempo (ataque + conjuração em um turno), Magia Duplicada dobra eficiência de alvo único, e Magia Silenciosa/Sutil combinadas tornam Klein indetectável. No nível 17, Magia Duplicada + Telecinese cria controle dual de criaturas por turno.</div>
+    <table class="mech-table">
+      <thead><tr><th>Combinação</th><th>Custo</th><th>Resultado</th></tr></thead>
+      <tbody>
+        <tr><td>Acelerada + qualquer magia</td><td>2 pts</td><td>Magia como bônus → conjura + age livremente no mesmo turno</td></tr>
+        <tr><td>Duplicada + Imobilizar Pessoa</td><td>5 pts</td><td>2 alvos paralisados → crits automáticos em ataques contra ambos</td></tr>
+        <tr><td>Silenciosa + Sutil + disfarce</td><td>2 pts</td><td>Conjuração completamente invisível enquanto disfarçado</td></tr>
+        <tr><td>Duplicada + Telecinese (Nív.17)</td><td>10 pts</td><td>Controle independente de 2 criaturas por turno</td></tr>
+        <tr><td>Previsão + Revelação na Carne</td><td>Slot 9° + 2 pts</td><td>Vantagem em tudo por 8h + voo + visão à invisibilidade</td></tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>
 
 <div class="divider">✦ ✧ ✦</div>
@@ -589,9 +664,79 @@ ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold
 
 </div><!-- /page -->
 <script>
-const mb=document.getElementById('mistBg');
-const sy=['✦','✧','⚪','◆','◇','✴','⬡','⬟'];
-for(let i=0;i<28;i++){const p=document.createElement('div');p.className='mist-p';p.textContent=sy[Math.floor(Math.random()*sy.length)];p.style.left=Math.random()*100+'%';p.style.animationDuration=(18+Math.random()*28)+'s';p.style.animationDelay=(-Math.random()*30)+'s';p.style.fontSize=(8+Math.random()*14)+'px';mb.appendChild(p);}
+(function () {
+  const bg = document.getElementById('atmoBg');
+  if (!bg) return;
+
+  // 30 fog symbols
+  const sy = ['✦','✧','⚪','◆','◇','✴','⬡','⬟','🃏'];
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'fog-sym';
+    const fdx  = ((Math.random() - 0.5) * 80).toFixed(0) + 'px';
+    const fdx2 = ((Math.random() - 0.5) * 60).toFixed(0) + 'px';
+    const fr   = (100 + Math.random() * 220).toFixed(0) + 'deg';
+    const fr2  = (260 + Math.random() * 180).toFixed(0) + 'deg';
+    p.textContent = sy[Math.floor(Math.random() * sy.length)];
+    p.style.cssText = `
+      left:${(Math.random()*100).toFixed(1)}%;
+      font-size:${(8+Math.random()*14).toFixed(0)}px;
+      animation-duration:${(18+Math.random()*28).toFixed(1)}s;
+      animation-delay:${(-Math.random()*30).toFixed(1)}s;
+      --fdx:${fdx};--fdx2:${fdx2};--fr:${fr};--fr2:${fr2};
+    `;
+    bg.appendChild(p);
+  }
+
+  // 5 ghost orbs
+  for (let i = 0; i < 5; i++) {
+    const o = document.createElement('div');
+    o.className = 'ghost-orb';
+    const ox = ((Math.random()-0.5)*100).toFixed(0)+'px';
+    const oy = ((Math.random()-0.5)*70).toFixed(0)+'px';
+    const sz = (120 + Math.random() * 200).toFixed(0)+'px';
+    o.style.cssText = `
+      left:${(Math.random()*90).toFixed(1)}%;
+      top:${(Math.random()*80).toFixed(1)}%;
+      width:${sz};height:${sz};
+      animation-duration:${(12+Math.random()*14).toFixed(1)}s;
+      animation-delay:${(Math.random()*10).toFixed(1)}s;
+      --ox:${ox};--oy:${oy};
+    `;
+    bg.appendChild(o);
+  }
+
+  // 5 void cracks
+  for (let i = 0; i < 5; i++) {
+    const c = document.createElement('div');
+    c.className = 'void-crack';
+    c.style.cssText = `
+      left:${(Math.random()*70).toFixed(1)}%;
+      top:${(Math.random()*90).toFixed(1)}%;
+      width:${(50+Math.random()*130).toFixed(0)}px;
+      transform:rotate(${(Math.random()*360).toFixed(0)}deg);
+      animation-duration:${(5+Math.random()*7).toFixed(1)}s;
+      animation-delay:${(Math.random()*12).toFixed(1)}s;
+    `;
+    bg.appendChild(c);
+  }
+
+  // 🃏 watermark
+  const wm = document.createElement('div');
+  wm.className = 'wm';
+  wm.textContent = '🃏';
+  bg.appendChild(wm);
+
+  // Make level-blocks collapsible
+  document.querySelectorAll('.level-header').forEach(function(header) {
+    header.addEventListener('click', function() {
+      const body = header.nextElementSibling;
+      if (body && body.classList.contains('level-body')) {
+        body.classList.toggle('open');
+      }
+    });
+  });
+})();
 </script>
 </body>
 </html>

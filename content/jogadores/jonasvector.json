@@ -18,10 +18,14 @@
     { "system": "dnd", "slug": "nasus",       "label": "Nasus",       "status": "active" },
     { "system": "dnd", "slug": "neuvillette", "label": "Neuvillette", "status": "active" },
     { "system": "dnd", "slug": "sett",        "label": "Sett",        "status": "active" },
-    { "system": "dnd", "slug": "viego",       "label": "Viego",       "status": "active" }
+    { "system": "dnd", "slug": "viego",       "label": "Viego",       "status": "active" },
+    { "system": "dnd", "slug": "Nahida_Lesser_Lord_Kusanali", "label": "Nahida",        "status": "active" },
+    { "system": "dnd", "slug": "Arlecchino_The_Knave_v2",     "label": "Arlecchino",    "status": "active" },
+    { "system": "dnd", "slug": "Corven_Cogspire_Ficha",       "label": "Corven Cogspire","status": "active" },
+    { "system": "dnd", "slug": "Build_Klein_Moretti_v2",      "label": "Klein Moretti", "status": "active" }
   ],
   "stats": {
-    "totalCharacters": 12,
+    "totalCharacters": 16,
     "primarySystem": "dnd",
     "favoriteSystems": ["dnd"]
   },

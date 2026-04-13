@@ -3,206 +3,441 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mordekaiser — O Imperador do Além · Ficha D&amp;D 5e</title>
+<title>Mordekaiser — O Imperador do Além · Ficha D&D 5e</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root{
-  --primary:    #2e7d32;
-  --mid:        #4caf50;
-  --bright:     #81c784;
-  --pale:       #f1f8e9;
-  --dark:       #020802;
-  --darker:     #010501;
-  --card:       #071008;
-  --card-light: #0e1a0f;
-  --text:       #c8dcc8;
-  --text-dim:   #507050;
-  --mist:       #1a3a1a;
+  --primary:    #1b5e20;
+  --mid:        #388e3c;
+  --bright:     #69f0ae;
+  --pale:       #e8f5e9;
+  --dark:       #010602;
+  --card:       #060d07;
+  --card-light: #0b160c;
+  --text:       #b2dfb8;
+  --text-dim:   #4a7050;
+  --mist:       #0d2b0e;
+  --iron:       #37474f;
+  --iron-light: #546e7a;
+  --bone:       #bcaaa4;
   --gold:       #c9a227;
   --gold-light: #e8c85a;
-  --border:     rgba(46,125,50,0.40);
-  --border-bright:rgba(129,199,132,0.5);
-  --glow:       rgba(46,125,50,0.12);
+  --spectral:   #00e676;
+  --death:      #1a1a2e;
+  --border:     rgba(27,94,32,0.40);
+  --border-spec: rgba(105,240,174,0.3);
+  --glow:       rgba(0,230,118,0.12);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15%,rgba(46,125,50,0.10) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(76,175,80,0.05) 0%,transparent 45%);font-family:'EB Garamond',Georgia,serif;color:var(--text);line-height:1.75;}
-.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
+html{scroll-behavior:smooth;}
+body{
+  background:#010602;
+  background-image:
+    radial-gradient(ellipse at 50% 0%,rgba(27,94,32,0.18) 0%,transparent 55%),
+    radial-gradient(ellipse at 20% 100%,rgba(27,94,32,0.10) 0%,transparent 45%),
+    radial-gradient(ellipse at 80% 60%,rgba(0,230,118,0.04) 0%,transparent 35%);
+  background-attachment:fixed;
+  font-family:'EB Garamond',Georgia,serif;
+  color:var(--text);
+  line-height:1.75;
+  min-height:100vh;
+}
+.page{max-width:min(960px,100vw - 1rem);margin:0 auto;padding:0 0 80px;position:relative;z-index:1;}
 
-/* FLOATING PARTICLES */
-.particle-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
-.particle{position:absolute;font-size:11px;opacity:0;animation:floatP ease-in-out infinite;filter:blur(0.4px);color:var(--bright);}
-@keyframes floatP{0%{transform:translateY(108vh) translateX(0) rotate(0deg) scale(0.5);opacity:0;}8%{opacity:0.25;}50%{transform:translateY(50vh) translateX(35px) rotate(180deg) scale(0.75);opacity:0.15;}92%{opacity:0.06;}100%{transform:translateY(-8vh) translateX(-20px) rotate(340deg) scale(0.4);opacity:0;}}
+/* ── ATMOSPHERIC LAYERS ──────────────────────────────── */
+.atmo-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
 
-/* HEADER */
-.header{background:linear-gradient(165deg,#020802 0%,#071008 50%,#020802 100%);border-bottom:2px solid var(--primary);position:relative;overflow:hidden;z-index:1;}
-.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 64px,rgba(46,125,50,0.10) 64px,rgba(46,125,50,0.10) 65px);}
-.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--mid),var(--bright),var(--mid),transparent);opacity:0.55;}
+/* Floating souls */
+.soul{
+  position:absolute;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+  background:radial-gradient(ellipse at 40% 35%,var(--spectral),transparent 70%);
+  opacity:0;animation:soulFloat ease-in-out infinite;
+  filter:blur(2px);
+}
+@keyframes soulFloat{
+  0%  {transform:translateY(105vh) translateX(0) scale(0.4);opacity:0;}
+  8%  {opacity:0.25;}
+  40% {transform:translateY(55vh) translateX(var(--sdx)) scale(0.8);opacity:0.15;}
+  80% {opacity:0.06;}
+  100%{transform:translateY(-5vh) translateX(calc(var(--sdx)*1.3)) scale(0.3);opacity:0;}
+}
+
+/* Death Realm vortex rings */
+.vortex-ring{
+  position:fixed;border-radius:50%;
+  border:1px solid rgba(0,230,118,0.08);
+  top:50%;left:50%;transform:translate(-50%,-50%) scale(0);
+  opacity:0;animation:vortexExpand ease-out infinite;
+}
+@keyframes vortexExpand{
+  0%  {transform:translate(-50%,-50%) scale(0) rotate(0deg);opacity:0.4;}
+  100%{transform:translate(-50%,-50%) scale(6) rotate(20deg);opacity:0;}
+}
+
+/* Iron spike silhouettes at bottom */
+.spike{
+  position:absolute;bottom:0;width:0;height:0;
+  border-left:solid transparent;border-right:solid transparent;border-bottom:solid;
+  border-bottom-color:rgba(27,94,32,0.12);
+  animation:spikePulse ease-in-out infinite alternate;
+}
+@keyframes spikePulse{
+  0% {border-bottom-color:rgba(27,94,32,0.08);}
+  100%{border-bottom-color:rgba(0,230,118,0.12);}
+}
+
+/* Spectral wisp embers */
+.wisp{
+  position:absolute;width:3px;height:3px;border-radius:50%;
+  background:var(--spectral);opacity:0;
+  animation:wispFloat ease-out infinite;
+}
+@keyframes wispFloat{
+  0%  {transform:translateY(0) scale(0.5);opacity:0;}
+  20% {opacity:0.6;}
+  70% {opacity:0.2;}
+  100%{transform:translateY(-200px) translateX(var(--wdx));opacity:0;}
+}
+
+/* Big iron crown watermark */
+.bg-crown{
+  position:fixed;left:50%;top:35%;transform:translate(-50%,-50%);
+  font-size:500px;opacity:0.018;color:var(--spectral);
+  pointer-events:none;z-index:0;user-select:none;
+  animation:crownBreath 12s ease-in-out infinite alternate;
+}
+@keyframes crownBreath{0%{opacity:0.018;transform:translate(-50%,-50%) scale(1);}100%{opacity:0.03;transform:translate(-50%,-50%) scale(1.04);}}
+
+/* ── HEADER ──────────────────────────────────────────── */
+.header{
+  background:linear-gradient(165deg,#010602 0%,#0c1a0d 50%,#010602 100%);
+  border-bottom:3px solid var(--primary);
+  position:relative;overflow:hidden;z-index:1;
+}
+.header::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(55deg,transparent,transparent 58px,rgba(27,94,32,0.10) 58px,rgba(27,94,32,0.10) 59px);
+}
+.header::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--mid),var(--spectral),var(--mid),transparent);
+  opacity:0.6;
+}
 .header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
 
-/* PORTRAIT */
-.header-portrait{width:220px;flex-shrink:0;background:#020802;border-right:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
-.portrait-inner{width:100%;height:290px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.portrait-photo{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 0.4s ease;}
+/* portrait */
+.header-portrait{
+  width:240px;flex-shrink:0;
+  background:#010602;border-right:2px solid var(--primary);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;
+}
+.portrait-inner{width:100%;height:320px;position:relative;}
+.portrait-photo{
+  width:100%;height:100%;object-fit:cover;object-position:center 12%;
+  display:block;transition:transform 0.5s ease;
+  animation:portraitGlowM 5s ease-in-out infinite alternate;
+}
+@keyframes portraitGlowM{
+  0% {filter:drop-shadow(0 0 10px rgba(0,230,118,0.2)) brightness(0.9);}
+  100%{filter:drop-shadow(0 0 28px rgba(0,230,118,0.5)) brightness(1.05);}
+}
 .portrait-photo:hover{transform:scale(1.04);}
-.portrait-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,#010501aa 100%);pointer-events:none;}
-.portrait-label{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--bright);opacity:0.6;text-transform:uppercase;text-shadow:0 0 8px var(--primary);}
+.portrait-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,#01060299 100%);
+  pointer-events:none;
+}
+/* iron border frame */
+.portrait-frame{
+  position:absolute;inset:0;pointer-events:none;
+  border:2px solid rgba(27,94,32,0.3);
+}
+.portrait-frame::after{
+  content:'';position:absolute;top:6px;left:6px;right:6px;bottom:6px;
+  border:1px solid rgba(0,230,118,0.08);
+}
+.portrait-label{
+  position:absolute;bottom:10px;left:0;right:0;text-align:center;
+  font-family:'Share Tech Mono',monospace;font-size:9px;
+  letter-spacing:3px;color:var(--spectral);opacity:0.5;
+  text-transform:uppercase;text-shadow:0 0 10px var(--spectral);
+}
+.portrait-fallback{display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;font-size:80px;opacity:0.1;}
 
-/* HEADER TEXT */
-.header-text{flex:1;padding:34px 44px;}
-.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--mid);opacity:0.85;text-transform:uppercase;margin-bottom:10px;}
-.header-name{font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(46,125,50,0.12),0 0 15px rgba(46,125,50,0.12);letter-spacing:2px;line-height:1;margin-bottom:4px;}
-.header-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);margin-bottom:20px;letter-spacing:1.5px;opacity:0.95;}
+/* header text */
+.header-text{flex:1;padding:36px 44px;}
+.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--mid);opacity:0.8;text-transform:uppercase;margin-bottom:10px;}
+.header-name{
+  font-family:'Cinzel',serif;font-size:44px;font-weight:900;
+  color:var(--pale);letter-spacing:2px;line-height:1;margin-bottom:4px;
+  animation:nameGlowMK 6s ease-in-out infinite alternate;
+  text-shadow:0 0 60px rgba(0,230,118,0.3),0 0 20px rgba(27,94,32,0.4);
+}
+@keyframes nameGlowMK{
+  0% {text-shadow:0 0 50px rgba(0,230,118,0.2),0 0 15px rgba(27,94,32,0.3);}
+  100%{text-shadow:0 0 90px rgba(0,230,118,0.45),0 0 35px rgba(27,94,32,0.5);}
+}
+.header-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:17px;color:var(--spectral);margin-bottom:22px;letter-spacing:1.5px;opacity:0.85;}
 .header-tags{display:flex;gap:7px;flex-wrap:wrap;}
-.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(46,125,50,0.10);}
-.tag.hi{background:rgba(46,125,50,0.12);border-color:var(--mid);color:var(--bright);}
-.tag.gold{background:rgba(201,162,39,0.10);border-color:rgba(201,162,39,0.4);color:var(--gold-light);}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(27,94,32,0.08);}
+.tag.hi{background:rgba(27,94,32,0.15);border-color:var(--mid);color:var(--bright);}
+.tag.gold{background:rgba(201,162,39,0.08);border-color:rgba(201,162,39,0.3);color:var(--gold-light);}
+.tag.spec{background:rgba(0,230,118,0.06);border-color:rgba(0,230,118,0.25);color:var(--spectral);}
 
-/* STATS BAR */
-.stats-bar{background:var(--card);border-bottom:1px solid var(--border);padding:13px 40px;display:flex;flex-wrap:wrap;position:relative;z-index:1;gap:0;}
-.stat-item{flex:1;border-right:1px solid var(--border);padding:0 18px;text-align:center;min-width:90px;}
-.stat-item:first-child{padding-left:0;}.stat-item:last-child{border-right:none;padding-right:0;}
+/* ── STATS BAR ───────────────────────────────────────── */
+.stats-bar{
+  background:var(--card);border-bottom:1px solid var(--border);
+  padding:13px 40px;display:flex;flex-wrap:wrap;position:relative;z-index:1;gap:0;
+}
+.stat-item{flex:1;border-right:1px solid var(--border);padding:0 18px;text-align:center;min-width:80px;}
+.stat-item:first-child{padding-left:0;}
+.stat-item:last-child{border-right:none;padding-right:0;}
 .stat-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
-.stat-value{font-family:'Cinzel',serif;font-size:13px;color:var(--bright);font-weight:600;}
+.stat-value{font-family:'Cinzel',serif;font-size:14px;color:var(--bright);font-weight:700;}
 
-/* SECTION */
+/* ── SECTIONS ────────────────────────────────────────── */
 .sec{padding:0 40px;margin-top:32px;position:relative;z-index:1;}
-.sec-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
-.sec-title::before{content:'✦';font-size:11px;color:var(--gold);}
+.sec-title{
+  font-family:'Cinzel',serif;font-size:11px;font-weight:700;
+  letter-spacing:5px;text-transform:uppercase;color:var(--mid);
+  border-bottom:1px solid var(--border);padding-bottom:9px;margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.sec-title::before{content:'☠';font-size:13px;color:var(--spectral);}
 
-/* ATTRIBUTES */
+/* ── ATTRIBUTES ──────────────────────────────────────── */
 .attr-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px;}
-.attr-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:12px 4px 10px;position:relative;}
-.attr-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--primary);opacity:0.45;}
+.attr-box{
+  background:var(--card);border:1px solid var(--border);
+  text-align:center;padding:13px 4px 10px;position:relative;
+  transition:border-color 0.2s;
+}
+.attr-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--primary);opacity:0.6;}
+.attr-box:hover{border-color:var(--mid);}
 .attr-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
-.attr-value{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:var(--text);display:block;line-height:1;}
-.attr-value.peak{color:var(--bright);text-shadow:0 0 14px rgba(46,125,50,0.12);}
-.attr-mod{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--mid);display:block;margin-top:3px;}
+.attr-value{font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:var(--text);display:block;line-height:1;}
+.attr-value.peak{color:var(--bright);text-shadow:0 0 16px rgba(0,230,118,0.3);}
+.attr-mod{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--mid);display:block;margin-top:3px;}
 
-/* COMBAT NOTES */
-.special-notes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
-
-/* SAVES & SKILLS */
-.two-col{display:grid;grid-template-columns:230px 1fr;gap:16px;}
+/* ── SAVES & SKILLS ──────────────────────────────────── */
+.two-col{display:grid;grid-template-columns:240px 1fr;gap:18px;}
+.saves-col,.skills-col{background:var(--card);border:1px solid var(--border);padding:16px;}
+.col-title{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mid);margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:6px;}
 .save-list,.skill-list{list-style:none;padding:0;}
-.save-item,.skill-item{display:flex;align-items:center;gap:7px;padding:3px 0;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.save-item,.skill-item{display:flex;align-items:center;gap:7px;padding:3px 0;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.03);}
 .save-item:last-child,.skill-item:last-child{border-bottom:none;}
 .prof-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--text-dim);flex-shrink:0;}
-.prof-dot.filled{background:var(--mid);border-color:var(--bright);box-shadow:0 0 6px rgba(46,125,50,0.12);}
-.prof-dot.expertise{background:var(--gold);border-color:var(--gold-light);}
+.prof-dot.filled{background:var(--mid);border-color:var(--bright);box-shadow:0 0 6px rgba(0,230,118,0.3);}
 .save-name,.skill-name{flex:1;color:var(--text);}
 .skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text-dim);width:28px;}
 .save-score,.skill-score{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text-dim);width:28px;text-align:right;}
-.save-score.filled,.skill-score.filled,.skill-score.peak{color:var(--bright);}
+.save-score.filled,.skill-score.filled{color:var(--bright);}
 
-/* ATTACKS */
+/* ── ATTACKS ─────────────────────────────────────────── */
 .attack-table{width:100%;border-collapse:collapse;font-size:13px;}
-.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(46,125,50,0.10);}
-.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(46,125,50,0.40);color:var(--text);vertical-align:top;}
-.attack-table tr:hover td{background:rgba(46,125,50,0.12);}
+.attack-table th{
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text-dim);padding:6px 10px;
+  text-align:left;border-bottom:1px solid var(--border);
+  background:rgba(27,94,32,0.12);
+}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(27,94,32,0.22);color:var(--text);vertical-align:top;}
+.attack-table tr:hover td{background:rgba(0,230,118,0.04);}
 .attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
 .attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--bright);font-weight:700;}
 .attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--gold-light);}
 .attack-notes{font-size:12px;color:var(--text-dim);font-style:italic;}
 
-/* FEATURES */
-.feat-section{margin-bottom:10px;}
-.feat-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:12px 0 8px;}
+/* ── REALM OF DEATH BOX ──────────────────────────────── */
+.realm-box{
+  background:linear-gradient(135deg,rgba(1,6,2,0.98) 0%,rgba(10,20,12,0.98) 100%);
+  border:1px solid rgba(0,230,118,0.3);border-top:3px solid var(--spectral);
+  padding:20px 24px;margin-top:14px;
+  box-shadow:0 0 30px rgba(0,230,118,0.05),inset 0 0 20px rgba(0,0,0,0.4);
+}
+.realm-title{
+  font-family:'Cinzel',serif;font-size:15px;color:var(--spectral);
+  letter-spacing:2px;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+  text-shadow:0 0 20px rgba(0,230,118,0.5);
+  animation:realmPulse 3s ease-in-out infinite alternate;
+}
+@keyframes realmPulse{0%{text-shadow:0 0 10px rgba(0,230,118,0.3);}100%{text-shadow:0 0 30px rgba(0,230,118,0.7);}}
+.realm-title::before{content:'⭕';font-size:18px;}
+.realm-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px;}
+.realm-item{font-size:13px;color:var(--text-dim);}
+.realm-item strong{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--spectral);}
+
+/* smite table */
+.smite-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px;}
+.smite-table th{
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;
+  padding:4px 8px;text-align:left;border-bottom:1px solid var(--border);
+  color:var(--text-dim);background:rgba(27,94,32,0.1);
+}
+.smite-table td{padding:5px 8px;border-bottom:1px solid rgba(27,94,32,0.15);color:var(--text-dim);}
+.smite-table td:first-child{color:var(--bright);font-family:'Share Tech Mono',monospace;}
+.smite-table td strong{color:var(--spectral);}
+
+/* ── FEATURES ────────────────────────────────────────── */
+.feat-section{margin-bottom:12px;}
+.feat-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:14px 0 8px;}
 .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.trait-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);padding:12px 14px;}
+.trait-block{
+  background:var(--card);border:1px solid var(--border);
+  border-left:3px solid var(--primary);padding:12px 14px;
+  transition:all 0.2s;
+}
+.trait-block:hover{border-color:var(--mid);transform:translateX(1px);}
 .trait-block.gold-accent{border-left-color:var(--gold);}
 .trait-block.dim-accent{border-left-color:var(--mist);}
-.trait-name{font-family:'Cinzel',serif;font-size:11px;color:var(--bright);letter-spacing:0.5px;margin-bottom:5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+.trait-block.spec-accent{border-left-color:var(--spectral);}
+.trait-block.iron-accent{border-left-color:var(--iron-light);}
+.trait-name{
+  font-family:'Cinzel',serif;font-size:11px;color:var(--bright);
+  letter-spacing:0.5px;margin-bottom:5px;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;
+}
 .trait-block.gold-accent .trait-name{color:var(--gold-light);}
 .trait-block.dim-accent .trait-name{color:var(--text-dim);}
+.trait-block.spec-accent .trait-name{color:var(--spectral);}
+.trait-block.iron-accent .trait-name{color:var(--iron-light);}
 .trait-desc{font-size:13.5px;color:var(--text-dim);line-height:1.6;}
 .trait-desc em{font-style:italic;color:var(--bright);}
 .trait-desc strong{color:var(--text);}
-.feat-level{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;background:rgba(46,125,50,0.12);color:var(--mid);padding:1px 6px;}
+.feat-level{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;background:rgba(27,94,32,0.18);color:var(--mid);padding:1px 6px;}
 
-/* SPELLS */
+/* ── SPELLS ──────────────────────────────────────────── */
 .spell-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
 .spell-tag{background:var(--card-light);color:var(--bright);font-family:'Cinzel',serif;font-size:10px;padding:3px 9px;letter-spacing:1px;border:1px solid var(--border);display:inline-block;}
-.spell-tag.gold{background:rgba(201,162,39,0.08);color:var(--gold-light);border-color:rgba(201,162,39,0.28);}
+.spell-tag.gold{background:rgba(201,162,39,0.08);color:var(--gold-light);border-color:rgba(201,162,39,0.3);}
+.spell-slots{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:14px;}
+.slot-pip{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:3px 8px;border:1px solid var(--border);color:var(--text-dim);background:rgba(27,94,32,0.08);}
+.slot-pip.used{background:rgba(0,230,118,0.08);border-color:var(--mid);color:var(--bright);}
 .spell-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:13px 0 8px;}
-.spell-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:7px;}
-.sc{background:var(--card-light);border:1px solid var(--border);border-top:2px solid var(--mist);padding:9px 12px 10px;display:flex;flex-direction:column;gap:3px;}
-.sc.cantrip{border-top-color:rgba(46,125,50,0.40);}
-.sc.expanded{border-top-color:var(--gold);}
-.sc-type{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);opacity:0.65;}
+.spell-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:7px;}
+.sc{background:var(--card-light);border:1px solid var(--border);border-top:2px solid var(--mist);padding:9px 12px 10px;display:flex;flex-direction:column;gap:3px;transition:border-color 0.2s;}
+.sc:hover{border-top-color:var(--mid);}
+.sc.oath{border-top-color:var(--spectral);}
+.sc.high{border-top-color:var(--gold);}
+.sc-type{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);opacity:0.7;}
 .sc-name{font-family:'Cinzel',serif;font-size:11.5px;font-weight:600;color:var(--bright);letter-spacing:0.4px;}
-.sc.cantrip .sc-name{color:var(--text-dim);}
-.sc.expanded .sc-name{color:var(--gold-light);}
+.sc.oath .sc-name{color:var(--spectral);}
+.sc.high .sc-name{color:var(--gold-light);}
 .sc-desc{font-size:12px;color:var(--text-dim);line-height:1.5;margin-top:1px;}
 
-/* TRAIT LIST (equipment) */
+/* ── EQUIPMENT ───────────────────────────────────────── */
 ul.trait-list{list-style:none;padding:0;}
-ul.trait-list li{padding:3px 0 3px 18px;position:relative;font-size:14px;line-height:1.65;color:var(--text-dim);}
-ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold);font-size:7px;top:7px;}
+ul.trait-list li{padding:4px 0 4px 20px;position:relative;font-size:14px;line-height:1.65;color:var(--text-dim);border-bottom:1px solid rgba(27,94,32,0.08);}
+ul.trait-list li:last-child{border-bottom:none;}
+ul.trait-list li::before{content:'⚔';position:absolute;left:0;color:var(--spectral);font-size:10px;top:5px;opacity:0.6;}
 
-/* DIVIDER */
-.divider{text-align:center;margin:24px 0;color:var(--mist);font-size:14px;letter-spacing:14px;opacity:0.5;}
-
-/* INFO PILLS */
+/* ── INFO PILLS ──────────────────────────────────────── */
 .info-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
-.info-pill{background:var(--card);border:1px solid var(--border);padding:8px 14px;font-size:13px;color:var(--text-dim);}
+.info-pill{background:var(--card);border:1px solid var(--border);padding:8px 14px;font-size:13.5px;color:var(--text-dim);}
 .info-pill strong{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--mid);text-transform:uppercase;display:block;margin-bottom:3px;}
 
-/* FOOTER */
-.footer{margin-top:50px;padding:22px 40px;text-align:center;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent 0%,#01050199 100%);position:relative;z-index:1;}
-.footer p{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);opacity:0.5;text-transform:uppercase;margin-bottom:4px;}
+/* ── PROGRESSION ─────────────────────────────────────── */
+.level-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);margin-bottom:8px;overflow:hidden;}
+.level-header{display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(27,94,32,0.06);cursor:pointer;user-select:none;}
+.level-header:hover{background:rgba(27,94,32,0.14);}
+.level-num{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--bright);letter-spacing:2px;min-width:52px;}
+.level-gains{font-size:13px;color:var(--text-dim);flex:1;}
+.level-gains strong{color:var(--text);}
+.tier-badge{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;padding:2px 8px;border:1px solid var(--border);color:var(--text-dim);}
+.tier-badge.t1{border-color:rgba(27,94,32,0.4);color:var(--mid);}
+.tier-badge.t2{border-color:rgba(56,142,60,0.4);color:var(--bright);}
+.tier-badge.t3{border-color:rgba(0,230,118,0.35);color:var(--spectral);}
+.tier-badge.t4{border-color:rgba(0,230,118,0.5);color:var(--spectral);background:rgba(27,94,32,0.08);}
+.level-body{padding:10px 14px 12px;display:none;border-top:1px solid var(--border);font-size:13px;color:var(--text-dim);line-height:1.7;}
+.level-body.open{display:block;}
+.level-body ul{padding-left:16px;}
+.level-body li{padding:2px 0;}
+.level-body li::marker{color:var(--spectral);}
+.tier-note{font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:var(--bright);letter-spacing:2px;text-transform:uppercase;margin:18px 0 8px;border-bottom:1px solid var(--border);padding-bottom:6px;}
 
-/* RESPONSIVE */
+/* ── LORE ────────────────────────────────────────────── */
+.lore-text{font-size:14.5px;color:var(--text-dim);line-height:1.85;}
+.lore-text p{margin-bottom:14px;}
+.lore-text em{color:var(--spectral);font-style:italic;}
+
+/* ── DIVIDER ─────────────────────────────────────────── */
+.divider{text-align:center;margin:28px 0;color:var(--mist);font-size:14px;letter-spacing:14px;opacity:0.45;}
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.footer{margin-top:50px;padding:22px 40px;text-align:center;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent 0%,rgba(1,6,2,0.7) 100%);position:relative;z-index:1;}
+.footer p{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);opacity:0.4;text-transform:uppercase;margin-bottom:4px;}
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
 @media(max-width:680px){
   .header-inner{flex-direction:column;}
-  .header-portrait{width:100%;height:200px;}
-  .portrait-inner{height:200px;}
+  .header-portrait{width:100%;height:220px;}
+  .portrait-inner{height:220px;}
   .attr-grid{grid-template-columns:repeat(3,1fr);}
   .feature-grid{grid-template-columns:1fr;}
-  .spell-grid{grid-template-columns:1fr;}
+  .spell-grid{grid-template-columns:1fr 1fr;}
   .stats-bar{flex-wrap:wrap;gap:4px;}
   .stat-item{flex:none;width:48%;border-right:none;border-bottom:1px solid var(--border);padding:6px 0;}
   .two-col{grid-template-columns:1fr;}
+  .realm-grid{grid-template-columns:1fr;}
   .sec{padding:0 16px;}
-  .header-text{padding:20px 24px;}
+  .header-text{padding:20px 20px;}
   .stats-bar{padding:10px 16px;}
+  .footer{padding:18px 16px;}
 }
 </style>
 </head>
 <body>
 
-<!-- Floating Particles -->
-<div class="particle-bg" id="particleBg"></div>
+<!-- Atmospheric background -->
+<div class="atmo-bg" id="atmoBg"></div>
+<div class="bg-crown">☠</div>
 
 <div class="page">
 
-<!-- ── HEADER ─────────────────────────────────── -->
+<!-- ── HEADER ─────────────────────────────────────────── -->
 <div class="header">
   <div class="header-inner">
     <div class="header-portrait">
       <div class="portrait-inner">
-        <img class="portrait-photo" src="/portraits/mordekaiser.jpg" alt="Mordekaiser" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;font-size:64px;opacity:0.15;filter:drop-shadow(0 0 20px var(--bright));">☠️</div>
+        <img class="portrait-photo" src="/portraits/mordekaiser.jpg" alt="Mordekaiser"
+          onerror="this.style.display='none';document.getElementById('mkFallback').style.display='flex'">
+        <div id="mkFallback" class="portrait-fallback">☠</div>
         <div class="portrait-overlay"></div>
+        <div class="portrait-frame"></div>
       </div>
-      <div class="portrait-label">Mordekaiser</div>
+      <div class="portrait-label">Mordekaiser · Imperador</div>
     </div>
     <div class="header-text">
       <div class="header-eyebrow">Ficha · D&amp;D 5e · League of Legends</div>
       <div class="header-name">Mordekaiser</div>
-      <div class="header-sub">O Imperador do Além</div>
+      <div class="header-sub">O Imperador do Além · Senhor das Almas</div>
       <div class="header-tags">
-        <span class="tag hi">Humano (Variante)</span><span class="tag hi">Paladino</span><span class="tag hi">Juramento dos Conquistadores</span><span class="tag hi">League of Legends</span><span class="tag">Antecedente: Senhor da Guerra</span><span class="tag">Nív. 20</span>
+        <span class="tag hi">Humano (Variante)</span>
+        <span class="tag hi">Paladino · Juramento dos Conquistadores</span>
+        <span class="tag hi">Senhor da Guerra</span>
+        <span class="tag gold">Nível 20</span>
+        <span class="tag">Legal Mau</span>
+        <span class="tag spec">Realm of Death</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── STATS BAR ──────────────────────────────── -->
+<!-- ── STATS BAR ──────────────────────────────────────── -->
 <div class="stats-bar">
-<div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">21</span></div><div class="stat-item"><span class="stat-label">PV</span><span class="stat-value">220</span></div><div class="stat-item"><span class="stat-label">Deslocamento</span><span class="stat-value">9m</span></div><div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value">-1</span></div><div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div><div class="stat-item"><span class="stat-label">CD de Magia</span><span class="stat-value">19</span></div><div class="stat-item"><span class="stat-label">Atq. Mágico</span><span class="stat-value">+11</span></div>
+  <div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">21</span></div>
+  <div class="stat-item"><span class="stat-label">PV</span><span class="stat-value">220</span></div>
+  <div class="stat-item"><span class="stat-label">Deslocamento</span><span class="stat-value">9m</span></div>
+  <div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value">−1</span></div>
+  <div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div>
+  <div class="stat-item"><span class="stat-label">CD Magia</span><span class="stat-value">19</span></div>
+  <div class="stat-item"><span class="stat-label">Atq. Mágico</span><span class="stat-value">+11</span></div>
+  <div class="stat-item"><span class="stat-label">Lay on Hands</span><span class="stat-value">100 PV</span></div>
 </div>
 
-<!-- ── IDENTIDADE ────────────────────────────── -->
+<!-- ── IDENTIDADE ─────────────────────────────────────── -->
 <div class="sec">
   <div class="sec-title">Identidade</div>
   <div class="info-pills">
@@ -211,140 +446,751 @@ ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold
     <div class="info-pill"><strong>Subclasse</strong>Juramento dos Conquistadores</div>
     <div class="info-pill"><strong>Antecedente</strong>Senhor da Guerra</div>
     <div class="info-pill"><strong>Tendência</strong>Legal Mau</div>
-    <div class="info-pill"><strong>Idiomas</strong>Comum, Sombrio, Infernal</div>
-    <div class="info-pill"><strong>Dado de Vida</strong>20d10</div>
-    <div class="info-pill"><strong>Magia</strong>Carisma</div>
+    <div class="info-pill"><strong>Idiomas</strong>Comum, Sombrio, Infernal, Draconico</div>
+    <div class="info-pill"><strong>Dado de Vida</strong>20d10 + 100</div>
+    <div class="info-pill"><strong>Atributo Mágico</strong>Carisma</div>
+    <div class="info-pill"><strong>Divindade</strong>Nenhuma — A si mesmo</div>
   </div>
-  <div class="info-pills"><span class='tag hi'>divineSmite: max 9d8</span> <span class='tag hi'>layOnHands: 100 PV/longo</span></div>
 </div>
 
-<!-- ── ATRIBUTOS ──────────────────────────────── -->
+<!-- ── ATRIBUTOS ──────────────────────────────────────── -->
 <div class="sec">
   <div class="sec-title">Atributos</div>
   <div class="attr-grid">
-        <div class="attr-box">
-          <span class="attr-label">FOR</span>
-          <span class="attr-value peak">24</span>
-          <span class="attr-mod">+7</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">DES</span>
-          <span class="attr-value ">8</span>
-          <span class="attr-mod">-1</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">CON</span>
-          <span class="attr-value peak">20</span>
-          <span class="attr-mod">+5</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">INT</span>
-          <span class="attr-value ">10</span>
-          <span class="attr-mod">+0</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">SAB</span>
-          <span class="attr-value ">12</span>
-          <span class="attr-mod">+1</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">CAR</span>
-          <span class="attr-value peak">20</span>
-          <span class="attr-mod">+5</span>
-        </div></div>
-  <p style="font-size:12px;color:var(--text-dim);font-style:italic;">Half Plate+1(16)+Escudo(+3)+Anel(+1)</p>
+    <div class="attr-box"><span class="attr-label">FOR</span><span class="attr-value peak">24</span><span class="attr-mod">+7</span></div>
+    <div class="attr-box"><span class="attr-label">DES</span><span class="attr-value">8</span><span class="attr-mod">−1</span></div>
+    <div class="attr-box"><span class="attr-label">CON</span><span class="attr-value peak">20</span><span class="attr-mod">+5</span></div>
+    <div class="attr-box"><span class="attr-label">INT</span><span class="attr-value">10</span><span class="attr-mod">+0</span></div>
+    <div class="attr-box"><span class="attr-label">SAB</span><span class="attr-value">12</span><span class="attr-mod">+1</span></div>
+    <div class="attr-box"><span class="attr-label">CAR</span><span class="attr-value peak">20</span><span class="attr-mod">+5</span></div>
+  </div>
+  <p style="font-size:12px;color:var(--text-dim);font-style:italic;">Plate Armor +1 (19) + Escudo +1 (21) · PV: 20d10 + 100 (CON×20) + 40 (Tough) = 220 | Aura de Proteção: aliados +5 em todos TRs (18m)</p>
 </div>
 
-
-
-
-
-
-
-<!-- ── HABILIDADES ───────────────────────────── -->
+<!-- ── TESTES & PERÍCIAS ──────────────────────────────── -->
 <div class="sec">
-  <div class="sec-title">Habilidades</div>
-  <div class="feat-section"><div class="feat-section-label">Habilidades de Subclasse</div><div class="feature-grid"><div class="trait-block ">
-              <div class="trait-name">Tenência de Guerreiro <span class="feat-level">Nív.3</span></div>
-              <div class="trait-desc">Ignora resistência a dano de criaturas aterrorizadas.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Canal Divino: Conquista <span class="feat-level">Nív.3</span></div>
-              <div class="trait-desc">TR Sab CD 19 ou aterrorizados. Guided Strike: +10 a um ataque.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Aura de Conquista <span class="feat-level">Nív.7</span></div>
-              <div class="trait-desc">Aterrorizados em 9m têm velocidade 0. Mordekaiser: +5 PV temp/criatura aterrorizada.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Realm of Death <span class="feat-level">Nív.20</span></div>
-              <div class="trait-desc">Exila alvo para dimensão pessoal 1min. Drena atributos −1/turno ao acertar. Se morrer: servo permanente + +1 todos atributos.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Habilidades de Classe</div><div class="feature-grid"><div class="trait-block ">
-              <div class="trait-name">Divine Smite <span class="feat-level">Nív.2</span></div>
-              <div class="trait-desc">Slot de magia em acerto: +2d8 por slot e nível. Max 9d8. +1d8 vs mortos-vivos.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Aura de Proteção <span class="feat-level">Nív.6</span></div>
-              <div class="trait-desc">+CAR (+5) em todos TRs de aliados em 18m.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Aura de Coragem <span class="feat-level">Nív.10</span></div>
-              <div class="trait-desc">Aliados em 18m imunes a medo.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Lay on Hands <span class="feat-level">Nív.1</span></div>
-              <div class="trait-desc">100 PV pool/longo. Cura doenças/venenos (5 PV).</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Talentos (Feats)</div><div class="feature-grid"><div class="trait-block gold-accent">
-              <div class="trait-name">Great Weapon Master <span class="feat-level">Nív.1</span></div>
-              <div class="trait-desc">−5/+10 · Bônus após crítico ou derrubar.</div>
-            </div><div class="trait-block gold-accent">
-              <div class="trait-name">Tough <span class="feat-level">Nív.8</span></div>
-              <div class="trait-desc">+40 PV permanentes.</div>
-            </div><div class="trait-block gold-accent">
-              <div class="trait-name">Sentinel <span class="feat-level">Nív.12</span></div>
-              <div class="trait-desc">AO trava velocidade a 0. Protege aliados.</div>
-            </div></div></div>
+  <div class="sec-title">Resistências &amp; Perícias</div>
+  <div class="two-col">
+    <div class="saves-col">
+      <div class="col-title">Testes de Resistência</div>
+      <ul class="save-list">
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Força</span><span class="save-score">+7</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Destreza</span><span class="save-score">−1</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Constituição</span><span class="save-score">+5</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Inteligência</span><span class="save-score">+0</span></li>
+        <li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Sabedoria</span><span class="save-score filled">+7</span></li>
+        <li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Carisma</span><span class="save-score filled">+11</span></li>
+      </ul>
+      <p style="margin-top:10px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim);">Aura de Proteção: aliados em 18m adicionam <strong style="color:var(--bright)">+5</strong> (CAR) em todos TRs</p>
+    </div>
+    <div class="skills-col">
+      <div class="col-title">Perícias</div>
+      <ul class="skill-list">
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Atletismo</span><span class="skill-attr">FOR</span><span class="skill-score filled">+13</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Intimidação</span><span class="skill-attr">CAR</span><span class="skill-score filled">+11</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">História</span><span class="skill-attr">INT</span><span class="skill-score filled">+6</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Persuasão</span><span class="skill-attr">CAR</span><span class="skill-score filled">+11</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Religião</span><span class="skill-attr">INT</span><span class="skill-score filled">+6</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-name">Percepção</span><span class="skill-attr">SAB</span><span class="skill-score">+1</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-name">Insight</span><span class="skill-attr">SAB</span><span class="skill-score">+1</span></li>
+      </ul>
+      <p style="margin-top:10px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim);">Percepção Passiva: <strong style="color:var(--bright)">16</strong> · Imunidade a Medo (Aura de Coragem)</p>
+    </div>
+  </div>
 </div>
 
-<!-- ── MAGIAS ───────────────────────────────── -->
+<!-- ── ATAQUES ─────────────────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Ataques</div>
+  <table class="attack-table">
+    <thead>
+      <tr><th>Ataque / Habilidade</th><th>Bônus</th><th>Dano</th><th>Tipo / Notas</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="attack-name">Maça Imperial +2</span></td>
+        <td><span class="attack-bonus">+15</span></td>
+        <td><span class="attack-damage">2d6+9</span></td>
+        <td><span class="attack-notes">Contundente · Versátil · +FOR+2+Prof</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Maça + Divine Smite (1°)</span></td>
+        <td><span class="attack-bonus">+15</span></td>
+        <td><span class="attack-damage">2d6+9 + 2d8</span></td>
+        <td><span class="attack-notes">Radiante · 1° slot = +2d8</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Maça + Divine Smite (5°) Crit</span></td>
+        <td><span class="attack-bonus">+15</span></td>
+        <td><span class="attack-damage">4d6+9 + 10d8</span></td>
+        <td><span class="attack-notes">Crítico automático (alvo paralisado) · 5° slot = 9d8×2 = 10d8</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">GWM + Divine Smite (5°) Crit</span></td>
+        <td><span class="attack-bonus">+10</span></td>
+        <td><span class="attack-damage">4d6+19 + 10d8</span></td>
+        <td><span class="attack-notes">GWM −5/+10 · Crit paralisado · ~120 médio</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Destructive Wave (5°)</span></td>
+        <td><span class="attack-bonus">CD 19</span></td>
+        <td><span class="attack-damage">5d6 + 5d6</span></td>
+        <td><span class="attack-notes">Trovão + Necrótico · Raio 9m · TR Con · Derrubado</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Realm of Death Box -->
+  <div class="realm-box">
+    <div class="realm-title">Realm of Death — O Domínio do Imperador</div>
+    <div class="realm-grid">
+      <div class="realm-item"><strong>TIPO:</strong> Ação · 1×/longo descanso</div>
+      <div class="realm-item"><strong>ALVO:</strong> 1 criatura em 9m · TR Car CD 19</div>
+      <div class="realm-item"><strong>DURAÇÃO:</strong> 1 minuto (concentração)</div>
+      <div class="realm-item"><strong>EFEITO:</strong> Exílio para dimensão pessoal</div>
+    </div>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:10px;line-height:1.7;">Mordekaiser e o alvo são transportados para um <em style="color:var(--spectral)">plano de existência alternativo</em> — a Death Realm. O ambiente é uma cópia espectralmente distorcida do local. Nenhuma outra criatura pode intervir. A cada turno que Mordekaiser <strong style="color:var(--bright)">acertar o alvo</strong>, o alvo perde <strong style="color:var(--bright)">−1 em todos os atributos</strong> (FOR, DES, CON, INT, SAB, CAR). Se o alvo morrer dentro da Realm: torna-se <em style="color:var(--spectral)">servo permanente de Mordekaiser</em> + Mordekaiser ganha <strong style="color:var(--bright)">+1 em todos os atributos permanentemente</strong>.</p>
+    <table class="smite-table">
+      <thead>
+        <tr><th>Slot</th><th>Divine Smite</th><th>Dano Total (acerto normal)</th><th>Dano Total (crítico/paralisado)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1°</td><td>2d8</td><td>2d6+9 + 2d8 (~26 méd)</td><td>4d6+9 + 4d8 (~42 méd)</td></tr>
+        <tr><td>2°</td><td>3d8</td><td>2d6+9 + 3d8 (~31 méd)</td><td>4d6+9 + 6d8 (~51 méd)</td></tr>
+        <tr><td>3°</td><td>4d8</td><td>2d6+9 + 4d8 (~36 méd)</td><td>4d6+9 + 8d8 (~60 méd)</td></tr>
+        <tr><td>4°</td><td>5d8</td><td>2d6+9 + 5d8 (~40 méd)</td><td>4d6+9 + 10d8 (~69 méd)</td></tr>
+        <tr><td>5°</td><td>9d8 (max)</td><td>2d6+9 + 9d8 (~58 méd)</td><td><strong>4d6+9 + 10d8 (~105 méd)</strong></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--text-dim);margin-top:8px;font-style:italic;">Combo perfeito: Hold Monster (paralisado) → Smite de 5° slot → crit automático → 105 médio num golpe. Dentro da Realm of Death: repetir isso enquanto o alvo perde atributos a cada acerto.</p>
+  </div>
+</div>
+
+<!-- ── HABILIDADES ─────────────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Habilidades de Classe &amp; Raça</div>
+
+  <div class="feat-section">
+    <div class="feat-section-label">Juramento dos Conquistadores — Tenets &amp; Habilidades</div>
+    <div class="feature-grid">
+      <div class="trait-block spec-accent">
+        <div class="trait-name">Tenência de Guerreiro <span class="feat-level">Nív. 3</span></div>
+        <div class="trait-desc">Ignora <em>resistência a dano</em> de criaturas aterrorizadas. Combine com Aura de Conquista para tornar toda resistência irrelevante.</div>
+      </div>
+      <div class="trait-block spec-accent">
+        <div class="trait-name">Canal Divino: Conquista <span class="feat-level">Nív. 3</span></div>
+        <div class="trait-desc">Ação bônus: TR Sab CD 19 ou criaturas em 9m ficam <em>aterrorizadas</em> por 1 min. Guided Strike: +10 a um único ataque (garante acerto).</div>
+      </div>
+      <div class="trait-block spec-accent">
+        <div class="trait-name">Aura de Conquista <span class="feat-level">Nív. 7</span></div>
+        <div class="trait-desc">Criaturas aterrorizadas em <em>9m</em> têm velocidade 0 — presas. Mordekaiser recupera <em>PV temporários</em> (= metade dos PV do alvo) por cada criatura aterrorizada em sua aura.</div>
+      </div>
+      <div class="trait-block spec-accent">
+        <div class="trait-name">Realm of Death <span class="feat-level">Nív. 20</span></div>
+        <div class="trait-desc">Ver caixa detalhada acima. O poder definitivo: exílio, roubo de atributos, servidão permanente na morte. 1×/longo descanso.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <div class="feat-section-label">Habilidades de Classe — Paladino</div>
+    <div class="feature-grid">
+      <div class="trait-block">
+        <div class="trait-name">Divine Smite <span class="feat-level">Nív. 2</span></div>
+        <div class="trait-desc">Ao acertar corpo a corpo: gasta slot de magia para <em>+2d8 radiante por nível</em> do slot. Máximo 5d8 base (slot 4°) ou 9d8 com slot 5°. +1d8 contra mortos-vivos. Crítico dobra os dados de smite.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Improved Divine Smite <span class="feat-level">Nív. 11</span></div>
+        <div class="trait-desc">Acertos corpo a corpo <em>sempre</em> adicionam 1d8 radiante — sem gastar slot. Incluso em todos os danos de ataque acima.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Aura de Proteção <span class="feat-level">Nív. 6</span></div>
+        <div class="trait-desc">Aliados em <em>18m</em> adicionam modificador de Carisma (<strong>+5</strong>) em todos os testes de resistência. A aura de autoridade que protege quem lhe é leal.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Aura de Coragem <span class="feat-level">Nív. 10</span></div>
+        <div class="trait-desc">Aliados em <em>18m</em> são <strong>imunes ao medo</strong>. Combinado com Aura de Conquista: Mordekaiser espalha medo nos inimigos e protege aliados dele.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Lay on Hands <span class="feat-level">Nív. 1</span></div>
+        <div class="trait-desc"><em>100 PV de pool</em> por descanso longo. Pode curar doenças e venenos (5 PV). Mordekaiser usa em aliados — raramente em si mesmo.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Cleansing Touch <span class="feat-level">Nív. 14</span></div>
+        <div class="trait-desc">Encerra uma magia ativa em si mesmo ou em um aliado tocado. <em>+CAR (5×)</em> por descanso longo. Remove controle mental de aliados.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <div class="feat-section-label">Talentos (Feats)</div>
+    <div class="feature-grid">
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Great Weapon Master <span class="feat-level">Nív. 1</span></div>
+        <div class="trait-desc">−5/+10. Após crítico ou matar: ataque de bônus. Contra alvos paralisados (Hold Person/Monster): crítico automático → bônus de ataque garantido toda rodada.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Tough <span class="feat-level">Nív. 8</span></div>
+        <div class="trait-desc">+40 PV permanentes. Incluso nos 220 totais. O imperador não cai.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Sentinel <span class="feat-level">Nív. 12</span></div>
+        <div class="trait-desc">AO acertado: velocidade do alvo cai a 0. Aliados adjacentes não provocam AO. Combina com Aura de Conquista: nada escapa do domínio de Mordekaiser.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">War Caster <span class="feat-level">Nív. 16</span></div>
+        <div class="trait-desc">Vantagem em CON para concentração de Realm of Death e Hold Monster. Magia como Ataque de Oportunidade. Mantém o controle mesmo sob ataque.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAGIAS ──────────────────────────────────────────── -->
 <div class="sec">
   <div class="sec-title">Magia</div>
   <div class="spell-meta">
-      <span class="spell-tag">CD 19</span>
-      <span class="spell-tag">Ataque +11</span>
-      <span class="spell-tag">Carisma</span>
-      
-    </div><div class="spell-section-label">Magias</div><div class="spell-grid"><div class="sc"><span class="sc-type">2° </span><span class="sc-name">Hold Person</span><span class="sc-desc">TR Sab · Paralisado → Smite crítico</span></div><div class="sc"><span class="sc-type">5° </span><span class="sc-name">Hold Monster</span><span class="sc-desc">TR Sab · Paralisado · Qualquer criatura</span></div><div class="sc"><span class="sc-type">5° </span><span class="sc-name">Destructive Wave</span><span class="sc-desc">5d6+5d6 em raio 9m · Derrubado</span></div><div class="sc"><span class="sc-type">4° </span><span class="sc-name">Banishment</span><span class="sc-desc">TR Car CD 19 · Exílio permanente</span></div><div class="sc"><span class="sc-type">1° </span><span class="sc-name">Wrathful Smite</span><span class="sc-desc">+1d6 psíquico · TR Sab ou aterrorizado</span></div><div class="sc"><span class="sc-type">1° </span><span class="sc-name">Command</span><span class="sc-desc">Ajoelhe · TR Sab CD 19 · Derrubado</span></div><div class="sc"><span class="sc-type">3° </span><span class="sc-name">Dispel Magic</span><span class="sc-desc">Remove magia ≤3° automático</span></div></div>
+    <span class="spell-tag">CD 19</span>
+    <span class="spell-tag">Ataque +11</span>
+    <span class="spell-tag">Carisma</span>
+    <span class="spell-tag gold">Paladin: meio lançador</span>
+  </div>
+  <div class="spell-slots">
+    <span class="slot-pip used">1° ×4</span>
+    <span class="slot-pip used">2° ×3</span>
+    <span class="slot-pip used">3° ×3</span>
+    <span class="slot-pip used">4° ×3</span>
+    <span class="slot-pip used">5° ×2</span>
+  </div>
+
+  <div class="spell-section-label">Juramento dos Conquistadores (sempre preparadas)</div>
+  <div class="spell-grid">
+    <div class="sc oath">
+      <span class="sc-type">1° · Juramento</span>
+      <span class="sc-name">Armor of Agathys</span>
+      <span class="sc-desc">5d10 PV temp + 5d10 dano de frio a quem atacar corpo a corpo · 8 horas · Sem concentração</span>
+    </div>
+    <div class="sc oath">
+      <span class="sc-type">1° · Juramento</span>
+      <span class="sc-name">Command</span>
+      <span class="sc-desc">TR Sab CD 19 · "Ajoelhe" → derrubado · "Fuja" → move para longe · +1 alvo/nível acima 1°</span>
+    </div>
+    <div class="sc oath">
+      <span class="sc-type">2° · Juramento</span>
+      <span class="sc-name">Hold Person</span>
+      <span class="sc-desc">TR Sab CD 19 · Paralisado · Concentração 1 min · Crítico automático em corpo a corpo → Smite perfeito</span>
+    </div>
+    <div class="sc oath">
+      <span class="sc-type">2° · Juramento</span>
+      <span class="sc-name">Spiritual Weapon</span>
+      <span class="sc-desc">+11 acerto · 1d8+5 força · Ataque bônus/rodada · 1 min · Sem concentração — coexiste com Hold Person</span>
+    </div>
+    <div class="sc oath">
+      <span class="sc-type">3° · Juramento</span>
+      <span class="sc-name">Bestow Curse</span>
+      <span class="sc-desc">Toque · TR Sab CD 19 · Escolha: desvantagem em todos testes de atributo · Concentração 1 min (8h em slot 4°)</span>
+    </div>
+    <div class="sc oath">
+      <span class="sc-type">3° · Juramento</span>
+      <span class="sc-name">Fear</span>
+      <span class="sc-desc">Cone 9m · TR Sab CD 19 ou aterrorizado · Foge e descarta objetos · 1 min conc. · Alimenta Aura de Conquista</span>
+    </div>
+    <div class="sc oath">
+      <span class="sc-type">4° · Juramento</span>
+      <span class="sc-name">Dominate Beast</span>
+      <span class="sc-desc">TR Sab CD 19 · Controle total de besta · 1 min conc. · Garante lealdade ou usa como arma</span>
+    </div>
+    <div class="sc oath">
+      <span class="sc-type">4° · Juramento</span>
+      <span class="sc-name">Stoneskin</span>
+      <span class="sc-desc">Resistência a dano não-mágico (cortante, perfurante, contundente) · 1h conc. · Mordekaiser é ainda mais inatingível</span>
+    </div>
+    <div class="sc oath">
+      <span class="sc-type">5° · Juramento</span>
+      <span class="sc-name">Cloudkill</span>
+      <span class="sc-desc">Nuvem de ácido 6m raio · 5d8 veneno/rodada · TR Con CD 19 metade · Concentração 10 min · Persegue</span>
+    </div>
+    <div class="sc oath">
+      <span class="sc-type">5° · Juramento</span>
+      <span class="sc-name">Dominate Person</span>
+      <span class="sc-desc">TR Sab CD 19 · Controle total de humanoide · 1 min conc. · O servo perfeito — enquanto Mordekaiser não tiver uma alma permanente</span>
+    </div>
+  </div>
+
+  <div class="spell-section-label">Magias Preparadas (seleção)</div>
+  <div class="spell-grid">
+    <div class="sc high">
+      <span class="sc-type">5° · Destruição</span>
+      <span class="sc-name">Destructive Wave</span>
+      <span class="sc-desc">Raio 9m · 5d6 trovão + 5d6 radiante/necrótico · TR Con CD 19 · Derrubado em falha</span>
+    </div>
+    <div class="sc high">
+      <span class="sc-type">5° · Controle</span>
+      <span class="sc-name">Hold Monster</span>
+      <span class="sc-desc">TR Sab CD 19 · Paralisado · Qualquer criatura (não apenas humanoides) · Conc. 1 min · Crítico auto + Smite</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">4° · Banimento</span>
+      <span class="sc-name">Banishment</span>
+      <span class="sc-desc">TR Car CD 19 · Exílio temporário · Permanente se manter 1 min · Alternativa mais simples ao Realm of Death</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">3° · Utilidade</span>
+      <span class="sc-name">Dispel Magic</span>
+      <span class="sc-desc">Remove magia de nível 3° ou menos automaticamente. Acima: +11 vs CD da magia. Limpa proteções de aliados dos inimigos.</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">1° · Ofensivo</span>
+      <span class="sc-name">Wrathful Smite</span>
+      <span class="sc-desc">Conc. antes de atacar · +1d6 psíquico · TR Sab CD 19 ou aterrorizado por 1 min · Alimenta Aura de Conquista</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">1° · Proteção</span>
+      <span class="sc-name">Bless</span>
+      <span class="sc-desc">Até 3 criaturas · +1d4 em ataques e TRs · 1 min conc. · Mordekaiser raramente usa — aliados se viram</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">1° · Invocação</span>
+      <span class="sc-name">Find Steed (espectral)</span>
+      <span class="sc-desc">Invoca corcel espectral · Telepatia e partilha de sentidos · Requer apenas 10 min para reconjurar</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">3° · Aura</span>
+      <span class="sc-name">Crusader's Mantle</span>
+      <span class="sc-desc">Aliados em 9m adicionam +1d4 radiante a acertos · 1 min conc. · Mordekaiser torna seus exércitos mais letais</span>
+    </div>
+  </div>
 </div>
 
+<!-- ── EQUIPAMENTO ─────────────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Equipamento</div>
+  <ul class="trait-list">
+    <li><strong>Maça Imperial +2</strong> — 2d6+9 contundente. Forjada do ferro do Mundo das Sombras. Pesa o dobro do que deveria, mas nas mãos de Mordekaiser parece leve como o destino.</li>
+    <li><strong>Plate Armor +1</strong> — CA 19 base (com estilo defensor). A armadura é parte dele — fundida por magia ao seu corpo. Remover seria descarnar o imperador.</li>
+    <li><strong>Escudo de Conquista +1</strong> — CA +1 adicional (CA 21 total). Gravado com os rostos de todos que já conquistou.</li>
+    <li><strong>Amuleto da Saúde</strong> — CON efetiva 20. Garante que a força da armadura não o esmague por dentro.</li>
+    <li><strong>Cinto da Força de Gigante (Colina)</strong> — FOR efetiva 24. A brutalidade física que acompanha a brutalidade mágica.</li>
+    <li><strong>Anel de Proteção +1</strong> — Incluso na CA 21 final.</li>
+    <li><strong>Livro dos Servos</strong> — Registro encantado de todas as almas que Mordekaiser capturou na Realm of Death. Cada nome escrito aumenta em +1 sua CD de magia para uma magia de dominação por descanso longo.</li>
+  </ul>
+</div>
 
-
-
-<!-- ── PERSONALIDADE ─────────────────────────── -->
+<!-- ── PERSONALIDADE ───────────────────────────────────── -->
 <div class="sec">
   <div class="sec-title">Personalidade</div>
-  <div class="trait-block"><div class="trait-name">Traços de Personalidade</div><div class="trait-desc">Não existe pequeno ou grande — apenas conquistado e a conquistar.</div></div><div class="trait-block"><div class="trait-name">Ideais</div><div class="trait-desc">Conquista é a única lei universal. O mundo pertence aos que têm vontade de tomá-lo.</div></div><div class="trait-block"><div class="trait-name">Vínculos</div><div class="trait-desc">Seu Império Eterno — a conquista que não acaba na morte mas começa nela.</div></div><div class="trait-block"><div class="trait-name">Fraquezas</div><div class="trait-desc">Incompleto enquanto houver qualquer ser que não lhe deva lealdade.</div></div>
+  <div class="feature-grid">
+    <div class="trait-block">
+      <div class="trait-name">Traços de Personalidade</div>
+      <div class="trait-desc">Não existe pequeno ou grande — apenas <em>conquistado</em> e <em>a conquistar</em>. Não raiva. Não urgência. A certeza fria de quem sabe que o tempo pertence a ele.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Ideais</div>
+      <div class="trait-desc">Conquista é a única lei universal. O mundo pertence aos que têm vontade de tomá-lo — e coragem de fazê-lo indefinidamente, além da própria morte.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Vínculos</div>
+      <div class="trait-desc">Seu Império Eterno — a conquista que não acaba na morte mas <em>começa nela</em>. A Realm of Death não é uma prisão. É o primeiro pedaço de um reino sem fim.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Fraquezas</div>
+      <div class="trait-desc">Incompleto enquanto houver qualquer ser — em qualquer plano — que não lhe deva lealdade. Essa incompletude não é fraqueza. É o combustível.</div>
+    </div>
+  </div>
 </div>
 
-<div class="divider">✦ ✧ ✦</div>
+<!-- ── LORE ────────────────────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Lore — O Homem que Conquistou a Morte</div>
+  <div class="lore-text">
+    <p>Houve um tempo em que Mordekaiser foi humano. Warlord de um império que durou séculos, construído sobre o princípio simples de que força cria direito. Quando morreu — traído pelos que ele havia elevado — recusou a passagem. <em>A morte era apenas outro território a ser tomado.</em></p>
+    <p>Ele voltou três vezes. Cada morte mais deliberada que a anterior — cada retorno mais poderoso. A terceira vez, não voltou como homem. Voltou como algo para o qual ainda não existe nome adequado: um ser feito de vontade pura, envolvido em ferro que já não é armadura mas extensão de si mesmo, drenando a força vital dos que ousam resistir.</p>
+    <p>A Realm of Death não é uma habilidade. É a prova de que Mordekaiser não apenas sobreviveu à morte mas <em>a derrotou tão completamente</em> que agora possui um pedaço do que havia além. Cada alma que ele captura ali é um tijolo em algo que não tem nome ainda mas que ele, com a paciência dos milênios, continuará construindo até que sim — até que o nome apareça por si só: <em>Império</em>.</p>
+  </div>
+</div>
 
-<!-- ── FOOTER ────────────────────────────────── -->
+<div class="divider">☠ · ⚔ · ☠</div>
+
+<!-- ── GUIA DE PROGRESSÃO ──────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Guia de Progressão — Nível 1 ao 20</div>
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px;font-style:italic;">Paladino (Juramento dos Conquistadores) · Humano Variante · Senhor da Guerra. Cada nível detalha o que você ganha, como funciona e como usar. Clique para expandir.</p>
+
+  <div class="tier-note">Tier 1 · Nível 1–4 — O Conquistador Desperta</div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 1</span>
+      <span class="level-gains"><strong>Paladino 1</strong> · Toque Curativo · Sentido Divino · Talento: Mestre de Armas Pesadas</span>
+      <span class="tier-badge t1">Tier 1</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Humano Variante</strong> — concede um talento já no nível 1. Escolha <strong>Mestre de Armas Pesadas</strong> imediatamente: opção −5 no acerto para +10 no dano, e ataque bônus após crítico ou eliminar uma criatura. Esse talento define o estilo de toda a build.</li>
+        <li><strong>Toque Curativo</strong> — piscina de 5 PV por descanso longo. Cura tocando um aliado (ou a si mesmo) como ação. Pode também curar uma doença ou veneno gastando 5 PV da piscina.</li>
+        <li><strong>Sentido Divino</strong> — detecta a presença de mortos-vivos, celestiais e demônios em 9 metros, por 1 rodada. Útil para não ser surpreendido. (CAR + 1 usos = 6/descanso longo.)</li>
+        <li>PV inicial: 10 + modificador de CON (~+4 com CON 18 base) = <strong>14 PV</strong>.</li>
+        <li>Prioridade de equipamento: armadura pesada o quanto antes. Comece com cota de malha (CA 16) se plate não estiver disponível.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 2</span>
+      <span class="level-gains"><strong>Golpe Divino</strong> · Estilo de Luta: Defensor · Primeiros Slots de Magia</span>
+      <span class="tier-badge t1">Tier 1</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Golpe Divino (Divine Smite)</strong> — ao acertar um ataque corpo a corpo, você pode gastar um slot de magia para adicionar dano radiante: <em>+2d8 por nível do slot usado</em>. Slot de 1° círculo = +2d8 (méd. 9). Em um acerto crítico, os dados de Golpe Divino são dobrados: slot de 1° = +4d8. Contra mortos-vivos ou mortos-vivos: +1d8 extra a mais.</li>
+        <li><strong>Estilo de Luta: Defensor</strong> — +1 CA enquanto usa armadura. Com cota de malha: CA 17. Com plate futuramente: CA 19 base.</li>
+        <li><strong>Magias disponíveis (1° círculo)</strong> — 2 slots. Aprenda:
+          <ul>
+            <li><strong>Golpe Colérico (Wrathful Smite)</strong> — conjure antes de atacar (concentração). Ao acertar: +1d6 dano psíquico e o alvo faz <em>TR Sabedoria CD 13</em> ou fica <em>aterrorizado</em> por 1 minuto (TR a cada rodada para sair). Excelente para ativar a Aura de Conquista mais adiante.</li>
+            <li><strong>Abençoar (Bless)</strong> — até 3 criaturas adicionam +1d4 a rolagens de ataque e testes de resistência por 1 minuto (concentração). Enquanto não tem Hold Person, este é o melhor uso de concentração.</li>
+          </ul>
+        </li>
+        <li>Rotação nível 2: Atacar → se acertar → decidir se gasta slot em Golpe Divino (guarde para momentos decisivos). O Paladino nesse nível explode um inimigo importante por encontro com um smite bem colocado.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 3</span>
+      <span class="level-gains"><strong>Juramento dos Conquistadores</strong> · Canal Divino · Magias de Juramento</span>
+      <span class="tier-badge t1">Tier 1</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Canal Divino: Conquistar (Conquering Presence)</strong> — como ação, todas as criaturas que você escolher em 9 metros fazem <em>TR Sabedoria CD 13</em> ou ficam <em>aterrorizadas</em> por 1 minuto. Criaturas aterrorizadas: desvantagem em ataques e testes de habilidade enquanto puderem ver Mordekaiser. (A Velocidade 0 ainda não — isso chega no nível 7.)</li>
+        <li><strong>Canal Divino: Golpe Guiado (Guided Strike)</strong> — após rolar um ataque, adiciona <strong>+10 ao resultado</strong>. Use para garantir o acerto antes de Golpe Divino quando o dado cair mal.</li>
+        <li><strong>Magias de Juramento (sempre preparadas, não contam no limite):</strong>
+          <ul>
+            <li><strong>Armadura de Agathys (1° círculo)</strong> — conjure em si mesmo: ganha <em>5 PV temporários</em> e qualquer criatura que o acerte corpo a corpo recebe <em>5 dano de frio</em>. Dura 8 horas, sem concentração. Em slot de 5°: 25 PV temp + 25 dano de frio por soco. Excelente proteção passiva.</li>
+            <li><strong>Comando (1° círculo)</strong> — uma palavra de comando: TR Sabedoria CD 13 ou a criatura obedece por 1 rodada. "Ajoelhe" = alvo derrubado (próximo ataque com vantagem + Golpe Divino como crit? Não automático, mas vantagem sim). "Fuja" = corre 9m para longe. Ação bônus de posicionamento.</li>
+            <li><strong>Aprisionar Pessoa (2° círculo)</strong> — uma criatura humanoide em 18m faz <em>TR Sabedoria CD 13</em> ou fica <em>paralisada</em> por 1 minuto (TR a cada rodada). <strong>Paralisado = ataques corpo a corpo têm acerto crítico automático</strong>. Isso significa: Golpe Divino com qualquer slot dobra os dados. Combinação fundamental da build.</li>
+            <li><strong>Arma Espiritual (2° círculo)</strong> — cria arma de energia que ataca como ação bônus cada rodada: +CAR ao acerto (+5 nível alto = +11), 1d8+5 de força. Dura 1 minuto, <strong>sem concentração</strong>. Coexiste com Aprisionar Pessoa (que exige concentração). Ataque gratuito todo turno por 1 minuto.</li>
+          </ul>
+        </li>
+        <li>Rotação ideal nível 3: Arma Espiritual (ação) → Aprisionar Pessoa (ação, próximo turno) → ataque corpo a corpo crítico automático + Golpe Divino dobrado + Arma Espiritual como bônus. Esse loop já destrói inimigos únicos.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 4</span>
+      <span class="level-gains"><strong>Talento: Resistente</strong> · Slots de 2° expandidos</span>
+      <span class="tier-badge t1">Tier 1</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Talento: Resistente (CON)</strong> — adiciona proficiência em testes de resistência de Constituição (+2 agora, +6 no nível 20). Isso é a fundação para manter concentração em Aprisionar Pessoa mesmo após levar dano pesado. Sem isso, um único golpe forte pode encerrar o combo.</li>
+        <li>Slots de 2° círculo: 3 slots totais. Agora dá para usar Aprisionar Pessoa <em>e ainda ter</em> Golpe Divino de 2° slot disponível na mesma batalha.</li>
+        <li>Dano de Golpe Divino com slot de 2° em crítico: <strong>+6d8 radiante</strong> (~27 médio extra). Total do golpe: 4d6+9+6d8 ≈ 58 médio num único acerto.</li>
+        <li>PV acumulados nível 4 (com Resistente): 10 + 3×(6+4) ≈ <strong>40 PV</strong>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tier-note">Tier 2 · Nível 5–10 — O Senhor do Terror</div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 5</span>
+      <span class="level-gains"><strong>Ataque Extra</strong> · Slots de 3° · Lançar Maldição e Medo chegam</span>
+      <span class="tier-badge t2">Tier 2</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Ataque Extra</strong> — 2 ataques por ação. Golpe Divino pode ser usado em cada ataque independentemente: dois acertos críticos com Aprisionar Pessoa ativo = 2× os dados de smite dobrados. Mas cuidado: slots se esgotam rápido. Reserve os melhores para o turno decisivo.</li>
+        <li><strong>Slots de 3° círculo</strong> — Golpe Divino com slot de 3° em crítico: <strong>+8d8 radiante</strong> (~36 médio extra). Total: 4d6+9+8d8 ≈ 68 médio num único golpe.</li>
+        <li><strong>Novas magias de juramento (3° círculo):</strong>
+          <ul>
+            <li><strong>Lançar Maldição (Bestow Curse)</strong> — toque, TR Sabedoria CD 15 ou o alvo fica amaldiçoado por 1 minuto (concentração). Escolha o efeito: desvantagem em todos os testes de um atributo (escolha FOR para enfraquecer a resistência física), ou o alvo faz TR Sab a cada turno ou perde sua ação. Se conjurada em slot de 4° = 10 minutos sem concentração. 8 horas em slot de 5°. Maldição de longa duração + aterrorizado + velocidade 0 = criatura completamente paralisada em todas as dimensões.</li>
+            <li><strong>Medo (Fear)</strong> — cone de 9 metros, todas as criaturas fazem TR Sabedoria CD 15 ou ficam <em>aterrorizadas</em> por 1 minuto (concentração, TR a cada rodada). Aterrorizados: desvantagem em ataques e testes, e se puderem se mover devem usar toda a ação para se afastar de Mordekaiser. <strong>Alimenta a Aura de Conquista</strong> (que chega no nível 7): as que falharem ficam presas com velocidade 0.</li>
+          </ul>
+        </li>
+        <li>Com 2 ataques e Aprisionar Pessoa: cada turno é 2 críticos automáticos + Arma Espiritual. Se gastar slots em ambos: potencial de ~120+ dano em um único turno contra um boss humanoide.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 6</span>
+      <span class="level-gains"><strong>Aura de Proteção</strong> — a melhor habilidade passiva do Paladino</span>
+      <span class="tier-badge t2">Tier 2</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Aura de Proteção</strong> — passiva, sem ação, sem concentração. Todos os aliados (inclusive você) em 18 metros adicionam o <em>modificador de Carisma de Mordekaiser (+5)</em> a <strong>todos os testes de resistência</strong>. Isso inclui TRs contra magia, veneno, encantamento, medo — tudo.</li>
+        <li>Na prática: um aliado com TR de Sabedoria +2 passa a ter +7 contra Aprisionar Pessoa inimigo, Hold Monster, Dominar Pessoa, etc. A tropa de Mordekaiser é quase imune a controle mental enquanto ele estiver perto.</li>
+        <li>Com CAR 20 (+5): a aura dá +5 em TRs. Com CAR 22 (item): +6. Esta habilidade sozinha justifica ter um Paladino na party — independente do resto do kit.</li>
+        <li>Dica: posicione Mordekaiser no centro de batalha, não na vanguarda isolada. Aura de Proteção precisa cobrir os aliados de apoio no fundo.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 7</span>
+      <span class="level-gains"><strong>Aura de Conquista</strong> — velocidade 0 + cura passiva por terror</span>
+      <span class="tier-badge t2">Tier 2</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Aura de Conquista</strong> — passiva, sem ação. Criaturas <em>aterrorizadas</em> que estejam em 9 metros de Mordekaiser têm <strong>velocidade reduzida a 0</strong>. Além disso, Mordekaiser ganha <strong>PV temporários = metade dos PV de cada criatura aterrorizada</strong> na área (recalculado a cada turno).</li>
+        <li>Combo completo que se fecha aqui: <strong>Canal Divino: Conquistar</strong> (aterroriza) → <strong>Aura de Conquista</strong> (velocidade 0) → <strong>Sentinela</strong> (trava quem tenta sair com a AO) → <strong>Medo</strong> (aterroriza os que ainda restam). Resultado: ninguém sai do alcance de Mordekaiser, e ele cura PV temporários passivamente por cada preso.</li>
+        <li>Exemplo: 4 inimigos aterrorizados com 40 PV cada → Mordekaiser ganha 4×20 = <strong>+80 PV temporários</strong> enquanto eles permanecerem na aura. Com Armadura de Agathys ativa: quem tenta golpeá-lo leva dano de frio.</li>
+        <li>A partir deste nível, Mordekaiser em combate em grupo é uma fortaleza ambulante que se cura e imobiliza tudo ao redor.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 8</span>
+      <span class="level-gains"><strong>Talento: Sentinela</strong> — ninguém escapa da aura</span>
+      <span class="tier-badge t2">Tier 2</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Sentinela (Sentinel)</strong> — ao acertar um Ataque de Oportunidade, a velocidade da criatura cai a 0 nessa rodada. Aliados adjacentes a você não provocam AO de inimigos que você puder ver.</li>
+        <li>Com Aura de Conquista: criaturas aterrorizadas já têm velocidade 0 passivamente. Mas criaturas não-aterrorizadas que tentarem recuar provocam AO → Sentinela as trava → ficam presas para você atacar no próximo turno.</li>
+        <li>Dica de posicionamento: fique no centro da área de inimigos. Medo → Aura de Conquista trava os que falharam no TR. Sentinela trava os que passaram e tentam sair. Ninguém chega nos aliados frágeis atrás de você.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 9–10</span>
+      <span class="level-gains"><strong>Aura de Coragem</strong> · Magias de 4° e 5° círculo · Pele de Pedra e Dominar Besta</span>
+      <span class="tier-badge t2">Tier 2</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Aura de Coragem (nível 10)</strong> — passiva, 18 metros. Aliados são <em>imunes ao medo</em>. Irônico: Mordekaiser é o maior disseminador de terror no campo, mas sua própria tropa não sente medo. A combinação com Medo é perfeita — os inimigos fogem aterrorizados enquanto os aliados avançam impassíveis.</li>
+        <li><strong>Magias de Juramento 4° círculo:</strong>
+          <ul>
+            <li><strong>Pele de Pedra (Stoneskin)</strong> — você ou um aliado toca passa a ter <em>resistência a dano contundente, perfurante e cortante não-mágico</em> por 1 hora (concentração). Mordekaiser com resistência + PV temporários de Aura de Conquista + Armadura de Agathys = a combinação de survivabilidade mais alta da classe.</li>
+            <li><strong>Dominar Besta (Dominate Beast)</strong> — uma besta faz TR Sabedoria CD 17 ou fica sob controle total de Mordekaiser por 1 minuto (concentração). Use para capturar montarias inimigas, animais de guarda, ou criaturas de companhia de inimigos — transformando-as em armas contra seus donos.</li>
+          </ul>
+        </li>
+        <li><strong>Magias de Juramento 5° círculo:</strong>
+          <ul>
+            <li><strong>Nuvem Mortal (Cloudkill)</strong> — esfera de névoa venenosa de 6 metros de raio. Criaturas que comecem o turno nela fazem TR Constituição CD 17 ou sofrem <em>5d8 de veneno</em> (metade em sucesso). A névoa se move 3m por rodada afastando-se de você, dura 10 minutos (concentração). Use para envenenar grupos de inimigos enquanto Mordekaiser os imobiliza na aura.</li>
+            <li><strong>Dominar Pessoa (Dominate Person)</strong> — humanoide faz TR Sabedoria CD 17 ou fica sob controle total por 1 minuto (concentração). O servo mais valioso que não precisa da Realm of Death para ser capturado temporariamente. Um mago inimigo dominado vira aliado instantaneamente.</li>
+          </ul>
+        </li>
+        <li>Golpe Divino com slot de 4° em crítico: <strong>+10d8 radiante</strong> (~45 médio). Total: 4d6+9+10d8 ≈ <strong>78 médio</strong> num único golpe crítico garantido contra alvo paralisado.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tier-note">Tier 3 · Nível 11–16 — O Imperador Imparável</div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 11</span>
+      <span class="level-gains"><strong>Golpe Divino Aprimorado</strong> — +1d8 radiante passivo em cada acerto</span>
+      <span class="tier-badge t3">Tier 3</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Golpe Divino Aprimorado (Improved Divine Smite)</strong> — passivo permanente: toda vez que Mordekaiser acerta um ataque corpo a corpo, adiciona automaticamente <em>+1d8 de dano radiante</em> sem gastar nenhum slot de magia.</li>
+        <li>Impacto: com 2 ataques por ação, cada rodada gera +2d8 de dano radiante grátis (~9 médio). Ao longo de 10 rodadas de combate: +90 de dano radiante sem custo.</li>
+        <li>Isso eleva o <em>piso</em> de dano de cada ataque. Combinado com Golpe Divino voluntário: um acerto simples agora é 2d6+9+1d8, e um Golpe Divino de 5° em crítico sobe para 4d6+9+1d8+10d8 ≈ <strong>~106 médio</strong>.</li>
+        <li>A partir deste nível, Mordekaiser em combate contra um único alvo (boss mode) é uma máquina de dano constante: cada rodada o atinge duas vezes com radiante garantido + PV temporários da Aura de Conquista se ele estiver aterrorizado.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 12</span>
+      <span class="level-gains"><strong>Talento: Conjurador de Guerra</strong> — concentração quase indestrutível</span>
+      <span class="tier-badge t3">Tier 3</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Conjurador de Guerra (War Caster)</strong> — vantagem em testes de Constituição para manter concentração após sofrer dano. Além disso: pode realizar o componente somático de magias mesmo com as mãos ocupadas (arma + escudo), e pode lançar uma magia no lugar de um Ataque de Oportunidade.</li>
+        <li>Com Resistente (CON) + Conjurador de Guerra: TR CON para concentração tem vantagem E proficiência (+12 total). Aprisionar Monstro e Medo dificilmente serão interrompidos mesmo sob ataque pesado.</li>
+        <li>Ataque de Oportunidade como magia: use <strong>Aprisionar Pessoa</strong> como AO quando um inimigo tenta sair do alcance. Paralisa o alvo instantaneamente em vez de apenas causar dano.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 13–14</span>
+      <span class="level-gains"><strong>Toque Purificador</strong> · Aprisionar Monstro e Onda Destrutiva disponíveis</span>
+      <span class="tier-badge t3">Tier 3</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Toque Purificador (Cleansing Touch, nível 14)</strong> — como ação, encerra uma magia ativa (inclusive de efeito negativo) em si mesmo ou em um aliado tocado. Gratuito, +CAR vezes por descanso longo (5×). Remove Dominar Pessoa, Maldição, Medo, Lentidão — qualquer encantamento inimigo que esteja afetando a tropa.</li>
+        <li><strong>Aprisionar Monstro (Hold Monster, 5° círculo)</strong> — igual ao Aprisionar Pessoa, mas funciona em <em>qualquer criatura</em>, não apenas humanoides. TR Sabedoria CD 19, paralisado por 1 minuto. O combo perfeito se fecha aqui: boss de qualquer tipo → paralisado → crítico automático → Golpe Divino de 5° slot em crítico → ~106 médio.</li>
+        <li><strong>Onda Destrutiva (Destructive Wave, 5° círculo)</strong> — sem concentração, sem TR de resistência para o efeito de área. Raio de 9m ao redor de Mordekaiser: todas as criaturas no alcance fazem TR Constituição CD 19. Falha: <em>5d6 trovão + 5d6 radiante (ou necrótico)</em> e ficam derrubadas. Sucesso: metade do dano, não derruba. Médio total em falha: ~35. Excelente para limpar grupos ao redor antes de focar no boss.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 15–16</span>
+      <span class="level-gains"><strong>Atributos no pico</strong> · FOR 24 · CAR 20 · Talento: Resistente já ativo</span>
+      <span class="tier-badge t3">Tier 3</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li>Nível 16: ASI final antes do Tier 4. Prioridade: CAR para 20 (+5) se ainda não chegou. O aumento direto de CAR eleva CD das magias de 18 para 19 e o bônus de ataque mágico de +10 para +11. Além disso, Aura de Proteção passa a dar +5 aos aliados.</li>
+        <li>Com o <strong>Cinto da Força de Gigante (Colina)</strong> (item mágico): FOR efetiva 24 (+7). Ataque com Maça Imperial +2: +15 ao acerto. Dano base: 2d6+9. Com Golpe Divino Aprimorado: 2d6+9+1d8.</li>
+        <li>Nesse patamar, Mordekaiser combina ataque físico pesado (+15), dano radiante passivo, Golpe Divino explosivo, controle de área (Medo + Aura de Conquista), e suporte de TRs para toda a party (Aura de Proteção +5). Não existe um papel que ele não cubra.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tier-note">Tier 4 · Nível 17–20 — O Senhor do Além</div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 17–19</span>
+      <span class="level-gains"><strong>Slots de 5° completos</strong> · Aprisionar Monstro + Golpe Divino máximo · Pico de dano</span>
+      <span class="tier-badge t4">Tier 4</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li>2 slots de 5° círculo disponíveis. O Golpe Divino com slot de 5° em <em>acerto normal</em>: +9d8 radiante (~40 médio). Em <em>crítico automático</em> (alvo paralisado por Aprisionar Monstro): <strong>+10d8 radiante</strong> (~45 médio).</li>
+        <li><strong>Sequência de dano máximo (único golpe):</strong>
+          <ul>
+            <li>Aprisionar Monstro (concentração, alvo paralisado)</li>
+            <li>Maça Imperial +2 com Mestre de Armas Pesadas (−5/+10): acerto +10, dano 2d6+19 + Golpe Divino Aprimorado 1d8</li>
+            <li>Crítico automático (alvo paralisado): dados dobrados = 4d6+19 + 2d8 (aprimorado dobrado) + 10d8 (smite de 5° dobrado)</li>
+            <li><strong>Total médio: 4d6 (~14) + 19 + 2d8 (~9) + 10d8 (~45) = ~87 médio num único acerto</strong></li>
+          </ul>
+        </li>
+        <li><strong>Dominar Pessoa (5° círculo)</strong> — quando a Realm of Death não está disponível, use Dominar Pessoa para capturar temporariamente o aliado mais poderoso do inimigo. Um boss com lacaios dominados que luta pela tropa de Mordekaiser muda completamente o equilíbrio de qualquer combate.</li>
+        <li><strong>Nuvem Mortal (5° círculo)</strong> — 5d8 de veneno/rodada (~22 médio) em raio 6m, se move sozinha. Conjure antes de Aprisionar Monstro: o boss fica preso na névoa, sofrendo veneno passivo todo turno além dos golpes físicos.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="level-block">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 20</span>
+      <span class="level-gains"><strong>Reino da Morte (Realm of Death)</strong> — o fim e o começo do Império</span>
+      <span class="tier-badge t4">Tier 4</span>
+    </div>
+    <div class="level-body">
+      <ul>
+        <li><strong>Reino da Morte (Realm of Death)</strong> — ação, 1× por descanso longo. Alvo em 9m faz TR Carisma CD 19. Em falha: Mordekaiser e o alvo são transportados para uma <em>dimensão pessoal de Mordekaiser</em> — uma cópia espectralmente distorcida do ambiente. Nenhuma outra criatura pode entrar. Duração: 1 minuto (concentração).</li>
+        <li><strong>Dentro da Realm:</strong> a cada turno que Mordekaiser <em>acertar o alvo</em>, o alvo perde permanentemente −1 em <strong>todos os atributos</strong> (FOR, DES, CON, INT, SAB, CAR). Se o alvo morrer dentro da Realm: torna-se um <em>servo espectral permanente</em> de Mordekaiser, e Mordekaiser ganha <strong>+1 permanente em todos os atributos</strong>.</li>
+        <li><strong>Sequência perfeita dentro da Realm:</strong>
+          <ul>
+            <li>Turno 1: Aprisionar Monstro (paralisado) → Golpe Divino de 5° em crítico → ~87 médio + o alvo perde −1 em tudo</li>
+            <li>Turno 2 (se ainda vivo): Aprisionar Monstro ainda ativo → segundo crítico + segundo Golpe Divino → mais −1 em tudo</li>
+            <li>A cada turno: o alvo enfraquece em cascata. Com FOR −3, seus ataques pioram. Com CON −3, seus PV máximos caem. Com SAB −3, os TRs contra o Aprisionar ficam mais fáceis de falhar.</li>
+          </ul>
+        </li>
+        <li>Se o alvo sobreviver ao minuto: retornam ao plano original. O alvo recupera os atributos perdidos temporariamente, mas <em>os ganhos permanentes de Mordekaiser ficam</em> — os bônus de servos mortos na Realm são acumulados ao longo de uma campanha.</li>
+        <li>Após matar o primeiro boss na Realm: Mordekaiser é FOR 25, DES 9, CON 21, INT 11, SAB 13, CAR 21 — e tem um servo permanente.</li>
+        <li><em>"Eu não morro. Eu conquisto estados da existência."</em></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="divider">☠ · ⚔ · ☠</div>
+
+<!-- ── FOOTER ──────────────────────────────────────────── -->
 <div class="footer">
-  <p>Mordekaiser · Paladino Juramento dos Conquistadores · Nível 20</p>
-  <p>D&amp;D 5e · League of Legends · Sistema de Fichas RPG</p>
+  <p>Mordekaiser · O Imperador do Além · Paladino Juramento dos Conquistadores · Nível 20</p>
+  <p>D&amp;D 5e · League of Legends · Akasharium — Sistema de Fichas RPG</p>
 </div>
 
 </div><!-- /page -->
 
 <script>
 (function() {
-  const particles = "⚔️🛡️💀".split("");
-  const container = document.getElementById('particleBg');
-  for (let i = 0; i < 20; i++) {
-    const p = document.createElement('span');
-    p.className = 'particle';
-    p.textContent = particles[i % particles.length];
-    p.style.left = (Math.random() * 100) + '%';
-    p.style.animationDuration = (12 + Math.random() * 18) + 's';
-    p.style.animationDelay = (Math.random() * 20) + 's';
-    p.style.fontSize = (9 + Math.random() * 6) + 'px';
-    container.appendChild(p);
+  const container = document.getElementById('atmoBg');
+  if (!container) return;
+
+  // Floating souls
+  for (let i = 0; i < 22; i++) {
+    const s = document.createElement('div');
+    s.className = 'soul';
+    const w = 18 + Math.random() * 28;
+    const h = w * (0.9 + Math.random() * 0.5);
+    const dx = (Math.random() - 0.5) * 100;
+    s.style.cssText = `
+      left:${Math.random()*100}%;
+      width:${w}px;height:${h}px;
+      animation-duration:${16+Math.random()*24}s;
+      animation-delay:${Math.random()*25}s;
+      --sdx:${dx}px;
+      opacity:0;
+    `;
+    container.appendChild(s);
+  }
+
+  // Vortex rings
+  const sizes = [200, 350, 500, 700, 900];
+  sizes.forEach((sz, i) => {
+    const ring = document.createElement('div');
+    ring.className = 'vortex-ring';
+    ring.style.cssText = `
+      width:${sz}px;height:${sz}px;
+      animation-duration:${8+i*3}s;
+      animation-delay:${i*2.5}s;
+    `;
+    container.appendChild(ring);
+  });
+
+  // Iron spikes at bottom
+  const spikeData = [
+    [5,  30, 180], [12, 50, 220], [22, 25, 160],
+    [32, 60, 280], [44, 35, 190], [55, 70, 310],
+    [66, 28, 155], [76, 55, 250], [86, 40, 200], [95, 20, 140],
+  ];
+  spikeData.forEach(([lp, w, h]) => {
+    const sp = document.createElement('div');
+    sp.className = 'spike';
+    sp.style.cssText = `
+      left:${lp}%;
+      border-left-width:${w/2}px;border-right-width:${w/2}px;
+      border-bottom-width:${h}px;
+      animation-duration:${3+Math.random()*5}s;
+      animation-delay:${Math.random()*4}s;
+    `;
+    container.appendChild(sp);
+  });
+
+  // Spectral wisps (small embers)
+  for (let i = 0; i < 30; i++) {
+    const w = document.createElement('div');
+    w.className = 'wisp';
+    const dx = (Math.random()-0.5)*60;
+    w.style.cssText = `
+      left:${Math.random()*100}%;
+      bottom:${Math.random()*50}%;
+      animation-duration:${2+Math.random()*4}s;
+      animation-delay:${Math.random()*8}s;
+      --wdx:${dx}px;
+      width:${1+Math.random()*3}px;height:${1+Math.random()*3}px;
+      background:rgba(0,230,118,${0.3+Math.random()*0.4});
+    `;
+    container.appendChild(w);
   }
 })();
+
+function toggleLevel(header) {
+  const body = header.nextElementSibling;
+  if (!body) return;
+  body.classList.toggle('open');
+}
 </script>
 
 </body>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeaderMobile from "@/components/layout/HeaderMobile";
 
 export default function Header() {
   return (
@@ -17,7 +18,9 @@ export default function Header() {
         >
           AKASHARIUM
         </Link>
-        <nav className="flex gap-6 font-mono text-[10px] tracking-widest uppercase">
+
+        {/* Desktop nav — hidden below md */}
+        <nav className="hidden md:flex gap-6 font-mono text-[10px] tracking-widest uppercase">
           <Link
             href="/"
             className="transition-colors hover:text-[var(--color-rpg-gold-light)]"
@@ -26,20 +29,23 @@ export default function Header() {
             Home
           </Link>
           <Link
-            href="/sistemas-de-rpg"
-            className="transition-colors hover:text-[var(--color-rpg-gold-light)]"
-            style={{ color: "var(--color-rpg-text-muted)" }}
-          >
-            Sistemas
-          </Link>
-          <Link
             href="/jogadores"
             className="transition-colors hover:text-[var(--color-rpg-gold-light)]"
             style={{ color: "var(--color-rpg-text-muted)" }}
           >
             Jogadores
           </Link>
+          <Link
+            href="/sistemas-de-rpg"
+            className="transition-colors hover:text-[var(--color-rpg-gold-light)]"
+            style={{ color: "var(--color-rpg-text-muted)" }}
+          >
+            Sistemas
+          </Link>
         </nav>
+
+        {/* Mobile hamburger — hidden at md+ */}
+        <HeaderMobile />
       </div>
     </header>
   );

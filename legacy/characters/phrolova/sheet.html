@@ -3,13 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phrolova — A Guardiã do Crepúsculo · Ficha D&amp;D 5e</title>
+<title>Phrolova — A Guardiã do Crepúsculo · Ficha D&D 5e</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root{
   --primary:    #6a1b9a;
   --mid:        #9c27b0;
   --bright:     #ce93d8;
+  --amber:      #ff8f00;
+  --amber-bright:#ffc107;
   --pale:       #f8f0ff;
   --dark:       #060108;
   --darker:     #040106;
@@ -25,40 +27,55 @@
   --glow:       rgba(106,27,154,0.15);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15%,rgba(106,27,154,0.12) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(255,143,0,0.06) 0%,transparent 45%);font-family:'EB Garamond',Georgia,serif;color:var(--text);line-height:1.75;}
-.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
+body{background:var(--darker);background-image:radial-gradient(ellipse at 20% 15%,rgba(106,27,154,0.14) 0%,transparent 50%),radial-gradient(ellipse at 75% 85%,rgba(255,143,0,0.08) 0%,transparent 45%),radial-gradient(ellipse at 50% 50%,rgba(42,16,80,0.2) 0%,transparent 70%);font-family:'EB Garamond',Georgia,serif;color:var(--text);line-height:1.75;}
+.page{max-width:min(960px,100vw - 1rem);margin:0 auto;padding:0 0 80px;}
 
-/* FLOATING PARTICLES */
-.particle-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
-.particle{position:absolute;font-size:11px;opacity:0;animation:floatP ease-in-out infinite;filter:blur(0.4px);color:var(--bright);}
-@keyframes floatP{0%{transform:translateY(108vh) translateX(0) rotate(0deg) scale(0.5);opacity:0;}8%{opacity:0.25;}50%{transform:translateY(50vh) translateX(35px) rotate(180deg) scale(0.75);opacity:0.15;}92%{opacity:0.06;}100%{transform:translateY(-8vh) translateX(-20px) rotate(340deg) scale(0.4);opacity:0;}}
+/* ATMOSPHERIC */
+#atmoBg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.watermark{position:fixed;bottom:6%;right:6%;font-size:180px;opacity:0.025;pointer-events:none;z-index:0;filter:blur(1px);user-select:none;}
+.horizon-glow{position:fixed;bottom:0;left:0;right:0;height:140px;background:linear-gradient(0deg,rgba(255,143,0,0.07) 0%,rgba(106,27,154,0.04) 60%,transparent 100%);pointer-events:none;z-index:0;}
+
+/* TWILIGHT STARS */
+.twi-star{position:absolute;border-radius:50%;animation:starFade ease-in-out infinite alternate;}
+@keyframes starFade{0%{opacity:0.04;}100%{opacity:var(--so,0.35);}}
+
+/* FEATHERS */
+.feather{position:absolute;width:3px;background:linear-gradient(180deg,rgba(206,147,216,0.55),rgba(106,27,154,0.08));border-radius:50% 50% 50% 50%/10% 10% 90% 90%;animation:featherFall ease-in-out infinite;}
+@keyframes featherFall{0%{transform:translateY(-5vh) translateX(0) rotate(var(--fr,15deg));opacity:0;}8%{opacity:0.4;}80%{opacity:0.14;}100%{transform:translateY(108vh) translateX(var(--fdx,30px)) rotate(var(--fr2,110deg));opacity:0;}}
+
+/* MIST */
+.mist-orb{position:absolute;border-radius:50%;background:radial-gradient(ellipse,rgba(106,27,154,0.12),transparent);animation:mistDrift ease-in-out infinite alternate;}
+@keyframes mistDrift{0%{transform:translateX(-8%) translateY(0);opacity:0.2;}100%{transform:translateX(8%) translateY(-3%);opacity:0.05;}}
+
+/* TWILIGHT RIPPLE */
+.twi-ripple{position:fixed;border:1px solid rgba(255,143,0,0.15);border-radius:50%;animation:rippleExpand ease-out infinite;}
+@keyframes rippleExpand{0%{transform:scale(0.05);opacity:0.4;}100%{transform:scale(10);opacity:0;}}
 
 /* HEADER */
-.header{background:linear-gradient(165deg,#060108 0%,#120420 50%,#060108 100%);border-bottom:2px solid var(--primary);position:relative;overflow:hidden;z-index:1;}
-.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 64px,rgba(106,27,154,0.12) 64px,rgba(106,27,154,0.12) 65px);}
-.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--mid),var(--bright),var(--mid),transparent);opacity:0.55;}
+.header{background:linear-gradient(165deg,#060108 0%,#120420 45%,#060108 100%);border-bottom:2px solid var(--primary);position:relative;overflow:hidden;z-index:1;}
+.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 64px,rgba(106,27,154,0.09) 64px,rgba(106,27,154,0.09) 65px);}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--primary),var(--amber),var(--primary),transparent);opacity:0.6;}
 .header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
-
-/* PORTRAIT */
 .header-portrait{width:220px;flex-shrink:0;background:#060108;border-right:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
 .portrait-inner{width:100%;height:290px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.portrait-photo{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 0.4s ease;}
+.portrait-photo{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 0.4s ease;animation:portraitGlowP 4s ease-in-out infinite alternate;}
+@keyframes portraitGlowP{0%{filter:drop-shadow(0 0 8px rgba(106,27,154,0.4)) brightness(1);}100%{filter:drop-shadow(0 0 22px rgba(255,143,0,0.4)) brightness(1.05);}}
 .portrait-photo:hover{transform:scale(1.04);}
-.portrait-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,#040106aa 100%);pointer-events:none;}
-.portrait-label{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--bright);opacity:0.6;text-transform:uppercase;text-shadow:0 0 8px var(--primary);}
-
-/* HEADER TEXT */
+.portrait-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,#040106cc 100%);pointer-events:none;}
+.portrait-label{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--bright);opacity:0.6;text-transform:uppercase;}
 .header-text{flex:1;padding:34px 44px;}
-.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--mid);opacity:0.85;text-transform:uppercase;margin-bottom:10px;}
-.header-name{font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(106,27,154,0.5),0 0 15px rgba(106,27,154,0.3);letter-spacing:2px;line-height:1;margin-bottom:4px;}
+.header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--amber);opacity:0.8;text-transform:uppercase;margin-bottom:10px;}
+.header-name{font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:var(--pale);letter-spacing:2px;line-height:1;margin-bottom:4px;animation:nameGlowP 5s ease-in-out infinite alternate;}
+@keyframes nameGlowP{0%{text-shadow:0 0 30px rgba(106,27,154,0.4),0 0 8px rgba(255,143,0,0.1);}100%{text-shadow:0 0 60px rgba(106,27,154,0.65),0 0 20px rgba(255,143,0,0.3),0 0 4px rgba(206,147,216,0.25);}}
 .header-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);margin-bottom:20px;letter-spacing:1.5px;opacity:0.95;}
 .header-tags{display:flex;gap:7px;flex-wrap:wrap;}
-.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(106,27,154,0.12);}
-.tag.hi{background:rgba(106,27,154,0.15);border-color:var(--mid);color:var(--bright);}
-.tag.gold{background:rgba(201,162,39,0.10);border-color:rgba(201,162,39,0.4);color:var(--gold-light);}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(106,27,154,0.1);}
+.tag.hi{background:rgba(106,27,154,0.18);border-color:var(--mid);color:var(--bright);}
+.tag.amber{background:rgba(255,143,0,0.1);border-color:rgba(255,143,0,0.4);color:var(--amber-bright);}
+.tag.gold{background:rgba(255,143,0,0.1);border-color:rgba(255,193,7,0.4);color:var(--gold-light);}
 
 /* STATS BAR */
-.stats-bar{background:var(--card);border-bottom:1px solid var(--border);padding:13px 40px;display:flex;flex-wrap:wrap;position:relative;z-index:1;gap:0;}
+.stats-bar{background:var(--card);border-bottom:1px solid var(--border);padding:13px 40px;display:flex;flex-wrap:wrap;position:relative;z-index:1;}
 .stat-item{flex:1;border-right:1px solid var(--border);padding:0 18px;text-align:center;min-width:90px;}
 .stat-item:first-child{padding-left:0;}.stat-item:last-child{border-right:none;padding-right:0;}
 .stat-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
@@ -67,19 +84,17 @@ body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15
 /* SECTION */
 .sec{padding:0 40px;margin-top:32px;position:relative;z-index:1;}
 .sec-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
-.sec-title::before{content:'✦';font-size:11px;color:var(--gold);}
+.sec-title::before{content:'🦅';font-size:13px;}
 
 /* ATTRIBUTES */
-.attr-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px;}
+.attr-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:14px;}
 .attr-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:12px 4px 10px;position:relative;}
-.attr-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--primary);opacity:0.45;}
+.attr-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--primary);opacity:0.4;}
 .attr-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
 .attr-value{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:var(--text);display:block;line-height:1;}
-.attr-value.peak{color:var(--bright);text-shadow:0 0 14px rgba(106,27,154,0.45);}
+.attr-value.peak{color:var(--bright);text-shadow:0 0 14px rgba(106,27,154,0.5);}
+.attr-value.amber-peak{color:var(--amber-bright);text-shadow:0 0 14px rgba(255,143,0,0.4);}
 .attr-mod{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--mid);display:block;margin-top:3px;}
-
-/* COMBAT NOTES */
-.special-notes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
 
 /* SAVES & SKILLS */
 .two-col{display:grid;grid-template-columns:230px 1fr;gap:16px;}
@@ -88,21 +103,34 @@ body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15
 .save-item:last-child,.skill-item:last-child{border-bottom:none;}
 .prof-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--text-dim);flex-shrink:0;}
 .prof-dot.filled{background:var(--mid);border-color:var(--bright);box-shadow:0 0 6px rgba(106,27,154,0.5);}
-.prof-dot.expertise{background:var(--gold);border-color:var(--gold-light);}
+.prof-dot.amber{background:var(--amber);border-color:var(--amber-bright);}
 .save-name,.skill-name{flex:1;color:var(--text);}
 .skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text-dim);width:28px;}
 .save-score,.skill-score{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text-dim);width:28px;text-align:right;}
-.save-score.filled,.skill-score.filled,.skill-score.peak{color:var(--bright);}
+.save-score.filled,.skill-score.filled{color:var(--bright);}
+.skill-score.amber{color:var(--amber-bright);}
 
 /* ATTACKS */
 .attack-table{width:100%;border-collapse:collapse;font-size:13px;}
 .attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(106,27,154,0.12);}
-.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(106,27,154,0.40);color:var(--text);vertical-align:top;}
-.attack-table tr:hover td{background:rgba(106,27,154,0.15);}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(106,27,154,0.32);color:var(--text);vertical-align:top;}
+.attack-table tr:hover td{background:rgba(106,27,154,0.1);}
 .attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
 .attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--bright);font-weight:700;}
 .attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--gold-light);}
 .attack-notes{font-size:12px;color:var(--text-dim);font-style:italic;}
+
+/* MECHANIC BOX */
+.mech-box{background:linear-gradient(135deg,rgba(42,16,80,0.6),rgba(4,1,6,0.9));border:1px solid var(--border-bright);border-left:4px solid var(--amber);padding:18px 20px;margin-bottom:14px;}
+.mech-title{font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:var(--amber-bright);letter-spacing:1px;margin-bottom:4px;}
+.mech-subtitle{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:10px;}
+.mech-body{font-size:13.5px;color:var(--text-dim);line-height:1.65;}
+.mech-body em{color:var(--bright);font-style:italic;}
+.mech-body strong{color:var(--text);}
+.mech-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px;}
+.mech-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--amber);padding:5px 8px;border-bottom:1px solid rgba(255,143,0,0.3);text-align:left;}
+.mech-table td{padding:5px 8px;border-bottom:1px solid rgba(106,27,154,0.2);color:var(--text-dim);}
+.mech-table tr:last-child td{border-bottom:none;}
 
 /* FEATURES */
 .feat-section{margin-bottom:10px;}
@@ -110,9 +138,11 @@ body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15
 .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .trait-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);padding:12px 14px;}
 .trait-block.gold-accent{border-left-color:var(--gold);}
+.trait-block.amber-accent{border-left-color:var(--amber);}
 .trait-block.dim-accent{border-left-color:var(--mist);}
 .trait-name{font-family:'Cinzel',serif;font-size:11px;color:var(--bright);letter-spacing:0.5px;margin-bottom:5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
 .trait-block.gold-accent .trait-name{color:var(--gold-light);}
+.trait-block.amber-accent .trait-name{color:var(--amber-bright);}
 .trait-block.dim-accent .trait-name{color:var(--text-dim);}
 .trait-desc{font-size:13.5px;color:var(--text-dim);line-height:1.6;}
 .trait-desc em{font-style:italic;color:var(--bright);}
@@ -121,31 +151,49 @@ body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15
 
 /* SPELLS */
 .spell-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
-.spell-tag{background:var(--card-light);color:var(--bright);font-family:'Cinzel',serif;font-size:10px;padding:3px 9px;letter-spacing:1px;border:1px solid var(--border);display:inline-block;}
-.spell-tag.gold{background:rgba(201,162,39,0.08);color:var(--gold-light);border-color:rgba(201,162,39,0.28);}
+.spell-tag{background:var(--card-light);color:var(--bright);font-family:'Cinzel',serif;font-size:10px;padding:3px 9px;letter-spacing:1px;border:1px solid var(--border);}
+.spell-tag.gold{background:rgba(255,143,0,0.08);color:var(--gold-light);border-color:rgba(255,193,7,0.28);}
+.spell-tag.amber{background:rgba(255,143,0,0.08);color:var(--amber-bright);border-color:rgba(255,143,0,0.28);}
 .spell-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:13px 0 8px;}
 .spell-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:7px;}
 .sc{background:var(--card-light);border:1px solid var(--border);border-top:2px solid var(--mist);padding:9px 12px 10px;display:flex;flex-direction:column;gap:3px;}
-.sc.cantrip{border-top-color:rgba(106,27,154,0.40);}
-.sc.expanded{border-top-color:var(--gold);}
+.sc.cantrip{border-top-color:rgba(106,27,154,0.4);}
+.sc.expanded{border-top-color:var(--amber);}
 .sc-type{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);opacity:0.65;}
-.sc-name{font-family:'Cinzel',serif;font-size:11.5px;font-weight:600;color:var(--bright);letter-spacing:0.4px;}
+.sc-name{font-family:'Cinzel',serif;font-size:11.5px;font-weight:600;color:var(--bright);}
 .sc.cantrip .sc-name{color:var(--text-dim);}
-.sc.expanded .sc-name{color:var(--gold-light);}
+.sc.expanded .sc-name{color:var(--amber-bright);}
 .sc-desc{font-size:12px;color:var(--text-dim);line-height:1.5;margin-top:1px;}
 
-/* TRAIT LIST (equipment) */
+/* LISTS */
 ul.trait-list{list-style:none;padding:0;}
 ul.trait-list li{padding:3px 0 3px 18px;position:relative;font-size:14px;line-height:1.65;color:var(--text-dim);}
 ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold);font-size:7px;top:7px;}
-
-/* DIVIDER */
-.divider{text-align:center;margin:24px 0;color:var(--mist);font-size:14px;letter-spacing:14px;opacity:0.5;}
-
-/* INFO PILLS */
 .info-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
 .info-pill{background:var(--card);border:1px solid var(--border);padding:8px 14px;font-size:13px;color:var(--text-dim);}
 .info-pill strong{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--mid);text-transform:uppercase;display:block;margin-bottom:3px;}
+.divider{text-align:center;margin:24px 0;color:var(--mist);font-size:14px;letter-spacing:14px;opacity:0.5;}
+
+/* LORE */
+.lore-block{background:linear-gradient(135deg,rgba(12,4,20,0.9),rgba(28,8,48,0.7));border:1px solid var(--border);border-left:3px solid var(--amber);padding:16px 20px;margin-bottom:14px;font-size:14px;color:var(--text-dim);line-height:1.75;}
+.lore-block em{color:var(--bright);font-style:italic;}
+.lore-block strong{color:var(--text);}
+
+/* PROGRESSION */
+.prog-guide{margin-top:10px;}
+.level-block{border:1px solid var(--border);margin-bottom:6px;overflow:hidden;}
+.level-header{background:var(--card);padding:10px 18px;cursor:pointer;display:flex;align-items:center;gap:12px;user-select:none;transition:background 0.2s;}
+.level-header:hover{background:var(--card-light);}
+.level-badge{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;background:rgba(106,27,154,0.2);color:var(--mid);padding:2px 8px;border:1px solid var(--border);flex-shrink:0;}
+.level-title{font-family:'Cinzel',serif;font-size:11.5px;color:var(--bright);flex:1;}
+.level-arrow{font-size:10px;color:var(--text-dim);transition:transform 0.2s;}
+.level-body{display:none;padding:14px 20px;background:rgba(12,4,20,0.7);border-top:1px solid var(--border);font-size:13.5px;color:var(--text-dim);line-height:1.7;}
+.level-body.open{display:block;}
+.level-body ul{list-style:none;padding:0;}
+.level-body li{padding:2px 0 2px 16px;position:relative;}
+.level-body li::before{content:'◆';position:absolute;left:0;color:var(--gold);font-size:7px;top:6px;}
+.level-body em{color:var(--bright);font-style:italic;}
+.level-body strong{color:var(--text);}
 
 /* FOOTER */
 .footer{margin-top:50px;padding:22px 40px;text-align:center;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent 0%,#04010699 100%);position:relative;z-index:1;}
@@ -170,12 +218,13 @@ ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold
 </head>
 <body>
 
-<!-- Floating Particles -->
-<div class="particle-bg" id="particleBg"></div>
+<div id="atmoBg"></div>
+<div class="watermark">🦅</div>
+<div class="horizon-glow"></div>
 
 <div class="page">
 
-<!-- ── HEADER ─────────────────────────────────── -->
+<!-- HEADER -->
 <div class="header">
   <div class="header-inner">
     <div class="header-portrait">
@@ -184,187 +233,725 @@ ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold
         <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;font-size:64px;opacity:0.15;filter:drop-shadow(0 0 20px var(--bright));">🦅</div>
         <div class="portrait-overlay"></div>
       </div>
-      <div class="portrait-label">Phrolova</div>
+      <div class="portrait-label">Phrolova — Guardiã do Crepúsculo</div>
     </div>
     <div class="header-text">
       <div class="header-eyebrow">Ficha · D&amp;D 5e · Wuthering Waves</div>
       <div class="header-name">Phrolova</div>
-      <div class="header-sub">A Guardiã do Crepúsculo</div>
+      <div class="header-sub">A Guardiã do Crepúsculo — Sentinela da Liminalidade</div>
       <div class="header-tags">
-        <span class="tag hi">Aasimar (Vingador)</span><span class="tag hi">Clérigo</span><span class="tag hi">Domínio do Crepúsculo</span><span class="tag hi">Wuthering Waves</span><span class="tag">Antecedente: Eremita</span><span class="tag">Nív. 20</span>
+        <span class="tag hi">Aasimar (Vingador)</span>
+        <span class="tag hi">Clérigo</span>
+        <span class="tag hi">Domínio do Crepúsculo</span>
+        <span class="tag amber">Wuthering Waves</span>
+        <span class="tag">Antecedente: Eremita</span>
+        <span class="tag">Nív. 20</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── STATS BAR ──────────────────────────────── -->
+<!-- STATS BAR -->
 <div class="stats-bar">
-<div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">21</span></div><div class="stat-item"><span class="stat-label">PV</span><span class="stat-value">184</span></div><div class="stat-item"><span class="stat-label">Deslocamento</span><span class="stat-value">9m</span></div><div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value">+0</span></div><div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div><div class="stat-item"><span class="stat-label">CD de Magia</span><span class="stat-value">19</span></div><div class="stat-item"><span class="stat-label">Atq. Mágico</span><span class="stat-value">+11</span></div>
+  <div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">21</span></div>
+  <div class="stat-item"><span class="stat-label">PV</span><span class="stat-value">184</span></div>
+  <div class="stat-item"><span class="stat-label">Deslocamento</span><span class="stat-value">9m</span></div>
+  <div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value">+0</span></div>
+  <div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div>
+  <div class="stat-item"><span class="stat-label">CD de Magia</span><span class="stat-value">19</span></div>
+  <div class="stat-item"><span class="stat-label">Atq. Mágico</span><span class="stat-value">+11</span></div>
+  <div class="stat-item"><span class="stat-label">Canal Divino</span><span class="stat-value">3×/curto</span></div>
 </div>
 
-<!-- ── IDENTIDADE ────────────────────────────── -->
+<!-- IDENTIDADE -->
 <div class="sec">
   <div class="sec-title">Identidade</div>
   <div class="info-pills">
     <div class="info-pill"><strong>Raça</strong>Aasimar (Vingador)</div>
-    <div class="info-pill"><strong>Classe</strong>Clérigo</div>
+    <div class="info-pill"><strong>Classe</strong>Clérigo — Nív. 20</div>
     <div class="info-pill"><strong>Subclasse</strong>Domínio do Crepúsculo</div>
     <div class="info-pill"><strong>Antecedente</strong>Eremita</div>
     <div class="info-pill"><strong>Tendência</strong>Leal Bom</div>
     <div class="info-pill"><strong>Idiomas</strong>Comum, Celestial, Pássaro</div>
-    <div class="info-pill"><strong>Dado de Vida</strong>20d8</div>
-    <div class="info-pill"><strong>Magia</strong>Sabedoria</div>
+    <div class="info-pill"><strong>Dado de Vida</strong>20d8 + 80</div>
+    <div class="info-pill"><strong>Magia</strong>Sabedoria (mod +5)</div>
   </div>
-  <div class="info-pills"><span class='tag hi'>channelDivinity: 3×/descanso curto</span></div>
 </div>
 
-<!-- ── ATRIBUTOS ──────────────────────────────── -->
+<!-- ATRIBUTOS -->
 <div class="sec">
   <div class="sec-title">Atributos</div>
   <div class="attr-grid">
-        <div class="attr-box">
-          <span class="attr-label">FOR</span>
-          <span class="attr-value ">16</span>
-          <span class="attr-mod">+3</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">DES</span>
-          <span class="attr-value ">10</span>
-          <span class="attr-mod">+0</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">CON</span>
-          <span class="attr-value peak">18</span>
-          <span class="attr-mod">+4</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">INT</span>
-          <span class="attr-value ">10</span>
-          <span class="attr-mod">+0</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">SAB</span>
-          <span class="attr-value peak">20</span>
-          <span class="attr-mod">+5</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">CAR</span>
-          <span class="attr-value ">14</span>
-          <span class="attr-mod">+2</span>
-        </div></div>
-  <p style="font-size:12px;color:var(--text-dim);font-style:italic;">Plate (18) + Escudo +1 (+3) = CA 21</p>
+    <div class="attr-box"><span class="attr-label">FOR</span><span class="attr-value">16</span><span class="attr-mod">+3</span></div>
+    <div class="attr-box"><span class="attr-label">DES</span><span class="attr-value">10</span><span class="attr-mod">+0</span></div>
+    <div class="attr-box"><span class="attr-label">CON</span><span class="attr-value amber-peak">18</span><span class="attr-mod">+4</span></div>
+    <div class="attr-box"><span class="attr-label">INT</span><span class="attr-value">10</span><span class="attr-mod">+0</span></div>
+    <div class="attr-box"><span class="attr-label">SAB</span><span class="attr-value peak">20</span><span class="attr-mod">+5</span></div>
+    <div class="attr-box"><span class="attr-label">CAR</span><span class="attr-value">14</span><span class="attr-mod">+2</span></div>
+  </div>
+  <p style="font-size:12px;color:var(--text-dim);font-style:italic;">Armadura de Placas (18) + Escudo +1 (+3) = CA 21 · 20d8 + 80 = PV 184</p>
 </div>
 
-<!-- ── SALVAGUARDAS & PERÍCIAS ─────────────── -->
+<!-- SALVAGUARDAS & PERÍCIAS -->
 <div class="sec">
   <div class="sec-title">Salvaguardas &amp; Perícias</div>
   <div class="two-col">
     <div>
       <div class="feat-section-label">Salvaguardas</div>
-      <ul class="save-list"><li class="save-item"><span class="prof-dot "></span><span class="save-name">Força</span><span class="save-score ">+3</span></li><li class="save-item"><span class="prof-dot "></span><span class="save-name">Destreza</span><span class="save-score ">+0</span></li><li class="save-item"><span class="prof-dot "></span><span class="save-name">Constituição</span><span class="save-score ">+4</span></li><li class="save-item"><span class="prof-dot "></span><span class="save-name">Inteligência</span><span class="save-score ">+0</span></li><li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Sabedoria</span><span class="save-score filled">+11</span></li><li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Carisma</span><span class="save-score filled">+8</span></li></ul>
+      <ul class="save-list">
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Força</span><span class="save-score">+3</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Destreza</span><span class="save-score">+0</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Constituição</span><span class="save-score">+4</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Inteligência</span><span class="save-score">+0</span></li>
+        <li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Sabedoria</span><span class="save-score filled">+11</span></li>
+        <li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Carisma</span><span class="save-score filled">+8</span></li>
+      </ul>
     </div>
     <div>
       <div class="feat-section-label">Perícias</div>
-      
+      <ul class="skill-list">
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Medicina</span><span class="skill-attr">Sab</span><span class="skill-score filled">+11</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Religião</span><span class="skill-attr">Int</span><span class="skill-score filled">+6</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Percepção</span><span class="skill-attr">Sab</span><span class="skill-score amber">+11</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Intuição</span><span class="skill-attr">Sab</span><span class="skill-score filled">+11</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">História</span><span class="skill-attr">Int</span><span class="skill-score filled">+6</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-name">Natureza</span><span class="skill-attr">Int</span><span class="skill-score filled">+6</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-name">Atletismo</span><span class="skill-attr">For</span><span class="skill-score">+3</span></li>
+        <li class="skill-item"><span class="prof-dot"></span><span class="skill-name">Intimidação</span><span class="skill-attr">Car</span><span class="skill-score">+2</span></li>
+      </ul>
+      <p style="font-size:11px;color:var(--text-dim);margin-top:6px;font-style:italic;">Vigilância no Crepúsculo: vantagem em Percepção · Não pode ser surpreendida</p>
     </div>
   </div>
 </div>
 
-
-
-
-<!-- ── HABILIDADES ───────────────────────────── -->
+<!-- ATAQUES -->
 <div class="sec">
-  <div class="sec-title">Habilidades</div>
-  <div class="feat-section"><div class="feat-section-label">Habilidades de Subclasse</div><div class="feature-grid"><div class="trait-block ">
-              <div class="trait-name">Eyes of Night <span class="feat-level">Nív.1</span></div>
-              <div class="trait-desc">Visão escuro 36m. Compartilha com até 10 aliados por 1h. 1×/descanso longo.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Vigilância no Crepúsculo <span class="feat-level">Nív.1</span></div>
-              <div class="trait-desc">Vantagem em Percepção. Não pode ser surpreendida.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Canal Divino: Twilight Sanctuary <span class="feat-level">Nív.2</span></div>
-              <div class="trait-desc">Aura 9m · Aliados curam 1d6+5 PV OU encerram encantamento/medo por turno · 1 min</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Steps of Night <span class="feat-level">Nív.6</span></div>
-              <div class="trait-desc">Ação bônus em obscuridade: voo 9m por 1 turno. 1×/turno.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Divine Strike (Frio) <span class="feat-level">Nív.8</span></div>
-              <div class="trait-desc">+2d8 frio em cada ataque com arma, 1×/turno.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Twilight Shroud <span class="feat-level">Nív.17</span></div>
-              <div class="trait-desc">Aliados em Twilight Sanctuary têm cobertura parcial (+2 CA e TRs Des).</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Habilidades de Classe</div><div class="feature-grid"><div class="trait-block ">
-              <div class="trait-name">Channel Divinity <span class="feat-level">Nív.2</span></div>
-              <div class="trait-desc">3×/descanso curto. Twilight Sanctuary + Turn Undead.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Destroy Undead <span class="feat-level">Nív.5</span></div>
-              <div class="trait-desc">Turn Undead destrói mortos-vivos MV ≤ 30.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Intervenção Divina Aprimorada <span class="feat-level">Nív.20</span></div>
-              <div class="trait-desc">Intervenção Divina sempre funciona automaticamente.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Habilidades Raciais</div><div class="feature-grid"><div class="trait-block dim-accent">
-              <div class="trait-name">Destructive Wrath </div>
-              <div class="trait-desc">1×/descanso longo: asas das trevas 1 min · Voo 9m · Aliados em 3m com vantagem em ataques</div>
-            </div><div class="trait-block dim-accent">
-              <div class="trait-name">Resistência </div>
-              <div class="trait-desc">Resistência a necrótico e radiante. Mãos Curadoras 20 PV 1×/descanso longo.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Talentos (Feats)</div><div class="feature-grid"><div class="trait-block gold-accent">
-              <div class="trait-name">War Caster <span class="feat-level">Nív.8</span></div>
-              <div class="trait-desc">Vantagem em Con para concentração. Magia como AO.</div>
-            </div><div class="trait-block gold-accent">
-              <div class="trait-name">Sentinel <span class="feat-level">Nív.12</span></div>
-              <div class="trait-desc">AO reduz velocidade a 0. Protege aliados próximos.</div>
-            </div></div></div>
+  <div class="sec-title">Ataques</div>
+  <table class="attack-table">
+    <thead><tr><th>Ataque</th><th>Bônus</th><th>Dano</th><th>Notas</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="attack-name">Maça Sagrada +2</td>
+        <td class="attack-bonus">+11</td>
+        <td class="attack-damage">1d6+5 + 2d8 Frio</td>
+        <td class="attack-notes">For+3 + Prof+6 + Ench+2 · Golpe Divino (2d8 Frio) 1×/turno</td>
+      </tr>
+      <tr>
+        <td class="attack-name">Chama Sagrada</td>
+        <td class="attack-bonus">+11</td>
+        <td class="attack-damage">4d8 Radiante</td>
+        <td class="attack-notes">TR Des CD 19 (sem cobertura) · Alcance 18m · Truque</td>
+      </tr>
+      <tr>
+        <td class="attack-name">Dobre dos Mortos</td>
+        <td class="attack-bonus">+11</td>
+        <td class="attack-damage">4d12 Necrótico</td>
+        <td class="attack-notes">TR Sab CD 19 · Alvo ferido = d12 · Alcance 18m · Truque</td>
+      </tr>
+      <tr>
+        <td class="attack-name">Guardiões do Espírito</td>
+        <td class="attack-bonus">—</td>
+        <td class="attack-damage">5d8 Radiante/Frio</td>
+        <td class="attack-notes">Aura 4,5m · TR Sab CD 19 · Vel. ÷2 · Concentração 1 min</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-<!-- ── MAGIAS ───────────────────────────────── -->
+<!-- MECÂNICAS ESPECIAIS -->
+<div class="sec">
+  <div class="sec-title">Mecânicas Especiais</div>
+
+  <div class="mech-box">
+    <div class="mech-title">🌅 Santuário do Crepúsculo</div>
+    <div class="mech-subtitle">Canal Divino · Ação Bônus · 3× por Descanso Curto</div>
+    <div class="mech-body">
+      Phrolova ergue seu símbolo sagrado e uma <em>aura de 9m de raio</em> de luz crepuscular emana ao seu redor, durando <em>1 minuto</em>.<br><br>
+      No início de cada turno de Phrolova, cada aliado dentro da aura escolhe <em>um</em> dos seguintes efeitos:<br>
+      • <em>Cura ativa:</em> recupera <strong>1d6+5 PV</strong> (Sab mod +5)<br>
+      • <em>Libertação:</em> termina 1 condição de <strong>Encantado</strong> ou <strong>Apavorado</strong><br><br>
+      <strong>Manto do Crepúsculo (Nív.17):</strong> Enquanto o Santuário estiver ativo, aliados na aura também ganham <em>Cobertura Parcial</em>: +2 CA e +2 em TRs de Destreza. Uma fortaleza de luz.
+    </div>
+    <table class="mech-table">
+      <tr><th>Turno</th><th>Cura Máx. (6 aliados)</th><th>Com Manto do Crepúsculo</th></tr>
+      <tr><td>Round 1</td><td>6× (1d6+5) = ~66 PV</td><td>+2 CA e Des TR para todos</td></tr>
+      <tr><td>Round 2</td><td>mais 6× (1d6+5) = ~66 PV</td><td>Proteção contínua</td></tr>
+      <tr><td>Total 10 rounds</td><td>até ~660 PV restaurados</td><td>Fortaleza móvel de crepúsculo</td></tr>
+    </table>
+  </div>
+
+  <div class="mech-box">
+    <div class="mech-title">👁️ Guardiões do Espírito + Sentinela</div>
+    <div class="mech-subtitle">Concentração · Combo de Controle de Campo</div>
+    <div class="mech-body">
+      <strong>Guardiões do Espírito</strong> (3° slot): Phrolova projeta espíritos de luz e frio em uma aura de 4,5m. Criaturas hostis que <em>entram ou começam o turno</em> na aura fazem TR Sab CD 19:<br>
+      • Falha: <em>5d8 Radiante ou Frio</em> + Velocidade ÷2 até início do próximo turno<br>
+      • Sucesso: Velocidade ÷2 (sem dano)<br><br>
+      <strong>Combo com Sentinela (feat):</strong> Inimigo tenta se afastar de Phrolova → AO reduz velocidade a 0 (não pode fugir) → próximo turno, começa dentro dos Guardiões → sofre dano novamente. Loop de contenção perfeito.<br><br>
+      <strong>Combo com Santuário:</strong> Canal Divino ativo + Guardiões = Phrolova no centro, aliados sendo curados, inimigos sofrendo dano ao se aproximar. A fortaleza do Crepúsculo.
+    </div>
+  </div>
+
+  <div class="mech-box" style="border-left-color:var(--bright);">
+    <div class="mech-title" style="color:var(--bright);">✨ Intervenção Divina Aprimorada</div>
+    <div class="mech-subtitle">Habilidade de Nível 20 · 1× por Descanso Longo · Automático</div>
+    <div class="mech-body">
+      A pedido de Phrolova, sua divindade intervém diretamente. No nível 20, a Intervenção Divina <em>sempre funciona</em> — sem rolagem necessária.<br><br>
+      <strong>Efeito:</strong> Phrolova lança qualquer magia de Clérigo que conheça gratuitamente, como se tivesse um slot de 9°. Sem componentes de material custosos necessários.<br><br>
+      <strong>Usos ideais:</strong><br>
+      • <em>Curar</em> (slot 9°): 115 PV instantâneos — ressuscita aliado quase morto em um turno<br>
+      • <em>Aura Sagrada</em>: vantagem para todos os aliados + desvantagem para atacantes por 1 min<br>
+      • <em>Restauração Superior</em>: cura condição permanente (petrificação, maldição) sem componentes<br>
+      • <em>Círculo de Poder</em>: aliados com vantagem em TRs contra magias por 1 min
+    </div>
+  </div>
+</div>
+
+<!-- HABILIDADES -->
+<div class="sec">
+  <div class="sec-title">Habilidades de Classe &amp; Raça</div>
+
+  <div class="feat-section">
+    <div class="feat-section-label">Domínio do Crepúsculo</div>
+    <div class="feature-grid">
+      <div class="trait-block amber-accent">
+        <div class="trait-name">Olhos da Noite <span class="feat-level">Nív.1</span></div>
+        <div class="trait-desc">Visão no escuro 36m. Pode compartilhar com até <em>10 aliados</em> por 1 hora. 1×/descanso longo.</div>
+      </div>
+      <div class="trait-block amber-accent">
+        <div class="trait-name">Vigilância no Crepúsculo <span class="feat-level">Nív.1</span></div>
+        <div class="trait-desc"><em>Vantagem em testes de Percepção.</em> Phrolova não pode ser surpreendida enquanto estiver consciente.</div>
+      </div>
+      <div class="trait-block amber-accent">
+        <div class="trait-name">Canal Divino: Santuário do Crepúsculo <span class="feat-level">Nív.2</span></div>
+        <div class="trait-desc">Aura de 9m · Aliados curam <em>1d6+5 PV</em> OU encerram Encantado/Apavorado por turno · 1 minuto de duração.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Passos da Noite <span class="feat-level">Nív.6</span></div>
+        <div class="trait-desc">Em área de obscuridade leve ou total: <em>voo de 9m</em> como ação bônus por 1 turno. 1×/turno.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Golpe Divino — Frio <span class="feat-level">Nív.8</span></div>
+        <div class="trait-desc"><em>+2d8 dano Frio</em> em cada ataque com arma físico, 1×/turno. Maça Sagrada +2 total: 1d6+5 + 2d8 Frio.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Manto do Crepúsculo <span class="feat-level">Nív.17</span></div>
+        <div class="trait-desc">Aliados no Santuário do Crepúsculo ganham <em>Cobertura Parcial</em>: +2 CA e +2 em TRs de Destreza.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <div class="feat-section-label">Habilidades de Clérigo</div>
+    <div class="feature-grid">
+      <div class="trait-block">
+        <div class="trait-name">Canal Divino <span class="feat-level">Nív.2</span></div>
+        <div class="trait-desc"><em>3 usos por descanso curto.</em> Ações disponíveis: Santuário do Crepúsculo, Expulsar Mortos-Vivos.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Destruir Mortos-Vivos <span class="feat-level">Nív.5</span></div>
+        <div class="trait-desc">Expulsar Mortos-Vivos destrói automaticamente mortos-vivos com <em>MV ≤ 30</em>.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Proficiência com Armadura Pesada</div>
+        <div class="trait-desc">Domínio do Crepúsculo concede proficiência com armaduras marciais e escudos. CA 21 com Placas + Escudo +1.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Intervenção Divina Aprimorada <span class="feat-level">Nív.20</span></div>
+        <div class="trait-desc">Intervenção Divina <em>sempre funciona automaticamente</em>. Lança qualquer magia de Clérigo como slot de 9°. 1×/descanso longo.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <div class="feat-section-label">Habilidades Raciais — Aasimar (Vingador)</div>
+    <div class="feature-grid">
+      <div class="trait-block dim-accent">
+        <div class="trait-name">Visão no Escuro</div>
+        <div class="trait-desc">Enxerga em escuridão como luz fraca até 18m (somada aos 36m dos Olhos da Noite).</div>
+      </div>
+      <div class="trait-block dim-accent">
+        <div class="trait-name">Mãos Curadoras</div>
+        <div class="trait-desc">Toque — restaura <em>20 PV</em>. 1×/descanso longo. Sem slot de magia.</div>
+      </div>
+      <div class="trait-block amber-accent">
+        <div class="trait-name">Ira Destrutiva</div>
+        <div class="trait-desc">Ação bônus — <em>asas das trevas</em> por 1 min, voo 9m. Aliados em 3m ganham <em>vantagem em ataques</em>. 1×/descanso longo.</div>
+      </div>
+      <div class="trait-block dim-accent">
+        <div class="trait-name">Resistência Celestial</div>
+        <div class="trait-desc">Resistência a dano Necrótico e Radiante. Aasimar de crepúsculo — equilíbrio entre luz e sombra.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <div class="feat-section-label">Talentos (Feats)</div>
+    <div class="feature-grid">
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Conjurador de Guerra <span class="feat-level">Nív.8</span></div>
+        <div class="trait-desc">Vantagem em TRs de Con para concentração (CON +4 = base sólida). Magia como Ataque de Oportunidade — Guardiões via AO.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Sentinela <span class="feat-level">Nív.12</span></div>
+        <div class="trait-desc">AO reduz velocidade do alvo a 0. Criaturas que tentam atacar aliados em 1,5m provocam AO. Phrolova protege o grupo fisicamente.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAGIA -->
 <div class="sec">
   <div class="sec-title">Magia</div>
   <div class="spell-meta">
-      <span class="spell-tag">CD 19</span>
-      <span class="spell-tag">Ataque +11</span>
-      <span class="spell-tag">Sabedoria</span>
-      
-    </div><div class="spell-section-label">Truques (Cantrips)</div><div class="spell-grid"><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Sacred Flame</span><span class="sc-desc">4d8 radiante · TR Des CD 19</span></div><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Guidance</span><span class="sc-desc">+1d4 em teste · Concentração</span></div><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Toll the Dead</span><span class="sc-desc">4d12 necrótico · TR Sab · Alvo ferido</span></div><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Thaumaturgy</span><span class="sc-desc">Efeitos menores · Intimidação com vantagem</span></div></div><div class="spell-section-label">Magias</div><div class="spell-grid"><div class="sc"><span class="sc-type">6° </span><span class="sc-name">Heal</span><span class="sc-desc">70 PV (slot 6°) / 115 PV (slot 9°)</span></div><div class="sc"><span class="sc-type">8° </span><span class="sc-name">Holy Aura</span><span class="sc-desc">Vantagem aliados · Desvantagem atacantes · 1 min</span></div><div class="sc"><span class="sc-type">5° </span><span class="sc-name">Mass Cure Wounds</span><span class="sc-desc">5d8+5 em 6 aliados · Raio 9m</span></div><div class="sc"><span class="sc-type">6° </span><span class="sc-name">Harm</span><span class="sc-desc">TR Con CD 19 · 14d6 necrótico · Reduz PV máx</span></div><div class="sc"><span class="sc-type">3° </span><span class="sc-name">Spirit Guardians</span><span class="sc-desc">Aura 4,5m · 5d8 radiante/frio · Vel. ÷2</span></div><div class="sc"><span class="sc-type">4° </span><span class="sc-name">Banishment</span><span class="sc-desc">TR Car CD 19 · 1 min · Exila para outro plano</span></div></div><div class="spell-section-label">Magias de Domínio</div><div class="spell-grid"><div class="sc expanded"><span class="sc-type">1° Círculo</span><span class="sc-name">Faerie Fire</span></div><div class="sc expanded"><span class="sc-type">1° Círculo</span><span class="sc-name">Sleep</span></div><div class="sc expanded"><span class="sc-type">3° Círculo</span><span class="sc-name">Moonbeam</span></div><div class="sc expanded"><span class="sc-type">3° Círculo</span><span class="sc-name">Aura of Vitality</span></div><div class="sc expanded"><span class="sc-type">5° Círculo</span><span class="sc-name">Aura of Life</span></div><div class="sc expanded"><span class="sc-type">5° Círculo</span><span class="sc-name">Guardian of Faith</span></div><div class="sc expanded"><span class="sc-type">7° Círculo</span><span class="sc-name">Greater Restoration</span></div><div class="sc expanded"><span class="sc-type">7° Círculo</span><span class="sc-name">Circle of Power</span></div><div class="sc expanded"><span class="sc-type">9° Círculo</span><span class="sc-name">Heal</span></div><div class="sc expanded"><span class="sc-type">9° Círculo</span><span class="sc-name">Holy Aura</span></div></div>
+    <span class="spell-tag">CD 19</span>
+    <span class="spell-tag">Ataque +11</span>
+    <span class="spell-tag">Sabedoria</span>
+    <span class="spell-tag gold">Espaços: 4/3/3/3/3/2/2/1/1</span>
+    <span class="spell-tag amber">Canal Divino 3×/curto</span>
+  </div>
+
+  <div class="spell-section-label">Truques</div>
+  <div class="spell-grid">
+    <div class="sc cantrip">
+      <span class="sc-type">Truque · Evocação</span>
+      <span class="sc-name">Chama Sagrada</span>
+      <span class="sc-desc">4d8 dano Radiante · TR Des CD 19 (não se aplica cobertura) · Alcance 18m</span>
+    </div>
+    <div class="sc cantrip">
+      <span class="sc-type">Truque · Adivinhação</span>
+      <span class="sc-name">Orientar</span>
+      <span class="sc-desc">Toque · +1d4 em próximo teste de habilidade · Concentração 1 min</span>
+    </div>
+    <div class="sc cantrip">
+      <span class="sc-type">Truque · Necromancia</span>
+      <span class="sc-name">Dobre dos Mortos</span>
+      <span class="sc-desc">4d12 necrótico · TR Sab CD 19 · Se alvo ferido: d12 automático · Alcance 18m</span>
+    </div>
+    <div class="sc cantrip">
+      <span class="sc-type">Truque · Transmutação</span>
+      <span class="sc-name">Taumaturgia</span>
+      <span class="sc-desc">Efeitos menores à vontade · Vantagem em Intimidação ao usar</span>
+    </div>
+  </div>
+
+  <div class="spell-section-label">Magias Preparadas</div>
+  <div class="spell-grid">
+    <div class="sc">
+      <span class="sc-type">3° · Conjuração</span>
+      <span class="sc-name">Guardiões do Espírito</span>
+      <span class="sc-desc">Aura 4,5m · TR Sab CD 19 · 5d8 Radiante ou Frio · Vel. ÷2 · Concentração 1 min</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">4° · Abjuração</span>
+      <span class="sc-name">Banimento</span>
+      <span class="sc-desc">TR Car CD 19 · Exila para plano nativo por 1 min · Permanente se concentração mantida</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">5° · Evocação</span>
+      <span class="sc-name">Cura em Massa</span>
+      <span class="sc-desc">Raio 9m · Até 6 alvos · 5d8+5 PV restaurados cada · Sem concentração</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">6° · Evocação</span>
+      <span class="sc-name">Curar</span>
+      <span class="sc-desc">70 PV instantâneos (slot 6°) · 115 PV (slot 9°) · Remove condições · Sem concentração</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">6° · Necromancia</span>
+      <span class="sc-name">Dano</span>
+      <span class="sc-desc">TR Con CD 19 · 14d6 necrótico (falha) / 7d6 (sucesso) · Reduz PV máx. pelo dano sofrido</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">8° · Abjuração</span>
+      <span class="sc-name">Aura Sagrada</span>
+      <span class="sc-desc">Vantagem em TRs · Desvantagem em ataques contra aliados · Radiante a atacantes · 1 min</span>
+    </div>
+  </div>
+
+  <div class="spell-section-label">Magias de Domínio — Sempre Preparadas</div>
+  <div class="spell-grid">
+    <div class="sc expanded">
+      <span class="sc-type">1° · Evocação</span>
+      <span class="sc-name">Fogo das Fadas</span>
+      <span class="sc-desc">TR Des CD 19 · Criaturas destacadas = vantagem em ataques · Sem invisibilidade · Concentração 1 min</span>
+    </div>
+    <div class="sc expanded">
+      <span class="sc-type">1° · Encantamento</span>
+      <span class="sc-name">Sono</span>
+      <span class="sc-desc">5d8 PV de criaturas adormecidas (do menor MV) · Sem concentração · 1 min</span>
+    </div>
+    <div class="sc expanded">
+      <span class="sc-type">2° · Evocação</span>
+      <span class="sc-name">Raio de Luar</span>
+      <span class="sc-desc">Cilindro 1,5m · 2d10 Radiante/turno · TR Con CD 19 · Concentração 1 min</span>
+    </div>
+    <div class="sc expanded">
+      <span class="sc-type">3° · Evocação</span>
+      <span class="sc-name">Aura de Vitalidade</span>
+      <span class="sc-desc">Ação bônus · 2d6 PV para 1 aliado por turno · Concentração 1 min · Até 10 usos (média 70 PV)</span>
+    </div>
+    <div class="sc expanded">
+      <span class="sc-type">5° · Abjuração</span>
+      <span class="sc-name">Aura de Vida</span>
+      <span class="sc-desc">Aura 9m · Aliados com 0 PV recuperam 1d4 por turno · Resistência Necrótico · Concentração 1 min</span>
+    </div>
+    <div class="sc expanded">
+      <span class="sc-type">5° · Conjuração</span>
+      <span class="sc-name">Guardião da Fé</span>
+      <span class="sc-desc">Espectro de 10 PV/turno (Radiante ou Cortante) · Sem concentração · 20m de alcance</span>
+    </div>
+    <div class="sc expanded">
+      <span class="sc-type">7° · Abjuração</span>
+      <span class="sc-name">Restauração Superior</span>
+      <span class="sc-desc">Remove encantamento, petrificação, maldição ou reduz exaustão · Sem componentes com Intervenção</span>
+    </div>
+    <div class="sc expanded">
+      <span class="sc-type">7° · Abjuração</span>
+      <span class="sc-name">Círculo de Poder</span>
+      <span class="sc-desc">Aliados em 9m com vantagem em TRs contra magias · Sucesso = sem dano · Concentração 1 min</span>
+    </div>
+    <div class="sc expanded">
+      <span class="sc-type">9° · Evocação</span>
+      <span class="sc-name">Curar (Domínio)</span>
+      <span class="sc-desc">115 PV instantâneos · Remove condições · Slot de 9° · Via Intervenção Divina: gratuito</span>
+    </div>
+    <div class="sc expanded">
+      <span class="sc-type">9° · Abjuração</span>
+      <span class="sc-name">Aura Sagrada (Domínio)</span>
+      <span class="sc-desc">Vantagem em tudo para aliados + desvantagem para atacantes + dano Radiante · 1 min</span>
+    </div>
+  </div>
 </div>
 
-<!-- ── EQUIPAMENTO ──────────────────────────── -->
+<!-- EQUIPAMENTO -->
 <div class="sec">
   <div class="sec-title">Equipamento</div>
-  <ul class="trait-list"><li>Plate Armor</li><li>Escudo +1</li><li>Maça Sagrada +2</li><li>Símbolo sagrado do crepúsculo</li><li>Kit de herborismo</li><li>Grimório de orações</li></ul>
+  <ul class="trait-list">
+    <li>Maça Sagrada +2 — 1d6+5 Contundente + 2d8 Frio (Golpe Divino) · Brilha suavemente ao crepúsculo</li>
+    <li>Armadura de Placas — CA 18 · Polida como espelho, reflete o horizonte dourado</li>
+    <li>Escudo +1 — CA +3 · Emblema do sol semicobertp pela lua gravado no centro</li>
+    <li>Símbolo Sagrado do Crepúsculo — amuleto de ouro com sol e lua fundidos em um único disco</li>
+    <li>Kit de herborismo — componentes curativos colhidos nas horas liminares do amanhecer/anoitecer</li>
+    <li>Grimório de Orações — coletânea das preces do crepúsculo, escritas em tinta violeta e âmbar</li>
+    <li>Manto de viagem negro com bordas douradas — usa quando está fora de combate</li>
+  </ul>
 </div>
 
-<!-- ── PERSONALIDADE ─────────────────────────── -->
+<!-- PERSONALIDADE -->
 <div class="sec">
-  <div class="sec-title">Personalidade</div>
-  <div class="trait-block"><div class="trait-name">Traços de Personalidade</div><div class="trait-desc">Fala pouco, age muito. Olha para o horizonte antes de responder — buscando a fronteira entre o dia e a noite.</div></div><div class="trait-block"><div class="trait-name">Ideais</div><div class="trait-desc">O crepúsculo pertence a todos. Qualquer ser pode encontrar paz na liminalidade entre a luz e a escuridão.</div></div><div class="trait-block"><div class="trait-name">Vínculos</div><div class="trait-desc">Os que foram perdidos na escuridão e nunca encontraram o caminho de volta. Phrolova não abandonou nenhum ainda.</div></div><div class="trait-block"><div class="trait-name">Fraquezas</div><div class="trait-desc">Tem dificuldade em deixar pessoas tomarem suas próprias decisões perigosas. Proteção às vezes se confunde com controle.</div></div>
+  <div class="sec-title">Personalidade &amp; Vínculos</div>
+  <div class="feature-grid">
+    <div class="trait-block">
+      <div class="trait-name">Traços de Personalidade</div>
+      <div class="trait-desc">Fala pouco, age muito. Olha para o horizonte antes de responder — buscando sempre a fronteira entre o dia e a noite, o lugar onde ela existe. Seus silêncios dizem mais que palavras.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Ideais</div>
+      <div class="trait-desc">O crepúsculo pertence a todos. Qualquer ser pode encontrar paz na liminalidade entre a luz e a escuridão — é na hora da transição que a verdade se revela. Nem pura bondade nem pura maldade.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Vínculos</div>
+      <div class="trait-desc">Os que foram perdidos na escuridão e nunca encontraram o caminho de volta. Phrolova não abandonou nenhum ainda. Os viajantes que erraram em noites sem fim são seus primeiros fiéis.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Fraquezas</div>
+      <div class="trait-desc">Tem dificuldade em deixar pessoas tomarem suas próprias decisões perigosas. Proteção às vezes se confunde com controle — ela precisa aprender que o crepúsculo também pode ser atravessado sozinho.</div>
+    </div>
+  </div>
 </div>
 
-<div class="divider">✦ ✧ ✦</div>
+<!-- LORE -->
+<div class="sec">
+  <div class="sec-title">História &amp; Lore</div>
+  <div class="lore-block">
+    <strong>A Guardiã que Vive no Limiar.</strong> Phrolova não é de nenhum lugar — ela é do <em>entre</em>. Nasceu Aasimar numa terra onde o Honkai e a Ressonância convivem com a vida cotidiana, e desde criança sentiu o chamado das horas liminares: o amanhecer e o anoitecer, quando o mundo não é nem dia nem noite.<br><br>
+    Por anos, viveu como eremita nas encostas de uma montanha que divide dois climas: do lado leste, sempre aurora; do lado oeste, sempre crepúsculo. Ali ela meditou, ouviu o vento, aprendeu os idiomas dos pássaros que cruzavam a linha do horizonte. Sua divindade — o conceito do Crepúsculo personificado — falou com ela não em palavras, mas em cores: <em>o âmbar que se converte em violeta, a luz que cede para a sombra com dignidade</em>.<br><br>
+    Quando desceu da montanha, era outra. A armadura de placas que veste hoje foi forjada no exato momento do pôr do sol, resfriada no orvalho do amanhecer. Sua maça sagrada carrega o frio de noites eternas. Seus olhos enxergam no escuro não como um dom dos anjos, mas como uma necessidade — <em>porque alguém tem que guiar quem se perdeu depois que o sol se foi</em>.<br><br>
+    Ela não é um cruzado. Não prega. Apenas aparece onde a escuridão está prestes a engolir alguém, ergue seu santuário de luz crepuscular, e permanece até que o amanhecer chegue — ou até que já não seja necessária.
+  </div>
+</div>
 
-<!-- ── FOOTER ────────────────────────────────── -->
+<div class="divider">🌅 ✧ 🌄</div>
+
+<!-- GUIA DE PROGRESSÃO -->
+<div class="sec">
+  <div class="sec-title">Guia de Progressão — Nível 1 ao 20</div>
+  <div class="prog-guide">
+
+    <div class="level-block">
+      <div class="level-header" onclick="toggleLevel(this)">
+        <span class="level-badge">NÍV. 1</span>
+        <span class="level-title">A Guardiã Desperta — Sabedoria do Limiar</span>
+        <span class="level-arrow">▼</span>
+      </div>
+      <div class="level-body">
+        <ul>
+          <li><strong>Raça — Aasimar (Vingador):</strong> <em>Visão no Escuro</em> 18m + <em>Mãos Curadoras</em> (20 PV, 1×/descanso longo) + <em>Resistência Celestial</em> (Necrótico e Radiante) + <em>Luz</em> (truque)</li>
+          <li><strong>Domínio do Crepúsculo — Magias de Domínio (gratuitas):</strong> <em>Fogo das Fadas</em> + <em>Sono</em></li>
+          <li><strong>Olhos da Noite:</strong> Visão no Escuro 36m. Pode compartilhar com 10 aliados por 1h. 1×/descanso longo.</li>
+          <li><strong>Vigilância no Crepúsculo:</strong> Vantagem em Percepção. Nunca surpreendida. Phrolova vê tudo no horizonte.</li>
+          <li><strong>Truques:</strong> <em>Chama Sagrada</em> (1d8 Radiante, TR Des) + <em>Orientar</em> + <em>Dobre dos Mortos</em></li>
+          <li><strong>Magias 1° (4 espaços):</strong> <em>Guardar Ferimento</em> + <em>Bênção</em> + <em>Escudo da Fé</em></li>
+          <li><strong>Papel:</strong> Tanque/suporte — CA boa mesmo no nível 1 com cota de malha + escudo. Heal e controle leve.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="level-block">
+      <div class="level-header" onclick="toggleLevel(this)">
+        <span class="level-badge">NÍV. 2</span>
+        <span class="level-title">Canal Divino — Santuário do Crepúsculo Emerge</span>
+        <span class="level-arrow">▼</span>
+      </div>
+      <div class="level-body">
+        <ul>
+          <li><strong>Canal Divino (1 uso/descanso curto):</strong> <em>Santuário do Crepúsculo</em> disponível! Aura de 9m, aliados curam 1d6+SAB PV ou terminam Encantado/Apavorado por turno.</li>
+          <li><strong>Canal Divino: Expulsar Mortos-Vivos:</strong> Mortos-vivos em 9m fazem TR Sab CD 13 ou ficam Apavorados por 1 min. Útil em masmorras.</li>
+          <li><strong>Magias de Domínio 2° (gratuitas):</strong> <em>Raio de Luar</em> + <em>Aura de Vitalidade</em></li>
+          <li><strong>Magias novas 2°:</strong> <em>Bênção Menor</em> (cura passiva por 10 min) + <em>Silêncio</em> (anula lançadores em área).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="level-block">
+      <div class="level-header" onclick="toggleLevel(this)">
+        <span class="level-badge">NÍV. 3–4</span>
+        <span class="level-title">3° Círculo — Guardiões do Espírito, Core de Combate</span>
+        <span class="level-arrow">▼</span>
+      </div>
+      <div class="level-body">
+        <ul>
+          <li><strong>Magias de Domínio 5° (gratuitas):</strong> <em>Aura de Vida</em> + <em>Guardião da Fé</em></li>
+          <li><strong>Guardiões do Espírito (slot 3°):</strong> Aura de 4,5m, 3d8 Radiante/Frio (cresce com slots). Principal ferramenta de controle.</li>
+          <li><strong>3° Círculo:</strong> <em>Guardiões do Espírito</em> + <em>Banimento</em> disponíveis.</li>
+          <li><strong>ASI (Nív.4):</strong> +2 SAB (SAB 18). CD 15, ataque +8. Prioridade máxima.</li>
+          <li><strong>Chama Sagrada:</strong> 2d8 radiante. Canal Divino: 2 usos/descanso curto.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="level-block">
+      <div class="level-header" onclick="toggleLevel(this)">
+        <span class="level-badge">NÍV. 5</span>
+        <span class="level-title">Destruir Mortos-Vivos — Guardiana dos Vivos</span>
+        <span class="level-arrow">▼</span>
+      </div>
+      <div class="level-body">
+        <ul>
+          <li><strong>Destruir Mortos-Vivos:</strong> Expulsar agora destrói mortos-vivos com MV ≤ 5 automaticamente. Escala com nível.</li>
+          <li><strong>3° Círculo com slot 5°:</strong> Guardiões causam 5d8 Frio/Radiante — dano de área massivo.</li>
+          <li><strong>Bônus de Proficiência +3:</strong> CD 16, ataque +9.</li>
+          <li><strong>5° Círculo:</strong> <em>Cura em Massa</em> (5d8+Sab para 6 alvos) + <em>Banimento</em> mais potente.</li>
+          <li><strong>Chama Sagrada:</strong> 3d8 radiante. Dobre dos Mortos: 3d12 necrótico.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="level-block">
+      <div class="level-header" onclick="toggleLevel(this)">
+        <span class="level-badge">NÍV. 6</span>
+        <span class="level-title">Passos da Noite — Voo Tático</span>
+        <span class="level-arrow">▼</span>
+      </div>
+      <div class="level-body">
+        <ul>
+          <li><strong>Passos da Noite:</strong> Em obscuridade: voo de 9m por turno (ação bônus). Reposicionamento rápido em combate — cobre o grupo inteiro.</li>
+          <li><strong>Magias de Domínio 7° (gratuitas):</strong> <em>Restauração Superior</em> + <em>Círculo de Poder</em></li>
+          <li><strong>6° Círculo:</strong> <em>Curar</em> (70 PV instantâneos) + <em>Dano</em> (14d6 necrótico + reduz PV máx.).</li>
+          <li><strong>Canal Divino: 3 usos/descanso curto:</strong> Múltiplos Santuários por combate.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="level-block">
+      <div class="level-header" onclick="toggleLevel(this)">
+        <span class="level-badge">NÍV. 7–8</span>
+        <span class="level-title">Conjurador de Guerra + Golpe Divino</span>
+        <span class="level-arrow">▼</span>
+      </div>
+      <div class="level-body">
+        <ul>
+          <li><strong>Golpe Divino — Frio (Nív.8):</strong> +2d8 Frio em cada ataque com arma, 1×/turno. Maça agora: 1d6+5 + 2d8 Frio por golpe.</li>
+          <li><strong>Feat: Conjurador de Guerra (Nív.8):</strong> Vantagem em Con para concentração (CON +4 → excelente). Guardiões do Espírito raramente cai. Magia como AO.</li>
+          <li><strong>ASI (Nív.8):</strong> +2 SAB (SAB 20). CD 17, ataque +10. Valores próximos ao máximo.</li>
+          <li><strong>8° Círculo:</strong> <em>Aura Sagrada</em> disponível — o maior buff de aura do jogo.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="level-block">
+      <div class="level-header" onclick="toggleLevel(this)">
+        <span class="level-badge">NÍV. 9–10</span>
+        <span class="level-title">Bônus de Proficiência +4 — CD 18 Atingida</span>
+        <span class="level-arrow">▼</span>
+      </div>
+      <div class="level-body">
+        <ul>
+          <li><strong>Bônus de Proficiência +4:</strong> CD 18, ataque +10. Guardiões do Espírito mais difíceis de resistir.</li>
+          <li><strong>5° Círculo com slot 9°:</strong> Guardiões causam 9d8 Frio/Radiante — devastador.</li>
+          <li><strong>Magias novas 5°:</strong> <em>Caminhar sobre o Ar</em> + <em>Cura em Massa</em> ampliada.</li>
+          <li><strong>Chama Sagrada:</strong> 4d8 radiante (valor final a partir do Nív.17).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="level-block">
+      <div class="level-header" onclick="toggleLevel(this)">
+        <span class="level-badge">NÍV. 11–12</span>
+        <span class="level-title">Sentinela — A Guardiã Imovível</span>
+        <span class="level-arrow">▼</span>
+      </div>
+      <div class="level-body">
+        <ul>
+          <li><strong>Feat: Sentinela (Nív.12):</strong> AO reduz velocidade a 0 — inimigo não pode fugir. Criaturas que atacam aliados em 1,5m provocam AO de Phrolova. A guardiã literalmente impede que o grupo seja atacado.</li>
+          <li><strong>Combo Sentinela + Guardiões:</strong> Inimigo tenta fugir → AO (velocidade 0) → permanece nos Guardiões → 5d8 dano no próximo turno. Loop de contenção.</li>
+          <li><strong>Destruir Mortos-Vivos:</strong> Agora destrói mortos-vivos com MV ≤ 30 automaticamente.</li>
+          <li><strong>Bônus de Proficiência +5:</strong> CD 19, ataque +11 (valores finais alcançados!).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="level-block">
+      <div class="level-header" onclick="toggleLevel(this)">
+        <span class="level-badge">NÍV. 13–16</span>
+        <span class="level-title">Maestria — Aura Sagrada e Arsenal Divino Completo</span>
+        <span class="level-arrow">▼</span>
+      </div>
+      <div class="level-body">
+        <ul>
+          <li><strong>8° Círculo — Aura Sagrada:</strong> 1 min sem concentração — aliados com vantagem em TRs, desvantagem em ataques contra aliados, atacantes levam dano Radiante. O maior buff de grupo do jogo.</li>
+          <li><strong>ASI (Nív.16):</strong> +2 CON (CON 18 → PV 184) — mais resistência para manter concentração e se manter em combate.</li>
+          <li><strong>Dois slots de 9°:</strong> Curar (115 PV) + Aura Sagrada disponíveis no mesmo descanso longo.</li>
+          <li><strong>Combo de turno perfeito:</strong> Santuário do Crepúsculo (ação bônus, cura aliados) + Guardiões do Espírito (ação, dano AoE) + Sentinela (reação, prende fugitivos). Phrolova como fortaleza central.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="level-block">
+      <div class="level-header" onclick="toggleLevel(this)">
+        <span class="level-badge">NÍV. 17</span>
+        <span class="level-title">Manto do Crepúsculo — A Fortaleza Móvel</span>
+        <span class="level-arrow">▼</span>
+      </div>
+      <div class="level-body">
+        <ul>
+          <li><strong>Manto do Crepúsculo:</strong> Santuário do Crepúsculo agora concede <em>Cobertura Parcial</em> (+2 CA e TRs Des) a todos os aliados na aura. Phrolova no centro = +2 CA para o grupo inteiro.</li>
+          <li><strong>Combo completo:</strong> Santuário (1d6+5 cura/turno + cobertura) + Guardiões (5d8 AoE) + Aura Sagrada (vantagem em TRs) + Sentinela = fortaleza móvel de crepúsculo.</li>
+          <li><strong>Chama Sagrada:</strong> 4d8 radiante (valor final).</li>
+          <li><strong>Dobre dos Mortos:</strong> 4d12 necrótico (valor final).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="level-block">
+      <div class="level-header" onclick="toggleLevel(this)">
+        <span class="level-badge">NÍV. 18–20</span>
+        <span class="level-title">Intervenção Divina Aprimorada — A Guardiã em Glória</span>
+        <span class="level-arrow">▼</span>
+      </div>
+      <div class="level-body">
+        <ul>
+          <li><strong>ASI Final (Nív.19):</strong> +2 SAB (já em 20) → redirecionar para +2 CON (agora CON 20 → PV 200) ou +2 FOR para ataque de maça.</li>
+          <li><strong>Intervenção Divina Aprimorada (Nív.20):</strong> Lança qualquer magia de Clérigo gratuitamente 1×/descanso longo. Automático — sem rolagem.<br>
+            → <em>Curar</em> (9°): 115 PV instantâneos — praticamente ressuscita aliado<br>
+            → <em>Aura Sagrada</em>: vantagem em tudo para aliados por 1 min<br>
+            → <em>Círculo de Poder</em>: sem dano em TRs de magia bem-sucedidos
+          </li>
+          <li><strong>Status final:</strong> CA 21, PV 184, CD 19, Guardiões do Espírito 5d8 contínuos, Santuário 3×/curto (1d6+5 + cobertura), Aura Sagrada, Intervenção Divina automática, Sentinela + Conjurador de Guerra. A Guardiã do Crepúsculo em sua forma mais completa.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider">🌅 ✧ 🌄</div>
+
+<!-- FOOTER -->
 <div class="footer">
   <p>Phrolova · Clérigo Domínio do Crepúsculo · Nível 20</p>
-  <p>D&amp;D 5e · Wuthering Waves · Sistema de Fichas RPG</p>
+  <p>D&amp;D 5e · Wuthering Waves · Akasharium — Sistema de Fichas RPG</p>
 </div>
 
 </div><!-- /page -->
 
 <script>
+function toggleLevel(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.level-arrow');
+  const open = body.classList.toggle('open');
+  arrow.style.transform = open ? 'rotate(180deg)' : '';
+}
+
 (function() {
-  const particles = "🌅🌄✦".split("");
-  const container = document.getElementById('particleBg');
-  for (let i = 0; i < 20; i++) {
-    const p = document.createElement('span');
-    p.className = 'particle';
-    p.textContent = particles[i % particles.length];
-    p.style.left = (Math.random() * 100) + '%';
-    p.style.animationDuration = (12 + Math.random() * 18) + 's';
-    p.style.animationDelay = (Math.random() * 20) + 's';
-    p.style.fontSize = (9 + Math.random() * 6) + 'px';
-    container.appendChild(p);
+  const bg = document.getElementById('atmoBg');
+
+  // Twilight stars (fixed twinkling)
+  for (let i = 0; i < 60; i++) {
+    const s = document.createElement('div');
+    s.className = 'twi-star';
+    const sz = 1 + Math.random() * 2.5;
+    s.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${Math.random()*70}%;
+      width:${sz}px;height:${sz}px;
+      --so:${0.15+Math.random()*0.35};
+      animation-duration:${2+Math.random()*4}s;
+      animation-delay:${Math.random()*6}s;
+    `;
+    bg.appendChild(s);
   }
+
+  // Feathers
+  for (let i = 0; i < 20; i++) {
+    const f = document.createElement('div');
+    f.className = 'feather';
+    const h = 10 + Math.random() * 16;
+    const startRot = -20 + Math.random() * 40;
+    const endRot = startRot + 60 + Math.random() * 80;
+    f.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${-5-Math.random()*15}%;
+      height:${h}px;
+      --fdx:${(Math.random()-0.5)*80}px;
+      --fr:${startRot}deg;
+      --fr2:${endRot}deg;
+      animation-duration:${12+Math.random()*16}s;
+      animation-delay:${Math.random()*20}s;
+      opacity:0;
+    `;
+    bg.appendChild(f);
+  }
+
+  // Mist orbs
+  for (let i = 0; i < 6; i++) {
+    const m = document.createElement('div');
+    m.className = 'mist-orb';
+    const w = 200 + Math.random() * 300;
+    m.style.cssText = `
+      left:${Math.random()*80}%;
+      bottom:${Math.random()*30}%;
+      width:${w}px;height:${w*0.5}px;
+      animation-duration:${8+Math.random()*12}s;
+      animation-delay:${Math.random()*8}s;
+    `;
+    bg.appendChild(m);
+  }
+
+  // Twilight ripples (amber)
+  [{l:'30%',t:'80%'},{l:'70%',t:'60%'}].forEach((p,i) => {
+    const r = document.createElement('div');
+    r.className = 'twi-ripple';
+    r.style.cssText = `
+      left:${p.l};top:${p.t};
+      width:60px;height:30px;
+      margin-left:-30px;margin-top:-15px;
+      animation-duration:${8+i*3}s;
+      animation-delay:${i*3.5}s;
+    `;
+    bg.appendChild(r);
+  });
 })();
 </script>
 

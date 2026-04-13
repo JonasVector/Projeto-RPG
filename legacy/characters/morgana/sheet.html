@@ -3,155 +3,282 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Morgana — A Caída · Ficha D&amp;D 5e</title>
+<title>Morgana — A Caída · Ficha D&D 5e</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root{
-  --primary:    #4a1080;
-  --mid:        #7b1fa2;
-  --bright:     #ce93d8;
-  --pale:       #f3e5f5;
-  --dark:       #060108;
-  --darker:     #040106;
-  --card:       #120520;
-  --card-light: #1a0830;
-  --text:       #e0c8f0;
-  --text-dim:   #7a4a8a;
-  --mist:       #2a0840;
+  --primary:    #3d0070;
+  --mid:        #7b22c9;
+  --bright:     #c084fc;
+  --spectral:   #e040fb;
+  --pale:       #f5eeff;
+  --dark:       #04010a;
+  --darker:     #020107;
+  --card:       #0a0318;
+  --card-light: #130525;
+  --text:       #ddc8f5;
+  --text-dim:   #7a4a9a;
+  --chain:      #c9a227;
+  --chain-light:#e8c85a;
   --gold:       #c9a227;
   --gold-light: #e8c85a;
-  --border:     rgba(74,16,128,0.40);
-  --border-bright:rgba(206,147,216,0.5);
-  --glow:       rgba(74,16,128,0.15);
+  --border:     rgba(61,0,112,0.45);
+  --border-bright:rgba(192,132,252,0.45);
+  --glow:       rgba(61,0,112,0.18);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15%,rgba(74,16,128,0.12) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(123,31,162,0.06) 0%,transparent 45%);font-family:'EB Garamond',Georgia,serif;color:var(--text);line-height:1.75;}
-.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
+html{scroll-behavior:smooth;}
+body{
+  background:#04010a;
+  background-image:
+    radial-gradient(ellipse at 50% 0%,rgba(61,0,112,0.22) 0%,transparent 55%),
+    radial-gradient(ellipse at 15% 100%,rgba(61,0,112,0.12) 0%,transparent 45%),
+    radial-gradient(ellipse at 85% 55%,rgba(224,64,251,0.05) 0%,transparent 38%);
+  background-attachment:fixed;
+  font-family:'EB Garamond',Georgia,serif;
+  color:var(--text);
+  line-height:1.75;
+  min-height:100vh;
+}
+.page{max-width:min(960px,100vw - 1rem);margin:0 auto;padding:0 0 80px;position:relative;z-index:1;}
 
-/* FLOATING PARTICLES */
-.particle-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
-.particle{position:absolute;font-size:11px;opacity:0;animation:floatP ease-in-out infinite;filter:blur(0.4px);color:var(--bright);}
-@keyframes floatP{0%{transform:translateY(108vh) translateX(0) rotate(0deg) scale(0.5);opacity:0;}8%{opacity:0.25;}50%{transform:translateY(50vh) translateX(35px) rotate(180deg) scale(0.75);opacity:0.15;}92%{opacity:0.06;}100%{transform:translateY(-8vh) translateX(-20px) rotate(340deg) scale(0.4);opacity:0;}}
+/* ── ATMOSPHERIC LAYERS ──────────────────────────────── */
+#atmoBg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
 
-/* HEADER */
-.header{background:linear-gradient(165deg,#060108 0%,#120520 50%,#060108 100%);border-bottom:2px solid var(--primary);position:relative;overflow:hidden;z-index:1;}
-.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 64px,rgba(74,16,128,0.12) 64px,rgba(74,16,128,0.12) 65px);}
-.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--mid),var(--bright),var(--mid),transparent);opacity:0.55;}
+/* Fallen feathers */
+.feather{
+  position:absolute;
+  width:3px;
+  border-radius:50% 50% 50% 50% / 20% 20% 80% 80%;
+  background:linear-gradient(180deg,rgba(192,132,252,0.7) 0%,rgba(61,0,112,0.2) 60%,transparent 100%);
+  opacity:0;
+  animation:featherFall ease-in-out infinite;
+  transform-origin:top center;
+}
+@keyframes featherFall{
+  0%  {transform:translateY(-5vh) rotate(var(--fr)) scale(0.6);opacity:0;}
+  8%  {opacity:0.35;}
+  50% {transform:translateY(55vh) rotate(calc(var(--fr) + 25deg)) translateX(var(--fdx)) scale(1);opacity:0.2;}
+  92% {opacity:0.05;}
+  100%{transform:translateY(108vh) rotate(calc(var(--fr) + 50deg)) translateX(calc(var(--fdx) * 1.5)) scale(0.5);opacity:0;}
+}
+
+/* Chain links drifting */
+.chain-link{
+  position:absolute;
+  font-size:14px;
+  color:var(--chain);
+  opacity:0;
+  animation:chainDrift ease-in-out infinite;
+  filter:drop-shadow(0 0 6px rgba(201,162,39,0.4));
+  text-shadow:0 0 8px rgba(201,162,39,0.3);
+}
+@keyframes chainDrift{
+  0%  {transform:translateX(-5vw) translateY(var(--cy)) rotate(0deg);opacity:0;}
+  10% {opacity:0.28;}
+  50% {transform:translateX(55vw) translateY(calc(var(--cy) + 40px)) rotate(180deg);opacity:0.15;}
+  90% {opacity:0.06;}
+  100%{transform:translateX(110vw) translateY(calc(var(--cy) - 20px)) rotate(360deg);opacity:0;}
+}
+
+/* Soul shackles rings */
+.shackle-ring{
+  position:fixed;
+  border:1px solid rgba(192,132,252,0.20);
+  border-radius:50%;
+  left:50%;top:65%;
+  width:80px;height:80px;
+  transform:translate(-50%,-50%) scale(0);
+  animation:shackleExpand ease-out infinite;
+  pointer-events:none;
+}
+@keyframes shackleExpand{
+  0%  {transform:translate(-50%,-50%) scale(0);opacity:0.6;border-color:rgba(192,132,252,0.3);}
+  60% {border-color:rgba(224,64,251,0.1);}
+  100%{transform:translate(-50%,-50%) scale(12);opacity:0;}
+}
+
+/* Purple mist rising */
+.void-mist{
+  position:fixed;bottom:0;left:0;right:0;height:220px;pointer-events:none;
+  background:linear-gradient(0deg,rgba(61,0,112,0.12) 0%,transparent 100%);
+  animation:mistPulse 6s ease-in-out infinite;
+}
+@keyframes mistPulse{0%,100%{opacity:0.7;}50%{opacity:1;}}
+
+/* Watermark wing */
+.watermark{
+  position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-size:520px;opacity:0.022;color:var(--bright);pointer-events:none;
+  animation:wmBreathe 7s ease-in-out infinite;filter:blur(3px);
+  line-height:1;
+}
+@keyframes wmBreathe{0%,100%{opacity:0.018;transform:translate(-50%,-50%) scale(1);}50%{opacity:0.032;transform:translate(-50%,-50%) scale(1.04);}}
+
+/* ── HEADER ──────────────────────────────────────────── */
+.header{
+  background:linear-gradient(165deg,#04010a 0%,#0d0320 50%,#04010a 100%);
+  border-bottom:2px solid var(--primary);
+  position:relative;overflow:hidden;z-index:1;
+}
+.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 62px,rgba(61,0,112,0.10) 62px,rgba(61,0,112,0.10) 63px);}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--mid),var(--spectral),var(--mid),transparent);opacity:0.5;}
 .header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
 
 /* PORTRAIT */
-.header-portrait{width:220px;flex-shrink:0;background:#060108;border-right:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+.header-portrait{width:220px;flex-shrink:0;background:#04010a;border-right:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
 .portrait-inner{width:100%;height:290px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.portrait-photo{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 0.4s ease;}
+.portrait-photo{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block;transition:transform 0.4s ease;}
 .portrait-photo:hover{transform:scale(1.04);}
-.portrait-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,#040106aa 100%);pointer-events:none;}
-.portrait-label{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--bright);opacity:0.6;text-transform:uppercase;text-shadow:0 0 8px var(--primary);}
+.portrait-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(4,1,10,0.85) 100%);pointer-events:none;}
+.portrait-glow{position:absolute;inset:-2px;border:1px solid rgba(192,132,252,0.22);border-radius:0;animation:portraitGlowM 3.5s ease-in-out infinite;}
+@keyframes portraitGlowM{0%,100%{box-shadow:inset 0 0 30px rgba(61,0,112,0.3);}50%{box-shadow:inset 0 0 50px rgba(192,132,252,0.18);}}
+.portrait-label{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--bright);opacity:0.55;text-transform:uppercase;text-shadow:0 0 8px var(--primary);}
 
 /* HEADER TEXT */
 .header-text{flex:1;padding:34px 44px;}
 .header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--mid);opacity:0.85;text-transform:uppercase;margin-bottom:10px;}
-.header-name{font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(74,16,128,0.5),0 0 15px rgba(74,16,128,0.3);letter-spacing:2px;line-height:1;margin-bottom:4px;}
-.header-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);margin-bottom:20px;letter-spacing:1.5px;opacity:0.95;}
+.header-name{font-family:'Cinzel',serif;font-size:52px;font-weight:900;color:var(--pale);letter-spacing:3px;line-height:1;margin-bottom:4px;animation:nameGlowM 4s ease-in-out infinite;}
+@keyframes nameGlowM{0%,100%{text-shadow:0 0 40px rgba(61,0,112,0.4),0 0 10px rgba(61,0,112,0.2);}50%{text-shadow:0 0 70px rgba(192,132,252,0.35),0 0 20px rgba(224,64,251,0.15);}}
+.header-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:17px;color:var(--gold);margin-bottom:20px;letter-spacing:1.5px;opacity:0.95;}
 .header-tags{display:flex;gap:7px;flex-wrap:wrap;}
-.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(74,16,128,0.12);}
-.tag.hi{background:rgba(74,16,128,0.15);border-color:var(--mid);color:var(--bright);}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(61,0,112,0.10);}
+.tag.hi{background:rgba(61,0,112,0.18);border-color:var(--mid);color:var(--bright);}
 .tag.gold{background:rgba(201,162,39,0.10);border-color:rgba(201,162,39,0.4);color:var(--gold-light);}
 
-/* STATS BAR */
+/* ── STATS BAR ───────────────────────────────────────── */
 .stats-bar{background:var(--card);border-bottom:1px solid var(--border);padding:13px 40px;display:flex;flex-wrap:wrap;position:relative;z-index:1;gap:0;}
 .stat-item{flex:1;border-right:1px solid var(--border);padding:0 18px;text-align:center;min-width:90px;}
 .stat-item:first-child{padding-left:0;}.stat-item:last-child{border-right:none;padding-right:0;}
 .stat-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
 .stat-value{font-family:'Cinzel',serif;font-size:13px;color:var(--bright);font-weight:600;}
 
-/* SECTION */
+/* ── SECTIONS ────────────────────────────────────────── */
 .sec{padding:0 40px;margin-top:32px;position:relative;z-index:1;}
 .sec-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
-.sec-title::before{content:'✦';font-size:11px;color:var(--gold);}
+.sec-title::before{content:'🦋';font-size:11px;}
 
-/* ATTRIBUTES */
+/* ── ATTRIBUTES ──────────────────────────────────────── */
 .attr-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px;}
 .attr-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:12px 4px 10px;position:relative;}
-.attr-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--primary);opacity:0.45;}
+.attr-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--primary);opacity:0.5;}
 .attr-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
 .attr-value{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:var(--text);display:block;line-height:1;}
-.attr-value.peak{color:var(--bright);text-shadow:0 0 14px rgba(74,16,128,0.45);}
+.attr-value.peak{color:var(--bright);text-shadow:0 0 14px rgba(61,0,112,0.55);}
 .attr-mod{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--mid);display:block;margin-top:3px;}
 
-/* COMBAT NOTES */
-.special-notes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
-
-/* SAVES & SKILLS */
+/* ── SAVES & SKILLS ──────────────────────────────────── */
 .two-col{display:grid;grid-template-columns:230px 1fr;gap:16px;}
 .save-list,.skill-list{list-style:none;padding:0;}
 .save-item,.skill-item{display:flex;align-items:center;gap:7px;padding:3px 0;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.04);}
 .save-item:last-child,.skill-item:last-child{border-bottom:none;}
 .prof-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--text-dim);flex-shrink:0;}
-.prof-dot.filled{background:var(--mid);border-color:var(--bright);box-shadow:0 0 6px rgba(74,16,128,0.5);}
+.prof-dot.filled{background:var(--mid);border-color:var(--bright);box-shadow:0 0 6px rgba(61,0,112,0.55);}
 .prof-dot.expertise{background:var(--gold);border-color:var(--gold-light);}
 .save-name,.skill-name{flex:1;color:var(--text);}
 .skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text-dim);width:28px;}
 .save-score,.skill-score{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text-dim);width:28px;text-align:right;}
-.save-score.filled,.skill-score.filled,.skill-score.peak{color:var(--bright);}
+.save-score.filled,.skill-score.filled{color:var(--bright);}
 
-/* ATTACKS */
+/* ── ATTACKS ─────────────────────────────────────────── */
 .attack-table{width:100%;border-collapse:collapse;font-size:13px;}
-.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(74,16,128,0.12);}
-.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(74,16,128,0.40);color:var(--text);vertical-align:top;}
-.attack-table tr:hover td{background:rgba(74,16,128,0.15);}
+.attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(61,0,112,0.12);}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(61,0,112,0.35);color:var(--text);vertical-align:top;}
+.attack-table tr:hover td{background:rgba(61,0,112,0.14);}
 .attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
 .attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--bright);font-weight:700;}
 .attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--gold-light);}
 .attack-notes{font-size:12px;color:var(--text-dim);font-style:italic;}
 
-/* FEATURES */
+/* ── MECHANIC HIGHLIGHT BOX ──────────────────────────── */
+.mech-box{background:rgba(61,0,112,0.12);border:1px solid var(--border);border-left:4px solid var(--spectral);padding:16px 18px;margin-bottom:16px;}
+.mech-box.gold-box{border-left-color:var(--gold);background:rgba(201,162,39,0.06);}
+.mech-title{font-family:'Cinzel',serif;font-size:12px;color:var(--spectral);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase;}
+.mech-box.gold-box .mech-title{color:var(--gold-light);}
+.mech-body{font-size:13.5px;color:var(--text-dim);line-height:1.7;}
+.mech-body em{color:var(--bright);font-style:italic;}
+.mech-body strong{color:var(--text);}
+.mech-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px;}
+.mech-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--text-dim);padding:4px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;text-align:center;}
+.mech-table td{padding:5px 8px;border-bottom:1px solid rgba(61,0,112,0.25);text-align:center;color:var(--text-dim);}
+.mech-table td.hi{color:var(--spectral);font-family:'Share Tech Mono',monospace;font-weight:700;}
+.mech-table td.gold-v{color:var(--gold-light);font-family:'Share Tech Mono',monospace;}
+
+/* ── FEATURES ────────────────────────────────────────── */
 .feat-section{margin-bottom:10px;}
 .feat-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:12px 0 8px;}
 .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .trait-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);padding:12px 14px;}
 .trait-block.gold-accent{border-left-color:var(--gold);}
-.trait-block.dim-accent{border-left-color:var(--mist);}
+.trait-block.spectral-accent{border-left-color:var(--spectral);}
+.trait-block.dim-accent{border-left-color:rgba(61,0,112,0.25);}
 .trait-name{font-family:'Cinzel',serif;font-size:11px;color:var(--bright);letter-spacing:0.5px;margin-bottom:5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
 .trait-block.gold-accent .trait-name{color:var(--gold-light);}
+.trait-block.spectral-accent .trait-name{color:var(--spectral);}
 .trait-block.dim-accent .trait-name{color:var(--text-dim);}
 .trait-desc{font-size:13.5px;color:var(--text-dim);line-height:1.6;}
 .trait-desc em{font-style:italic;color:var(--bright);}
 .trait-desc strong{color:var(--text);}
-.feat-level{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;background:rgba(74,16,128,0.15);color:var(--mid);padding:1px 6px;}
+.feat-level{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;background:rgba(61,0,112,0.18);color:var(--mid);padding:1px 6px;}
 
-/* SPELLS */
+/* ── SPELLS ──────────────────────────────────────────── */
 .spell-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
 .spell-tag{background:var(--card-light);color:var(--bright);font-family:'Cinzel',serif;font-size:10px;padding:3px 9px;letter-spacing:1px;border:1px solid var(--border);display:inline-block;}
 .spell-tag.gold{background:rgba(201,162,39,0.08);color:var(--gold-light);border-color:rgba(201,162,39,0.28);}
 .spell-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:13px 0 8px;}
 .spell-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:7px;}
-.sc{background:var(--card-light);border:1px solid var(--border);border-top:2px solid var(--mist);padding:9px 12px 10px;display:flex;flex-direction:column;gap:3px;}
-.sc.cantrip{border-top-color:rgba(74,16,128,0.40);}
-.sc.expanded{border-top-color:var(--gold);}
+.sc{background:var(--card-light);border:1px solid var(--border);border-top:2px solid rgba(61,0,112,0.4);padding:9px 12px 10px;display:flex;flex-direction:column;gap:3px;}
+.sc.cantrip{border-top-color:rgba(192,132,252,0.30);}
+.sc.signature{border-top-color:var(--spectral);background:rgba(61,0,112,0.12);}
+.sc.peak{border-top-color:var(--gold);}
 .sc-type{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);opacity:0.65;}
 .sc-name{font-family:'Cinzel',serif;font-size:11.5px;font-weight:600;color:var(--bright);letter-spacing:0.4px;}
 .sc.cantrip .sc-name{color:var(--text-dim);}
-.sc.expanded .sc-name{color:var(--gold-light);}
+.sc.signature .sc-name{color:var(--spectral);}
+.sc.peak .sc-name{color:var(--gold-light);}
 .sc-desc{font-size:12px;color:var(--text-dim);line-height:1.5;margin-top:1px;}
 
-/* TRAIT LIST (equipment) */
+/* ── EQUIPMENT / TRAITS LIST ─────────────────────────── */
 ul.trait-list{list-style:none;padding:0;}
 ul.trait-list li{padding:3px 0 3px 18px;position:relative;font-size:14px;line-height:1.65;color:var(--text-dim);}
-ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold);font-size:7px;top:7px;}
+ul.trait-list li::before{content:'⛓';position:absolute;left:0;color:var(--chain);font-size:8px;top:7px;}
 
-/* DIVIDER */
-.divider{text-align:center;margin:24px 0;color:var(--mist);font-size:14px;letter-spacing:14px;opacity:0.5;}
-
-/* INFO PILLS */
+/* ── INFO PILLS ──────────────────────────────────────── */
 .info-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
 .info-pill{background:var(--card);border:1px solid var(--border);padding:8px 14px;font-size:13px;color:var(--text-dim);}
 .info-pill strong{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--mid);text-transform:uppercase;display:block;margin-bottom:3px;}
 
-/* FOOTER */
-.footer{margin-top:50px;padding:22px 40px;text-align:center;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent 0%,#04010699 100%);position:relative;z-index:1;}
-.footer p{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);opacity:0.5;text-transform:uppercase;margin-bottom:4px;}
+/* ── DIVIDER ─────────────────────────────────────────── */
+.divider{text-align:center;margin:24px 0;color:var(--primary);font-size:14px;letter-spacing:14px;opacity:0.55;}
 
-/* RESPONSIVE */
+/* ── PROGRESSION GUIDE ───────────────────────────────── */
+.guide-level{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);margin-bottom:8px;overflow:hidden;}
+.guide-level.tier-1{border-left-color:var(--mid);}
+.guide-level.tier-2{border-left-color:var(--bright);}
+.guide-level.tier-3{border-left-color:var(--spectral);}
+.guide-level.tier-4{border-left-color:var(--gold);}
+.level-header{display:flex;align-items:center;gap:12px;padding:10px 16px;cursor:pointer;user-select:none;transition:background 0.2s;}
+.level-header:hover{background:rgba(61,0,112,0.18);}
+.level-num{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--mid);width:52px;flex-shrink:0;}
+.level-title{font-family:'Cinzel',serif;font-size:12px;color:var(--bright);font-weight:700;flex:1;}
+.guide-level.tier-2 .level-title{color:var(--bright);}
+.guide-level.tier-3 .level-title{color:var(--spectral);}
+.guide-level.tier-4 .level-title{color:var(--gold-light);}
+.level-toggle{font-size:10px;color:var(--text-dim);transition:transform 0.2s;}
+.level-body{display:none;padding:0 16px 14px;border-top:1px solid var(--border);}
+.level-body.open{display:block;}
+.level-body p{font-size:13.5px;color:var(--text-dim);line-height:1.7;margin-bottom:8px;}
+.level-body p:last-child{margin-bottom:0;}
+.level-body em{color:var(--bright);font-style:italic;}
+.level-body strong{color:var(--text);}
+.spell-pill{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:2px 7px;background:rgba(61,0,112,0.18);border:1px solid var(--border);color:var(--bright);margin:2px 2px;}
+.spell-pill.gold{background:rgba(201,162,39,0.10);border-color:rgba(201,162,39,0.35);color:var(--gold-light);}
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.footer{margin-top:50px;padding:22px 40px;text-align:center;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent 0%,rgba(4,1,10,0.95) 100%);position:relative;z-index:1;}
+.footer p{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-dim);opacity:0.45;text-transform:uppercase;margin-bottom:4px;}
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
 @media(max-width:680px){
   .header-inner{flex-direction:column;}
   .header-portrait{width:100%;height:200px;}
@@ -170,176 +297,889 @@ ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold
 </head>
 <body>
 
-<!-- Floating Particles -->
-<div class="particle-bg" id="particleBg"></div>
+<!-- ATMOSPHERIC LAYERS -->
+<div id="atmoBg">
+  <div class="void-mist"></div>
+  <div class="watermark">🦋</div>
+  <!-- Shackle rings (staggered) -->
+  <div class="shackle-ring" style="animation-delay:0s;animation-duration:7s;"></div>
+  <div class="shackle-ring" style="animation-delay:2.3s;animation-duration:7s;left:30%;top:40%;"></div>
+  <div class="shackle-ring" style="animation-delay:4.6s;animation-duration:7s;left:70%;top:70%;"></div>
+</div>
 
 <div class="page">
 
-<!-- ── HEADER ─────────────────────────────────── -->
+<!-- ── HEADER ─────────────────────────────────────────── -->
 <div class="header">
   <div class="header-inner">
     <div class="header-portrait">
       <div class="portrait-inner">
-        <img class="portrait-photo" src="/portraits/morgana.png" alt="Morgana" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;font-size:64px;opacity:0.15;filter:drop-shadow(0 0 20px var(--bright));">🦋</div>
+        <img class="portrait-photo" src="/portraits/morgana.jpg" alt="Morgana"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;font-size:72px;opacity:0.12;filter:drop-shadow(0 0 24px var(--spectral));">🦋</div>
         <div class="portrait-overlay"></div>
+        <div class="portrait-glow"></div>
       </div>
-      <div class="portrait-label">Morgana</div>
+      <div class="portrait-label">Morgana · A Caída</div>
     </div>
     <div class="header-text">
       <div class="header-eyebrow">Ficha · D&amp;D 5e · League of Legends</div>
       <div class="header-name">Morgana</div>
-      <div class="header-sub">A Caída</div>
+      <div class="header-sub">A Caída — Filha Renegada dos Celestiais</div>
       <div class="header-tags">
-        <span class="tag hi">Aasimar (Protegido)</span><span class="tag hi">Feiticeiro</span><span class="tag hi">Magia das Sombras</span><span class="tag hi">League of Legends</span><span class="tag">Antecedente: Sábia</span><span class="tag">Nív. 20</span>
+        <span class="tag hi">Aasimar (Caída)</span>
+        <span class="tag hi">Feiticeira</span>
+        <span class="tag hi">Magia das Sombras</span>
+        <span class="tag hi">League of Legends</span>
+        <span class="tag">Antecedente: Sábia</span>
+        <span class="tag gold">Nível 20</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── STATS BAR ──────────────────────────────── -->
+<!-- ── STATS BAR ───────────────────────────────────────── -->
 <div class="stats-bar">
-<div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">18</span></div><div class="stat-item"><span class="stat-label">PV</span><span class="stat-value">204</span></div><div class="stat-item"><span class="stat-label">Deslocamento</span><span class="stat-value">9m</span></div><div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value">+2</span></div><div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div><div class="stat-item"><span class="stat-label">CD de Magia</span><span class="stat-value">19</span></div><div class="stat-item"><span class="stat-label">Atq. Mágico</span><span class="stat-value">+11</span></div>
+  <div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">16</span></div>
+  <div class="stat-item"><span class="stat-label">PV</span><span class="stat-value">172</span></div>
+  <div class="stat-item"><span class="stat-label">Deslocamento</span><span class="stat-value">9m</span></div>
+  <div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value">+2</span></div>
+  <div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div>
+  <div class="stat-item"><span class="stat-label">CD de Magia</span><span class="stat-value">19</span></div>
+  <div class="stat-item"><span class="stat-label">Atq. Mágico</span><span class="stat-value">+11</span></div>
+  <div class="stat-item"><span class="stat-label">Pts. Feitiçaria</span><span class="stat-value">20</span></div>
 </div>
 
-<!-- ── IDENTIDADE ────────────────────────────── -->
+<!-- ── IDENTIDADE ─────────────────────────────────────── -->
 <div class="sec">
   <div class="sec-title">Identidade</div>
   <div class="info-pills">
-    <div class="info-pill"><strong>Raça</strong>Aasimar (Protegido)</div>
-    <div class="info-pill"><strong>Classe</strong>Feiticeiro</div>
+    <div class="info-pill"><strong>Raça</strong>Aasimar (Caída)</div>
+    <div class="info-pill"><strong>Classe</strong>Feiticeira 20</div>
     <div class="info-pill"><strong>Subclasse</strong>Magia das Sombras</div>
     <div class="info-pill"><strong>Antecedente</strong>Sábia</div>
     <div class="info-pill"><strong>Tendência</strong>Legal Neutro</div>
     <div class="info-pill"><strong>Idiomas</strong>Comum, Celestial, Infernal</div>
     <div class="info-pill"><strong>Dado de Vida</strong>20d6</div>
-    <div class="info-pill"><strong>Magia</strong>Carisma</div>
+    <div class="info-pill"><strong>Atributo de Magia</strong>Carisma</div>
   </div>
-  <div class="info-pills"><span class='tag hi'>sorceryPoints: 20</span></div>
 </div>
 
-<!-- ── ATRIBUTOS ──────────────────────────────── -->
+<!-- ── ATRIBUTOS ───────────────────────────────────────── -->
 <div class="sec">
   <div class="sec-title">Atributos</div>
   <div class="attr-grid">
-        <div class="attr-box">
-          <span class="attr-label">FOR</span>
-          <span class="attr-value ">8</span>
-          <span class="attr-mod">-1</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">DES</span>
-          <span class="attr-value ">14</span>
-          <span class="attr-mod">+2</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">CON</span>
-          <span class="attr-value peak">20</span>
-          <span class="attr-mod">+5</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">INT</span>
-          <span class="attr-value ">14</span>
-          <span class="attr-mod">+2</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">SAB</span>
-          <span class="attr-value ">14</span>
-          <span class="attr-mod">+2</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">CAR</span>
-          <span class="attr-value peak">20</span>
-          <span class="attr-mod">+5</span>
-        </div></div>
-  
+    <div class="attr-box">
+      <span class="attr-label">FOR</span>
+      <span class="attr-value">8</span>
+      <span class="attr-mod">−1</span>
+    </div>
+    <div class="attr-box">
+      <span class="attr-label">DES</span>
+      <span class="attr-value">14</span>
+      <span class="attr-mod">+2</span>
+    </div>
+    <div class="attr-box">
+      <span class="attr-label">CON</span>
+      <span class="attr-value peak">20</span>
+      <span class="attr-mod">+5</span>
+    </div>
+    <div class="attr-box">
+      <span class="attr-label">INT</span>
+      <span class="attr-value">14</span>
+      <span class="attr-mod">+2</span>
+    </div>
+    <div class="attr-box">
+      <span class="attr-label">SAB</span>
+      <span class="attr-value">14</span>
+      <span class="attr-mod">+2</span>
+    </div>
+    <div class="attr-box">
+      <span class="attr-label">CAR</span>
+      <span class="attr-value peak">20</span>
+      <span class="attr-mod">+5</span>
+    </div>
+  </div>
 </div>
 
-
-
-
-
-
-
-<!-- ── HABILIDADES ───────────────────────────── -->
+<!-- ── TESTES E PERÍCIAS ───────────────────────────────── -->
 <div class="sec">
-  <div class="sec-title">Habilidades</div>
-  <div class="feat-section"><div class="feat-section-label">Habilidades de Subclasse</div><div class="feature-grid"><div class="trait-block ">
-              <div class="trait-name">Magia das Sombras Origin <span class="feat-level">Nív.1</span></div>
-              <div class="trait-desc">Visão no Escuro 36m. Aprende Darkness. Reforço de Sombras: 20 PV temporários.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Forma das Sombras <span class="feat-level">Nív.6</span></div>
-              <div class="trait-desc">Ação bônus: ser de pura sombra por 1 min. Resistência não-mágica + move por espaços estreitos.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Habilidades Raciais</div><div class="feature-grid"><div class="trait-block dim-accent">
-              <div class="trait-name">Radiant Soul </div>
-              <div class="trait-desc">1×/longo: asas 1 min · Voo 9m · +5 radiante em magias de raio.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Talentos (Feats)</div><div class="feature-grid"><div class="trait-block gold-accent">
-              <div class="trait-name">War Caster <span class="feat-level">Nív.4</span></div>
-              <div class="trait-desc">Vantagem Con para concentração. Magia como AO.</div>
-            </div><div class="trait-block gold-accent">
-              <div class="trait-name">Resilient (Con) <span class="feat-level">Nív.8</span></div>
-              <div class="trait-desc">+1 Con. Proficiência em TRs Con.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Metamagia</div><div class="feature-grid"><div class="trait-block gold-accent">
-              <div class="trait-name">Empowered Spell <span class="feat-level">1 SP</span></div>
-              <div class="trait-desc">Relança até 5 dados de dano.</div>
-            </div><div class="trait-block gold-accent">
-              <div class="trait-name">Heightened Spell <span class="feat-level">3 SP</span></div>
-              <div class="trait-desc">Desvantagem no TR de uma criatura.</div>
-            </div><div class="trait-block gold-accent">
-              <div class="trait-name">Quickened Spell <span class="feat-level">2 SP</span></div>
-              <div class="trait-desc">Magia de ação como ação bônus.</div>
-            </div><div class="trait-block gold-accent">
-              <div class="trait-name">Seeking Spell <span class="feat-level">2 SP</span></div>
-              <div class="trait-desc">Sem penalidade de cobertura/obstrução.</div>
-            </div></div></div>
+  <div class="sec-title">Testes de Resistência &amp; Perícias</div>
+  <div class="two-col">
+    <div>
+      <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px;color:var(--bright);margin-bottom:8px;text-transform:uppercase;">Testes de Resistência</div>
+      <ul class="save-list">
+        <li class="save-item"><div class="prof-dot"></div><span class="save-name">Força</span><span class="save-score">−1</span></li>
+        <li class="save-item"><div class="prof-dot"></div><span class="save-name">Destreza</span><span class="save-score">+2</span></li>
+        <li class="save-item"><div class="prof-dot filled"></div><span class="save-name">Constituição</span><span class="save-score filled">+11</span></li>
+        <li class="save-item"><div class="prof-dot"></div><span class="save-name">Inteligência</span><span class="save-score">+2</span></li>
+        <li class="save-item"><div class="prof-dot"></div><span class="save-name">Sabedoria</span><span class="save-score">+2</span></li>
+        <li class="save-item"><div class="prof-dot filled"></div><span class="save-name">Carisma</span><span class="save-score filled">+11</span></li>
+      </ul>
+    </div>
+    <div>
+      <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px;color:var(--bright);margin-bottom:8px;text-transform:uppercase;">Perícias</div>
+      <ul class="skill-list">
+        <li class="skill-item"><div class="prof-dot expertise"></div><span class="skill-attr">INT</span><span class="skill-name">Arcanismo</span><span class="skill-score filled">+14</span></li>
+        <li class="skill-item"><div class="prof-dot expertise"></div><span class="skill-attr">INT</span><span class="skill-name">História</span><span class="skill-score filled">+14</span></li>
+        <li class="skill-item"><div class="prof-dot filled"></div><span class="skill-attr">CAR</span><span class="skill-name">Persuasão</span><span class="skill-score filled">+11</span></li>
+        <li class="skill-item"><div class="prof-dot filled"></div><span class="skill-attr">CAR</span><span class="skill-name">Intimidação</span><span class="skill-score filled">+11</span></li>
+        <li class="skill-item"><div class="prof-dot"></div><span class="skill-attr">SAB</span><span class="skill-name">Percepção</span><span class="skill-score">+2</span></li>
+        <li class="skill-item"><div class="prof-dot"></div><span class="skill-attr">SAB</span><span class="skill-name">Intuição</span><span class="skill-score">+2</span></li>
+        <li class="skill-item"><div class="prof-dot"></div><span class="skill-attr">DES</span><span class="skill-name">Furtividade</span><span class="skill-score">+2</span></li>
+      </ul>
+    </div>
+  </div>
 </div>
 
-<!-- ── MAGIAS ───────────────────────────────── -->
+<!-- ── ATAQUES ─────────────────────────────────────────── -->
 <div class="sec">
-  <div class="sec-title">Magia</div>
+  <div class="sec-title">Ataques e Magias de Combate</div>
+  <table class="attack-table">
+    <thead>
+      <tr>
+        <th>Nome</th><th>Bônus / CD</th><th>Dano</th><th>Tipo / Notas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="attack-name">Toque Gelado</span></td>
+        <td><span class="attack-bonus">+11</span></td>
+        <td><span class="attack-damage">4d8</span></td>
+        <td><span class="attack-notes">Necrótico · Bloq. cura · Cancela regen · Alvo 45m</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Toque do Vácuo</span></td>
+        <td><span class="attack-bonus">CD 19 SAB</span></td>
+        <td><span class="attack-damage">1d12</span></td>
+        <td><span class="attack-notes">Necrótico · 1d12 se alvo machucado · 18m · Sem TR se sano</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Vínculo das Trevas</span></td>
+        <td><span class="attack-bonus">+11 / CD 19</span></td>
+        <td><span class="attack-damage">2d8</span></td>
+        <td><span class="attack-notes">Necrótico · TR CON ou Enraizado 3 rodadas · 27m</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Praga</span></td>
+        <td><span class="attack-bonus">CD 19 CON</span></td>
+        <td><span class="attack-damage">8d8</span></td>
+        <td><span class="attack-notes">Necrótico · Plantas: sem TR, dano máx · 4° nível</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Sombra Atormentada</span></td>
+        <td><span class="attack-bonus">CD 19 CON</span></td>
+        <td><span class="attack-damage">6d6/turno</span></td>
+        <td><span class="attack-notes">Necrótico · Zona 6m raio · Conc. 1 min · 6° nível</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Dedo da Morte</span></td>
+        <td><span class="attack-bonus">CD 19 CON</span></td>
+        <td><span class="attack-damage">7d8+30</span></td>
+        <td><span class="attack-notes">Necrótico · Morte → Zumbi permanente · 7° nível · 18m</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Grilhões da Alma</span></td>
+        <td><span class="attack-bonus">CD 19 CON</span></td>
+        <td><span class="attack-damage">6d6+5d6</span></td>
+        <td><span class="attack-notes">Necrótico+Psíquico · Raio 9m AoE · Atordoado se falhar 2x · 6° nível</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Palavra de Poder: Matar</span></td>
+        <td><span class="attack-bonus">Automático</span></td>
+        <td><span class="attack-damage">Morte</span></td>
+        <td><span class="attack-notes">Sem TR · Alvo com ≤100 PV morre instantaneamente · 9° nível</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ── HABILIDADES ESPECIAIS ──────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Habilidades Especiais</div>
+
+  <!-- Soul Shackles -->
+  <div class="mech-box">
+    <div class="mech-title">⛓ Grilhões da Alma (Soul Shackles — Ultimate)</div>
+    <div class="mech-body">
+      <strong>Ação de magia · Concentração 2,5 segundos (3 rodadas) · CD 19 Constituição</strong><br>
+      Morgana projeta correntes espectrais que envolvem todas as criaturas inimigas em um raio de <em>9 metros</em>. Cada alvo sofre <em>6d6 de dano necrótico</em> por rodada enquanto permanecer na zona. Se uma criatura falhar no TR novamente ao final da 3ª rodada, fica <em>Atordoada</em> por 1 rodada e sofre mais <em>5d6 de dano psíquico</em>.<br><br>
+      <strong>Com Metamagia — Heightened Spell (3 SP):</strong> Um alvo específico tem <em>desvantagem</em> no primeiro TR, quase garantindo a fase de imobilização.<br>
+      <strong>Combo com Escudo Negro:</strong> Aplique Escudo Negro em um aliado antes de ativar os Grilhões — o aliado fica imune a ser afetado pelas correntes e pode avançar livremente.
+    </div>
+    <table class="mech-table">
+      <thead><tr><th>Fase</th><th>Condição</th><th>Efeito</th><th>Dano Médio</th></tr></thead>
+      <tbody>
+        <tr><td>Rodada 1</td><td>Em alcance</td><td>Zona ativa · 6d6/turno</td><td class="hi">21 necrótico</td></tr>
+        <tr><td>Rodada 2</td><td>Permanece</td><td>6d6/turno novamente</td><td class="hi">21 necrótico</td></tr>
+        <tr><td>Rodada 3</td><td>TR final</td><td>Falha → Atordoado + 5d6</td><td class="hi">17–18 psíquico</td></tr>
+        <tr><td>Total</td><td>3 alvos, falha total</td><td>~59 cada (sem resist.)</td><td class="gold-v">~177 combinado</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Black Shield -->
+  <div class="mech-box gold-box">
+    <div class="mech-title">🛡 Escudo Negro (Black Shield)</div>
+    <div class="mech-body">
+      <strong>Ação bônus · Concentração 5 seg · Alvo aliado em 18m</strong><br>
+      Morgana envolve um aliado em um escudo de magia sombria que concede <em>imunidade a dano por magias de encantamento e ilusão</em> e impede qualquer efeito de controle mágico (charm, medo, paralisia, atordoamento por magia) enquanto o escudo estiver ativo.<br><br>
+      <strong>PV temporários:</strong> O alvo recebe <em>5 × nível de slot utilizado</em> PV temporários (ex: slot 3° = 15 PV temp).<br>
+      <strong>Uso tático:</strong> Proteja o portador de dano de posição (barbaro, guerreiro) antes de avançar. Use Quickened Spell para lançar Escudo Negro como ação bônus e ainda lançar Grilhões da Alma como ação principal.
+    </div>
+  </div>
+
+  <!-- Dark Binding -->
+  <div class="mech-box">
+    <div class="mech-title">⛓ Vínculo das Trevas (Dark Binding)</div>
+    <div class="mech-body">
+      <strong>Ação · TR Constituição CD 19 · 27m · Duração: 2 rodadas (concentração)</strong><br>
+      Morgana dispara um projétil de magia sombria em linha reta. Se atingir: o alvo sofre <em>2d8 de dano necrótico</em> e fica <em>Enraizado</em> — velocidade zero, não pode se mover mas pode agir normalmente. A condição persiste por <em>2 rodadas</em> ou até o alvo quebrar concentração ou o alcance ser superado.<br><br>
+      <strong>Combo padrão:</strong> Vínculo das Trevas + Sombra Atormentada na mesma posição — o alvo enraizado não pode escapar da zona de dano. Com Quickened Spell, ambas na mesma rodada.<br>
+      <strong>No jogo original:</strong> Este combo (Q+W) é o fundamento do kit de Morgana — garanta que o alvo mais perigoso fique preso enquanto arde.
+    </div>
+  </div>
+
+  <!-- Necrotic Shroud -->
+  <div class="mech-box">
+    <div class="mech-title">☠ Véu Necrótico (Aasimar Caída — Necrotic Shroud)</div>
+    <div class="mech-body">
+      <strong>Ação · 1× por descanso longo · Duração: 1 minuto</strong><br>
+      Morgana libera sua natureza celestial corrompida: asas negras se desdobram, olhos brilham de energia violeta. Todas as criaturas em <em>3m</em> fazem TR de Carisma CD 19 ou ficam <em>Amedrontadas</em> até o fim do próximo turno dela. Enquanto ativa:<br><br>
+      — Uma vez por turno, quando Morgana inflige dano, adiciona <em>+6 de dano necrótico</em> (= bônus de proficiência).<br>
+      — As asas concedem velocidade de voo de <em>9m</em>.<br><br>
+      <strong>Abertura de combate ideal:</strong> Véu Necrótico → ativa amedrontados → Grilhões da Alma com desvantagem por estar amedrontado → destruição em área.
+    </div>
+  </div>
+</div>
+
+<!-- ── HABILIDADES DE CLASSE ───────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Habilidades de Classe &amp; Subclasse</div>
+
+  <div class="feat-section">
+    <span class="feat-section-label">Magia das Sombras — Habilidades de Subclasse</span>
+    <div class="feature-grid">
+      <div class="trait-block spectral-accent">
+        <div class="trait-name">Olhos das Trevas <span class="feat-level">Nív.1</span></div>
+        <div class="trait-desc">Visão no Escuro <em>36 metros</em>. Aprende a magia <em>Escuridão</em> gratuitamente e pode lançá-la sem gastar slot usando <em>2 Pontos de Feitiçaria</em>.</div>
+      </div>
+      <div class="trait-block spectral-accent">
+        <div class="trait-name">Força do Túmulo <span class="feat-level">Nív.1</span></div>
+        <div class="trait-desc">Quando reduzida a 0 PV mas não morta, Morgana faz TR de Carisma CD (5 + dano sofrido). Sucesso: sobrevive com 1 PV. <em>1× por descanso longo</em>. Não funciona contra dano radiante ou críticos.</div>
+      </div>
+      <div class="trait-block spectral-accent">
+        <div class="trait-name">Cão do Mau Presságio <span class="feat-level">Nív.6</span></div>
+        <div class="trait-desc">Ação bônus: gasta <em>3 Pontos de Feitiçaria</em> para invocar um Mastim Sombrio espectral em local visível em 36m. O cão segue um alvo, impondo <em>desvantagem</em> nos TRs de concentração daquele alvo. PV = metade do máximo de Morgana. Dura concentração ou 5 min.</div>
+      </div>
+      <div class="trait-block spectral-accent">
+        <div class="trait-name">Andar nas Sombras <span class="feat-level">Nív.14</span></div>
+        <div class="trait-desc">Ação bônus: quando em <em>penumbra ou escuridão</em>, teletransporta até <em>36 metros</em> para outro ponto de penumbra/escuridão visível. Essencialmente um Passo Nevoeiro sem slot em zonas escuras.</div>
+      </div>
+      <div class="trait-block spectral-accent">
+        <div class="trait-name">Forma Umbral <span class="feat-level">Nív.18</span></div>
+        <div class="trait-desc">Ação bônus: gasta <em>6 SP</em> para se tornar uma sombra por <em>1 minuto</em>. Resistência a todo dano exceto radiante e força. Move através de criaturas e objetos. Se terminar turno dentro de objeto, sofre 5d6 de força.</div>
+      </div>
+      <div class="trait-block spectral-accent">
+        <div class="trait-name">Restauração Feiticeira <span class="feat-level">Nív.20</span></div>
+        <div class="trait-desc">Em um descanso curto, Morgana recupera <em>4 Pontos de Feitiçaria</em> perdidos. Uma vez por descanso longo.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <span class="feat-section-label">Feiticeiro de Base — Habilidades Gerais</span>
+    <div class="feature-grid">
+      <div class="trait-block">
+        <div class="trait-name">Fonte de Magia <span class="feat-level">Nív.2</span></div>
+        <div class="trait-desc"><em>20 Pontos de Feitiçaria</em> por descanso longo. Criar slot de magia com SP ou converter slot em SP. Alimenta todas as Metamagias.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Flexibilidade de Slots <span class="feat-level">Nív.2</span></div>
+        <div class="trait-desc">Converter slots em SP: 1°=1, 2°=2, 3°=3, 4°=4, 5°=5. Criar slot com SP: 2°=3, 3°=5, 4°=6, 5°=7. Máx slot criado: 5°.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <span class="feat-section-label">Metamagia</span>
+    <div class="feature-grid">
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Magia Amplificada <span class="feat-level">1 SP</span></div>
+        <div class="trait-desc">Ao rolar dano, relança até <em>5 dados</em> e usa o novo resultado. Perfeita com Sombra Atormentada ou Praga para maximizar dano de área.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Magia Elevada <span class="feat-level">3 SP</span></div>
+        <div class="trait-desc">Um alvo tem <em>desvantagem</em> no TR contra a magia. Fundamental com Grilhões da Alma ou Dedo da Morte — garante o efeito no alvo prioritário.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Magia Acelerada <span class="feat-level">2 SP</span></div>
+        <div class="trait-desc">Lança magia de ação como <em>ação bônus</em>. Permite combo de Escudo Negro + Grilhões, ou Vínculo das Trevas + Sombra Atormentada na mesma rodada.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Magia Buscadora <span class="feat-level">2 SP</span></div>
+        <div class="trait-desc">Requer concentração: relança o Toque Gelado ou Vínculo das Trevas sem penalidade por cobertura total ou invisibilidade do alvo.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <span class="feat-section-label">Raça — Aasimar (Caída)</span>
+    <div class="feature-grid">
+      <div class="trait-block dim-accent">
+        <div class="trait-name">Resistência Celestial</div>
+        <div class="trait-desc">Resistência a dano <em>necrótico</em> e <em>radiante</em>. Reduz metade do dano dessas fontes — permite trocar golpes com criaturas de necromancia.</div>
+      </div>
+      <div class="trait-block dim-accent">
+        <div class="trait-name">Mãos Curas <span class="feat-level">1×/longo</span></div>
+        <div class="trait-desc">Ação: cura uma criatura tocada por <em>PV igual ao nível dela (20 PV)</em>. Alternativa a gastar um slot valioso em situação de emergência.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <span class="feat-section-label">Talentos (Feats)</span>
+    <div class="feature-grid">
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Conjurador de Guerra <span class="feat-level">Nív.4</span></div>
+        <div class="trait-desc">Vantagem em TRs de Constituição para manter concentração. Pode realizar componentes somáticos mesmo com mãos ocupadas. Pode lançar magia como Ataque de Oportunidade.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Resistente (Constituição) <span class="feat-level">Nív.8</span></div>
+        <div class="trait-desc">+1 CON (chegando a 18 → 20 com item). Proficiência em TRs de Constituição (+11 total com bônus). Combinado com Vantagem do War Caster, manter concentração é quase garantido.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAGIAS ───────────────────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Repertório de Magias</div>
   <div class="spell-meta">
-      <span class="spell-tag">CD 19</span>
-      <span class="spell-tag">Ataque +11</span>
-      <span class="spell-tag">Carisma</span>
-      
-    </div><div class="spell-section-label">Truques (Cantrips)</div><div class="spell-grid"><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Chill Touch</span><span class="sc-desc">4d8 necrótico · Bloq. cura</span></div><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Prestidigitação</span><span class="sc-desc">Efeitos menores</span></div></div><div class="spell-section-label">Magias</div><div class="spell-grid"><div class="sc"><span class="sc-type">3° </span><span class="sc-name">Dark Binding</span><span class="sc-desc">⛓ TR Con CD 19 · Imóvel → Enraizado · 27m</span></div><div class="sc"><span class="sc-type">6° </span><span class="sc-name">Tormented Shadow</span><span class="sc-desc">8d6 necrótico/turno · Raio 9m · 1h conc.</span></div><div class="sc"><span class="sc-type">1° </span><span class="sc-name">Black Shield</span><span class="sc-desc">Imunidade encantamento/ilusão · 8h conc.</span></div><div class="sc"><span class="sc-type">4° </span><span class="sc-name">Blight</span><span class="sc-desc">8d8 necrótico · TR Con · Plantas: sem TR</span></div><div class="sc"><span class="sc-type">7° </span><span class="sc-name">Forcecage</span><span class="sc-desc">Sem TR · 6m³ · 1h · Sem concentração</span></div><div class="sc"><span class="sc-type">4° </span><span class="sc-name">Banishment</span><span class="sc-desc">TR Car CD 19 · Exílio · Permanente 1 min</span></div><div class="sc"><span class="sc-type">5° </span><span class="sc-name">Dominate Person</span><span class="sc-desc">TR Sab CD 19 · Controle 1 min</span></div></div>
+    <span class="spell-tag">CD 19 CON/SAB</span>
+    <span class="spell-tag">Ataque +11</span>
+    <span class="spell-tag">Carisma</span>
+    <span class="spell-tag gold">15 Magias Conhecidas</span>
+    <span class="spell-tag">20 SP por Descanso Longo</span>
+  </div>
+
+  <div class="spell-section-label">Truques (Cantrips) — conhece 4</div>
+  <div class="spell-grid">
+    <div class="sc cantrip">
+      <span class="sc-type">Truque · Atq +11</span>
+      <span class="sc-name">Toque Gelado</span>
+      <span class="sc-desc">4d8 necrótico · Bloqueia cura e regeneração por 1 turno · Alcance 45m</span>
+    </div>
+    <div class="sc cantrip">
+      <span class="sc-type">Truque · CD 19 SAB</span>
+      <span class="sc-name">Toque do Vácuo</span>
+      <span class="sc-desc">1d12 necrótico se alvo ferido, 1d8 se sano · Sem TR se sano · Alcance 18m</span>
+    </div>
+    <div class="sc cantrip">
+      <span class="sc-type">Truque</span>
+      <span class="sc-name">Prestidigitação</span>
+      <span class="sc-desc">Efeitos mágicos menores · Comunicação não-verbal, disfarces simples, limpeza</span>
+    </div>
+    <div class="sc cantrip">
+      <span class="sc-type">Truque · Atq +11</span>
+      <span class="sc-name">Raio de Gelo</span>
+      <span class="sc-desc">2d8 frio + velocidade 0 até fim do próximo turno do alvo · Alcance 18m</span>
+    </div>
+  </div>
+
+  <div class="spell-section-label">Magias Conhecidas — Nível 1°–9°</div>
+  <div class="spell-grid">
+    <div class="sc">
+      <span class="sc-type">1° · Conc. 8h</span>
+      <span class="sc-name">Armadura de Mago</span>
+      <span class="sc-desc">CA = 13 + mod DES (15 sem armadura) · Descarta se usar armadura</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">1° · Conc. 10 min</span>
+      <span class="sc-name">Armadura de Agathys</span>
+      <span class="sc-desc">5×slot PV temp (25 em 5°) · Atacante mêlée sofre mesmo valor em frio</span>
+    </div>
+    <div class="sc signature">
+      <span class="sc-type">2° · CD 19 SAB · Conc. 1 min</span>
+      <span class="sc-name">Prender Pessoa</span>
+      <span class="sc-desc">Paralisado · Golpes adjacentes = vantagem + crítico automático · Upcast: +1 alvo/slot</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">2° · Bônus</span>
+      <span class="sc-name">Passo Nevoeiro</span>
+      <span class="sc-desc">Teleporta 18m para espaço visível livre · Reposicionamento ou fuga imediata</span>
+    </div>
+    <div class="sc signature">
+      <span class="sc-type">3° · Conc. 1 min · CD 19 SAB</span>
+      <span class="sc-name">Medo</span>
+      <span class="sc-desc">Cone 9m · Amedrontados + fujam · TR no fim de cada turno · Poderoso em abertura</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">3° · Reação</span>
+      <span class="sc-name">Contrafeitiço</span>
+      <span class="sc-desc">Cancela magia ≤3° slot automaticamente · ≥4° slot: CD 10+nível da magia</span>
+    </div>
+    <div class="sc signature">
+      <span class="sc-type">4° · CD 19 CON</span>
+      <span class="sc-name">Praga</span>
+      <span class="sc-desc">8d8 necrótico · TR CON CD 19 p/ metade · Plantas: máx dano sem TR · Alcance 9m</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">4° · Conc. 1 min · CD 19 CAR</span>
+      <span class="sc-name">Banimento</span>
+      <span class="sc-desc">Exílio até 1 min · Permanente se mantida · Excelente contra criaturas de outros planos</span>
+    </div>
+    <div class="sc signature">
+      <span class="sc-type">5° · Conc. 1 min · CD 19 SAB</span>
+      <span class="sc-name">Prender Monstro</span>
+      <span class="sc-desc">Como Prender Pessoa mas funciona em qualquer criatura · Crítico automático adjacente</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">5° · TR CON · Cone 18m</span>
+      <span class="sc-name">Cone de Frio</span>
+      <span class="sc-desc">8d8 frio · Metade em sucesso · Mortes = estátua de gelo (sem animação)</span>
+    </div>
+    <div class="sc signature">
+      <span class="sc-type">6° · Conc. 1 min · CD 19 CON</span>
+      <span class="sc-name">Sombra Atormentada</span>
+      <span class="sc-desc">6d6 necrótico/turno · Raio 6m · Visibilidade 0 · Sem concentração de movem para sair · 27m</span>
+    </div>
+    <div class="sc signature">
+      <span class="sc-type">6° · Conc. 3 rodadas · CD 19 CON</span>
+      <span class="sc-name">Grilhões da Alma</span>
+      <span class="sc-desc">6d6/turno necrótico · Raio 9m · 3° rodada: falha = Atordoado + 5d6 psíquico</span>
+    </div>
+    <div class="sc peak">
+      <span class="sc-type">7° · Sem conc. · CD 19 CON</span>
+      <span class="sc-name">Dedo da Morte</span>
+      <span class="sc-desc">7d8+30 necrótico · Humanóide morto = Zumbi sob controle permanente de Morgana</span>
+    </div>
+    <div class="sc peak">
+      <span class="sc-type">7° · Sem TR · 10m cubo</span>
+      <span class="sc-name">Gaiola de Força</span>
+      <span class="sc-desc">Aprisionamento absoluto 1h · Nenhuma teleportação funciona · Sem concentração · Inescapável</span>
+    </div>
+    <div class="sc peak">
+      <span class="sc-type">9° · Automático · 18m</span>
+      <span class="sc-name">Palavra de Poder: Matar</span>
+      <span class="sc-desc">Sem TR, sem save · Alvo com ≤100 PV morre instantaneamente · Combine com dano prévio</span>
+    </div>
+  </div>
+
+  <div class="spell-section-label">Magia Gratuita — Subclasse</div>
+  <div class="spell-grid">
+    <div class="sc">
+      <span class="sc-type">2° · Grátis via 2 SP · Conc. 10 min</span>
+      <span class="sc-name">Escuridão</span>
+      <span class="sc-desc">Esfera 4,5m · Visão mágica bloqueada · Andar nas Sombras: teleporte de Morgana dentro</span>
+    </div>
+  </div>
 </div>
 
-
-
-
-<!-- ── PERSONALIDADE ─────────────────────────── -->
+<!-- ── EQUIPAMENTO ─────────────────────────────────────── -->
 <div class="sec">
-  <div class="sec-title">Personalidade</div>
-  <div class="trait-block"><div class="trait-name">Traços de Personalidade</div><div class="trait-desc">Carrega o peso de ser deusamente errada. Optou por ser humanamente certa.</div></div><div class="trait-block"><div class="trait-name">Ideais</div><div class="trait-desc">Justiça não é divina — é mortal. Os deuses julgam por decretos; mortais por compreensão.</div></div><div class="trait-block"><div class="trait-name">Vínculos</div><div class="trait-desc">Os mortais que a humanidade negligenciou. Os condenados sem compreensão.</div></div><div class="trait-block"><div class="trait-name">Fraquezas</div><div class="trait-desc">Incapaz de perdoar Kayle. Essa relação nunca será resolvida enquanto ambas existirem.</div></div>
+  <div class="sec-title">Equipamento &amp; Itens Mágicos</div>
+  <ul class="trait-list">
+    <li><strong>Cajado das Sombras Eternas</strong> — Foco arcano +2, permite conjurar sem componentes materiais, brilha com luz negra em 3m</li>
+    <li><strong>Manto das Asas Caídas</strong> — CA +1, resistência a dano de queda, concede um uso gratuito de Passo Nevoeiro por descanso longo</li>
+    <li><strong>Amuleto da Constituição</strong> — CON +2 (já incluído nos atributos)</li>
+    <li><strong>Correntes de Alma Forjadas</strong> — Foco para Grilhões da Alma: +1 no CD da habilidade</li>
+    <li><strong>Grimório das Trevas Ancestrais</strong> — Contém conhecimento de magias proibidas, permite consultar sobre planos inferiores</li>
+    <li><strong>Poções de Cura Maior ×3</strong> — Cura 4d4+4 PV como ação bônus</li>
+    <li><strong>Pergaminhos de Contrafeitiço ×2</strong> — Para emergências sem slots disponíveis</li>
+    <li><strong>Gemas de Foco ×5</strong> — Componentes materiais para magias de alto nível</li>
+  </ul>
 </div>
 
-<div class="divider">✦ ✧ ✦</div>
+<!-- ── PERSONALIDADE ───────────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Personalidade &amp; Lore</div>
+  <div class="feature-grid">
+    <div class="trait-block">
+      <div class="trait-name">Traços de Personalidade</div>
+      <div class="trait-desc">Carrega o peso de ter sido <em>divinamente errada</em>. Optou por ser <em>humanamente certa</em>. Fala pouco, observa tudo. Quando age, é com precisão cirúrgica — as correntes não mentem sobre intenção.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Ideais</div>
+      <div class="trait-desc"><em>Justiça não é divina — é mortal.</em> Os deuses julgam por decreto; mortais julgam por compreensão. Morgana protege aqueles que o sistema celestial esqueceu, prendendo quem os explora.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Vínculos</div>
+      <div class="trait-desc">Os mortais que a humanidade negligenciou. Os condenados sem julgamento justo. Cada criatura aprisionada por suas correntes foi declarada culpada por uma razão que Morgana considerou <em>real, não conveniente</em>.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Fraquezas</div>
+      <div class="trait-desc">Incapaz de perdoar <em>Kayle</em> — a irmã que escolheu a lei dos céus sobre a irmã de sangue. Essa ferida nunca cicatrizará enquanto ambas existirem. A menção do nome provoca reação desproporcional.</div>
+    </div>
+  </div>
 
-<!-- ── FOOTER ────────────────────────────────── -->
+  <div class="divider">⛓ ✦ ⛓</div>
+
+  <div class="trait-block" style="margin-top:16px;">
+    <div class="trait-name">Histórico — A Queda de Morgana</div>
+    <div class="trait-desc">
+      Há eras, duas filhas celestiais foram enviadas ao mundo dos mortais: <em>Kayle</em> e <em>Morgana</em>. Kayle abraçou a lei sagrada dos Celestiais — julgamento, punição, ordem. Morgana observou os mortais com outros olhos.<br><br>
+      Ela viu que a lei sagrada era cega. Viu condenações sem culpa, execuções sem compreensão. Quando se recusou a punir inocentes em nome do decreto celestial, Kayle a chamou de traidora. Morgana caiu — não expulsa, mas <em>escolhendo cair</em>. Suas asas brancas enegreceram, não de corrupção, mas de <em>recusa</em>.<br><br>
+      Agora ela percorre o plano material como guardiã dos esquecidos. Suas correntes não aprisionam aleatoriamente — elas enrolam os que merecem ser parados. Sua magia das sombras é a manifestação de uma verdade que os céus não querem admitir: <em>às vezes, as trevas protegem mais do que a luz.</em>
+    </div>
+  </div>
+</div>
+
+<div class="divider">🦋 · · · ⛓ · · · 🦋</div>
+
+<!-- ── GUIA DE PROGRESSÃO ───────────────────────────────── -->
+<div class="sec">
+  <div class="sec-title">Guia de Progressão — Níveis 1 a 20</div>
+  <p style="font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:18px;">Feiticeira · Magia das Sombras · Aasimar (Caída) · Clique nos níveis para expandir</p>
+
+  <!-- NÍVEL 1 -->
+  <div class="guide-level tier-1">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 1</span>
+      <span class="level-title">A Queda Escolhida — Fundamentos da Feiticeira das Sombras</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Habilidades de Subclasse:</strong> <em>Olhos das Trevas</em> — Visão no Escuro de 36 metros. Aprende <em>Escuridão</em> gratuitamente. <em>Força do Túmulo</em> — quando reduzida a 0 PV, TR de Carisma para sobreviver com 1 PV (1× por longo).</p>
+      <p><strong>Truques escolhidos (2):</strong> <span class="spell-pill">Toque Gelado</span> — 1d8 necrótico (escala com nível), bloqueia cura; <span class="spell-pill">Toque do Vácuo</span> — 1d8 ou 1d12 necrótico sem TR.</p>
+      <p><strong>Magias conhecidas (2):</strong> <span class="spell-pill">Armadura de Mago</span> (CA 13+DES = 15 logo de início) e <span class="spell-pill">Prender Pessoa</span> (TR SAB, paralisado 1 min, crítico automático adjacente).</p>
+      <p><strong>Tática nível 1:</strong> Mantenha Armadura de Mago ativa sempre. Use Toque Gelado como ataque principal enquanto economiza o slot de Prender Pessoa para o inimigo mais perigoso do encontro.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 2 -->
+  <div class="guide-level tier-1">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 2</span>
+      <span class="level-title">Fonte de Magia — Primeiros Pontos de Feitiçaria</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Habilidade nova:</strong> <em>Fonte de Magia</em> — 2 Pontos de Feitiçaria. Pode converter slot em SP (slot 1° = 2 SP) ou criar slot com SP (slot 1° = 2 SP).</p>
+      <p><strong>Magia nova:</strong> <span class="spell-pill">Armadura de Agathys</span> — 1° nível concede 5 PV temporários + 5 de frio quem atacar em mêlée. Em 5° slot: 25 PV temp + 25 frio por hit. Excelente quando Morgana é encurralada.</p>
+      <p><strong>Tática nível 2:</strong> No começo de dias com múltiplos encontros, lance Armadura de Mago (gratuito com foco arcano sem SP) e economize slots. A Força do Túmulo já dá margem de segurança real neste nível.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 3 -->
+  <div class="guide-level tier-1">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 3</span>
+      <span class="level-title">Metamagia — O Controle Começa Aqui</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Habilidade nova:</strong> Escolha 2 Metamagias. Escolha <em>Magia Acelerada</em> (2 SP — lança magia de ação como ação bônus) e <em>Magia Elevada</em> (3 SP — impõe desvantagem no TR).</p>
+      <p><strong>Magias novas (2° nível disponível):</strong> <span class="spell-pill">Passo Nevoeiro</span> — teleporte de ação bônus 18m, reposicionamento ou escape instantâneo. <span class="spell-pill">Medo</span> — cone 9m, amedrontados fogem e têm desvantagem.</p>
+      <p><strong>Combo nível 3:</strong> Magia Acelerada (Prender Pessoa como bônus) + Toque do Vácuo como ação = controle + dano no mesmo turno. Custa apenas 2 SP.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 4 -->
+  <div class="guide-level tier-1">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 4</span>
+      <span class="level-title">Conjurador de Guerra — A Concentração Garantida</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>ASI escolhida:</strong> <em>Conjurador de Guerra</em> — Vantagem nos TRs de CON para concentração. A Prender Pessoa ou Medo agora sobrevive a quase qualquer hit.</p>
+      <p><strong>Truque novo (total 3):</strong> <span class="spell-pill">Prestidigitação</span> — para roleplay e disfarces.</p>
+      <p><strong>Magia nova (3° nível):</strong> <span class="spell-pill">Contrafeitiço</span> — reação para cancelar magia ≤3° automaticamente. Morgana agora protege o grupo de conjuradores inimigos.</p>
+      <p><strong>Por que War Caster aqui?</strong> A Magia das Sombras vive de magias de concentração. War Caster não é conforto — é necessidade estrutural. Sem ele, qualquer hit pode encerrar o combo principal.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 5 -->
+  <div class="guide-level tier-2">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 5</span>
+      <span class="level-title">Tier 2 — Slots de 3° e Poder Real</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Magias novas (3° nível):</strong> <span class="spell-pill">Vínculo das Trevas</span> (homebrew — 2d8 necrótico + Enraizado 2 rodadas) e <span class="spell-pill">Praga</span> (8d8 necrótico, TR CON, excelente contra uma criatura).</p>
+      <p><strong>Combo central do personagem ativa:</strong> Vínculo das Trevas em ação bônus (Magia Acelerada, 2 SP) + Sombra Atormentada sobre o alvo enraizado. Ele não pode escapar da zona de dano — o loop começa.</p>
+      <p><strong>Dano estimado turno 5:</strong> Vínculo das Trevas ~9 necrótico + Sombra Atormentada 21/turno = <em>~30 dano médio por turno</em> com o alvo preso. Inacessível para um personagem neste tier.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 6 -->
+  <div class="guide-level tier-2">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 6</span>
+      <span class="level-title">Cão do Mau Presságio — Pressão Tripla</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Habilidade nova:</strong> <em>Cão do Mau Presságio</em> — gasta 3 SP para invocar Mastim Sombrio que impõe <em>desvantagem nos TRs de concentração</em> de um alvo específico. O Cão age na iniciativa de Morgana, move-se e já aplica o efeito passivamente.</p>
+      <p><strong>Magia nova (4° nível):</strong> <span class="spell-pill">Banimento</span> — TR CAR CD 19. Jogadores de caster inimigo nem percebem o que aconteceu: sumiram por 1 minuto. Permanente se mantido.</p>
+      <p><strong>Sinergia nível 6:</strong> Cão no feiticeiro inimigo → desvantagem p/ cancelar sua concentração → Morgana mantém Sombra Atormentada com mais segurança. Enquanto o grupo lida com a zona, o Cão garante que o mago deles não vai resolver o problema.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 7 -->
+  <div class="guide-level tier-2">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 7</span>
+      <span class="level-title">Arsenal de Controle — Opções em Todo Encontro</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Magias novas (4° nível):</strong> <span class="spell-pill">Prender Monstro</span> (5° nível) — como Prender Pessoa mas para qualquer criatura, TR SAB. Crítico automático em adjacência = dano dobrado.</p>
+      <p><strong>Magia nova:</strong> <span class="spell-pill">Raio de Gelo</span> (truque 4) — 2d8 frio + velocidade 0 até próximo turno. Alternativa de controle sem gastar SP.</p>
+      <p><strong>Tática nível 7:</strong> Escolha entre Prender Pessoa (slot 2°, humanos/humanoides), Prender Monstro (slot 5°, qualquer criatura) ou Medo (cone, grupos). O encontro dita qual ferramenta usar.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 8 -->
+  <div class="guide-level tier-2">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 8</span>
+      <span class="level-title">Resistente (Constituição) — Concentração Impossível de Quebrar</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>ASI escolhida:</strong> <em>Resistente (Constituição)</em> — +1 CON (para 17), proficiência em TRs de CON (+9 total). Combinado com Vantagem de War Caster:</p>
+      <p>Exemplo: sofre 30 de dano, TR de concentração CD 15. Com +9 e vantagem em 2d20, a chance de falha é de aproximadamente <em>4%</em>. Morgana mantém concentração em praticamente qualquer situação.</p>
+      <p><strong>Magia nova (4° slot):</strong> <span class="spell-pill">Cone de Frio</span> — 8d8 frio, cone 18m, metade em sucesso. Limpa multidões de inimigos menores quando não é necessário controle individual.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 9 -->
+  <div class="guide-level tier-2">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 9</span>
+      <span class="level-title">Slots de 5° — Paralisar Qualquer Coisa</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Magias novas:</strong> <span class="spell-pill">Prender Monstro</span> em 5° slot — paralisa qualquer criatura. Com Heightened Spell (3 SP): desvantagem no TR = ~75% de chance de paralisar sem magia de suporte.</p>
+      <p><strong>Combo prender + crítico garantido:</strong> Prender Monstro (5° slot + Heightened, 3 SP total) → aliado corpo a corpo → crítico automático 2d6+modificador dobrado. Bárbaros e paladinos amam Morgana por isso.</p>
+      <p><strong>Combo Armadura de Agathys em 5° slot:</strong> 25 PV temporários + 25 de frio reflexivo por hit. Contra inimigos de mêlée que não podem evitar atacar, isso devolve dano massivo passivamente.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 10 -->
+  <div class="guide-level tier-2">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 10</span>
+      <span class="level-title">Metamagia Extra — A Caixa de Ferramentas se Expande</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Terceira Metamagia:</strong> <em>Magia Amplificada</em> (1 SP) — relança até 5 dados de dano. Fundamental com Sombra Atormentada (6d6 → tente novamente os dados ruins) ou Praga (8d8).</p>
+      <p><strong>Magia nova:</strong> <span class="spell-pill">Escudo Negro</span> (homebrew) — ação bônus, proteção mágica em aliado. Permite que aliados avancem pela Sombra Atormentada ou resistam a controles mágicos inimigos.</p>
+      <p><strong>Posição estratégica nível 10:</strong> Morgana é a âncora de controle + proteção do grupo. Zona de Sombra Atormentada + Escudo Negro no tanque = campo de batalha sob total domínio.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 11 -->
+  <div class="guide-level tier-3">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 11</span>
+      <span class="level-title">Tier 3 — Slots de 6° e Poder de Campanha</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Magia nova (6° slot):</strong> <span class="spell-pill">Grilhões da Alma</span> (homebrew ultimate) — 6d6 necrótico/turno em raio 9m, 3 rodadas, falha ao final = Atordoado + 5d6 psíquico.</p>
+      <p><strong>Abertura de combate com Grilhões nível 11:</strong></p>
+      <p>Rodada 1: Grilhões da Alma (6° slot) → 6d6 = 21 médio em AoE.<br>
+      Rodada 2: Ação bônus Magia Acelerada (2 SP) para Vínculo das Trevas no mais perigoso + Grilhões continuam (21 médio).<br>
+      Rodada 3: TR final → Atordoados tomam mais 5d6 = 17 psíquico.</p>
+      <p><strong>Total médio em 3 alvos, 3 rodadas:</strong> ~(21+21+38) = 80 cada = <em>240 dano combinado em área sem uma única magia adicional</em>.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 12 -->
+  <div class="guide-level tier-3">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 12</span>
+      <span class="level-title">ASI — Carisma 20, CD 19 Permanente</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>ASI escolhida:</strong> +2 CAR (de 18 para 20). CD de magia: <em>19</em>. Ataque mágico: <em>+11</em>. Este é o pico de CAR — todas as magias de controle ficam significativamente mais difíceis de resistir.</p>
+      <p><strong>Magia nova:</strong> <span class="spell-pill">Sombra Atormentada</span> em slot 6° — 6d6/turno em zona de escuridão 6m raio. Sinergia com Escuridão (gratuito via Olhos das Trevas): Morgana vê perfeitamente dentro, inimigos estão efetivamente cegos.</p>
+      <p><strong>Tática nível 12:</strong> Escuridão + Sombra Atormentada na mesma posição = zona de dano com visibilidade zero. Inimigos dentro têm desvantagem em todos os ataques, e TR de CON constante. Com CD 19, muitos inimigos de tier 3 falham com frequência.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 13 -->
+  <div class="guide-level tier-3">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 13</span>
+      <span class="level-title">Arsenal Completo — Slots de 7°</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Magias novas (7° slot):</strong> <span class="spell-pill">Dedo da Morte</span> — 7d8+30 necrótico (média <em>61,5</em>), TR CON CD 19. Se matar um humanóide: <em>Zumbi permanente sob controle de Morgana</em>, sem limite de zumbis.</p>
+      <p><strong>Cálculo Dedo da Morte:</strong> 7d8+30 = 61 médio. Com Magia Amplificada (1 SP): relança os piores d8, média sobe para ~65. Contra alvo com CON +2, ~35% de chance de falhar no TR e tomar o dano completo.</p>
+      <p><strong>Magia nova:</strong> <span class="spell-pill">Gaiola de Força</span> — 7° slot, sem TR, aprisionamento absoluto 1h, sem concentração. Use em boss solitário enquanto o grupo lida com adds. Nenhuma magia de teleporte funciona para escapar.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 14 -->
+  <div class="guide-level tier-3">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 14</span>
+      <span class="level-title">Andar nas Sombras — Mobilidade Absoluta</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Habilidade nova:</strong> <em>Andar nas Sombras</em> — ação bônus, teleporta 36m entre quaisquer zonas de penumbra ou escuridão. Com a própria Escuridão ativa, Morgana se teletransporta livremente dentro e fora da zona a cada turno.</p>
+      <p><strong>Loop nível 14:</strong> Lance Escuridão (gratuito, 2 SP) em posição estratégica → Andar nas Sombras dentro da zona → lançar Sombra Atormentada na mesma posição → sair da zona → proxima rodada volta via Andar nas Sombras.</p>
+      <p><strong>Upcasting Prender Monstro:</strong> Slot 7° com Heightened Spell (3 SP) = desvantagem no TR + slot maior. Contra criaturas míticas, isso é necessário para garantir a paralisia.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 15 -->
+  <div class="guide-level tier-3">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 15</span>
+      <span class="level-title">Refinamento — Quarta Metamagia</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Quarta Metamagia:</strong> <em>Magia Buscadora</em> (2 SP) — relança ataque mágico sem penalidade por cobertura ou invisibilidade. Garante que Vínculo das Trevas e Toque Gelado acertem mesmo em alvos difíceis.</p>
+      <p><strong>Magia nova (8° slot disponível):</strong> <span class="spell-pill">Palavra de Poder: Atordoar</span> — sem TR, sem save, alvo com ≤150 PV fica Atordoado 1 turno automaticamente. Complementa o arsenal de controle para alvos fracos.</p>
+      <p><strong>Tática nível 15:</strong> Escolha entre Gaiola de Força (boss isolado), Grilhões da Alma (múltiplos médios), Dedo da Morte (eliminação + zumbi). A decisão é agora sempre sobre eficiência de SP versus impacto.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 16 -->
+  <div class="guide-level tier-3">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 16</span>
+      <span class="level-title">ASI — Constituição 20, Tanque Mágico Supremo</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>ASI escolhida:</strong> +2 CON (18 → 20). TR de Constituição: <em>+11</em>. PV: <em>172</em>. Com Vantagem e +11, a chance de falhar em TR de concentração contra hit de 30 de dano (CD 15) é menor que 2%.</p>
+      <p><strong>Combinação completa de sobrevivência:</strong><br>
+      — CA 16 (Armadura de Mago)<br>
+      — 172 PV<br>
+      — Resistência necrótico/radiante<br>
+      — Armadura de Agathys 25 PV temp<br>
+      — Forma Umbral (nível 18) resistência universal</p>
+      <p><strong>Morgana nível 16 é praticamente imatável por dano físico</strong> — o único problema real são magias que não requerem TR de concentração.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 17 -->
+  <div class="guide-level tier-4">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 17</span>
+      <span class="level-title">Tier 4 — Slots de 9° e Poder Divino</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Quinta Metamagia:</strong> Um último upgrade de Metamagia disponível a critério. Sugestão: <em>Magia Gêmea</em> (SP=nível do slot) — lança Prender Monstro em dois alvos com um slot. Dobra o controle instantaneamente.</p>
+      <p><strong>Magia nova (9° slot):</strong> <span class="spell-pill">Palavra de Poder: Matar</span> — sem TR, alvo com ≤100 PV morre instantaneamente. Use após dano prévio: Praga (8d8 ~36 médio) derruba um alvo para <100 PV, Palavra de Poder finalizando como ação bônus (Magia Acelerada, 2 SP).</p>
+      <p><strong>Combo nível 17 definitivo:</strong> Grilhões da Alma (AoE, 3 rodadas) + Cão do Mau Presságio no boss + Dedo da Morte no inimigo mais fraco → Zumbi aliado imediato. Um único turno transforma o campo de batalha.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 18 -->
+  <div class="guide-level tier-4">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 18</span>
+      <span class="level-title">Forma Umbral — Morgana Transcende a Forma Física</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Habilidade nova:</strong> <em>Forma Umbral</em> — ação bônus, gasta 6 SP. Morgana torna-se literalmente uma sombra por <em>1 minuto</em>:</p>
+      <p>— Resistência a <strong>todo dano</strong> exceto radiante e força<br>
+      — Move-se através de criaturas e objetos sólidos<br>
+      — Imune a condições de paralisia ou aprisionamento físico</p>
+      <p><strong>Estratégia Forma Umbral:</strong> Ative em combate de longa duração. Enquanto na forma, mantenha Grilhões da Alma ativo — você recebe metade do dano de retalho e atravessa paredes para reposicionar. Saia da forma para lançar uma última magia de alto nível antes do encerramento.</p>
+      <p><strong>Atenção:</strong> Terminar o turno dentro de um objeto sólido causa 5d6 de força — não atravesse paredes descuidadamente no final do turno.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 19 -->
+  <div class="guide-level tier-4">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 19</span>
+      <span class="level-title">ASI Final — Último Ajuste</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>ASI escolhida:</strong> Duas opções viáveis:</p>
+      <p><strong>Opção A — Resistente (Sabedoria):</strong> +1 SAB + proficiência TRs SAB. Fecha o único TR fraco de Morgana (magias de controle mental como Dominação).</p>
+      <p><strong>Opção B — Talento Guerreiro Mágico:</strong> Proficiência em armadura média, aumentando CA para 18 sem precisar de Armadura de Mago.</p>
+      <p><strong>Magia nova:</strong> Último slot de magia disponível. Sugestão: <span class="spell-pill">Sugestão em Massa</span> — controle sem concentração em 12 criaturas por 24h. Ferramente diplomática/social poderosa além do combate.</p>
+    </div>
+  </div>
+
+  <!-- NÍVEL 20 -->
+  <div class="guide-level tier-4">
+    <div class="level-header" onclick="toggleLevel(this)">
+      <span class="level-num">NÍV. 20</span>
+      <span class="level-title">A Guardiã dos Esquecidos — Kit Completo</span>
+      <span class="level-toggle">▼</span>
+    </div>
+    <div class="level-body">
+      <p><strong>Habilidade final:</strong> <em>Restauração Feiticeira</em> — em descanso curto, recupera 4 SP perdidos (1× por longo). Em encontros longos, este recurso equivale a mais 2 usos de Magia Acelerada ou outro SP-combo.</p>
+      <p><strong>Estatísticas finais:</strong> CA 16, 172 PV, CD 19, Ataque +11, 20 SP. Com Restauração Feiticeira + descanso curto: efetivamente <em>24 SP úteis</em> em dias longos.</p>
+      <p><strong>Sequência de combate definitiva (nível 20):</strong></p>
+      <p><em>Pré-combate:</em> Armadura de Mago ativa (CA 15 → 16 com item). Se boss conhecido, Armadura de Agathys em 5° slot (25 PV temp + 25 frio reflexivo).</p>
+      <p><em>Rodada 1:</em> Véu Necrótico (ação bônus) → amedrontados em 3m → Grilhões da Alma em 6° slot com Heightened Spell (3 SP) no boss — desvantagem no TR → dano AoE começa (6d6 = 21 médio em todos).</p>
+      <p><em>Rodada 2:</em> Magia Acelerada (2 SP) → Vínculo das Trevas no boss como ação bônus (Enraizado) → Dedo da Morte (7° slot) no segundo inimigo mais forte — 7d8+30 médio 61 dano, se matar: Zumbi aliado imediato. Grilhões continuam (21/turno AoE).</p>
+      <p><em>Rodada 3:</em> Prender Monstro (5° slot + Heightened, 3 SP) no boss ainda enraizado — paralisado = crítico automático para aliados. Grilhões terminam: falha final = Atordoado + 5d6.</p>
+      <p><em>Se necessário:</em> Palavra de Poder: Matar (9° slot) em alvo com ≤100 PV — encerramento instantâneo.</p>
+      <p><strong>Dano total estimado (3 rodadas, boss + 2 adds):</strong><br>
+      Boss: Vínculo 9 + Grilhões 21×3 + Prender Monstro (0, controle) = ~72 direto + críticos do grupo<br>
+      Add 1: Dedo da Morte ~61 → Zumbi (grátis)<br>
+      Adds: Grilhões 21×3 = 63 cada<br>
+      <em>Total combinado ~200–250+ de dano distribuído em 3 rodadas</em>, mais controle total sobre o campo de batalha.</p>
+      <p><strong>Morgana nível 20 não é apenas um caster de dano — é a arquiteta do combate.</strong> Ela decide quem se move, quem vive, quem morre e quando. As correntes não aprisionam por crueldade: elas protegem aqueles que Morgana escolheu defender.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider">⛓ ✦ ⛓</div>
+
+<!-- ── FOOTER ──────────────────────────────────────────── -->
 <div class="footer">
-  <p>Morgana · Feiticeiro Magia das Sombras · Nível 20</p>
-  <p>D&amp;D 5e · League of Legends · Sistema de Fichas RPG</p>
+  <p>Morgana · Feiticeira Magia das Sombras · Nível 20</p>
+  <p>D&amp;D 5e · League of Legends · Aasimar (Caída)</p>
+  <p>Akasharium · Sistema de Fichas RPG</p>
 </div>
 
 </div><!-- /page -->
 
 <script>
-(function() {
-  const particles = "🌑🖤✦".split("");
-  const container = document.getElementById('particleBg');
-  for (let i = 0; i < 20; i++) {
-    const p = document.createElement('span');
-    p.className = 'particle';
-    p.textContent = particles[i % particles.length];
-    p.style.left = (Math.random() * 100) + '%';
-    p.style.animationDuration = (12 + Math.random() * 18) + 's';
-    p.style.animationDelay = (Math.random() * 20) + 's';
-    p.style.fontSize = (9 + Math.random() * 6) + 'px';
-    container.appendChild(p);
+(function(){
+  const bg = document.getElementById('atmoBg');
+
+  // Fallen feathers (30)
+  const featherHeights = [14,16,18,12,20,15,22,13,17,19,11,18,16,14,21,15,13,20,12,18,16,14,19,17,15,22,11,16,20,13];
+  for(let i=0;i<30;i++){
+    const f=document.createElement('div');
+    f.className='feather';
+    f.style.cssText=`left:${Math.random()*102-1}%;top:-5%;height:${featherHeights[i]}px;--fr:${-30+Math.random()*60}deg;--fdx:${-40+Math.random()*80}px;animation-duration:${14+Math.random()*20}s;animation-delay:${Math.random()*25}s;`;
+    bg.appendChild(f);
+  }
+
+  // Chain links (18)
+  const chainSymbols=['⛓','⛓','⛓'];
+  for(let i=0;i<18;i++){
+    const c=document.createElement('div');
+    c.className='chain-link';
+    c.textContent=chainSymbols[i%3];
+    c.style.cssText=`top:${Math.random()*100}%;--cy:${-20+Math.random()*40}px;animation-duration:${20+Math.random()*25}s;animation-delay:${Math.random()*30}s;font-size:${10+Math.random()*8}px;`;
+    bg.appendChild(c);
   }
 })();
-</script>
 
+function toggleLevel(header){
+  const body=header.nextElementSibling;
+  const toggle=header.querySelector('.level-toggle');
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  toggle.style.transform=isOpen?'':'rotate(180deg)';
+}
+</script>
 </body>
 </html>

@@ -3,20 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neuvillette — O Iudex — A Última Wyrm das Águas · Ficha D&amp;D 5e</title>
+<title>Neuvillette — O Iudex — A Última Wyrm das Águas · Ficha D&D 5e</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root{
   --primary:    #0d47a1;
-  --mid:        #1976d2;
+  --mid:        #1565c0;
   --bright:     #64b5f6;
+  --cyan:       #00acc1;
+  --ice:        #b3e5fc;
   --pale:       #e8f4ff;
   --dark:       #010408;
   --darker:     #010306;
   --card:       #040c1c;
-  --card-light: #081428;
+  --card-light: #061220;
   --text:       #b8d8f8;
-  --text-dim:   #385870;
+  --text-dim:   #3a5870;
   --mist:       #0a1e3c;
   --gold:       #c9a227;
   --gold-light: #e8c85a;
@@ -25,40 +27,178 @@
   --glow:       rgba(13,71,161,0.15);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15%,rgba(13,71,161,0.15) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(100,181,246,0.06) 0%,transparent 45%);font-family:'EB Garamond',Georgia,serif;color:var(--text);line-height:1.75;}
-.page{max-width:960px;margin:0 auto;padding:0 0 80px;}
+body{
+  background:var(--darker);
+  background-image:
+    radial-gradient(ellipse at 10% 20%,rgba(13,71,161,0.18) 0%,transparent 50%),
+    radial-gradient(ellipse at 85% 75%,rgba(0,172,193,0.10) 0%,transparent 45%),
+    radial-gradient(ellipse at 50% 50%,rgba(100,181,246,0.04) 0%,transparent 60%);
+  font-family:'EB Garamond',Georgia,serif;
+  color:var(--text);
+  line-height:1.75;
+}
+.page{max-width:min(960px,100vw - 1rem);margin:0 auto;padding:0 0 80px;}
 
-/* FLOATING PARTICLES */
-.particle-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
-.particle{position:absolute;font-size:11px;opacity:0;animation:floatP ease-in-out infinite;filter:blur(0.4px);color:var(--bright);}
-@keyframes floatP{0%{transform:translateY(108vh) translateX(0) rotate(0deg) scale(0.5);opacity:0;}8%{opacity:0.25;}50%{transform:translateY(50vh) translateX(35px) rotate(180deg) scale(0.75);opacity:0.15;}92%{opacity:0.06;}100%{transform:translateY(-8vh) translateX(-20px) rotate(340deg) scale(0.4);opacity:0;}}
+/* ATMO BG */
+#atmoBg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+
+/* RAIN DROPS */
+.rain-drop{
+  position:absolute;
+  top:-20px;
+  width:1.5px;
+  height:14px;
+  background:linear-gradient(180deg,transparent,var(--bright),rgba(100,181,246,0.3));
+  border-radius:0 0 2px 2px;
+  animation:rainFall linear infinite;
+  opacity:0;
+}
+@keyframes rainFall{
+  0%{transform:translateY(0) translateX(0);opacity:0;}
+  5%{opacity:0.4;}
+  90%{opacity:0.15;}
+  100%{transform:translateY(110vh) translateX(var(--rdx,8px));opacity:0;}
+}
+
+/* ICE CRYSTALS */
+.ice-crystal{
+  position:absolute;
+  width:5px;height:5px;
+  background:var(--ice);
+  transform:rotate(45deg);
+  opacity:0;
+  animation:crystalDrift ease-in-out infinite alternate;
+  box-shadow:0 0 6px var(--bright);
+}
+@keyframes crystalDrift{
+  0%{transform:rotate(45deg) translateX(0) translateY(0);opacity:0;}
+  20%{opacity:0.35;}
+  50%{transform:rotate(135deg) translateX(var(--cdx,20px)) translateY(-15px);opacity:0.2;}
+  80%{opacity:0.1;}
+  100%{transform:rotate(225deg) translateX(calc(var(--cdx,20px)*-0.5)) translateY(10px);opacity:0;}
+}
+
+/* WATER RIPPLES */
+.water-ripple{
+  position:absolute;
+  width:60px;height:30px;
+  border-radius:50%;
+  border:1px solid rgba(100,181,246,0.25);
+  transform:translate(-50%,-50%) scale(0);
+  animation:rippleOut ease-out infinite;
+  opacity:0;
+}
+@keyframes rippleOut{
+  0%{transform:translate(-50%,-50%) scale(0);opacity:0.5;}
+  100%{transform:translate(-50%,-50%) scale(8);opacity:0;}
+}
+
+/* DEPTH PARTICLES */
+.depth-orb{
+  position:absolute;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(0,172,193,0.15),transparent 70%);
+  animation:depthFloat ease-in-out infinite alternate;
+  pointer-events:none;
+}
+@keyframes depthFloat{
+  0%{transform:translateX(0) translateY(0);opacity:0.3;}
+  100%{transform:translateX(var(--dox,30px)) translateY(var(--doy,-20px));opacity:0.08;}
+}
+
+/* WATERMARK */
+.wm{
+  position:fixed;
+  bottom:8%;right:5%;
+  font-size:160px;
+  opacity:0.03;
+  pointer-events:none;
+  filter:grayscale(0.5);
+  user-select:none;
+  animation:wmBreathe 12s ease-in-out infinite alternate;
+}
+@keyframes wmBreathe{
+  0%{opacity:0.025;transform:scale(1);}
+  100%{opacity:0.04;transform:scale(1.04);}
+}
 
 /* HEADER */
-.header{background:linear-gradient(165deg,#010408 0%,#040c1c 50%,#010408 100%);border-bottom:2px solid var(--primary);position:relative;overflow:hidden;z-index:1;}
-.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 64px,rgba(13,71,161,0.15) 64px,rgba(13,71,161,0.15) 65px);}
-.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--mid),var(--bright),var(--mid),transparent);opacity:0.55;}
+.header{
+  background:linear-gradient(165deg,#010408 0%,#040c1c 50%,#010408 100%);
+  border-bottom:2px solid var(--primary);
+  position:relative;overflow:hidden;z-index:1;
+}
+.header::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(55deg,transparent,transparent 64px,rgba(13,71,161,0.12) 64px,rgba(13,71,161,0.12) 65px);
+}
+.header::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--mid),var(--cyan),var(--bright),var(--cyan),var(--mid),transparent);
+  opacity:0.6;
+}
 .header-inner{display:flex;align-items:stretch;position:relative;z-index:1;}
 
 /* PORTRAIT */
-.header-portrait{width:220px;flex-shrink:0;background:#010408;border-right:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
-.portrait-inner{width:100%;height:290px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.portrait-photo{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 0.4s ease;}
+.header-portrait{
+  width:220px;flex-shrink:0;
+  background:#010408;
+  border-right:2px solid var(--primary);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;
+}
+.portrait-inner{
+  width:100%;height:290px;
+  position:relative;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+.portrait-photo{
+  width:100%;height:100%;
+  object-fit:cover;object-position:top center;
+  display:block;transition:transform 0.4s ease;
+  animation:portraitGlowN 8s ease-in-out infinite alternate;
+}
+@keyframes portraitGlowN{
+  0%{filter:brightness(0.95) saturate(1.1);}
+  100%{filter:brightness(1.05) saturate(1.2) drop-shadow(0 0 12px rgba(100,181,246,0.3));}
+}
 .portrait-photo:hover{transform:scale(1.04);}
 .portrait-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,#010306aa 100%);pointer-events:none;}
-.portrait-label{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--bright);opacity:0.6;text-transform:uppercase;text-shadow:0 0 8px var(--primary);}
+.portrait-label{
+  position:absolute;bottom:12px;left:0;right:0;text-align:center;
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;
+  color:var(--bright);opacity:0.6;text-transform:uppercase;
+  text-shadow:0 0 8px var(--primary);
+}
 
 /* HEADER TEXT */
 .header-text{flex:1;padding:34px 44px;}
 .header-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--mid);opacity:0.85;text-transform:uppercase;margin-bottom:10px;}
-.header-name{font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:var(--pale);text-shadow:0 0 50px rgba(13,71,161,0.5),0 0 15px rgba(13,71,161,0.3);letter-spacing:2px;line-height:1;margin-bottom:4px;}
+.header-name{
+  font-family:'Cinzel',serif;font-size:42px;font-weight:900;
+  color:var(--pale);
+  text-shadow:0 0 50px rgba(13,71,161,0.6),0 0 18px rgba(100,181,246,0.3);
+  letter-spacing:2px;line-height:1;margin-bottom:4px;
+  animation:nameGlowN 6s ease-in-out infinite alternate;
+}
+@keyframes nameGlowN{
+  0%{text-shadow:0 0 40px rgba(13,71,161,0.5),0 0 12px rgba(100,181,246,0.2);}
+  100%{text-shadow:0 0 70px rgba(13,71,161,0.7),0 0 25px rgba(100,181,246,0.4),0 0 4px rgba(179,229,252,0.3);}
+}
 .header-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);margin-bottom:20px;letter-spacing:1.5px;opacity:0.95;}
 .header-tags{display:flex;gap:7px;flex-wrap:wrap;}
 .tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 11px;border:1px solid var(--border);color:var(--text-dim);text-transform:uppercase;background:rgba(13,71,161,0.15);}
-.tag.hi{background:rgba(13,71,161,0.15);border-color:var(--mid);color:var(--bright);}
+.tag.hi{background:rgba(13,71,161,0.18);border-color:var(--mid);color:var(--bright);}
 .tag.gold{background:rgba(201,162,39,0.10);border-color:rgba(201,162,39,0.4);color:var(--gold-light);}
 
 /* STATS BAR */
-.stats-bar{background:var(--card);border-bottom:1px solid var(--border);padding:13px 40px;display:flex;flex-wrap:wrap;position:relative;z-index:1;gap:0;}
+.stats-bar{
+  background:var(--card);
+  border-bottom:1px solid var(--border);
+  padding:13px 40px;
+  display:flex;flex-wrap:wrap;
+  position:relative;z-index:1;gap:0;
+}
 .stat-item{flex:1;border-right:1px solid var(--border);padding:0 18px;text-align:center;min-width:90px;}
 .stat-item:first-child{padding-left:0;}.stat-item:last-child{border-right:none;padding-right:0;}
 .stat-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
@@ -66,20 +206,30 @@ body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15
 
 /* SECTION */
 .sec{padding:0 40px;margin-top:32px;position:relative;z-index:1;}
-.sec-title{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
-.sec-title::before{content:'✦';font-size:11px;color:var(--gold);}
+.sec-title{
+  font-family:'Cinzel',serif;font-size:11px;font-weight:700;
+  letter-spacing:5px;text-transform:uppercase;
+  color:var(--mid);
+  border-bottom:1px solid var(--border);
+  padding-bottom:8px;margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.sec-title::before{content:'🌊';font-size:13px;}
 
 /* ATTRIBUTES */
-.attr-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px;}
-.attr-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:12px 4px 10px;position:relative;}
+.attr-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:12px;}
+.attr-box{background:var(--card);border:1px solid var(--border);text-align:center;padding:12px 4px 10px;position:relative;transition:border-color 0.2s;}
+.attr-box:hover{border-color:var(--bright);}
 .attr-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--primary);opacity:0.45;}
 .attr-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:4px;}
 .attr-value{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:var(--text);display:block;line-height:1;}
 .attr-value.peak{color:var(--bright);text-shadow:0 0 14px rgba(13,71,161,0.45);}
 .attr-mod{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--mid);display:block;margin-top:3px;}
 
-/* COMBAT NOTES */
-.special-notes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+/* INFO PILLS */
+.info-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.info-pill{background:var(--card);border:1px solid var(--border);padding:8px 14px;font-size:13px;color:var(--text-dim);}
+.info-pill strong{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--mid);text-transform:uppercase;display:block;margin-bottom:3px;}
 
 /* SAVES & SKILLS */
 .two-col{display:grid;grid-template-columns:230px 1fr;gap:16px;}
@@ -92,13 +242,14 @@ body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15
 .save-name,.skill-name{flex:1;color:var(--text);}
 .skill-attr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text-dim);width:28px;}
 .save-score,.skill-score{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text-dim);width:28px;text-align:right;}
-.save-score.filled,.skill-score.filled,.skill-score.peak{color:var(--bright);}
+.save-score.filled,.skill-score.filled{color:var(--bright);}
+.skill-score.peak{color:var(--cyan);}
 
 /* ATTACKS */
 .attack-table{width:100%;border-collapse:collapse;font-size:13px;}
 .attack-table th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);background:rgba(13,71,161,0.15);}
-.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(13,71,161,0.40);color:var(--text);vertical-align:top;}
-.attack-table tr:hover td{background:rgba(13,71,161,0.15);}
+.attack-table td{padding:8px 10px;border-bottom:1px solid rgba(13,71,161,0.35);color:var(--text);vertical-align:top;}
+.attack-table tr:hover td{background:rgba(13,71,161,0.12);}
 .attack-name{font-family:'Cinzel',serif;font-size:12px;color:var(--pale);}
 .attack-bonus{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--bright);font-weight:700;}
 .attack-damage{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--gold-light);}
@@ -108,44 +259,83 @@ body{background:var(--darker);background-image:radial-gradient(ellipse at 15% 15
 .feat-section{margin-bottom:10px;}
 .feat-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:12px 0 8px;}
 .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.trait-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);padding:12px 14px;}
+.trait-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);padding:12px 14px;transition:border-color 0.2s;}
+.trait-block:hover{border-color:var(--border-bright);}
 .trait-block.gold-accent{border-left-color:var(--gold);}
 .trait-block.dim-accent{border-left-color:var(--mist);}
+.trait-block.cyan-accent{border-left-color:var(--cyan);}
 .trait-name{font-family:'Cinzel',serif;font-size:11px;color:var(--bright);letter-spacing:0.5px;margin-bottom:5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
 .trait-block.gold-accent .trait-name{color:var(--gold-light);}
 .trait-block.dim-accent .trait-name{color:var(--text-dim);}
+.trait-block.cyan-accent .trait-name{color:var(--cyan);}
 .trait-desc{font-size:13.5px;color:var(--text-dim);line-height:1.6;}
 .trait-desc em{font-style:italic;color:var(--bright);}
 .trait-desc strong{color:var(--text);}
 .feat-level{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;background:rgba(13,71,161,0.15);color:var(--mid);padding:1px 6px;}
+
+/* MECHANIC BOXES */
+.mech-box{background:linear-gradient(135deg,#040c1c,#061624);border:1px solid var(--border-bright);border-left:4px solid var(--cyan);padding:18px 20px;margin-bottom:14px;position:relative;overflow:hidden;}
+.mech-box::before{content:'';position:absolute;top:0;right:0;bottom:0;width:3px;background:linear-gradient(180deg,transparent,var(--cyan),transparent);opacity:0.4;}
+.mech-title{font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:var(--ice);letter-spacing:1px;margin-bottom:3px;text-transform:uppercase;}
+.mech-subtitle{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--cyan);opacity:0.8;margin-bottom:10px;}
+.mech-body{font-size:13.5px;color:var(--text-dim);line-height:1.65;}
+.mech-body strong{color:var(--text);}
+.mech-body em{color:var(--bright);font-style:normal;}
+.mech-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px;}
+.mech-table th{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);padding:4px 8px;border-bottom:1px solid var(--border);text-align:left;background:rgba(0,172,193,0.06);}
+.mech-table td{padding:5px 8px;border-bottom:1px solid rgba(13,71,161,0.2);color:var(--text-dim);}
+.mech-table tr:last-child td{border-bottom:none;}
+.mech-table td:first-child{color:var(--bright);font-family:'Share Tech Mono',monospace;}
 
 /* SPELLS */
 .spell-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
 .spell-tag{background:var(--card-light);color:var(--bright);font-family:'Cinzel',serif;font-size:10px;padding:3px 9px;letter-spacing:1px;border:1px solid var(--border);display:inline-block;}
 .spell-tag.gold{background:rgba(201,162,39,0.08);color:var(--gold-light);border-color:rgba(201,162,39,0.28);}
 .spell-section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.5px;color:var(--bright);font-weight:700;display:block;margin:13px 0 8px;}
-.spell-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:7px;}
-.sc{background:var(--card-light);border:1px solid var(--border);border-top:2px solid var(--mist);padding:9px 12px 10px;display:flex;flex-direction:column;gap:3px;}
+.spell-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:7px;}
+.sc{background:var(--card-light);border:1px solid var(--border);border-top:2px solid var(--mist);padding:9px 12px 10px;display:flex;flex-direction:column;gap:3px;transition:border-color 0.2s;}
+.sc:hover{border-color:var(--border-bright);}
 .sc.cantrip{border-top-color:rgba(13,71,161,0.40);}
 .sc.expanded{border-top-color:var(--gold);}
+.sc.core{border-top-color:var(--cyan);}
 .sc-type{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);opacity:0.65;}
 .sc-name{font-family:'Cinzel',serif;font-size:11.5px;font-weight:600;color:var(--bright);letter-spacing:0.4px;}
 .sc.cantrip .sc-name{color:var(--text-dim);}
 .sc.expanded .sc-name{color:var(--gold-light);}
+.sc.core .sc-name{color:var(--cyan);}
 .sc-desc{font-size:12px;color:var(--text-dim);line-height:1.5;margin-top:1px;}
 
-/* TRAIT LIST (equipment) */
+/* TRAIT LIST */
 ul.trait-list{list-style:none;padding:0;}
 ul.trait-list li{padding:3px 0 3px 18px;position:relative;font-size:14px;line-height:1.65;color:var(--text-dim);}
 ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold);font-size:7px;top:7px;}
 
+/* PROGRESSION GUIDE */
+.prog-level{margin-bottom:6px;border:1px solid var(--border);}
+.prog-header{
+  background:var(--card);
+  padding:10px 16px;
+  cursor:pointer;
+  display:flex;align-items:center;gap:14px;
+  transition:background 0.2s;
+  user-select:none;
+}
+.prog-header:hover{background:rgba(13,71,161,0.18);}
+.prog-level-num{
+  font-family:'Cinzel',serif;font-size:11px;font-weight:700;
+  color:var(--cyan);letter-spacing:2px;min-width:52px;
+}
+.prog-level-title{font-family:'EB Garamond',serif;font-size:14px;color:var(--text);flex:1;}
+.prog-arrow{font-size:10px;color:var(--text-dim);transition:transform 0.2s;}
+.prog-body{display:none;padding:12px 16px;background:rgba(4,12,28,0.6);font-size:13.5px;color:var(--text-dim);line-height:1.7;}
+.prog-body.open{display:block;}
+.prog-body strong{color:var(--text);}
+.prog-body em{color:var(--bright);font-style:normal;}
+.prog-body ul{margin:6px 0 6px 18px;}
+.prog-body ul li{margin-bottom:3px;}
+
 /* DIVIDER */
 .divider{text-align:center;margin:24px 0;color:var(--mist);font-size:14px;letter-spacing:14px;opacity:0.5;}
-
-/* INFO PILLS */
-.info-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
-.info-pill{background:var(--card);border:1px solid var(--border);padding:8px 14px;font-size:13px;color:var(--text-dim);}
-.info-pill strong{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--mid);text-transform:uppercase;display:block;margin-bottom:3px;}
 
 /* FOOTER */
 .footer{margin-top:50px;padding:22px 40px;text-align:center;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent 0%,#01030699 100%);position:relative;z-index:1;}
@@ -170,17 +360,17 @@ ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold
 </head>
 <body>
 
-<!-- Floating Particles -->
-<div class="particle-bg" id="particleBg"></div>
+<div id="atmoBg"></div>
 
 <div class="page">
 
-<!-- ── HEADER ─────────────────────────────────── -->
+<!-- HEADER -->
 <div class="header">
   <div class="header-inner">
     <div class="header-portrait">
       <div class="portrait-inner">
-        <img class="portrait-photo" src="/portraits/neuvillette.jpg" alt="Neuvillette" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img class="portrait-photo" src="/portraits/neuvillette.jpg" alt="Neuvillette"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;font-size:64px;opacity:0.15;filter:drop-shadow(0 0 20px var(--bright));">🐉</div>
         <div class="portrait-overlay"></div>
       </div>
@@ -191,177 +381,882 @@ ul.trait-list li::before{content:'◆';position:absolute;left:0;color:var(--gold
       <div class="header-name">Neuvillette</div>
       <div class="header-sub">O Iudex — A Última Wyrm das Águas</div>
       <div class="header-tags">
-        <span class="tag hi">Yuan-ti Pureblood</span><span class="tag hi">Feiticeiro</span><span class="tag hi">Origem Dracônica (Água/Frio)</span><span class="tag hi">Genshin Impact</span><span class="tag">Antecedente: Magistrado</span><span class="tag">Nív. 20</span>
+        <span class="tag hi">Yuan-ti Pureblood</span>
+        <span class="tag hi">Feiticeiro</span>
+        <span class="tag hi">Origem Dracônica (Água/Frio)</span>
+        <span class="tag hi">Genshin Impact</span>
+        <span class="tag">Magistrado</span>
+        <span class="tag">Nív. 20</span>
+        <span class="tag gold">Controlador · DPS</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── STATS BAR ──────────────────────────────── -->
+<!-- STATS BAR -->
 <div class="stats-bar">
-<div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">18</span></div><div class="stat-item"><span class="stat-label">PV</span><span class="stat-value">204</span></div><div class="stat-item"><span class="stat-label">Deslocamento</span><span class="stat-value">9m</span></div><div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value">+0</span></div><div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div><div class="stat-item"><span class="stat-label">CD de Magia</span><span class="stat-value">19</span></div><div class="stat-item"><span class="stat-label">Atq. Mágico</span><span class="stat-value">+11</span></div>
+  <div class="stat-item"><span class="stat-label">CA</span><span class="stat-value">18</span></div>
+  <div class="stat-item"><span class="stat-label">PV</span><span class="stat-value">204</span></div>
+  <div class="stat-item"><span class="stat-label">Deslocamento</span><span class="stat-value">9m / Voo 9m</span></div>
+  <div class="stat-item"><span class="stat-label">Iniciativa</span><span class="stat-value">+0</span></div>
+  <div class="stat-item"><span class="stat-label">Prof. Bônus</span><span class="stat-value">+6</span></div>
+  <div class="stat-item"><span class="stat-label">CD de Magia</span><span class="stat-value">19</span></div>
+  <div class="stat-item"><span class="stat-label">Atq. Mágico</span><span class="stat-value">+11</span></div>
+  <div class="stat-item"><span class="stat-label">Pt. Feitiçaria</span><span class="stat-value">20</span></div>
 </div>
 
-<!-- ── IDENTIDADE ────────────────────────────── -->
+<!-- IDENTIDADE -->
 <div class="sec">
   <div class="sec-title">Identidade</div>
   <div class="info-pills">
     <div class="info-pill"><strong>Raça</strong>Yuan-ti Pureblood</div>
-    <div class="info-pill"><strong>Classe</strong>Feiticeiro</div>
+    <div class="info-pill"><strong>Classe</strong>Feiticeiro Nív.20</div>
     <div class="info-pill"><strong>Subclasse</strong>Origem Dracônica (Água/Frio)</div>
     <div class="info-pill"><strong>Antecedente</strong>Magistrado</div>
     <div class="info-pill"><strong>Tendência</strong>Leal Neutro</div>
     <div class="info-pill"><strong>Idiomas</strong>Comum, Aquan, Dracônico</div>
     <div class="info-pill"><strong>Dado de Vida</strong>20d6</div>
-    <div class="info-pill"><strong>Magia</strong>Carisma</div>
+    <div class="info-pill"><strong>Atributo Mágico</strong>Carisma</div>
   </div>
-  <div class="info-pills"><span class='tag hi'>sorceryPoints: 20</span></div>
 </div>
 
-<!-- ── ATRIBUTOS ──────────────────────────────── -->
+<!-- ATRIBUTOS -->
 <div class="sec">
   <div class="sec-title">Atributos</div>
   <div class="attr-grid">
-        <div class="attr-box">
-          <span class="attr-label">FOR</span>
-          <span class="attr-value ">10</span>
-          <span class="attr-mod">+0</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">DES</span>
-          <span class="attr-value ">10</span>
-          <span class="attr-mod">+0</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">CON</span>
-          <span class="attr-value peak">20</span>
-          <span class="attr-mod">+5</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">INT</span>
-          <span class="attr-value ">16</span>
-          <span class="attr-mod">+3</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">SAB</span>
-          <span class="attr-value ">14</span>
-          <span class="attr-mod">+2</span>
-        </div>
-        <div class="attr-box">
-          <span class="attr-label">CAR</span>
-          <span class="attr-value peak">20</span>
-          <span class="attr-mod">+5</span>
-        </div></div>
-  <p style="font-size:12px;color:var(--text-dim);font-style:italic;">Mage Armor natural (13 + Con 5 = 18 sem armadura)</p>
+    <div class="attr-box">
+      <span class="attr-label">FOR</span>
+      <span class="attr-value">10</span>
+      <span class="attr-mod">+0</span>
+    </div>
+    <div class="attr-box">
+      <span class="attr-label">DES</span>
+      <span class="attr-value">10</span>
+      <span class="attr-mod">+0</span>
+    </div>
+    <div class="attr-box">
+      <span class="attr-label">CON</span>
+      <span class="attr-value peak">20</span>
+      <span class="attr-mod">+5</span>
+    </div>
+    <div class="attr-box">
+      <span class="attr-label">INT</span>
+      <span class="attr-value">16</span>
+      <span class="attr-mod">+3</span>
+    </div>
+    <div class="attr-box">
+      <span class="attr-label">SAB</span>
+      <span class="attr-value">14</span>
+      <span class="attr-mod">+2</span>
+    </div>
+    <div class="attr-box">
+      <span class="attr-label">CAR</span>
+      <span class="attr-value peak">20</span>
+      <span class="attr-mod">+5</span>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--text-dim);font-style:italic;">Armadura Mágica natural: 13 + Mod.Des 0 + Mod.Con 5 = <strong style="color:var(--bright)">CA 18</strong> permanente sem armadura física</p>
 </div>
 
-<!-- ── SALVAGUARDAS & PERÍCIAS ─────────────── -->
+<!-- SALVAGUARDAS & PERÍCIAS -->
 <div class="sec">
   <div class="sec-title">Salvaguardas &amp; Perícias</div>
   <div class="two-col">
     <div>
       <div class="feat-section-label">Salvaguardas</div>
-      <ul class="save-list"><li class="save-item"><span class="prof-dot "></span><span class="save-name">Força</span><span class="save-score ">+0</span></li><li class="save-item"><span class="prof-dot "></span><span class="save-name">Destreza</span><span class="save-score ">+0</span></li><li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Constituição</span><span class="save-score filled">+11</span></li><li class="save-item"><span class="prof-dot "></span><span class="save-name">Inteligência</span><span class="save-score ">+3</span></li><li class="save-item"><span class="prof-dot "></span><span class="save-name">Sabedoria</span><span class="save-score ">+2</span></li><li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Carisma</span><span class="save-score filled">+11</span></li></ul>
+      <ul class="save-list">
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Força</span><span class="save-score">+0</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Destreza</span><span class="save-score">+0</span></li>
+        <li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Constituição</span><span class="save-score filled">+11</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Inteligência</span><span class="save-score">+3</span></li>
+        <li class="save-item"><span class="prof-dot"></span><span class="save-name">Sabedoria</span><span class="save-score">+2</span></li>
+        <li class="save-item"><span class="prof-dot filled"></span><span class="save-name">Carisma</span><span class="save-score filled">+11</span></li>
+      </ul>
+      <p style="font-size:11px;color:var(--text-dim);font-style:italic;margin-top:8px;">Yuan-ti: Vantagem em todos os TRs contra magias</p>
     </div>
     <div>
       <div class="feat-section-label">Perícias</div>
-      
+      <ul class="skill-list">
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-attr">INT</span><span class="skill-name">Arcanismo</span><span class="skill-score filled">+9</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-attr">INT</span><span class="skill-name">História</span><span class="skill-score filled">+9</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-attr">SAB</span><span class="skill-name">Percepção</span><span class="skill-score filled">+8</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-attr">SAB</span><span class="skill-name">Intuição</span><span class="skill-score filled">+8</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-attr">CAR</span><span class="skill-name">Intimidação</span><span class="skill-score peak">+11</span></li>
+        <li class="skill-item"><span class="prof-dot filled"></span><span class="skill-attr">CAR</span><span class="skill-name">Persuasão</span><span class="skill-score peak">+11</span></li>
+      </ul>
     </div>
   </div>
 </div>
 
-
-
-
-<!-- ── HABILIDADES ───────────────────────────── -->
+<!-- ATAQUES -->
 <div class="sec">
-  <div class="sec-title">Habilidades</div>
-  <div class="feat-section"><div class="feat-section-label">Habilidades de Subclasse</div><div class="feature-grid"><div class="trait-block ">
-              <div class="trait-name">Resiliência Dracônica <span class="feat-level">Nív.1</span></div>
-              <div class="trait-desc">+1 PV/nível feiticeiro. CA natural 13+Des sem armadura.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Afinidade Elemental (Frio) <span class="feat-level">Nív.6</span></div>
-              <div class="trait-desc">+5 dano em magias de frio. Gasta 1 SP: resistência a frio 1h.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Dragon Wings <span class="feat-level">Nív.14</span></div>
-              <div class="trait-desc">Voo 9m como ação bônus. Sem concentração.</div>
-            </div><div class="trait-block ">
-              <div class="trait-name">Draconic Presence <span class="feat-level">Nív.18</span></div>
-              <div class="trait-desc">5 SP: aura 18m, TR Sab CD 19 ou encantado/amedrontado. Sem concentração.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Habilidades Raciais</div><div class="feature-grid"><div class="trait-block dim-accent">
-              <div class="trait-name">Magic Resistance </div>
-              <div class="trait-desc">Vantagem em todos os TRs contra magias e efeitos mágicos.</div>
-            </div><div class="trait-block dim-accent">
-              <div class="trait-name">Yuan-ti Purebloods </div>
-              <div class="trait-desc">Imunidade a veneno, encantamento e adormecimento mágico.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Talentos (Feats)</div><div class="feature-grid"><div class="trait-block gold-accent">
-              <div class="trait-name">Resilient (Con) <span class="feat-level">Nív.4</span></div>
-              <div class="trait-desc">+1 Con. Proficiência em TRs de Constituição.</div>
-            </div><div class="trait-block gold-accent">
-              <div class="trait-name">War Caster <span class="feat-level">Nív.8</span></div>
-              <div class="trait-desc">Vantagem em Con para concentração. Magia como AO.</div>
-            </div><div class="trait-block gold-accent">
-              <div class="trait-name">Elemental Adept (Frio) <span class="feat-level">Nív.12</span></div>
-              <div class="trait-desc">Magias de frio ignoram resistência. 1s e 2s tratados como 3.</div>
-            </div></div></div><div class="feat-section"><div class="feat-section-label">Metamagia</div><div class="feature-grid"><div class="trait-block gold-accent">
-              <div class="trait-name">Empowered Spell <span class="feat-level">1 SP</span></div>
-              <div class="trait-desc">Relança até 5 dados de dano, usa novos resultados.</div>
-            </div><div class="trait-block gold-accent">
-              <div class="trait-name">Twinned Spell <span class="feat-level">1 SP/nível</span></div>
-              <div class="trait-desc">Duplica magia de alvo único para dois alvos.</div>
-            </div><div class="trait-block gold-accent">
-              <div class="trait-name">Quickened Spell <span class="feat-level">2 SP</span></div>
-              <div class="trait-desc">Lança magia de ação como ação bônus.</div>
-            </div><div class="trait-block gold-accent">
-              <div class="trait-name">Subtle Spell <span class="feat-level">1 SP</span></div>
-              <div class="trait-desc">Conjura sem componentes verbais ou somáticos.</div>
-            </div></div></div>
+  <div class="sec-title">Ataques</div>
+  <table class="attack-table">
+    <thead>
+      <tr>
+        <th>Nome</th><th>Bônus de Ataque</th><th>Dano</th><th>Tipo</th><th>Notas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="attack-name">Raio de Gelo</span></td>
+        <td><span class="attack-bonus">+11</span></td>
+        <td><span class="attack-damage">4d8+5</span></td>
+        <td>Frio</td>
+        <td><span class="attack-notes">Truque, alcance 36m. Mín. 3/dado (Elemental Adept). Reduz vel. alvo -3m até fim do turno.</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Toque Gelado</span></td>
+        <td><span class="attack-bonus">+11</span></td>
+        <td><span class="attack-damage">4d8</span></td>
+        <td>Necrótico</td>
+        <td><span class="attack-notes">Truque, alcance 36m. Alvo não pode recuperar PV até início do próximo turno de N.</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Cone de Frio</span></td>
+        <td><span class="attack-bonus">TR Con CD 19</span></td>
+        <td><span class="attack-damage">8d8+5</span></td>
+        <td>Frio</td>
+        <td><span class="attack-notes">5° slot, cone 18m. Ignora resistência (E. Adept). Mín. 29 dano. Empowered SP p/ rolar baixos. Twinned 10 SP = dois cones.</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Tempestade de Gelo</span></td>
+        <td><span class="attack-bonus">TR Des CD 19</span></td>
+        <td><span class="attack-damage">2d8+5 frio + 4d6 conc.</span></td>
+        <td>Frio/Concussão</td>
+        <td><span class="attack-notes">4° slot, cilindro 6m/raio, 36m alcance. Cria terreno difícil (gelo) na área.</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Paralisar Monstro</span></td>
+        <td><span class="attack-bonus">TR Sab CD 19</span></td>
+        <td><span class="attack-damage">—</span></td>
+        <td>Controle</td>
+        <td><span class="attack-notes">5° slot, 18m. Falha: Paralisado até 1 min (TR/turno). Ataques contra paralisado têm vantagem e são críticos a alcance curto.</span></td>
+      </tr>
+      <tr>
+        <td><span class="attack-name">Palavra de Poder: Atordoar</span></td>
+        <td><span class="attack-bonus">Automático</span></td>
+        <td><span class="attack-damage">—</span></td>
+        <td>Atordoamento</td>
+        <td><span class="attack-notes">8° slot, 18m. Alvo com ≤150 PV fica Atordoado. TR Con CD 19 ao fim de cada turno p/ acordar.</span></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-<!-- ── MAGIAS ───────────────────────────────── -->
+<!-- MECÂNICAS ASSINATURA -->
+<div class="sec">
+  <div class="sec-title">Mecânicas Assinatura</div>
+
+  <div class="mech-box">
+    <div class="mech-title">Cone de Frio Gêmeo — Demolição em Cone Duplo</div>
+    <div class="mech-subtitle">Metamagia · Twinned Spell + Cone de Frio · Custo: 10 Pontos de Feitiçaria</div>
+    <div class="mech-body">
+      Neuvillette usa <em>Feitiço Gêmeo (10 SP)</em> para lançar <strong>Cone de Frio</strong> em dois alvos distintos com um único slot de 5°. Cada cone cobre 18m e atinge todas as criaturas na área — trata-se de duas origens de cone separadas, podendo cobrir direções opostas. Com <strong>Elemental Adept (Frio)</strong>, qualquer dado que resulte em 1 ou 2 é tratado como 3, tornando o mínimo garantido de <em>24+5 = 29 de dano por cone</em>.
+      <table class="mech-table">
+        <thead><tr><th>Condição</th><th>Dano por Cone</th><th>Total (dois alvos)</th></tr></thead>
+        <tbody>
+          <tr><td>Mínimo (E. Adept)</td><td>29 Frio</td><td>58+ Frio</td></tr>
+          <tr><td>Médio esperado</td><td>~45 Frio</td><td>~90 Frio</td></tr>
+          <tr><td>Máximo (8×8+5)</td><td>69 Frio</td><td>138 Frio</td></tr>
+          <tr><td>Com Empowered (+1 SP)</td><td>~52 Frio</td><td>~104 Frio</td></tr>
+        </tbody>
+      </table>
+      <strong>Custo total:</strong> 10 SP (Twinned 5°) + 1 SP opcional (Empowered). <strong>Resultado:</strong> duas áreas de cone devastadas em um único turno.
+    </div>
+  </div>
+
+  <div class="mech-box">
+    <div class="mech-title">Presença Dracônica — Aura de Domínio Sem Concentração</div>
+    <div class="mech-subtitle">Subclasse Nív.18 · Custo: 5 Pontos de Feitiçaria · Sem Concentração</div>
+    <div class="mech-body">
+      Com <em>Presença Dracônica</em>, Neuvillette gasta <strong>5 SP</strong> como ação para ativar uma aura de 18 metros por até 1 minuto — e por não exigir concentração, pode ser combinada com qualquer outra magia. Cada criatura que entre ou inicie o turno na aura deve superar um <strong>TR de Sabedoria CD 19</strong>; ao falhar, fica <em>Encantada</em> ou <em>Amedrontada</em> (Neuvillette escolhe).
+      <table class="mech-table">
+        <thead><tr><th>Recurso</th><th>Efeito</th><th>Compatibilidade</th></tr></thead>
+        <tbody>
+          <tr><td>5 SP</td><td>Aura 18m, Encantado/Amedrontado</td><td>+Cone de Frio</td></tr>
+          <tr><td>Sem conc.</td><td>Dura 1 min</td><td>+Lentidão ou Pressa</td></tr>
+          <tr><td>TR Sab CD 19</td><td>Maioria dos humanoides falha</td><td>+Paralisar Monstro</td></tr>
+        </tbody>
+      </table>
+      <strong>Combo letal:</strong> Presença Dracônica (Amedrontado) + Paralisar Monstro (concentração) = inimigos imóveis, assustados e paralisados simultaneamente, com Neuvillette voando acima do alcance corpo a corpo.
+    </div>
+  </div>
+
+  <div class="mech-box">
+    <div class="mech-title">Restauração Feiticeira — Ciclo de Resistência Infinita</div>
+    <div class="mech-subtitle">Nív.20 · Asas Dracônicas + Resistência Mágica + Restauração Feiticeira</div>
+    <div class="mech-body">
+      O kit completo de Neuvillette em nível 20 cria um loop de combate quase imbatível: <em>Asas Dracônicas</em> concedem voo de 9m sem concentração (ação bônus), mantendo-o fora de alcance corpo a corpo. <strong>Resistência Mágica (Yuan-ti)</strong> dá vantagem em todos os TRs contra magias, e <em>Constituição +11 em TRs</em> com War Caster torna impossível quebrar concentração. Após 10 minutos de combate, <strong>Restauração Feiticeira</strong> recupera 20 SP completos em 1 minuto.
+      <table class="mech-table">
+        <thead><tr><th>Pilar</th><th>Fonte</th><th>Benefício</th></tr></thead>
+        <tbody>
+          <tr><td>Voo permanente</td><td>Asas Dracônicas Nív.14</td><td>Nunca no chão; AO corpo a corpo impossível</td></tr>
+          <tr><td>CA 18 intrínseca</td><td>Resiliência Dracônica + Armadura Mágica</td><td>204 PV, CA 18 sem item</td></tr>
+          <tr><td>TR mágico</td><td>Yuan-ti Resistência</td><td>Vantagem contra todas as magias</td></tr>
+          <tr><td>Concentração +11</td><td>War Caster + Resilient Con</td><td>Quase impossível de quebrar</td></tr>
+          <tr><td>Recarga SP</td><td>Restauração Feiticeira</td><td>20 SP em 1 min, 1×/repouso longo</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- HABILIDADES -->
+<div class="sec">
+  <div class="sec-title">Habilidades</div>
+
+  <div class="feat-section">
+    <div class="feat-section-label">Subclasse — Origem Dracônica (Água/Frio)</div>
+    <div class="feature-grid">
+      <div class="trait-block">
+        <div class="trait-name">Resiliência Dracônica <span class="feat-level">Nív.1</span></div>
+        <div class="trait-desc">+1 PV permanente por nível de feiticeiro (total +20). CA natural sem armadura: 13 + Mod.Des. Com Armadura Mágica: 13 + Des + Con = <em>18</em>.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Afinidade Elemental (Frio) <span class="feat-level">Nív.6</span></div>
+        <div class="trait-desc">+5 de dano em qualquer magia que cause dano de Frio. Gastar 1 SP: resistência a dano de Frio por 1 hora.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Asas Dracônicas <span class="feat-level">Nív.14</span></div>
+        <div class="trait-desc">Ação bônus: manifesta asas dracônicas de água, obtendo deslocamento de voo 9m por até 1 hora. <em>Sem concentração</em>. Pode ser desativado/reativado livremente.</div>
+      </div>
+      <div class="trait-block">
+        <div class="trait-name">Presença Dracônica <span class="feat-level">Nív.18</span></div>
+        <div class="trait-desc">Gastar 5 SP: aura de 18m por 1 min. TR Sab CD 19 ou criatura fica Encantada ou Amedrontada. <em>Sem concentração.</em></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <div class="feat-section-label">Feiticeiro — Habilidades de Classe</div>
+    <div class="feature-grid">
+      <div class="trait-block dim-accent">
+        <div class="trait-name">Fonte de Feitiçaria <span class="feat-level">Nív.2</span></div>
+        <div class="trait-desc">20 Pontos de Feitiçaria (máximo). Converte slots em SP e SP em slots. Base de todo o sistema de Metamagia.</div>
+      </div>
+      <div class="trait-block dim-accent">
+        <div class="trait-name">Restauração Feiticeira <span class="feat-level">Nív.20</span></div>
+        <div class="trait-desc">Recupera 20 SP em 1 minuto de descanso. 1 vez por repouso longo. Permite segunda rodada completa de Metamagia devastadora.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <div class="feat-section-label">Metamagia</div>
+    <div class="feature-grid">
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Feitiço Potencializado <span class="feat-level">1 SP</span></div>
+        <div class="trait-desc">Relança até 5 dados de dano de uma magia, usando os novos resultados. Ideal para maximizar Cone de Frio quando os dados resultam em valores baixos.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Feitiço Gêmeo <span class="feat-level">1 SP/nível</span></div>
+        <div class="trait-desc">Duplica magia de alvo único para dois alvos simultâneos. Pressa em 2 aliados (5 SP). Cone de Frio duplo (10 SP). Paralisar Monstro duplo (5 SP).</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Feitiço Acelerado <span class="feat-level">2 SP</span></div>
+        <div class="trait-desc">Lança magia de ação como ação bônus. Permite atacar com Raio de Gelo E conjurar Cone de Frio no mesmo turno, ou aplicar Pressa a um aliado após atacar.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Feitiço Sutil <span class="feat-level">1 SP</span></div>
+        <div class="trait-desc">Lança magia sem componentes verbais ou somáticos. Permite conjurar silenciosamente em interrogatórios, mascarado em multidões, ou em zona de Silêncio.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <div class="feat-section-label">Habilidades Raciais — Yuan-ti Pureblood</div>
+    <div class="feature-grid">
+      <div class="trait-block cyan-accent">
+        <div class="trait-name">Resistência Mágica</div>
+        <div class="trait-desc">Vantagem em <em>todos</em> os testes de salvaguarda contra magias e efeitos mágicos. A mais poderosa defesa anti-magia do jogo.</div>
+      </div>
+      <div class="trait-block cyan-accent">
+        <div class="trait-name">Imunidades Yuan-ti</div>
+        <div class="trait-desc">Imune a veneno (dano e condição). Imune a Encantamento. Imune a adormecimento mágico. Nunca pode ser Enfeitiçado.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-section">
+    <div class="feat-section-label">Talentos</div>
+    <div class="feature-grid">
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Resiliente (Con) <span class="feat-level">Nív.4</span></div>
+        <div class="trait-desc">+1 Constituição (19→20). Proficiência em TRs de Constituição. Com +5 Con e +6 prof = <em>TR Con +11</em>. Manter concentração torna-se trivial.</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Conjurador de Guerra <span class="feat-level">Nív.8</span></div>
+        <div class="trait-desc">Vantagem em testes de Constituição para manter concentração. Pode lançar uma magia como ataque de oportunidade (em vez de ataque comum).</div>
+      </div>
+      <div class="trait-block gold-accent">
+        <div class="trait-name">Adepto Elemental (Frio) <span class="feat-level">Nív.12</span></div>
+        <div class="trait-desc">Magias de Frio ignoram resistência a Frio. Resultados 1 e 2 em dados de dano de Frio são tratados como 3. Mínimo garantido: <em>3 por d8</em>.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAGIAS -->
 <div class="sec">
   <div class="sec-title">Magia</div>
   <div class="spell-meta">
-      <span class="spell-tag">CD 19</span>
-      <span class="spell-tag">Ataque +11</span>
-      <span class="spell-tag">Carisma</span>
-      <span class="spell-tag gold">4/3/3/3/3/2/2/1/1</span>
-    </div><div class="spell-section-label">Truques (Cantrips)</div><div class="spell-grid"><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Ray of Frost</span><span class="sc-desc">4d8+5 frio · Vel. −3m · Ataque +11</span></div><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Chill Touch</span><span class="sc-desc">4d8 necrótico · Sem cura 1 turno · Ataque +11</span></div><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Shape Water</span><span class="sc-desc">Controla água à vontade · Solidifica</span></div><div class="sc cantrip"><span class="sc-type">Truque</span><span class="sc-name">Prestidigitação</span><span class="sc-desc">Efeitos frios menores à vontade</span></div></div><div class="spell-section-label">Magias</div><div class="spell-grid"><div class="sc"><span class="sc-type">5° </span><span class="sc-name">Cone of Cold</span><span class="sc-desc">8d8+5 frio · Empowered · Twinned · Ignora resistência</span></div><div class="sc"><span class="sc-type">3° </span><span class="sc-name">Slow</span><span class="sc-desc">6 criaturas · Vel÷2 −2CA −Rea/Bônus · 1 min</span></div><div class="sc"><span class="sc-type">4° </span><span class="sc-name">Ice Storm</span><span class="sc-desc">2d8+5 frio + 4d6 concussão · Terreno difícil</span></div><div class="sc"><span class="sc-type">5° </span><span class="sc-name">Hold Monster</span><span class="sc-desc">TR Sab CD 19 · Paralisado · Críticos auto</span></div><div class="sc"><span class="sc-type">3° </span><span class="sc-name">Haste</span><span class="sc-desc">Vel×2 +2CA vantagem Des ação extra · Twinned</span></div><div class="sc"><span class="sc-type">3° </span><span class="sc-name">Counterspell</span><span class="sc-desc">Reação · Auto-cancel ≤3°</span></div><div class="sc"><span class="sc-type">6° </span><span class="sc-name">Wall of Ice</span><span class="sc-desc">10 painéis · 10d6 frio ao atravessar</span></div><div class="sc"><span class="sc-type">7° </span><span class="sc-name">Prismatic Spray</span><span class="sc-desc">8 efeitos aleatórios · 10d6 vários tipos</span></div><div class="sc"><span class="sc-type">8° </span><span class="sc-name">Power Word Stun</span><span class="sc-desc">Atordoado se ≤150 PV · TR Con/turno</span></div><div class="sc"><span class="sc-type">9° </span><span class="sc-name">Wish</span><span class="sc-desc">Desejo ilimitado · Duplica até 8°</span></div></div>
+    <span class="spell-tag">CD 19</span>
+    <span class="spell-tag">Ataque +11</span>
+    <span class="spell-tag">Carisma</span>
+    <span class="spell-tag gold">Slots: 4/3/3/3/3/2/2/1/1</span>
+    <span class="spell-tag">20 Pontos de Feitiçaria</span>
+  </div>
+
+  <div class="spell-section-label">Truques (Cantrips)</div>
+  <div class="spell-grid">
+    <div class="sc cantrip">
+      <span class="sc-type">Truque · Evocação</span>
+      <span class="sc-name">Raio de Gelo</span>
+      <span class="sc-desc">Ataque de magia +11, alcance 36m. Dano: <strong>4d8+5 Frio</strong> (mín. 3/dado via E.Adept). Reduz velocidade do alvo em 3m até o início do próximo turno.</span>
+    </div>
+    <div class="sc cantrip">
+      <span class="sc-type">Truque · Necromancia</span>
+      <span class="sc-name">Toque Gelado</span>
+      <span class="sc-desc">Ataque de magia +11, alcance 36m. Dano: <strong>4d8 Necrótico</strong>. Alvo não pode recuperar PV até o início do próximo turno de N. Excelente anti-cura.</span>
+    </div>
+    <div class="sc cantrip">
+      <span class="sc-type">Truque · Transmutação</span>
+      <span class="sc-name">Modelar Água</span>
+      <span class="sc-desc">Controla água em cubo de 9m à vontade: mover, moldar, congelar, criar texto em gelo. Alcance 30m. Utility puro — cria pontes, lacres de gelo, mensagens.</span>
+    </div>
+    <div class="sc cantrip">
+      <span class="sc-type">Truque · Transmutação</span>
+      <span class="sc-name">Prestidigitação</span>
+      <span class="sc-desc">Cria efeitos mágicos menores à vontade: temperatura gelada, gosto, aparência, sons. Alcance 3m. Para interrogatórios e cerimônias legais.</span>
+    </div>
+  </div>
+
+  <div class="spell-section-label">Magias Conhecidas</div>
+  <div class="spell-grid">
+    <div class="sc core">
+      <span class="sc-type">3° Slot · Transmutação · Conc.</span>
+      <span class="sc-name">Lentidão</span>
+      <span class="sc-desc">Alcance 36m, cubo 12m, até 6 criaturas. TR Sab CD 19. Falha: velocidade ÷2, −2 CA, sem reações ou ações bônus, 1 ação OU 1 movimento/turno. Duração: 1 min.</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">4° Slot · Evocação</span>
+      <span class="sc-name">Tempestade de Gelo</span>
+      <span class="sc-desc">Alcance 45m, cilindro 6m. <strong>2d8+5 Frio + 4d6 Concussão</strong>. TR Des para metade. Cria terreno difícil de gelo na área pelo restante do combate.</span>
+    </div>
+    <div class="sc core">
+      <span class="sc-type">3° Slot · Abjuração · Reação</span>
+      <span class="sc-name">Contrafeitiço</span>
+      <span class="sc-desc">Reação ao ver criatura lançar magia a até 18m. Cancela automaticamente magias de 3° ou menos. Magias 4°+: TR Car CD 19 para cancelar.</span>
+    </div>
+    <div class="sc core">
+      <span class="sc-type">3° Slot · Transmutação · Conc.</span>
+      <span class="sc-name">Pressa</span>
+      <span class="sc-desc">Alcance 30m. Alvo: velocidade dobrada, +2 CA, vantagem em TR Des, ação adicional por turno. <em>Gêmeo (5 SP)</em>: aplica em 2 aliados. Duração: 1 min.</span>
+    </div>
+    <div class="sc core">
+      <span class="sc-type">5° Slot · Encantamento · Conc.</span>
+      <span class="sc-name">Paralisar Monstro</span>
+      <span class="sc-desc">Alcance 18m. TR Sab CD 19. Falha: Paralisado (TR/turno ao fim). Ataques contra paralisado têm vantagem; ataques de alcance 1,5m são críticos automáticos.</span>
+    </div>
+    <div class="sc core">
+      <span class="sc-type">5° Slot · Evocação</span>
+      <span class="sc-name">Cone de Frio</span>
+      <span class="sc-desc">Cone de 18m. TR Con CD 19, metade no sucesso. <strong>8d8+5 Frio</strong>, mín. 24+5=29 (E.Adept), ignora resistência. <em>Gêmeo (10 SP)</em>: dois cones.</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">6° Slot · Evocação · Conc. 1h</span>
+      <span class="sc-name">Parede de Gelo</span>
+      <span class="sc-desc">Alcance 36m. Cria 10 painéis de gelo adjacentes (2,5m×2,5m×0,3m cada). Criaturas ao atravessar: TR Con CD 19 ou <strong>10d6 Frio</strong>. Dura 1h ou até destruída.</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">7° Slot · Evocação</span>
+      <span class="sc-name">Spray Prismático</span>
+      <span class="sc-desc">Alcance 18m, cone. Cada criatura recebe 1d8 raios aleatórios: Fogo 10d6, Ácido 10d6, Frio 10d6, Elétrico 10d6, Veneno 10d6, Radiante 10d6, Dois raios, Portal dimensional.</span>
+    </div>
+    <div class="sc">
+      <span class="sc-type">8° Slot · Encantamento</span>
+      <span class="sc-name">Palavra de Poder: Atordoar</span>
+      <span class="sc-desc">Alcance 18m. Sem TR inicial. Alvo com <strong>≤ 150 PV</strong> fica Atordoado. TR Con CD 19 ao fim de cada turno para acordar. Knockout garantido em alvos danificados.</span>
+    </div>
+    <div class="sc expanded">
+      <span class="sc-type">9° Slot · Conjuração</span>
+      <span class="sc-name">Desejo</span>
+      <span class="sc-desc">Poder absoluto. Duplica qualquer magia de até 8° sem custo de componentes. Ou realiza um desejo dentro das limitações narrativas. 1×/repouso longo.</span>
+    </div>
+  </div>
 </div>
 
-
-
-
-<!-- ── PERSONALIDADE ─────────────────────────── -->
+<!-- PERSONALIDADE -->
 <div class="sec">
   <div class="sec-title">Personalidade</div>
-  <div class="trait-block"><div class="trait-name">Traços de Personalidade</div><div class="trait-desc">Fala com precisão cirúrgica. Nunca eleva a voz. Há uma quietude nele que é silêncio de montanha.</div></div><div class="trait-block"><div class="trait-name">Ideais</div><div class="trait-desc">A lei não é perfeita, mas é o que impede o caos. Quando a lei é injusta, seu dever é corrigi-la por dentro.</div></div><div class="trait-block"><div class="trait-name">Vínculos</div><div class="trait-desc">Fontaine e Furina. Séculos de coexistência — e arrependimento por não ter interferido quando podia.</div></div><div class="trait-block"><div class="trait-name">Fraquezas</div><div class="trait-desc">Resolve tudo com a lei mesmo quando compaixão seria mais eficiente. Quando a lei falha, fica genuinamente sem saber o que fazer.</div></div>
+  <div class="feature-grid">
+    <div class="trait-block">
+      <div class="trait-name">Traços de Personalidade</div>
+      <div class="trait-desc">Fala com precisão cirúrgica. Nunca eleva a voz. Há uma quietude nele que é silêncio de oceano profundo — não ausência de emoção, mas domínio absoluto sobre ela.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Ideais</div>
+      <div class="trait-desc">A lei não é perfeita, mas é o que impede o caos. Quando a lei é injusta, o dever do Iudex é corrigi-la por dentro — nunca ignorá-la, nunca quebrá-la sem julgamento.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Vínculos</div>
+      <div class="trait-desc">Fontaine e todos os seus habitantes. E Furina — séculos de coexistência, de arrependimento por não ter interferido quando podia. Deve-lhe uma dívida que não consegue nomear.</div>
+    </div>
+    <div class="trait-block">
+      <div class="trait-name">Fraquezas</div>
+      <div class="trait-desc">Resolve tudo com a lei mesmo quando compaixão seria mais eficiente. Quando a lei falha genuinamente, fica sem referência — sua fundação é também sua prisão.</div>
+    </div>
+  </div>
+</div>
+
+<!-- LORE -->
+<div class="sec">
+  <div class="sec-title">Lore</div>
+  <div class="trait-block" style="margin-bottom:12px;">
+    <div class="trait-name">A Última Wyrm das Águas</div>
+    <div class="trait-desc">
+      Neuvillette não é humano. É a encarnação do <strong>Hydro Dragon</strong> — o espírito primordial que governava as águas de Fontaine muito antes de Focalors assumir o papel de Archon. Ele existia quando os continentes eram diferentes, quando o mar obedecia sua vontade não por força, mas por direito natural. Com a chegada dos Archons e a reorganização do mundo, concordou em dividir o domínio — tornando-se o Iudex, o mais alto magistrado da nação da água.
+    </div>
+  </div>
+  <div class="trait-block" style="margin-bottom:12px;">
+    <div class="trait-name">Séculos como Magistrado</div>
+    <div class="trait-desc">
+      Por gerações, Neuvillette presidiu os tribunais de Fontaine com imparcialidade absoluta. Os humanos de Fontaine foram amaldiçoados — crença antiga dizia que todo fontainhês morreria como criminoso, e por séculos o teatro da lei era também teatro da fatalidade. Ele observou. Julgou. E, em sua racionalidade dracônica, <em>não interferiu</em> — porque não era sua competência subverter o acordo existente. Esse arrependimento se tornou parte de quem é.
+    </div>
+  </div>
+  <div class="trait-block">
+    <div class="trait-name">A Prova e a Absolvição</div>
+    <div class="trait-desc">
+      O plano de Focalors durou quinhentos anos. Ela fracionou sua própria divindade, performou o papel de deus frívolo e irresponsável enquanto guardava o verdadeiro plano em segredo — para, no momento certo, atrair o Tribunal Celestial e absolver todos os fontainheses perante o Céu. Neuvillette só compreendeu quando Furina chorou — e suas lágrimas, combinadas com as de toda Fontaine, purificaram a antiga maldição. Naquele momento, as águas do mundo obedeceram novamente à Wyrm, e Neuvillette chorou também, pela primeira vez em milênios.
+    </div>
+  </div>
 </div>
 
 <div class="divider">✦ ✧ ✦</div>
 
-<!-- ── FOOTER ────────────────────────────────── -->
+<!-- GUIA DE PROGRESSÃO -->
+<div class="sec">
+  <div class="sec-title">Guia de Progressão — Níveis 1 a 20</div>
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;font-style:italic;">Clique em cada nível para expandir. Todos os nomes em português (PT-BR).</p>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 1</span>
+      <span class="prog-level-title">A Wyrm Desperta — Resiliência Dracônica + Primeiros Feitiços</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Resiliência Dracônica:</em> +1 PV/nível de feiticeiro. CA natural 13 + Mod.Des sem armadura. Com Armadura Mágica: CA 13 + Des + Con (total 18 ao atingir Con 20).</li>
+        <li><em>Conjuração:</em> Truques conhecidos (4): <strong>Raio de Gelo</strong>, <strong>Toque Gelado</strong>, <strong>Modelar Água</strong>, <strong>Prestidigitação</strong>.</li>
+        <li>Magias conhecidas (2): <strong>Armadura Mágica</strong> (CA 18 permanente), <strong>Lentidão</strong> (controle de grupo imediato).</li>
+      </ul>
+      <strong>Estratégia:</strong> Fique a 36m de distância. Use Raio de Gelo (dano + reduz velocidade) e Toque Gelado (anti-cura). Armadura Mágica deve ser lançada no início do dia e renovada. Lentidão em múltiplos inimigos quebra encontros nos primeiros turnos.<br>
+      <strong>Habilidades Raciais (Yuan-ti):</strong> Vantagem em TRs contra magia, imunidade a veneno, encantamento e adormecimento mágico — extremamente valiosas desde o nível 1.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 2</span>
+      <span class="prog-level-title">Fonte de Feitiçaria — Metamagia Desbloqueada</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Fonte de Feitiçaria:</em> 2 Pontos de Feitiçaria (total 4 com nível). Converta slots em SP ou SP em slots.</li>
+        <li><em>Metamagia (escolha 2):</em> Escolha <strong>Feitiço Potencializado</strong> (1 SP, relança até 5 dados) e <strong>Feitiço Gêmeo</strong> (1 SP/nível, duplica para 2 alvos). As outras duas (Acelerado, Sutil) chegam depois.</li>
+      </ul>
+      <strong>Estratégia:</strong> Feitiço Gêmeo com Raio de Gelo = dois alvos com redução de velocidade pelo mesmo turno. Economize SP para slots de crise — não gaste tudo em utility.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 3</span>
+      <span class="prog-level-title">Magias de 2° Nível — Escalando o Arsenal</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li>Acesso a magias de 2° nível. Slots: 4/2.</li>
+        <li>6 SP totais.</li>
+        <li>Adicione <strong>Invisibilidade</strong> ou <strong>Sugestão</strong> à lista para versatilidade fora de combate.</li>
+      </ul>
+      <strong>Estratégia:</strong> Lentidão ainda é rei para controle. Reserve slots de 2° para magia de suporte. O combo de dois Raios de Gelo (Gêmeo) reduz a velocidade de dois alvos por 3m cada — criaturas com 3m de deslocamento ficam imóveis.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 4</span>
+      <span class="prog-level-title">Talento Resiliente — Constituição 20 + CD 19</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Talento: Resiliente (Con):</em> +1 Constituição (19→20). Proficiência em TRs de Constituição.</li>
+        <li>Carisma 20 via ASI separado (ou eleve os dois: +2 Car se já tinha 18).</li>
+        <li><strong>CD de Magia: 19. Ataque Mágico: +11.</strong> Esses valores permanecem fixos daí em diante.</li>
+        <li>CA 18 definitiva (Con 20 + Armadura Mágica). 8 SP totais.</li>
+      </ul>
+      <strong>Estratégia:</strong> Com TR Con +11, manter concentração em Lentidão após qualquer dano se torna trivial. Neuvillette essencialmente não perde concentração.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 5</span>
+      <span class="prog-level-title">Magias de 3° Nível — Contrafeitiço + Pressa</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li>Acesso a magias de 3° nível. 10 SP totais.</li>
+        <li>Aprenda <strong>Contrafeitiço</strong> (reação, cancela magias ≤3° automaticamente).</li>
+        <li>Aprenda <strong>Pressa</strong> (concentração 1 min, ação extra + velocidade dupla + +2 CA + vantagem Des).</li>
+      </ul>
+      <strong>Estratégia:</strong> Pressa em Gêmeo (6 SP) em dois aliados = dois aliados com ação extra pelo custo de um slot de 3°. Contrafeitiço muda como inimigos conjuradores funcionam — eles precisam de slots de 4°+ para agir.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 6</span>
+      <span class="prog-level-title">Afinidade Elemental — +5 Dano no Frio</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Afinidade Elemental (Frio):</em> +5 dano em qualquer magia de Frio. Raio de Gelo: agora 4d8+5. Tempestade de Gelo: 2d8+5 Frio.</li>
+        <li>Gaste 1 SP: resistência a Frio por 1 hora.</li>
+        <li>12 SP totais.</li>
+      </ul>
+      <strong>Estratégia:</strong> O "+5 fixo" torna truques muito mais sérios. Raio de Gelo (truque) faz 4d8+5 = média ~23 de dano com custo zero de slot — eficiente para encontros longos.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 7</span>
+      <span class="prog-level-title">Magias de 4° Nível — Cone de Frio + Tempestade de Gelo</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li>Acesso a magias de 4° nível. 14 SP totais.</li>
+        <li>Aprenda <strong>Cone de Frio</strong> (8d8+5 Frio, cone 18m, TR Con). Principal dano em área deste ponto em diante.</li>
+        <li>Aprenda <strong>Tempestade de Gelo</strong> (2d8+5 + 4d6, terreno difícil).</li>
+      </ul>
+      <strong>Estratégia:</strong> Cone de Frio em slot de 5° é sua jogada principal de dano em área. Em grupo de 5 inimigos, faz mais dano total que quase qualquer outra opção. Tempestade de Gelo cria terreno difícil — sinergiza com Lentidão para imobilização quase total.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 8</span>
+      <span class="prog-level-title">Conjurador de Guerra — Concentração Indestrutível</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Talento: Conjurador de Guerra:</em> Vantagem em testes de Constituição para manter concentração. Pode lançar magia como ataque de oportunidade.</li>
+        <li>Com Resiliente (Con) + War Caster + TR Con +11: quebrar concentração de Neuvillette requer dano massivo (>50% de 204 PV em um hit) e o dado de dado precisa ser &lt;5 após a vantagem.</li>
+        <li>16 SP totais.</li>
+      </ul>
+      <strong>Estratégia:</strong> Mantenha Lentidão ou Pressa ativa durante todo o combate. A concentração não quebra. Metamagia adicional: desbloqueie <strong>Feitiço Acelerado</strong> (2 SP, ação como bônus).
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 9</span>
+      <span class="prog-level-title">Magias de 5° Nível — Paralisar Monstro</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li>Acesso a magias de 5° nível. 18 SP totais.</li>
+        <li>Aprenda <strong>Paralisar Monstro</strong> (TR Sab CD 19, Paralisado, críticos automáticos em combate próximo).</li>
+      </ul>
+      <strong>Estratégia:</strong> Paralisar Monstro + Gêmeo (5 SP) = dois bosses paralisados simultaneamente (custo: slot 5° + 5 SP). Aliados atacam com vantagem e críticos automáticos. Encontro termina em 2 turnos.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 10</span>
+      <span class="prog-level-title">Metamagia Completa — Feitiço Sutil</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li>Metamagia adicional: desbloqueie <strong>Feitiço Sutil</strong> (1 SP, sem componentes V/S).</li>
+        <li>20 SP totais — máximo atingido.</li>
+        <li>Agora possui todas as 4 metamagias: Potencializado, Gêmeo, Acelerado, Sutil.</li>
+      </ul>
+      <strong>Estratégia:</strong> Feitiço Sutil permite conjurar em sala silenciosa, durante uma audiência no tribunal, ou dentro de zona de Silêncio. O Iudex pode encerrar processos judiciais com um gesto imperceptível.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 11</span>
+      <span class="prog-level-title">Magias de 6° Nível — Parede de Gelo</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li>Acesso a magias de 6° nível (2 slots).</li>
+        <li>Aprenda <strong>Parede de Gelo</strong> (10 painéis, 10d6 Frio ao atravessar, concentração 1h).</li>
+      </ul>
+      <strong>Estratégia:</strong> Parede de Gelo divide o campo de batalha. Inimigos a pé precisam contornar ou atravessar (e tomar 10d6 Frio no processo). Neuvillette voa por cima. Combinada com Lentidão na área além da parede, inimigos ficam efetivamente presos.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 12</span>
+      <span class="prog-level-title">Adepto Elemental — Frio Sem Resistência</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Talento: Adepto Elemental (Frio):</em> Magias de Frio ignoram resistência. Dados de dano de Frio com resultado 1 ou 2 = tratado como 3.</li>
+        <li><strong>Cone de Frio mínimo garantido:</strong> 8×3+5 = 29 de dano. Máximo: 8×8+5 = 69.</li>
+        <li>Raio de Gelo: mínimo 4×3+5 = 17 (truque gratuito).</li>
+      </ul>
+      <strong>Estratégia:</strong> Criaturas com resistência a Frio (como elementais de fogo e muitos monstros do Ártico) agora não protegem nada. Cone de Frio torna-se universalmente confiável.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 13</span>
+      <span class="prog-level-title">Magias de 7° Nível — Spray Prismático</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li>Acesso a magias de 7° nível (2 slots).</li>
+        <li>Aprenda <strong>Spray Prismático</strong> (8 raios aleatórios, 10d6 tipos variados).</li>
+      </ul>
+      <strong>Estratégia:</strong> Spray Prismático é seu plano B para criaturas imunes ao Frio. Aleatoriedade é um custo — mas 10d6 de qualquer tipo em múltiplos alvos é sempre ameaçador. Contra criaturas imunes ao Frio: Spray Prismático > Cone de Frio.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 14</span>
+      <span class="prog-level-title">Asas Dracônicas — Domínio Aéreo Permanente</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Asas Dracônicas:</em> Ação bônus para manifestar asas de água dracônica. Deslocamento de voo 9m por 1 hora. <strong>Sem concentração.</strong></li>
+        <li>Neuvillette nunca fica no chão enquanto voando. Atacantes corpo a corpo precisam de alcance alado ou magia para atingi-lo.</li>
+      </ul>
+      <strong>Estratégia:</strong> Este é o maior salto de poder defensivo da build. Voe 9m acima do chão. Inimigos corpo a corpo não podem alcançar sem mobilidade vertical. Combine com Cone de Frio voltado para baixo em área cheia de inimigos. O campo de batalha é agora vertical — e apenas Neuvillette vive nessa dimensão.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 15</span>
+      <span class="prog-level-title">Refinamento — Novos Feitiços e SP Avançado</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li>Adicione uma nova magia à lista (opção: <strong>Desintegrar</strong> para dano extremo em alvo único, ou <strong>Sugestão em Massa</strong> para controle prolongado).</li>
+        <li>Refinamento de combate: posicionamento aéreo torna-se segunda natureza.</li>
+      </ul>
+      <strong>Estratégia:</strong> Foco em eficiência de SP. A combinação Voo + Lentidão (concentração) + Raios de Gelo (truque, zero SP) é sustentável por combates longos sem gastar recursos.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 16</span>
+      <span class="prog-level-title">Magias de 8° Nível — Palavra de Poder: Atordoar</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li>Acesso a magias de 8° nível (1 slot).</li>
+        <li>Aprenda <strong>Palavra de Poder: Atordoar</strong> (sem TR inicial; alvo com ≤150 PV fica Atordoado automaticamente).</li>
+      </ul>
+      <strong>Estratégia:</strong> Use Cone de Frio ou Paralisar Monstro para reduzir boss a &lt;150 PV, depois Palavra de Poder: Atordoar. Atordoado = sem ações, sem reações, ataques contra ele com vantagem. O julgamento do Iudex é literalmente atordoante.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 17</span>
+      <span class="prog-level-title">Refinamento Final — Segundo Slot de 9°</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li>Slots de magia máximos alcançados: 4/3/3/3/3/2/2/1/1.</li>
+        <li>Opções táticas: use slot de 9° para conjurar Cone de Frio como slot de 9° (+4d8 extra) ou para Desejo duplicar Cone de Frio como 8°.</li>
+      </ul>
+      <strong>Estratégia:</strong> Você tem 20 SP e slots até 9°. Qualquer combinação de Metamagia é possível. Refine a ordem de prioridade: Pressa nos aliados → Cone de Frio Gêmeo → Presença Dracônica → limpar com truques.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 18</span>
+      <span class="prog-level-title">Presença Dracônica — Aura de Controle Sem Concentração</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Presença Dracônica:</em> 5 SP, ação, aura 18m. TR Sab CD 19. Falha: Encantado ou Amedrontado (Neuvillette escolhe). Duração: 1 min. <strong>Sem concentração.</strong></li>
+        <li>Combina com Lentidão, Paralisar Monstro, Pressa — todos simultaneamente ativos.</li>
+      </ul>
+      <strong>Estratégia:</strong> O combo perfeito: Presença Dracônica (Amedrontado, sem conc.) + Paralisar Monstro (concentração) = inimigos Amedrontados E Paralisados. Criaturas Amedrontadas precisam se mover para longe de Neuvillette mas estão Paralisadas. Incapacidade total. Enquanto Neuvillette voa acima de todos.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 19</span>
+      <span class="prog-level-title">Desejo — Poder Absoluto</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li>Acesso pleno a magias de 9° nível.</li>
+        <li>Aprenda <strong>Desejo</strong>: realiza qualquer desejo ou duplica qualquer magia de até 8° sem custo de componentes.</li>
+      </ul>
+      <strong>Estratégia:</strong> Desejo como Cone de Frio de 8° slot = 12d8+5 Frio, dois cones com Gêmeo = extinção de área total. Ou Desejo para replicar Paralisar Monstro de 9° slot (6d10 por turno em vez de paralisia, variante). Em situações narrativas, Desejo pode alterar realidade — o Iudex declara a sentença do universo.
+    </div>
+  </div>
+
+  <div class="prog-level">
+    <div class="prog-header" onclick="toggleLevel(this)">
+      <span class="prog-level-num">NÍV. 20</span>
+      <span class="prog-level-title">Restauração Feiticeira — A Wyrm em Plenitude</span>
+      <span class="prog-arrow">▼</span>
+    </div>
+    <div class="prog-body">
+      <strong>Habilidades Obtidas:</strong>
+      <ul>
+        <li><em>Restauração Feiticeira:</em> Recupera 20 SP em 1 minuto (1×/repouso longo). Segunda rodada completa de Cone de Frio Gêmeo após 10 min de combate.</li>
+        <li>PV: 204. CA: 18. Voo 9m sem concentração. TR Con/Car +11. TR contra magia com vantagem. 20 SP + Restauração.</li>
+      </ul>
+      <strong>Sequência Final de Combate:</strong>
+      <ul>
+        <li><strong>Turno 1:</strong> Asas Dracônicas (ação bônus) → voa 9m. Cone de Frio Gêmeo (10 SP): dois cones, mín. 29 cada.</li>
+        <li><strong>Turno 2:</strong> Presença Dracônica (5 SP, sem concentração) + Paralisar Monstro (slot 5°, concentração).</li>
+        <li><strong>Turno 3+:</strong> Pressa Gêmeo em aliados (5 SP) + Raio de Gelo como truque gratuito.</li>
+        <li><strong>Recuperação:</strong> Após combate, 1 minuto → 20 SP de volta. Segunda rodada disponível.</li>
+      </ul>
+      <strong>Identidade Final:</strong> O Iudex voa. O Iudex não pode ser encantado. O Iudex não perde concentração. E quando o Iudex fala — as águas obedecem.
+    </div>
+  </div>
+</div>
+
+<!-- EQUIPAMENTO -->
+<div class="sec">
+  <div class="sec-title">Equipamento</div>
+  <ul class="trait-list">
+    <li>Robes do Iudex (+1 CA, imunidade a efeitos de domínio jurídico)</li>
+    <li>Cetro do Tribunal — foco arcano em cristal de água solidificada (+1 ataque e CD de magia)</li>
+    <li>Anel de Armadura Mágica — automaticamente mantém Armadura Mágica ao início do dia</li>
+    <li>Pergaminho Eterno do Código de Fontaine — acesso a qualquer lei já registrada em Fontaine</li>
+    <li>Componentes para Contrafeitiço e Paralisar Monstro — bolsa de componentes esotéricos</li>
+    <li>Selos do Tribunal (×5) — lacres mágicos que tornam contratos juridicamente vinculantes</li>
+  </ul>
+</div>
+
+<div class="divider">✦ ✧ ✦</div>
+
+<!-- FOOTER -->
 <div class="footer">
   <p>Neuvillette · Feiticeiro Origem Dracônica (Água/Frio) · Nível 20</p>
-  <p>D&amp;D 5e · Genshin Impact · Sistema de Fichas RPG</p>
+  <p>D&amp;D 5e · Genshin Impact · A Última Wyrm das Águas</p>
 </div>
 
 </div><!-- /page -->
 
 <script>
-(function() {
-  const particles = "💧🌊❄️".split("");
-  const container = document.getElementById('particleBg');
-  for (let i = 0; i < 20; i++) {
-    const p = document.createElement('span');
-    p.className = 'particle';
-    p.textContent = particles[i % particles.length];
-    p.style.left = (Math.random() * 100) + '%';
-    p.style.animationDuration = (12 + Math.random() * 18) + 's';
-    p.style.animationDelay = (Math.random() * 20) + 's';
-    p.style.fontSize = (9 + Math.random() * 6) + 'px';
-    container.appendChild(p);
+function toggleLevel(header){
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.prog-arrow');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+}
+
+(function(){
+  const bg = document.getElementById('atmoBg');
+
+  // 45 rain drops
+  for(let i=0;i<45;i++){
+    const d = document.createElement('div');
+    d.className = 'rain-drop';
+    const rdx = -10 + Math.random()*20;
+    d.style.cssText = `left:${Math.random()*100}%;--rdx:${rdx}px;height:${8+Math.random()*10}px;animation-duration:${0.7+Math.random()*0.8}s;animation-delay:${-Math.random()*3}s;opacity:0;`;
+    bg.appendChild(d);
   }
+
+  // 18 ice crystals
+  for(let i=0;i<18;i++){
+    const c = document.createElement('div');
+    c.className = 'ice-crystal';
+    const cdx = -40+Math.random()*80;
+    const sz = 3+Math.random()*5;
+    c.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz}px;height:${sz}px;--cdx:${cdx}px;animation-duration:${5+Math.random()*8}s;animation-delay:${-Math.random()*12}s;`;
+    bg.appendChild(c);
+  }
+
+  // 4 water ripples
+  for(let i=0;i<4;i++){
+    const r = document.createElement('div');
+    r.className = 'water-ripple';
+    r.style.cssText = `left:${15+Math.random()*70}%;top:${10+Math.random()*80}%;animation-duration:${5+Math.random()*4}s;animation-delay:${i*1.8}s;`;
+    bg.appendChild(r);
+  }
+
+  // 3 depth orbs
+  for(let i=0;i<3;i++){
+    const o = document.createElement('div');
+    o.className = 'depth-orb';
+    const sz = 100+Math.random()*200;
+    const dox = -50+Math.random()*100;
+    const doy = -30+Math.random()*60;
+    o.style.cssText = `left:${Math.random()*80}%;top:${Math.random()*80}%;width:${sz}px;height:${sz}px;--dox:${dox}px;--doy:${doy}px;animation-duration:${10+Math.random()*8}s;animation-delay:${-Math.random()*10}s;`;
+    bg.appendChild(o);
+  }
+
+  // Watermark
+  const wm = document.createElement('div');
+  wm.className = 'wm';
+  wm.textContent = '🌊';
+  bg.appendChild(wm);
 })();
 </script>
 
