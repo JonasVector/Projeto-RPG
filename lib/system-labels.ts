@@ -1,18 +1,13 @@
-export const SYSTEM_LABELS: Record<string, string> = {
-  dnd: "D&D 5e",
-  vampiro: "Vampiro: A Máscara",
-  daggerheart: "Daggerheart",
-  candela: "Candela Obscura",
-  sacramento: "Sacramento",
-  avatar: "Avatar Legends",
-};
+/**
+ * @deprecated Import from @/lib/systems instead.
+ * Kept for backwards compatibility with existing components that haven't been migrated.
+ */
+import { SYSTEMS } from "@/lib/systems";
 
-// Clean Unicode symbols — no emoji
-export const SYSTEM_ICONS: Record<string, string> = {
-  dnd:        "⚔",
-  vampiro:    "✦",
-  daggerheart:"◆",
-  candela:    "◉",
-  sacramento: "⬡",
-  avatar:     "☯",
-};
+export const SYSTEM_LABELS: Record<string, string> = Object.fromEntries(
+  Object.values(SYSTEMS).map((s) => [s.id, s.label])
+);
+
+export const SYSTEM_ICONS: Record<string, string> = Object.fromEntries(
+  Object.values(SYSTEMS).map((s) => [s.id, s.icon])
+);
