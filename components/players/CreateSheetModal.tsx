@@ -5,6 +5,7 @@ import { useState, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { SYSTEMS } from "@/lib/systems";
+import SystemIcon from "@/components/ui/SystemIcon";
 
 interface CreateSheetModalProps {
   trigger: ReactNode;
@@ -187,15 +188,9 @@ export default function CreateSheetModal({
                               el.style.boxShadow = "none";
                             }}
                           >
-                            <span
-                              className="text-xl block mb-2"
-                              style={{
-                                color: s.accent,
-                                filter: `drop-shadow(0 0 5px ${s.accent}88)`,
-                              }}
-                            >
-                              {s.icon}
-                            </span>
+                            <div className="mb-2" style={{ color: s.accent }}>
+                              <SystemIcon systemId={s.id} size={28} />
+                            </div>
                             <div
                               className="font-display font-semibold text-sm leading-tight"
                               style={{ color: "var(--color-rpg-gold-light)" }}
@@ -233,7 +228,7 @@ export default function CreateSheetModal({
                               borderLeft: `3px solid ${sys.accent}`,
                             }}
                           >
-                            <span style={{ color: sys.accent, fontSize: "1.1rem" }}>{sys.icon}</span>
+                            <div style={{ color: sys.accent }}><SystemIcon systemId={sys.id} size={20} /></div>
                             <div>
                               <div
                                 className="font-display font-semibold text-sm"

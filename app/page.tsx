@@ -13,9 +13,6 @@ export default function Home() {
     totalSheets: characters.length,
     totalPlayers: players.length,
     totalSystems: systemIds.length,
-    activeSystems: systemIds.filter((s) =>
-      characters.some((c) => c.system === s)
-    ).length,
   };
 
   // Recent sheets: last 6 from all characters (preserving order)
