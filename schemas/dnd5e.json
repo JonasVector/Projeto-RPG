@@ -1,0 +1,127 @@
+{
+  "system": "dnd5e",
+  "version": "1.0",
+  "displayName": "D&D 5e",
+  "character": {
+    "identity": {
+      "title": "Identidade",
+      "fields": {
+        "nome": { "type": "string", "required": true, "label": "Nome" },
+        "titulo": { "type": "string", "required": false, "label": "Título" },
+        "raca": { "type": "string", "required": true, "label": "Raça" },
+        "classe": { "type": "string", "required": true, "label": "Classe" },
+        "nivel": { "type": "number", "required": true, "min": 1, "max": 20, "label": "Nível", "defaultValue": 1 },
+        "subclasse": { "type": "string", "required": false, "label": "Subclasse" },
+        "antecedente": { "type": "string", "required": false, "label": "Antecedente" },
+        "tendencia": { "type": "string", "required": false, "label": "Tendência" },
+        "origem": { "type": "string", "required": false, "label": "Origem" }
+      }
+    },
+    "attributes": {
+      "title": "Atributos",
+      "fields": {
+        "strength": { "type": "number", "min": 1, "max": 30, "label": "Força", "defaultValue": 10 },
+        "dexterity": { "type": "number", "min": 1, "max": 30, "label": "Destreza", "defaultValue": 10 },
+        "constitution": { "type": "number", "min": 1, "max": 30, "label": "Constituição", "defaultValue": 10 },
+        "intelligence": { "type": "number", "min": 1, "max": 30, "label": "Inteligência", "defaultValue": 10 },
+        "wisdom": { "type": "number", "min": 1, "max": 30, "label": "Sabedoria", "defaultValue": 10 },
+        "charisma": { "type": "number", "min": 1, "max": 30, "label": "Carisma", "defaultValue": 10 }
+      }
+    },
+    "combat": {
+      "title": "Combate",
+      "fields": {
+        "classe_armadura": { "type": "number", "label": "Classe de Armadura", "defaultValue": 10 },
+        "pv_totais": { "type": "number", "label": "Pontos de Vida Totais", "defaultValue": 10 },
+        "iniciativa": { "type": "number", "label": "Bônus de Iniciativa", "defaultValue": 0 },
+        "deslocamento": { "type": "string", "label": "Deslocamento", "defaultValue": "30 ft" },
+        "bonus_proficiencia": { "type": "number", "label": "Bônus de Proficiência", "defaultValue": 2 },
+        "cd_magia": { "type": "number", "label": "CD de Magia", "defaultValue": 10 },
+        "ataque_magico": { "type": "number", "label": "Ataque Mágico", "defaultValue": 0 },
+        "dados_vida": { "type": "string", "label": "Dados de Vida", "defaultValue": "1d10" }
+      }
+    },
+    "saving_throws": {
+      "title": "Testes de Resistência",
+      "fields": {
+        "strength_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Força" },
+        "dexterity_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Destreza" },
+        "constitution_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Constituição" },
+        "intelligence_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Inteligência" },
+        "wisdom_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Sabedoria" },
+        "charisma_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Carisma" }
+      }
+    },
+    "skills": {
+      "title": "Perícias",
+      "fields": {
+        "acrobatics": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Acrobacias" },
+        "animal_handling": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Adestramento" },
+        "arcana": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Arcanismo" },
+        "athletics": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Atletismo" },
+        "deception": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Enganação" },
+        "history": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "História" },
+        "insight": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Intuição" },
+        "intimidation": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Intimidação" },
+        "investigation": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Investigação" },
+        "medicine": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Medicina" },
+        "nature": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Natureza" },
+        "perception": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Percepção" },
+        "performance": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Atuação" },
+        "persuasion": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Persuasão" },
+        "religion": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Religião" },
+        "sleight_of_hand": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Prestidigitação" },
+        "stealth": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Furtividade" },
+        "survival": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Sobrevivência" }
+      }
+    },
+    "attacks": {
+      "title": "Ataques",
+      "fields": {
+        "ataques": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "bonus": { "type": "number" }, "dano": { "type": "string" }, "alcance": { "type": "string" }, "notas": { "type": "string" } } }, "label": "Ataques" }
+      }
+    },
+    "abilities": {
+      "title": "Habilidades",
+      "fields": {
+        "habilidades_raciais": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "descricao": { "type": "string" } } }, "label": "Habilidades Raciais" },
+        "habilidades_classe": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "fonte": { "type": "string" }, "descricao": { "type": "string" } } }, "label": "Habilidades de Classe" }
+      }
+    },
+    "magic": {
+      "title": "Magia",
+      "fields": {
+        "atributo_conjurador": { "type": "string", "label": "Atributo de Conjurador" },
+        "cd_magia": { "type": "string", "label": "CD de Magia" },
+        "ataque_magico": { "type": "string", "label": "Ataque Mágico" },
+        "espacos_magia": { "type": "string", "label": "Espaços de Magia" },
+        "truques": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "tags": { "type": "array", "items": { "type": "string" } }, "descricao": { "type": "string" }, "mecanica": { "type": "string" } } }, "label": "Truques" },
+        "circulo_1": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "tags": { "type": "array", "items": { "type": "string" } }, "descricao": { "type": "string" }, "mecanica": { "type": "string" } } }, "label": "1° Círculo" },
+        "circulo_2": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "tags": { "type": "array", "items": { "type": "string" } }, "descricao": { "type": "string" }, "mecanica": { "type": "string" } } }, "label": "2° Círculo" }
+      }
+    },
+    "equipment": {
+      "title": "Equipamento",
+      "fields": {
+        "armas": { "type": "array", "items": { "type": "string" }, "label": "Armas" },
+        "armadura": { "type": "array", "items": { "type": "string" }, "label": "Armadura" },
+        "infusoes_itens": { "type": "array", "items": { "type": "string" }, "label": "Infusões em Itens" },
+        "ferramentas": { "type": "array", "items": { "type": "string" }, "label": "Ferramentas" }
+      }
+    },
+    "personality": {
+      "title": "Personalidade",
+      "fields": {
+        "tracos": { "type": "string", "label": "Traços de Personalidade" },
+        "ideal_vinculo": { "type": "string", "label": "Ideal e Vínculos" },
+        "defeito": { "type": "string", "label": "Defeitos" }
+      }
+    },
+    "history": {
+      "title": "História",
+      "fields": {
+        "historia": { "type": "string", "label": "História do Personagem" }
+      }
+    }
+  }
+}

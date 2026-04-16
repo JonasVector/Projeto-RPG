@@ -7,27 +7,119 @@
   "bio": "Mestre e jogador veterano do grupo. Criador das fichas do projeto.",
   "role": "Jogador & Mestre",
   "characters": [
-    { "system": "dnd", "slug": "elysia",      "label": "Elysia",      "status": "active" },
-    { "system": "dnd", "slug": "phrolova",    "label": "Phrolova",    "status": "active" },
-    { "system": "dnd", "slug": "furina",      "label": "Furina",      "status": "active" },
-    { "system": "dnd", "slug": "kafka",       "label": "Kafka",       "status": "active" },
-    { "system": "dnd", "slug": "camellya",    "label": "Camellya",    "status": "active" },
-    { "system": "dnd", "slug": "cantarella",  "label": "Cantarella",  "status": "active" },
-    { "system": "dnd", "slug": "mordekaiser", "label": "Mordekaiser", "status": "active" },
-    { "system": "dnd", "slug": "morgana",     "label": "Morgana",     "status": "active" },
-    { "system": "dnd", "slug": "nasus",       "label": "Nasus",       "status": "active" },
-    { "system": "dnd", "slug": "neuvillette", "label": "Neuvillette", "status": "active" },
-    { "system": "dnd", "slug": "sett",        "label": "Sett",        "status": "active" },
-    { "system": "dnd", "slug": "viego",       "label": "Viego",       "status": "active" },
-    { "system": "dnd", "slug": "Nahida_Lesser_Lord_Kusanali", "label": "Nahida",        "status": "active" },
-    { "system": "dnd", "slug": "Arlecchino_The_Knave_v2",     "label": "Arlecchino",    "status": "active" },
-    { "system": "dnd", "slug": "Corven_Cogspire_Ficha",       "label": "Corven Cogspire","status": "active" },
-    { "system": "dnd", "slug": "Build_Klein_Moretti_v2",      "label": "Klein Moretti", "status": "active" }
+    {
+      "system": "dnd",
+      "slug": "elysia",
+      "label": "Elysia",
+      "status": "active"
+    },
+    {
+      "system": "dnd",
+      "slug": "phrolova",
+      "label": "Phrolova",
+      "status": "active"
+    },
+    {
+      "system": "dnd",
+      "slug": "furina",
+      "label": "Furina",
+      "status": "active"
+    },
+    {
+      "system": "dnd",
+      "slug": "kafka",
+      "label": "Kafka",
+      "status": "active"
+    },
+    {
+      "system": "dnd",
+      "slug": "camellya",
+      "label": "Camellya",
+      "status": "active"
+    },
+    {
+      "system": "dnd",
+      "slug": "cantarella",
+      "label": "Cantarella",
+      "status": "active"
+    },
+    {
+      "system": "dnd",
+      "slug": "mordekaiser",
+      "label": "Mordekaiser",
+      "status": "active"
+    },
+    {
+      "system": "dnd",
+      "slug": "morgana",
+      "label": "Morgana",
+      "status": "active"
+    },
+    {
+      "system": "dnd",
+      "slug": "nasus",
+      "label": "Nasus",
+      "status": "active"
+    },
+    {
+      "system": "dnd",
+      "slug": "neuvillette",
+      "label": "Neuvillette",
+      "status": "active"
+    },
+    {
+      "system": "dnd",
+      "slug": "sett",
+      "label": "Sett",
+      "status": "active"
+    },
+    {
+      "system": "dnd",
+      "slug": "viego",
+      "label": "Viego",
+      "status": "active"
+    },
+    {
+      "system": "dnd",
+      "slug": "Nahida_Lesser_Lord_Kusanali",
+      "label": "Nahida",
+      "status": "active"
+    },
+    {
+      "system": "dnd",
+      "slug": "Arlecchino_The_Knave_v2",
+      "label": "Arlecchino",
+      "status": "active"
+    },
+    {
+      "system": "dnd",
+      "slug": "Corven_Cogspire_Ficha",
+      "label": "Corven Cogspire",
+      "status": "active"
+    },
+    {
+      "system": "dnd",
+      "slug": "Build_Klein_Moretti_v2",
+      "label": "Klein Moretti",
+      "status": "active"
+    },
+    {
+      "system": "daggerheart",
+      "slug": "teste",
+      "label": "teste",
+      "status": "active"
+    }
   ],
   "stats": {
-    "totalCharacters": 16,
+    "totalCharacters": 17,
     "primarySystem": "dnd",
-    "favoriteSystems": ["dnd"]
+    "favoriteSystems": [
+      "dnd"
+    ]
   },
-  "tags": ["dnd", "criador", "level-20"]
+  "tags": [
+    "dnd",
+    "criador",
+    "level-20"
+  ]
 }

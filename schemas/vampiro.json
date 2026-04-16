@@ -1,0 +1,140 @@
+{
+  "system": "vampiro",
+  "version": "1.0",
+  "displayName": "Vampiro: A Máscara",
+  "character": {
+    "identity": {
+      "title": "Identidade",
+      "fields": {
+        "nome": { "type": "string", "required": true, "label": "Nome" },
+        "aparente_idade": { "type": "number", "required": false, "min": 0, "max": 150, "label": "Aparente Idade", "defaultValue": 25 },
+        "real_idade": { "type": "number", "required": false, "min": 0, "max": 1000, "label": "Real Idade", "defaultValue": 50 },
+        "geracao": { "type": "number", "required": true, "min": 1, "max": 15, "label": "Geração", "defaultValue": 10 },
+        "classe": { "type": "string", "required": true, "label": "Classe" },
+        "seita": { "type": "string", "required": false, "label": "Seita" },
+        "clã": { "type": "string", "required": true, "label": "Clã" }
+      }
+    },
+    "attributes": {
+      "title": "Atributos",
+      "fields": {
+        "forca": { "type": "number", "min": 1, "max": 10, "label": "Força", "defaultValue": 1 },
+        "destreza": { "type": "number", "min": 1, "max": 10, "label": "Destreza", "defaultValue": 1 },
+        "constitucao": { "type": "number", "min": 1, "max": 10, "label": "Constituição", "defaultValue": 1 },
+        "carisma": { "type": "number", "min": 1, "max": 10, "label": "Carisma", "defaultValue": 1 },
+        "manipulacao": { "type": "number", "min": 1, "max": 10, "label": "Manipulação", "defaultValue": 1 },
+        "apresentacao": { "type": "number", "min": 1, "max": 10, "label": "Apresentação", "defaultValue": 1 },
+        "percepcao": { "type": "number", "min": 1, "max": 10, "label": "Percepção", "defaultValue": 1 },
+        "inteligencia": { "type": "number", "min": 1, "max": 10, "label": "Inteligência", "defaultValue": 1 },
+        "astucia": { "type": "number", "min": 1, "max": 10, "label": "Astúcia", "defaultValue": 1 }
+      }
+    },
+    "abilities": {
+      "title": "Perícias",
+      "fields": {
+        "talentos": {
+          "type": "object",
+          "properties": {
+            "especializacao": { "type": "string" },
+            "valor": { "type": "number", "min": 0, "max": 5 }
+          },
+          "label": "Talentos",
+          "subfields": {
+            "furtividade": { "type": "number", "min": 0, "max": 5, "label": "Furtividade" },
+            "lideranca": { "type": "number", "min": 0, "max": 5, "label": "Liderança" },
+            "expressao": { "type": "number", "min": 0, "max": 5, "label": "Expressão" },
+            "intimidacao": { "type": "number", "min": 0, "max": 5, "label": "Intimidação" },
+            "empatia": { "type": "number", "min": 0, "max": 5, "label": "Empatia" },
+            "esportes": { "type": "number", "min": 0, "max": 5, "label": "Esportes" },
+            "lid_armas": { "type": "number", "min": 0, "max": 5, "label": "Lidar com Armas" },
+            "enganacao": { "type": "number", "min": 0, "max": 5, "label": "Enganação" },
+            "animacao": { "type": "number", "min": 0, "max": 5, "label": "Animação" }
+          }
+        },
+        "pericias": {
+          "type": "object",
+          "properties": {
+            "especializacao": { "type": "string" },
+            "valor": { "type": "number", "min": 0, "max": 5 }
+          },
+          "label": "Perícias",
+          "subfields": {
+            "ciencia": { "type": "number", "min": 0, "max": 5, "label": "Ciência" },
+            "informatica": { "type": "number", "min": 0, "max": 5, "label": "Informática" },
+            "oficios": { "type": "number", "min": 0, "max": 5, "label": "Ofícios" },
+            "investigacao": { "type": "number", "min": 0, "max": 5, "label": "Investigação" },
+            "medicina": { "type": "number", "min": 0, "max": 5, "label": "Medicina" },
+            "ocultismo": { "type": "number", "min": 0, "max": 5, "label": "Ocultismo" },
+            "politica": { "type": "number", "min": 0, "max": 5, "label": "Política" },
+            "lei": { "type": "number", "min": 0, "max": 5, "label": "Lei" },
+            "lifestyle": { "type": "number", "min": 0, "max": 5, "label": "Lifestyle" }
+          }
+        },
+        "conhecimentos": {
+          "type": "object",
+          "properties": {
+            "especializacao": { "type": "string" },
+            "valor": { "type": "number", "min": 0, "max": 5 }
+          },
+          "label": "Conhecimentos",
+          "subfields": {
+            "academia": { "type": "number", "min": 0, "max": 5, "label": "Academia" },
+            "negocios": { "type": "number", "min": 0, "max": 5, "label": "Negócios" },
+            "cotidiano": { "type": "number", "min": 0, "max": 5, "label": "Cotidiano" },
+            "enigmas": { "type": "number", "min": 0, "max": 5, "label": "Enigmas" },
+            "linguas": { "type": "number", "min": 0, "max": 5, "label": "Línguas" },
+            "heraldica": { "type": "number", "min": 0, "max": 5, "label": "Heraldica" },
+            "religiao": { "type": "number", "min": 0, "max": 5, "label": "Religião" },
+            "sobrenatural": { "type": "number", "min": 0, "max": 5, "label": "Sobrenatural" },
+            "tradiacao": { "type": "number", "min": 0, "max": 5, "label": "Tradição" }
+          }
+        }
+      }
+    },
+    "disciplinas": {
+      "title": "Disciplinas",
+      "fields": {
+        "disciplinas": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "nivel": { "type": "number", "min": 0, "max": 10 }, "descricao": { "type": "string" } } }, "label": "Disciplinas" }
+      }
+    },
+    "vitals": {
+      "title": "Vitais",
+      "fields": {
+        "sangue_atual": { "type": "number", "min": 0, "max": 20, "label": "Sangue Atual", "defaultValue": 10 },
+        "sangue_maximo": { "type": "number", "min": 1, "max": 20, "label": "Sangue Máximo", "defaultValue": 10 },
+        "humanidade": { "type": "number", "min": 0, "max": 10, "label": "Humanidade", "defaultValue": 7 },
+        "vontade": { "type": "number", "min": 0, "max": 10, "label": "Vontade", "defaultValue": 5 }
+      }
+    },
+    "social": {
+      "title": "Rede Social",
+      "fields": {
+        "contatos": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "influencia": { "type": "string" }, "descricao": { "type": "string" } } }, "label": "Contatos" },
+        "recursos": { "type": "number", "label": "Recursos Financeiros", "defaultValue": 2 },
+        "influencia": { "type": "number", "label": "Influência", "defaultValue": 2 },
+        "estatus": { "type": "number", "label": "Estatus", "defaultValue": 2 }
+      }
+    },
+    "backgrounds": {
+      "title": "Antecedentes",
+      "fields": {
+        "antecedentes": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "nivel": { "type": "number", "min": 0, "max": 5 }, "descricao": { "type": "string" } } }, "label": "Antecedentes" }
+      }
+    },
+    "merits_flaws": {
+      "title": "Vantagens e Defeitos",
+      "fields": {
+        "vantagens": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "descricao": { "type": "string" } } }, "label": "Vantagens" },
+        "defeitos": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "descricao": { "type": "string" } } }, "label": "Defeitos" }
+      }
+    },
+    "background": {
+      "title": "História",
+      "fields": {
+        "criador": { "type": "string", "label": "Criador" },
+        "historia": { "type": "string", "label": "História do Personagem" },
+        "descricao_fisica": { "type": "string", "label": "Descrição Física" }
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "system": "daggerheart",
+  "version": "1.0",
+  "displayName": "Daggerheart",
+  "character": {
+    "identity": {
+      "title": "Identidade",
+      "fields": {
+        "nome": { "type": "string", "required": true, "label": "Nome" },
+        "titulo": { "type": "string", "required": false, "label": "Título" },
+        "classe": { "type": "string", "required": true, "label": "Classe" },
+        "origem": { "type": "string", "required": false, "label": "Origem" },
+        "nivel": { "type": "number", "required": true, "min": 1, "max": 10, "label": "Nível", "defaultValue": 1 },
+        "aspecto": { "type": "string", "required": false, "label": "Aspecto" },
+        "origem_hist": { "type": "string", "required": false, "label": "Histórico de Origem" }
+      }
+    },
+    "stats": {
+      "title": "Estatísticas",
+      "fields": {
+        "aspiracao": { "type": "number", "min": 0, "max": 20, "label": "Aspiração", "defaultValue": 10 },
+        "desespero": { "type": "number", "min": 0, "max": 20, "label": "Desespero", "defaultValue": 10 },
+        "graca": { "type": "number", "min": 0, "max": 20, "label": "Graça", "defaultValue": 10 },
+        "sangue": { "type": "number", "min": 0, "max": 20, "label": "Sangue", "defaultValue": 10 },
+        "espirito": { "type": "number", "min": 0, "max": 20, "label": "Espírito", "defaultValue": 10 },
+        "sabedoria": { "type": "number", "min": 0, "max": 20, "label": "Sabedoria", "defaultValue": 10 },
+        "meia_noite": { "type": "number", "min": 0, "max": 20, "label": "Meia-Noite", "defaultValue": 10 },
+        "valentia": { "type": "number", "min": 0, "max": 20, "label": "Valentia", "defaultValue": 10 },
+        "esplendor": { "type": "number", "min": 0, "max": 20, "label": "Esplendor", "defaultValue": 10 }
+      }
+    },
+    "combat": {
+      "title": "Combate",
+      "fields": {
+        "classe_armadura": { "type": "number", "label": "Classe de Armadura", "defaultValue": 10 },
+        "pv_maximos": { "type": "number", "label": "Pontos de Vida Máximos", "defaultValue": 10 },
+        "pv_atual": { "type": "number", "label": "Pontos de Vida Atuais", "defaultValue": 10 },
+        "iniciativa": { "type": "number", "label": "Iniciativa", "defaultValue": 0 },
+        "deslocamento": { "type": "string", "label": "Deslocamento", "defaultValue": "30 ft" },
+        "proficiencia": { "type": "number", "label": "Proficiência", "defaultValue": 2 }
+      }
+    },
+    "abilities": {
+      "title": "Habilidades",
+      "fields": {
+        "habilidades_classe": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "descricao": { "type": "string" }, "tipo": { "type": "string" } } }, "label": "Habilidades de Classe" },
+        "arcana": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "descricao": { "type": "string" }, "custo": { "type": "number" } } }, "label": "Arcana" }
+      }
+    },
+    "relationships": {
+      "title": "Relacionamentos",
+      "fields": {
+        "ligacoes": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "tipo": { "type": "string" }, "descricao": { "type": "string" } } }, "label": "Ligações" },
+        "memorias": { "type": "array", "items": { "type": "object", "properties": { "descricao": { "type": "string" }, "impacto": { "type": "string" } } }, "label": "Memórias" }
+      }
+    },
+    "equipment": {
+      "title": "Equipamento",
+      "fields": {
+        "armas": { "type": "array", "items": { "type": "string" }, "label": "Armas" },
+        "armaduras": { "type": "array", "items": { "type": "string" }, "label": "Armaduras" },
+        "equipamentos": { "type": "array", "items": { "type": "string" }, "label": "Equipamentos" },
+        "consumiveis": { "type": "array", "items": { "type": "string" }, "label": "Consumíveis" }
+      }
+    },
+    "personality": {
+      "title": "Personalidade",
+      "fields": {
+        "tracos": { "type": "string", "label": "Traços de Personalidade" },
+        "ideais": { "type": "string", "label": "Ideais" },
+        "vinculos": { "type": "string", "label": "Vínculos" },
+        "defeitos": { "type": "string", "label": "Defeitos" }
+      }
+    },
+    "background": {
+      "title": "Histórico",
+      "fields": {
+        "historia": { "type": "string", "label": "História do Personagem" },
+        "motivacoes": { "type": "string", "label": "Motivações" }
+      }
+    }
+  }
+}

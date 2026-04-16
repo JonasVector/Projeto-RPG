@@ -1,0 +1,11 @@
+{
+  "ficha": {
+    "personagem": {
+      "nome": "teste",
+      "raca": "",
+      "classe": "",
+      "nivel": 1,
+      "sistema": "daggerheart"
+    }
+  }
+}
