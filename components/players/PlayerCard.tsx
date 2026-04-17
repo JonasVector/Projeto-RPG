@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { getSystem } from "@/lib/systems";
+import SystemIcon from "@/components/ui/SystemIcon";
 
 interface Player {
   id: string;
@@ -110,7 +111,7 @@ export default function PlayerCard({ player }: { player: Player }) {
                   background: `${primaryMeta.accent}08`,
                 }}
               >
-                <span>{primaryMeta.icon}</span>
+                <SystemIcon systemId={primaryMeta.id} size={12} />
                 {primaryMeta.label}
               </span>
             </div>

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import SystemIcon from "@/components/ui/SystemIcon";
 import { CharMiniCardClient } from "./CharMiniCardClient";
 
 interface CharRef {
@@ -25,7 +24,6 @@ interface SystemPlayerCardProps {
   accent: string;
   border: string;
   index: number;
-  systemIcon: string;
 }
 
 export function SystemPlayerCard({
@@ -35,7 +33,6 @@ export function SystemPlayerCard({
   accent,
   border,
   index,
-  systemIcon,
 }: SystemPlayerCardProps) {
   return (
     <motion.section

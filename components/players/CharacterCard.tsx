@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import SystemIcon from "@/components/ui/SystemIcon";
 
 interface CharacterCardProps {
   slug: string;
@@ -8,7 +9,6 @@ interface CharacterCardProps {
   label: string;
   status: string;
   sysAccent: string;
-  sysIcon: string;
   bg: string;
 }
 
@@ -18,7 +18,6 @@ export default function CharacterCard({
   label,
   status,
   sysAccent,
-  sysIcon,
   bg,
 }: CharacterCardProps) {
   return (
@@ -40,14 +39,13 @@ export default function CharacterCard({
       >
         {/* System icon */}
         <div
-          className="flex-shrink-0 w-10 h-10 rounded border flex items-center justify-center font-display font-bold"
+          className="flex-shrink-0 w-10 h-10 rounded border flex items-center justify-center"
           style={{
             background: `${sysAccent}10`,
             borderColor: `${sysAccent}40`,
-            color: sysAccent,
           }}
         >
-          {sysIcon}
+          <SystemIcon systemId={system} size={24} />
         </div>
 
         <div className="flex-1 min-w-0">

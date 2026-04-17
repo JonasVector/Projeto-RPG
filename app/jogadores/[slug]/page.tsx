@@ -235,7 +235,7 @@ export default async function PlayerPage({
                   >
                     <SystemSelectionCard
                       href={`/jogadores/${slug}/${system}`}
-                      icon={meta.icon}
+                      systemId={system}
                       label={meta.label}
                       description={meta.description}
                       count={bySystem[system]}

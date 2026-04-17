@@ -180,7 +180,6 @@ export default async function SystemPage({
                   accent={accent}
                   border={border}
                   index={pi}
-                  systemIcon={meta.icon}
                 />
               ))}
 

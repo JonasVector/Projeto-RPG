@@ -6,7 +6,12 @@
 export interface SystemMeta {
   id: string;
   label: string;
+  /** Unicode fallback shown when the PNG fails or isn't desired. */
   icon: string;
+  /** PNG asset under /public. Single source of truth for system logos. */
+  pngIcon: string;
+  /** If true, SystemIcon boosts brightness/contrast (for dark-on-dark assets). */
+  iconNeedsBoost?: boolean;
   decorIcon: string;
   description: string;
   genre: string;
@@ -23,6 +28,7 @@ export const SYSTEMS: Record<string, SystemMeta> = {
     id: "dnd",
     label: "D&D 5e",
     icon: "⚔",
+    pngIcon: "/icons/D&DIcon.png",
     decorIcon: "✕",
     description: "Dungeons & Dragons 5ª Edição",
     genre: "Alta Fantasia Medieval",
@@ -37,6 +43,7 @@ export const SYSTEMS: Record<string, SystemMeta> = {
     id: "daggerheart",
     label: "Daggerheart",
     icon: "◆",
+    pngIcon: "/icons/Daggerheart_logo_2024.png",
     decorIcon: "◆",
     description: "Sistema narrativo de fantasia",
     genre: "Fantasia Narrativa • Hope & Fear",
@@ -51,6 +58,8 @@ export const SYSTEMS: Record<string, SystemMeta> = {
     id: "vampiro",
     label: "Vampiro: A Máscara",
     icon: "✦",
+    pngIcon: "/icons/VampiroIcon.png",
+    iconNeedsBoost: true,
     decorIcon: "✕",
     description: "Horror Gótico • Mundo das Trevas",
     genre: "Horror Gótico • Mundo das Trevas",
@@ -65,6 +74,7 @@ export const SYSTEMS: Record<string, SystemMeta> = {
     id: "candela",
     label: "Candela Obscura",
     icon: "◉",
+    pngIcon: "/icons/CandelaIcon.png",
     decorIcon: "◉",
     description: "Horror Investigativo • Era Vitoriana",
     genre: "Horror Investigativo • Era Vitoriana",
@@ -79,6 +89,8 @@ export const SYSTEMS: Record<string, SystemMeta> = {
     id: "sacramento",
     label: "Sacramento",
     icon: "⬡",
+    pngIcon: "/icons/SacramentoIcon.png",
+    iconNeedsBoost: true,
     decorIcon: "⬡",
     description: "Investigação e Intriga • Sistema Único",
     genre: "Investigação e Intriga • Sistema Único",
@@ -93,6 +105,7 @@ export const SYSTEMS: Record<string, SystemMeta> = {
     id: "avatar",
     label: "Avatar Legends",
     icon: "☯",
+    pngIcon: "/icons/AvatarIcon.png",
     decorIcon: "☯",
     description: "As Quatro Nações • Dobramento de Elementos",
     genre: "As Quatro Nações • Dobramento de Elementos",
@@ -111,6 +124,7 @@ export function getSystem(id: string): SystemMeta {
       id,
       label: id,
       icon: "⊛",
+      pngIcon: "",
       decorIcon: "✦",
       description: "Sistema desconhecido",
       genre: "",

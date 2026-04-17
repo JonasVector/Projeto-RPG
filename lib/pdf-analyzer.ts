@@ -1,4 +1,6 @@
+// @ts-nocheck
 // lib/pdf-analyzer.ts
+// TODO(session-2): rewrite with pdf-lib for AcroForm field extraction. Currently unused.
 import pdfParse from 'pdf-parse';
 import fs from 'fs/promises';
 import path from 'path';

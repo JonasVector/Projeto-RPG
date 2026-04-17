@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import SystemIcon from "@/components/ui/SystemIcon";
 
 interface SystemSelectionCardProps {
   href: string;
-  icon: string;
+  systemId: string;
   label: string;
   description: string;
   count: number;
@@ -14,7 +15,7 @@ interface SystemSelectionCardProps {
 
 export default function SystemSelectionCard({
   href,
-  icon,
+  systemId,
   label,
   description,
   count,
@@ -44,14 +45,13 @@ export default function SystemSelectionCard({
       >
         {/* Icon */}
         <div
-          className="flex-shrink-0 w-14 h-14 flex items-center justify-center font-display text-2xl border"
+          className="flex-shrink-0 w-14 h-14 flex items-center justify-center border"
           style={{
             background: `${accent}10`,
             borderColor: `${accent}40`,
-            color: accent,
           }}
         >
-          {icon}
+          <SystemIcon systemId={systemId} size={36} />
         </div>
 
         {/* Info */}

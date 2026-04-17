@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import OrnamentLine from "@/components/ui/OrnamentLine";
 import CharacterCard from "@/components/players/CharacterCard";
-import { SYSTEM_LABELS, SYSTEM_ICONS } from "@/lib/system-labels";
+import SystemIcon from "@/components/ui/SystemIcon";
+import { SYSTEM_LABELS } from "@/lib/system-labels";
 
 export async function generateStaticParams() {
   const players = getAllPlayers();
@@ -40,7 +41,6 @@ export default async function PlayerSystemPage({
 
   const sysAccent = SYSTEM_ACCENT[sistema] || "#b87333";
   const sysLabel = SYSTEM_LABELS[sistema] || sistema;
-  const sysIcon = SYSTEM_ICONS[sistema] || "⊛";
   const border = `${sysAccent}35`;
   const bg = "#15120d";
 
@@ -83,14 +83,13 @@ export default async function PlayerSystemPage({
 
           <div className="flex items-end gap-5 mt-3">
             <div
-              className="flex-shrink-0 w-16 h-16 flex items-center justify-center font-display text-3xl border-2 animate-fade-rise"
+              className="flex-shrink-0 w-16 h-16 flex items-center justify-center border-2 animate-fade-rise"
               style={{
                 background: `${sysAccent}10`,
                 borderColor: sysAccent,
-                color: sysAccent,
               }}
             >
-              {sysIcon}
+              <SystemIcon systemId={sistema} size={44} />
             </div>
 
             <div className="animate-fade-rise-d1">
@@ -129,7 +128,6 @@ export default async function PlayerSystemPage({
                 label={ch.label}
                 status={ch.status}
                 sysAccent={sysAccent}
-                sysIcon={sysIcon}
                 bg={bg}
               />
             </div>
