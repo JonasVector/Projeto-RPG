@@ -6,7 +6,7 @@ import EditCharacterPage from '../../../../../../../app/sistemas-de-rpg/[sistema
 
 // Mock next/navigation
 jest.mock('next/navigation', () => ({
-  useParams: () => ({ sistema: 'dnd5e', slug: 'test-character' }),
+  useParams: () => ({ sistema: 'dnd', slug: 'test-character' }),
   useRouter: () => ({
     push: jest.fn(),
     back: jest.fn(),
@@ -40,7 +40,7 @@ const mockCharacterData = [
   {
     id: '1',
     slug: 'test-character',
-    sistema: 'dnd5e',
+    sistema: 'dnd',
     nome: 'Test Character',
     dados: {
       nome: 'Test Character',
@@ -53,7 +53,7 @@ const mockCharacterData = [
 ];
 
 beforeEach(() => {
-  localStorage.setItem('characters_dnd5e', JSON.stringify(mockCharacterData));
+  localStorage.setItem('characters_dnd', JSON.stringify(mockCharacterData));
   jest.clearAllMocks();
 });
 
@@ -67,7 +67,7 @@ describe('EditCharacterPage', () => {
 
     await waitFor(() => {
       expect(screen.getByText('Editar Test Character')).toBeInTheDocument();
-      expect(screen.getByText('Sistema: dnd5e')).toBeInTheDocument();
+      expect(screen.getByText('Sistema: dnd')).toBeInTheDocument();
       expect(screen.getByText('Identidade')).toBeInTheDocument();
       expect(screen.getByDisplayValue('Test Character')).toBeInTheDocument();
     });
@@ -95,7 +95,7 @@ describe('EditCharacterPage', () => {
     render(<EditCharacterPage />);
 
     await waitFor(() => {
-      // For dnd5e system, should show D&D specific sections
+      // For dnd system, should show D&D specific sections
       expect(screen.getByText('Identidade')).toBeInTheDocument();
       expect(screen.getByText('Atributos')).toBeInTheDocument();
     });

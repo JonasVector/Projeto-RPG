@@ -7,8 +7,8 @@ import { DaggerheartTemplate } from './daggerheart/layout';
 
 // Registry of available system templates
 const SYSTEM_TEMPLATES: Record<string, SystemTemplate> = {
-  dnd5e: {
-    id: 'dnd5e',
+  dnd: {
+    id: 'dnd',
     displayName: 'D&D 5e',
     component: DnDTemplate,
     sections: [] // Will be populated by the component

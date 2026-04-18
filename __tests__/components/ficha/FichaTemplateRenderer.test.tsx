@@ -15,7 +15,7 @@ describe('FichaTemplateRenderer', () => {
   it('should render character image upload and template', () => {
     render(
       <FichaTemplateRenderer
-        systemId="dnd5e"
+        systemId="dnd"
         characterData={mockCharacterData}
         onDataChange={mockOnDataChange}
       />
@@ -29,7 +29,7 @@ describe('FichaTemplateRenderer', () => {
   it('should update character data when template fields change', () => {
     render(
       <FichaTemplateRenderer
-        systemId="dnd5e"
+        systemId="dnd"
         characterData={mockCharacterData}
         onDataChange={mockOnDataChange}
       />
@@ -47,7 +47,7 @@ describe('FichaTemplateRenderer', () => {
   it('should update character data when image changes', () => {
     render(
       <FichaTemplateRenderer
-        systemId="dnd5e"
+        systemId="dnd"
         characterData={mockCharacterData}
         onDataChange={mockOnDataChange}
       />
@@ -61,7 +61,7 @@ describe('FichaTemplateRenderer', () => {
   it('should sync with parent data changes', () => {
     const { rerender } = render(
       <FichaTemplateRenderer
-        systemId="dnd5e"
+        systemId="dnd"
         characterData={mockCharacterData}
         onDataChange={mockOnDataChange}
       />
@@ -70,7 +70,7 @@ describe('FichaTemplateRenderer', () => {
     const newData = { ...mockCharacterData, nome: 'New Name' };
     rerender(
       <FichaTemplateRenderer
-        systemId="dnd5e"
+        systemId="dnd"
         characterData={newData}
         onDataChange={mockOnDataChange}
       />

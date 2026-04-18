@@ -76,7 +76,7 @@ describe('CharacterImageUpload', () => {
     const { rerender } = render(
       <CharacterImageUpload
         onImageChange={mockOnImageChange}
-        systemId="dnd5e"
+        systemId="dnd"
       />
     );
 

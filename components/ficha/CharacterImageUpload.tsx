@@ -93,7 +93,7 @@ const CharacterImageUpload: React.FC<CharacterImageUploadProps> = ({
   // Determine styling based on system
   const getSystemClasses = () => {
     switch (systemId.toLowerCase()) {
-      case 'dnd5e':
+      case 'dnd':
         return 'border-amber-700 bg-gradient-to-br from-amber-900/20 to-transparent';
       case 'vampiro':
         return 'border-red-700 bg-gradient-to-br from-red-900/20 to-transparent';

@@ -15,10 +15,10 @@ describe('Template System', () => {
 
   const mockOnDataChange = jest.fn();
 
-  it('should render D&D template for dnd5e system', () => {
+  it('should render D&D template for dnd system', () => {
     render(
       <TemplateRenderer
-        systemId="dnd5e"
+        systemId="dnd"
         characterData={mockCharacterData}
         onDataChange={mockOnDataChange}
       />
@@ -72,7 +72,7 @@ describe('Template System', () => {
   it('should update character data when fields change', () => {
     render(
       <DnDTemplate
-        systemId="dnd5e"
+        systemId="dnd"
         characterData={mockCharacterData}
         onDataChange={mockOnDataChange}
       />
