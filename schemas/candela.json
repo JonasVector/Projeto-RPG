@@ -1,0 +1,96 @@
+{
+  "system": "candela",
+  "version": "1.0",
+  "displayName": "Candela Obscura",
+  "_source": "Candela Obscura — Darrington Press (2023), sistema Illuminated Worlds. Ficha do investigador (Personagem). Ficha do Círculo (grupo) é separada e não está modelada aqui.",
+  "character": {
+    "identity": {
+      "title": "Identidade",
+      "fields": {
+        "nome": { "type": "string", "required": true, "label": "Nome" },
+        "papel": {
+          "type": "string",
+          "required": true,
+          "label": "Papel",
+          "options": ["Face", "Músculo", "Erudito", "Sombra", "Estranho"]
+        },
+        "especialidade": { "type": "string", "required": true, "label": "Especialidade" },
+        "estilo": { "type": "string", "required": false, "label": "Estilo" },
+        "antecedente": { "type": "string", "required": false, "label": "Antecedente" }
+      }
+    },
+    "drives": {
+      "title": "Impulsos",
+      "fields": {
+        "nervo": { "type": "number", "min": 0, "max": 3, "label": "Nervo (Nerve)", "defaultValue": 0 },
+        "astucia": { "type": "number", "min": 0, "max": 3, "label": "Astúcia (Cunning)", "defaultValue": 0 },
+        "intuicao": { "type": "number", "min": 0, "max": 3, "label": "Intuição (Intuition)", "defaultValue": 0 }
+      }
+    },
+    "actions": {
+      "title": "Ações",
+      "fields": {
+        "mover": { "type": "number", "min": 0, "max": 4, "label": "Mover (Nervo)", "defaultValue": 0 },
+        "atacar": { "type": "number", "min": 0, "max": 4, "label": "Atacar (Nervo)", "defaultValue": 0 },
+        "controlar": { "type": "number", "min": 0, "max": 4, "label": "Controlar (Nervo)", "defaultValue": 0 },
+        "persuadir": { "type": "number", "min": 0, "max": 4, "label": "Persuadir (Astúcia)", "defaultValue": 0 },
+        "ler": { "type": "number", "min": 0, "max": 4, "label": "Ler (Astúcia)", "defaultValue": 0 },
+        "esconder": { "type": "number", "min": 0, "max": 4, "label": "Esconder (Astúcia)", "defaultValue": 0 },
+        "investigar": { "type": "number", "min": 0, "max": 4, "label": "Investigar (Intuição)", "defaultValue": 0 },
+        "focar": { "type": "number", "min": 0, "max": 4, "label": "Focar (Intuição)", "defaultValue": 0 },
+        "sentir": { "type": "number", "min": 0, "max": 4, "label": "Sentir / Arcano (Intuição)", "defaultValue": 0 }
+      }
+    },
+    "vitalities": {
+      "title": "Vitalidades (Marcas)",
+      "fields": {
+        "corpo_marcas": { "type": "number", "min": 0, "max": 3, "label": "Corpo (Body)", "defaultValue": 0 },
+        "mente_marcas": { "type": "number", "min": 0, "max": 3, "label": "Mente (Brain)", "defaultValue": 0 },
+        "sangue_marcas": { "type": "number", "min": 0, "max": 3, "label": "Sangramento (Bleed)", "defaultValue": 0 },
+        "resistencia_corpo": { "type": "number", "min": 0, "max": 4, "label": "Resistência Corpo", "defaultValue": 0 },
+        "resistencia_mente": { "type": "number", "min": 0, "max": 4, "label": "Resistência Mente", "defaultValue": 0 },
+        "resistencia_sangue": { "type": "number", "min": 0, "max": 4, "label": "Resistência Sangramento", "defaultValue": 0 }
+      }
+    },
+    "gilded": {
+      "title": "Dourado / Cicatrizes",
+      "fields": {
+        "dados_dourados": { "type": "number", "min": 0, "max": 3, "label": "Dados Dourados (Gilded)", "defaultValue": 0 },
+        "queimar": { "type": "number", "min": 0, "max": 6, "label": "Queimar (Burn)", "defaultValue": 0 },
+        "cicatrizes": { "type": "array", "items": { "type": "string" }, "label": "Cicatrizes" }
+      }
+    },
+    "abilities": {
+      "title": "Habilidades de Especialidade",
+      "fields": {
+        "habilidades": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nome": { "type": "string" },
+              "descricao": { "type": "string" },
+              "ativa": { "type": "boolean" }
+            }
+          },
+          "label": "Habilidades"
+        }
+      }
+    },
+    "equipment": {
+      "title": "Equipamento",
+      "fields": {
+        "itens": { "type": "array", "items": { "type": "string" }, "label": "Itens" },
+        "memento": { "type": "string", "label": "Memento" }
+      }
+    },
+    "background": {
+      "title": "História",
+      "fields": {
+        "historia": { "type": "string", "label": "História do Investigador" },
+        "vinculos": { "type": "string", "label": "Vínculos com o Círculo" },
+        "notas": { "type": "string", "label": "Notas" }
+      }
+    }
+  }
+}

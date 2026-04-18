@@ -1,0 +1,136 @@
+{
+  "system": "avatar",
+  "version": "1.0",
+  "displayName": "Avatar Legends",
+  "_source": "Avatar Legends: The Roleplaying Game — Magpie Games (2022), sistema PbtA. Campos compartilhados entre os 14 playbooks; opções específicas de playbook não modeladas aqui.",
+  "character": {
+    "identity": {
+      "title": "Identidade",
+      "fields": {
+        "nome": { "type": "string", "required": true, "label": "Nome" },
+        "playbook": {
+          "type": "string",
+          "required": true,
+          "label": "Playbook",
+          "options": [
+            "O Resoluto", "O Audaz", "O Predestinado", "O Ancião", "O Achado",
+            "O Guardião", "O Martelo", "O Ícone", "O Idealista", "O Pilar",
+            "O Prodígio", "A Lâmina", "O Pícaro", "O Sucessor"
+          ]
+        },
+        "antecedente": {
+          "type": "string",
+          "required": false,
+          "label": "Antecedente",
+          "options": ["Militar", "Monástico", "Privilegiado", "Marginal", "Andarilho"]
+        },
+        "treino": {
+          "type": "string",
+          "required": true,
+          "label": "Treino",
+          "options": ["Água", "Terra", "Fogo", "Ar", "Armas", "Tecnologia"]
+        },
+        "demografia": { "type": "string", "required": false, "label": "Demografia / Idade / Aparência" },
+        "era": { "type": "string", "required": false, "label": "Era da Campanha" }
+      }
+    },
+    "stats": {
+      "title": "Atributos",
+      "fields": {
+        "criatividade": { "type": "number", "min": -1, "max": 3, "label": "Criatividade", "defaultValue": 0 },
+        "foco": { "type": "number", "min": -1, "max": 3, "label": "Foco", "defaultValue": 0 },
+        "harmonia": { "type": "number", "min": -1, "max": 3, "label": "Harmonia", "defaultValue": 0 },
+        "paixao": { "type": "number", "min": -1, "max": 3, "label": "Paixão", "defaultValue": 0 }
+      }
+    },
+    "balance": {
+      "title": "Equilíbrio",
+      "fields": {
+        "principio_a": { "type": "string", "label": "Princípio A" },
+        "principio_b": { "type": "string", "label": "Princípio B" },
+        "marca": { "type": "number", "min": -3, "max": 3, "label": "Marca de Equilíbrio", "defaultValue": 0 },
+        "centro": { "type": "number", "min": 0, "max": 3, "label": "Centro", "defaultValue": 0 }
+      }
+    },
+    "fatigue_conditions": {
+      "title": "Fadiga e Condições",
+      "fields": {
+        "fadiga_atual": { "type": "number", "min": 0, "max": 5, "label": "Fadiga Atual", "defaultValue": 0 },
+        "fadiga_maxima": { "type": "number", "min": 1, "max": 5, "label": "Fadiga Máxima", "defaultValue": 5 },
+        "condicao_assustado": { "type": "boolean", "label": "Assustado", "defaultValue": false },
+        "condicao_irado": { "type": "boolean", "label": "Irado", "defaultValue": false },
+        "condicao_tolo": { "type": "boolean", "label": "Tolo", "defaultValue": false },
+        "condicao_culpado": { "type": "boolean", "label": "Culpado", "defaultValue": false },
+        "condicao_inseguro": { "type": "boolean", "label": "Inseguro", "defaultValue": false }
+      }
+    },
+    "moves": {
+      "title": "Movimentos do Playbook",
+      "fields": {
+        "movimentos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nome": { "type": "string" },
+              "descricao": { "type": "string" },
+              "selecionado": { "type": "boolean" }
+            }
+          },
+          "label": "Movimentos"
+        }
+      }
+    },
+    "techniques": {
+      "title": "Técnicas de Combate",
+      "fields": {
+        "tecnicas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nome": { "type": "string" },
+              "abordagem": { "type": "string" },
+              "tipo": { "type": "string" },
+              "aprendida": { "type": "boolean" },
+              "dominada": { "type": "boolean" }
+            }
+          },
+          "label": "Técnicas"
+        }
+      }
+    },
+    "connections": {
+      "title": "Conexões",
+      "fields": {
+        "conexoes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "personagem": { "type": "string" },
+              "descricao": { "type": "string" }
+            }
+          },
+          "label": "Conexões"
+        }
+      }
+    },
+    "growth": {
+      "title": "Crescimento e Avanços",
+      "fields": {
+        "marcas_crescimento": { "type": "number", "min": 0, "max": 4, "label": "Marcas de Crescimento", "defaultValue": 0 },
+        "avancos": { "type": "array", "items": { "type": "string" }, "label": "Avanços Adquiridos" },
+        "momentos_equilibrio": { "type": "array", "items": { "type": "string" }, "label": "Momentos de Equilíbrio" }
+      }
+    },
+    "background": {
+      "title": "História",
+      "fields": {
+        "historia": { "type": "string", "label": "História" },
+        "perguntas": { "type": "string", "label": "Respostas às Perguntas do Playbook" },
+        "notas": { "type": "string", "label": "Notas" }
+      }
+    }
+  }
+}

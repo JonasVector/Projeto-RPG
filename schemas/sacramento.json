@@ -1,0 +1,81 @@
+{
+  "system": "sacramento",
+  "version": "1.0",
+  "displayName": "Sacramento",
+  "_source": "Sacramento RPG — Calango (Balela) + Ramon Mineiro (2024). Faroeste brasileiro. Mecânica: d6 + Atributo ou Antecedente.",
+  "character": {
+    "identity": {
+      "title": "Identidade",
+      "fields": {
+        "nome": { "type": "string", "required": true, "label": "Nome" },
+        "apelido": { "type": "string", "required": false, "label": "Apelido" },
+        "ocupacao": { "type": "string", "required": false, "label": "Ocupação" },
+        "origem": { "type": "string", "required": false, "label": "Origem" },
+        "aparencia": { "type": "string", "required": false, "label": "Aparência" }
+      }
+    },
+    "attributes": {
+      "title": "Atributos",
+      "fields": {
+        "fisico": { "type": "number", "min": 0, "max": 6, "label": "Físico", "defaultValue": 1 },
+        "velocidade": { "type": "number", "min": 0, "max": 6, "label": "Velocidade", "defaultValue": 1 },
+        "intelecto": { "type": "number", "min": 0, "max": 6, "label": "Intelecto", "defaultValue": 1 },
+        "coragem": { "type": "number", "min": 0, "max": 6, "label": "Coragem", "defaultValue": 1 }
+      }
+    },
+    "antecedentes": {
+      "title": "Antecedentes",
+      "fields": {
+        "antecedentes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nome": { "type": "string" },
+              "nivel": { "type": "number", "min": 0, "max": 6 },
+              "descricao": { "type": "string" }
+            }
+          },
+          "label": "Antecedentes"
+        }
+      }
+    },
+    "vitals": {
+      "title": "Vitalidade",
+      "fields": {
+        "vida_atual": { "type": "number", "min": 0, "label": "Vida Atual", "defaultValue": 0 },
+        "vida_maxima": { "type": "number", "min": 1, "label": "Vida Máxima", "defaultValue": 6 },
+        "condicoes": { "type": "array", "items": { "type": "string" }, "label": "Condições" }
+      }
+    },
+    "equipment": {
+      "title": "Equipamento",
+      "fields": {
+        "armas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nome": { "type": "string" },
+              "dano": { "type": "string" },
+              "alcance": { "type": "string" },
+              "notas": { "type": "string" }
+            }
+          },
+          "label": "Armas"
+        },
+        "itens": { "type": "array", "items": { "type": "string" }, "label": "Itens" },
+        "moeda": { "type": "string", "label": "Moeda / Riqueza" }
+      }
+    },
+    "background": {
+      "title": "História",
+      "fields": {
+        "historia": { "type": "string", "label": "História do Personagem" },
+        "motivacoes": { "type": "string", "label": "Motivações" },
+        "vinculos": { "type": "string", "label": "Vínculos" },
+        "notas": { "type": "string", "label": "Notas" }
+      }
+    }
+  }
+}
