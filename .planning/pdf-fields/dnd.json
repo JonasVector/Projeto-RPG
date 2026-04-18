@@ -1,0 +1,1471 @@
+{
+  "sistema": "dnd",
+  "source": "D&D 5ed - Ficha Editável.pdf",
+  "pages": 3,
+  "fieldCount": 335,
+  "fields": [
+    {
+      "name": "Caixa de Seleção0",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção6",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção7",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção8",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção9",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção10",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção11",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção12",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção13",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção14",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção15",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção16",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção17",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção18",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção19",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção20",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção21",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção22",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção23",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção24",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção25",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção26",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção27",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção28",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção29",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Campo de Texto0",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto1",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto2",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto3",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto4",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto5",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto6",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto7",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto8",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto9",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto10",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto11",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto12",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto13",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto14",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto15",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto16",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto17",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto18",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto19",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto22",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto20",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto21",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto23",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto24",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto25",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto26",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto27",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto28",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto29",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto30",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto31",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto32",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto33",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto34",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto35",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto36",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto37",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto38",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto39",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto40",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto41",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto42",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto43",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto44",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto45",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto46",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto47",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto48",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto49",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto50",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto51",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto52",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto53",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto54",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto55",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto56",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto57",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto58",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto59",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto60",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto61",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto62",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto63",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto64",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto65",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto66",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto67",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto68",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto69",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto70",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto71",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto72",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto73",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto74",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto75",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto76",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto77",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto78",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto79",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto80",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto81",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto82",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto83",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto84",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto85",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto86",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto87",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto88",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto89",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto90",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto91",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto92",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto93",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto94",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto95",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto96",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto97",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto98",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto99",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto100",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto101",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto102",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto103",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto104",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto105",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto106",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto107",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto108",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto109",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto110",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto111",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto112",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto113",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto114",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto115",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto116",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto117",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto118",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto119",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto120",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto121",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto122",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto123",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto124",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto125",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto126",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto127",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto128",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto129",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto130",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto131",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto132",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto133",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto134",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto136",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto137",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto138",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto139",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto140",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto141",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto142",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto143",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto144",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto145",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto146",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto147",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto148",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto149",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto150",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto151",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto152",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto153",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto154",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto155",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto156",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto157",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto158",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto159",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto160",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto161",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto162",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto163",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto164",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto165",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto166",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto167",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto168",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto169",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto170",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto171",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto172",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto173",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto174",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto175",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto176",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto177",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto178",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto179",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto180",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto181",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto182",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto183",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto184",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto185",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto186",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto187",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto188",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto189",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto190",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto191",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto192",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto193",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto194",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto195",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto196",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto197",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto198",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto199",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto200",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto201",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto202",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto203",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto204",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto205",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto206",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto207",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto208",
+      "type": "TextField"
+    },
+    {
+      "name": "Campo de Texto135",
+      "type": "TextField"
+    },
+    {
+      "name": "Caixa de Seleção33",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção34",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção35",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção36",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção37",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção38",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção39",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção40",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção41",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção42",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção30",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção31",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção32",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção43",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção44",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção45",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção46",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção47",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção48",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção49",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção50",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção51",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção52",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção62",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção63",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção64",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção65",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção66",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção67",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção68",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção71",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção72",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção69",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção70",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção59",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção60",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção61",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção73",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção74",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção56",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção57",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção58",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção75",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção76",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção77",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção78",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção79",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção80",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção81",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção82",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção83",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção84",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção85",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção86",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção87",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção88",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção89",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção90",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção91",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção92",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção93",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção94",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção95",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção96",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção97",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção98",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção99",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção100",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção101",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção102",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção103",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção104",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção105",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção106",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção107",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção108",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção109",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção110",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção111",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção112",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção113",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção114",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção115",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção116",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção117",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção118",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção119",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção120",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção121",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção122",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção53",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção54",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Caixa de Seleção55",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Campo de Texto209",
+      "type": "TextField"
+    },
+    {
+      "name": "Image77_af_image",
+      "type": "Button"
+    },
+    {
+      "name": "Image78_af_image",
+      "type": "Button"
+    }
+  ]
+}

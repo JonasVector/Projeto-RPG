@@ -1,0 +1,1884 @@
+{
+  "sistema": "candela",
+  "source": "783548931-Candela-Obscura-Ficha-Editavel-Personagem-e-Circulo.pdf",
+  "pages": 2,
+  "fieldCount": 469,
+  "fields": [
+    {
+      "name": "Name 13",
+      "type": "TextField"
+    },
+    {
+      "name": "Scars 32",
+      "type": "TextField"
+    },
+    {
+      "name": "Scars 33",
+      "type": "TextField"
+    },
+    {
+      "name": "Scars 34",
+      "type": "TextField"
+    },
+    {
+      "name": "Gear 12",
+      "type": "TextField"
+    },
+    {
+      "name": "Gear 13",
+      "type": "TextField"
+    },
+    {
+      "name": "Gear 14",
+      "type": "TextField"
+    },
+    {
+      "name": "Gear 15",
+      "type": "TextField"
+    },
+    {
+      "name": "Gear 16",
+      "type": "TextField"
+    },
+    {
+      "name": "Gear 17",
+      "type": "TextField"
+    },
+    {
+      "name": "Gear 18",
+      "type": "TextField"
+    },
+    {
+      "name": "Relationships 42",
+      "type": "TextField"
+    },
+    {
+      "name": "Relationships 1b 12",
+      "type": "TextField"
+    },
+    {
+      "name": "Relationships 43",
+      "type": "TextField"
+    },
+    {
+      "name": "Relationships 2b 12",
+      "type": "TextField"
+    },
+    {
+      "name": "Relationships 44",
+      "type": "TextField"
+    },
+    {
+      "name": "Relationships 3b 12",
+      "type": "TextField"
+    },
+    {
+      "name": "Relationships 45",
+      "type": "TextField"
+    },
+    {
+      "name": "Relationships 4b 12",
+      "type": "TextField"
+    },
+    {
+      "name": "Style 15",
+      "type": "TextField"
+    },
+    {
+      "name": "Pronouns 13",
+      "type": "TextField"
+    },
+    {
+      "name": "Catalyst 17",
+      "type": "TextField"
+    },
+    {
+      "name": "Circle 12",
+      "type": "TextField"
+    },
+    {
+      "name": "Question 12",
+      "type": "TextField"
+    },
+    {
+      "name": "Notes 12",
+      "type": "TextField"
+    },
+    {
+      "name": "gild-on 209",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 210",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 211",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 212",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 213",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 214",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 215",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 216",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 217",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 218",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 219",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 220",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 221",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 222",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 223",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 225",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 233",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 226",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 227",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 228",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 209",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 210",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 211",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 212",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 213",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 214",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 215",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 216",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 217",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 218",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 219",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 220",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 221",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 222",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 223",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 225",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 233",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 226",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 227",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 228",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 284",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 303",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 304",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 305",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 306",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 307",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 308",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 309",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 310",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 311",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 312",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 313",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 314",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 315",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 316",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 317",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 318",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 319",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 320",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 321",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 322",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 323",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 324",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 325",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 326",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 327",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 328",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 284",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 303",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 304",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 305",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 306",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 307",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 308",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 309",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 310",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 311",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 312",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 313",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 314",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 315",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 316",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 317",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 318",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 319",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 320",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 321",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 322",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 323",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 324",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 325",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 326",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 327",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 328",
+      "type": "Button"
+    },
+    {
+      "name": "Name 14",
+      "type": "TextField"
+    },
+    {
+      "name": "Name 15",
+      "type": "TextField"
+    },
+    {
+      "name": "Name 16",
+      "type": "TextField"
+    },
+    {
+      "name": "Name 17",
+      "type": "TextField"
+    },
+    {
+      "name": "Name 20",
+      "type": "TextField"
+    },
+    {
+      "name": "Name 18",
+      "type": "TextField"
+    },
+    {
+      "name": "Name 21",
+      "type": "TextField"
+    },
+    {
+      "name": "Name 19",
+      "type": "TextField"
+    },
+    {
+      "name": "Name 22",
+      "type": "TextField"
+    },
+    {
+      "name": "Name 23",
+      "type": "TextField"
+    },
+    {
+      "name": "Name 24",
+      "type": "TextField"
+    },
+    {
+      "name": "Name 25",
+      "type": "TextField"
+    },
+    {
+      "name": "drive-on 331",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 334",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 346",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 349",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 361",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 362",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 331",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 334",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 346",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 349",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 361",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 362",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 285",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 382",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 295",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 301",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 383",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 304",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 309",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3045",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3046",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 285",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 394",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 295",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 301",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 395",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 304",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 309",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3045",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3046",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-on 92",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-on 93",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-on 94",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-on 95",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-on 96",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-on 97",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-on 98",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-on 99",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-on 100",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-off 92",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-off 93",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-off 94",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-off 95",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-off 96",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-off 97",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-off 98",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-off 99",
+      "type": "Button"
+    },
+    {
+      "name": "Resistance-off 100",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 363",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 445",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 446",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 363",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 445",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 446",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 364",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 365",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 447",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 448",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 449",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 450",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 451",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 452",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 453",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 454",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 455",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 456",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 364",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 365",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 447",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 448",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 449",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 450",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 451",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 452",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 453",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 454",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 455",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 456",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 384",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 385",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 386",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 387",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 388",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 389",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 390",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 391",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 392",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 393",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3047",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3048",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3049",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3050",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3051",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3052",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3053",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3054",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 396",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 397",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 398",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 399",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 400",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 401",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 402",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 403",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 404",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 405",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3047",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3048",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3049",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3050",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3051",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3052",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3053",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3054",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 457",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 458",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 459",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 460",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 461",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 462",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 457",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 458",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 459",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 460",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 461",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 462",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 376",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 377",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 378",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 379",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 380",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 381",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 382",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 383",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 384",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 376",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 377",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 378",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 379",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 380",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 381",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 382",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 383",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 384",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 95",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 96",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 97",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 98",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 99",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 100",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 101",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 95",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 96",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 97",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 98",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 99",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 100",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 101",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 199",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 199",
+      "type": "Button"
+    },
+    {
+      "name": "Name 12",
+      "type": "TextField"
+    },
+    {
+      "name": "Pronouns 12",
+      "type": "TextField"
+    },
+    {
+      "name": "skill-on 278",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 281",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 282",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 279",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 280",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 283",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 286",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 287",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 288",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 289",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 290",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 291",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 292",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 293",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 296",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 297",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 298",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 299",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 300",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 301",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 285",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 294",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 295",
+      "type": "Button"
+    },
+    {
+      "name": "skill-on 302",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 278",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 281",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 282",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 279",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 280",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 283",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 286",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 287",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 288",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 289",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 290",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 291",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 292",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 293",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 296",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 297",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 298",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 299",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 300",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 301",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 285",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 294",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 295",
+      "type": "Button"
+    },
+    {
+      "name": "skill-off 302",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 203",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 204",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 205",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 206",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 207",
+      "type": "Button"
+    },
+    {
+      "name": "gild-on 208",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 203",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 204",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 205",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 206",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 207",
+      "type": "Button"
+    },
+    {
+      "name": "gild-off 208",
+      "type": "Button"
+    },
+    {
+      "name": "Style 12",
+      "type": "TextField"
+    },
+    {
+      "name": "Catalyst 12",
+      "type": "TextField"
+    },
+    {
+      "name": "Style 13",
+      "type": "TextField"
+    },
+    {
+      "name": "Style 14",
+      "type": "TextField"
+    },
+    {
+      "name": "Catalyst 13",
+      "type": "TextField"
+    },
+    {
+      "name": "Catalyst 15",
+      "type": "TextField"
+    },
+    {
+      "name": "Catalyst 14",
+      "type": "TextField"
+    },
+    {
+      "name": "Catalyst 16",
+      "type": "TextField"
+    },
+    {
+      "name": "drive-on 389",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 391",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 398",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 400",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 407",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 409",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 390",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 399",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 408",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 392",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 394",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 401",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 403",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 4010",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 4012",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 393",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 402",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 4011",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 395",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 397",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 404",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 406",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 4013",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 4015",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 396",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 405",
+      "type": "Button"
+    },
+    {
+      "name": "drive-on 4014",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 389",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 391",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 398",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 400",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 407",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 409",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 390",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 399",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 408",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 392",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 394",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 401",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 403",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 4010",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 4012",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 393",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 402",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 4011",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 395",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 397",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 404",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 406",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 4013",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 4015",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 396",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 405",
+      "type": "Button"
+    },
+    {
+      "name": "drive-off 4014",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 337",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 340",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 341",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 344",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 345",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 348",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 338",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 342",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 346",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3019",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3028",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3022",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3029",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3025",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3030",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3020",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3023",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3026",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3021",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3031",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3024",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3032",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3027",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 3033",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 339",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 343",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-on 347",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 347",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 350",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 353",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 356",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 359",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 362",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 348",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 354",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 360",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3019",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3028",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3022",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3029",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3025",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3030",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3020",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3023",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3026",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3021",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3031",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3024",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3032",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3027",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 3033",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 349",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 355",
+      "type": "Button"
+    },
+    {
+      "name": "drive-max-off 361",
+      "type": "Button"
+    }
+  ]
+}

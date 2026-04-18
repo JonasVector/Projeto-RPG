@@ -1,0 +1,558 @@
+{
+  "sistema": "sacramento",
+  "source": "Ficha Editável - Sacramento RPG (1).pdf",
+  "pages": 2,
+  "fieldCount": 117,
+  "fields": [
+    {
+      "name": "text_2gdrn",
+      "type": "TextField"
+    },
+    {
+      "name": "text_3qpde",
+      "type": "TextField",
+      "defaultValue": "0"
+    },
+    {
+      "name": "text_4miiz",
+      "type": "TextField",
+      "defaultValue": "0"
+    },
+    {
+      "name": "text_5sflt",
+      "type": "TextField",
+      "defaultValue": "0"
+    },
+    {
+      "name": "text_6dxja",
+      "type": "TextField",
+      "defaultValue": "0"
+    },
+    {
+      "name": "text_7mjum",
+      "type": "TextField",
+      "defaultValue": "1"
+    },
+    {
+      "name": "text_8ejwm",
+      "type": "TextField",
+      "defaultValue": "1"
+    },
+    {
+      "name": "text_9kngf",
+      "type": "TextField",
+      "defaultValue": "5"
+    },
+    {
+      "name": "text_10vtdf",
+      "type": "TextField",
+      "defaultValue": "0"
+    },
+    {
+      "name": "textarea_11lkas",
+      "type": "TextField"
+    },
+    {
+      "name": "checkbox_14ucix",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_15ajmr",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_16docq",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_17tuio",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_18kqar",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "text_74xwsz",
+      "type": "TextField",
+      "defaultValue": "0/6"
+    },
+    {
+      "name": "checkbox_75qlu",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_76pkww",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_77qisg",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_78hmpv",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_79ruaq",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_80jiao",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_81drjm",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_82buvj",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_83hwdm",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_84rev",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_85bzlc",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_86cxfx",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_87wnag",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_88hjfq",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_89jmgk",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_90ncsg",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_91dftm",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_92qfwi",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_93antj",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_94kfzj",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_95tomu",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_96srpx",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_97upzf",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_98npzb",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_99hpnn",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_100bnba",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_101qpgz",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_102plwj",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_103bzza",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_104xcld",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_105olip",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_106fzaf",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_107jgqf",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_108zrk",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_109qtjv",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_110zrky",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_111kgix",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_112ojfz",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_113ohza",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_114cjyc",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_115etpt",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_116yfgl",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_117mcgm",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_118camf",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_119vei",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_120fsyy",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_121nhfa",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "text_19rivw",
+      "type": "TextField"
+    },
+    {
+      "name": "text_20njio",
+      "type": "TextField"
+    },
+    {
+      "name": "text_21qvus",
+      "type": "TextField"
+    },
+    {
+      "name": "text_22lrgh",
+      "type": "TextField"
+    },
+    {
+      "name": "text_23islq",
+      "type": "TextField"
+    },
+    {
+      "name": "text_24bajf",
+      "type": "TextField"
+    },
+    {
+      "name": "text_25dpos",
+      "type": "TextField"
+    },
+    {
+      "name": "text_26lacw",
+      "type": "TextField"
+    },
+    {
+      "name": "text_27doka",
+      "type": "TextField"
+    },
+    {
+      "name": "text_28qfev",
+      "type": "TextField"
+    },
+    {
+      "name": "text_29irxn",
+      "type": "TextField"
+    },
+    {
+      "name": "text_30uwll",
+      "type": "TextField"
+    },
+    {
+      "name": "text_31obry",
+      "type": "TextField"
+    },
+    {
+      "name": "text_32wccf",
+      "type": "TextField"
+    },
+    {
+      "name": "text_33wbmg",
+      "type": "TextField"
+    },
+    {
+      "name": "text_34tkhm",
+      "type": "TextField"
+    },
+    {
+      "name": "text_35zgbc",
+      "type": "TextField"
+    },
+    {
+      "name": "text_36huub",
+      "type": "TextField"
+    },
+    {
+      "name": "text_37algz",
+      "type": "TextField"
+    },
+    {
+      "name": "text_38kkgy",
+      "type": "TextField"
+    },
+    {
+      "name": "text_39zhgz",
+      "type": "TextField"
+    },
+    {
+      "name": "text_40aget",
+      "type": "TextField"
+    },
+    {
+      "name": "text_41dzr",
+      "type": "TextField"
+    },
+    {
+      "name": "text_42pshe",
+      "type": "TextField"
+    },
+    {
+      "name": "text_43lbzm",
+      "type": "TextField"
+    },
+    {
+      "name": "text_44vtoq",
+      "type": "TextField"
+    },
+    {
+      "name": "text_45srfm",
+      "type": "TextField"
+    },
+    {
+      "name": "text_46mjon",
+      "type": "TextField"
+    },
+    {
+      "name": "text_47xbvf",
+      "type": "TextField"
+    },
+    {
+      "name": "text_48izju",
+      "type": "TextField"
+    },
+    {
+      "name": "text_49qcni",
+      "type": "TextField"
+    },
+    {
+      "name": "text_50lxvf",
+      "type": "TextField"
+    },
+    {
+      "name": "text_52roeh",
+      "type": "TextField"
+    },
+    {
+      "name": "text_53qekg",
+      "type": "TextField",
+      "defaultValue": "0"
+    },
+    {
+      "name": "checkbox_54fsgd",
+      "type": "CheckBox",
+      "isChecked": true
+    },
+    {
+      "name": "checkbox_55vyeu",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_56zgyq",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_57ssla",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_58ieqf",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_59mupc",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_60yhfq",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_61ejib",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_62xccj",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_63ptp",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_64zslc",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_65esfu",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_66qatj",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_67fxcb",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_68vdjj",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_69fwpd",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_70gdcn",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "checkbox_71yame",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "text_72patf",
+      "type": "TextField",
+      "defaultValue": "0"
+    },
+    {
+      "name": "text_73jqtw",
+      "type": "TextField",
+      "defaultValue": "0/6"
+    }
+  ]
+}
