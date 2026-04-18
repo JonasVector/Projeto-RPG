@@ -1,0 +1,1773 @@
+{
+  "sistema": "vampiro",
+  "source": "VtM V5-Ficha PTBR-Editável.pdf",
+  "pages": 2,
+  "fieldCount": 363,
+  "fields": [
+    {
+      "name": "FOR1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "FOR2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "FOR3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "FOR4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "FOR5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DES1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DES2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DES3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DES4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DES5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "CAR5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "CAR2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "CAR3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "CAR4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "CAR1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "MAN5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "MAN2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "MAN3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "MAN4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "MAN1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "AUT1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "AUT2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "AUT4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "AUT5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "AUT3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "INT1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "INT2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "INT3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "INT4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "INT5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "RAC1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "RAC2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "RAC3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "RAC4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "RAC5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DET1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DET2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DET3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DET4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DET5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "VIT1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "VIT2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "VIT3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "VIT4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "VIT5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "VIT6",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "VIT7",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "VIT8",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "VIT9",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "VIT0",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "VIG1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "VIG3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "VIG2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "VIG4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "VIG5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "ArBr1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "ArBr2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "ArBr3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "ArBr4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "ArBr5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "ArFo1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "ArFo2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "ArFo3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "ArFo4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "ArFo5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Atle1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Atle2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Atle3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Atle4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Atle5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Brig1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Brig2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Brig3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Brig4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Brig5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Cond1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Cond2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Cond3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Cond4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Cond5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Fund1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Fund2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Fund3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Fund4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Fund5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Ladr1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Ladr2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Ladr3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Ladr4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Ladr5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Ofic1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Ofic2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Ofic3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Ofic4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Ofic5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Sobr1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Sobr2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Sobr3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Sobr4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Sobr5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "NOME DO PERSONAGEM",
+      "type": "TextField"
+    },
+    {
+      "name": "CRÔNICA",
+      "type": "TextField"
+    },
+    {
+      "name": "SENHOR",
+      "type": "TextField"
+    },
+    {
+      "name": "CONCEITO",
+      "type": "TextField"
+    },
+    {
+      "name": "AMBIÇÃO",
+      "type": "TextField"
+    },
+    {
+      "name": "DESEJO",
+      "type": "TextField"
+    },
+    {
+      "name": "PREDADOR",
+      "type": "TextField"
+    },
+    {
+      "name": "CLÃ",
+      "type": "TextField"
+    },
+    {
+      "name": "Pilares & Convicções",
+      "type": "RichTextField"
+    },
+    {
+      "name": "EmCA5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Etiq5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Inti5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Lide5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Manh5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Perf5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Pers5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Saga5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Saga4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Saga3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Saga2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Saga1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Pers4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Pers3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Pers2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Pers1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Perf4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Perf3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Perf2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Perf1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Manh4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Manh3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Manh2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Manh1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Lide4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Lide3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Lide2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Lide1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Inti4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Inti3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Inti2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Inti1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Etiq4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Etiq3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Etiq2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Etiq1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Subt1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "EmCA4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "EmCA3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "EmCA2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "EmCA1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Subt2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Subt3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Subt4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Subt5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Cien1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Cien2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Cien3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Cien4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Cien5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Erud1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Erud2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Erud3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Erud4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Erud5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Fina1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Fina2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Fina3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Fina4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Fina5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Inve1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Inve2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Inve3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Inve4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Inve5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Medi1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Medi2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Medi3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Medi4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Medi5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Ocul1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Ocul2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Ocul3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Ocul4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Ocul5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Perc1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Perc2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Perc3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Perc4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Perc5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Poli1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Poli2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Poli3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Poli4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Poli5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Tecn1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Tecn2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Tecn3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Tecn4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Tecn5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP1.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP1.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP1.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP1.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP1.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP2.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP2.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP2.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP2.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP2.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP3.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP3.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP3.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP3.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP3.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "GERAÇÃO",
+      "type": "TextField"
+    },
+    {
+      "name": "DISCIPLINA 1",
+      "type": "TextField"
+    },
+    {
+      "name": "DISCIPLINA 2",
+      "type": "TextField"
+    },
+    {
+      "name": "DISCIPLINA 3",
+      "type": "TextField"
+    },
+    {
+      "name": "DISCIPLINA 4",
+      "type": "TextField"
+    },
+    {
+      "name": "DISCIPLINA 5",
+      "type": "TextField"
+    },
+    {
+      "name": "DSCP4.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP4.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP4.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP4.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP4.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP5.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP5.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP5.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP5.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP5.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP6.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP6.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP6.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP6.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DSCP6.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Fome1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Fome2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Fome3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Fome4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Fome5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "FdV1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "FdV2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "FdV3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "FdV4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "FdV5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "FdV6",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "FdV7",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "FdV8",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "FdV9",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "FdV0",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Humanidade1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Humanidade2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Humanidade3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Humanidade4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Humanidade5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Humanidade6",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Humanidade7",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Humanidade8",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Humanidade9",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Humanidade0",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Princípios da Crônica",
+      "type": "RichTextField"
+    },
+    {
+      "name": "Desc.Disc.1",
+      "type": "RichTextField"
+    },
+    {
+      "name": "Desc.Disc.2",
+      "type": "RichTextField"
+    },
+    {
+      "name": "Desc.Disc.3",
+      "type": "RichTextField"
+    },
+    {
+      "name": "Desc.Disc.4",
+      "type": "RichTextField"
+    },
+    {
+      "name": "Desc.Disc.5",
+      "type": "RichTextField"
+    },
+    {
+      "name": "Desc.Disc.6",
+      "type": "RichTextField"
+    },
+    {
+      "name": "PdS6",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "PdS7",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "PdS8",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "PdS9",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "PdS0",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "PdS1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "PdS2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "PdS3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "PdS4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "PdS5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D1.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D1.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D1.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D1.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D1.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "DISCIPLINA 6",
+      "type": "TextField"
+    },
+    {
+      "name": "V&D2.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D2.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D2.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D2.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D2.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D3.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D3.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D3.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D3.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D3.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D4.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D4.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D4.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D4.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D4.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Vantagens e Defeitos 1",
+      "type": "TextField"
+    },
+    {
+      "name": "Vantagens e Defeitos 2",
+      "type": "TextField"
+    },
+    {
+      "name": "Vantagens e Defeitos 3",
+      "type": "TextField"
+    },
+    {
+      "name": "Vantagens e Defeitos 4",
+      "type": "TextField"
+    },
+    {
+      "name": "Vantagens e Defeitos 5",
+      "type": "TextField"
+    },
+    {
+      "name": "V&D5.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D5.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D5.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D5.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D5.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D6.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D6.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D6.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D6.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D6.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D7.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D7.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D7.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D7.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D7.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D8.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D8.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D8.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D8.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D8.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Vantagens e Defeitos 6",
+      "type": "TextField"
+    },
+    {
+      "name": "Vantagens e Defeitos 7",
+      "type": "TextField"
+    },
+    {
+      "name": "Vantagens e Defeitos 8",
+      "type": "TextField"
+    },
+    {
+      "name": "Vantagens e Defeitos 9",
+      "type": "TextField"
+    },
+    {
+      "name": "Vantagens e Defeitos 10",
+      "type": "TextField"
+    },
+    {
+      "name": "Vantagens e Defeitos 11",
+      "type": "TextField"
+    },
+    {
+      "name": "V&D9.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D9.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D9.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D9.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D9.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D10.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D10.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D10.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D10.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D10.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D11.1",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D11.2",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D11.3",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D11.4",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "V&D11.5",
+      "type": "CheckBox",
+      "isChecked": false
+    },
+    {
+      "name": "Perdição do Clã",
+      "type": "RichTextField"
+    },
+    {
+      "name": "Notas",
+      "type": "RichTextField"
+    },
+    {
+      "name": "Surto de Sangue",
+      "type": "RichTextField"
+    },
+    {
+      "name": "Quantidade Recuperada",
+      "type": "RichTextField"
+    },
+    {
+      "name": "Rerrolagem de Sangue",
+      "type": "RichTextField"
+    },
+    {
+      "name": "Bônus de Poder",
+      "type": "RichTextField"
+    },
+    {
+      "name": "Penalidade de Alimentação",
+      "type": "RichTextField"
+    },
+    {
+      "name": "Ressonância",
+      "type": "TextField"
+    },
+    {
+      "name": "XP Total",
+      "type": "TextField"
+    },
+    {
+      "name": "XP Gasta",
+      "type": "TextField"
+    },
+    {
+      "name": "Idade Verdadeira",
+      "type": "TextField"
+    },
+    {
+      "name": "Idade Aparente",
+      "type": "TextField"
+    },
+    {
+      "name": "Data de Nascimento",
+      "type": "TextField"
+    },
+    {
+      "name": "Data de Morte",
+      "type": "TextField"
+    },
+    {
+      "name": "Gravidade da Perdição",
+      "type": "RichTextField"
+    },
+    {
+      "name": "Aparência",
+      "type": "RichTextField"
+    },
+    {
+      "name": "Traços Distintivos",
+      "type": "RichTextField"
+    },
+    {
+      "name": "História",
+      "type": "RichTextField"
+    },
+    {
+      "name": "Reset",
+      "type": "RadioGroup",
+      "options": [
+        "Escolha1"
+      ]
+    }
+  ]
+}

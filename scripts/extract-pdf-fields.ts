@@ -56,8 +56,13 @@ function classifyField(f: unknown): FieldInfo {
     if (max !== undefined) base.maxLength = max;
     if (f.isRequired()) base.required = true;
     if (f.isReadOnly()) base.readOnly = true;
-    const val = f.getText();
-    if (val) base.defaultValue = val;
+    try {
+      const val = f.getText();
+      if (val) base.defaultValue = val;
+    } catch {
+      // Rich-text fields throw; we keep the field name+type and skip the value.
+      base.type = "RichTextField";
+    }
   } else if (f instanceof PDFCheckBox) {
     base.isChecked = f.isChecked();
   } else if (f instanceof PDFDropdown || f instanceof PDFOptionList) {
