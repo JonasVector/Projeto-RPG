@@ -1,8 +1,8 @@
 {
   "system": "candela",
-  "version": "1.0",
+  "version": "1.1",
   "displayName": "Candela Obscura",
-  "_source": "Candela Obscura — Darrington Press (2023), sistema Illuminated Worlds. Ficha do investigador (Personagem). Ficha do Círculo (grupo) é separada e não está modelada aqui.",
+  "_source": "Candela Obscura — Darrington Press (2023), sistema Illuminated Worlds. Inclui ficha do Investigador (character) e ficha do Círculo (circle) — grupo de investigadores, com patrono, tarot e ações iluminantes.",
   "character": {
     "identity": {
       "title": "Identidade",
@@ -90,6 +90,110 @@
         "historia": { "type": "string", "label": "História do Investigador" },
         "vinculos": { "type": "string", "label": "Vínculos com o Círculo" },
         "notas": { "type": "string", "label": "Notas" }
+      }
+    }
+  },
+  "circle": {
+    "identity": {
+      "title": "Identidade do Círculo",
+      "fields": {
+        "nome_circulo": { "type": "string", "required": true, "label": "Nome do Círculo" },
+        "lema": { "type": "string", "required": false, "label": "Lema / Motto" },
+        "sede": { "type": "string", "required": false, "label": "Sede / Localização" },
+        "era": { "type": "string", "required": false, "label": "Era / Cidade (ex.: Newfaire)" }
+      }
+    },
+    "patron": {
+      "title": "Patrono",
+      "fields": {
+        "patrono_nome": { "type": "string", "label": "Nome do Patrono" },
+        "patrono_natureza": {
+          "type": "string",
+          "label": "Natureza",
+          "options": ["Humano", "Entidade Arcana", "Organização", "Facção", "Outro"]
+        },
+        "patrono_descricao": { "type": "textarea", "label": "Descrição e agenda" }
+      }
+    },
+    "tarot": {
+      "title": "Tarot do Círculo",
+      "fields": {
+        "arcana": {
+          "type": "string",
+          "label": "Arcano",
+          "options": [
+            "O Louco", "O Mago", "A Sacerdotisa", "A Imperatriz", "O Imperador",
+            "O Hierofante", "Os Amantes", "A Carruagem", "A Força", "O Eremita",
+            "A Roda da Fortuna", "A Justiça", "O Enforcado", "A Morte", "A Temperança",
+            "O Diabo", "A Torre", "A Estrela", "A Lua", "O Sol",
+            "O Julgamento", "O Mundo"
+          ]
+        },
+        "significado": { "type": "textarea", "label": "Significado para o Círculo" }
+      }
+    },
+    "roster": {
+      "title": "Investigadores",
+      "fields": {
+        "membros": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nome": { "type": "string" },
+              "papel": { "type": "string" },
+              "jogador": { "type": "string" }
+            }
+          },
+          "label": "Membros"
+        }
+      }
+    },
+    "illuminating_actions": {
+      "title": "Ações Iluminantes",
+      "_notes": "As Illuminating Actions do Círculo representam as capacidades coletivas. Os 6 campos abaixo (3 Investigação + 3 Preparação) são pontuações de 0 a 3 conforme o livro.",
+      "fields": {
+        "investigar_arcano": { "type": "number", "min": 0, "max": 3, "label": "Investigar — Arcano", "defaultValue": 0 },
+        "investigar_social": { "type": "number", "min": 0, "max": 3, "label": "Investigar — Social", "defaultValue": 0 },
+        "investigar_academico": { "type": "number", "min": 0, "max": 3, "label": "Investigar — Acadêmico", "defaultValue": 0 },
+        "preparar_armas": { "type": "number", "min": 0, "max": 3, "label": "Preparar — Armas", "defaultValue": 0 },
+        "preparar_ritual": { "type": "number", "min": 0, "max": 3, "label": "Preparar — Ritual", "defaultValue": 0 },
+        "preparar_disfarce": { "type": "number", "min": 0, "max": 3, "label": "Preparar — Disfarce", "defaultValue": 0 }
+      }
+    },
+    "resources": {
+      "title": "Recursos",
+      "fields": {
+        "contatos": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "papel": { "type": "string" }, "notas": { "type": "string" } } }, "label": "Contatos" },
+        "ativos": { "type": "array", "items": { "type": "string" }, "label": "Ativos (propriedades, equipamentos do círculo)" },
+        "dividas": { "type": "array", "items": { "type": "string" }, "label": "Dívidas e obrigações" }
+      }
+    },
+    "horrors": {
+      "title": "Horrores e Nêmeses",
+      "fields": {
+        "inimigos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nome": { "type": "string" },
+              "tipo": { "type": "string" },
+              "status": { "type": "string", "options": ["Ativo", "Derrotado", "Fugiu", "Desconhecido"] },
+              "notas": { "type": "string" }
+            }
+          },
+          "label": "Nêmeses"
+        }
+      }
+    },
+    "progress": {
+      "title": "Progresso do Círculo",
+      "fields": {
+        "reputacao": { "type": "number", "min": 0, "max": 10, "label": "Reputação", "defaultValue": 0 },
+        "casos_encerrados": { "type": "number", "min": 0, "label": "Casos Encerrados", "defaultValue": 0 },
+        "casos_abertos": { "type": "array", "items": { "type": "string" }, "label": "Casos em Aberto" },
+        "notas": { "type": "textarea", "label": "Notas do Círculo" }
       }
     }
   }
