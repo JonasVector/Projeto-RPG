@@ -1,82 +1,122 @@
 {
   "system": "daggerheart",
-  "version": "1.0",
+  "version": "2.0",
   "displayName": "Daggerheart",
+  "_source": "Daggerheart — Darrington Press (2025). Semantic model alinhado ao vault Projeto-RPG-Cerebro-Organizado/05-Sistemas-de-RPG/daggerheart-base.md: Estresse substitui PV, Defesa substitui CA, 6 atributos estilo D&D (FOR/DES/CON/INT/SAB/CAR), dominios substituem pericias, Esperanca/Medo sao pools de grupo.",
+  "_notes": "v2 rewrite session 4. Substitui v1 (fake stats: aspiracao/graca/sangue/etc + modelo D&D PV/CA). Object arrays (armas, magias, traumas detalhados) diferidos para v3 — v2 usa textareas narrativas.",
   "character": {
     "identity": {
       "title": "Identidade",
       "fields": {
         "nome": { "type": "string", "required": true, "label": "Nome" },
-        "titulo": { "type": "string", "required": false, "label": "Título" },
+        "jogador": { "type": "string", "required": false, "label": "Jogador" },
+        "nivel": { "type": "number", "required": true, "min": 1, "max": 20, "label": "Nível", "defaultValue": 1 },
+        "ancestralidade": { "type": "string", "required": true, "label": "Ancestralidade" },
         "classe": { "type": "string", "required": true, "label": "Classe" },
-        "origem": { "type": "string", "required": false, "label": "Origem" },
-        "nivel": { "type": "number", "required": true, "min": 1, "max": 10, "label": "Nível", "defaultValue": 1 },
-        "aspecto": { "type": "string", "required": false, "label": "Aspecto" },
-        "origem_hist": { "type": "string", "required": false, "label": "Histórico de Origem" }
+        "caminho": { "type": "string", "required": false, "label": "Caminho (Subclasse)" }
       }
     },
-    "stats": {
-      "title": "Estatísticas",
+    "attributes": {
+      "title": "Atributos",
       "fields": {
-        "aspiracao": { "type": "number", "min": 0, "max": 20, "label": "Aspiração", "defaultValue": 10 },
-        "desespero": { "type": "number", "min": 0, "max": 20, "label": "Desespero", "defaultValue": 10 },
-        "graca": { "type": "number", "min": 0, "max": 20, "label": "Graça", "defaultValue": 10 },
-        "sangue": { "type": "number", "min": 0, "max": 20, "label": "Sangue", "defaultValue": 10 },
-        "espirito": { "type": "number", "min": 0, "max": 20, "label": "Espírito", "defaultValue": 10 },
-        "sabedoria": { "type": "number", "min": 0, "max": 20, "label": "Sabedoria", "defaultValue": 10 },
-        "meia_noite": { "type": "number", "min": 0, "max": 20, "label": "Meia-Noite", "defaultValue": 10 },
-        "valentia": { "type": "number", "min": 0, "max": 20, "label": "Valentia", "defaultValue": 10 },
-        "esplendor": { "type": "number", "min": 0, "max": 20, "label": "Esplendor", "defaultValue": 10 }
+        "forca": { "type": "number", "min": 1, "max": 20, "label": "Força (FOR)", "defaultValue": 10 },
+        "destreza": { "type": "number", "min": 1, "max": 20, "label": "Destreza (DES)", "defaultValue": 10 },
+        "constituicao": { "type": "number", "min": 1, "max": 20, "label": "Constituição (CON)", "defaultValue": 10 },
+        "inteligencia": { "type": "number", "min": 1, "max": 20, "label": "Inteligência (INT)", "defaultValue": 10 },
+        "sabedoria": { "type": "number", "min": 1, "max": 20, "label": "Sabedoria (SAB)", "defaultValue": 10 },
+        "carisma": { "type": "number", "min": 1, "max": 20, "label": "Carisma (CAR)", "defaultValue": 10 }
+      }
+    },
+    "vitality": {
+      "title": "Estresse",
+      "fields": {
+        "estresse_atual": { "type": "number", "min": 0, "max": 50, "label": "Estresse Atual", "defaultValue": 0 },
+        "estresse_maximo": { "type": "number", "min": 1, "max": 50, "label": "Estresse Máximo", "defaultValue": 10 }
       }
     },
     "combat": {
       "title": "Combate",
       "fields": {
-        "classe_armadura": { "type": "number", "label": "Classe de Armadura", "defaultValue": 10 },
-        "pv_maximos": { "type": "number", "label": "Pontos de Vida Máximos", "defaultValue": 10 },
-        "pv_atual": { "type": "number", "label": "Pontos de Vida Atuais", "defaultValue": 10 },
+        "defesa": { "type": "number", "label": "Defesa", "defaultValue": 10 },
         "iniciativa": { "type": "number", "label": "Iniciativa", "defaultValue": 0 },
-        "deslocamento": { "type": "string", "label": "Deslocamento", "defaultValue": "30 ft" },
-        "proficiencia": { "type": "number", "label": "Proficiência", "defaultValue": 2 }
+        "bonus_proficiencia": { "type": "number", "min": 2, "max": 6, "label": "Bônus de Proficiência", "defaultValue": 2 },
+        "deslocamento": { "type": "string", "label": "Deslocamento", "defaultValue": "9m" }
       }
     },
-    "abilities": {
-      "title": "Habilidades",
+    "pool": {
+      "title": "Recursos de Grupo",
       "fields": {
-        "habilidades_classe": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "descricao": { "type": "string" }, "tipo": { "type": "string" } } }, "label": "Habilidades de Classe" },
-        "arcana": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "descricao": { "type": "string" }, "custo": { "type": "number" } } }, "label": "Arcana" }
+        "esperanca_grupo": { "type": "number", "min": 0, "max": 20, "label": "Esperança (grupo)", "defaultValue": 0 },
+        "desespero_mestre": { "type": "number", "min": 0, "max": 20, "label": "Desespero (mestre)", "defaultValue": 0 }
       }
     },
-    "relationships": {
-      "title": "Relacionamentos",
+    "dominios": {
+      "title": "Domínios de Proficiência",
       "fields": {
-        "ligacoes": { "type": "array", "items": { "type": "object", "properties": { "nome": { "type": "string" }, "tipo": { "type": "string" }, "descricao": { "type": "string" } } }, "label": "Ligações" },
-        "memorias": { "type": "array", "items": { "type": "object", "properties": { "descricao": { "type": "string" }, "impacto": { "type": "string" } } }, "label": "Memórias" }
+        "proficiencias": {
+          "type": "array",
+          "itemType": "string",
+          "label": "Domínios proficientes",
+          "options": [
+            "Acrobacia",
+            "Atletismo",
+            "Furtividade",
+            "Intuição",
+            "Atuação",
+            "Enganação",
+            "Intimidação",
+            "Persuasão",
+            "Arcanismo",
+            "História",
+            "Investigação",
+            "Natureza",
+            "Percepção",
+            "Sobrevivência",
+            "Medicina",
+            "Religião"
+          ]
+        }
+      }
+    },
+    "magia": {
+      "title": "Magia",
+      "fields": {
+        "atributo_conj": { "type": "string", "label": "Atributo de Conjuração", "defaultValue": "" },
+        "cd_magia": { "type": "number", "label": "CD de Magia", "defaultValue": 8 },
+        "bonus_ataque_magico": { "type": "number", "label": "Bônus de Ataque Mágico", "defaultValue": 0 },
+        "magias_conhecidas": { "type": "textarea", "label": "Magias Conhecidas (uma por linha)" }
       }
     },
     "equipment": {
       "title": "Equipamento",
       "fields": {
-        "armas": { "type": "array", "items": { "type": "string" }, "label": "Armas" },
-        "armaduras": { "type": "array", "items": { "type": "string" }, "label": "Armaduras" },
-        "equipamentos": { "type": "array", "items": { "type": "string" }, "label": "Equipamentos" },
-        "consumiveis": { "type": "array", "items": { "type": "string" }, "label": "Consumíveis" }
+        "armas": { "type": "textarea", "label": "Armas (uma por linha)" },
+        "armadura": { "type": "string", "label": "Armadura" },
+        "bonus_defesa_armadura": { "type": "number", "label": "Bônus de Defesa da Armadura", "defaultValue": 0 },
+        "escudo": { "type": "string", "label": "Escudo" },
+        "equipamentos": { "type": "textarea", "label": "Equipamentos (um por linha)" }
+      }
+    },
+    "traumas": {
+      "title": "Traumas",
+      "fields": {
+        "traumas_notas": { "type": "textarea", "label": "Traumas (um por linha — tipo, descrição, efeito)" }
       }
     },
     "personality": {
       "title": "Personalidade",
       "fields": {
-        "tracos": { "type": "string", "label": "Traços de Personalidade" },
-        "ideais": { "type": "string", "label": "Ideais" },
-        "vinculos": { "type": "string", "label": "Vínculos" },
-        "defeitos": { "type": "string", "label": "Defeitos" }
+        "aparencia": { "type": "textarea", "label": "Aparência" },
+        "personalidade": { "type": "textarea", "label": "Personalidade" },
+        "ideais": { "type": "textarea", "label": "Ideais" },
+        "ligacoes": { "type": "textarea", "label": "Ligações" }
       }
     },
     "background": {
       "title": "Histórico",
       "fields": {
-        "historia": { "type": "string", "label": "História do Personagem" },
-        "motivacoes": { "type": "string", "label": "Motivações" }
+        "historia": { "type": "textarea", "label": "História" },
+        "motivacoes": { "type": "textarea", "label": "Motivações" }
       }
     }
   }
