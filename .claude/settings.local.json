@@ -16,7 +16,21 @@
       "Bash(npx eslint:*)",
       "Bash(git:*)",
       "Bash(npx obsidian:*)",
-      "Bash(obsidian vault=Projeto-RPG-Cerebro-Organizado:*)"
+      "Bash(obsidian vault=Projeto-RPG-Cerebro-Organizado:*)",
+      "Read(//c/ProjetosVSCODE/Projeto-RPG-AntigravityClaude/FichasdeRPG/**)",
+      "Read(//c/ProjetosVSCODE/Projeto-RPG-AntigravityClaude/IconesSistema/**)",
+      "Read(//c/ProjetosVSCODE/Projeto-RPG-AntigravityClaude/Icones-de-ficha-Daggeheart/**)",
+      "Bash(npm install *)",
+      "Bash(npx tsx *)",
+      "Read(//c/Users/joaot/.claude/projects/C--ProjetosVSCODE-Projeto-RPG-AntigravityClaude-projeto-rpg/memory//**)",
+      "Read(//c/Users/joaot/.claude/projects//**)",
+      "Bash(node *)",
+      "WebSearch",
+      "WebFetch(domain:roll20.net)",
+      "WebFetch(domain:magpiegames.com)",
+      "WebFetch(domain:docs.google.com)",
+      "WebFetch(domain:movimentorpg.com.br)",
+      "WebFetch(domain:jogaod20.com)"
     ]
   }
 }
