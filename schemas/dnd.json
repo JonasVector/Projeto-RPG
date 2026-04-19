@@ -1,7 +1,8 @@
 {
   "system": "dnd",
-  "version": "1.0",
+  "version": "1.1",
   "displayName": "D&D 5e",
+  "_notes": "v1.1 session 4: normalized EN keys (strength/dexterity/acrobatics/...) to PT (forca/destreza/acrobacias/...). No existing character JSONs used EN keys, so no data migration needed.",
   "character": {
     "identity": {
       "title": "Identidade",
@@ -20,12 +21,12 @@
     "attributes": {
       "title": "Atributos",
       "fields": {
-        "strength": { "type": "number", "min": 1, "max": 30, "label": "Força", "defaultValue": 10 },
-        "dexterity": { "type": "number", "min": 1, "max": 30, "label": "Destreza", "defaultValue": 10 },
-        "constitution": { "type": "number", "min": 1, "max": 30, "label": "Constituição", "defaultValue": 10 },
-        "intelligence": { "type": "number", "min": 1, "max": 30, "label": "Inteligência", "defaultValue": 10 },
-        "wisdom": { "type": "number", "min": 1, "max": 30, "label": "Sabedoria", "defaultValue": 10 },
-        "charisma": { "type": "number", "min": 1, "max": 30, "label": "Carisma", "defaultValue": 10 }
+        "forca": { "type": "number", "min": 1, "max": 30, "label": "Força", "defaultValue": 10 },
+        "destreza": { "type": "number", "min": 1, "max": 30, "label": "Destreza", "defaultValue": 10 },
+        "constituicao": { "type": "number", "min": 1, "max": 30, "label": "Constituição", "defaultValue": 10 },
+        "inteligencia": { "type": "number", "min": 1, "max": 30, "label": "Inteligência", "defaultValue": 10 },
+        "sabedoria": { "type": "number", "min": 1, "max": 30, "label": "Sabedoria", "defaultValue": 10 },
+        "carisma": { "type": "number", "min": 1, "max": 30, "label": "Carisma", "defaultValue": 10 }
       }
     },
     "combat": {
@@ -44,35 +45,35 @@
     "saving_throws": {
       "title": "Testes de Resistência",
       "fields": {
-        "strength_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Força" },
-        "dexterity_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Destreza" },
-        "constitution_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Constituição" },
-        "intelligence_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Inteligência" },
-        "wisdom_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Sabedoria" },
-        "charisma_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Carisma" }
+        "forca_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Força" },
+        "destreza_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Destreza" },
+        "constituicao_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Constituição" },
+        "inteligencia_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Inteligência" },
+        "sabedoria_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Sabedoria" },
+        "carisma_save": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" } }, "label": "Carisma" }
       }
     },
     "skills": {
       "title": "Perícias",
       "fields": {
-        "acrobatics": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Acrobacias" },
-        "animal_handling": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Adestramento" },
-        "arcana": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Arcanismo" },
-        "athletics": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Atletismo" },
-        "deception": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Enganação" },
-        "history": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "História" },
-        "insight": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Intuição" },
-        "intimidation": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Intimidação" },
-        "investigation": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Investigação" },
-        "medicine": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Medicina" },
-        "nature": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Natureza" },
-        "perception": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Percepção" },
-        "performance": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Atuação" },
-        "persuasion": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Persuasão" },
-        "religion": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Religião" },
-        "sleight_of_hand": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Prestidigitação" },
-        "stealth": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Furtividade" },
-        "survival": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Sobrevivência" }
+        "acrobacias": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Acrobacias" },
+        "adestramento": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Adestramento" },
+        "arcanismo": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Arcanismo" },
+        "atletismo": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Atletismo" },
+        "enganacao": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Enganação" },
+        "historia": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "História" },
+        "intuicao": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Intuição" },
+        "intimidacao": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Intimidação" },
+        "investigacao": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Investigação" },
+        "medicina": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Medicina" },
+        "natureza": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Natureza" },
+        "percepcao": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Percepção" },
+        "atuacao": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Atuação" },
+        "persuasao": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Persuasão" },
+        "religiao": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Religião" },
+        "prestidigitacao": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Prestidigitação" },
+        "furtividade": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Furtividade" },
+        "sobrevivencia": { "type": "object", "properties": { "valor": { "type": "number" }, "proficiente": { "type": "boolean" }, "atributo": { "type": "string" } }, "label": "Sobrevivência" }
       }
     },
     "attacks": {
@@ -120,7 +121,7 @@
     "history": {
       "title": "História",
       "fields": {
-        "historia": { "type": "string", "label": "História do Personagem" }
+        "historia_personagem": { "type": "string", "label": "História do Personagem" }
       }
     }
   }

@@ -94,48 +94,48 @@ export const DnDTemplate: React.FC<TemplateProps> = ({
       <DnDSection title="Atributos">
         <DnDField
           label="Força"
-          value={characterData.strength || 10}
-          onChange={(value) => updateField('strength', value)}
+          value={characterData.forca || 10}
+          onChange={(value) => updateField('forca', value)}
           type="number"
           min={1}
           max={30}
         />
         <DnDField
           label="Destreza"
-          value={characterData.dexterity || 10}
-          onChange={(value) => updateField('dexterity', value)}
+          value={characterData.destreza || 10}
+          onChange={(value) => updateField('destreza', value)}
           type="number"
           min={1}
           max={30}
         />
         <DnDField
           label="Constituição"
-          value={characterData.constitution || 10}
-          onChange={(value) => updateField('constitution', value)}
+          value={characterData.constituicao || 10}
+          onChange={(value) => updateField('constituicao', value)}
           type="number"
           min={1}
           max={30}
         />
         <DnDField
           label="Inteligência"
-          value={characterData.intelligence || 10}
-          onChange={(value) => updateField('intelligence', value)}
+          value={characterData.inteligencia || 10}
+          onChange={(value) => updateField('inteligencia', value)}
           type="number"
           min={1}
           max={30}
         />
         <DnDField
           label="Sabedoria"
-          value={characterData.wisdom || 10}
-          onChange={(value) => updateField('wisdom', value)}
+          value={characterData.sabedoria || 10}
+          onChange={(value) => updateField('sabedoria', value)}
           type="number"
           min={1}
           max={30}
         />
         <DnDField
           label="Carisma"
-          value={characterData.charisma || 10}
-          onChange={(value) => updateField('charisma', value)}
+          value={characterData.carisma || 10}
+          onChange={(value) => updateField('carisma', value)}
           type="number"
           min={1}
           max={30}
